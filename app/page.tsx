@@ -1,0 +1,796 @@
+"use client";
+
+import Script from "next/script";
+import CommonFooter from "@/components/footer/common-footer";
+import HomeHeader from "@/components/header/home-header";
+import HomeMobileHeader from "@/components/header/home-mobile-header";
+import LandingMarqueeSection from "@/components/LandingMarqueeSection";
+import Image from "next/image";
+import Heading from "@/components/common/heading";
+import FeatureCard from "@/components/FeatureCard";
+import { useState } from "react";
+import StepFirstVisit from "@/components/plan_your_trip/landing/StepFirstVisit";
+import StepTravelTime from "@/components/plan_your_trip/landing/StepTravelTime";
+import StepThemes from "@/components/plan_your_trip/landing/StepThemes";
+import StepRegions from "@/components/plan_your_trip/landing/StepRegions";
+import StepTravelers from "@/components/plan_your_trip/landing/StepTravelers";
+import { CheckCircle2, MoveLeft, MoveRight } from "lucide-react";
+
+interface CategoryCard {
+    id: number
+    label: string
+    image: string
+}
+
+const categories: CategoryCard[] = [
+    {
+        id: 1,
+        label: "Destinations",
+        image: "https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/08/Destination-list-7.jpg",
+    },
+    {
+        id: 2,
+        label: "Road Trips",
+        image: "https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/08/Destination-list-8.jpg",
+    },
+    {
+        id: 3,
+        label: "Secret Gems",
+        image: "https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/11/Destination-list-026.jpg",
+    },
+    {
+        id: 4,
+        label: "Tips & Tricks",
+        image: "https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/08/Destination-list-9.jpg",
+    },
+]
+
+const cities = [
+    { name: "Teneriffe", category: "Low budget", image: "https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/08/Destination-list-3.jpg" },
+    { name: "Georgia", category: "Hiking", image: "https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/08/Destination-list-5.jpg" },
+    { name: "Istanbul", category: "Food tours", image: "https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/08/Destination-list-7.jpg" },
+    { name: "Maldives", category: "Low budget", image: "https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/11/Destination-img-24.jpg" },
+    { name: "Jordan", category: "Hiking", image: "https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/08/Destination-list-2.jpg" },
+];
+
+interface DestinationCard {
+    id: number
+    title: string
+    location: string
+    image: string
+}
+
+const destinations: DestinationCard[] = [
+    {
+        id: 1,
+        title: "Mexico Itinerary: Ultimate 15-day Travel Guide",
+        location: "Mexico, Mexico",
+        image: "https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/08/home-3-img-new-7.jpg",
+    },
+    {
+        id: 2,
+        title: "Egypt Itinerary: Ultimate 7-day Travel Guide",
+        location: "Giza, Egypt",
+        image: "https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/08/home-3-img-new-8.jpg",
+    },
+    {
+        id: 3,
+        title: "13 Things to do in Bali, Trips and Tricks",
+        location: "Bali, Indonesia",
+        image: "https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/08/home-3-img-new-9.jpg",
+    },
+];
+
+const populorDestination = [
+    {
+        id: 1,
+        image: "https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/08/Home-1-destination-08.jpg",
+        name: "Giza"
+    },
+    {
+        id: 2,
+        image: "https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/08/Home-1-destination-01.jpg",
+        name: "Mexico"
+    },
+    {
+        id: 3,
+        image: "https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/08/Home-1-destination-04.jpg",
+        name: "Paris"
+    },
+    {
+        id: 4,
+        image: "https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/08/Home-1-destination-07.jpg",
+        name: "Lagos"
+    },
+    {
+        id: 5,
+        image: "https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/08/Home-1-destination-03.jpg",
+        name: "Notodden"
+    },
+    {
+        id: 1,
+        image: "https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/08/Home-1-destination-08.jpg",
+        name: "Giza"
+    }
+];
+
+// Plan Your Trip Steps
+const steps = [
+    StepFirstVisit,
+    StepTravelTime,
+    StepThemes,
+    StepRegions,
+    StepTravelers,
+];
+
+export default function HomePage() {
+    // Define state
+    const [openPlanYourTripModel, setOpenPlanYourTripModel] = useState<boolean>(false);
+    const [step, setStep] = useState(0);
+    const StepComponent = steps[step];
+
+    return (
+        <>
+            <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+                <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes" />
+                <meta name="robots" content="max-image-preview:large" />
+
+                <link rel="stylesheet" href="/assets/home-css/animate.min.css" />
+                <link rel="stylesheet" href="/assets/home-css/sbi-styles.min.css" />
+                <link rel="stylesheet" href="/assets/home-css/elegant-icons.min.css" />
+                <link rel="stylesheet" href="/assets/home-css/all.min.css" />
+                <link rel="stylesheet" href="/assets/home-css/styles.css" />
+                <link rel="stylesheet" href="/assets/home-css/grid.css" />
+                <link rel="stylesheet" href="/assets/home-css/main.css" />
+                <link rel="stylesheet" href="/assets/home-css/rbt-modules.css" />
+                <link rel="stylesheet" href="/assets/home-css/grid.min.css" />
+                <link rel="stylesheet" href="/assets/home-css/helper-parts.min.css" />
+                <link rel="stylesheet" href="/assets/home-css/main.min.css" />
+                <link rel="stylesheet" href="/assets/home-css/perfect-scrollbar.css" />
+                <link rel="stylesheet" href="/assets/home-css/swiper.min.css" />
+                <link rel="stylesheet" href="/assets/home-css/main(1).min.css" />
+                <link rel="stylesheet" href="/assets/home-css/wanderaway-core.min.css" />
+                <link rel="stylesheet" href="/assets/home-css/brands.css" />
+                <link rel="stylesheet" href="/assets/home-css/style.css" />
+                <link rel="stylesheet" href="/assets/home-css/home.css" />
+
+                {/* ================== GOOGLE FONTS ================== */}
+                <link rel="preconnect" href="https://fonts.googleapis.com" />
+                <link
+                    rel="preconnect"
+                    href="https://fonts.gstatic.com"
+                    crossOrigin="anonymous"
+                />
+                <link
+                    href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Quintessential&family=Science+Gothic:wght@100..900&display=swap"
+                    rel="stylesheet"
+                />
+
+                <link rel="stylesheet" href="/assets/home-css/main(1).css" />
+                <link rel="stylesheet" href="/assets/home-css/elementor.min.css" />
+                <link rel="stylesheet" href="/assets/home-css/custom-frontend.min.css" />
+                <link rel="stylesheet" href="/assets/home-css/sbi-styles.min.css" />
+                <link rel="stylesheet" href="/assets/home-css/widget-menu-anchor.min.css" />
+                <link rel="stylesheet" href="/assets/home-css/magnific-popup.css" />
+
+                <link rel="stylesheet" href="/assets/home-css/post-3060.css" />
+                <link rel="stylesheet" href="/assets/home-css/roboto.css" />
+                <link rel="stylesheet" href="/assets/home-css/robotoslab.css" />
+                <link rel="stylesheet" href="/assets/home-css/wc-blocks.css" />
+
+                {/* Include globas.css */}
+                <Script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></Script>
+                <Script src="/assets/home-js/jquery.min.js.download" strategy="afterInteractive"></Script>
+                <Script src="/assets/home-js/jquery-migrate.min.js.download" strategy="afterInteractive"></Script>
+                <Script src="/assets/home-js/jquery.blockUI.min.js.download" strategy="afterInteractive"></Script>
+                <Script src="/assets/home-js/js.cookie.min.js.download" strategy="afterInteractive"></Script>
+                <Script src="/assets/home-js/jquery.justifiedGallery.min.js.download" strategy="afterInteractive"></Script>
+            </head>
+            <body
+                className="wp-singular page-template page-template-page-full-width page-template-page-full-width-php page page-id-3060 wp-theme-wanderaway theme-wanderaway qi-blocks-1.4.3 qodef-gutenberg--no-touch qode-framework-1.2.6 woocommerce-js qodef-qi--no-touch qi-addons-for-elementor-1.9.3 wanderaway-core-1.2 wanderaway-1.1.1 qodef-content-grid-1300 qodef-back-to-top--enabled qodef-content-behind-header qodef-header--standard qodef-header-appearance--none qodef-header--transparent qodef-content--behind-header qodef-mobile-header--side-area qodef-drop-down-second--full-width qodef-drop-down-second--default qode-export-1.0 qodef-header-standard--left qodef-search--covers-header">
+                <div id="qodef-page-wrapper">
+                    <HomeHeader />
+                    <HomeMobileHeader />
+                    <div id="qodef-page-outer">
+                        <div id="qodef-page-inner" className="qodef-content-full-width">
+                            <main id="qodef-page-content" className="qodef-grid qodef-layout--template qodef-grid-template--12 "
+                                role="main">
+                                <div className="qodef-grid-inner">
+                                    <div className="qodef-grid-item qodef-page-content-section qodef-col--content">
+                                        <div data-elementor-type="wp-page" data-elementor-id="3060"
+                                            className="elementor elementor-3060">
+                                            <LandingMarqueeSection setOpenPlanYourTripModel={setOpenPlanYourTripModel} />
+
+                                            <section className="!py-20 bg-white">
+                                                <div className="!max-w-8xl !mx-auto !px-8">
+                                                    <Heading main="Handcrafted Japan Itineraries" sub="Discover the Best of Japan with Our Handcrafted Itineraries" />
+
+                                                    <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-3 gap-10 items-center">
+                                                        <div className="flex flex-col">
+                                                            <div className="relative h-80 mb-6 overflow-hidden rounded-lg">
+                                                                <Image
+                                                                    src={"https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/08/destionation-list-1.jpg"}
+                                                                    alt={"Image"}
+                                                                    fill
+                                                                    className="object-cover hover:scale-105 transition-transform duration-300"
+                                                                />
+                                                            </div>
+                                                            <div className="text-center">
+                                                                <h3 className="font-serif text-xl font-light mb-3 leading-tight">Sample Tour Title</h3>
+                                                            </div>
+                                                        </div>
+                                                        <div className="flex flex-col">
+                                                            <div className="relative h-80 mb-6 overflow-hidden rounded-lg">
+                                                                <Image
+                                                                    src={"https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/08/Destination-list-2.jpg"}
+                                                                    alt={"Image"}
+                                                                    fill
+                                                                    className="object-cover hover:scale-105 transition-transform duration-300"
+                                                                />
+                                                            </div>
+                                                            <div className="text-center">
+                                                                <h3 className="font-serif text-xl font-light mb-3 leading-tight">Sample Tour Title</h3>
+                                                            </div>
+                                                        </div>
+                                                        <div className="flex flex-col">
+                                                            <div className="relative h-80 mb-6 overflow-hidden rounded-lg">
+                                                                <Image
+                                                                    src={"https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/08/Destination-list-4.jpg"}
+                                                                    alt={"Image"}
+                                                                    fill
+                                                                    className="object-cover hover:scale-105 transition-transform duration-300"
+                                                                />
+                                                            </div>
+                                                            <div className="text-center">
+                                                                <h3 className="font-serif text-xl font-light mb-3 leading-tight">Sample Tour Title</h3>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </section>
+
+                                            <section className="!pb-20 bg-white">
+                                                <div className="!max-w-7xl !mx-auto !px-8">
+                                                    <Heading main="Quick Type Pick" sub="Nulla massa nisl, aliquam sed ante porta, suscipit facilisis nulla." />
+
+                                                    <div className="grid md:grid-cols-2 gap-6">
+                                                        {categories.map((category) => (
+                                                            <div key={category.id} className="relative h-72 rounded-lg overflow-hidden group cursor-pointer">
+                                                                <Image
+                                                                    src={category.image || "/placeholder.svg"}
+                                                                    alt={category.label}
+                                                                    fill
+                                                                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                                                                />
+                                                                {/* Dark overlay */}
+                                                                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors" />
+                                                                {/* Label */}
+                                                                <div className="absolute inset-0 flex items-center justify-center">
+                                                                    <div className="bg-white px-8 py-3 rounded">
+                                                                        <h3 className="font-serif text-xl font-light !text-white">{category.label}</h3>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        ))}
+                                                    </div>
+                                                </div>
+                                            </section>
+
+                                            <section className="!pb-20 bg-white">
+                                                <div className="!max-w-7xl !mx-auto !px-8">
+                                                    <Heading main="Top Cities" sub="Lorem ipsum dolor sit amet cons ectetur adipi." />
+
+                                                    <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
+                                                        {cities.map((destination, index) => (
+                                                            <div key={index} className="relative h-64 rounded-lg overflow-hidden group cursor-pointer">
+                                                                {/* Background Image */}
+                                                                <Image
+                                                                    src={destination.image || "/placeholder.svg"}
+                                                                    alt={destination.name}
+                                                                    fill
+                                                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                                                />
+
+                                                                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent"></div>
+
+                                                                <div className="!absolute !bottom-0 !left-0 !right-0 !p-6 !text-white !flex !flex-col !justify-end !h-full">
+                                                                    <h3 className="!text-2xl !font-semibold !text-white !mb-1">{destination.name}</h3>
+                                                                    <p className="!text-sm !font-light">{destination.category}</p>
+                                                                </div>
+                                                            </div>
+                                                        ))}
+                                                    </div>
+                                                </div>
+                                            </section>
+
+                                            <section className="!pb-20 bg-white">
+                                                <div className="!max-w-7xl !mx-auto !px-8">
+                                                    <Heading main="Favourite Destinations" sub="Vestibulum id neque varius, loreet nisi ut, pharetra metus." />
+                                                    <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-6 gap-6">
+                                                        {populorDestination.map((destination, index) => (
+                                                            <div key={destination.name} className="flex-shrink-0 flex flex-col items-center">
+                                                                <div className="w-40 h-40 rounded-full overflow-hidden mb-4 flex-shrink-0">
+                                                                    <Image
+                                                                        src={destination.image || "/placeholder.svg"}
+                                                                        alt={destination.name}
+                                                                        width={160}
+                                                                        height={160}
+                                                                        className="w-full h-full object-cover"
+                                                                    />
+                                                                </div>
+                                                                <p className="!text-lg !font-semibold">{destination.name}</p>
+                                                            </div>
+                                                        ))}
+                                                    </div>
+                                                </div>
+                                            </section>
+
+                                            <section className="!py-14 !bg-[#fff9ee] px-4 sm:px-6 lg:py-20">
+                                                <div className="!max-w-7xl !mx-auto !px-4 !md:px-8">
+                                                    <Heading
+                                                        main="Top Travel Spots"
+                                                        sub="Top Travel Spots: Our Recommended Destinations A Click Away"
+                                                    />
+                                                    <div className="mt-10 grid grid-cols-1 lg:grid-cols-10 gap-4 min-h-[380px]">
+                                                        <div className="relative col-span-1 lg:col-span-7 h-[240px] sm:h-[320px] lg:h-full overflow-hidden">
+                                                            <Image
+                                                                src="https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/08/home3-img-1.jpg"
+                                                                alt="Featured travel destination"
+                                                                fill
+                                                                className="object-cover"
+                                                                priority
+                                                            />
+                                                        </div>
+                                                        <div className="col-span-1 lg:col-span-3 flex flex-col gap-1">
+                                                            {destinations.map((destination) => (
+                                                                <div
+                                                                    key={destination.id}
+                                                                    className="flex items-center lg:flex-col lg:text-center !bg-[#fcefdf] !p-6 lg:p-8 rounded-sm"
+                                                                >
+                                                                    <div className="w-16 h-16 lg:w-20 lg:h-20 rounded-full overflow-hidden flex-shrink-0 !mr-0">
+                                                                        <Image
+                                                                            src={destination.image || '/placeholder.svg'}
+                                                                            alt={destination.location}
+                                                                            width={80}
+                                                                            height={80}
+                                                                            className="w-full h-full object-cover"
+                                                                        />
+                                                                    </div>
+                                                                    <div className="!lg:mt-4">
+                                                                        <p className="text-sm text-gray-500 !m-0 !mb-2">
+                                                                            {destination.location}
+                                                                        </p>
+                                                                        <h5 className="font-semibold text-gray-900 !m-0">
+                                                                            {destination.title}
+                                                                        </h5>
+                                                                    </div>
+                                                                </div>
+                                                            ))}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </section>
+
+                                            <div className="elementor-element elementor-element-997454e e-con-full e-flex qodef-container-heights--disabled e-con e-parent"
+                                                data-id="997454e" data-element_type="container">
+                                                <div className="elementor-element elementor-element-b249df6 e-con-full e-flex qodef-container-heights--disabled e-con e-child qodef-parallax qodef--parallax-row qodef-parallax--init"
+                                                    data-id="b249df6" data-element_type="container"
+                                                    data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+                                                    <div className="qodef-parallax-row-holder">
+                                                        <div className="qodef-parallax-img-holder" style={{ opacity: "1" }}>
+                                                            <div className="qodef-parallax-img-wrapper">
+                                                                <Image src="https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/11/Landing-img-01.jpg" alt="Parallax Image" width="1920" height="1080" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div className="elementor-element elementor-element-748fc69 elementor-widget elementor-widget-wanderaway_core_stacked_images"
+                                                        data-id="748fc69" data-element_type="widget"
+                                                        data-widget_type="wanderaway_core_stacked_images.default">
+                                                        <div className="elementor-widget-container">
+                                                            <div
+                                                                className="qodef-shortcode qodef-m qodef-stacked-images qodef-layout--default qodef--has-appear qodef-shadow--enabled">
+                                                                <div className="qodef-m-images">
+                                                                    <div className="qodef-m-image" style={{ opacity: "1" }}>
+                                                                        <a
+                                                                            href="#"
+                                                                            target="_blank">
+                                                                            <Image src="https://wanderaway.qodeinteractive.com/wp-content/uploads/2024/01/Landing-img-02.jpg" alt="Parallax Image" width="609" height="476" />
+                                                                        </a>
+                                                                    </div>
+                                                                    <div className="qodef-m-image qodef-disabled--768" style={{ bottom: "-9%", right: "-13%", textAlign: "right", opacity: "1" }}>
+                                                                        <a
+                                                                            href="#"
+                                                                            target="_blank">
+                                                                            <Image src="https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/09/Landing-img-3.png" alt="Parallax Image" width="215" height="326" />
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className="elementor-element elementor-element-bc8a773 e-con-full e-flex qodef-container-heights--disabled e-con e-child"
+                                                    data-id="bc8a773" data-element_type="container"
+                                                    data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+                                                    <div className="elementor-element elementor-element-f5f7f9b elementor-widget__width-initial elementor-widget elementor-widget-wanderaway_core_info_section"
+                                                        data-id="f5f7f9b" data-element_type="widget"
+                                                        data-widget_type="wanderaway_core_info_section.default">
+                                                        <div className="elementor-widget-container">
+                                                            <div
+                                                                className="qodef-shortcode qodef-m qodef-info-section qodef-layout--background-text qodef-background-text-pos--top-left">
+                                                                <div className="qodef-m-background-text">
+                                                                </div>
+                                                                <div className="qodef-m-info">
+                                                                    <h2 className="qodef-m-title">
+                                                                        Dedicated Destination Showcase Module </h2>
+                                                                    <p className="qodef-m-text">
+                                                                        Complete with destination singles, flexible lists, maps
+                                                                        &amp; more
+                                                                    </p>
+                                                                    <div className="qodef-m-button">
+                                                                        <a className="qodef-shortcode qodef-m qodef-button qodef-layout--filled qodef-html--link"
+                                                                            href="https://wanderaway.qodeinteractive.com/destinations/"
+                                                                            target="_blank" style={{ margin: "32px 0 0 0" }}> <span
+                                                                                className="qodef-m-text">View more</span></a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div className="elementor-element elementor-element-910737b elementor-widget elementor-widget-wanderaway_core_icon_with_text"
+                                                        data-id="910737b" data-element_type="widget"
+                                                        data-widget_type="wanderaway_core_icon_with_text.default">
+                                                        <div className="elementor-widget-container">
+                                                            <div
+                                                                className="qodef-shortcode qodef-m qodef-icon-with-text qodef-layout--before-content qodef--svg-icon">
+                                                                <div className="qodef-m-icon-wrapper">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="32.333"
+                                                                        height="32.845" viewBox="0 0 32.333 32.845">
+
+                                                                        <path fill="#ff6565"
+                                                                            d="M32.096 21.742c-.547 1.559-3.372 1.921-4.335 3.172-1 1.3-.582 4.034-1.913 4.945s-3.85-.4-5.42.077c-1.555.468-2.865 2.935-4.526 2.909-1.6-.025-2.832-2.514-4.431-3.048s-4.134.7-5.416-.24c-1.329-.973-.813-3.706-1.748-5s-3.75-1.77-4.234-3.3c-.48-1.516 1.57-3.431 1.6-5.051.026-1.563-1.979-3.538-1.431-5.1s3.372-1.921 4.334-3.172c1-1.3.582-4.034 1.914-4.945s3.85.4 5.42-.077c1.555-.468 2.865-2.935 4.526-2.909 1.6.025 2.832 2.514 4.43 3.048s4.134-.7 5.416.24c1.329.973.813 3.705 1.748 5s3.75 1.77 4.234 3.3c.48 1.516-1.57 3.431-1.6 5.051-.026 1.57 1.979 3.541 1.432 5.1Z">
+                                                                        </path>
+
+                                                                        <path fill="#fff"
+                                                                            d="m16.167 9.257 2.068 4.19 4.625.672-3.346 3.262.79 4.606-4.136-2.174-4.136 2.174.79-4.606-3.346-3.262 4.625-.672Z">
+                                                                        </path>
+                                                                    </svg>
+                                                                </div>
+                                                                <div className="qodef-m-content">
+                                                                    <p className="qodef-m-text">Five premade destination layouts</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div className="elementor-element elementor-element-d0d83e8 e-con-full e-flex qodef-container-heights--disabled e-con e-parent"
+                                                data-id="d0d83e8" data-element_type="container">
+                                                <div className="elementor-element elementor-element-63b91f0 e-con-full e-flex qodef-container-heights--disabled e-con e-child"
+                                                    data-id="63b91f0" data-element_type="container">
+                                                    <div className="elementor-element elementor-element-973ff86 elementor-widget__width-initial elementor-widget-tablet__width-inherit elementor-widget elementor-widget-wanderaway_core_section_title"
+                                                        data-id="973ff86" data-element_type="widget"
+                                                        data-widget_type="wanderaway_core_section_title.default">
+                                                        <div className="elementor-widget-container">
+                                                            <div
+                                                                className="qodef-shortcode qodef-m qodef-section-title qodef-alignment--left">
+                                                                <h2 className="qodef-m-title">
+                                                                    A Variety of Ways to Display Posts </h2>
+                                                                <p className="qodef-m-text" style={{ marginTop: "10px", fontSize: "19px" }}>
+                                                                    You get every layout &amp; option you’ll need to captivate the
+                                                                    blogosphere; 3 adjustable blog list elements, tons of ways to
+                                                                    display single posts &amp; more. </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div className="elementor-element elementor-element-4e3d233 elementor-widget elementor-widget-wanderaway_core_textual_list"
+                                                        data-id="4e3d233" data-element_type="widget"
+                                                        data-widget_type="wanderaway_core_textual_list.default">
+                                                        <div className="elementor-widget-container">
+                                                            <div className="qodef-shortcode qodef-m qodef-textual-list">
+                                                                <ul className="qodef-e-list">
+                                                                    <li className="qodef-e-item">
+                                                                        <span className="qodef-e-bullet"></span>
+                                                                        <span className="qodef-e-text">Huge set of single post
+                                                                            layouts</span>
+                                                                    </li>
+                                                                    <li className="qodef-e-item">
+                                                                        <span className="qodef-e-bullet"></span>
+                                                                        <span className="qodef-e-text">Dynamic Blog List Mix
+                                                                            element</span>
+                                                                    </li>
+                                                                    <li className="qodef-e-item">
+                                                                        <span className="qodef-e-bullet"></span>
+                                                                        <span className="qodef-e-text">Blog list galleries and
+                                                                            sliders</span>
+                                                                    </li>
+                                                                    <li className="qodef-e-item">
+                                                                        <span className="qodef-e-bullet"></span>
+                                                                        <span className="qodef-e-text">Feature videos, audio &amp;
+                                                                            more</span>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div className="elementor-element elementor-element-0705473 elementor-widget elementor-widget-wanderaway_core_button"
+                                                        data-id="0705473" data-element_type="widget"
+                                                        data-widget_type="wanderaway_core_button.default">
+                                                        <div className="elementor-widget-container">
+                                                            <a className="qodef-shortcode qodef-m qodef-button qodef-layout--filled qodef-html--link"
+                                                                href="https://wanderaway.qodeinteractive.com/blog-right-sidebar/"
+                                                                target="_blank">
+                                                                <span className="qodef-m-text">VIEW MORE</span>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className="elementor-element elementor-element-0f040d7 e-con-full e-flex qodef-container-heights--disabled e-con e-child"
+                                                    data-id="0f040d7" data-element_type="container">
+                                                    <div className="elementor-element elementor-element-c650457 elementor-widget elementor-widget-wanderaway_core_stacked_images"
+                                                        data-id="c650457" data-element_type="widget"
+                                                        data-widget_type="wanderaway_core_stacked_images.default">
+                                                        <div className="elementor-widget-container">
+                                                            <div
+                                                                className="qodef-shortcode qodef-m qodef-stacked-images qodef-layout--default qodef--has-appear qodef-shadow--enabled">
+                                                                <div className="qodef-m-images">
+                                                                    <div className="qodef-m-image" style={{ opacity: "1" }}>
+                                                                        <a
+                                                                            href="https://wanderaway.qodeinteractive.com/a-tropical-escape-to-balis-stunning-beaches/"
+                                                                            target="_blank">
+                                                                            <Image src="https://wanderaway.qodeinteractive.com/wp-content/uploads/2024/01/Landing-img-04.jpg" alt="s" width={733} height={715} />
+                                                                        </a>
+                                                                    </div>
+                                                                    <div className="qodef-m-image qodef-disabled--1024" style={{ bottom: "-11%", left: "-26%", textAlign: "left", opacity: "1" }}>
+                                                                        <a
+                                                                            href="https://wanderaway.qodeinteractive.com/indonesian-escapades-a-journey-through-islands/"
+                                                                            target="_blank">
+                                                                            <Image src="https://wanderaway.qodeinteractive.com/wp-content/uploads/2024/01/Landing-img-05.jpg" alt="s" width={589} height={562} />
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div className="elementor-element elementor-element-5589b48 e-con-full e-flex qodef-container-heights--disabled e-con e-parent qodef-parallax qodef--parallax-row qodef-parallax--init"
+                                                data-id="5589b48" data-element_type="container">
+                                                <div className="qodef-parallax-row-holder">
+                                                    <div className="qodef-parallax-img-holder" style={{ opacity: "1" }}>
+                                                        <div className="qodef-parallax-img-wrapper">
+                                                            <Image src="https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/09/Landing-img-6.jpg" alt="Parallax Image" width={1920} height={900} />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className="elementor-element elementor-element-5b2aaf2 e-con-full e-flex qodef-container-heights--disabled e-con e-child"
+                                                    data-id="5b2aaf2" data-element_type="container">
+                                                    <div className="elementor-element elementor-element-8728b21 elementor-widget__width-initial elementor-widget-mobile__width-inherit elementor-widget elementor-widget-text-editor"
+                                                        data-id="8728b21" data-element_type="widget"
+                                                        data-widget_type="text-editor.default">
+                                                        <div className="elementor-widget-container">
+                                                            <h2><span style={{ color: "#ffffff" }}>For Travels Worth Reading
+                                                                About.</span></h2>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div className="elementor-element elementor-element-9374edf e-con-full e-flex qodef-container-heights--disabled e-con e-parent"
+                                                data-id="9374edf" data-element_type="container">
+                                                <div className="elementor-element elementor-element-81101c4 e-con-full e-flex qodef-container-heights--disabled e-con e-child"
+                                                    data-id="81101c4" data-element_type="container">
+                                                    <div className="elementor-element elementor-element-1b30435 elementor-widget__width-initial elementor-widget-tablet__width-inherit elementor-widget-laptop__width-initial elementor-widget elementor-widget-wanderaway_core_section_title"
+                                                        data-id="1b30435" data-element_type="widget"
+                                                        data-widget_type="wanderaway_core_section_title.default">
+                                                        <div className="elementor-widget-container">
+                                                            <div
+                                                                className="qodef-shortcode qodef-m qodef-section-title qodef-alignment--left">
+                                                                <h2 className="qodef-m-title">
+                                                                    Easily Launch an Online Store Too! </h2>
+                                                                <p className="qodef-m-text" style={{ marginTop: "10px", fontSize: "19px" }}>
+                                                                    The theme is fully compatible with the powerful &amp; free
+                                                                    WooCommerce plugin, and on top of that you get a great set of
+                                                                    shop page templates &amp; features. </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div className="elementor-element elementor-element-2a61ee2 elementor-widget elementor-widget-wanderaway_core_textual_list"
+                                                        data-id="2a61ee2" data-element_type="widget"
+                                                        data-widget_type="wanderaway_core_textual_list.default">
+                                                        <div className="elementor-widget-container">
+                                                            <div className="qodef-shortcode qodef-m qodef-textual-list">
+                                                                <ul className="qodef-e-list">
+                                                                    <li className="qodef-e-item">
+                                                                        <span className="qodef-e-bullet"></span>
+                                                                        <span className="qodef-e-text">Set up your online store in no
+                                                                            time</span>
+                                                                    </li>
+                                                                    <li className="qodef-e-item">
+                                                                        <span className="qodef-e-bullet"></span>
+                                                                        <span className="qodef-e-text">Full WooCommerce
+                                                                            compatibility</span>
+                                                                    </li>
+                                                                    <li className="qodef-e-item">
+                                                                        <span className="qodef-e-bullet"></span>
+                                                                        <span className="qodef-e-text">Easily adjustable shop
+                                                                            singles</span>
+                                                                    </li>
+                                                                    <li className="qodef-e-item">
+                                                                        <span className="qodef-e-bullet"></span>
+                                                                        <span className="qodef-e-text">Fully flexible Product List
+                                                                            element</span>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div className="elementor-element elementor-element-21c1f92 elementor-widget elementor-widget-wanderaway_core_button"
+                                                        data-id="21c1f92" data-element_type="widget"
+                                                        data-widget_type="wanderaway_core_button.default">
+                                                        <div className="elementor-widget-container">
+                                                            <a className="qodef-shortcode qodef-m qodef-button qodef-layout--filled qodef-html--link"
+                                                                href="https://wanderaway.qodeinteractive.com/shop/" target="_blank">
+                                                                <span className="qodef-m-text">VIEW MORE</span>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className="elementor-element elementor-element-ad6543f e-con-full e-flex qodef-container-heights--disabled e-con e-child"
+                                                    data-id="ad6543f" data-element_type="container">
+                                                    <div className="elementor-element elementor-element-50c708c elementor-widget elementor-widget-wanderaway_core_image_gallery"
+                                                        data-id="50c708c" data-element_type="widget"
+                                                        data-widget_type="wanderaway_core_image_gallery.default">
+                                                        <div className="elementor-widget-container">
+                                                            <div
+                                                                className="qodef-shortcode qodef-m qodef-image-gallery qodef-shadow--enabled qodef-grid qodef-layout--columns qodef-gutter--medium qodef-col-num--2 qodef-responsive--predefined qodef-swiper--show-pagination">
+                                                                <div className="qodef-grid-inner">
+                                                                    <div className="qodef-e qodef-image-wrapper qodef-grid-item" style={{ opacity: "1" }}>
+                                                                        <a href="https://wanderaway.qodeinteractive.com/shop/"
+                                                                            target="_blank">
+                                                                            <Image src="https://wanderaway.qodeinteractive.com/wp-content/uploads/2024/01/Landing-img-08.jpg" alt="Parallax Image" width="1000" height="1080" />
+                                                                        </a>
+                                                                    </div>
+                                                                    <div className="qodef-e qodef-image-wrapper qodef-grid-item ">
+                                                                        <a href="https://wanderaway.qodeinteractive.com/product/travel-book/"
+                                                                            target="_blank">
+                                                                            <Image src="https://wanderaway.qodeinteractive.com/wp-content/uploads/2024/01/Landing-img-07.jpg" alt="Parallax Image" width="1000" height="1080" />
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <section className="!pb-24">
+                                                <div className="!max-w-7xl !mx-auto !px-8">
+                                                    <FeatureCard />
+                                                </div>
+                                            </section>
+
+                                            <section className="!relative !overflow-hidden !bg-white">
+                                                <div className="!relative !z-10 !max-w-6xl !mx-auto !pt-24 !md:pt-32 !mb-6">
+                                                    <div className="hidden md:block absolute left-4 md:left-20 top-16 md:top-50">
+                                                        <img
+                                                            src="https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/09/Landing-marquee-img-5.png"
+                                                            alt=""
+                                                            className="w-24 h-32 md:w-46 md:h-46 rounded-full object-cover"
+                                                        />
+                                                    </div>
+
+                                                    <div className="hidden md:block absolute right-4 md:right-24 top-10 md:top-14">
+                                                        <img
+                                                            src="https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/09/Landing-marquee-img-6.png"
+                                                            alt=""
+                                                            className="w-24 h-24 md:w-50 md:h-50 rounded-full object-cover"
+                                                        />
+                                                    </div>
+
+                                                    <div className="flex justify-center">
+                                                        <img
+                                                            src="https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/09/Landing-marquee-img-7.png"
+                                                            alt=""
+                                                            className="w-56 h-80 md:w-96 md:h-[520px] rounded-full object-cover"
+                                                        />
+                                                    </div>
+                                                </div>
+
+                                                <div className="!relative !mt-[-160px] !md:mt-[-260px]">
+                                                    <div className="!h-[480px] !md:h-[700px] !bg-[#fcefdf] !rounded-t-[100%]"></div>
+                                                    <div className="!absolute !inset-0 !flex !flex-col !items-center !justify-center !text-center !px-4 !pt-30">
+                                                        <h2 className="text-3xl md:text-5xl font-semibold tracking-tight max-w-3xl">
+                                                            Every Travel Story’s <br className="hidden md:block" />
+                                                            Favorite Destination
+                                                        </h2>
+                                                        <p className="mt-4 text-sm md:text-lg text-black-600 max-w-2xl !mb-10">
+                                                            Create a website the stories from your journeys truly deserve with
+                                                            WanderAway, a modern travelogue & personal travel blog theme.
+                                                        </p>
+                                                        <button
+                                                            className="px-10 py-4 bg-black text-white text-sm font-medium hover:bg-gray-800 transition cursor-pointer"
+                                                        >
+                                                            PURCHASE
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </section>
+                                        </div>
+                                    </div>
+                                </div>
+                            </main>
+                        </div>
+                    </div>
+                    <CommonFooter />
+
+                    {/* Plan Your Trip Model */}
+                    {openPlanYourTripModel && (
+                        <div className="!fixed !inset-0 !z-50 !flex !items-center !justify-center !bg-black/40 !px-4">
+                            <div className="!relative !w-full !max-w-4xl !bg-[#d9eed8] !rounded-lg !md:rounded-[40px] !overflow-hidden !shadow-xl">
+                                <svg className="qodef-svg--stamp !absolute !top-6 !right-6" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 110 110"><g><path d="M109.2,72.8c-1.9,5.2-11.5,6.4-14.7,10.6c-3.4,4.3-2,13.5-6.5,16.6c-4.6,3.1-13.1-1.3-18.4,0.3c-5.3,1.6-9.7,9.8-15.4,9.7
+			c-5.5-0.1-9.6-8.4-15.1-10.2C33.6,98,25,102.1,20.6,99c-4.5-3.3-2.8-12.4-5.9-16.8c-3.2-4.4-12.8-5.9-14.4-11.1
+			c-1.6-5.1,5.3-11.5,5.4-16.9C5.8,49-1.1,42.4,0.8,37.2s11.5-6.4,14.7-10.6c3.4-4.3,2-13.5,6.5-16.6c4.6-3.1,13.1,1.3,18.4-0.3
+			c5.3-1.6,9.7-9.8,15.4-9.7c5.5,0.1,9.6,8.4,15.1,10.2C76.4,12,85,7.9,89.4,11c4.5,3.3,2.8,12.4,5.9,16.8
+			c3.2,4.4,12.8,5.9,14.4,11.1c1.6,5.1-5.3,11.5-5.4,16.9C104.2,61,111.1,67.6,109.2,72.8z"></path></g></svg>
+                                <button
+                                    onClick={() => setOpenPlanYourTripModel(false)}
+                                    className="absolute top-6.5 right-6 text-semibold bg-transparent !text-white w-7 h-7 rounded-full flex items-center justify-center text-xs cursor-pointer"
+                                >
+                                    ✕
+                                </button>
+                                <div className="!px-6 !md:px-16 !pb-7">
+                                    <StepComponent />
+                                    <div className="!mt-8 !flex !gap-3">
+                                        {step > 0 && (
+                                            <button onClick={() => setStep(step - 1)} className="flex items-center gap-2 !px-6 !py-2 !rounded-sm !bg-black text-white cursor-pointer">
+                                                <MoveLeft className="h-4 w-4" /> Previous
+                                            </button>
+                                        )}
+
+                                        {step < 4 && <button onClick={() => setStep(step + 1)} className="flex items-center gap-2 !px-6 !py-2 round !rounded-sm !bg-black text-white cursor-pointer hover:!bg-black/90">
+                                            Next <MoveRight className="h-4 w-4" />
+                                        </button>}
+
+                                        {step == 4 && <button className="flex items-center gap-2 !px-6 !py-2 round !rounded-sm !bg-black text-white cursor-pointer hover:!bg-black/90">
+                                            <CheckCircle2 className="h-4 w-4" /> Submit
+                                        </button>}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                </div>
+                <Script src="/assets/home-js/hooks.min.js.download" strategy="afterInteractive"></Script>
+                <Script src="/assets/home-js/i18n.min.js.download" strategy="afterInteractive"></Script>
+                <Script src="/assets/home-js/index.js.download" strategy="afterInteractive"></Script>
+                <Script src="/assets/home-js/index(1).js.download" strategy="afterInteractive"></Script>
+                <Script src="/assets/home-js/main(1).js.download" strategy="afterInteractive"></Script>
+                <Script src="/assets/home-js/rbt-modules.js.download" strategy="afterInteractive"></Script>
+                <Script src="/assets/home-js/rbtools.min.js.download" strategy="afterInteractive"></Script>
+                <Script src="/assets/home-js/rs6.min.js.download" strategy="afterInteractive"></Script>
+                <Script src="/assets/home-js/core.min.js.download" strategy="afterInteractive"></Script>
+                <Script src="/assets/home-js/main.min.js.download" strategy="afterInteractive"></Script>
+                <Script src="/assets/home-js/perfect-scrollbar.jquery.min.js.download" strategy="afterInteractive"></Script>
+                <Script src="/assets/home-js/hoverIntent.min.js.download" strategy="afterInteractive"></Script>
+                <Script src="/assets/home-js/modernizr.js.download" strategy="afterInteractive"></Script>
+                <Script src="/assets/home-js/gsap.min.js.download" strategy="afterInteractive"></Script>
+                <Script src="/assets/home-js/ScrollTrigger.min.js.download" strategy="afterInteractive"></Script>
+                <Script src="/assets/home-js/jquery.parallax-scroll.js.download" strategy="afterInteractive"></Script>
+                <Script src="/assets/home-js/main.min(1).js.download" strategy="afterInteractive"></Script>
+                <Script src="/assets/home-js/underscore.min.js.download" strategy="afterInteractive"></Script>
+                <Script src="/assets/home-js/custom-marker.js.download" strategy="afterInteractive"></Script>
+                <Script src="/assets/home-js/markerclusterer.js.download" strategy="afterInteractive"></Script>
+                <Script src="/assets/home-js/google-map.js.download" strategy="afterInteractive"></Script>
+                <Script src="/assets/home-js/wanderaway-core.min.js.download" strategy="afterInteractive"></Script>
+                <Script src="/assets/home-js/swiper.min.js.download" strategy="afterInteractive"></Script>
+                <Script src="/assets/home-js/select2.full.min.js.download" strategy="afterInteractive"></Script>
+                <Script src="/assets/home-js/fslightbox.min.js.download" strategy="afterInteractive"></Script>
+                <Script src="/assets/home-js/sourcebuster.min.js.download" strategy="afterInteractive"></Script>
+            </body>
+        </>
+    );
+}

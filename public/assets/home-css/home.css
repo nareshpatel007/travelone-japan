@@ -1,0 +1,116 @@
+.error404 #qodef-page-inner #qodef-page-content {
+    height: calc(100vh - 128px);
+}
+
+@media only screen and (max-width: 1024px) {
+    .error404 #qodef-page-inner #qodef-page-content {
+        height: calc(100vh - 70px);
+    }
+}
+
+#qodef-page-outer {
+    margin-top: -128px;
+}
+
+@media only screen and (max-width: 1024px) {
+    #qodef-page-outer {
+        margin-top: -70px;
+    }
+}
+
+#qodef-page-footer-top-area {
+    background-color: rgb(252, 239, 223);
+}
+
+#qodef-page-footer-bottom-area {
+    background-color: rgb(252, 239, 223);
+}
+
+#qodef-page-inner {
+    padding: 0 0;
+}
+
+@media only screen and (max-width: 1024px) {
+    #qodef-page-inner {
+        padding: 0 0;
+    }
+}
+
+#qodef-top-area {
+    background-color: rgb(254, 244, 228);
+}
+
+#qodef-top-area-inner {
+    height: 45px;
+}
+
+#qodef-page-header .qodef-header-logo-link {
+    height: 76px;
+}
+
+#qodef-page-mobile-header .qodef-mobile-header-logo-link {
+    height: 32px;
+}
+
+#qodef-page-spinner .qodef-m-inner {
+    color: rgb(255, 255, 255);
+}
+
+.qodef-page-title {
+    height: 120px;
+    background-color: rgb(255, 255, 255);
+}
+
+.qodef-page-title .qodef-m-content {
+    padding-top: 128px;
+}
+
+@media only screen and (max-width: 1024px) {
+    .qodef-page-title {
+        height: 80px;
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+    .qodef-page-title .qodef-m-content {
+        padding-top: 70px;
+    }
+}
+
+.qodef-header--standard #qodef-page-header {
+    height: 128px;
+    background-color: rgba(255, 255, 255, 0);
+}
+
+.qodef-header--standard #qodef-page-header {
+    padding-left: 30px;
+    padding-right: 30px;
+    border-bottom-color: rgba(255, 255, 255, 0);
+    border-bottom-width: 1px;
+}
+
+.qodef-mobile-header--side-area #qodef-mobile-header-navigation .qodef-m-inner {
+    background-color: rgba(255, 255, 255, 0);
+}
+
+.qodef-mobile-header--side-area #qodef-page-mobile-header {
+    background-color: rgba(255, 255, 255, 0);
+}
+
+@media only screen and (max-width: 1024px) {
+
+    h4,
+    .qodef-h4,
+    h4.elementor-heading-title {
+        font-size: 20px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+
+    h3,
+    .qodef-h3,
+    h3.elementor-heading-title {
+        font-size: 30px;
+    }
+}
