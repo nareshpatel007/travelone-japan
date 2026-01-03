@@ -491,7 +491,7 @@ export default function HomePage() {
                                                         sub="Top Travel Spots: Our Recommended Destinations A Click Away"
                                                     />
                                                     <div className="mt-10 grid grid-cols-1 lg:grid-cols-10 gap-4 min-h-[380px]">
-                                                        <div className="relative col-span-1 lg:col-span-7 h-[240px] sm:h-[320px] lg:h-full overflow-hidden">
+                                                        <div className="relative col-span-1 lg:col-span-7 overflow-hidden">
                                                             <Image
                                                                 src="https://ik.imagekit.io/288weifiq/landing-japan/home3-img-1.webp"
                                                                 alt="Featured travel destination"
