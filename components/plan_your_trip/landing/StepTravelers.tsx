@@ -43,12 +43,12 @@ export default function StepTravelers() {
 
     return (
         <>
-            <h2 className="!text-2xl !md:text-3xl !font-normal !mb-6">
+            <h2 className="!text-xl !md:text-3xl !font-normal !mb-6">
                 Who's traveling and how many of you?
             </h2>
 
             {/* Tabs */}
-            <div className="!flex !gap-3 !mb-6">
+            <div className="!flex !gap-3 !mb-3 !md:mb-6">
                 <Tab label="Solo" active={activeTab === "solo"} onClick={() => setActiveTab("solo")} />
                 <Tab label="Family" active={activeTab === "family"} onClick={() => setActiveTab("family")} />
                 <Tab label="Small Group" active={activeTab === "group"} onClick={() => setActiveTab("group")} />
@@ -114,7 +114,7 @@ function Tab({ label, active, onClick }: any) {
     return (
         <button
             onClick={onClick}
-            className={`px-4 py-2 rounded-md cursor-pointer transition ${active
+            className={`px-4 py-2 text-sm !md:text-md rounded-md cursor-pointer transition ${active
                 ? "!bg-black !text-white"
                 : "bg-white text-black"
                 }`}

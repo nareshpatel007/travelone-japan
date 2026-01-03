@@ -23,7 +23,7 @@ export default function StepRegions() {
 
     return (
         <>
-            <h2 className="!text-2xl !md:text-3xl !font-normal !mb-6">
+            <h2 className="!text-xl !md:text-3xl !font-normal !mb-6">
                 Which parts of Japan would you like to explore?
             </h2>
 

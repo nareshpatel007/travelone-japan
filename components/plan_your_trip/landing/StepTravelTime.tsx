@@ -14,7 +14,7 @@ export default function StepTravelTime() {
 
     return (
         <>
-            <h2 className="!text-2xl !md:text-3xl !font-normal !mb-6">
+            <h2 className="!text-xl !md:text-3xl !font-normal !mb-6">
                 When do you plan to travel?
             </h2>
 

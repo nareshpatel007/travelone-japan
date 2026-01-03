@@ -728,16 +728,16 @@ export default function HomePage() {
                                     <StepComponent />
                                     <div className="!mt-8 !flex !gap-3">
                                         {step > 0 && (
-                                            <button onClick={() => setStep(step - 1)} className="flex items-center gap-2 !px-6 !py-2 !rounded-sm !bg-black text-white cursor-pointer hover:!bg-black/90">
+                                            <button onClick={() => setStep(step - 1)} className="flex items-center gap-2 !px-4 !py-2 !text-sm !md:text-md !rounded-sm !bg-black text-white cursor-pointer hover:!bg-black/90">
                                                 <MoveLeft className="h-4 w-4" /> Previous
                                             </button>
                                         )}
 
-                                        {step < 4 && <button onClick={() => setStep(step + 1)} className="flex items-center gap-2 !px-6 !py-2 round !rounded-sm !bg-black text-white cursor-pointer hover:!bg-black/90">
+                                        {step < 4 && <button onClick={() => setStep(step + 1)} className="flex items-center gap-2 !px-4 !py-2 !text-sm !md:text-md round !rounded-sm !bg-black text-white cursor-pointer hover:!bg-black/90">
                                             Next <MoveRight className="h-4 w-4" />
                                         </button>}
 
-                                        {step == 4 && <button className="flex items-center gap-2 !px-6 !py-2 round !rounded-sm !bg-black text-white cursor-pointer hover:!bg-black/90">
+                                        {step == 4 && <button className="flex items-center gap-2 !px-4 !py-2 !text-sm !md:text-md round !rounded-sm !bg-black text-white cursor-pointer hover:!bg-black/90">
                                             <CheckCircle2 className="h-4 w-4" /> Submit
                                         </button>}
                                     </div>
