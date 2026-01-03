@@ -1,4 +1,5 @@
 "use client";
+import { Check } from "lucide-react";
 import { useState } from "react";
 
 export default function StepFirstVisit() {
@@ -43,13 +44,7 @@ function Option({
     return (
         <label
             onClick={() => onChange(value)}
-            className={`
-                !flex !items-center !justify-between !p-4 !rounded-lg !cursor-pointer !transition
-                ${isActive
-                    ? "!bg-[#CFF5DF] !border !border-[#0FB37A]"
-                    : "!border !border-[#54595F] !hover:bg-[#EEF7F2]"
-                }
-            `}
+            className="!flex !items-center !justify-between !px-3 !py-2 !rounded-sm !cursor-pointer !transition !bg-white"
         >
             <div className="!flex !items-center !gap-4">
                 <span className="!border !rounded !px-2 !text-sm !border-[#54595F]">
@@ -69,8 +64,8 @@ function Option({
 
             {/* Checkmark */}
             {isActive && (
-                <span className="!text-[#0FB37A] !text-lg !font-bold">
-                    ✓
+                <span className="!text-black !text-md !font-semibold">
+                    <Check className="h-5 w-5" />
                 </span>
             )}
         </label>

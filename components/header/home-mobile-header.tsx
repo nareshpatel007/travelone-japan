@@ -1,14 +1,15 @@
 import Image from "next/image";
+import Link from "next/link";
 
 // components/Header.tsx
 export default function HomeMobileHeader() {
     return (
         <header id="qodef-page-mobile-header" role="banner">
             <div id="qodef-page-mobile-header-inner">
-                <a className="qodef-height--set qodef-source--image" rel="home" style={{ marginRight: "auto" }}>
-                    <Image alt="Logo" width={160} height={100} src="https://stage.travelone.io/html/home/assets/images/logo.png" />
-                </a>
-                <div className="qodef-widget-holder qodef--one">
+                <div className="qodef-height--set qodef-source--image" style={{ marginRight: "auto" }}>
+                    <Image alt="Logo" width={160} height={50} src="https://ik.imagekit.io/288weifiq/landing-japan/logo.webp" />
+                </div>
+                {/* <div className="qodef-widget-holder qodef--one">
                     <div id="wanderaway_core_woo_dropdown_cart-5"
                         className="widget widget_wanderaway_core_woo_dropdown_cart qodef-mobile-header-widget-area-one"
                         data-area="mobile-header">
@@ -37,7 +38,7 @@ export default function HomeMobileHeader() {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> */}
                 <a href="javascript:void(0)" className="qodef-opener-icon qodef-m qodef-source--predefined qodef-side-area-mobile-header-opener">
                     <span className="qodef-m-icon qodef--open">
                         <svg className="qodef-svg--menu" xmlns="http://www.w3.org/2000/svg" width="21" height="21"
@@ -64,24 +65,24 @@ export default function HomeMobileHeader() {
                     <nav className="qodef-m-navigation" role="navigation" aria-label="Mobile Menu">
                         <ul id="menu-landing-anchor-menu-3" className="menu">
                             <li className="menu-item menu-item-type-custom menu-item-object-custom menu-item-3487">
-                                <a href="#">
-                                    <span className="qodef-menu-item-text">Demos</span>
-                                </a>
+                                <Link href="/">
+                                    <span className="qodef-menu-item-text">Home</span>
+                                </Link>
                             </li>
                             <li className="menu-item menu-item-type-custom menu-item-object-custom menu-item-3495">
-                                <a href="#">
-                                    <span className="qodef-menu-item-text">Destinations</span>
-                                </a>
+                                <Link href="/contact">
+                                    <span className="qodef-menu-item-text">Contact Us</span>
+                                </Link>
                             </li>
                             <li className="menu-item menu-item-type-custom menu-item-object-custom menu-item-3492">
-                                <a href="#">
+                                <Link href="#">
                                     <span className="qodef-menu-item-text">Blog</span>
-                                </a>
+                                </Link>
                             </li>
                             <li className="menu-item menu-item-type-custom menu-item-object-custom menu-item-3491">
-                                <a href="#">
+                                <Link href="#">
                                     <span className="qodef-menu-item-text">Shop</span>
-                                </a>
+                                </Link>
                             </li>
                         </ul>
                     </nav>

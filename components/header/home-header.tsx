@@ -7,9 +7,9 @@ export default function HomeHeader() {
         <header id="qodef-page-header" role="banner">
             <div id="qodef-page-header-inner">
                 <div className="qodef-header-logo">
-                    <a className="qodef-height--set qodef-source--image" href="#" style={{ marginRight: "34px" }}>
-                        <Image alt="Logo" width={160} height={100} src="https://stage.travelone.io/html/home/assets/images/logo.png" />
-                    </a>
+                    <div className="qodef-height--set qodef-source--image" style={{ marginRight: "34px" }}>
+                        <Image alt="Logo" width={160} height={50} src="https://ik.imagekit.io/288weifiq/landing-japan/logo.webp" />
+                    </div>
                 </div>
                 <nav className="qodef-header-navigation" role="navigation" aria-label="Top Menu">
                     <ul id="menu-landing-anchor-menu-1" className="menu">

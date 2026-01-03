@@ -8,7 +8,7 @@ import LandingMarqueeSection from "@/components/LandingMarqueeSection";
 import Image from "next/image";
 import Heading from "@/components/common/heading";
 import FeatureCard from "@/components/FeatureCard";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import StepFirstVisit from "@/components/plan_your_trip/landing/StepFirstVisit";
 import StepTravelTime from "@/components/plan_your_trip/landing/StepTravelTime";
 import StepThemes from "@/components/plan_your_trip/landing/StepThemes";
@@ -125,16 +125,23 @@ const steps = [
 
 export default function HomePage() {
     // Define state
+    const [ready, setReady] = useState(false);
     const [openPlanYourTripModel, setOpenPlanYourTripModel] = useState<boolean>(false);
     const [step, setStep] = useState(0);
     const StepComponent = steps[step];
 
+    useEffect(() => {
+        // Wait one frame after hydration
+        requestAnimationFrame(() => {
+            setReady(true);
+        });
+    }, []);
+
     return (
         <>
             <head>
-                <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+                <meta httpEquiv="Content-Type" content="text/html; charset=UTF-8" />
                 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes" />
-                <meta name="robots" content="max-image-preview:large" />
 
                 <link rel="stylesheet" href="/assets/home-css/animate.min.css" />
                 <link rel="stylesheet" href="/assets/home-css/sbi-styles.min.css" />
@@ -143,15 +150,15 @@ export default function HomePage() {
                 <link rel="stylesheet" href="/assets/home-css/styles.css" />
                 <link rel="stylesheet" href="/assets/home-css/grid.css" />
                 <link rel="stylesheet" href="/assets/home-css/main.css" />
-                <link rel="stylesheet" href="/assets/home-css/rbt-modules.css" />
-                <link rel="stylesheet" href="/assets/home-css/grid.min.css" />
-                <link rel="stylesheet" href="/assets/home-css/helper-parts.min.css" />
+                {/* <link rel="stylesheet" href="/assets/home-css/rbt-modules.css" /> */}
+                {/* <link rel="stylesheet" href="/assets/home-css/grid.min.css" /> */}
+                {/* <link rel="stylesheet" href="/assets/home-css/helper-parts.min.css" /> */}
                 <link rel="stylesheet" href="/assets/home-css/main.min.css" />
-                <link rel="stylesheet" href="/assets/home-css/perfect-scrollbar.css" />
-                <link rel="stylesheet" href="/assets/home-css/swiper.min.css" />
+                {/* <link rel="stylesheet" href="/assets/home-css/perfect-scrollbar.css" /> */}
+                {/* <link rel="stylesheet" href="/assets/home-css/swiper.min.css" /> */}
                 <link rel="stylesheet" href="/assets/home-css/main(1).min.css" />
                 <link rel="stylesheet" href="/assets/home-css/wanderaway-core.min.css" />
-                <link rel="stylesheet" href="/assets/home-css/brands.css" />
+                {/* <link rel="stylesheet" href="/assets/home-css/brands.css" /> */}
                 <link rel="stylesheet" href="/assets/home-css/style.css" />
                 <link rel="stylesheet" href="/assets/home-css/home.css" />
 
@@ -189,7 +196,8 @@ export default function HomePage() {
             </head>
             <body
                 className="wp-singular page-template page-template-page-full-width page-template-page-full-width-php page page-id-3060 wp-theme-wanderaway theme-wanderaway qi-blocks-1.4.3 qodef-gutenberg--no-touch qode-framework-1.2.6 woocommerce-js qodef-qi--no-touch qi-addons-for-elementor-1.9.3 wanderaway-core-1.2 wanderaway-1.1.1 qodef-content-grid-1300 qodef-back-to-top--enabled qodef-content-behind-header qodef-header--standard qodef-header-appearance--none qodef-header--transparent qodef-content--behind-header qodef-mobile-header--side-area qodef-drop-down-second--full-width qodef-drop-down-second--default qode-export-1.0 qodef-header-standard--left qodef-search--covers-header">
-                <div id="qodef-page-wrapper">
+
+                {ready && <div id="qodef-page-wrapper">
                     <HomeHeader />
                     <HomeMobileHeader />
                     <div id="qodef-page-outer">
@@ -309,17 +317,17 @@ export default function HomePage() {
                                                     <Heading main="Favourite Destinations" sub="Vestibulum id neque varius, loreet nisi ut, pharetra metus." />
                                                     <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-6 gap-6">
                                                         {populorDestination.map((destination, index) => (
-                                                            <div key={destination.name} className="flex-shrink-0 flex flex-col items-center">
+                                                            <div key={index} className="flex-shrink-0 flex flex-col items-center">
                                                                 <div className="w-40 h-40 rounded-full overflow-hidden mb-4 flex-shrink-0">
                                                                     <Image
-                                                                        src={destination.image || "/placeholder.svg"}
-                                                                        alt={destination.name}
+                                                                        src={destination?.image || "/placeholder.svg"}
+                                                                        alt={destination?.name || "Destination"}
                                                                         width={160}
                                                                         height={160}
                                                                         className="w-full h-full object-cover"
                                                                     />
                                                                 </div>
-                                                                <p className="!text-lg !font-semibold">{destination.name}</p>
+                                                                <p className="!text-lg !font-semibold">{destination?.name}</p>
                                                             </div>
                                                         ))}
                                                     </div>
@@ -335,7 +343,7 @@ export default function HomePage() {
                                                     <div className="mt-10 grid grid-cols-1 lg:grid-cols-10 gap-4 min-h-[380px]">
                                                         <div className="relative col-span-1 lg:col-span-7 h-[240px] sm:h-[320px] lg:h-full overflow-hidden">
                                                             <Image
-                                                                src="https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/08/home3-img-1.jpg"
+                                                                src="https://ik.imagekit.io/288weifiq/landing-japan/home3-img-1.webp"
                                                                 alt="Featured travel destination"
                                                                 fill
                                                                 className="object-cover"
@@ -730,15 +738,15 @@ export default function HomePage() {
                     {/* Plan Your Trip Model */}
                     {openPlanYourTripModel && (
                         <div className="!fixed !inset-0 !z-50 !flex !items-center !justify-center !bg-black/40 !px-4">
-                            <div className="!relative !w-full !max-w-4xl !bg-[#d9eed8] !rounded-lg !md:rounded-[40px] !overflow-hidden !shadow-xl">
-                                <svg className="qodef-svg--stamp !absolute !top-6 !right-6" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 110 110"><g><path d="M109.2,72.8c-1.9,5.2-11.5,6.4-14.7,10.6c-3.4,4.3-2,13.5-6.5,16.6c-4.6,3.1-13.1-1.3-18.4,0.3c-5.3,1.6-9.7,9.8-15.4,9.7
+                            <div className="!relative !w-full !max-w-xl !bg-[#d9eed8] !rounded-lg !md:rounded-[40px] !overflow-hidden !shadow-xl">
+                                <svg className="qodef-svg--stamp !absolute !top-2 !right-2" xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 110 110"><g><path d="M109.2,72.8c-1.9,5.2-11.5,6.4-14.7,10.6c-3.4,4.3-2,13.5-6.5,16.6c-4.6,3.1-13.1-1.3-18.4,0.3c-5.3,1.6-9.7,9.8-15.4,9.7
 			c-5.5-0.1-9.6-8.4-15.1-10.2C33.6,98,25,102.1,20.6,99c-4.5-3.3-2.8-12.4-5.9-16.8c-3.2-4.4-12.8-5.9-14.4-11.1
 			c-1.6-5.1,5.3-11.5,5.4-16.9C5.8,49-1.1,42.4,0.8,37.2s11.5-6.4,14.7-10.6c3.4-4.3,2-13.5,6.5-16.6c4.6-3.1,13.1,1.3,18.4-0.3
 			c5.3-1.6,9.7-9.8,15.4-9.7c5.5,0.1,9.6,8.4,15.1,10.2C76.4,12,85,7.9,89.4,11c4.5,3.3,2.8,12.4,5.9,16.8
 			c3.2,4.4,12.8,5.9,14.4,11.1c1.6,5.1-5.3,11.5-5.4,16.9C104.2,61,111.1,67.6,109.2,72.8z"></path></g></svg>
                                 <button
                                     onClick={() => setOpenPlanYourTripModel(false)}
-                                    className="absolute top-6.5 right-6 text-semibold bg-transparent !text-white w-7 h-7 rounded-full flex items-center justify-center text-xs cursor-pointer"
+                                    className="absolute top-3 right-2.5 text-semibold bg-transparent !text-white w-5 h-5 rounded-full flex items-center justify-center text-xs cursor-pointer"
                                 >
                                     ✕
                                 </button>
@@ -746,7 +754,7 @@ export default function HomePage() {
                                     <StepComponent />
                                     <div className="!mt-8 !flex !gap-3">
                                         {step > 0 && (
-                                            <button onClick={() => setStep(step - 1)} className="flex items-center gap-2 !px-6 !py-2 !rounded-sm !bg-black text-white cursor-pointer">
+                                            <button onClick={() => setStep(step - 1)} className="flex items-center gap-2 !px-6 !py-2 !rounded-sm !bg-black text-white cursor-pointer hover:!bg-black/90">
                                                 <MoveLeft className="h-4 w-4" /> Previous
                                             </button>
                                         )}
@@ -763,31 +771,32 @@ export default function HomePage() {
                             </div>
                         </div>
                     )}
-                </div>
-                <Script src="/assets/home-js/hooks.min.js.download" strategy="afterInteractive"></Script>
-                <Script src="/assets/home-js/i18n.min.js.download" strategy="afterInteractive"></Script>
+                </div>}
+
+                {/* <Script src="/assets/home-js/hooks.min.js.download" strategy="afterInteractive"></Script> */}
+                {/* <Script src="/assets/home-js/i18n.min.js.download" strategy="afterInteractive"></Script> */}
                 <Script src="/assets/home-js/index.js.download" strategy="afterInteractive"></Script>
-                <Script src="/assets/home-js/index(1).js.download" strategy="afterInteractive"></Script>
+                {/* <Script src="/assets/home-js/index(1).js.download" strategy="afterInteractive"></Script> */}
                 <Script src="/assets/home-js/main(1).js.download" strategy="afterInteractive"></Script>
-                <Script src="/assets/home-js/rbt-modules.js.download" strategy="afterInteractive"></Script>
-                <Script src="/assets/home-js/rbtools.min.js.download" strategy="afterInteractive"></Script>
-                <Script src="/assets/home-js/rs6.min.js.download" strategy="afterInteractive"></Script>
-                <Script src="/assets/home-js/core.min.js.download" strategy="afterInteractive"></Script>
+                {/* <Script src="/assets/home-js/rbt-modules.js.download" strategy="afterInteractive"></Script>
+                <Script src="/assets/home-js/rbtools.min.js.download" strategy="afterInteractive"></Script> */}
+                {/* <Script src="/assets/home-js/rs6.min.js.download" strategy="afterInteractive"></Script> */}
+                {/* <Script src="/assets/home-js/core.min.js.download" strategy="afterInteractive"></Script> */}
                 <Script src="/assets/home-js/main.min.js.download" strategy="afterInteractive"></Script>
-                <Script src="/assets/home-js/perfect-scrollbar.jquery.min.js.download" strategy="afterInteractive"></Script>
-                <Script src="/assets/home-js/hoverIntent.min.js.download" strategy="afterInteractive"></Script>
-                <Script src="/assets/home-js/modernizr.js.download" strategy="afterInteractive"></Script>
-                <Script src="/assets/home-js/gsap.min.js.download" strategy="afterInteractive"></Script>
+                {/* <Script src="/assets/home-js/perfect-scrollbar.jquery.min.js.download" strategy="afterInteractive"></Script> */}
+                {/* <Script src="/assets/home-js/hoverIntent.min.js.download" strategy="afterInteractive"></Script> */}
+                {/* <Script src="/assets/home-js/modernizr.js.download" strategy="afterInteractive"></Script> */}
+                {/* <Script src="/assets/home-js/gsap.min.js.download" strategy="afterInteractive"></Script> */}
                 <Script src="/assets/home-js/ScrollTrigger.min.js.download" strategy="afterInteractive"></Script>
-                <Script src="/assets/home-js/jquery.parallax-scroll.js.download" strategy="afterInteractive"></Script>
+                {/* <Script src="/assets/home-js/jquery.parallax-scroll.js.download" strategy="afterInteractive"></Script> */}
                 <Script src="/assets/home-js/main.min(1).js.download" strategy="afterInteractive"></Script>
-                <Script src="/assets/home-js/underscore.min.js.download" strategy="afterInteractive"></Script>
-                <Script src="/assets/home-js/custom-marker.js.download" strategy="afterInteractive"></Script>
-                <Script src="/assets/home-js/markerclusterer.js.download" strategy="afterInteractive"></Script>
-                <Script src="/assets/home-js/google-map.js.download" strategy="afterInteractive"></Script>
+                {/* <Script src="/assets/home-js/underscore.min.js.download" strategy="afterInteractive"></Script> */}
+                {/* <Script src="/assets/home-js/custom-marker.js.download" strategy="afterInteractive"></Script> */}
+                {/* <Script src="/assets/home-js/markerclusterer.js.download" strategy="afterInteractive"></Script> */}
+                {/* <Script src="/assets/home-js/google-map.js.download" strategy="afterInteractive"></Script> */}
                 <Script src="/assets/home-js/wanderaway-core.min.js.download" strategy="afterInteractive"></Script>
-                <Script src="/assets/home-js/swiper.min.js.download" strategy="afterInteractive"></Script>
-                <Script src="/assets/home-js/select2.full.min.js.download" strategy="afterInteractive"></Script>
+                {/* <Script src="/assets/home-js/swiper.min.js.download" strategy="afterInteractive"></Script> */}
+                {/* <Script src="/assets/home-js/select2.full.min.js.download" strategy="afterInteractive"></Script> */}
                 <Script src="/assets/home-js/fslightbox.min.js.download" strategy="afterInteractive"></Script>
                 <Script src="/assets/home-js/sourcebuster.min.js.download" strategy="afterInteractive"></Script>
             </body>
