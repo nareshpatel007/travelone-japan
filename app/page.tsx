@@ -265,7 +265,7 @@ export default function HomePage() {
 
                                                     <div className="grid grid-cols-2 md:grid-cols-2 gap-6">
                                                         {categories.map((category) => (
-                                                            <div key={category.id} className="relative h-48 md:h-72 rounded-lg overflow-hidden group cursor-pointer">
+                                                            <div key={category.id} className="relative h-48 md:h-72 rounded-lg !text-center overflow-hidden group cursor-pointer">
                                                                 <Image
                                                                     src={category.image || "/placeholder.svg"}
                                                                     alt={category.label}
