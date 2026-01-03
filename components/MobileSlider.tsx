@@ -6,18 +6,21 @@ interface Props {
     images: string[];
 }
 
-export default function MobileSlider({ images }: Props) {
+export default function SimpleSlider({ images }: Props) {
     return (
-        <div className="overflow-hidden">
-            <div className="simple-slider">
-                {[...images, ...images].map((src, i) => (
-                    <div key={i} className="px-2 flex-shrink-0">
+        <div className="md:hidden !w-full !overflow-hidden">
+            <div className="simple-image-slider">
+                {[...images, ...images].map((src, index) => (
+                    <div
+                        key={index}
+                        className="!flex-shrink-0 !px-3"
+                    >
                         <Image
                             src={src}
                             alt=""
                             width={800}
                             height={800}
-                            className="rounded-full object-cover"
+                            className="rounded-xl object-cover"
                         />
                     </div>
                 ))}
