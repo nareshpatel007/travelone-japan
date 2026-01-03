@@ -312,7 +312,7 @@ export default function HomePage() {
                                             <section className="!pb-20 bg-white">
                                                 <div className="!max-w-7xl !mx-auto !px-8">
                                                     <Heading main="Favourite Destinations" sub="Vestibulum id neque varius, loreet nisi ut, pharetra metus." />
-                                                    <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-6 gap-6">
+                                                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-6">
                                                         {populorDestination.map((destination, index) => (
                                                             <div key={index} className="flex-shrink-0 flex flex-col items-center">
                                                                 <div className="w-40 h-40 rounded-full overflow-hidden mb-4 flex-shrink-0">
@@ -377,62 +377,37 @@ export default function HomePage() {
                                                 </div>
                                             </section>
 
-                                            <div className="elementor-element elementor-element-997454e e-con-full e-flex qodef-container-heights--disabled e-con e-parent"
-                                                data-id="997454e" data-element_type="container">
-                                                <div className="elementor-element elementor-element-b249df6 e-con-full e-flex qodef-container-heights--disabled e-con e-child qodef-parallax qodef--parallax-row qodef-parallax--init"
-                                                    data-id="b249df6" data-element_type="container"
-                                                    data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+                                            <div className="elementor-element elementor-element-997454e e-con-full e-flex qodef-container-heights--disabled e-con e-parent">
+                                                <div className="elementor-element elementor-element-b249df6 e-con-full e-flex qodef-container-heights--disabled e-con e-child qodef-parallax qodef--parallax-row qodef-parallax--init">
                                                     <div className="qodef-parallax-row-holder">
                                                         <div className="qodef-parallax-img-holder" style={{ opacity: "1" }}>
                                                             <div className="qodef-parallax-img-wrapper">
-                                                                <Image src="https://ik.imagekit.io/288weifiq/landing-japan/Landing-img-01.jpg" alt="Parallax Image" width="1920" height="1080" />
+                                                                <Image fill src="https://ik.imagekit.io/288weifiq/landing-japan/Landing-img-01.jpg" alt="Parallax Image" />
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div className="elementor-element elementor-element-748fc69 elementor-widget elementor-widget-wanderaway_core_stacked_images"
-                                                        data-id="748fc69" data-element_type="widget"
-                                                        data-widget_type="wanderaway_core_stacked_images.default">
+                                                    <div className="elementor-element elementor-element-748fc69 elementor-widget elementor-widget-wanderaway_core_stacked_images">
                                                         <div className="elementor-widget-container">
-                                                            <div
-                                                                className="qodef-shortcode qodef-m qodef-stacked-images qodef-layout--default qodef--has-appear qodef-shadow--enabled">
+                                                            <div className="qodef-shortcode qodef-m qodef-stacked-images qodef-layout--default qodef--has-appear qodef-shadow--enabled">
                                                                 <div className="qodef-m-images">
                                                                     <div className="qodef-m-image" style={{ opacity: "1" }}>
-                                                                        <a
-                                                                            href="#"
-                                                                            target="_blank">
-                                                                            <Image src="https://ik.imagekit.io/288weifiq/landing-japan/Landing-img-02.jpg" alt="Parallax Image" width="609" height="476" />
-                                                                        </a>
+                                                                        <Image src="https://ik.imagekit.io/288weifiq/landing-japan/Landing-img-02.jpg" alt="Parallax Image" width="609" height="476" />
                                                                     </div>
                                                                     <div className="qodef-m-image qodef-disabled--768" style={{ bottom: "-9%", right: "-13%", textAlign: "right", opacity: "1" }}>
-                                                                        <a
-                                                                            href="#"
-                                                                            target="_blank">
-                                                                            <Image src="https://ik.imagekit.io/288weifiq/landing-japan/Landing-img-3.png" alt="Parallax Image" width="215" height="326" />
-                                                                        </a>
+                                                                        <Image src="https://ik.imagekit.io/288weifiq/landing-japan/Landing-img-3.png" alt="Parallax Image" width="215" height="326" />
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div className="elementor-element elementor-element-bc8a773 e-con-full e-flex qodef-container-heights--disabled e-con e-child"
-                                                    data-id="bc8a773" data-element_type="container"
-                                                    data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
-                                                    <div className="elementor-element elementor-element-f5f7f9b elementor-widget__width-initial elementor-widget elementor-widget-wanderaway_core_info_section"
-                                                        data-id="f5f7f9b" data-element_type="widget"
-                                                        data-widget_type="wanderaway_core_info_section.default">
+                                                <div className="elementor-element elementor-element-bc8a773 e-con-full e-flex qodef-container-heights--disabled e-con e-child">
+                                                    <div className="elementor-element elementor-element-f5f7f9b elementor-widget__width-initial elementor-widget elementor-widget-wanderaway_core_info_section">
                                                         <div className="elementor-widget-container">
-                                                            <div
-                                                                className="qodef-shortcode qodef-m qodef-info-section qodef-layout--background-text qodef-background-text-pos--top-left">
-                                                                <div className="qodef-m-background-text">
-                                                                </div>
+                                                            <div className="qodef-shortcode qodef-m qodef-info-section qodef-layout--background-text qodef-background-text-pos--top-left">
                                                                 <div className="qodef-m-info">
-                                                                    <h2 className="qodef-m-title">
-                                                                        Dedicated Destination Showcase Module </h2>
-                                                                    <p className="qodef-m-text">
-                                                                        Complete with destination singles, flexible lists, maps
-                                                                        &amp; more
-                                                                    </p>
+                                                                    <h2 className="qodef-m-title">Dedicated Destination Showcase Module</h2>
+                                                                    <p className="qodef-m-text">Complete with destination singles, flexible lists, maps &amp; more</p>
                                                                     <div className="qodef-m-button">
                                                                         <a className="qodef-shortcode qodef-m qodef-button qodef-layout--filled qodef-html--link" href="#" style={{ margin: "32px 0 0 0" }}>
                                                                             <span className="qodef-m-text">View more</span>
@@ -442,12 +417,9 @@ export default function HomePage() {
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div className="elementor-element elementor-element-910737b elementor-widget elementor-widget-wanderaway_core_icon_with_text"
-                                                        data-id="910737b" data-element_type="widget"
-                                                        data-widget_type="wanderaway_core_icon_with_text.default">
+                                                    <div className="elementor-element elementor-element-910737b elementor-widget elementor-widget-wanderaway_core_icon_with_text">
                                                         <div className="elementor-widget-container">
-                                                            <div
-                                                                className="qodef-shortcode qodef-m qodef-icon-with-text qodef-layout--before-content qodef--svg-icon">
+                                                            <div className="qodef-shortcode qodef-m qodef-icon-with-text qodef-layout--before-content qodef--svg-icon">
                                                                 <div className="qodef-m-icon-wrapper">
                                                                     <svg xmlns="http://www.w3.org/2000/svg" width="32.333"
                                                                         height="32.845" viewBox="0 0 32.333 32.845">
@@ -470,73 +442,52 @@ export default function HomePage() {
                                                 </div>
                                             </div>
 
-                                            <div className="elementor-element elementor-element-d0d83e8 e-con-full e-flex qodef-container-heights--disabled e-con e-parent"
-                                                data-id="d0d83e8" data-element_type="container">
-                                                <div className="elementor-element elementor-element-63b91f0 e-con-full e-flex qodef-container-heights--disabled e-con e-child"
-                                                    data-id="63b91f0" data-element_type="container">
-                                                    <div className="elementor-element elementor-element-973ff86 elementor-widget__width-initial elementor-widget-tablet__width-inherit elementor-widget elementor-widget-wanderaway_core_section_title"
-                                                        data-id="973ff86" data-element_type="widget"
-                                                        data-widget_type="wanderaway_core_section_title.default">
+                                            <div className="elementor-element elementor-element-d0d83e8 e-con-full e-flex qodef-container-heights--disabled e-con e-parent">
+                                                <div className="elementor-element elementor-element-63b91f0 e-con-full e-flex qodef-container-heights--disabled e-con e-child">
+                                                    <div className="elementor-element elementor-element-973ff86 elementor-widget__width-initial elementor-widget-tablet__width-inherit elementor-widget elementor-widget-wanderaway_core_section_title">
                                                         <div className="elementor-widget-container">
-                                                            <div
-                                                                className="qodef-shortcode qodef-m qodef-section-title qodef-alignment--left">
-                                                                <h2 className="qodef-m-title">
-                                                                    A Variety of Ways to Display Posts </h2>
-                                                                <p className="qodef-m-text" style={{ marginTop: "10px", fontSize: "19px" }}>
-                                                                    You get every layout &amp; option you’ll need to captivate the
-                                                                    blogosphere; 3 adjustable blog list elements, tons of ways to
-                                                                    display single posts &amp; more. </p>
+                                                            <div className="qodef-shortcode qodef-m qodef-section-title qodef-alignment--left">
+                                                                <h2 className="qodef-m-title">A Variety of Ways to Display Posts</h2>
+                                                                <p className="qodef-m-text" style={{ marginTop: "10px", fontSize: "19px" }}>You get every layout &amp; option you’ll need to captivate the blogosphere; 3 adjustable blog list elements, tons of ways to display single posts &amp; more.</p>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div className="elementor-element elementor-element-4e3d233 elementor-widget elementor-widget-wanderaway_core_textual_list"
-                                                        data-id="4e3d233" data-element_type="widget"
-                                                        data-widget_type="wanderaway_core_textual_list.default">
+                                                    <div className="elementor-element elementor-element-4e3d233 elementor-widget elementor-widget-wanderaway_core_textual_list">
                                                         <div className="elementor-widget-container">
                                                             <div className="qodef-shortcode qodef-m qodef-textual-list">
                                                                 <ul className="qodef-e-list">
                                                                     <li className="qodef-e-item">
                                                                         <span className="qodef-e-bullet"></span>
-                                                                        <span className="qodef-e-text">Huge set of single post
-                                                                            layouts</span>
+                                                                        <span className="qodef-e-text">Huge set of single post layouts</span>
                                                                     </li>
                                                                     <li className="qodef-e-item">
                                                                         <span className="qodef-e-bullet"></span>
-                                                                        <span className="qodef-e-text">Dynamic Blog List Mix
-                                                                            element</span>
+                                                                        <span className="qodef-e-text">Dynamic Blog List Mix element</span>
                                                                     </li>
                                                                     <li className="qodef-e-item">
                                                                         <span className="qodef-e-bullet"></span>
-                                                                        <span className="qodef-e-text">Blog list galleries and
-                                                                            sliders</span>
+                                                                        <span className="qodef-e-text">Blog list galleries and sliders</span>
                                                                     </li>
                                                                     <li className="qodef-e-item">
                                                                         <span className="qodef-e-bullet"></span>
-                                                                        <span className="qodef-e-text">Feature videos, audio &amp;
-                                                                            more</span>
+                                                                        <span className="qodef-e-text">Feature videos, audio &amp; more</span>
                                                                     </li>
                                                                 </ul>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div className="elementor-element elementor-element-0705473 elementor-widget elementor-widget-wanderaway_core_button"
-                                                        data-id="0705473" data-element_type="widget"
-                                                        data-widget_type="wanderaway_core_button.default">
+                                                    <div className="elementor-element elementor-element-0705473 elementor-widget elementor-widget-wanderaway_core_button">
                                                         <div className="elementor-widget-container">
-                                                            <a className="qodef-shortcode qodef-m qodef-button qodef-layout--filled qodef-html--link" href="#">
+                                                            <div className="qodef-shortcode qodef-m qodef-button qodef-layout--filled qodef-html--link">
                                                                 <span className="qodef-m-text">VIEW MORE</span>
-                                                            </a>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div className="elementor-element elementor-element-0f040d7 e-con-full e-flex qodef-container-heights--disabled e-con e-child"
-                                                    data-id="0f040d7" data-element_type="container">
-                                                    <div className="elementor-element elementor-element-c650457 elementor-widget elementor-widget-wanderaway_core_stacked_images"
-                                                        data-id="c650457" data-element_type="widget"
-                                                        data-widget_type="wanderaway_core_stacked_images.default">
+                                                <div className="elementor-element elementor-element-0f040d7 e-con-full e-flex qodef-container-heights--disabled e-con e-child">
+                                                    <div className="elementor-element elementor-element-c650457 elementor-widget elementor-widget-wanderaway_core_stacked_images">
                                                         <div className="elementor-widget-container">
-                                                            <div
-                                                                className="qodef-shortcode qodef-m qodef-stacked-images qodef-layout--default qodef--has-appear qodef-shadow--enabled">
+                                                            <div className="qodef-shortcode qodef-m qodef-stacked-images qodef-layout--default qodef--has-appear qodef-shadow--enabled">
                                                                 <div className="qodef-m-images">
                                                                     <div className="qodef-m-image" style={{ opacity: "1" }}>
                                                                         <Image src="https://ik.imagekit.io/288weifiq/landing-japan/Landing-img-04.jpg" alt="s" width={733} height={715} />
@@ -551,8 +502,7 @@ export default function HomePage() {
                                                 </div>
                                             </div>
 
-                                            <div className="elementor-element elementor-element-5589b48 e-con-full e-flex qodef-container-heights--disabled e-con e-parent qodef-parallax qodef--parallax-row qodef-parallax--init"
-                                                data-id="5589b48" data-element_type="container">
+                                            <div className="elementor-element elementor-element-5589b48 e-con-full e-flex qodef-container-heights--disabled e-con e-parent qodef-parallax qodef--parallax-row qodef-parallax--init">
                                                 <div className="qodef-parallax-row-holder">
                                                     <div className="qodef-parallax-img-holder" style={{ opacity: "1" }}>
                                                         <div className="qodef-parallax-img-wrapper">
@@ -560,36 +510,26 @@ export default function HomePage() {
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div className="elementor-element elementor-element-5b2aaf2 e-con-full e-flex qodef-container-heights--disabled e-con e-child"
-                                                    data-id="5b2aaf2" data-element_type="container">
-                                                    <div className="elementor-element elementor-element-8728b21 elementor-widget__width-initial elementor-widget-mobile__width-inherit elementor-widget elementor-widget-text-editor"
-                                                        data-id="8728b21" data-element_type="widget"
-                                                        data-widget_type="text-editor.default">
+                                                <div className="elementor-element elementor-element-5b2aaf2 e-con-full e-flex qodef-container-heights--disabled e-con e-child">
+                                                    <div className="elementor-element elementor-element-8728b21 elementor-widget__width-initial elementor-widget-mobile__width-inherit elementor-widget elementor-widget-text-editor">
                                                         <div className="elementor-widget-container">
-                                                            <h2><span style={{ color: "#ffffff" }}>For Travels Worth Reading About.</span></h2>
+                                                            <h2><span className="!text-white">For Travels Worth Reading About.</span></h2>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
 
-                                            <div className="elementor-element elementor-element-9374edf e-con-full e-flex qodef-container-heights--disabled e-con e-parent"
-                                                data-id="9374edf" data-element_type="container">
-                                                <div className="elementor-element elementor-element-81101c4 e-con-full e-flex qodef-container-heights--disabled e-con e-child"
-                                                    data-id="81101c4" data-element_type="container">
-                                                    <div className="elementor-element elementor-element-1b30435 elementor-widget__width-initial elementor-widget-tablet__width-inherit elementor-widget-laptop__width-initial elementor-widget elementor-widget-wanderaway_core_section_title"
-                                                        data-id="1b30435" data-element_type="widget"
-                                                        data-widget_type="wanderaway_core_section_title.default">
+                                            <div className="elementor-element elementor-element-9374edf e-con-full e-flex qodef-container-heights--disabled e-con e-parent">
+                                                <div className="elementor-element elementor-element-81101c4 e-con-full e-flex qodef-container-heights--disabled e-con e-child">
+                                                    <div className="elementor-element elementor-element-1b30435 elementor-widget__width-initial elementor-widget-tablet__width-inherit elementor-widget-laptop__width-initial elementor-widget elementor-widget-wanderaway_core_section_title">
                                                         <div className="elementor-widget-container">
-                                                            <div
-                                                                className="qodef-shortcode qodef-m qodef-section-title qodef-alignment--left">
+                                                            <div className="qodef-shortcode qodef-m qodef-section-title qodef-alignment--left">
                                                                 <h2 className="qodef-m-title">Easily Launch an Online Store Too!</h2>
                                                                 <p className="qodef-m-text" style={{ marginTop: "10px", fontSize: "19px" }}>The theme is fully compatible with the powerful &amp; free WooCommerce plugin, and on top of that you get a great set of shop page templates &amp; features.</p>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div className="elementor-element elementor-element-2a61ee2 elementor-widget elementor-widget-wanderaway_core_textual_list"
-                                                        data-id="2a61ee2" data-element_type="widget"
-                                                        data-widget_type="wanderaway_core_textual_list.default">
+                                                    <div className="elementor-element elementor-element-2a61ee2 elementor-widget elementor-widget-wanderaway_core_textual_list">
                                                         <div className="elementor-widget-container">
                                                             <div className="qodef-shortcode qodef-m qodef-textual-list">
                                                                 <ul className="qodef-e-list">
@@ -617,24 +557,18 @@ export default function HomePage() {
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div className="elementor-element elementor-element-21c1f92 elementor-widget elementor-widget-wanderaway_core_button"
-                                                        data-id="21c1f92" data-element_type="widget"
-                                                        data-widget_type="wanderaway_core_button.default">
+                                                    <div className="elementor-element elementor-element-21c1f92 elementor-widget elementor-widget-wanderaway_core_button">
                                                         <div className="elementor-widget-container">
-                                                            <a className="qodef-shortcode qodef-m qodef-button qodef-layout--filled qodef-html--link" href="#">
+                                                            <div className="qodef-shortcode qodef-m qodef-button qodef-layout--filled qodef-html--link">
                                                                 <span className="qodef-m-text">VIEW MORE</span>
-                                                            </a>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div className="elementor-element elementor-element-ad6543f e-con-full e-flex qodef-container-heights--disabled e-con e-child"
-                                                    data-id="ad6543f" data-element_type="container">
-                                                    <div className="elementor-element elementor-element-50c708c elementor-widget elementor-widget-wanderaway_core_image_gallery"
-                                                        data-id="50c708c" data-element_type="widget"
-                                                        data-widget_type="wanderaway_core_image_gallery.default">
+                                                <div className="elementor-element elementor-element-ad6543f e-con-full e-flex qodef-container-heights--disabled e-con e-child">
+                                                    <div className="elementor-element elementor-element-50c708c elementor-widget elementor-widget-wanderaway_core_image_gallery">
                                                         <div className="elementor-widget-container">
-                                                            <div
-                                                                className="qodef-shortcode qodef-m qodef-image-gallery qodef-shadow--enabled qodef-grid qodef-layout--columns qodef-gutter--medium qodef-col-num--2 qodef-responsive--predefined qodef-swiper--show-pagination">
+                                                            <div className="qodef-shortcode qodef-m qodef-image-gallery qodef-shadow--enabled qodef-grid qodef-layout--columns qodef-gutter--medium qodef-col-num--2 qodef-responsive--predefined qodef-swiper--show-pagination">
                                                                 <div className="qodef-grid-inner">
                                                                     <div className="qodef-e qodef-image-wrapper qodef-grid-item" style={{ opacity: "1" }}>
                                                                         <Image src="https://ik.imagekit.io/288weifiq/landing-japan/Landing-img-08.jpg" alt="Parallax Image" width="1000" height="1080" />
@@ -649,27 +583,27 @@ export default function HomePage() {
                                                 </div>
                                             </div>
 
-                                            <section className="!pb-24">
+                                            <section className="!pb-0 !md:pb-24">
                                                 <div className="!max-w-7xl !mx-auto !px-8">
                                                     <FeatureCard />
                                                 </div>
                                             </section>
 
                                             <section className="!relative !overflow-hidden !bg-white">
-                                                <div className="!relative !z-10 !max-w-6xl !mx-auto !pt-24 !md:pt-32 !mb-6">
-                                                    <div className="hidden md:block absolute left-4 md:left-20 top-16 md:top-50">
+                                                <div className="!relative !z-10 !max-w-6xl !mb-[-100px] !md:mb-[-140px] !mx-auto !pt-24 !md:pt-32 !mb-6">
+                                                    <div className="hidden md:block absolute left-4 md:left-29 top-16 md:top-77">
                                                         <img
                                                             src="https://ik.imagekit.io/288weifiq/landing-japan/Landing-marquee-img-5.png"
                                                             alt="Image"
-                                                            className="w-24 h-32 md:w-46 md:h-46 rounded-full object-cover"
+                                                            className="w-24 h-32 md:w-40 md:h-40 rounded-full object-cover"
                                                         />
                                                     </div>
 
-                                                    <div className="hidden md:block absolute right-4 md:right-24 top-10 md:top-14">
+                                                    <div className="hidden md:block absolute right-4 md:right-21 top-12 md:top-30">
                                                         <img
                                                             src="https://ik.imagekit.io/288weifiq/landing-japan/Landing-marquee-img-6.png"
                                                             alt="Image"
-                                                            className="w-24 h-24 md:w-50 md:h-50 rounded-full object-cover"
+                                                            className="w-24 h-24 md:w-54 md:h-50 rounded-full object-cover"
                                                         />
                                                     </div>
 
@@ -677,29 +611,35 @@ export default function HomePage() {
                                                         <img
                                                             src="https://ik.imagekit.io/288weifiq/landing-japan/Landing-marquee-img-7.png"
                                                             alt="Image"
-                                                            className="w-56 h-80 md:w-96 md:h-[580px] rounded-full object-cover"
+                                                            className="w-56 h-80 md:w-110 md:h-[580px] rounded-full object-cover"
                                                         />
                                                     </div>
                                                 </div>
+                                                <section className="!relative !w-full !overflow-hidden !pt-34 !md:pt-40">
+                                                    <div
+                                                        className="!absolute !inset-0 !bg-no-repeat !bg-top !bg-cover"
+                                                        style={{
+                                                            backgroundImage:
+                                                                "url('https://ik.imagekit.io/288weifiq/landing-japan/Landing-marquee-img-9.png')",
+                                                        }}
+                                                    />
 
-                                                <div className="!relative !mt-[-160px] !md:mt-[-260px]">
-                                                    <div className="!h-[480px] !md:h-[700px] !bg-[#fcefdf] !rounded-t-[100%]"></div>
-                                                    <div className="!absolute !inset-0 !flex !flex-col !items-center !justify-center !text-center !px-4 !pt-30">
-                                                        <h2 className="text-3xl md:text-5xl font-semibold tracking-tight max-w-3xl">
-                                                            Every Travel Story’s <br className="hidden md:block" />
-                                                            Favorite Destination
+                                                    {/* Content */}
+                                                    <div className="relative z-10 flex flex-col items-center text-center px-4  pt-40 pb-56">
+                                                        <h2 className="text-3xl md:text-5xl font-normal leading-tight !mb-4">
+                                                            Every Travel Story’s <br /> Favorite Destination
                                                         </h2>
-                                                        <p className="mt-4 text-sm md:text-lg text-black-600 max-w-2xl !mb-10">
+
+                                                        <p className="max-w-xl text-black !mb-8">
                                                             Create a website the stories from your journeys truly deserve with
                                                             WanderAway, a modern travelogue & personal travel blog theme.
                                                         </p>
-                                                        <button
-                                                            className="px-10 py-4 bg-black text-white text-sm font-medium hover:bg-gray-800 transition cursor-pointer"
-                                                        >
-                                                            PURCHASE
+
+                                                        <button className="bg-black text-white px-8 py-3 uppercase text-sm tracking-wide">
+                                                            Purchase
                                                         </button>
                                                     </div>
-                                                </div>
+                                                </section>
                                             </section>
                                         </div>
                                     </div>
