@@ -35,7 +35,7 @@ export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Prop
                 <div className="elementor-element elementor-element-d6c022e elementor-hidden-laptop elementor-widget-tablet__width-inherit elementor-hidden-widescreen elementor-hidden-desktop elementor-hidden-mobile elementor-widget elementor-widget-wanderaway_core_image_marquee">
                     <div className="elementor-widget-container">
                         <div className="qodef-shortcode qodef-m qodef-image-marquee qodef-layout--default qodef-direction--right-to-left qodef-direction-type--horizontal">
-                            <div className="qodef-m-content qodef--desktop" style={{ width: "216px" }}>
+                            <div className="qodef-m-content qodef--desktop" style={{ height: "216px" }}>
                                 <div className="qodef-m-image qodef-image--original"
                                     style={{
                                         background: "url('https://ik.imagekit.io/288weifiq/landing-japan/Landing-marquee-1024-img-2.png')",
@@ -54,7 +54,7 @@ export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Prop
                                     }}>
                                 </div>
                             </div>
-                            <div className="qodef-m-content qodef--mobile" style={{ width: "108px" }}>
+                            <div className="qodef-m-content qodef--mobile" style={{ height: "108px" }}>
                                 <div className="qodef-m-image qodef-image--original"
                                     style={{
                                         background: "url('https://ik.imagekit.io/288weifiq/landing-japan/Landing-marquee-1024-img-2.png')",
@@ -76,13 +76,9 @@ export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Prop
                         </div>
                     </div>
                 </div>
-
-                <div className="elementor-element elementor-element-214018f elementor-hidden-laptop elementor-widget-tablet__width-inherit elementor-hidden-widescreen elementor-hidden-desktop elementor-hidden-tablet elementor-hidden-mobile_extra elementor-widget elementor-widget-wanderaway_core_image_marquee"
-                    data-id="214018f" data-element_type="widget"
-                    data-widget_type="wanderaway_core_image_marquee.default">
+                <div className="elementor-element elementor-element-214018f elementor-hidden-laptop elementor-widget-tablet__width-inherit elementor-hidden-widescreen elementor-hidden-desktop elementor-hidden-tablet elementor-hidden-mobile_extra elementor-widget elementor-widget-wanderaway_core_image_marquee" data-id="214018f" data-element_type="widget" data-widget_type="wanderaway_core_image_marquee.default">
                     <div className="elementor-widget-container">
-                        <div
-                            className="qodef-shortcode qodef-m qodef-image-marquee qodef-layout--default qodef-direction--right-to-left qodef-direction-type--horizontal">
+                        <div className="qodef-shortcode qodef-m qodef-image-marquee qodef-layout--default qodef-direction--right-to-left qodef-direction-type--horizontal">
                             <div className="qodef-m-content qodef--desktop" style={{ height: "200px" }}>
                                 <div className="qodef-m-image qodef-image--original"
                                     style={{
@@ -124,13 +120,9 @@ export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Prop
                         </div>
                     </div>
                 </div>
-
-                <div className="elementor-element elementor-element-f76475a elementor-hidden-laptop elementor-widget-tablet__width-inherit elementor-hidden-widescreen elementor-hidden-desktop elementor-hidden-mobile elementor-widget elementor-widget-wanderaway_core_image_marquee"
-                    data-id="f76475a" data-element_type="widget"
-                    data-widget_type="wanderaway_core_image_marquee.default">
+                <div className="elementor-element elementor-element-f76475a elementor-hidden-laptop elementor-widget-tablet__width-inherit elementor-hidden-widescreen elementor-hidden-desktop elementor-hidden-mobile elementor-widget elementor-widget-wanderaway_core_image_marquee" data-id="f76475a" data-element_type="widget" data-widget_type="wanderaway_core_image_marquee.default">
                     <div className="elementor-widget-container">
-                        <div
-                            className="qodef-shortcode qodef-m qodef-image-marquee qodef-layout--default qodef-direction--left-to-right qodef-direction-type--horizontal">
+                        <div className="qodef-shortcode qodef-m qodef-image-marquee qodef-layout--default qodef-direction--left-to-right qodef-direction-type--horizontal">
                             <div className="qodef-m-content qodef--desktop" style={{ height: "180px" }}>
                                 <div className="qodef-m-image qodef-image--original"
                                     style={{
@@ -150,35 +142,12 @@ export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Prop
                                     }}>
                                 </div>
                             </div>
-                            <div className="qodef-m-content qodef--mobile" style={{ height: "90px" }}>
-                                <div className="qodef-m-image qodef-image--original"
-                                    style={{
-                                        background: "url('https://ik.imagekit.io/288weifiq/landing-japan/Landing-marquee-1024-img-1.png')",
-                                        width: "527px",
-                                        height: "90px",
-                                        animation: "qode-move-marquee-left-to-right 23s linear infinite"
-                                    }}>
-                                </div>
-                                <div className="qodef-m-image qodef-image--copy"
-                                    style={{
-                                        background: "url('https://ik.imagekit.io/288weifiq/landing-japan/Landing-marquee-1024-img-1.png')",
-                                        width: "527px",
-                                        height: "90px",
-                                        animation: "qode-move-marquee-left-to-right 23s linear infinite",
-                                        animationName: "qode-move-marquee-left-to-right-copy"
-                                    }}>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
-
-                <div className="elementor-element elementor-element-5b6eb5c elementor-hidden-laptop elementor-widget-tablet__width-inherit elementor-hidden-widescreen elementor-hidden-desktop elementor-hidden-tablet elementor-hidden-mobile_extra elementor-widget elementor-widget-wanderaway_core_image_marquee"
-                    data-id="5b6eb5c" data-element_type="widget"
-                    data-widget_type="wanderaway_core_image_marquee.default">
+                <div className="elementor-element elementor-element-5b6eb5c elementor-hidden-laptop elementor-widget-tablet__width-inherit elementor-hidden-widescreen elementor-hidden-desktop elementor-hidden-tablet elementor-hidden-mobile_extra elementor-widget elementor-widget-wanderaway_core_image_marquee" data-id="5b6eb5c" data-element_type="widget" data-widget_type="wanderaway_core_image_marquee.default">
                     <div className="elementor-widget-container">
-                        <div
-                            className="qodef-shortcode qodef-m qodef-image-marquee qodef-layout--default qodef-direction--left-to-right qodef-direction-type--horizontal">
+                        <div className="qodef-shortcode qodef-m qodef-image-marquee qodef-layout--default qodef-direction--left-to-right qodef-direction-type--horizontal">
                             <div className="qodef-m-content qodef--desktop" style={{ width: "164px" }}>
                                 <div className="qodef-m-image qodef-image--original"
                                     style={{
@@ -220,10 +189,7 @@ export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Prop
                         </div>
                     </div>
                 </div>
-
-                <div className="elementor-element elementor-element-0eec80c elementor-widget-mobile__width-initial elementor-hidden-tablet elementor-hidden-mobile_extra elementor-hidden-mobile elementor-widget elementor-widget-wanderaway_core_image_marquee"
-                    data-id="0eec80c" data-element_type="widget"
-                    data-widget_type="wanderaway_core_image_marquee.default">
+                <div className="elementor-element elementor-element-0eec80c elementor-widget-mobile__width-initial elementor-hidden-tablet elementor-hidden-mobile_extra elementor-hidden-mobile elementor-widget elementor-widget-wanderaway_core_image_marquee" data-id="0eec80c" data-element_type="widget" data-widget_type="wanderaway_core_image_marquee.default">
                     <div className="elementor-widget-container">
                         <div className="qodef-shortcode qodef-m qodef-image-marquee qodef-layout--default qodef-direction--top-to-bottom qodef-direction-type--vertical qodef--init">
                             <div className="qodef-m-content qodef--desktop" style={{ width: "210px" }}>
@@ -272,10 +238,7 @@ export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Prop
                         </div>
                     </div>
                 </div>
-
-                <div className="elementor-element elementor-element-e1bedbf elementor-widget-mobile__width-initial elementor-hidden-tablet elementor-hidden-mobile_extra elementor-hidden-mobile elementor-widget elementor-widget-wanderaway_core_image_marquee"
-                    data-id="e1bedbf" data-element_type="widget"
-                    data-widget_type="wanderaway_core_image_marquee.default">
+                <div className="elementor-element elementor-element-e1bedbf elementor-widget-mobile__width-initial elementor-hidden-tablet elementor-hidden-mobile_extra elementor-hidden-mobile elementor-widget elementor-widget-wanderaway_core_image_marquee" data-id="e1bedbf" data-element_type="widget" data-widget_type="wanderaway_core_image_marquee.default">
                     <div className="elementor-widget-container">
                         <div className="qodef-shortcode qodef-m qodef-image-marquee qodef-layout--default qodef-direction--bottom-to-top qodef-direction-type--vertical qodef--init">
                             <div className="qodef-m-content qodef--desktop" style={{ width: "213px" }}>
@@ -324,10 +287,7 @@ export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Prop
                         </div>
                     </div>
                 </div>
-
-                <div className="elementor-element elementor-element-b5459c5 elementor-widget-mobile__width-initial elementor-hidden-tablet elementor-hidden-mobile_extra elementor-hidden-mobile elementor-widget elementor-widget-wanderaway_core_image_marquee"
-                    data-id="b5459c5" data-element_type="widget"
-                    data-widget_type="wanderaway_core_image_marquee.default">
+                <div className="elementor-element elementor-element-b5459c5 elementor-widget-mobile__width-initial elementor-hidden-tablet elementor-hidden-mobile_extra elementor-hidden-mobile elementor-widget elementor-widget-wanderaway_core_image_marquee" data-id="b5459c5" data-element_type="widget" data-widget_type="wanderaway_core_image_marquee.default">
                     <div className="elementor-widget-container">
                         <div className="qodef-shortcode qodef-m qodef-image-marquee qodef-layout--default qodef-direction--top-to-bottom qodef-direction-type--vertical qodef--init">
                             <div className="qodef-m-content qodef--desktop" style={{ width: "250px" }}>
@@ -376,10 +336,7 @@ export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Prop
                         </div>
                     </div>
                 </div>
-
-                <div className="elementor-element elementor-element-5f6eff6 elementor-hidden-mobile elementor-hidden-laptop elementor-hidden-tablet elementor-hidden-mobile_extra elementor-widget elementor-widget-wanderaway_core_image_marquee"
-                    data-id="5f6eff6" data-element_type="widget"
-                    data-widget_type="wanderaway_core_image_marquee.default">
+                <div className="elementor-element elementor-element-5f6eff6 elementor-hidden-mobile elementor-hidden-laptop elementor-hidden-tablet elementor-hidden-mobile_extra elementor-widget elementor-widget-wanderaway_core_image_marquee" data-id="5f6eff6" data-element_type="widget" data-widget_type="wanderaway_core_image_marquee.default">
                     <div className="elementor-widget-container">
                         <div className="qodef-shortcode qodef-m qodef-image-marquee qodef-layout--default qodef-direction--bottom-to-top qodef-direction-type--vertical qodef--init">
                             <div className="qodef-m-content qodef--desktop" style={{ width: "212px" }}>
