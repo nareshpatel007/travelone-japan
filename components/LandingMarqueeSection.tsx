@@ -50,7 +50,7 @@ export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Prop
                             <div className="qodef-m-content qodef--desktop" style={{ width: "216px" }}>
                                 <div className="qodef-m-image qodef-image--original"
                                     style={{
-                                        background: "url('https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/11/Landing-marquee-1024-img-2.png')",
+                                        background: "url('https://ik.imagekit.io/288weifiq/landing-japan/Landing-marquee-1024-img-2.png')",
                                         width: "1066px",
                                         height: "216px",
                                         animation: "qode-move-marquee-right-to-left 23s linear infinite"
@@ -58,7 +58,7 @@ export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Prop
                                 </div>
                                 <div className="qodef-m-image qodef-image--copy"
                                     style={{
-                                        background: "url('https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/11/Landing-marquee-1024-img-2.png')",
+                                        background: "url('https://ik.imagekit.io/288weifiq/landing-japan/Landing-marquee-1024-img-2.png')",
                                         width: "1066px",
                                         height: "216px",
                                         animation: "qode-move-marquee-right-to-left 23s linear infinite",
@@ -69,7 +69,7 @@ export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Prop
                             <div className="qodef-m-content qodef--mobile" style={{ width: "108px" }}>
                                 <div className="qodef-m-image qodef-image--original"
                                     style={{
-                                        background: "url('https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/11/Landing-marquee-1024-img-2.png')",
+                                        background: "url('https://ik.imagekit.io/288weifiq/landing-japan/Landing-marquee-1024-img-2.png')",
                                         width: "533px",
                                         height: "108px",
                                         animation: "qode-move-marquee-right-to-left 23s linear infinite"
@@ -77,7 +77,7 @@ export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Prop
                                 </div>
                                 <div className="qodef-m-image qodef-image--copy"
                                     style={{
-                                        background: "url('https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/11/Landing-marquee-1024-img-2.png')",
+                                        background: "url('https://ik.imagekit.io/288weifiq/landing-japan/Landing-marquee-1024-img-2.png')",
                                         width: "533px",
                                         height: "108px",
                                         animation: "qode-move-marquee-right-to-left 23s linear infinite",
@@ -98,7 +98,7 @@ export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Prop
                             <div className="qodef-m-content qodef--desktop" style={{ height: "200px" }}>
                                 <div className="qodef-m-image qodef-image--original"
                                     style={{
-                                        background: "url('https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/12/Landing-marquee-680-img-1.png')",
+                                        background: "url('https://ik.imagekit.io/288weifiq/landing-japan/Landing-marquee-680-img-1.png')",
                                         width: "981px",
                                         height: "200px",
                                         animation: "qode-move-marquee-right-to-left 25s linear infinite"
@@ -106,7 +106,7 @@ export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Prop
                                 </div>
                                 <div className="qodef-m-image qodef-image--copy"
                                     style={{
-                                        background: "url('https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/12/Landing-marquee-680-img-1.png')",
+                                        background: "url('https://ik.imagekit.io/288weifiq/landing-japan/Landing-marquee-680-img-1.png')",
                                         width: "981px",
                                         height: "200px",
                                         animation: "qode-move-marquee-right-to-left 25s linear infinite",
@@ -117,7 +117,7 @@ export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Prop
                             <div className="qodef-m-content qodef--mobile" style={{ height: "100px" }}>
                                 <div className="qodef-m-image qodef-image--original"
                                     style={{
-                                        background: "url('https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/12/Landing-marquee-680-img-1.png')",
+                                        background: "url('https://ik.imagekit.io/288weifiq/landing-japan/Landing-marquee-680-img-1.png')",
                                         width: "490.5px",
                                         height: "100px",
                                         animation: "qode-move-marquee-right-to-left 25s linear infinite"
@@ -125,7 +125,7 @@ export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Prop
                                 </div>
                                 <div className="qodef-m-image qodef-image--copy"
                                     style={{
-                                        background: "url('https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/12/Landing-marquee-680-img-1.png')",
+                                        background: "url('https://ik.imagekit.io/288weifiq/landing-japan/Landing-marquee-680-img-1.png')",
                                         width: "490.5px",
                                         height: "100px",
                                         animation: "qode-move-marquee-right-to-left 25s linear infinite",
@@ -146,7 +146,7 @@ export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Prop
                             <div className="qodef-m-content qodef--desktop" style={{ height: "180px" }}>
                                 <div className="qodef-m-image qodef-image--original"
                                     style={{
-                                        background: "url(&quot;https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/11/Landing-marquee-1024-img-1.png&quot;)",
+                                        background: "url('https://ik.imagekit.io/288weifiq/landing-japan/Landing-marquee-1024-img-1.png')",
                                         width: "1054px",
                                         height: "180px",
                                         animation: "qode-move-marquee-left-to-right 23s linear infinite"
@@ -154,7 +154,7 @@ export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Prop
                                 </div>
                                 <div className="qodef-m-image qodef-image--copy"
                                     style={{
-                                        background: "url(&quot;https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/11/Landing-marquee-1024-img-1.png&quot;)",
+                                        background: "url('https://ik.imagekit.io/288weifiq/landing-japan/Landing-marquee-1024-img-1.png')",
                                         width: "1054px",
                                         height: "180px",
                                         animation: "qode-move-marquee-left-to-right 23s linear infinite",
@@ -165,7 +165,7 @@ export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Prop
                             <div className="qodef-m-content qodef--mobile" style={{ height: "90px" }}>
                                 <div className="qodef-m-image qodef-image--original"
                                     style={{
-                                        background: "url(&quot;https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/11/Landing-marquee-1024-img-1.png&quot;)",
+                                        background: "url('https://ik.imagekit.io/288weifiq/landing-japan/Landing-marquee-1024-img-1.png')",
                                         width: "527px",
                                         height: "90px",
                                         animation: "qode-move-marquee-left-to-right 23s linear infinite"
@@ -173,7 +173,7 @@ export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Prop
                                 </div>
                                 <div className="qodef-m-image qodef-image--copy"
                                     style={{
-                                        background: "url(&quot;https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/11/Landing-marquee-1024-img-1.png&quot;)",
+                                        background: "url('https://ik.imagekit.io/288weifiq/landing-japan/Landing-marquee-1024-img-1.png')",
                                         width: "527px",
                                         height: "90px",
                                         animation: "qode-move-marquee-left-to-right 23s linear infinite",
@@ -194,7 +194,7 @@ export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Prop
                             <div className="qodef-m-content qodef--desktop" style={{ width: "164px" }}>
                                 <div className="qodef-m-image qodef-image--original"
                                     style={{
-                                        background: "url(\"https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/12/Landing-marquee-680-img-2.png\")",
+                                        background: "url('https://ik.imagekit.io/288weifiq/landing-japan/Landing-marquee-680-img-2.png')",
                                         width: "164px",
                                         height: "164px",
                                         animation: "qode-move-marquee-left-to-right 25s linear infinite"
@@ -202,7 +202,7 @@ export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Prop
                                 </div>
                                 <div className="qodef-m-image qodef-image--copy"
                                     style={{
-                                        background: "url(\"https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/12/Landing-marquee-680-img-2.png\")",
+                                        background: "url('https://ik.imagekit.io/288weifiq/landing-japan/Landing-marquee-680-img-2.png')",
                                         width: "164px",
                                         height: "164px",
                                         animation: "qode-move-marquee-left-to-right 25s linear infinite",
@@ -213,7 +213,7 @@ export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Prop
                             <div className="qodef-m-content qodef--mobile" style={{ width: "82px" }}>
                                 <div className="qodef-m-image qodef-image--original"
                                     style={{
-                                        background: "url(\"https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/12/Landing-marquee-680-img-2.png\")",
+                                        background: "url('https://ik.imagekit.io/288weifiq/landing-japan/Landing-marquee-680-img-2.png')",
                                         width: "82px",
                                         height: "82px",
                                         animation: "qode-move-marquee-left-to-right 25s linear infinite"
@@ -221,7 +221,7 @@ export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Prop
                                 </div>
                                 <div className="qodef-m-image qodef-image--copy"
                                     style={{
-                                        background: "url(\"https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/12/Landing-marquee-680-img-2.png\")",
+                                        background: "url('https://ik.imagekit.io/288weifiq/landing-japan/Landing-marquee-680-img-2.png')",
                                         width: "82px",
                                         height: "82px",
                                         animation: "qode-move-marquee-left-to-right 25s linear infinite",
@@ -241,12 +241,12 @@ export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Prop
                             <div className="qodef-m-content qodef--desktop" style={{ width: "210px" }}>
                                 <div className="qodef-m-image-holder">
                                     <Image decoding="async" width="210" height="1244"
-                                        src="https://wanderaway.qodeinteractive.com/wp-content/uploads/2024/01/Landing-marquee-img-01.png"
+                                        src="https://ik.imagekit.io/288weifiq/landing-japan/Landing-marquee-img-01.png"
                                         className="attachment-full size-full" alt="s" />
                                 </div>
                                 <div className="qodef-m-image qodef-image--original"
                                     style={{
-                                        background: "url(\"https://wanderaway.qodeinteractive.com/wp-content/uploads/2024/01/Landing-marquee-img-01.png\")",
+                                        background: "url('https://ik.imagekit.io/288weifiq/landing-japan/Landing-marquee-img-01.png')",
                                         width: "210px",
                                         height: "1244px",
                                         animation: "qode-move-marquee-top-to-bottom 50s linear infinite"
@@ -254,7 +254,7 @@ export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Prop
                                 </div>
                                 <div className="qodef-m-image qodef-image--copy"
                                     style={{
-                                        background: "url(\"https://wanderaway.qodeinteractive.com/wp-content/uploads/2024/01/Landing-marquee-img-01.png\")",
+                                        background: "url('https://ik.imagekit.io/288weifiq/landing-japan/Landing-marquee-img-01.png')",
                                         width: "210px",
                                         height: "1244px",
                                         animation: "qode-move-marquee-top-to-bottom 50s linear infinite",
@@ -265,7 +265,7 @@ export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Prop
                             <div className="qodef-m-content qodef--mobile" style={{ width: "105px" }}>
                                 <div className="qodef-m-image qodef-image--original"
                                     style={{
-                                        background: "url(\"https://wanderaway.qodeinteractive.com/wp-content/uploads/2024/01/Landing-marquee-img-01.png\")",
+                                        background: "url('https://ik.imagekit.io/288weifiq/landing-japan/Landing-marquee-img-01.png')",
                                         width: "105px",
                                         height: "622px",
                                         animation: "qode-move-marquee-top-to-bottom 50s linear infinite"
@@ -273,7 +273,7 @@ export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Prop
                                 </div>
                                 <div className="qodef-m-image qodef-image--copy"
                                     style={{
-                                        background: "url(\"https://wanderaway.qodeinteractive.com/wp-content/uploads/2024/01/Landing-marquee-img-01.png\")",
+                                        background: "url('https://ik.imagekit.io/288weifiq/landing-japan/Landing-marquee-img-01.png')",
                                         width: "105px",
                                         height: "622px",
                                         animation: "qode-move-marquee-top-to-bottom 50s linear infinite",
@@ -293,12 +293,12 @@ export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Prop
                             <div className="qodef-m-content qodef--desktop" style={{ width: "213px" }}>
                                 <div className="qodef-m-image-holder">
                                     <Image decoding="async" width="213" height="1219"
-                                        src="https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/09/Landing-marquee-img-2.png"
+                                        src="https://ik.imagekit.io/288weifiq/landing-japan/Landing-marquee-img-2.png"
                                         className="attachment-full size-full" alt="s" />
                                 </div>
                                 <div className="qodef-m-image qodef-image--original"
                                     style={{
-                                        background: "url(\"https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/09/Landing-marquee-img-2.png\")",
+                                        background: "url('https://ik.imagekit.io/288weifiq/landing-japan/Landing-marquee-img-2.png')",
                                         width: "213px",
                                         height: "1219px",
                                         animation: "qode-move-marquee-bottom-to-top 50s linear infinite"
@@ -306,7 +306,7 @@ export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Prop
                                 </div>
                                 <div className="qodef-m-image qodef-image--copy"
                                     style={{
-                                        background: "url(\"https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/09/Landing-marquee-img-2.png\")",
+                                        background: "url('https://ik.imagekit.io/288weifiq/landing-japan/Landing-marquee-img-2.png')",
                                         width: "213px",
                                         height: "1219px",
                                         animation: "qode-move-marquee-bottom-to-top 50s linear infinite",
@@ -317,7 +317,7 @@ export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Prop
                             <div className="qodef-m-content qodef--mobile" style={{ width: "106.5px" }}>
                                 <div className="qodef-m-image qodef-image--original"
                                     style={{
-                                        background: "url(\"https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/09/Landing-marquee-img-2.png\")",
+                                        background: "url('https://ik.imagekit.io/288weifiq/landing-japan/Landing-marquee-img-2.png')",
                                         width: "106.5px",
                                         height: "609.5px",
                                         animation: "qode-move-marquee-bottom-to-top 50s linear infinite"
@@ -325,7 +325,7 @@ export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Prop
                                 </div>
                                 <div className="qodef-m-image qodef-image--copy"
                                     style={{
-                                        background: "url(\"https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/09/Landing-marquee-img-2.png\")",
+                                        background: "url('https://ik.imagekit.io/288weifiq/landing-japan/Landing-marquee-img-2.png')",
                                         width: "106.5px",
                                         height: "609.5px",
                                         animation: "qode-move-marquee-bottom-to-top 50s linear infinite",
@@ -345,12 +345,12 @@ export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Prop
                             <div className="qodef-m-content qodef--desktop" style={{ width: "250px" }}>
                                 <div className="qodef-m-image-holder">
                                     <Image decoding="async" width="250" height="1233"
-                                        src="https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/09/Landing-marquee-img-3.png"
+                                        src="https://ik.imagekit.io/288weifiq/landing-japan/Landing-marquee-img-3.png"
                                         className="attachment-full size-full" alt="s" />
                                 </div>
                                 <div className="qodef-m-image qodef-image--original"
                                     style={{
-                                        background: "url(\"https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/09/Landing-marquee-img-3.png\")",
+                                        background: "url('https://ik.imagekit.io/288weifiq/landing-japan/Landing-marquee-img-3.png')",
                                         width: "250px",
                                         height: "1233px",
                                         animation: "qode-move-marquee-top-to-bottom 50s linear infinite"
@@ -358,7 +358,7 @@ export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Prop
                                 </div>
                                 <div className="qodef-m-image qodef-image--copy"
                                     style={{
-                                        background: "url(\"https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/09/Landing-marquee-img-3.png\")",
+                                        background: "url('https://ik.imagekit.io/288weifiq/landing-japan/Landing-marquee-img-3.png')",
                                         width: "250px",
                                         height: "1233px",
                                         animation: "qode-move-marquee-top-to-bottom 50s linear infinite",
@@ -369,7 +369,7 @@ export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Prop
                             <div className="qodef-m-content qodef--mobile" style={{ width: "125px" }}>
                                 <div className="qodef-m-image qodef-image--original"
                                     style={{
-                                        background: "url(\"https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/09/Landing-marquee-img-3.png\")",
+                                        background: "url('https://ik.imagekit.io/288weifiq/landing-japan/Landing-marquee-img-3.png')",
                                         width: "125px",
                                         height: "616.5px",
                                         animation: "qode-move-marquee-top-to-bottom 50s linear infinite"
@@ -377,7 +377,7 @@ export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Prop
                                 </div>
                                 <div className="qodef-m-image qodef-image--copy"
                                     style={{
-                                        background: "url(\"https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/09/Landing-marquee-img-3.png\")",
+                                        background: "url('https://ik.imagekit.io/288weifiq/landing-japan/Landing-marquee-img-3.png')",
                                         width: "125px",
                                         height: "616.5px",
                                         animation: "qode-move-marquee-top-to-bottom 50s linear infinite",
@@ -397,12 +397,12 @@ export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Prop
                             <div className="qodef-m-content qodef--desktop" style={{ width: "212px" }}>
                                 <div className="qodef-m-image-holder">
                                     <Image decoding="async" width="212" height="1374"
-                                        src="https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/09/Landing-marquee-img-4.png"
+                                        src="https://ik.imagekit.io/288weifiq/landing-japan/Landing-marquee-img-4.png"
                                         className="attachment-full size-full" alt="s" />
                                 </div>
                                 <div className="qodef-m-image qodef-image--original"
                                     style={{
-                                        background: "url(\"https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/09/Landing-marquee-img-4.png\")",
+                                        background: "url('https://ik.imagekit.io/288weifiq/landing-japan/Landing-marquee-img-4.png')",
                                         width: "212px",
                                         height: "1374px",
                                         animation: "qode-move-marquee-bottom-to-top 50s linear infinite"
@@ -410,7 +410,7 @@ export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Prop
                                 </div>
                                 <div className="qodef-m-image qodef-image--copy"
                                     style={{
-                                        background: "url(\"https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/09/Landing-marquee-img-4.png\")",
+                                        background: "url('https://ik.imagekit.io/288weifiq/landing-japan/Landing-marquee-img-4.png')",
                                         width: "212px",
                                         height: "1374px",
                                         animation: "qode-move-marquee-bottom-to-top 50s linear infinite",
@@ -421,7 +421,7 @@ export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Prop
                             <div className="qodef-m-content qodef--mobile" style={{ width: "106px" }}>
                                 <div className="qodef-m-image qodef-image--original"
                                     style={{
-                                        background: "url(\"https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/09/Landing-marquee-img-4.png\")",
+                                        background: "url('https://ik.imagekit.io/288weifiq/landing-japan/Landing-marquee-img-4.png')",
                                         width: "106px",
                                         height: "687px",
                                         animation: "qode-move-marquee-bottom-to-top 50s linear infinite"
@@ -429,7 +429,7 @@ export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Prop
                                 </div>
                                 <div className="qodef-m-image qodef-image--copy"
                                     style={{
-                                        background: "url(\"https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/09/Landing-marquee-img-4.png\")",
+                                        background: "url('https://ik.imagekit.io/288weifiq/landing-japan/Landing-marquee-img-4.png')",
                                         width: "106px",
                                         height: "687px",
                                         animation: "qode-move-marquee-bottom-to-top 50s linear infinite",
@@ -440,40 +440,6 @@ export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Prop
                         </div>
                     </div>
                 </div>
-
-                {/* <ImageMarquee
-                    direction="right-to-left"
-                    desktop={{
-                        image: "https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/11/Landing-marquee-1024-img-2.png",
-                        width: 1066,
-                        height: 216,
-                        duration: 23,
-                    }}
-                    mobile={{ width: 533, height: 108 }}
-                />
-
-                <ImageMarquee
-                    direction="left-to-right"
-                    desktop={{
-                        image: "https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/11/Landing-marquee-1024-img-1.png",
-                        width: 1054,
-                        height: 180,
-                        duration: 23,
-                    }}
-                    mobile={{ width: 527, height: 90 }}
-                />
-
-                <ImageMarquee
-                    direction="top-to-bottom"
-                    vertical
-                    desktop={{
-                        image: "https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/11/Landing-marquee-1024-img-2.png",
-                        width: 210,
-                        height: 1244,
-                        duration: 50,
-                    }}
-                    mobile={{ width: 105, height: 622 }}
-                /> */}
             </div>
         </div>
     );

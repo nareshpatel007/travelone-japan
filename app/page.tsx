@@ -26,31 +26,31 @@ const categories: CategoryCard[] = [
     {
         id: 1,
         label: "Destinations",
-        image: "https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/08/Destination-list-7.jpg",
+        image: "https://ik.imagekit.io/288weifiq/landing-japan/Destination-list-7.jpg",
     },
     {
         id: 2,
         label: "Road Trips",
-        image: "https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/08/Destination-list-8.jpg",
+        image: "https://ik.imagekit.io/288weifiq/landing-japan/Destination-list-8.jpg",
     },
     {
         id: 3,
         label: "Secret Gems",
-        image: "https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/11/Destination-list-026.jpg",
+        image: "https://ik.imagekit.io/288weifiq/landing-japan/Destination-list-026.jpg",
     },
     {
         id: 4,
         label: "Tips & Tricks",
-        image: "https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/08/Destination-list-9.jpg",
+        image: "https://ik.imagekit.io/288weifiq/landing-japan/Destination-list-9.jpg",
     },
 ]
 
 const cities = [
-    { name: "Teneriffe", category: "Low budget", image: "https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/08/Destination-list-3.jpg" },
-    { name: "Georgia", category: "Hiking", image: "https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/08/Destination-list-5.jpg" },
-    { name: "Istanbul", category: "Food tours", image: "https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/08/Destination-list-7.jpg" },
-    { name: "Maldives", category: "Low budget", image: "https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/11/Destination-img-24.jpg" },
-    { name: "Jordan", category: "Hiking", image: "https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/08/Destination-list-2.jpg" },
+    { name: "Teneriffe", category: "Low budget", image: "https://ik.imagekit.io/288weifiq/landing-japan/Destination-list-3.jpg" },
+    { name: "Georgia", category: "Hiking", image: "https://ik.imagekit.io/288weifiq/landing-japan/Destination-list-5.jpg" },
+    { name: "Istanbul", category: "Food tours", image: "https://ik.imagekit.io/288weifiq/landing-japan/Destination-list-7.jpg" },
+    { name: "Maldives", category: "Low budget", image: "https://ik.imagekit.io/288weifiq/landing-japan/Destination-img-24.jpg" },
+    { name: "Jordan", category: "Hiking", image: "https://ik.imagekit.io/288weifiq/landing-japan/Destination-list-2.jpg" },
 ];
 
 interface DestinationCard {
@@ -65,51 +65,51 @@ const destinations: DestinationCard[] = [
         id: 1,
         title: "Mexico Itinerary: Ultimate 15-day Travel Guide",
         location: "Mexico, Mexico",
-        image: "https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/08/home-3-img-new-7.jpg",
+        image: "https://ik.imagekit.io/288weifiq/landing-japan/home-3-img-new-7.jpg",
     },
     {
         id: 2,
         title: "Egypt Itinerary: Ultimate 7-day Travel Guide",
         location: "Giza, Egypt",
-        image: "https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/08/home-3-img-new-8.jpg",
+        image: "https://ik.imagekit.io/288weifiq/landing-japan/home-3-img-new-8.jpg",
     },
     {
         id: 3,
         title: "13 Things to do in Bali, Trips and Tricks",
         location: "Bali, Indonesia",
-        image: "https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/08/home-3-img-new-9.jpg",
+        image: "https://ik.imagekit.io/288weifiq/landing-japan/home-3-img-new-9.jpg",
     },
 ];
 
 const populorDestination = [
     {
         id: 1,
-        image: "https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/08/Home-1-destination-08.jpg",
+        image: "https://ik.imagekit.io/288weifiq/landing-japan/Home-1-destination-08.jpg",
         name: "Giza"
     },
     {
         id: 2,
-        image: "https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/08/Home-1-destination-01.jpg",
+        image: "https://ik.imagekit.io/288weifiq/landing-japan/Home-1-destination-01.jpg",
         name: "Mexico"
     },
     {
         id: 3,
-        image: "https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/08/Home-1-destination-04.jpg",
+        image: "https://ik.imagekit.io/288weifiq/landing-japan/Home-1-destination-04.jpg",
         name: "Paris"
     },
     {
         id: 4,
-        image: "https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/08/Home-1-destination-07.jpg",
+        image: "https://ik.imagekit.io/288weifiq/landing-japan/Home-1-destination-07.jpg",
         name: "Lagos"
     },
     {
         id: 5,
-        image: "https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/08/Home-1-destination-03.jpg",
+        image: "https://ik.imagekit.io/288weifiq/landing-japan/Home-1-destination-03.jpg",
         name: "Notodden"
     },
     {
         id: 1,
-        image: "https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/08/Home-1-destination-08.jpg",
+        image: "https://ik.imagekit.io/288weifiq/landing-japan/Home-1-destination-08.jpg",
         name: "Giza"
     }
 ];
@@ -218,7 +218,7 @@ export default function HomePage() {
                                                         <div className="flex flex-col">
                                                             <div className="relative h-80 mb-6 overflow-hidden rounded-lg">
                                                                 <Image
-                                                                    src={"https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/08/destionation-list-1.jpg"}
+                                                                    src={"https://ik.imagekit.io/288weifiq/landing-japan/destionation-list-1.jpg"}
                                                                     alt={"Image"}
                                                                     fill
                                                                     className="object-cover hover:scale-105 transition-transform duration-300"
@@ -231,7 +231,7 @@ export default function HomePage() {
                                                         <div className="flex flex-col">
                                                             <div className="relative h-80 mb-6 overflow-hidden rounded-lg">
                                                                 <Image
-                                                                    src={"https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/08/Destination-list-2.jpg"}
+                                                                    src={"https://ik.imagekit.io/288weifiq/landing-japan/Destination-list-2.jpg"}
                                                                     alt={"Image"}
                                                                     fill
                                                                     className="object-cover hover:scale-105 transition-transform duration-300"
@@ -244,7 +244,7 @@ export default function HomePage() {
                                                         <div className="flex flex-col">
                                                             <div className="relative h-80 mb-6 overflow-hidden rounded-lg">
                                                                 <Image
-                                                                    src={"https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/08/Destination-list-4.jpg"}
+                                                                    src={"https://ik.imagekit.io/288weifiq/landing-japan/Destination-list-4.jpg"}
                                                                     alt={"Image"}
                                                                     fill
                                                                     className="object-cover hover:scale-105 transition-transform duration-300"
@@ -271,9 +271,7 @@ export default function HomePage() {
                                                                     fill
                                                                     className="object-cover group-hover:scale-105 transition-transform duration-300"
                                                                 />
-                                                                {/* Dark overlay */}
                                                                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors" />
-                                                                {/* Label */}
                                                                 <div className="absolute inset-0 flex items-center justify-center">
                                                                     <div className="bg-white px-8 py-3 rounded">
                                                                         <h3 className="font-serif text-xl font-light !text-white">{category.label}</h3>
@@ -292,10 +290,9 @@ export default function HomePage() {
                                                     <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
                                                         {cities.map((destination, index) => (
                                                             <div key={index} className="relative h-64 rounded-lg overflow-hidden group cursor-pointer">
-                                                                {/* Background Image */}
                                                                 <Image
-                                                                    src={destination.image || "/placeholder.svg"}
-                                                                    alt={destination.name}
+                                                                    src={destination?.image || "/placeholder.svg"}
+                                                                    alt={destination?.name || "Image"}
                                                                     fill
                                                                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                                                                 />
@@ -388,7 +385,7 @@ export default function HomePage() {
                                                     <div className="qodef-parallax-row-holder">
                                                         <div className="qodef-parallax-img-holder" style={{ opacity: "1" }}>
                                                             <div className="qodef-parallax-img-wrapper">
-                                                                <Image src="https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/11/Landing-img-01.jpg" alt="Parallax Image" width="1920" height="1080" />
+                                                                <Image src="https://ik.imagekit.io/288weifiq/landing-japan/Landing-img-01.jpg" alt="Parallax Image" width="1920" height="1080" />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -403,14 +400,14 @@ export default function HomePage() {
                                                                         <a
                                                                             href="#"
                                                                             target="_blank">
-                                                                            <Image src="https://wanderaway.qodeinteractive.com/wp-content/uploads/2024/01/Landing-img-02.jpg" alt="Parallax Image" width="609" height="476" />
+                                                                            <Image src="https://ik.imagekit.io/288weifiq/landing-japan/Landing-img-02.jpg" alt="Parallax Image" width="609" height="476" />
                                                                         </a>
                                                                     </div>
                                                                     <div className="qodef-m-image qodef-disabled--768" style={{ bottom: "-9%", right: "-13%", textAlign: "right", opacity: "1" }}>
                                                                         <a
                                                                             href="#"
                                                                             target="_blank">
-                                                                            <Image src="https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/09/Landing-img-3.png" alt="Parallax Image" width="215" height="326" />
+                                                                            <Image src="https://ik.imagekit.io/288weifiq/landing-japan/Landing-img-3.png" alt="Parallax Image" width="215" height="326" />
                                                                         </a>
                                                                     </div>
                                                                 </div>
@@ -437,10 +434,9 @@ export default function HomePage() {
                                                                         &amp; more
                                                                     </p>
                                                                     <div className="qodef-m-button">
-                                                                        <a className="qodef-shortcode qodef-m qodef-button qodef-layout--filled qodef-html--link"
-                                                                            href="https://wanderaway.qodeinteractive.com/destinations/"
-                                                                            target="_blank" style={{ margin: "32px 0 0 0" }}> <span
-                                                                                className="qodef-m-text">View more</span></a>
+                                                                        <a className="qodef-shortcode qodef-m qodef-button qodef-layout--filled qodef-html--link" href="#" style={{ margin: "32px 0 0 0" }}>
+                                                                            <span className="qodef-m-text">View more</span>
+                                                                        </a>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -527,9 +523,7 @@ export default function HomePage() {
                                                         data-id="0705473" data-element_type="widget"
                                                         data-widget_type="wanderaway_core_button.default">
                                                         <div className="elementor-widget-container">
-                                                            <a className="qodef-shortcode qodef-m qodef-button qodef-layout--filled qodef-html--link"
-                                                                href="https://wanderaway.qodeinteractive.com/blog-right-sidebar/"
-                                                                target="_blank">
+                                                            <a className="qodef-shortcode qodef-m qodef-button qodef-layout--filled qodef-html--link" href="#">
                                                                 <span className="qodef-m-text">VIEW MORE</span>
                                                             </a>
                                                         </div>
@@ -545,18 +539,10 @@ export default function HomePage() {
                                                                 className="qodef-shortcode qodef-m qodef-stacked-images qodef-layout--default qodef--has-appear qodef-shadow--enabled">
                                                                 <div className="qodef-m-images">
                                                                     <div className="qodef-m-image" style={{ opacity: "1" }}>
-                                                                        <a
-                                                                            href="https://wanderaway.qodeinteractive.com/a-tropical-escape-to-balis-stunning-beaches/"
-                                                                            target="_blank">
-                                                                            <Image src="https://wanderaway.qodeinteractive.com/wp-content/uploads/2024/01/Landing-img-04.jpg" alt="s" width={733} height={715} />
-                                                                        </a>
+                                                                        <Image src="https://ik.imagekit.io/288weifiq/landing-japan/Landing-img-04.jpg" alt="s" width={733} height={715} />
                                                                     </div>
                                                                     <div className="qodef-m-image qodef-disabled--1024" style={{ bottom: "-11%", left: "-26%", textAlign: "left", opacity: "1" }}>
-                                                                        <a
-                                                                            href="https://wanderaway.qodeinteractive.com/indonesian-escapades-a-journey-through-islands/"
-                                                                            target="_blank">
-                                                                            <Image src="https://wanderaway.qodeinteractive.com/wp-content/uploads/2024/01/Landing-img-05.jpg" alt="s" width={589} height={562} />
-                                                                        </a>
+                                                                        <Image src="https://ik.imagekit.io/288weifiq/landing-japan/Landing-img-05.jpg" alt="s" width={589} height={562} />
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -570,7 +556,7 @@ export default function HomePage() {
                                                 <div className="qodef-parallax-row-holder">
                                                     <div className="qodef-parallax-img-holder" style={{ opacity: "1" }}>
                                                         <div className="qodef-parallax-img-wrapper">
-                                                            <Image src="https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/09/Landing-img-6.jpg" alt="Parallax Image" width={1920} height={900} />
+                                                            <Image src="https://ik.imagekit.io/288weifiq/landing-japan/Landing-img-6.jpg" alt="Parallax Image" width={1920} height={900} />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -580,8 +566,7 @@ export default function HomePage() {
                                                         data-id="8728b21" data-element_type="widget"
                                                         data-widget_type="text-editor.default">
                                                         <div className="elementor-widget-container">
-                                                            <h2><span style={{ color: "#ffffff" }}>For Travels Worth Reading
-                                                                About.</span></h2>
+                                                            <h2><span style={{ color: "#ffffff" }}>For Travels Worth Reading About.</span></h2>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -597,12 +582,8 @@ export default function HomePage() {
                                                         <div className="elementor-widget-container">
                                                             <div
                                                                 className="qodef-shortcode qodef-m qodef-section-title qodef-alignment--left">
-                                                                <h2 className="qodef-m-title">
-                                                                    Easily Launch an Online Store Too! </h2>
-                                                                <p className="qodef-m-text" style={{ marginTop: "10px", fontSize: "19px" }}>
-                                                                    The theme is fully compatible with the powerful &amp; free
-                                                                    WooCommerce plugin, and on top of that you get a great set of
-                                                                    shop page templates &amp; features. </p>
+                                                                <h2 className="qodef-m-title">Easily Launch an Online Store Too!</h2>
+                                                                <p className="qodef-m-text" style={{ marginTop: "10px", fontSize: "19px" }}>The theme is fully compatible with the powerful &amp; free WooCommerce plugin, and on top of that you get a great set of shop page templates &amp; features.</p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -640,8 +621,7 @@ export default function HomePage() {
                                                         data-id="21c1f92" data-element_type="widget"
                                                         data-widget_type="wanderaway_core_button.default">
                                                         <div className="elementor-widget-container">
-                                                            <a className="qodef-shortcode qodef-m qodef-button qodef-layout--filled qodef-html--link"
-                                                                href="https://wanderaway.qodeinteractive.com/shop/" target="_blank">
+                                                            <a className="qodef-shortcode qodef-m qodef-button qodef-layout--filled qodef-html--link" href="#">
                                                                 <span className="qodef-m-text">VIEW MORE</span>
                                                             </a>
                                                         </div>
@@ -657,16 +637,10 @@ export default function HomePage() {
                                                                 className="qodef-shortcode qodef-m qodef-image-gallery qodef-shadow--enabled qodef-grid qodef-layout--columns qodef-gutter--medium qodef-col-num--2 qodef-responsive--predefined qodef-swiper--show-pagination">
                                                                 <div className="qodef-grid-inner">
                                                                     <div className="qodef-e qodef-image-wrapper qodef-grid-item" style={{ opacity: "1" }}>
-                                                                        <a href="https://wanderaway.qodeinteractive.com/shop/"
-                                                                            target="_blank">
-                                                                            <Image src="https://wanderaway.qodeinteractive.com/wp-content/uploads/2024/01/Landing-img-08.jpg" alt="Parallax Image" width="1000" height="1080" />
-                                                                        </a>
+                                                                        <Image src="https://ik.imagekit.io/288weifiq/landing-japan/Landing-img-08.jpg" alt="Parallax Image" width="1000" height="1080" />
                                                                     </div>
                                                                     <div className="qodef-e qodef-image-wrapper qodef-grid-item ">
-                                                                        <a href="https://wanderaway.qodeinteractive.com/product/travel-book/"
-                                                                            target="_blank">
-                                                                            <Image src="https://wanderaway.qodeinteractive.com/wp-content/uploads/2024/01/Landing-img-07.jpg" alt="Parallax Image" width="1000" height="1080" />
-                                                                        </a>
+                                                                        <Image src="https://ik.imagekit.io/288weifiq/landing-japan/Landing-img-07.jpg" alt="Parallax Image" width="1000" height="1080" />
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -685,25 +659,25 @@ export default function HomePage() {
                                                 <div className="!relative !z-10 !max-w-6xl !mx-auto !pt-24 !md:pt-32 !mb-6">
                                                     <div className="hidden md:block absolute left-4 md:left-20 top-16 md:top-50">
                                                         <img
-                                                            src="https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/09/Landing-marquee-img-5.png"
-                                                            alt=""
+                                                            src="https://ik.imagekit.io/288weifiq/landing-japan/Landing-marquee-img-5.png"
+                                                            alt="Image"
                                                             className="w-24 h-32 md:w-46 md:h-46 rounded-full object-cover"
                                                         />
                                                     </div>
 
                                                     <div className="hidden md:block absolute right-4 md:right-24 top-10 md:top-14">
                                                         <img
-                                                            src="https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/09/Landing-marquee-img-6.png"
-                                                            alt=""
+                                                            src="https://ik.imagekit.io/288weifiq/landing-japan/Landing-marquee-img-6.png"
+                                                            alt="Image"
                                                             className="w-24 h-24 md:w-50 md:h-50 rounded-full object-cover"
                                                         />
                                                     </div>
 
                                                     <div className="flex justify-center">
                                                         <img
-                                                            src="https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/09/Landing-marquee-img-7.png"
-                                                            alt=""
-                                                            className="w-56 h-80 md:w-96 md:h-[520px] rounded-full object-cover"
+                                                            src="https://ik.imagekit.io/288weifiq/landing-japan/Landing-marquee-img-7.png"
+                                                            alt="Image"
+                                                            className="w-56 h-80 md:w-96 md:h-[580px] rounded-full object-cover"
                                                         />
                                                     </div>
                                                 </div>

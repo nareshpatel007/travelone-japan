@@ -24,18 +24,15 @@ export default function CommonFooter() {
                                             <ul id="menu-footer-destinations" className="menu">
                                                 <li id="menu-item-3176"
                                                     className="menu-item menu-item-type-post_type menu-item-object-destination menu-item-3176">
-                                                    <a
-                                                        href="https://wanderaway.qodeinteractive.com/destination/mexico/">Mexico</a>
+                                                    <a href="#">Mexico</a>
                                                 </li>
                                                 <li id="menu-item-3177"
                                                     className="menu-item menu-item-type-post_type menu-item-object-destination menu-item-3177">
-                                                    <a
-                                                        href="https://wanderaway.qodeinteractive.com/destination/teneriffe/">Teneriffe</a>
+                                                    <a href="#">Teneriffe</a>
                                                 </li>
                                                 <li id="menu-item-3175"
                                                     className="menu-item menu-item-type-post_type menu-item-object-destination menu-item-3175">
-                                                    <a
-                                                        href="https://wanderaway.qodeinteractive.com/destination/jordan/">Jordan</a>
+                                                    <a href="#">Jordan</a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -52,7 +49,7 @@ export default function CommonFooter() {
                                                         className="qodef-shortcode qodef-m qodef-single-image qodef-layout--default qodef--retina">
                                                         <div className="qodef-m-image">
                                                             <a href="#" target="_self">
-                                                                <Image alt="Logo" width={220} height={100} src="https://stage.travelone.io/html/home/assets/images/logo.png" />
+                                                                <Image alt="Logo" width={220} height={100} src="https://ik.imagekit.io/288weifiq/landing-japan/logo.webp" />
                                                             </a>
                                                         </div>
                                                     </div>
