@@ -806,12 +806,15 @@ export default function HomePage() {
                     {/* Plan Your Trip Model */}
                     {openPlanYourTripModel && (
                         <div className="fixed inset-0 z-[999] flex items-center justify-center !bg-black/40 px-4">
-                            <div className="absolute z-[9999] top-22 right-9.5 md:right-0 md:top-0 w-full h-32 flex items-center justify-center">
-                                <svg className="qodef-svg--stamp !absolute !top-5.5 !right-7" xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 110 110"><g><path d="M109.2,72.8c-1.9,5.2-11.5,6.4-14.7,10.6c-3.4,4.3-2,13.5-6.5,16.6c-4.6,3.1-13.1-1.3-18.4,0.3c-5.3,1.6-9.7,9.8-15.4,9.7
-			c-5.5-0.1-9.6-8.4-15.1-10.2C33.6,98,25,102.1,20.6,99c-4.5-3.3-2.8-12.4-5.9-16.8c-3.2-4.4-12.8-5.9-14.4-11.1
-			c-1.6-5.1,5.3-11.5,5.4-16.9C5.8,49-1.1,42.4,0.8,37.2s11.5-6.4,14.7-10.6c3.4-4.3,2-13.5,6.5-16.6c4.6-3.1,13.1,1.3,18.4-0.3
-			c5.3-1.6,9.7-9.8,15.4-9.7c5.5,0.1,9.6,8.4,15.1,10.2C76.4,12,85,7.9,89.4,11c4.5,3.3,2.8,12.4,5.9,16.8
-			c3.2,4.4,12.8,5.9,14.4,11.1c1.6,5.1-5.3,11.5-5.4,16.9C104.2,61,111.1,67.6,109.2,72.8z"></path></g></svg>
+                            <div className="absolute top-4 right-4 z-30 translate-x-2 -translate-y-2">
+                                <svg
+                                    className="absolute inset-0 w-10 h-10"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 110 110"
+                                    fill="#a6c5a9"
+                                >
+                                    <path d="M109.2,72.8c-1.9,5.2-11.5,6.4-14.7,10.6c-3.4,4.3-2,13.5-6.5,16.6c-4.6,3.1-13.1-1.3-18.4,0.3c-5.3,1.6-9.7,9.8-15.4,9.7 c-5.5-0.1-9.6-8.4-15.1-10.2C33.6,98,25,102.1,20.6,99c-4.5-3.3-2.8-12.4-5.9-16.8 c-3.2-4.4-12.8-5.9-14.4-11.1 c-1.6-5.1,5.3-11.5,5.4-16.9 C5.8,49-1.1,42.4,0.8,37.2 s11.5-6.4,14.7-10.6 c3.4-4.3,2-13.5,6.5-16.6 c4.6-3.1,13.1,1.3,18.4-0.3 c5.3-1.6,9.7-9.8,15.4-9.7 c5.5,0.1,9.6,8.4,15.1,10.2 C76.4,12,85,7.9,89.4,11 c4.5,3.3,2.8,12.4,5.9,16.8 c3.2,4.4,12.8,5.9,14.4,11.1 c1.6,5.1-5.3,11.5-5.4,16.9 C104.2,61,111.1,67.6,109.2,72.8z" />
+                                </svg>
                                 <button
                                     onClick={() => {
                                         setOpenPlanYourTripModel(false);
@@ -819,11 +822,13 @@ export default function HomePage() {
                                         setStep(0);
                                         setErrors("");
                                     }}
-                                    className="absolute top-6.5 right-8 text-semibold bg-transparent !text-white w-4 h-4 rounded-full flex items-center justify-center text-xs cursor-pointer"
+                                    className="relative w-10 h-10 flex items-center justify-center text-white text-sm font-semibold"
+                                    aria-label="Close"
                                 >
                                     ✕
                                 </button>
                             </div>
+
                             <div
                                 className="!relative !w-full !max-w-[360px] !h-[85vh] !md:max-w-xl !md:h-auto !bg-[#d9eed8] !overflow-hidden !shadow-xl"
                                 style={{
