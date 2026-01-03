@@ -58,7 +58,7 @@ export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Prop
                 </div>
             </div>
 
-            <div className="elementor-element elementor-element-04bed72 e-con-full e-flex qodef-container-heights--disabled e-con e-child !pb-10">
+            <div className="elementor-element elementor-element-04bed72 e-con-full e-flex qodef-container-heights--disabled e-con e-child pb-10 md:pb-0">
                 <MobileSlider images={mobileImages} />
                 <div className="hidden md:flex lg:hidden gap-6 px-8 bg-[#fbf7ef] justify-center">
                     <VerticalSlider images={images1} direction="down" />
