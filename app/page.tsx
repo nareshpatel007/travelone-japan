@@ -11,7 +11,6 @@ import FeatureCard from "@/components/FeatureCard";
 import { useEffect, useState } from "react";
 import StepFirstVisit from "@/components/plan_your_trip/landing/StepFirstVisit";
 import StepTravelTime from "@/components/plan_your_trip/landing/StepTravelTime";
-import StepThemes from "@/components/plan_your_trip/landing/StepThemes1";
 import StepRegions from "@/components/plan_your_trip/landing/StepRegions";
 import StepTravelers from "@/components/plan_your_trip/landing/StepTravelers";
 import { CheckCircle2, Loader2, MoveLeft, MoveRight } from "lucide-react";

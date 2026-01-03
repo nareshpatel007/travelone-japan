@@ -49,18 +49,26 @@ export default function StepTravelers({
             );
         }
 
-        if (planYourTripForm?.solo?.only_woman !== undefined) {
-            setOnlyWoman(planYourTripForm.solo.only_woman);
-        }
-
-        if (planYourTripForm?.family_friends) {
+        if (
+            planYourTripForm?.family_friends &&
+            Object.keys(planYourTripForm.family_friends).length
+        ) {
             setFamilyCount(planYourTripForm.family_friends);
         }
 
-        if (planYourTripForm?.group) {
-            setGroupCount(planYourTripForm.group);
+        if (
+            planYourTripForm?.groups &&
+            Object.keys(planYourTripForm.groups).length
+        ) {
+            setGroupCount(planYourTripForm.groups);
         }
-    }, [planYourTripForm]);
+
+        if (planYourTripForm?.solo?.is_women_only !== undefined) {
+            setOnlyWoman(planYourTripForm.solo.is_women_only);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
 
     /* ----------------------------------
        UPDATE COUNTS
@@ -81,7 +89,7 @@ export default function StepTravelers({
             setPlanYourTripForm((form: any) => ({
                 ...form,
                 prefer_travel_type: type === "family" ? "family" : "group",
-                [type === "family" ? "family" : "group"]: updated,
+                [type === "family" ? "family_friends" : "groups"]: updated,
             }));
 
             return updated;
