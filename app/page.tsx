@@ -494,7 +494,7 @@ export default function HomePage() {
                                                                     <div className="qodef-m-image !opacity-100">
                                                                         <Image src="https://ik.imagekit.io/288weifiq/landing-japan/Landing-img-04.jpg" alt="s" width={733} height={715} />
                                                                     </div>
-                                                                    <div className="qodef-m-image !opacity-100" style={{ bottom: "-11%", left: "-26%", textAlign: "left" }}>
+                                                                    <div className="qodef-m-image qodef-disabled--1024 !opacity-100" style={{ bottom: "-11%", left: "-26%", textAlign: "left" }}>
                                                                         <Image src="https://ik.imagekit.io/288weifiq/landing-japan/Landing-img-05.jpg" alt="s" width={589} height={562} />
                                                                     </div>
                                                                 </div>
