@@ -103,9 +103,9 @@ function ThemeItem({
             className="!flex !items-center !justify-between !px-3 !py-2 !rounded-sm !cursor-pointer !transition !bg-white"
         >
             <div className="!flex !items-center !gap-4">
-                <span className="!border !rounded !px-2 !text-sm !border-[#54595F]">
+                {/* <span className="!border !rounded !px-2 !text-sm !border-[#54595F]">
                     {index + 1}
-                </span>
+                </span> */}
                 <span className="text-sm md:text-base">{theme}</span>
             </div>
 

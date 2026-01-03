@@ -806,7 +806,7 @@ export default function HomePage() {
 
                     {/* Plan Your Trip Model */}
                     {openPlanYourTripModel && (
-                        <div className="!fixed !inset-0 !z-50 !flex !items-center !justify-center !bg-black/40 !px-4">
+                        <div className="!fixed !inset-0 !z-999999 !flex !items-center !justify-center !bg-black/40 !px-4">
                             <div className="!relative !w-full !pt-10 !max-w-xl !bg-[#d9eed8] !overflow-hidden !shadow-xl" style={{ borderRadius: "5em 5em 5px 5px" }}>
                                 <svg className="qodef-svg--stamp !absolute !top-5.5 !right-7" xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 110 110"><g><path d="M109.2,72.8c-1.9,5.2-11.5,6.4-14.7,10.6c-3.4,4.3-2,13.5-6.5,16.6c-4.6,3.1-13.1-1.3-18.4,0.3c-5.3,1.6-9.7,9.8-15.4,9.7
 			c-5.5-0.1-9.6-8.4-15.1-10.2C33.6,98,25,102.1,20.6,99c-4.5-3.3-2.8-12.4-5.9-16.8c-3.2-4.4-12.8-5.9-14.4-11.1
