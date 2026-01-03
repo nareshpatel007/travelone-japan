@@ -1,13 +1,32 @@
 "use client"
 
-import type React from "react"
-
-import Image from "next/image"
+import Image from "next/image";
+import VerticalSlider from "./VerticalMarquee";
+import MobileSlider from "./MobileSlider";
 
 // Define props
 interface Props {
     setOpenPlanYourTripModel: React.Dispatch<React.SetStateAction<boolean>>
 }
+
+const mobileImages = [
+    "https://ik.imagekit.io/288weifiq/landing-japan/Landing-marquee-1024-img-2.png",
+    "https://ik.imagekit.io/288weifiq/landing-japan/Landing-marquee-680-img-1.png",
+    "https://ik.imagekit.io/288weifiq/landing-japan/Landing-marquee-1024-img-2.png",
+    "https://ik.imagekit.io/288weifiq/landing-japan/Landing-marquee-680-img-1.png",
+    "https://ik.imagekit.io/288weifiq/landing-japan/Landing-marquee-1024-img-2.png",
+    "https://ik.imagekit.io/288weifiq/landing-japan/Landing-marquee-680-img-1.png",
+];
+
+const images1 = [
+    "https://ik.imagekit.io/288weifiq/landing-japan/Landing-marquee-img-01.png",
+    "https://ik.imagekit.io/288weifiq/landing-japan/Landing-marquee-img-4.png",
+];
+
+const images2 = [
+    "https://ik.imagekit.io/288weifiq/landing-japan/Landing-marquee-img-3.png",
+    "https://ik.imagekit.io/288weifiq/landing-japan/Landing-marquee-img-4.png",
+];
 
 export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Props) {
     return (
@@ -43,7 +62,28 @@ export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Prop
                 </div>
             </div>
 
-            <div className="elementor-element elementor-element-04bed72 e-con-full e-flex qodef-container-heights--disabled e-con e-child">
+            <div className="elementor-element elementor-element-04bed72 e-con-full e-flex qodef-container-heights--disabled e-con e-child pb-10">
+                {/* 🔹 MOBILE (< md) */}
+                <div className="md:hidden">
+                    <MobileSlider images={mobileImages} />
+                </div>
+
+                {/* 🔹 TABLET (md → lg) */}
+                <div className="hidden md:flex lg:hidden gap-6 px-8 bg-[#fbf7ef] justify-center">
+                    <VerticalSlider images={images1} direction="down" />
+                    <VerticalSlider images={images2} direction="up" />
+                </div>
+
+                {/* 🔹 DESKTOP (lg+) */}
+                <div className="hidden lg:flex gap-6 px-20 bg-[#fbf7ef] justify-center">
+                    <VerticalSlider images={images1} direction="down" />
+                    <VerticalSlider images={images2} direction="up" />
+                    <VerticalSlider images={images1} direction="down" />
+                    <VerticalSlider images={images2} direction="up" />
+                </div>
+            </div>
+
+            <div className="!hidden elementor-element elementor-element-04bed72 e-con-full e-flex qodef-container-heights--disabled e-con e-child">
                 <div className="elementor-element elementor-element-d6c022e elementor-hidden-laptop elementor-widget-tablet__width-inherit elementor-hidden-widescreen elementor-hidden-desktop elementor-hidden-mobile elementor-widget elementor-widget-wanderaway_core_image_marquee">
                     <div className="elementor-widget-container">
                         <div className="qodef-shortcode qodef-m qodef-image-marquee qodef-layout--default qodef-direction--right-to-left qodef-direction-type--horizontal">
