@@ -1,44 +1,108 @@
-import { useState } from "react";
+"use client";
+import { useEffect, useState } from "react";
 
 const travelerConfig = [
     ["Adults", "Ages 12 or above", "adults"],
-    ["Child", "Ages 8-12", "child812"],
-    ["Child", "Ages 3-7", "child37"],
+    ["Child", "Ages 8-12", "child_8_12"],
+    ["Child", "Ages 3-7", "child_3_7"],
     ["Infant", "Ages 0-2", "infant"],
 ];
 
-export default function StepTravelers() {
-    const [activeTab, setActiveTab] = useState<"solo" | "family" | "group">("family");
+interface Props {
+    planYourTripForm: any;
+    setPlanYourTripForm: React.Dispatch<React.SetStateAction<any>>;
+}
 
+export default function StepTravelers({
+    planYourTripForm,
+    setPlanYourTripForm,
+}: Props) {
+    // Define state
+    const [activeTab, setActiveTab] = useState<"solo" | "family" | "group">("family");
     const [onlyWoman, setOnlyWoman] = useState(false);
 
     const [familyCount, setFamilyCount] = useState({
         adults: 2,
-        child812: 0,
-        child37: 0,
+        child_8_12: 0,
+        child_3_7: 0,
         infant: 0,
     });
 
     const [groupCount, setGroupCount] = useState({
-        adults: 0,
-        child812: 0,
-        child37: 0,
+        adults: 2,
+        child_8_12: 0,
+        child_3_7: 0,
         infant: 0,
     });
 
+    /* ----------------------------------
+       RESTORE VALUES ON STEP REVISIT
+    ---------------------------------- */
+    useEffect(() => {
+        if (planYourTripForm?.prefer_travel_type) {
+            setActiveTab(
+                planYourTripForm.prefer_travel_type === "family"
+                    ? "family"
+                    : planYourTripForm.prefer_travel_type === "group"
+                        ? "group"
+                        : "solo"
+            );
+        }
+
+        if (planYourTripForm?.solo?.only_woman !== undefined) {
+            setOnlyWoman(planYourTripForm.solo.only_woman);
+        }
+
+        if (planYourTripForm?.family_friends) {
+            setFamilyCount(planYourTripForm.family_friends);
+        }
+
+        if (planYourTripForm?.group) {
+            setGroupCount(planYourTripForm.group);
+        }
+    }, [planYourTripForm]);
+
+    /* ----------------------------------
+       UPDATE COUNTS
+    ---------------------------------- */
     const updateCount = (
         type: "family" | "group",
         key: string,
         value: number
     ) => {
         const updater = type === "family" ? setFamilyCount : setGroupCount;
-        updater((prev: any) => ({
-            ...prev,
-            [key]: Math.max(0, value),
+
+        updater((prev: any) => {
+            const updated = {
+                ...prev,
+                [key]: Math.max(0, value),
+            };
+
+            setPlanYourTripForm((form: any) => ({
+                ...form,
+                prefer_travel_type: type === "family" ? "family" : "group",
+                [type === "family" ? "family" : "group"]: updated,
+            }));
+
+            return updated;
+        });
+    };
+
+    /* ----------------------------------
+       SOLO TOGGLE
+    ---------------------------------- */
+    const handleSoloChange = (checked: boolean) => {
+        setOnlyWoman(checked);
+
+        setPlanYourTripForm((form: any) => ({
+            ...form,
+            prefer_travel_type: "solo",
+            solo: {
+                is_women_only: checked,
+            },
         }));
     };
 
-    // Active data
     const activeData: any = activeTab === "family" ? familyCount : groupCount;
 
     return (
@@ -49,9 +113,39 @@ export default function StepTravelers() {
 
             {/* Tabs */}
             <div className="!flex !gap-3 !mb-3 !md:mb-6">
-                <Tab label="Solo" active={activeTab === "solo"} onClick={() => setActiveTab("solo")} />
-                <Tab label="Family" active={activeTab === "family"} onClick={() => setActiveTab("family")} />
-                <Tab label="Small Group" active={activeTab === "group"} onClick={() => setActiveTab("group")} />
+                <Tab
+                    label="Solo"
+                    active={activeTab === "solo"}
+                    onClick={() => {
+                        setActiveTab("solo");
+                        setPlanYourTripForm((f: any) => ({
+                            ...f,
+                            prefer_travel_type: "solo",
+                        }));
+                    }}
+                />
+                <Tab
+                    label="Family"
+                    active={activeTab === "family"}
+                    onClick={() => {
+                        setActiveTab("family");
+                        setPlanYourTripForm((f: any) => ({
+                            ...f,
+                            prefer_travel_type: "family",
+                        }));
+                    }}
+                />
+                <Tab
+                    label="Small Group"
+                    active={activeTab === "group"}
+                    onClick={() => {
+                        setActiveTab("group");
+                        setPlanYourTripForm((f: any) => ({
+                            ...f,
+                            prefer_travel_type: "group",
+                        }));
+                    }}
+                />
             </div>
 
             {/* SOLO */}
@@ -60,20 +154,17 @@ export default function StepTravelers() {
                     <input
                         type="checkbox"
                         checked={onlyWoman}
-                        onChange={(e) => setOnlyWoman(e.target.checked)}
+                        onChange={(e) => handleSoloChange(e.target.checked)}
                     />
                     <span>Only woman</span>
                 </div>
             )}
 
-            {/* FAMILY & GROUP – SAME LAYOUT */}
+            {/* FAMILY & GROUP */}
             {(activeTab === "family" || activeTab === "group") && (
                 <div className="space-y-4">
                     {travelerConfig.map(([title, subtitle, key]) => (
-                        <div
-                            key={key}
-                            className="flex justify-between items-center"
-                        >
+                        <div key={key} className="flex justify-between items-center">
                             <div>
                                 <p className="font-medium">{title}</p>
                                 <p className="text-sm text-gray-600">{subtitle}</p>
@@ -114,9 +205,7 @@ function Tab({ label, active, onClick }: any) {
     return (
         <button
             onClick={onClick}
-            className={`px-4 py-2 text-sm !md:text-md rounded-md cursor-pointer transition ${active
-                ? "!bg-black !text-white"
-                : "bg-white text-black"
+            className={`px-4 py-2 text-sm !md:text-md rounded-md cursor-pointer transition ${active ? "!bg-black !text-white" : "bg-white text-black"
                 }`}
         >
             {label}

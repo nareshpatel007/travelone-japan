@@ -7,7 +7,7 @@ interface Props {
     setPlanYourTripForm: React.Dispatch<React.SetStateAction<any>>;
 }
 
-export default function StepFirstVisit({
+export default function StepBudget({
     planYourTripForm,
     setPlanYourTripForm,
 }: Props) {
@@ -15,39 +15,55 @@ export default function StepFirstVisit({
 
     // ✅ Restore selection when coming back to this step
     useEffect(() => {
-        if (planYourTripForm?.first_time_visit) {
-            setSelected(planYourTripForm.first_time_visit);
+        if (planYourTripForm?.budget) {
+            setSelected(planYourTripForm.budget);
         }
-    }, [planYourTripForm?.first_time_visit]);
+    }, [planYourTripForm?.budget]);
 
     const handleChange = (value: string) => {
         setSelected(value);
 
         setPlanYourTripForm((prev: any) => ({
             ...prev,
-            first_time_visit: value,
+            budget: value,
         }));
     };
 
     return (
         <>
             <h2 className="!text-xl !md:text-3xl !font-normal !mb-6">
-                Is this your first time visiting Japan?
+                What is your target price range per person for this journey? (Excluding international flights)
             </h2>
 
             <div className="space-y-4">
                 <Option
                     number="1"
-                    text="Yes, I want to see the iconic highlights."
-                    value="Yes, I want to see the iconic highlights."
+                    text="$5,000 – $7,500 USD (Premium Private Experience)"
+                    value="$5,000 – $7,500 USD (Premium Private Experience)"
                     selected={selected}
                     onChange={handleChange}
                 />
 
                 <Option
                     number="2"
-                    text="No, I’ve been before and want to discover hidden gems."
-                    value="No, I’ve been before and want to discover hidden gems."
+                    text="$7,500 – $12,000 USD (Luxury Stays & Signature Experiences)"
+                    value="$7,500 – $12,000 USD (Luxury Stays & Signature Experiences)"
+                    selected={selected}
+                    onChange={handleChange}
+                />
+                
+                <Option
+                    number="3"
+                    text="$12,000+ USD (Ultra-Luxury & Exclusive Access)"
+                    value="$12,000+ USD (Ultra-Luxury & Exclusive Access)"
+                    selected={selected}
+                    onChange={handleChange}
+                />
+                
+                <Option
+                    number="4"
+                    text="I’d like to discuss this during my consultation"
+                    value="I’d like to discuss this during my consultation"
                     selected={selected}
                     onChange={handleChange}
                 />

@@ -7,7 +7,7 @@ interface Props {
     setPlanYourTripForm: React.Dispatch<React.SetStateAction<any>>;
 }
 
-export default function StepFirstVisit({
+export default function StepGuide({
     planYourTripForm,
     setPlanYourTripForm,
 }: Props) {
@@ -15,39 +15,46 @@ export default function StepFirstVisit({
 
     // ✅ Restore selection when coming back to this step
     useEffect(() => {
-        if (planYourTripForm?.first_time_visit) {
-            setSelected(planYourTripForm.first_time_visit);
+        if (planYourTripForm?.guide) {
+            setSelected(planYourTripForm.guide);
         }
-    }, [planYourTripForm?.first_time_visit]);
+    }, [planYourTripForm?.guide]);
 
     const handleChange = (value: string) => {
         setSelected(value);
 
         setPlanYourTripForm((prev: any) => ({
             ...prev,
-            first_time_visit: value,
+            guide: value,
         }));
     };
 
     return (
         <>
             <h2 className="!text-xl !md:text-3xl !font-normal !mb-6">
-                Is this your first time visiting Japan?
+                Select your preferred guide style
             </h2>
-
             <div className="space-y-4">
                 <Option
                     number="1"
-                    text="Yes, I want to see the iconic highlights."
-                    value="Yes, I want to see the iconic highlights."
+                    text="The Specialist (Academic, deep historical knowledge)"
+                    value="The Specialist (Academic, deep historical knowledge)"
                     selected={selected}
                     onChange={handleChange}
                 />
 
                 <Option
                     number="2"
-                    text="No, I’ve been before and want to discover hidden gems."
-                    value="No, I’ve been before and want to discover hidden gems."
+                    text="The Local Insider (Casual, lifestyle-focused, hidden spots)"
+                    value="The Local Insider (Casual, lifestyle-focused, hidden spots)"
+                    selected={selected}
+                    onChange={handleChange}
+                />
+
+                <Option
+                    number="3"
+                    text="Maximum Independence (Private transport only, self-guided exploration)"
+                    value="Maximum Independence (Private transport only, self-guided exploration)"
                     selected={selected}
                     onChange={handleChange}
                 />

@@ -11,10 +11,20 @@ import FeatureCard from "@/components/FeatureCard";
 import { useEffect, useState } from "react";
 import StepFirstVisit from "@/components/plan_your_trip/landing/StepFirstVisit";
 import StepTravelTime from "@/components/plan_your_trip/landing/StepTravelTime";
-import StepThemes from "@/components/plan_your_trip/landing/StepThemes";
+import StepThemes from "@/components/plan_your_trip/landing/StepThemes1";
 import StepRegions from "@/components/plan_your_trip/landing/StepRegions";
 import StepTravelers from "@/components/plan_your_trip/landing/StepTravelers";
-import { CheckCircle2, MoveLeft, MoveRight } from "lucide-react";
+import { CheckCircle2, Loader2, MoveLeft, MoveRight } from "lucide-react";
+import StepThemes1 from "@/components/plan_your_trip/landing/StepThemes1";
+import StepThemes2 from "@/components/plan_your_trip/landing/StepThemes2";
+import StepDays from "@/components/plan_your_trip/landing/StepDays";
+import StepBudget from "@/components/plan_your_trip/landing/StepBudget";
+import StepAccommodation from "@/components/plan_your_trip/landing/StepAccommodation";
+import StepMeals from "@/components/plan_your_trip/landing/StepMeals";
+import StepTransfer from "@/components/plan_your_trip/landing/StepTransfer";
+import StepGuide from "@/components/plan_your_trip/landing/StepGuide";
+import StepLeadForm from "@/components/plan_your_trip/landing/StepLeadForm";
+import { getClientIp } from "@/lib/getClientIp";
 
 interface CategoryCard {
     id: number
@@ -115,21 +125,53 @@ const populorDestination = [
     }
 ];
 
-// Plan Your Trip Steps
-const steps = [
-    StepFirstVisit,
-    StepTravelTime,
-    StepThemes,
-    StepRegions,
-    StepTravelers,
-];
+// Define form data
+const defaultFormData = {
+    country_id: 109,
+    country_name: "Japan",
+    first_time_visit: "",
+    season_name: "",
+    travel_month: "",
+    themes_priority_1: [],
+    themes_priority_2: [],
+    cities_options: [],
+    day_option: "",
+    budget: "",
+    prefer_travel_type: "family",
+    family_friends: {
+        adults: 2,
+        child_8_12: 0,
+        child_3_7: 0,
+        infant: 0,
+    },
+    groups: {
+        adults: 2,
+        child_8_12: 0,
+        child_3_7: 0,
+        infant: 0,
+    },
+    solo: {
+        is_women_only: false
+    },
+    accommodation: "",
+    meal_preferences: "",
+    transportation: "",
+    guide: "",
+    full_name: "",
+    email: "",
+    mobile: "",
+    privacy_policy_accepted: false,
+    ip_address: "",
+};
 
 export default function HomePage() {
     // Define state
     const [ready, setReady] = useState(false);
+    const [formLoader, setFormLoader] = useState(false);
     const [openPlanYourTripModel, setOpenPlanYourTripModel] = useState<boolean>(false);
     const [step, setStep] = useState(0);
-    const StepComponent = steps[step];
+    const [errors, setErrors] = useState<string>("");
+    const [planYourTripForm, setPlanYourTripForm] = useState<any>(defaultFormData);
 
     useEffect(() => {
         // Wait one frame after hydration
@@ -137,6 +179,117 @@ export default function HomePage() {
             setReady(true);
         });
     }, []);
+
+    const updateForm = (key: string, value: any) => {
+        setPlanYourTripForm((prev: any) => ({
+            ...prev,
+            [key]: value,
+        }));
+
+        // Clear error once user fixes it
+        setErrors("");
+    };
+
+    const validateStep = () => {
+        let newErrors: string = "";
+        switch (step) {
+            case 0:
+                if (!planYourTripForm.first_time_visit) {
+                    newErrors = "Please select an option";
+                }
+                break;
+
+            case 1:
+                if (!planYourTripForm.season_name) {
+                    newErrors = "Please select an option";
+                }
+                break;
+
+            case 2:
+                if (planYourTripForm.themes_priority_1.length === 0) {
+                    newErrors = "Select at least one theme for priority 1";
+                }
+                break;
+
+            case 3:
+                if (planYourTripForm.themes_priority_2.length === 0) {
+                    newErrors = "Select at least one theme for priority 2";
+                }
+                break;
+
+            case 4:
+                if (planYourTripForm.cities_options.length === 0) {
+                    newErrors = "Please select an option";
+                }
+                break;
+
+            case 5:
+                if (!planYourTripForm.day_option) {
+                    newErrors = "Please select an option";
+                }
+                break;
+
+            case 6:
+                if (!planYourTripForm.budget) {
+                    newErrors = "Please select an option";
+                }
+                break;
+        }
+
+        setErrors(newErrors);
+        return (newErrors === "") ? true : false;
+    };
+
+    // Handle submit plan your trip
+    const handlSubmitPlanYourTrip = () => {
+        setFormLoader(true);
+        (async () => {
+            try {
+                // Check name, email and phone valid
+                if (planYourTripForm.full_name === "" || planYourTripForm.email === "" || planYourTripForm.mobile === "") {
+                    setFormLoader(false);
+                    setErrors("Please fill all required fields.");
+                    return;
+                }
+
+                // Check accept privacy policy
+                if (!planYourTripForm.privacy_policy_accepted) {
+                    setFormLoader(false);
+                    setErrors("Please accept the Terms consent to submit your form.");
+                    return;
+                }
+
+                // Get current ip address
+                planYourTripForm.ip_address = await getClientIp();
+
+                // Add new lead
+                const response = await fetch("/api/plan_your_trip", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        data: planYourTripForm
+                    })
+                });
+
+                // Get json parse
+                const json_parse = await response.json();
+
+                // Check status
+                if (json_parse.status) {
+                    setFormLoader(false);
+                    setStep(0);
+                    setPlanYourTripForm(defaultFormData);
+                    setOpenPlanYourTripModel(false);
+                    setErrors("");
+                } else {
+                    setFormLoader(false);
+                    setErrors(json_parse.message);
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        })();
+    };
 
     return (
         <>
@@ -654,33 +807,62 @@ export default function HomePage() {
                     {/* Plan Your Trip Model */}
                     {openPlanYourTripModel && (
                         <div className="!fixed !inset-0 !z-50 !flex !items-center !justify-center !bg-black/40 !px-4">
-                            <div className="!relative !w-full !pt-10 !max-w-xl !bg-[#d9eed8] !overflow-hidden !shadow-xl" style={{ borderRadius: "5em 5em 0 0" }}>
-                                <svg className="qodef-svg--stamp !absolute !top-6 !right-7" xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 110 110"><g><path d="M109.2,72.8c-1.9,5.2-11.5,6.4-14.7,10.6c-3.4,4.3-2,13.5-6.5,16.6c-4.6,3.1-13.1-1.3-18.4,0.3c-5.3,1.6-9.7,9.8-15.4,9.7
+                            <div className="!relative !w-full !pt-10 !max-w-xl !bg-[#d9eed8] !overflow-hidden !shadow-xl" style={{ borderRadius: "5em 5em 5px 5px" }}>
+                                <svg className="qodef-svg--stamp !absolute !top-5.5 !right-7" xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 110 110"><g><path d="M109.2,72.8c-1.9,5.2-11.5,6.4-14.7,10.6c-3.4,4.3-2,13.5-6.5,16.6c-4.6,3.1-13.1-1.3-18.4,0.3c-5.3,1.6-9.7,9.8-15.4,9.7
 			c-5.5-0.1-9.6-8.4-15.1-10.2C33.6,98,25,102.1,20.6,99c-4.5-3.3-2.8-12.4-5.9-16.8c-3.2-4.4-12.8-5.9-14.4-11.1
 			c-1.6-5.1,5.3-11.5,5.4-16.9C5.8,49-1.1,42.4,0.8,37.2s11.5-6.4,14.7-10.6c3.4-4.3,2-13.5,6.5-16.6c4.6-3.1,13.1,1.3,18.4-0.3
 			c5.3-1.6,9.7-9.8,15.4-9.7c5.5,0.1,9.6,8.4,15.1,10.2C76.4,12,85,7.9,89.4,11c4.5,3.3,2.8,12.4,5.9,16.8
 			c3.2,4.4,12.8,5.9,14.4,11.1c1.6,5.1-5.3,11.5-5.4,16.9C104.2,61,111.1,67.6,109.2,72.8z"></path></g></svg>
                                 <button
-                                    onClick={() => setOpenPlanYourTripModel(false)}
-                                    className="absolute top-6.5 right-7.5 text-semibold bg-transparent !text-white w-5 h-5 rounded-full flex items-center justify-center text-xs cursor-pointer"
+                                    onClick={() => {
+                                        setOpenPlanYourTripModel(false);
+                                        setPlanYourTripForm(defaultFormData);
+                                        setStep(0);
+                                        setErrors("");
+                                    }}
+                                    className="absolute top-6.5 right-8 text-semibold bg-transparent !text-white w-4 h-4 rounded-full flex items-center justify-center text-xs cursor-pointer"
                                 >
                                     ✕
                                 </button>
                                 <div className="!px-6 !md:px-16 !pb-7">
-                                    <StepComponent />
+                                    {step === 0 && <StepFirstVisit planYourTripForm={planYourTripForm} setPlanYourTripForm={setPlanYourTripForm} />}
+                                    {step == 1 && <StepTravelTime planYourTripForm={planYourTripForm} setPlanYourTripForm={setPlanYourTripForm} />}
+                                    {step == 2 && <StepThemes1 planYourTripForm={planYourTripForm} setPlanYourTripForm={setPlanYourTripForm} />}
+                                    {step == 3 && <StepThemes2 planYourTripForm={planYourTripForm} setPlanYourTripForm={setPlanYourTripForm} />}
+                                    {step == 4 && <StepRegions planYourTripForm={planYourTripForm} setPlanYourTripForm={setPlanYourTripForm} />}
+                                    {step == 5 && <StepDays planYourTripForm={planYourTripForm} setPlanYourTripForm={setPlanYourTripForm} />}
+                                    {step == 6 && <StepBudget planYourTripForm={planYourTripForm} setPlanYourTripForm={setPlanYourTripForm} />}
+                                    {step == 7 && <StepTravelers planYourTripForm={planYourTripForm} setPlanYourTripForm={setPlanYourTripForm} />}
+                                    {step == 8 && <StepAccommodation planYourTripForm={planYourTripForm} setPlanYourTripForm={setPlanYourTripForm} />}
+                                    {step == 9 && <StepMeals planYourTripForm={planYourTripForm} setPlanYourTripForm={setPlanYourTripForm} />}
+                                    {step == 10 && <StepTransfer planYourTripForm={planYourTripForm} setPlanYourTripForm={setPlanYourTripForm} />}
+                                    {step == 11 && <StepGuide planYourTripForm={planYourTripForm} setPlanYourTripForm={setPlanYourTripForm} />}
+                                    {step == 12 && <StepLeadForm planYourTripForm={planYourTripForm} setPlanYourTripForm={setPlanYourTripForm} />}
+
+                                    {errors && <p className="!text-red-600 !text-sm">{errors}</p>}
+
                                     <div className="!mt-8 !flex !gap-3">
                                         {step > 0 && (
-                                            <button onClick={() => setStep(step - 1)} className="flex items-center gap-2 !px-4 !py-2 !text-sm !md:text-md !rounded-sm !bg-black text-white cursor-pointer hover:!bg-black/90">
+                                            <button disabled={formLoader} onClick={() => setStep(step - 1)} className="flex items-center gap-2 !px-4 !py-2 !text-sm !md:text-md !rounded-sm !bg-black text-white cursor-pointer hover:!bg-black/90">
                                                 <MoveLeft className="h-4 w-4" /> Previous
                                             </button>
                                         )}
 
-                                        {step < 4 && <button onClick={() => setStep(step + 1)} className="flex items-center gap-2 !px-4 !py-2 !text-sm !md:text-md round !rounded-sm !bg-black text-white cursor-pointer hover:!bg-black/90">
+                                        {step < 12 && <button
+                                            onClick={() => {
+                                                if (validateStep()) {
+                                                    setStep(step + 1);
+                                                }
+                                            }}
+                                            className="flex items-center gap-2 !px-4 !py-2 !text-sm !md:text-md !rounded-sm !bg-black text-white cursor-pointer hover:!bg-black/90"
+                                        >
                                             Next <MoveRight className="h-4 w-4" />
                                         </button>}
 
-                                        {step == 4 && <button className="flex items-center gap-2 !px-4 !py-2 !text-sm !md:text-md round !rounded-sm !bg-black text-white cursor-pointer hover:!bg-black/90">
-                                            <CheckCircle2 className="h-4 w-4" /> Submit
+                                        {step == 12 && <button disabled={formLoader} onClick={handlSubmitPlanYourTrip} className="flex items-center gap-2 !px-4 !py-2 !text-sm !md:text-md round !rounded-sm !bg-black text-white cursor-pointer hover:!bg-black/90">
+                                            {formLoader && <Loader2 className="h-4 w-4 animate-spin" />}
+                                            {!formLoader && <CheckCircle2 className="h-4 w-4" />}
+                                            Submit
                                         </button>}
                                     </div>
                                 </div>

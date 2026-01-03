@@ -7,7 +7,7 @@ interface Props {
     setPlanYourTripForm: React.Dispatch<React.SetStateAction<any>>;
 }
 
-export default function StepFirstVisit({
+export default function StepDays({
     planYourTripForm,
     setPlanYourTripForm,
 }: Props) {
@@ -15,39 +15,63 @@ export default function StepFirstVisit({
 
     // ✅ Restore selection when coming back to this step
     useEffect(() => {
-        if (planYourTripForm?.first_time_visit) {
-            setSelected(planYourTripForm.first_time_visit);
+        if (planYourTripForm?.day_option) {
+            setSelected(planYourTripForm.day_option);
         }
-    }, [planYourTripForm?.first_time_visit]);
+    }, [planYourTripForm?.day_option]);
 
     const handleChange = (value: string) => {
         setSelected(value);
 
         setPlanYourTripForm((prev: any) => ({
             ...prev,
-            first_time_visit: value,
+            day_option: value,
         }));
     };
 
     return (
         <>
             <h2 className="!text-xl !md:text-3xl !font-normal !mb-6">
-                Is this your first time visiting Japan?
+                How many days would you like to dedicate to this journey?
             </h2>
 
             <div className="space-y-4">
                 <Option
                     number="1"
-                    text="Yes, I want to see the iconic highlights."
-                    value="Yes, I want to see the iconic highlights."
+                    text="7 – 10 Days (The Essential Experience)"
+                    value="7 – 10 Days (The Essential Experience)"
                     selected={selected}
                     onChange={handleChange}
                 />
 
                 <Option
                     number="2"
-                    text="No, I’ve been before and want to discover hidden gems."
-                    value="No, I’ve been before and want to discover hidden gems."
+                    text="10 – 14 Days (The Signature Journey)"
+                    value="10 – 14 Days (The Signature Journey)"
+                    selected={selected}
+                    onChange={handleChange}
+                />
+                
+                <Option
+                    number="3"
+                    text="14 – 21 Days (The Deep Immersion)"
+                    value="14 – 21 Days (The Deep Immersion)"
+                    selected={selected}
+                    onChange={handleChange}
+                />
+                
+                <Option
+                    number="4"
+                    text="21+ Days (The Grand Tour)"
+                    value="21+ Days (The Grand Tour)"
+                    selected={selected}
+                    onChange={handleChange}
+                />
+                
+                <Option
+                    number="5"
+                    text="I am flexible / Need a recommendation"
+                    value="I am flexible / Need a recommendation"
                     selected={selected}
                     onChange={handleChange}
                 />

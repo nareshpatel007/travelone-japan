@@ -7,7 +7,7 @@ interface Props {
     setPlanYourTripForm: React.Dispatch<React.SetStateAction<any>>;
 }
 
-export default function StepFirstVisit({
+export default function StepTransfer({
     planYourTripForm,
     setPlanYourTripForm,
 }: Props) {
@@ -15,39 +15,39 @@ export default function StepFirstVisit({
 
     // ✅ Restore selection when coming back to this step
     useEffect(() => {
-        if (planYourTripForm?.first_time_visit) {
-            setSelected(planYourTripForm.first_time_visit);
+        if (planYourTripForm?.transportation) {
+            setSelected(planYourTripForm.transportation);
         }
-    }, [planYourTripForm?.first_time_visit]);
+    }, [planYourTripForm?.transportation]);
 
     const handleChange = (value: string) => {
         setSelected(value);
 
         setPlanYourTripForm((prev: any) => ({
             ...prev,
-            first_time_visit: value,
+            transportation: value,
         }));
     };
 
     return (
         <>
             <h2 className="!text-xl !md:text-3xl !font-normal !mb-6">
-                Is this your first time visiting Japan?
+                Tell us how you’d like to travel between places
             </h2>
 
             <div className="space-y-4">
                 <Option
                     number="1"
-                    text="Yes, I want to see the iconic highlights."
-                    value="Yes, I want to see the iconic highlights."
+                    text="Fully Private Chauffeur (7-seat luxury van throughout the trip)"
+                    value="Fully Private Chauffeur (7-seat luxury van throughout the trip)"
                     selected={selected}
                     onChange={handleChange}
                 />
 
                 <Option
                     number="2"
-                    text="No, I’ve been before and want to discover hidden gems."
-                    value="No, I’ve been before and want to discover hidden gems."
+                    text="Executive Mix (Private van for tours + First Class Shinkansen between cities)"
+                    value="Executive Mix (Private van for tours + First Class Shinkansen between cities)"
                     selected={selected}
                     onChange={handleChange}
                 />

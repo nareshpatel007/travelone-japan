@@ -7,7 +7,7 @@ interface Props {
     setPlanYourTripForm: React.Dispatch<React.SetStateAction<any>>;
 }
 
-export default function StepFirstVisit({
+export default function StepAccommodation({
     planYourTripForm,
     setPlanYourTripForm,
 }: Props) {
@@ -15,39 +15,47 @@ export default function StepFirstVisit({
 
     // ✅ Restore selection when coming back to this step
     useEffect(() => {
-        if (planYourTripForm?.first_time_visit) {
-            setSelected(planYourTripForm.first_time_visit);
+        if (planYourTripForm?.accommodation) {
+            setSelected(planYourTripForm.accommodation);
         }
-    }, [planYourTripForm?.first_time_visit]);
+    }, [planYourTripForm?.accommodation]);
 
     const handleChange = (value: string) => {
         setSelected(value);
 
         setPlanYourTripForm((prev: any) => ({
             ...prev,
-            first_time_visit: value,
+            accommodation: value,
         }));
     };
 
     return (
         <>
             <h2 className="!text-xl !md:text-3xl !font-normal !mb-6">
-                Is this your first time visiting Japan?
+                What kind of accommodation do you prefer?
             </h2>
 
             <div className="space-y-4">
                 <Option
                     number="1"
-                    text="Yes, I want to see the iconic highlights."
-                    value="Yes, I want to see the iconic highlights."
+                    text="Premium 4-Star Boutique Hotels (Curated comfort)"
+                    value="Premium 4-Star Boutique Hotels (Curated comfort)"
                     selected={selected}
                     onChange={handleChange}
                 />
 
                 <Option
                     number="2"
-                    text="No, I’ve been before and want to discover hidden gems."
-                    value="No, I’ve been before and want to discover hidden gems."
+                    text="Luxury 5-Star International Hotels (Ultimate service)"
+                    value="Luxury 5-Star International Hotels (Ultimate service)"
+                    selected={selected}
+                    onChange={handleChange}
+                />
+                
+                <Option
+                    number="3"
+                    text="Authentic Five-Star Ryokans (Traditional stays with private in-room Onsens)"
+                    value="Authentic Five-Star Ryokans (Traditional stays with private in-room Onsens)"
                     selected={selected}
                     onChange={handleChange}
                 />
