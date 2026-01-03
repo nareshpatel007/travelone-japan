@@ -380,7 +380,7 @@ export default function HomePage() {
                                             <div className="elementor-element elementor-element-997454e e-con-full e-flex qodef-container-heights--disabled e-con e-parent">
                                                 <div className="elementor-element elementor-element-b249df6 e-con-full e-flex qodef-container-heights--disabled e-con e-child qodef-parallax qodef--parallax-row qodef-parallax--init">
                                                     <div className="qodef-parallax-row-holder">
-                                                        <div className="qodef-parallax-img-holder" style={{ opacity: "1" }}>
+                                                        <div className="qodef-parallax-img-holder !opacity-100">
                                                             <div className="qodef-parallax-img-wrapper">
                                                                 <Image fill src="https://ik.imagekit.io/288weifiq/landing-japan/Landing-img-01.jpg" alt="Parallax Image" />
                                                             </div>
@@ -390,10 +390,10 @@ export default function HomePage() {
                                                         <div className="elementor-widget-container">
                                                             <div className="qodef-shortcode qodef-m qodef-stacked-images qodef-layout--default qodef--has-appear qodef-shadow--enabled">
                                                                 <div className="qodef-m-images">
-                                                                    <div className="qodef-m-image" style={{ opacity: "1" }}>
+                                                                    <div className="qodef-m-image !opacity-100">
                                                                         <Image src="https://ik.imagekit.io/288weifiq/landing-japan/Landing-img-02.jpg" alt="Parallax Image" width="609" height="476" />
                                                                     </div>
-                                                                    <div className="qodef-m-image qodef-disabled--768" style={{ bottom: "-9%", right: "-13%", textAlign: "right", opacity: "1" }}>
+                                                                    <div className="qodef-m-image !opacity-100" style={{ bottom: "-9%", right: "-13%", textAlign: "right" }}>
                                                                         <Image src="https://ik.imagekit.io/288weifiq/landing-japan/Landing-img-3.png" alt="Parallax Image" width="215" height="326" />
                                                                     </div>
                                                                 </div>
@@ -489,10 +489,10 @@ export default function HomePage() {
                                                         <div className="elementor-widget-container">
                                                             <div className="qodef-shortcode qodef-m qodef-stacked-images qodef-layout--default qodef--has-appear qodef-shadow--enabled">
                                                                 <div className="qodef-m-images">
-                                                                    <div className="qodef-m-image" style={{ opacity: "1" }}>
+                                                                    <div className="qodef-m-image !opacity-100">
                                                                         <Image src="https://ik.imagekit.io/288weifiq/landing-japan/Landing-img-04.jpg" alt="s" width={733} height={715} />
                                                                     </div>
-                                                                    <div className="qodef-m-image qodef-disabled--1024" style={{ bottom: "-11%", left: "-26%", textAlign: "left", opacity: "1" }}>
+                                                                    <div className="qodef-m-image !opacity-100" style={{ bottom: "-11%", left: "-26%", textAlign: "left" }}>
                                                                         <Image src="https://ik.imagekit.io/288weifiq/landing-japan/Landing-img-05.jpg" alt="s" width={589} height={562} />
                                                                     </div>
                                                                 </div>
@@ -504,7 +504,7 @@ export default function HomePage() {
 
                                             <div className="elementor-element elementor-element-5589b48 e-con-full e-flex qodef-container-heights--disabled e-con e-parent qodef-parallax qodef--parallax-row qodef-parallax--init">
                                                 <div className="qodef-parallax-row-holder">
-                                                    <div className="qodef-parallax-img-holder" style={{ opacity: "1" }}>
+                                                    <div className="qodef-parallax-img-holder !opacity-100">
                                                         <div className="qodef-parallax-img-wrapper">
                                                             <Image src="https://ik.imagekit.io/288weifiq/landing-japan/Landing-img-6.jpg" alt="Parallax Image" width={1920} height={900} />
                                                         </div>
@@ -570,7 +570,7 @@ export default function HomePage() {
                                                         <div className="elementor-widget-container">
                                                             <div className="qodef-shortcode qodef-m qodef-image-gallery qodef-shadow--enabled qodef-grid qodef-layout--columns qodef-gutter--medium qodef-col-num--2 qodef-responsive--predefined qodef-swiper--show-pagination">
                                                                 <div className="qodef-grid-inner">
-                                                                    <div className="qodef-e qodef-image-wrapper qodef-grid-item" style={{ opacity: "1" }}>
+                                                                    <div className="qodef-e qodef-image-wrapper qodef-grid-item !opacity-100">
                                                                         <Image src="https://ik.imagekit.io/288weifiq/landing-japan/Landing-img-08.jpg" alt="Parallax Image" width="1000" height="1080" />
                                                                     </div>
                                                                     <div className="qodef-e qodef-image-wrapper qodef-grid-item ">
