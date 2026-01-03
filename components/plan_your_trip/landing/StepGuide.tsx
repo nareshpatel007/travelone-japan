@@ -31,7 +31,7 @@ export default function StepGuide({
 
     return (
         <>
-            <h2 className="!text-xl !md:text-3xl !font-normal !mb-6">
+            <h2 className="!text-xl !md:text-3xl !text-center !px-10 !pt-15 !font-semibold !mb-6">
                 Select your preferred guide style
             </h2>
             <div className="space-y-4">

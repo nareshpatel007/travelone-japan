@@ -31,7 +31,7 @@ export default function StepFirstVisit({
 
     return (
         <>
-            <h2 className="!text-xl !md:text-3xl !font-normal !mb-6">
+            <h2 className="!text-xl !md:text-3xl !text-center !px-10 !pt-15 !font-semibold !mb-6">
                 Is this your first time visiting Japan?
             </h2>
 

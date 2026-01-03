@@ -46,7 +46,7 @@ export default function StepMeals({
 
     return (
         <>
-            <h2 className="!text-xl !md:text-3xl !font-normal !mb-6">
+            <h2 className="!text-xl !md:text-3xl !text-center !px-10 !pt-15 !font-semibold !mb-6">
                 How would you like to dine? (Select your preferences)
             </h2>
 

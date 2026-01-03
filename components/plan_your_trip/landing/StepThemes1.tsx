@@ -56,7 +56,7 @@ export default function StepThemes1({
 
     return (
         <>
-            <h2 className="!text-xl !md:text-3xl !font-normal !mb-6">
+            <h2 className="!text-xl !md:text-3xl !text-center !px-10 !pt-15 !font-semibold !mb-6">
                 What theme do you want for this trip? (Priority 1)
             </h2>
 

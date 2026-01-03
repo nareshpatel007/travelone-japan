@@ -31,7 +31,7 @@ export default function StepDays({
 
     return (
         <>
-            <h2 className="!text-xl !md:text-3xl !font-normal !mb-6">
+            <h2 className="!text-xl !md:text-3xl !text-center !px-10 !pt-15 !font-semibold !mb-6">
                 How many days would you like to dedicate to this journey?
             </h2>
 

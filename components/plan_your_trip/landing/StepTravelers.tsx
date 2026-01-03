@@ -115,7 +115,7 @@ export default function StepTravelers({
 
     return (
         <>
-            <h2 className="!text-xl !md:text-3xl !font-normal !mb-6">
+            <h2 className="!text-xl !md:text-3xl !text-center !px-10 !pt-15 !font-semibold !mb-6">
                 Who's traveling and how many of you?
             </h2>
 

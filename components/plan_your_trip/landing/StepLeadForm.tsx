@@ -40,10 +40,10 @@ export default function StepLeadForm({
 
     return (
         <>
-            <h2 className="!text-xl !md:text-3xl !font-normal !mb-0">
+            <h2 className="!text-xl !md:text-3xl !text-center !px-5 !pt-15 !font-semibold !mb-1">
                 Secure Your Custom Design
             </h2>
-            <p className="!text-sm !mb-6">
+            <p className="!text-sm !mb-4">
                 Our Lead Designer, Bhavin, will review your profile personally.
             </p>
 
