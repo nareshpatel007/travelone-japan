@@ -654,15 +654,15 @@ export default function HomePage() {
                     {/* Plan Your Trip Model */}
                     {openPlanYourTripModel && (
                         <div className="!fixed !inset-0 !z-50 !flex !items-center !justify-center !bg-black/40 !px-4">
-                            <div className="!relative !w-full !max-w-xl !bg-[#d9eed8] !rounded-lg !md:rounded-[40px] !overflow-hidden !shadow-xl">
-                                <svg className="qodef-svg--stamp !absolute !top-2 !right-2" xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 110 110"><g><path d="M109.2,72.8c-1.9,5.2-11.5,6.4-14.7,10.6c-3.4,4.3-2,13.5-6.5,16.6c-4.6,3.1-13.1-1.3-18.4,0.3c-5.3,1.6-9.7,9.8-15.4,9.7
+                            <div className="!relative !w-full !pt-10 !max-w-xl !bg-[#d9eed8] !overflow-hidden !shadow-xl" style={{ borderRadius: "5em 5em 0 0" }}>
+                                <svg className="qodef-svg--stamp !absolute !top-6 !right-7" xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 110 110"><g><path d="M109.2,72.8c-1.9,5.2-11.5,6.4-14.7,10.6c-3.4,4.3-2,13.5-6.5,16.6c-4.6,3.1-13.1-1.3-18.4,0.3c-5.3,1.6-9.7,9.8-15.4,9.7
 			c-5.5-0.1-9.6-8.4-15.1-10.2C33.6,98,25,102.1,20.6,99c-4.5-3.3-2.8-12.4-5.9-16.8c-3.2-4.4-12.8-5.9-14.4-11.1
 			c-1.6-5.1,5.3-11.5,5.4-16.9C5.8,49-1.1,42.4,0.8,37.2s11.5-6.4,14.7-10.6c3.4-4.3,2-13.5,6.5-16.6c4.6-3.1,13.1,1.3,18.4-0.3
 			c5.3-1.6,9.7-9.8,15.4-9.7c5.5,0.1,9.6,8.4,15.1,10.2C76.4,12,85,7.9,89.4,11c4.5,3.3,2.8,12.4,5.9,16.8
 			c3.2,4.4,12.8,5.9,14.4,11.1c1.6,5.1-5.3,11.5-5.4,16.9C104.2,61,111.1,67.6,109.2,72.8z"></path></g></svg>
                                 <button
                                     onClick={() => setOpenPlanYourTripModel(false)}
-                                    className="absolute top-3 right-2.5 text-semibold bg-transparent !text-white w-5 h-5 rounded-full flex items-center justify-center text-xs cursor-pointer"
+                                    className="absolute top-6.5 right-7.5 text-semibold bg-transparent !text-white w-5 h-5 rounded-full flex items-center justify-center text-xs cursor-pointer"
                                 >
                                     ✕
                                 </button>
