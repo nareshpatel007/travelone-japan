@@ -51,6 +51,7 @@ const cities = [
     { name: "Istanbul", category: "Food tours", image: "https://ik.imagekit.io/288weifiq/landing-japan/Destination-list-7.jpg" },
     { name: "Maldives", category: "Low budget", image: "https://ik.imagekit.io/288weifiq/landing-japan/Destination-img-24.jpg" },
     { name: "Jordan", category: "Hiking", image: "https://ik.imagekit.io/288weifiq/landing-japan/Destination-list-2.jpg" },
+    { name: "Istanbul", category: "Food tours", image: "https://ik.imagekit.io/288weifiq/landing-japan/Destination-list-7.jpg" },
 ];
 
 interface DestinationCard {
@@ -262,9 +263,9 @@ export default function HomePage() {
                                                 <div className="!max-w-7xl !mx-auto !px-8">
                                                     <Heading main="Quick Type Pick" sub="Nulla massa nisl, aliquam sed ante porta, suscipit facilisis nulla." />
 
-                                                    <div className="grid md:grid-cols-2 gap-6">
+                                                    <div className="grid grid-cols-2 md:grid-cols-2 gap-6">
                                                         {categories.map((category) => (
-                                                            <div key={category.id} className="relative h-72 rounded-lg overflow-hidden group cursor-pointer">
+                                                            <div key={category.id} className="relative h-48 md:h-72 rounded-lg overflow-hidden group cursor-pointer">
                                                                 <Image
                                                                     src={category.image || "/placeholder.svg"}
                                                                     alt={category.label}
@@ -274,7 +275,7 @@ export default function HomePage() {
                                                                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors" />
                                                                 <div className="absolute inset-0 flex items-center justify-center">
                                                                     <div className="bg-white px-8 py-3 rounded">
-                                                                        <h3 className="font-serif text-xl font-light !text-white">{category.label}</h3>
+                                                                        <h3 className="!text-md !md:text-xl !text-white">{category.label}</h3>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -287,9 +288,9 @@ export default function HomePage() {
                                                 <div className="!max-w-7xl !mx-auto !px-8">
                                                     <Heading main="Top Cities" sub="Lorem ipsum dolor sit amet cons ectetur adipi." />
 
-                                                    <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
+                                                    <div className="grid grid-cols-2 md:grid-cols-6 gap-6">
                                                         {cities.map((destination, index) => (
-                                                            <div key={index} className="relative h-64 rounded-lg overflow-hidden group cursor-pointer">
+                                                            <div key={index} className="relative h-48 md:h-64 rounded-lg overflow-hidden group cursor-pointer">
                                                                 <Image
                                                                     src={destination?.image || "/placeholder.svg"}
                                                                     alt={destination?.name || "Image"}
@@ -353,7 +354,7 @@ export default function HomePage() {
                                                                     key={destination.id}
                                                                     className="flex items-center lg:flex-col lg:text-center !bg-[#fcefdf] !p-6 lg:p-8 rounded-sm"
                                                                 >
-                                                                    <div className="w-16 h-16 lg:w-20 lg:h-20 rounded-full overflow-hidden flex-shrink-0 !mr-0">
+                                                                    <div className="w-16 h-16 lg:w-20 lg:h-20 rounded-full overflow-hidden flex-shrink-0">
                                                                         <Image
                                                                             src={destination.image || '/placeholder.svg'}
                                                                             alt={destination.location}
@@ -362,6 +363,7 @@ export default function HomePage() {
                                                                             className="w-full h-full object-cover"
                                                                         />
                                                                     </div>
+                                                                    <div className="block md:hidden w-5"></div>
                                                                     <div className="!lg:mt-4">
                                                                         <p className="text-sm text-gray-500 !m-0 !mb-2">
                                                                             {destination.location}
