@@ -849,6 +849,7 @@ export default function HomePage() {
                                         )}
 
                                         {step < 12 && <button
+                                            disabled={formLoader}
                                             onClick={() => {
                                                 if (validateStep()) {
                                                     setStep(step + 1);
