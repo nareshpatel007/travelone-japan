@@ -437,19 +437,12 @@ export default function HomePage() {
                 <link rel="stylesheet" href="/assets/home-css/styles.css" />
                 <link rel="stylesheet" href="/assets/home-css/grid.css" />
                 <link rel="stylesheet" href="/assets/home-css/main.css" />
-                {/* <link rel="stylesheet" href="/assets/home-css/rbt-modules.css" /> */}
-                {/* <link rel="stylesheet" href="/assets/home-css/grid.min.css" /> */}
-                {/* <link rel="stylesheet" href="/assets/home-css/helper-parts.min.css" /> */}
                 <link rel="stylesheet" href="/assets/home-css/main.min.css" />
-                {/* <link rel="stylesheet" href="/assets/home-css/perfect-scrollbar.css" /> */}
-                {/* <link rel="stylesheet" href="/assets/home-css/swiper.min.css" /> */}
                 <link rel="stylesheet" href="/assets/home-css/main(1).min.css" />
                 <link rel="stylesheet" href="/assets/home-css/wanderaway-core.min.css" />
-                {/* <link rel="stylesheet" href="/assets/home-css/brands.css" /> */}
                 <link rel="stylesheet" href="/assets/home-css/style.css" />
                 <link rel="stylesheet" href="/assets/home-css/home.css" />
 
-                {/* ================== GOOGLE FONTS ================== */}
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
                 <link
                     rel="preconnect"

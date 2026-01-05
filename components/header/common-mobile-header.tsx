@@ -6,10 +6,12 @@ export default function CommonMobileHeader() {
     return (
         <header id="qodef-page-mobile-header" role="banner">
             <div id="qodef-page-mobile-header-inner">
-                <a className="qodef-mobile-header-logo-link qodef-height--set qodef-source--image" href="#" rel="home">
-                    <Image alt="Logo" width={100} height={100} src="https://stage.travelone.io/html/home/assets/images/logo.png" />
-                </a>
-                <div className="qodef-widget-holder qodef--one">
+                <div className="qodef-height--set qodef-source--image" style={{ marginRight: "auto" }}>
+                    <Link href="/">
+                        <Image alt="Logo" width={160} height={50} src="https://ik.imagekit.io/288weifiq/landing-japan/logo.webp" />
+                    </Link>
+                </div>
+                {/* <div className="qodef-widget-holder qodef--one">
                     <div id="wanderaway_core_woo_dropdown_cart-5"
                         className="widget widget_wanderaway_core_woo_dropdown_cart qodef-mobile-header-widget-area-one"
                         data-area="mobile-header">
@@ -38,7 +40,7 @@ export default function CommonMobileHeader() {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> */}
                 <a href="javascript:void(0)"
                     className="qodef-opener-icon qodef-m qodef-source--predefined qodef-side-area-mobile-header-opener">
                     <span className="qodef-m-icon qodef--open">

@@ -7,7 +7,9 @@ export default function HomeMobileHeader() {
         <header id="qodef-page-mobile-header" role="banner">
             <div id="qodef-page-mobile-header-inner">
                 <div className="qodef-height--set qodef-source--image" style={{ marginRight: "auto" }}>
-                    <Image alt="Logo" width={160} height={50} src="https://ik.imagekit.io/288weifiq/landing-japan/logo.webp" />
+                    <Link href="/">
+                        <Image alt="Logo" width={160} height={50} src="https://ik.imagekit.io/288weifiq/landing-japan/logo.webp" />
+                    </Link>
                 </div>
                 {/* <div className="qodef-widget-holder qodef--one">
                     <div id="wanderaway_core_woo_dropdown_cart-5"
