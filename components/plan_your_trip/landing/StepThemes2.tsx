@@ -91,7 +91,7 @@ function ThemeItem({
                 <span className="text-sm md:text-base">{theme}</span>
             </div>
             <div className="w-6 h-6 flex items-center justify-center">
-                <Check className={`h-5 w-5 transition-opacity ${isActive ? "opacity-100" : "opacity-0"}`} />
+                {isActive && <Check className={`h-5 w-5`} />}
             </div>
             <input
                 type="checkbox"

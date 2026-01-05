@@ -58,22 +58,18 @@ export default function StepMeals({
                             onClick={() => toggleMeal(meal)}
                             className="!flex !items-center !justify-between !px-3 !py-2 !rounded-sm !cursor-pointer !transition !bg-white"
                         >
-                            <div className="!flex !items-center !gap-4">
+                            <div className="grid gap-1 pr-4">
                                 <span className="text-sm md:text-base">{meal}</span>
                             </div>
-
+                            <div className="w-6 h-6 flex items-center justify-center">
+                                {isActive && <Check className={`h-5 w-5`} />}
+                            </div>
                             <input
                                 type="checkbox"
                                 checked={isActive}
                                 onChange={() => toggleMeal(meal)}
                                 className="hidden"
                             />
-
-                            {isActive && (
-                                <span className="!text-black !text-md !font-semibold">
-                                    <Check className="h-5 w-5" />
-                                </span>
-                            )}
                         </label>
                     );
                 })}
