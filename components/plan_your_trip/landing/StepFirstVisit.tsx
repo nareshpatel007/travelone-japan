@@ -22,6 +22,9 @@ export default function StepFirstVisit({
     }, [planYourTripForm?.first_time_visit]);
 
     const handleChange = (value: string) => {
+        // Prevent reselect / deselect
+        if (selected === value) return;
+
         setSelected(value);
 
         setPlanYourTripForm((prev: any) => ({
