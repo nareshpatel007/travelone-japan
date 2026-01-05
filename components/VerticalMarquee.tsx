@@ -11,7 +11,7 @@ interface Props {
 export default function VerticalSlider({
     images,
     direction = "up",
-    speed = 50,
+    speed = 45,
 }: Props) {
     return (
         <div className="relative h-screen overflow-hidden w-56">

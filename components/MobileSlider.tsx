@@ -6,7 +6,7 @@ interface Props {
     images: string[];
 }
 
-export default function SimpleSlider({ images }: Props) {
+export default function MobileSlider({ images }: Props) {
     return (
         <div className="md:hidden !w-full !overflow-hidden">
             <div className="simple-image-slider">
