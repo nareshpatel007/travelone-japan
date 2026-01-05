@@ -975,7 +975,7 @@ export default function HomePage() {
                                     {errors && <p className="!text-red-600 !text-sm">{errors}</p>}
 
                                     <div className="!mt-8 !flex !gap-3">
-                                        {step > 0 && (
+                                        {step > 0 && !formLoader && (
                                             <button disabled={formLoader} onClick={() => setStep(step - 1)} className="flex items-center gap-2 !px-4 !py-2 !text-sm !md:text-md !uppercase !rounded-sm !bg-black text-white cursor-pointer hover:!bg-black/90">
                                                 <MoveLeft className="h-4 w-4" /> Previous
                                             </button>
