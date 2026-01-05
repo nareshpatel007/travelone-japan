@@ -27,6 +27,7 @@ import { getClientIp } from "@/lib/getClientIp";
 import StepTripDesign from "@/components/plan_your_trip/landing/StepTripDesign";
 import StepThemes from "@/components/plan_your_trip/landing/StepThemes";
 import StepSummary from "@/components/plan_your_trip/landing/StepSummary";
+import { useRouter } from "next/navigation";
 
 interface CategoryCard {
     id: number
@@ -176,8 +177,11 @@ export default function HomePage() {
     const [openPlanYourTripModel, setOpenPlanYourTripModel] = useState<boolean>(false);
     const [step, setStep] = useState(0);
     const [errors, setErrors] = useState<string>("");
-    const [leadId, setLeadId] = useState<string>("240");
+    const [leadId, setLeadId] = useState<string>("");
     const [planYourTripForm, setPlanYourTripForm] = useState<any>(defaultFormData);
+
+    // Define route
+    const router = useRouter();
 
     useEffect(() => {
         // Wait one frame after hydration
@@ -286,6 +290,7 @@ export default function HomePage() {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
+                        lead_id: leadId,
                         data: planYourTripForm
                     })
                 });
@@ -295,12 +300,7 @@ export default function HomePage() {
 
                 // Check status
                 if (json_parse.status) {
-                    setFormLoader(false);
-                    setStep(0);
-                    setPlanYourTripForm(defaultFormData);
-                    setOpenPlanYourTripModel(false);
-                    setLeadId("");
-                    setErrors("");
+                    router.push("/thank-you");
                 } else {
                     setFormLoader(false);
                     setErrors(json_parse.message);
