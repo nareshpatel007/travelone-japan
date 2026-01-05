@@ -68,7 +68,7 @@ function Option({
             onClick={() => onChange(value)}
             className="!flex !items-center !justify-between !px-3 !py-2 !rounded-sm !cursor-pointer !transition !bg-white"
         >
-            <div className="grid gap-1 pr-4">
+            <div className="grid gap-1 pr-6">
                 <span className="text-sm md:text-base">{text}</span>
                 <span className="text-sm md:text-base">{subText}</span>
             </div>
