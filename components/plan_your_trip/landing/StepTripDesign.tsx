@@ -8,52 +8,44 @@ interface Props {
     setPlanYourTripForm: React.Dispatch<React.SetStateAction<any>>;
 }
 
-export default function StepAccommodation({
+export default function StepTripDesign({
     planYourTripForm,
     setPlanYourTripForm,
 }: Props) {
     const [selected, setSelected] = useState<string | null>(null);
 
-    // ✅ Restore selection when coming back to this step
+    // Restore selection when coming back to this step
     useEffect(() => {
-        if (planYourTripForm?.accommodation) {
-            setSelected(planYourTripForm.accommodation);
+        if (planYourTripForm?.trip_design) {
+            setSelected(planYourTripForm.trip_design);
         }
-    }, [planYourTripForm?.accommodation]);
+    }, [planYourTripForm?.trip_design]);
 
     const handleChange = (value: string) => {
         setSelected(value);
 
         setPlanYourTripForm((prev: any) => ({
             ...prev,
-            accommodation: value,
+            trip_design: value,
         }));
     };
 
     return (
         <>
-            <QuestionHeading title="What kind of accommodation do you prefer?" />
+            <QuestionHeading title="How would you like to receive your trip design?" />
             <div className="space-y-4">
                 <Option
-                    text="Premium 4-Star"
-                    subText="Boutique Hotels (Curated comfort)"
-                    value="Premium 4-Star Boutique Hotels (Curated comfort)"
+                    text="The Focused Vision:"
+                    subText="One expert-led itinerary optimized for your interests."
+                    value="The Focused Vision"
                     selected={selected}
                     onChange={handleChange}
                 />
 
                 <Option
-                    text="Luxury 5-Star"
-                    subText="International Hotels (Ultimate service)"
-                    value="Luxury 5-Star International Hotels (Ultimate service)"
-                    selected={selected}
-                    onChange={handleChange}
-                />
-                
-                <Option
-                    text="Authentic Five-Star"
-                    subText="Ryokans (Traditional stays with private in-room Onsens)"
-                    value="Authentic Five-Star Ryokans (Traditional stays with private in-room Onsens)"
+                    text="The Dual Perspective:"
+                    subText="Two distinct versions with different themes or paces."
+                    value="The Dual Perspective"
                     selected={selected}
                     onChange={handleChange}
                 />
@@ -74,7 +66,7 @@ function Option({
     return (
         <label
             onClick={() => onChange(value)}
-            className="!flex !items-center !justify-between !px-3 !py-2 !rounded-sm !cursor-pointer !transition !bg-white"
+            className="!flex !items-center !justify-between !px-3 !py-3 !rounded-sm !cursor-pointer !transition !bg-white"
         >
             <div className="grid gap-1 pr-4">
                 <span className="text-sm md:text-base">{text}</span>
@@ -85,7 +77,7 @@ function Option({
             </div>
             <input
                 type="radio"
-                name="accommodation"
+                name="first_visit"
                 checked={isActive}
                 onChange={() => onChange(value)}
                 className="hidden"

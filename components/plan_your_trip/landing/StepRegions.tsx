@@ -1,6 +1,7 @@
 "use client";
 import { Check } from "lucide-react";
 import { useEffect, useState } from "react";
+import QuestionHeading from "./questionHeading";
 
 interface Props {
     planYourTripForm: any;
@@ -47,13 +48,11 @@ export default function StepRegions({
 
     return (
         <>
-            <h2 className="!text-xl !md:text-3xl !text-center !px-10 !pt-15 !font-semibold !mb-6">
-                Which parts of Japan would you like to explore?
-            </h2>
-
+            <QuestionHeading title="Which parts of Japan would you like to explore?" />
             <div className="!grid !md:grid-cols-2 !gap-0">
                 {regions.map((region, i) => {
                     const isActive = selected.includes(region);
+                    const { title, subtitle } = formatRegion(region);
 
                     return (
                         <label
@@ -61,29 +60,40 @@ export default function StepRegions({
                             onClick={() => toggleRegion(region)}
                             className="!flex !items-center !justify-between !px-3 !py-2 !rounded-sm !cursor-pointer !transition !bg-white"
                         >
-                            <div className="!flex !items-center !gap-4">
-                                {/* <span className="!border !rounded !px-2 !text-sm !border-[#54595F]">
-                                    {i + 1}
-                                </span> */}
-                                <span className="text-sm md:text-base">{region}</span>
+                            <div className="grid gap-1 pr-4">
+                                <span className="text-sm md:text-base">{title}</span>
+                                <span className="text-sm md:text-base">{subtitle}</span>
                             </div>
-
+                            <div className="w-6 h-6 flex items-center justify-center">
+                                <Check className={`h-5 w-5 transition-opacity ${isActive ? "opacity-100" : "opacity-0"}`} />
+                            </div>
                             <input
                                 type="checkbox"
                                 checked={isActive}
                                 onChange={() => toggleRegion(region)}
                                 className="hidden"
                             />
-
-                            {isActive && (
-                                <span className="!text-black !text-md !font-semibold">
-                                    <Check className="h-5 w-5" />
-                                </span>
-                            )}
                         </label>
                     );
                 })}
             </div>
         </>
     );
+}
+
+// Format region
+function formatRegion(region: string) {
+    const match = region.match(/^(.+?)\s*\((.+)\)$/);
+
+    if (!match) {
+        return {
+            title: region,
+            subtitle: null,
+        };
+    }
+
+    return {
+        title: match[1],
+        subtitle: `(${match[2]})`,
+    };
 }

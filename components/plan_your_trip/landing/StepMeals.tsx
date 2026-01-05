@@ -1,6 +1,7 @@
 "use client";
 import { Check } from "lucide-react";
 import { useEffect, useState } from "react";
+import QuestionHeading from "./questionHeading";
 
 interface Props {
     planYourTripForm: any;
@@ -46,10 +47,7 @@ export default function StepMeals({
 
     return (
         <>
-            <h2 className="!text-xl !md:text-3xl !text-center !px-10 !pt-15 !font-semibold !mb-6">
-                How would you like to dine? (Select your preferences)
-            </h2>
-
+            <QuestionHeading title="How would you like to dine?" subtitle="Select your preferences" />
             <div className="!grid !md:grid-cols-2 !gap-0">
                 {meals.map((meal, i) => {
                     const isActive = selected.includes(meal);
@@ -61,9 +59,6 @@ export default function StepMeals({
                             className="!flex !items-center !justify-between !px-3 !py-2 !rounded-sm !cursor-pointer !transition !bg-white"
                         >
                             <div className="!flex !items-center !gap-4">
-                                {/* <span className="!border !rounded !px-2 !text-sm !border-[#54595F]">
-                                    {i + 1}
-                                </span> */}
                                 <span className="text-sm md:text-base">{meal}</span>
                             </div>
 

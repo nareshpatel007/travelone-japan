@@ -1,6 +1,7 @@
 "use client";
 import { Check } from "lucide-react";
 import { useEffect, useState } from "react";
+import QuestionHeading from "./questionHeading";
 
 interface Props {
     planYourTripForm: any;
@@ -28,7 +29,6 @@ export default function StepThemes2({
 
     const [selected, setSelected] = useState<string[]>([]);
 
-    // Restore previously selected values
     useEffect(() => {
         if (Array.isArray(planYourTripForm?.themes_priority_2)) {
             setSelected(planYourTripForm.themes_priority_2);
@@ -41,7 +41,6 @@ export default function StepThemes2({
                 ? prev.filter((t) => t !== theme)
                 : [...prev, theme];
 
-            // Save to parent state
             setPlanYourTripForm((form: any) => ({
                 ...form,
                 themes_priority_2: updated,
@@ -51,39 +50,27 @@ export default function StepThemes2({
         });
     };
 
-    const leftThemes = themes.slice(0, 6);
-    const rightThemes = themes.slice(6);
-
     return (
         <>
-            <h2 className="!text-xl !md:text-3xl !text-center !px-10 !pt-15 !font-semibold !mb-6">
-                What theme do you want for this trip? (Priority 2)
-            </h2>
-
-            <div className="!grid grid-cols-2 !gap-2">
-                <div>
-                    {leftThemes.map((theme, i) => (
-                        <ThemeItem
-                            key={theme}
-                            index={i}
-                            theme={theme}
-                            isActive={selected.includes(theme)}
-                            onToggle={toggleTheme}
-                        />
-                    ))}
-                </div>
-
-                <div>
-                    {rightThemes.map((theme, i) => (
-                        <ThemeItem
-                            key={theme}
-                            index={i + 6}
-                            theme={theme}
-                            isActive={selected.includes(theme)}
-                            onToggle={toggleTheme}
-                        />
-                    ))}
-                </div>
+            <QuestionHeading title="What theme do you want for the second itinerary?" />
+            <div
+                className="
+                    mt-2
+                    max-h-[55vh] md:max-h-[60vh]
+                    overflow-y-auto
+                    pr-1
+                    space-y-2
+                "
+            >
+                {themes.map((theme, i) => (
+                    <ThemeItem
+                        key={theme}
+                        index={i}
+                        theme={theme}
+                        isActive={selected.includes(theme)}
+                        onToggle={toggleTheme}
+                    />
+                ))}
             </div>
         </>
     );
@@ -98,27 +85,20 @@ function ThemeItem({
     return (
         <label
             onClick={() => onToggle(theme)}
-            className="!flex !items-center !justify-between !px-3 !py-2 !rounded-sm !cursor-pointer !transition !bg-white"
+            className="!flex !items-center !justify-between !px-3 !py-1.5 !rounded-sm !cursor-pointer !transition !bg-white"
         >
             <div className="!flex !items-center !gap-4">
-                {/* <span className="!border !rounded !px-2 !text-sm !border-[#54595F]">
-                    {index + 1}
-                </span> */}
                 <span className="text-sm md:text-base">{theme}</span>
             </div>
-
+            <div className="w-6 h-6 flex items-center justify-center">
+                <Check className={`h-5 w-5 transition-opacity ${isActive ? "opacity-100" : "opacity-0"}`} />
+            </div>
             <input
                 type="checkbox"
                 checked={isActive}
                 onChange={() => onToggle(theme)}
                 className="hidden"
             />
-
-            {isActive && (
-                <span className="!text-black !text-md !font-semibold">
-                    <Check className="h-5 w-5" />
-                </span>
-            )}
         </label>
     );
 }

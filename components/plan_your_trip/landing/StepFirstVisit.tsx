@@ -1,6 +1,7 @@
 "use client";
 import { Check } from "lucide-react";
 import { useEffect, useState } from "react";
+import QuestionHeading from "./questionHeading";
 
 interface Props {
     planYourTripForm: any;
@@ -13,7 +14,7 @@ export default function StepFirstVisit({
 }: Props) {
     const [selected, setSelected] = useState<string | null>(null);
 
-    // ✅ Restore selection when coming back to this step
+    // Restore selection when coming back to this step
     useEffect(() => {
         if (planYourTripForm?.first_time_visit) {
             setSelected(planYourTripForm.first_time_visit);
@@ -31,22 +32,19 @@ export default function StepFirstVisit({
 
     return (
         <>
-            <h2 className="!text-xl !md:text-3xl !text-center !px-10 !pt-15 !font-semibold !mb-6">
-                Is this your first time visiting Japan?
-            </h2>
-
+            <QuestionHeading title="Is this your first time visiting Japan?" />
             <div className="space-y-4">
                 <Option
-                    number="1"
-                    text="Yes, I want to see the iconic highlights."
+                    text="Yes,"
+                    subText="I want to see the iconic highlights."
                     value="Yes, I want to see the iconic highlights."
                     selected={selected}
                     onChange={handleChange}
                 />
 
                 <Option
-                    number="2"
-                    text="No, I’ve been before and want to discover hidden gems."
+                    text="No,"
+                    subText="I’ve been before and want to discover hidden gems."
                     value="No, I’ve been before and want to discover hidden gems."
                     selected={selected}
                     onChange={handleChange}
@@ -57,8 +55,8 @@ export default function StepFirstVisit({
 }
 
 function Option({
-    number,
     text,
+    subText,
     value,
     selected,
     onChange,
@@ -68,15 +66,15 @@ function Option({
     return (
         <label
             onClick={() => onChange(value)}
-            className="!flex !items-center !justify-between !px-3 !py-2 !rounded-sm !cursor-pointer !transition !bg-white"
+            className="!flex !items-center !justify-between !px-3 !py-3 !rounded-sm !cursor-pointer !transition !bg-white"
         >
-            <div className="!flex !items-center !gap-4">
-                {/* <span className="!border !rounded !px-2 !text-sm !border-[#54595F]">
-                    {number}
-                </span> */}
+            <div className="grid gap-1 pr-4">
                 <span className="text-sm md:text-base">{text}</span>
+                <span className="text-sm md:text-base">{subText}</span>
             </div>
-
+            <div className="w-6 h-6 flex items-center justify-center">
+                <Check className={`h-5 w-5 transition-opacity ${isActive ? "opacity-100" : "opacity-0"}`} />
+            </div>
             <input
                 type="radio"
                 name="first_visit"
@@ -84,12 +82,6 @@ function Option({
                 onChange={() => onChange(value)}
                 className="hidden"
             />
-
-            {isActive && (
-                <span className="!text-black !text-md !font-semibold">
-                    <Check className="h-5 w-5" />
-                </span>
-            )}
         </label>
     );
 }

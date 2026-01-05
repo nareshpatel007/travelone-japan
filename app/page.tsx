@@ -24,6 +24,9 @@ import StepTransfer from "@/components/plan_your_trip/landing/StepTransfer";
 import StepGuide from "@/components/plan_your_trip/landing/StepGuide";
 import StepLeadForm from "@/components/plan_your_trip/landing/StepLeadForm";
 import { getClientIp } from "@/lib/getClientIp";
+import StepTripDesign from "@/components/plan_your_trip/landing/StepTripDesign";
+import StepThemes from "@/components/plan_your_trip/landing/StepThemes";
+import StepSummary from "@/components/plan_your_trip/landing/StepSummary";
 
 interface CategoryCard {
     id: number
@@ -131,6 +134,7 @@ const defaultFormData = {
     first_time_visit: "",
     season_name: "",
     travel_month: "",
+    trip_design: "",
     themes_priority_1: [],
     themes_priority_2: [],
     cities_options: [],
@@ -142,12 +146,14 @@ const defaultFormData = {
         child_8_12: 0,
         child_3_7: 0,
         infant: 0,
+        is_women_only: false
     },
     groups: {
         adults: 2,
         child_8_12: 0,
         child_3_7: 0,
         infant: 0,
+        is_women_only: false
     },
     solo: {
         is_women_only: false
@@ -170,6 +176,7 @@ export default function HomePage() {
     const [openPlanYourTripModel, setOpenPlanYourTripModel] = useState<boolean>(false);
     const [step, setStep] = useState(0);
     const [errors, setErrors] = useState<string>("");
+    const [leadId, setLeadId] = useState<string>("240");
     const [planYourTripForm, setPlanYourTripForm] = useState<any>(defaultFormData);
 
     useEffect(() => {
@@ -190,53 +197,83 @@ export default function HomePage() {
     };
 
     const validateStep = () => {
-        let newErrors: string = "";
-        switch (step) {
-            case 0:
+        // Define error
+        let newErrors = "";
+
+        // Get current step
+        const steps = getFormSteps(planYourTripForm, true);
+        const activeStep = steps[step];
+
+        switch (activeStep) {
+            case "lead_form":
+                if (
+                    !planYourTripForm.full_name ||
+                    !planYourTripForm.email ||
+                    !planYourTripForm.mobile
+                ) {
+                    newErrors = "Please fill all required fields.";
+                } else if (!planYourTripForm.privacy_policy_accepted) {
+                    newErrors = "Please accept the Terms consent to submit your form.";
+                }
+                break;
+
+            case "first_visit":
                 if (!planYourTripForm.first_time_visit) {
-                    newErrors = "Please select an option";
+                    newErrors = "Please select an option.";
                 }
                 break;
 
-            case 1:
+            case "travel_time":
                 if (!planYourTripForm.season_name) {
-                    newErrors = "Please select an option";
+                    newErrors = "Please select an option.";
                 }
                 break;
 
-            case 2:
-                if (planYourTripForm.themes_priority_1.length === 0) {
-                    newErrors = "Select at least one theme for priority 1";
+            case "trip_design":
+                if (!planYourTripForm.trip_design) {
+                    newErrors = "Please select an option.";
                 }
                 break;
 
-            case 3:
-                if (planYourTripForm.themes_priority_2.length === 0) {
-                    newErrors = "Select at least one theme for priority 2";
+            case "themes_single":
+                if (!Array.isArray(planYourTripForm.themes_priority_1) || planYourTripForm.themes_priority_1.length === 0) {
+                    newErrors = "Select at least one theme.";
                 }
                 break;
 
-            case 4:
-                if (planYourTripForm.cities_options.length === 0) {
-                    newErrors = "Please select an option";
+            case "themes_priority_1":
+                if (!Array.isArray(planYourTripForm.themes_priority_1) || planYourTripForm.themes_priority_1.length === 0) {
+                    newErrors = "Select at least one theme for priority 1.";
                 }
                 break;
 
-            case 5:
+            case "themes_priority_2":
+                if (!Array.isArray(planYourTripForm.themes_priority_2) || planYourTripForm.themes_priority_2.length === 0) {
+                    newErrors = "Select at least one theme for priority 2.";
+                }
+                break;
+
+            case "regions":
+                if (!Array.isArray(planYourTripForm.cities_options) || planYourTripForm.cities_options.length === 0) {
+                    newErrors = "Please select a region.";
+                }
+                break;
+
+            case "days":
                 if (!planYourTripForm.day_option) {
-                    newErrors = "Please select an option";
+                    newErrors = "Please select number of days.";
                 }
                 break;
 
-            case 6:
+            case "budget":
                 if (!planYourTripForm.budget) {
-                    newErrors = "Please select an option";
+                    newErrors = "Please select a budget.";
                 }
                 break;
         }
 
         setErrors(newErrors);
-        return (newErrors === "") ? true : false;
+        return newErrors === "";
     };
 
     // Handle submit plan your trip
@@ -244,23 +281,6 @@ export default function HomePage() {
         setFormLoader(true);
         (async () => {
             try {
-                // Check name, email and phone valid
-                if (planYourTripForm.full_name === "" || planYourTripForm.email === "" || planYourTripForm.mobile === "") {
-                    setFormLoader(false);
-                    setErrors("Please fill all required fields.");
-                    return;
-                }
-
-                // Check accept privacy policy
-                if (!planYourTripForm.privacy_policy_accepted) {
-                    setFormLoader(false);
-                    setErrors("Please accept the Terms consent to submit your form.");
-                    return;
-                }
-
-                // Get current ip address
-                planYourTripForm.ip_address = await getClientIp();
-
                 // Add new lead
                 const response = await fetch("/api/plan_your_trip", {
                     method: "POST",
@@ -279,6 +299,7 @@ export default function HomePage() {
                     setStep(0);
                     setPlanYourTripForm(defaultFormData);
                     setOpenPlanYourTripModel(false);
+                    setLeadId("");
                     setErrors("");
                 } else {
                     setFormLoader(false);
@@ -289,6 +310,119 @@ export default function HomePage() {
             }
         })();
     };
+
+    // Handle next step
+    const handleNextStep = async () => {
+        if (!validateStep()) return;
+
+        // STEP 0 → CREATE LEAD
+        if (step === 0) {
+            try {
+                // If already store lead id
+                if (leadId) {
+                    setStep(step + 1);
+                    return;
+                }
+
+                // Update state
+                setFormLoader(true);
+
+                // Add new lead
+                const res = await fetch("/api/plan_your_trip/create_lead", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        full_name: planYourTripForm.full_name,
+                        email: planYourTripForm.email,
+                        mobile: planYourTripForm.mobile,
+                        ip_address: await getClientIp()
+                    }),
+                });
+
+                // Get json parse
+                const data = await res.json();
+
+                // Check response
+                if (!data?.success) {
+                    setErrors("Unable to process your request.");
+                    return;
+                }
+
+                // Update state
+                setLeadId(data?.data?.lead_id);
+                setStep(step + 1);
+            } catch (err) {
+                setErrors("Unble to process your request.");
+                setStep(0);
+                return;
+            } finally {
+                setFormLoader(false);
+            }
+            return;
+        } else {
+            // Update state
+            setStep(step + 1);
+            return;
+        }
+    };
+
+    // Get next/prev active steps
+    const getFormSteps = (form: any, isReturnKey: boolean = false) => {
+        // Get trip design
+        const isSimpleDesign = form?.trip_design === "The Focused Vision";
+
+        // If return
+        if (isReturnKey) {
+            return [
+                "lead_form",
+                "first_visit",
+                "travel_time",
+                "trip_design",
+                ...(isSimpleDesign ? ["themes_single"] : ["themes_priority_1", "themes_priority_2"]),
+                "regions",
+                "days",
+                "budget",
+                "travelers",
+                "accommodation",
+                "meals",
+                "transfer",
+                "guide",
+                "summary",
+            ];
+        } else {
+            return [
+                StepLeadForm,
+                StepFirstVisit,
+                StepTravelTime,
+                StepTripDesign,
+                ...(isSimpleDesign ? [StepThemes] : [StepThemes1, StepThemes2]),
+                StepRegions,
+                StepDays,
+                StepBudget,
+                StepTravelers,
+                StepAccommodation,
+                StepMeals,
+                StepTransfer,
+                StepGuide,
+                StepSummary
+            ];
+        }
+    };
+
+    // Handle jump to step
+    const jumpToStep = (stepKey: any) => {
+        const steps = getFormSteps(planYourTripForm, true);
+        const index = steps.indexOf(stepKey);
+        if (index !== -1) {
+            setStep(index);
+        }
+    };
+
+    // Get current step
+    const stepsValue = getFormSteps(planYourTripForm);
+    const stepsKey = getFormSteps(planYourTripForm, true);
+    const CurrentStep = stepsValue[step];
+    const CurrentStepKey = stepsKey[step];
 
     return (
         <>
@@ -828,7 +962,6 @@ export default function HomePage() {
                                     ✕
                                 </button>
                             </div>
-
                             <div
                                 className="!relative !w-full !max-w-[360px] !md:max-w-xl !md:h-auto !bg-[#d9eed8] !overflow-hidden !shadow-xl"
                                 style={{
@@ -839,42 +972,34 @@ export default function HomePage() {
                                 }}
                             >
                                 <div className="!px-6 !md:px-16 !pb-7">
-                                    {step === 0 && <StepFirstVisit planYourTripForm={planYourTripForm} setPlanYourTripForm={setPlanYourTripForm} />}
-                                    {step == 1 && <StepTravelTime planYourTripForm={planYourTripForm} setPlanYourTripForm={setPlanYourTripForm} />}
-                                    {step == 2 && <StepThemes1 planYourTripForm={planYourTripForm} setPlanYourTripForm={setPlanYourTripForm} />}
-                                    {step == 3 && <StepThemes2 planYourTripForm={planYourTripForm} setPlanYourTripForm={setPlanYourTripForm} />}
-                                    {step == 4 && <StepRegions planYourTripForm={planYourTripForm} setPlanYourTripForm={setPlanYourTripForm} />}
-                                    {step == 5 && <StepDays planYourTripForm={planYourTripForm} setPlanYourTripForm={setPlanYourTripForm} />}
-                                    {step == 6 && <StepBudget planYourTripForm={planYourTripForm} setPlanYourTripForm={setPlanYourTripForm} />}
-                                    {step == 7 && <StepTravelers planYourTripForm={planYourTripForm} setPlanYourTripForm={setPlanYourTripForm} />}
-                                    {step == 8 && <StepAccommodation planYourTripForm={planYourTripForm} setPlanYourTripForm={setPlanYourTripForm} />}
-                                    {step == 9 && <StepMeals planYourTripForm={planYourTripForm} setPlanYourTripForm={setPlanYourTripForm} />}
-                                    {step == 10 && <StepTransfer planYourTripForm={planYourTripForm} setPlanYourTripForm={setPlanYourTripForm} />}
-                                    {step == 11 && <StepGuide planYourTripForm={planYourTripForm} setPlanYourTripForm={setPlanYourTripForm} />}
-                                    {step == 12 && <StepLeadForm planYourTripForm={planYourTripForm} setPlanYourTripForm={setPlanYourTripForm} />}
+                                    {CurrentStep && (
+                                        <CurrentStep
+                                            planYourTripForm={planYourTripForm}
+                                            setPlanYourTripForm={setPlanYourTripForm}
+                                            jumpToStep={jumpToStep}
+                                        />
+                                    )}
 
                                     {errors && <p className="!text-red-600 !text-sm">{errors}</p>}
 
                                     <div className="!mt-8 !flex !gap-3">
                                         {step > 0 && (
-                                            <button disabled={formLoader} onClick={() => setStep(step - 1)} className="flex items-center gap-2 !px-4 !py-2 !text-sm !md:text-md !rounded-sm !bg-black text-white cursor-pointer hover:!bg-black/90">
+                                            <button disabled={formLoader} onClick={() => setStep(step - 1)} className="flex items-center gap-2 !px-4 !py-2 !text-sm !md:text-md !uppercase !rounded-sm !bg-black text-white cursor-pointer hover:!bg-black/90">
                                                 <MoveLeft className="h-4 w-4" /> Previous
                                             </button>
                                         )}
 
-                                        {step < 12 && <button
+                                        {CurrentStepKey !== 'summary' && <button
                                             disabled={formLoader}
-                                            onClick={() => {
-                                                if (validateStep()) {
-                                                    setStep(step + 1);
-                                                }
-                                            }}
-                                            className="flex items-center gap-2 !px-4 !py-2 !text-sm !md:text-md !rounded-sm !bg-black text-white cursor-pointer hover:!bg-black/90"
+                                            onClick={handleNextStep}
+                                            className="flex items-center !uppercase gap-2 !px-4 !py-2 !text-sm !md:text-md !rounded-sm !bg-black text-white hover:!bg-black/90"
                                         >
-                                            Next <MoveRight className="h-4 w-4" />
+                                            Next
+                                            {formLoader && <Loader2 className="h-4 w-4 animate-spin" />}
+                                            {!formLoader && <MoveRight className="h-4 w-4" />}
                                         </button>}
 
-                                        {step == 12 && <button disabled={formLoader} onClick={handlSubmitPlanYourTrip} className="flex items-center gap-2 !px-4 !py-2 !text-sm !md:text-md round !rounded-sm !bg-black text-white cursor-pointer hover:!bg-black/90">
+                                        {CurrentStepKey === 'summary' && <button disabled={formLoader} onClick={handlSubmitPlanYourTrip} className="flex items-center gap-2 !uppercase !px-4 !py-2 !text-sm !md:text-md round !rounded-sm !bg-black text-white cursor-pointer hover:!bg-black/90">
                                             {formLoader && <Loader2 className="h-4 w-4 animate-spin" />}
                                             {!formLoader && <CheckCircle2 className="h-4 w-4" />}
                                             Submit
@@ -886,30 +1011,12 @@ export default function HomePage() {
                     )}
                 </div>}
 
-                {/* <Script src="/assets/home-js/hooks.min.js.download" strategy="afterInteractive"></Script> */}
-                {/* <Script src="/assets/home-js/i18n.min.js.download" strategy="afterInteractive"></Script> */}
                 <Script src="/assets/home-js/index.js.download" strategy="afterInteractive"></Script>
-                {/* <Script src="/assets/home-js/index(1).js.download" strategy="afterInteractive"></Script> */}
                 <Script src="/assets/home-js/main(1).js.download" strategy="afterInteractive"></Script>
-                {/* <Script src="/assets/home-js/rbt-modules.js.download" strategy="afterInteractive"></Script>
-                <Script src="/assets/home-js/rbtools.min.js.download" strategy="afterInteractive"></Script> */}
-                {/* <Script src="/assets/home-js/rs6.min.js.download" strategy="afterInteractive"></Script> */}
-                {/* <Script src="/assets/home-js/core.min.js.download" strategy="afterInteractive"></Script> */}
                 <Script src="/assets/home-js/main.min.js.download" strategy="afterInteractive"></Script>
-                {/* <Script src="/assets/home-js/perfect-scrollbar.jquery.min.js.download" strategy="afterInteractive"></Script> */}
-                {/* <Script src="/assets/home-js/hoverIntent.min.js.download" strategy="afterInteractive"></Script> */}
-                {/* <Script src="/assets/home-js/modernizr.js.download" strategy="afterInteractive"></Script> */}
-                {/* <Script src="/assets/home-js/gsap.min.js.download" strategy="afterInteractive"></Script> */}
                 <Script src="/assets/home-js/ScrollTrigger.min.js.download" strategy="afterInteractive"></Script>
-                {/* <Script src="/assets/home-js/jquery.parallax-scroll.js.download" strategy="afterInteractive"></Script> */}
                 <Script src="/assets/home-js/main.min(1).js.download" strategy="afterInteractive"></Script>
-                {/* <Script src="/assets/home-js/underscore.min.js.download" strategy="afterInteractive"></Script> */}
-                {/* <Script src="/assets/home-js/custom-marker.js.download" strategy="afterInteractive"></Script> */}
-                {/* <Script src="/assets/home-js/markerclusterer.js.download" strategy="afterInteractive"></Script> */}
-                {/* <Script src="/assets/home-js/google-map.js.download" strategy="afterInteractive"></Script> */}
                 <Script src="/assets/home-js/wanderaway-core.min.js.download" strategy="afterInteractive"></Script>
-                {/* <Script src="/assets/home-js/swiper.min.js.download" strategy="afterInteractive"></Script> */}
-                {/* <Script src="/assets/home-js/select2.full.min.js.download" strategy="afterInteractive"></Script> */}
                 <Script src="/assets/home-js/fslightbox.min.js.download" strategy="afterInteractive"></Script>
                 <Script src="/assets/home-js/sourcebuster.min.js.download" strategy="afterInteractive"></Script>
             </body>

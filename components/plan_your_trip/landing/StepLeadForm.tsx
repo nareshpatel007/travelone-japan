@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import QuestionHeading from "./questionHeading";
 
 interface Props {
     planYourTripForm: any;
@@ -40,19 +41,10 @@ export default function StepLeadForm({
 
     return (
         <>
-            <h2 className="!text-xl !md:text-3xl !text-center !px-5 !pt-15 !font-semibold !mb-1">
-                Secure Your Custom Design
-            </h2>
-            <p className="!text-sm !mb-4">
-                Our Lead Designer, Bhavin, will review your profile personally.
-            </p>
-
+            <QuestionHeading title="Secure Your Custom Design" subtitle="Our Lead Designer will review your profile personally" />
             <div className="space-y-4">
-                {/* Full Name */}
                 <div>
-                    <label className="!block !text-md !text-black !mb-0">
-                        Full name
-                    </label>
+                    <label className="!block !text-md !text-black !mb-0">Full name</label>
                     <input
                         type="text"
                         value={fullName}
@@ -61,15 +53,11 @@ export default function StepLeadForm({
                             updateForm("full_name", e.target.value);
                         }}
                         placeholder="Enter your full name"
-                        className="!w-full !rounded-md !px-4 !py-2 !bg-white border"
+                        className="!w-full !rounded-sm !px-4 !py-2 !bg-white border"
                     />
                 </div>
-
-                {/* Email */}
                 <div>
-                    <label className="!block !text-md !text-black !mb-0">
-                        Email address
-                    </label>
+                    <label className="!block !text-md !text-black !mb-0">Email address</label>
                     <input
                         type="email"
                         value={email}
@@ -78,15 +66,11 @@ export default function StepLeadForm({
                             updateForm("email", e.target.value);
                         }}
                         placeholder="Enter your email"
-                        className="!w-full !rounded-md !px-4 !py-2 !bg-white border"
+                        className="!w-full !rounded-sm !px-4 !py-2 !bg-white border"
                     />
                 </div>
-
-                {/* Mobile */}
                 <div>
-                    <label className="!block !text-md !text-black !mb-0">
-                        Mobile number
-                    </label>
+                    <label className="!block !text-md !text-black !mb-0">Mobile number</label>
                     <input
                         type="tel"
                         value={mobile}
@@ -95,11 +79,9 @@ export default function StepLeadForm({
                             updateForm("mobile", e.target.value);
                         }}
                         placeholder="Enter your mobile number"
-                        className="!w-full !rounded-md !px-4 !py-2 !bg-white border"
+                        className="!w-full !rounded-sm !px-4 !py-2 !bg-white border"
                     />
                 </div>
-
-                {/* Privacy Policy */}
                 <div className="flex items-start gap-2 pt-2">
                     <input
                         type="checkbox"

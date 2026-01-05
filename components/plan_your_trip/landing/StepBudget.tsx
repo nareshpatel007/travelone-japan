@@ -1,6 +1,7 @@
 "use client";
 import { Check } from "lucide-react";
 import { useEffect, useState } from "react";
+import QuestionHeading from "./questionHeading";
 
 interface Props {
     planYourTripForm: any;
@@ -31,38 +32,48 @@ export default function StepBudget({
 
     return (
         <>
-            <h2 className="!text-xl !md:text-3xl !text-center !px-10 !pt-15 !font-semibold !mb-6">
-                What is your target price range per person for this journey? (Excluding international flights)
-            </h2>
-
+            <QuestionHeading title="What is your target price range per person for this journey?" subtitle="Excluding international flights" />
             <div className="space-y-4">
                 <Option
                     number="1"
-                    text="$5,000 – $7,500 USD (Premium Private Experience)"
+                    text="$3000 - $5000 USD"
+                    subText="(Affordable Private Experience)"
+                    value="$3000 - $5000 USD (Affordable Private Experience)"
+                    selected={selected}
+                    onChange={handleChange}
+                />
+                
+                <Option
+                    number="2"
+                    text="$5,000 – $7,500 USD"
+                    subText="(Premium Private Experience)"
                     value="$5,000 – $7,500 USD (Premium Private Experience)"
                     selected={selected}
                     onChange={handleChange}
                 />
 
                 <Option
-                    number="2"
-                    text="$7,500 – $12,000 USD (Luxury Stays & Signature Experiences)"
+                    number="3"
+                    text="$7,500 – $12,000 USD"
+                    subText="(Luxury Stays & Signature Experiences)"
                     value="$7,500 – $12,000 USD (Luxury Stays & Signature Experiences)"
                     selected={selected}
                     onChange={handleChange}
                 />
                 
                 <Option
-                    number="3"
-                    text="$12,000+ USD (Ultra-Luxury & Exclusive Access)"
+                    number="4"
+                    text="$12,000+ USD"
+                    subText="(Ultra-Luxury & Exclusive Access)"
                     value="$12,000+ USD (Ultra-Luxury & Exclusive Access)"
                     selected={selected}
                     onChange={handleChange}
                 />
                 
                 <Option
-                    number="4"
+                    number="5"
                     text="I’d like to discuss this during my consultation"
+                    subText=""
                     value="I’d like to discuss this during my consultation"
                     selected={selected}
                     onChange={handleChange}
@@ -73,8 +84,8 @@ export default function StepBudget({
 }
 
 function Option({
-    number,
     text,
+    subText,
     value,
     selected,
     onChange,
@@ -86,26 +97,20 @@ function Option({
             onClick={() => onChange(value)}
             className="!flex !items-center !justify-between !px-3 !py-2 !rounded-sm !cursor-pointer !transition !bg-white"
         >
-            <div className="!flex !items-center !gap-4">
-                {/* <span className="!border !rounded !px-2 !text-sm !border-[#54595F]">
-                    {number}
-                </span> */}
+            <div className="grid gap-1 pr-4">
                 <span className="text-sm md:text-base">{text}</span>
+                {subText && <span className="text-sm md:text-base">{subText}</span>}
             </div>
-
+            <div className="w-6 h-6 flex items-center justify-center">
+                <Check className={`h-5 w-5 transition-opacity ${isActive ? "opacity-100" : "opacity-0"}`} />
+            </div>
             <input
                 type="radio"
-                name="first_visit"
+                name="budget"
                 checked={isActive}
                 onChange={() => onChange(value)}
                 className="hidden"
             />
-
-            {isActive && (
-                <span className="!text-black !text-md !font-semibold">
-                    <Check className="h-5 w-5" />
-                </span>
-            )}
         </label>
     );
 }

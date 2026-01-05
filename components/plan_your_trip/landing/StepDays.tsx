@@ -1,6 +1,7 @@
 "use client";
 import { Check } from "lucide-react";
 import { useEffect, useState } from "react";
+import QuestionHeading from "./questionHeading";
 
 interface Props {
     planYourTripForm: any;
@@ -13,7 +14,7 @@ export default function StepDays({
 }: Props) {
     const [selected, setSelected] = useState<string | null>(null);
 
-    // ✅ Restore selection when coming back to this step
+    // Restore selection when coming back to this step
     useEffect(() => {
         if (planYourTripForm?.day_option) {
             setSelected(planYourTripForm.day_option);
@@ -31,14 +32,12 @@ export default function StepDays({
 
     return (
         <>
-            <h2 className="!text-xl !md:text-3xl !text-center !px-10 !pt-15 !font-semibold !mb-6">
-                How many days would you like to dedicate to this journey?
-            </h2>
-
+            <QuestionHeading title="How many days would you like to dedicate to this journey?" />
             <div className="space-y-4">
                 <Option
                     number="1"
-                    text="7 – 10 Days (The Essential Experience)"
+                    text="7 – 10 Days"
+                    subText="The Essential Experience"
                     value="7 – 10 Days (The Essential Experience)"
                     selected={selected}
                     onChange={handleChange}
@@ -46,7 +45,8 @@ export default function StepDays({
 
                 <Option
                     number="2"
-                    text="10 – 14 Days (The Signature Journey)"
+                    text="10 – 14 Days"
+                    subText="The Signature Journey"
                     value="10 – 14 Days (The Signature Journey)"
                     selected={selected}
                     onChange={handleChange}
@@ -54,7 +54,8 @@ export default function StepDays({
                 
                 <Option
                     number="3"
-                    text="14 – 21 Days (The Deep Immersion)"
+                    text="14 – 21 Days"
+                    subText="The Deep Immersion"
                     value="14 – 21 Days (The Deep Immersion)"
                     selected={selected}
                     onChange={handleChange}
@@ -62,7 +63,8 @@ export default function StepDays({
                 
                 <Option
                     number="4"
-                    text="21+ Days (The Grand Tour)"
+                    text="21+ Days"
+                    subText="The Grand Tour"
                     value="21+ Days (The Grand Tour)"
                     selected={selected}
                     onChange={handleChange}
@@ -70,7 +72,8 @@ export default function StepDays({
                 
                 <Option
                     number="5"
-                    text="I am flexible / Need a recommendation"
+                    text="I am flexible"
+                    subText="Need a recommendation"
                     value="I am flexible / Need a recommendation"
                     selected={selected}
                     onChange={handleChange}
@@ -81,8 +84,8 @@ export default function StepDays({
 }
 
 function Option({
-    number,
     text,
+    subText,
     value,
     selected,
     onChange,
@@ -94,13 +97,13 @@ function Option({
             onClick={() => onChange(value)}
             className="!flex !items-center !justify-between !px-3 !py-2 !rounded-sm !cursor-pointer !transition !bg-white"
         >
-            <div className="!flex !items-center !gap-4">
-                {/* <span className="!border !rounded !px-2 !text-sm !border-[#54595F]">
-                    {number}
-                </span> */}
+            <div className="grid gap-1 pr-4">
                 <span className="text-sm md:text-base">{text}</span>
+                <span className="text-sm md:text-base">{subText}</span>
             </div>
-
+            <div className="w-6 h-6 flex items-center justify-center">
+                <Check className={`h-5 w-5 transition-opacity ${isActive ? "opacity-100" : "opacity-0"}`} />
+            </div>
             <input
                 type="radio"
                 name="first_visit"
@@ -108,12 +111,6 @@ function Option({
                 onChange={() => onChange(value)}
                 className="hidden"
             />
-
-            {isActive && (
-                <span className="!text-black !text-md !font-semibold">
-                    <Check className="h-5 w-5" />
-                </span>
-            )}
         </label>
     );
 }

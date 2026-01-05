@@ -8,7 +8,7 @@ interface Props {
     setPlanYourTripForm: React.Dispatch<React.SetStateAction<any>>;
 }
 
-export default function StepThemes1({
+export default function StepThemes({
     planYourTripForm,
     setPlanYourTripForm,
 }: Props) {
@@ -52,7 +52,7 @@ export default function StepThemes1({
 
     return (
         <>
-            <QuestionHeading title="What theme do you want for the first itinerary?" />
+            <QuestionHeading title="What theme do you want for this trip?" />
             <div
                 className="
                     mt-2

@@ -1,6 +1,7 @@
 "use client";
 import { Check } from "lucide-react";
 import { useEffect, useState } from "react";
+import QuestionHeading from "./questionHeading";
 
 interface Props {
     planYourTripForm: any;
@@ -65,15 +66,11 @@ export default function StepTravelTime({
 
     return (
         <>
-            <h2 className="!text-xl !md:text-3xl !text-center !px-10 !pt-15 !font-semibold !mb-6">
-                When do you plan to travel?
-            </h2>
-
+            <QuestionHeading title="When do you plan to travel?" />
             <div className="space-y-3">
                 {options.map((item, i) => (
                     <Option
                         key={i}
-                        number={i + 1}
                         text={item}
                         value={item}
                         selected={selected}
@@ -81,12 +78,8 @@ export default function StepTravelTime({
                     />
                 ))}
             </div>
-
             <div className="!mt-6">
-                <label className="!block !text-md !font-normal !mb-2">
-                    Choose your travel month (optional)
-                </label>
-
+                <label className="!block !text-md !font-normal !mb-2">Choose your travel month (optional)</label>
                 <select
                     value={month}
                     onChange={(e) => handleMonthChange(e.target.value)}
@@ -105,7 +98,6 @@ export default function StepTravelTime({
 }
 
 function Option({
-    number,
     text,
     value,
     selected,
@@ -118,13 +110,12 @@ function Option({
             onClick={() => onChange(value)}
             className="!flex !items-center !justify-between !px-3 !py-2 !rounded-sm !cursor-pointer !transition !bg-white"
         >
-            <div className="!flex !items-center !gap-4">
-                {/* <span className="!border !rounded !px-2 !text-sm !border-[#54595F]">
-                    {number}
-                </span> */}
+            <div className="grid gap-1 pr-4">
                 <span className="text-sm md:text-base">{text}</span>
             </div>
-
+            <div className="w-6 h-6 flex items-center justify-center">
+                <Check className={`h-5 w-5 transition-opacity ${isActive ? "opacity-100" : "opacity-0"}`} />
+            </div>
             <input
                 type="radio"
                 name="travel_time"
@@ -132,12 +123,6 @@ function Option({
                 onChange={() => onChange(value)}
                 className="hidden"
             />
-
-            {isActive && (
-                <span className="!text-black !text-md !font-semibold">
-                    <Check className="h-5 w-5" />
-                </span>
-            )}
         </label>
     );
 }
