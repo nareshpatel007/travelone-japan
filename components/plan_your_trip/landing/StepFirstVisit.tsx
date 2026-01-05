@@ -76,7 +76,7 @@ function Option({
                 <span className="text-sm md:text-base">{subText}</span>
             </div>
             <div className="w-6 h-6 flex items-center justify-center">
-                {isActive && <Check className={`h-5 w-5 transition-opacity opacity-100`} />}
+                {isActive && <Check className={`h-5 w-5`} />}
             </div>
             <input
                 type="radio"
