@@ -352,7 +352,7 @@ export default function HomePage() {
                 setLeadId(data?.data?.lead_id);
                 setStep(step + 1);
             } catch (err) {
-                setErrors("Unble to process your request.");
+                setErrors("Something went wrong. Please try again.");
                 setStep(0);
                 return;
             } finally {
