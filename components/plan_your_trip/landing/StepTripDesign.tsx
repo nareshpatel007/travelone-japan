@@ -77,7 +77,7 @@ function Option({
             </div>
             <input
                 type="radio"
-                name="first_visit"
+                name="trip_design"
                 checked={isActive}
                 onChange={() => onChange(value)}
                 className="hidden"

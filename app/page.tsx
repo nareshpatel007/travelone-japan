@@ -466,7 +466,6 @@ export default function HomePage() {
                 <link rel="stylesheet" href="/assets/home-css/robotoslab.css" />
                 <link rel="stylesheet" href="/assets/home-css/wc-blocks.css" />
 
-                {/* Include globas.css */}
                 <Script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></Script>
                 <Script src="/assets/home-js/jquery.min.js.download" strategy="afterInteractive"></Script>
                 <Script src="/assets/home-js/jquery-migrate.min.js.download" strategy="afterInteractive"></Script>

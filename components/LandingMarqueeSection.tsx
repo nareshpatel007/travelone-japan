@@ -9,6 +9,7 @@ interface Props {
     setOpenPlanYourTripModel: React.Dispatch<React.SetStateAction<boolean>>
 }
 
+// Define images
 const mobileImages = [
     "https://ik.imagekit.io/288weifiq/landing-japan/Landing-marquee-1024-img-2.png",
     "https://ik.imagekit.io/288weifiq/landing-japan/Landing-marquee-680-img-1.png"
@@ -58,11 +59,65 @@ export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Prop
                 </div>
             </div>
 
-            <div className="elementor-element elementor-element-04bed72 e-con-full e-flex qodef-container-heights--disabled e-con e-child pb-10 md:pb-0">
-                <MobileSlider images={mobileImages} />
-                <div className="hidden md:flex lg:hidden gap-6 px-8 bg-[#fbf7ef] justify-center">
-                    <VerticalSlider images={images1} direction="down" />
-                    <VerticalSlider images={images2} direction="up" />
+            <div className="elementor-element elementor-element-04bed72 e-con-full e-flex qodef-container-heights--disabled e-con e-child">
+                <div className="flex gap-6 bg-[#fbf7ef] px-20">
+                    <div className="md:hidden">
+                        <MobileSlider images={mobileImages} />
+                    </div>
+
+                    <div className="hidden md:flex gap-6 px-20 bg-[#fbf7ef]">
+                        <VerticalSlider images={images1} direction="down" />
+                        <VerticalSlider images={images2} direction="up" />
+                        <VerticalSlider images={images1} direction="down" />
+                        <VerticalSlider images={images2} direction="up" />
+                    </div>
+                </div>
+            </div>
+
+            <div className="!hidden elementor-element elementor-element-04bed72 e-con-full e-flex qodef-container-heights--disabled e-con e-child">
+                <div className="elementor-element elementor-element-d6c022e elementor-hidden-laptop elementor-widget-tablet__width-inherit elementor-hidden-widescreen elementor-hidden-desktop elementor-hidden-mobile elementor-widget elementor-widget-wanderaway_core_image_marquee">
+                    <div className="elementor-widget-container">
+                        <div className="qodef-shortcode qodef-m qodef-image-marquee qodef-layout--default qodef-direction--right-to-left qodef-direction-type--horizontal">
+                            <div className="qodef-m-content qodef--desktop" style={{ height: "216px" }}>
+                                <div className="qodef-m-image qodef-image--original"
+                                    style={{
+                                        background: "url('https://ik.imagekit.io/288weifiq/landing-japan/Landing-marquee-1024-img-2.png')",
+                                        width: "1066px",
+                                        height: "216px",
+                                        animation: "qode-move-marquee-right-to-left 23s linear infinite"
+                                    }}>
+                                </div>
+                                <div className="qodef-m-image qodef-image--copy"
+                                    style={{
+                                        background: "url('https://ik.imagekit.io/288weifiq/landing-japan/Landing-marquee-1024-img-2.png')",
+                                        width: "1066px",
+                                        height: "216px",
+                                        animation: "qode-move-marquee-right-to-left 23s linear infinite",
+                                        animationName: "qode-move-marquee-right-to-left-copy"
+                                    }}>
+                                </div>
+                            </div>
+                            <div className="qodef-m-content qodef--mobile" style={{ height: "108px" }}>
+                                <div className="qodef-m-image qodef-image--original"
+                                    style={{
+                                        background: "url('https://ik.imagekit.io/288weifiq/landing-japan/Landing-marquee-1024-img-2.png')",
+                                        width: "533px",
+                                        height: "108px",
+                                        animation: "qode-move-marquee-right-to-left 23s linear infinite"
+                                    }}>
+                                </div>
+                                <div className="qodef-m-image qodef-image--copy"
+                                    style={{
+                                        background: "url('https://ik.imagekit.io/288weifiq/landing-japan/Landing-marquee-1024-img-2.png')",
+                                        width: "533px",
+                                        height: "108px",
+                                        animation: "qode-move-marquee-right-to-left 23s linear infinite",
+                                        animationName: "qode-move-marquee-right-to-left-copy"
+                                    }}>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div className="hidden lg:flex gap-6 px-20 bg-[#fbf7ef] justify-center">
                     <VerticalSlider images={images1} direction="down" />

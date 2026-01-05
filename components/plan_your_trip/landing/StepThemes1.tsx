@@ -78,7 +78,6 @@ export default function StepThemes1({
 
 function ThemeItem({
     theme,
-    index,
     isActive,
     onToggle,
 }: any) {
