@@ -426,55 +426,8 @@ export default function HomePage() {
 
     return (
         <>
-            <head>
-                <meta httpEquiv="Content-Type" content="text/html; charset=UTF-8" />
-                <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes" />
-
-                <link rel="stylesheet" href="/assets/home-css/animate.min.css" />
-                <link rel="stylesheet" href="/assets/home-css/sbi-styles.min.css" />
-                <link rel="stylesheet" href="/assets/home-css/elegant-icons.min.css" />
-                <link rel="stylesheet" href="/assets/home-css/all.min.css" />
-                <link rel="stylesheet" href="/assets/home-css/styles.css" />
-                <link rel="stylesheet" href="/assets/home-css/grid.css" />
-                <link rel="stylesheet" href="/assets/home-css/main.css" />
-                <link rel="stylesheet" href="/assets/home-css/main.min.css" />
-                <link rel="stylesheet" href="/assets/home-css/main(1).min.css" />
-                <link rel="stylesheet" href="/assets/home-css/wanderaway-core.min.css" />
-                <link rel="stylesheet" href="/assets/home-css/style.css" />
-                <link rel="stylesheet" href="/assets/home-css/home.css" />
-
-                <link rel="preconnect" href="https://fonts.googleapis.com" />
-                <link
-                    rel="preconnect"
-                    href="https://fonts.gstatic.com"
-                    crossOrigin="anonymous"
-                />
-                <link
-                    href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Quintessential&family=Science+Gothic:wght@100..900&display=swap"
-                    rel="stylesheet"
-                />
-
-                <link rel="stylesheet" href="/assets/home-css/main(1).css" />
-                <link rel="stylesheet" href="/assets/home-css/elementor.min.css" />
-                <link rel="stylesheet" href="/assets/home-css/custom-frontend.min.css" />
-                <link rel="stylesheet" href="/assets/home-css/sbi-styles.min.css" />
-                <link rel="stylesheet" href="/assets/home-css/widget-menu-anchor.min.css" />
-                <link rel="stylesheet" href="/assets/home-css/magnific-popup.css" />
-
-                <link rel="stylesheet" href="/assets/home-css/post-3060.css" />
-                <link rel="stylesheet" href="/assets/home-css/roboto.css" />
-                <link rel="stylesheet" href="/assets/home-css/robotoslab.css" />
-                <link rel="stylesheet" href="/assets/home-css/wc-blocks.css" />
-
-                <Script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></Script>
-                <Script src="/assets/home-js/jquery.min.js.download" strategy="afterInteractive"></Script>
-                <Script src="/assets/home-js/jquery-migrate.min.js.download" strategy="afterInteractive"></Script>
-                <Script src="/assets/home-js/jquery.blockUI.min.js.download" strategy="afterInteractive"></Script>
-                <Script src="/assets/home-js/js.cookie.min.js.download" strategy="afterInteractive"></Script>
-                <Script src="/assets/home-js/jquery.justifiedGallery.min.js.download" strategy="afterInteractive"></Script>
-            </head>
             <body
-                className="wp-singular page-template page-template-page-full-width page-template-page-full-width-php page page-id-3060 wp-theme-wanderaway theme-wanderaway qi-blocks-1.4.3 qodef-gutenberg--no-touch qode-framework-1.2.6 woocommerce-js qodef-qi--no-touch qi-addons-for-elementor-1.9.3 wanderaway-core-1.2 wanderaway-1.1.1 qodef-content-grid-1300 qodef-back-to-top--enabled qodef-content-behind-header qodef-header--standard qodef-header-appearance--none qodef-header--transparent qodef-content--behind-header qodef-mobile-header--side-area qodef-drop-down-second--full-width qodef-drop-down-second--default qode-export-1.0 qodef-header-standard--left qodef-search--covers-header">
+                className="wp-singular page-template page-template-page-full-width page-template-page-full-width-php page page-id-3060 wp-theme-wanderaway theme-wanderaway qi-blocks-1.4.3 qodef-gutenberg--no-touch qode-framework-1.2.6 woocommerce-js qodef-qi--no-touch qodef-content-grid-1300 qodef-back-to-top--enabled qodef-content-behind-header qodef-header--standard qodef-header-appearance--none qodef-header--transparent qodef-content--behind-header qodef-mobile-header--side-area qodef-drop-down-second--full-width qodef-drop-down-second--default qode-export-1.0 qodef-header-standard--left">
 
                 {ready && <div id="qodef-page-wrapper">
                     <HomeHeader />
@@ -943,7 +896,7 @@ export default function HomePage() {
                             >
                                 <div className="!absolute !top-16 !right-10 !translate-x-1/2 !-translate-y-1/2 !z-50">
                                     <svg
-                                        className="absolute inset-0 w-10 h-10"
+                                        className="!absolute !inset-0 !w-10 !h-10 !cursor-pointer"
                                         xmlns="http://www.w3.org/2000/svg"
                                         viewBox="0 0 110 110"
                                         fill="#a6c5a9"
@@ -1023,15 +976,6 @@ export default function HomePage() {
                         </div>
                     )}
                 </div>}
-
-                <Script src="/assets/home-js/index.js.download" strategy="afterInteractive"></Script>
-                <Script src="/assets/home-js/main(1).js.download" strategy="afterInteractive"></Script>
-                <Script src="/assets/home-js/main.min.js.download" strategy="afterInteractive"></Script>
-                <Script src="/assets/home-js/ScrollTrigger.min.js.download" strategy="afterInteractive"></Script>
-                <Script src="/assets/home-js/main.min(1).js.download" strategy="afterInteractive"></Script>
-                <Script src="/assets/home-js/wanderaway-core.min.js.download" strategy="afterInteractive"></Script>
-                <Script src="/assets/home-js/fslightbox.min.js.download" strategy="afterInteractive"></Script>
-                <Script src="/assets/home-js/sourcebuster.min.js.download" strategy="afterInteractive"></Script>
             </body>
         </>
     );
