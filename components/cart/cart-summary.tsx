@@ -33,15 +33,15 @@ export function CartSummary({ subtotal, tax, total }: CartSummaryProps) {
                 </div>
                 <p className="!text-sm !mb-6">✓ All taxes and fees included</p>
                 <div className="space-y-2">
-                    <Button className="!w-full bg-black text-white hover:bg-black/80 !font-medium !cursor-pointer">
+                    <button type="button" className="!w-full bg-black text-white hover:bg-black/80 !font-medium !cursor-pointer">
                         Proceed to Payment
-                    </Button>
-                    <Button
-                        variant="outline"
+                    </button>
+                    <button
+                        type="button"
                         className="w-full border-border text-foreground hover:bg-black/10 bg-transparent !cursor-pointer"
                     >
                         Continue Shopping
-                    </Button>
+                    </button>
                 </div>
             </div>
             <div className="!rounded-lg !border !border-border !bg-card !p-6">
@@ -66,7 +66,7 @@ export function CartSummary({ subtotal, tax, total }: CartSummaryProps) {
                         placeholder="Enter coupon code"
                         className="!rounded-lg border !m-0 border-border bg-background !px-4 !py-1.5 !text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-black/20"
                     />
-                    <Button className="!bg-black !text-white !hover:bg-black/90 !cursor-pointer">Apply</Button>
+                    <button type="button" className="!bg-black !text-white !hover:bg-black/90 !cursor-pointer">Apply</button>
                 </div>
             </div>
         </div>
