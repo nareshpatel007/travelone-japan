@@ -9,6 +9,8 @@ import Heading from "@/components/common/heading";
 import { TourFilters } from "@/components/tours/tour-filters";
 import { TourListingGrid } from "@/components/tours/tour-listing-grid";
 import { Pagination } from "@/components/tours/pagination";
+import { WishlistGrid } from "@/components/wishlist/wishlist-grid";
+import { BookingConfirmation } from "@/components/booking/booking-confirmation";
 
 export default function CartPage() {
     // Define state
@@ -29,11 +31,8 @@ export default function CartPage() {
                     <CommonHeader />
                     <CommonMobileHeader />
                     <section className="!pb-10 !max-w-7xl !mx-auto">
-                        <Heading main="Product Listing" marginBottom="0" />
                         <main className="!mx-auto !max-w-7xl !px-4 sm:px-6 !mb-10 lg:px-8">
-                            <TourFilters />
-                            <TourListingGrid />
-                            <Pagination />
+                            <BookingConfirmation />
                         </main>
                     </section>
                     <CommonFooter />
