@@ -3,8 +3,7 @@ import Script from "next/script";
 
 export const metadata: Metadata = {
     title: "TravelOne",
-    robots: "max-image-preview:large",
-    viewport: "width=device-width, initial-scale=1, user-scalable=yes",
+    robots: "max-image-preview:large"
 };
 
 export default function RootLayout({
