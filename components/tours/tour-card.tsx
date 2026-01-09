@@ -1,4 +1,5 @@
 import { Compass, Footprints, Heart, MoveRight, Star } from "lucide-react"
+import Link from "next/link"
 
 interface TourCardProps {
     image: string
@@ -29,19 +30,22 @@ export function TourCard({
 }: TourCardProps) {
     return (
         <div className="group !border !border-border !rounded-lg">
-            <div className="relative rounded-xl overflow-hidden mb-2 md:mb-3 !p-2">
-                <img
-                    src={image || "/placeholder.svg"}
-                    alt={title}
-                    className="w-full h-36 sm:h-44 md:h-60 !rounded-lg object-cover hover:scale-105 transition-transform duration-300"
-                />
-                <div className="absolute bottom-0 left-0 right-0 h-1 bg-[#FF6F4A]" />
-                <button className="absolute top-2 md:top-3 right-2 md:right-3 p-1.5 md:p-2 bg-white/90 backdrop-blur-sm rounded-full hover:bg-white transition-colors">
-                    <Heart className="h-4 w-4 md:h-5 md:w-5 text-gray-600 hover:text-[#ef2853] hover:fill-current cursor-pointer" />
-                </button>
-            </div>
+            <Link href="/tour-details">
+                <div className="relative rounded-xl overflow-hidden mb-2 md:mb-3 !p-2">
+                    <img
+                        src={image || "/placeholder.svg"}
+                        alt={title}
+                        className="w-full h-36 sm:h-44 md:h-60 !rounded-lg object-cover hover:scale-105 transition-transform duration-300"
+                    />
+                    <button className="absolute top-2 md:top-3 right-2 md:right-3 p-1.5 md:p-2 bg-white/90 backdrop-blur-sm rounded-full hover:bg-white transition-colors">
+                        <Heart className="h-4 w-4 md:h-5 md:w-5 text-gray-600 hover:text-[#ef2853] hover:fill-current cursor-pointer" />
+                    </button>
+                </div>
+            </Link>
             <div className="space-y-1 md:space-y-1.5 !p-2">
-                <span className="!block !w-full text-sm md:text-base !font-semibold !text-black !line-clamp-2 !leading-snug">{title}</span>
+                <Link href="/tours/tour-details">
+                    <span className="!block !w-full text-sm md:text-base !font-semibold !text-black !line-clamp-2 !hover:underline !leading-snug">{title}</span>
+                </Link>
 
                 <div className="!flex gap-3">
                     <p className="flex gap-1 items-center text-xs md:text-sm text-gray-500">

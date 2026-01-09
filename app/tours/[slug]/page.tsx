@@ -9,10 +9,11 @@ import { ChevronLeft, ChevronRight, Star, Heart, ArrowUp, CheckCircle2, Check, F
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import Image from "next/image";
 import { TourCard } from "@/components/tours/tour-card";
-import { OverviewTabContent } from "@/components/tour_details/overview_tab";
-import { ItineraryTab } from "@/components/tour_details/itinerary_tab";
+import { OverviewTabContent } from "@/components/tour_details/overview-tab";
+import { ItineraryTab } from "@/components/tour_details/itinerary-tab";
 import { CommonPlanTripModal } from "@/components/plan_your_trip/common-popup";
 import { CustomizeTrip } from "@/components/tour_details/popup/customize-trip";
+import { NewItineraryTab } from "@/components/tour_details/new-itinerary-tab";
 
 // Define tour images
 const tourImages = [
@@ -395,6 +396,13 @@ export default function TourDetailPage() {
                                             </button>
                                         );
                                     })}
+                                    <button
+                                        onClick={() => setActiveMainTab("new_itinerary")}
+                                        className={`pb-4 font-semibold transition-colors capitalize cursor-pointer ${activeMainTab === "new_itinerary" ? "text-teal-700 border-b-2 border-teal-700" : "text-gray-600 hover:text-gray-900"
+                                            }`}
+                                    >
+                                        New Itinerary
+                                    </button>
                                 </div>
                             </div>
 
@@ -420,6 +428,8 @@ export default function TourDetailPage() {
                             )}
 
                             {activeMainTab === "itinerary" && <ItineraryTab itineraryData={itineraryData} device="mobile" />}
+                            
+                            {activeMainTab === "new_itinerary" && <NewItineraryTab />}
                         </div>
 
                         <div className="hidden md:block !bg-white !p-12">
@@ -438,6 +448,13 @@ export default function TourDetailPage() {
                                             </button>
                                         );
                                     })}
+                                    <button
+                                        onClick={() => setActiveMainTab("new_itinerary")}
+                                        className={`pb-4 font-semibold transition-colors capitalize cursor-pointer ${activeMainTab === "new_itinerary" ? "text-teal-700 border-b-2 border-teal-700" : "text-gray-600 hover:text-gray-900"
+                                            }`}
+                                    >
+                                        New Itinerary
+                                    </button>
                                 </div>
                             </div>
 
@@ -469,6 +486,8 @@ export default function TourDetailPage() {
                             )}
 
                             {activeMainTab === "itinerary" && <ItineraryTab itineraryData={itineraryData} />}
+
+                            {activeMainTab === "new_itinerary" && <NewItineraryTab />}
                         </div>
 
                         <div className="!bg-green-50 !p-12">

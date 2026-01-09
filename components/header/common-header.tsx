@@ -29,7 +29,7 @@ export default function CommonHeader() {
                             <div id="wanderaway_core_woo_dropdown_cart-3" className="widget widget_wanderaway_core_woo_dropdown_cart qodef-header-widget-area-one" data-area="header-widget-one">
                                 <div className="qodef-widget-dropdown-cart-outer" style={{ padding: "0px 0 0 0" }}>
                                     <div className="qodef-widget-dropdown-cart-inner">
-                                        <a className="qodef-m-opener" href="https://wanderaway.qodeinteractive.com/cart/">
+                                        <Link className="qodef-m-opener" href="/cart">
                                             <span className="qodef-m-opener-icon"><svg className="qodef-svg--cart" xmlns="http://www.w3.org/2000/svg" width="22" height="17.316">
                                                 <path d="m21.957 3.91-2.578 8.035a1.247 1.247 0 0 1-1.289.988H8.207a1.234 1.234 0 0 1-1.289-.9l-3.781-10.1H.945a.909.909 0 0 1-.666-.279A.961.961 0 0 1 0 .945.909.909 0 0 1 .279.279.909.909 0 0 1 .945 0h2.836a.991.991 0 0 1 .945.645L8.594 11H17.7l2.02-6.445H8.465a.909.909 0 0 1-.665-.276.909.909 0 0 1-.279-.666.961.961 0 0 1 .279-.709.909.909 0 0 1 .666-.279h12.59a.909.909 0 0 1 .773.43.973.973 0 0 1 .128.855ZM8.723 14.179a1.527 1.527 0 0 0-1.117.473 1.311 1.311 0 0 0-.473 1.074 1.527 1.527 0 0 0 .473 1.117 1.527 1.527 0 0 0 1.117.473 1.481 1.481 0 0 0 1.077-.472 1.527 1.527 0 0 0 .473-1.117 1.311 1.311 0 0 0-.473-1.075 1.481 1.481 0 0 0-1.077-.473Zm8.551 0a1.311 1.311 0 0 0-1.074.473 1.311 1.311 0 0 0-.473 1.074 1.527 1.527 0 0 0 .473 1.118 1.311 1.311 0 0 0 1.074.473 1.527 1.527 0 0 0 1.117-.473 1.528 1.528 0 0 0 .473-1.117 1.311 1.311 0 0 0-.473-1.074 1.527 1.527 0 0 0-1.118-.474Z">
                                                 </path>
@@ -40,10 +40,7 @@ export default function CommonHeader() {
                                                     </path>
                                                 </svg> <span className="qodef-m-opener-count">0</span>
                                             </span>
-                                        </a>
-                                        <div className="qodef-widget-dropdown-cart-content">
-                                            <p className="qodef-m-posts-not-found">No products in the cart.</p>
-                                        </div>
+                                        </Link>
                                     </div>
                                 </div>
                             </div>
