@@ -37,7 +37,7 @@ export function TourCard({
                 />
                 <div className="absolute bottom-0 left-0 right-0 h-1 bg-[#FF6F4A]" />
                 <button className="absolute top-2 md:top-3 right-2 md:right-3 p-1.5 md:p-2 bg-white/90 backdrop-blur-sm rounded-full hover:bg-white transition-colors">
-                    <Heart className="h-4 w-4 md:h-5 md:w-5 text-gray-600" />
+                    <Heart className="h-4 w-4 md:h-5 md:w-5 text-gray-600 hover:text-[#ef2853] hover:fill-current cursor-pointer" />
                 </button>
             </div>
             <div className="space-y-1 md:space-y-1.5 !p-2">

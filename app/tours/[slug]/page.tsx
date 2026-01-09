@@ -11,6 +11,8 @@ import Image from "next/image";
 import { TourCard } from "@/components/tours/tour-card";
 import { OverviewTabContent } from "@/components/tour_details/overview_tab";
 import { ItineraryTab } from "@/components/tour_details/itinerary_tab";
+import { CommonPlanTripModal } from "@/components/plan_your_trip/common-popup";
+import { CustomizeTrip } from "@/components/tour_details/popup/customize-trip";
 
 // Define tour images
 const tourImages = [
@@ -248,6 +250,7 @@ export default function TourDetailPage() {
     const [isWishlisted, setIsWishlisted] = useState(false);
     const [selectedPackage, setSelectedPackage] = useState("4-star");
     const [showStickyFooter, setShowStickyFooter] = useState(false);
+    const [openCustomizeTripPopup, setOpenCustomizeTripPopup] = useState(false);
     const pageRef = useRef(null);
 
     useEffect(() => {
@@ -360,7 +363,7 @@ export default function TourDetailPage() {
                                             <button className="bg-[#ef2853] border-1 border-[#ef2853] hover:bg-white hover:text-[#ef2853] text-white px-4 py-2 rounded font-semibold text-sm cursor-pointer">
                                                 Book {packages.find((p) => p.id === selectedPackage)?.name}
                                             </button>
-                                            <button className="bg-white border-1 border-black text-black hover:bg-black hover:text-white hover:border-[#333] cursor-pointer px-4 py-2 rounded font-semibold text-sm">
+                                            <button className="bg-white border-1 border-black text-black hover:bg-black hover:text-white hover:border-[#333] cursor-pointer px-4 py-2 rounded font-semibold text-sm" onClick={() => setOpenCustomizeTripPopup(true)}>
                                                 Customize Trip
                                             </button>
                                             <button className="bg-white border-1 border-black text-black hover:bg-black hover:text-white hover:border-[#333] cursor-pointer px-4 py-2 rounded font-semibold text-sm">
@@ -700,7 +703,9 @@ export default function TourDetailPage() {
                             </div>
                         )} */}
                     </div>
+                    <CustomizeTrip open={openCustomizeTripPopup} onOpenChange={setOpenCustomizeTripPopup} />
                     <CommonFooter />
+                    {/* <CommonPlanTripModal open={open} onOpenChange={setOpen} /> */}
                 </>}
             </body>
         </>
