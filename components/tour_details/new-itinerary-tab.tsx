@@ -210,7 +210,7 @@ export function NewItineraryTab() {
                                                     <Utensils className="w-5 h-5 text-gray-600" />
                                                     Meals
                                                 </span>
-                                                <div className="grid grid-cols-3 gap-4">
+                                                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                                                     {[
                                                         { label: "Breakfast", value: dayData.meals.breakfast },
                                                         { label: "Lunch", value: dayData.meals.lunch },
