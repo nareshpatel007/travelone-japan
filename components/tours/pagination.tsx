@@ -22,7 +22,7 @@ export function Pagination() {
                 <button
                     key={page}
                     onClick={() => setCurrentPage(page)}
-                    className={`w-8 h-8 md:w-10 md:h-10 rounded-full text-xs md:text-sm font-medium transition-colors cursor-pointer border border-gray-300 ${currentPage === page ? "!border-amber-400 bg-amber-400 text-black" : "text-gray-700 hover:bg-gray-50"
+                    className={`w-8 h-8 md:w-10 md:h-10 rounded-full text-xs md:text-sm font-medium transition-colors cursor-pointer border border-gray-300 ${currentPage === page ? "!border-[#1E1E1E] bg-[#1E1E1E] text-white" : "text-gray-700 hover:bg-gray-50"
                         }`}
                 >
                     {page}
@@ -34,7 +34,7 @@ export function Pagination() {
             <button
                 onClick={() => setCurrentPage(totalPages)}
                 className={`w-8 h-8 md:w-10 md:h-10 rounded-full text-xs md:text-sm font-medium transition-colors cursor-pointer border border-gray-300 ${currentPage === totalPages
-                        ? "!border-amber-400 bg-amber-400 text-black"
+                        ? "!border-[#1E1E1E] bg-[#1E1E1E] text-white"
                         : "text-gray-700 hover:bg-gray-50"
                     }`}
             >

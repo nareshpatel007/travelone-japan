@@ -53,8 +53,8 @@ export default function FAQsList() {
     return (
         <div className="!bg-amber-50 !px-8 !py-20">
             <div className="!max-w-7xl !mx-auto">
-                <span className="text-2xl md:text-4xl font-bold text-center !block !mb-3 text-black">Frequently Asked Questions</span>
-                <p className="text-center text-amber-800 !mb-12 font-semibold">
+                <span className="text-2xl md:text-4xl font-bold text-center !block !mb-3 text-[#1E1E1E]">Frequently Asked Questions</span>
+                <p className="text-center text-[#C46A3A] !mb-12 font-semibold">
                     We're here to help you with any questions you may have.
                 </p>
                 <div className="space-y-0">
@@ -62,14 +62,14 @@ export default function FAQsList() {
                         <div key={index}>
                             <button
                                 onClick={() => setExpandedIndex(expandedIndex === index ? null : index)}
-                                className="w-full py-6 px-0 flex items-center justify-between border-b border-gray-300 hover:bg-amber-50/50 transition-colors duration-200 text-left group"
+                                className="w-full py-6 px-0 flex items-center justify-between border-b border-gray-300 hover:bg-amber-50/50 transition-colors duration-200 text-left group cursor-pointer"
                             >
-                                <span className="text-xl font-bold text-amber-800 pr-4 flex-1 group-hover:text-amber-700 !block">
+                                <span className="text-md md:text-xl font-normal md:font-bold text-black pr-4 flex-1 group-hover:text-[#1E1E1E] !block">
                                     {faq.question}
                                 </span>
                                 <ChevronDown
                                     size={24}
-                                    className={`text-amber-700 flex-shrink-0 transition-transform duration-300 ${expandedIndex === index ? "rotate-180" : ""
+                                    className={`text-[#1E1E1E] flex-shrink-0 transition-transform duration-300 ${expandedIndex === index ? "rotate-180" : ""
                                         }`}
                                 />
                             </button>

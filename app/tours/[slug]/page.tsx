@@ -291,11 +291,11 @@ export default function TourDetailPage() {
                                     </button>
                                 </div>
                                 <div className="flex flex-col h-full">
-                                    <div className="!bg-amber-400 !text-white !px-7 !py-6">
+                                    <div className="!bg-[#F6EFE6] !text-white !px-7 !py-6">
                                         <div className="max-w-7xl mx-auto">
                                             <div className="flex items-start justify-between">
                                                 <div>
-                                                    <span className="text-xl md:text-2xl font-semibold !text-black !mb-2">
+                                                    <span className="text-xl md:text-2xl font-semibold !text-[#1E1E1E] !mb-2">
                                                         Maple Symphony – Japan Autumn Journey (Fully Guided Premium Package for 2025 / 2026)
                                                     </span>
                                                     <div className="!inline-block !bg-[#ef2853] !px-3 !py-0.5 !md:py-1 !rounded !text-sm !font-semibold !ml-2">Group Tour</div>
@@ -315,8 +315,8 @@ export default function TourDetailPage() {
                                                     key={pkg.id}
                                                     onClick={() => setSelectedPackage(pkg.id)}
                                                     className={`!border-1 !rounded-lg !p-3 !cursor-pointer !transition-all !text-center ${selectedPackage === pkg.id
-                                                        ? "!border-amber-700 !bg-white !shadow-lg"
-                                                        : "!border-gray-300 !bg-white/50 !hover:border-amber-700"
+                                                        ? "!border-[#2F5D50] !bg-white !shadow-lg"
+                                                        : "!border-gray-300 !bg-white/50 !hover:border-[#2F5D50]"
                                                         }`}
                                                 >
                                                     <div className="flex justify-center !mb-3">
@@ -365,7 +365,7 @@ export default function TourDetailPage() {
                                             <button
                                                 key={tab}
                                                 onClick={() => setActiveMainTab(tab)}
-                                                className={`pb-4 font-semibold transition-colors capitalize cursor-pointer ${activeMainTab === tab ? "text-amber-600 border-b-2 border-amber-700" : "text-gray-600 hover:text-gray-900"
+                                                className={`pb-4 font-semibold transition-colors capitalize cursor-pointer ${activeMainTab === tab ? "text-black border-b-2 border-[#C46A3A]" : "text-gray-600 hover:text-gray-900"
                                                     }`}
                                             >
                                                 {tabName}
@@ -381,7 +381,7 @@ export default function TourDetailPage() {
                                         <select
                                             value={activeTab}
                                             onChange={(e) => setActiveTab(e.target.value)}
-                                            className="!border-1 !border-amber-700 !p-3 !rounded-lg !mb-4"
+                                            className="!border-1 !border-[#2F5D50] !p-3 !rounded-lg !mb-4"
                                         >
                                             {tabs.map((tab) => (
                                                 <option key={tab} value={tab.toLowerCase().replace(/\s+/g, "-")}>
@@ -389,7 +389,7 @@ export default function TourDetailPage() {
                                                 </option>
                                             ))}
                                         </select>
-                                        <div className="!bg-white !border-1 !border-amber-700 !rounded !p-8">
+                                        <div className="!bg-white !border-1 !border-[#2F5D50] !rounded !p-8">
                                             <OverviewTabContent activeTab={activeTab} />
                                         </div>
                                     </div>
@@ -410,7 +410,7 @@ export default function TourDetailPage() {
                                             <button
                                                 key={tab}
                                                 onClick={() => setActiveMainTab(tab)}
-                                                className={`pb-4 font-semibold transition-colors capitalize cursor-pointer ${activeMainTab === tab ? "text-amber-600 border-b-2 border-amber-700" : "text-gray-600 hover:text-gray-900"
+                                                className={`pb-4 font-semibold transition-colors capitalize cursor-pointer ${activeMainTab === tab ? "text-black border-b-2 border-[#2F5D50]" : "text-gray-600 hover:text-gray-900"
                                                     }`}
                                             >
                                                 {tabName}
@@ -430,9 +430,9 @@ export default function TourDetailPage() {
                                                     <button
                                                         key={tab}
                                                         onClick={() => setActiveTab(tabKey)}
-                                                        className={`px-4 py-3 text-left font-semibold rounded cursor-pointer transition-all ${activeTab === tabKey
-                                                            ? "bg-amber-400 text-black"
-                                                            : "bg-amber-50 text-amber-700 hover:bg-amber-400 hover:text-black"
+                                                        className={`px-4 py-3 text-left font-semibold rounded border border-[#F6EFE6] cursor-pointer transition-all ${activeTab === tabKey
+                                                            ? "bg-[#F6EFE6] text-[#1E1E1E]"
+                                                            : "bg-amber-50 text-gray-900 hover:bg-[#F6EFE6] hover:text-[#1E1E1E]"
                                                             }`}
                                                     >
                                                         {tab}
@@ -440,7 +440,7 @@ export default function TourDetailPage() {
                                                 );
                                             })}
                                         </div>
-                                        <div className="!col-span-3 !bg-white !border-1 !border-amber-600 !rounded !p-8">
+                                        <div className="!col-span-3 !bg-white !border-1 !border-[#C46A3A] !rounded !p-8">
                                             <OverviewTabContent activeTab={activeTab} />
                                         </div>
                                     </div>
@@ -452,8 +452,8 @@ export default function TourDetailPage() {
 
                         <div className="!bg-amber-50 !px-8 !py-16">
                             <div className="!max-w-7xl !mx-auto">
-                                <span className="text-2xl md:text-4xl font-bold text-center !block !mb-3 text-black">Best Value Guarantee</span>
-                                <p className="text-center text-amber-800 !mb-12 font-semibold">
+                                <span className="text-2xl md:text-4xl font-bold text-center !block !mb-3 text-[#1E1E1E]">Best Value Guarantee</span>
+                                <p className="text-center text-[#C46A3A] !mb-12 font-semibold">
                                     Your satisfaction is our priority
                                 </p>
                                 <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6">
@@ -463,7 +463,7 @@ export default function TourDetailPage() {
                                         { icon: "✓", title: "24/7 Support", desc: "Always here to help" },
                                         { icon: "✓", title: "Expert Guides", desc: "Experienced professionals" },
                                     ].map((item, idx) => (
-                                        <div key={idx} className="!bg-white !rounded-2xl !p-8 !border-2 !border-dashed !border-amber-400 hover:shadow-xl transition-shadow duration-300 flex flex-col items-center text-center">
+                                        <div key={idx} className="!bg-white !rounded-2xl !p-8 !border-2 !border-dashed !border-[#C46A3A] hover:shadow-xl transition-shadow duration-300 flex flex-col items-center text-center">
                                             <div className="text-xl md:text-3xl !mb-3 !text-teal-700">{item.icon}</div>
                                             <span className="!font-bold !block !mb-2">{item.title}</span>
                                             <p className="!text-md !text-gray-600">{item.desc}</p>
@@ -475,18 +475,18 @@ export default function TourDetailPage() {
 
                         <div className="!bg-amber-50 !px-8 !pb-16">
                             <div className="!pb-10 !max-w-7xl !mx-auto">
-                                <span className="text-2xl md:text-4xl font-bold text-center !block !mb-3 text-black">Recent Reviews</span>
-                                <p className="text-center text-amber-800 !mb-12 font-semibold">
+                                <span className="text-2xl md:text-4xl font-bold text-center !block !mb-3 text-[#1E1E1E]">Recent Reviews</span>
+                                <p className="text-center text-[#C46A3A] !mb-12 font-semibold">
                                     To receive our best monthly deals and travel inspiration.
                                 </p>
                                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                                     {reviews.map((review, idx) => (
                                         <div
                                             key={idx}
-                                            className="!bg-white !rounded-2xl !p-8 !border-2 !border-dashed !border-amber-400 hover:shadow-xl transition-shadow duration-300 flex flex-col items-center text-center"
+                                            className="!bg-white !rounded-2xl !p-8 !border-2 !border-dashed !border-[#C46A3A] hover:shadow-xl transition-shadow duration-300 flex flex-col items-center text-center"
                                         >
                                             <div className="!mb-6 relative">
-                                                <div className="w-28 h-28 rounded-full border-4 border-amber-400 overflow-hidden shadow-md">
+                                                <div className="w-28 h-28 rounded-full border-4 border-[#C46A3A] overflow-hidden shadow-md">
                                                     <Image
                                                         src={review.image || "/placeholder.svg"}
                                                         alt={review.name}
@@ -516,27 +516,27 @@ export default function TourDetailPage() {
 
                         <div className="!bg-amber-50 !px-8 !pb-16">
                             <div className="!max-w-7xl !mx-auto">
-                                <span className="text-2xl md:text-4xl font-bold text-center !block !mb-3 text-black">Why Travel with TravelOne</span>
-                                <p className="text-center text-amber-800 !mb-12 font-semibold">
+                                <span className="text-2xl md:text-4xl font-bold text-center !block !mb-3 text-[#1E1E1E]">Why Travel with TravelOne</span>
+                                <p className="text-center text-[#C46A3A] !mb-12 font-semibold">
                                     We are committed to providing you with the best possible experience
                                 </p>
                                 <div className="grid grid-cols-2 md:grid-cols-6 gap-6">
-                                    <div className="!bg-white !rounded-2xl !p-8 !border-2 !border-dashed !border-amber-400 hover:shadow-xl transition-shadow duration-300 flex flex-col items-center text-center justify-center">
+                                    <div className="!bg-white !rounded-2xl !p-8 !border-2 !border-dashed !border-[#C46A3A] hover:shadow-xl transition-shadow duration-300 flex flex-col items-center text-center justify-center">
                                         <span className="!font-semibold">Transparent Planning & Pricing</span>
                                     </div>
-                                    <div className="!bg-white !rounded-2xl !p-8 !border-2 !border-dashed !border-amber-400 hover:shadow-xl transition-shadow duration-300 flex flex-col items-center text-center justify-center">
+                                    <div className="!bg-white !rounded-2xl !p-8 !border-2 !border-dashed !border-[#C46A3A] hover:shadow-xl transition-shadow duration-300 flex flex-col items-center text-center justify-center">
                                         <span className="!font-semibold">Local Experts & On-Ground Support</span>
                                     </div>
-                                    <div className="!bg-white !rounded-2xl !p-8 !border-2 !border-dashed !border-amber-400 hover:shadow-xl transition-shadow duration-300 flex flex-col items-center text-center justify-center">
+                                    <div className="!bg-white !rounded-2xl !p-8 !border-2 !border-dashed !border-[#C46A3A] hover:shadow-xl transition-shadow duration-300 flex flex-col items-center text-center justify-center">
                                         <span className="!font-semibold">Custom Itineraries Based on Your Style</span>
                                     </div>
-                                    <div className="!bg-white !rounded-2xl !p-8 !border-2 !border-dashed !border-amber-400 hover:shadow-xl transition-shadow duration-300 flex flex-col items-center text-center justify-center">
+                                    <div className="!bg-white !rounded-2xl !p-8 !border-2 !border-dashed !border-[#C46A3A] hover:shadow-xl transition-shadow duration-300 flex flex-col items-center text-center justify-center">
                                         <span className="!font-semibold">24x7 Assistance During Travel</span>
                                     </div>
-                                    <div className="!bg-white !rounded-2xl !p-8 !border-2 !border-dashed !border-amber-400 hover:shadow-xl transition-shadow duration-300 flex flex-col items-center text-center justify-center">
+                                    <div className="!bg-white !rounded-2xl !p-8 !border-2 !border-dashed !border-[#C46A3A] hover:shadow-xl transition-shadow duration-300 flex flex-col items-center text-center justify-center">
                                         <span className="!font-semibold">Enhance Trip Experience By 50%</span>
                                     </div>
-                                    <div className="!bg-white !rounded-2xl !p-8 !border-2 !border-dashed !border-amber-400 hover:shadow-xl transition-shadow duration-300 flex flex-col items-center text-center justify-center">
+                                    <div className="!bg-white !rounded-2xl !p-8 !border-2 !border-dashed !border-[#C46A3A] hover:shadow-xl transition-shadow duration-300 flex flex-col items-center text-center justify-center">
                                         <span className="!font-semibold">4.8 Rated by Real Travelers</span>
                                     </div>
                                 </div>
@@ -545,8 +545,8 @@ export default function TourDetailPage() {
 
                         <div className="!bg-white !p-20">
                             <div className="!max-w-7xl !mx-auto">
-                                <span className="text-2xl md:text-4xl font-bold text-center !block !mb-3 text-black">Trusted By</span>
-                                <p className="text-center text-amber-800 !mb-12 font-semibold">
+                                <span className="text-2xl md:text-4xl font-bold text-center !block !mb-3 text-[#1E1E1E]">Trusted By</span>
+                                <p className="text-center text-[#C46A3A] !mb-12 font-semibold">
                                     We are trusted by leading tour operators
                                 </p>
                                 <div className="grid grid-cols-1 md:grid-cols-3 !gap-6 !items-center !justify-center place-items-center">
@@ -581,8 +581,8 @@ export default function TourDetailPage() {
 
                         <div className="!bg-white !px-8 !p-20">
                             <div className="!max-w-7xl !mx-auto">
-                                <span className="text-2xl md:text-4xl font-bold text-center !block !mb-3 text-black">You May Also Like</span>
-                                <p className="text-center text-amber-800 !mb-12 font-semibold">
+                                <span className="text-2xl md:text-4xl font-bold text-center !block !mb-3 text-[#1E1E1E]">You May Also Like</span>
+                                <p className="text-center text-[#C46A3A] !mb-12 font-semibold">
                                     We are committed to providing you with the best possible experience
                                 </p>
                                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -606,8 +606,8 @@ export default function TourDetailPage() {
                                         />
                                     </div>
                                     <div className="py-0 md:py-12">
-                                        <div className="text-amber-700 font-semibold text-sm !mb-4 uppercase tracking-wider">Travel Experts</div>
-                                        <span className="text-2xl md:text-4xl font-bold text-black !mb-6 leading-tight">
+                                        <div className="text-[#C46A3A] font-semibold text-sm !mb-4 uppercase tracking-wider">Travel Experts</div>
+                                        <span className="text-2xl md:text-4xl font-bold text-[#1E1E1E] !mb-6 leading-tight">
                                             Not sure where to start? Speak to a Travel Expert
                                         </span>
                                         <p className="text-gray-700 text-lg !mb-8 leading-relaxed">
@@ -615,7 +615,7 @@ export default function TourDetailPage() {
                                             custom travel itinerary that's perfectly suited to you.
                                         </p>
                                         <div className="flex items-center gap-4">
-                                            <button className="bg-black hover:bg-black/80 !cursor-pointer text-white px-8 py-3 rounded-lg font-semibold uppercase transition-colors">
+                                            <button className="bg-black hover:bg-[#1E1E1E] !cursor-pointer text-white px-8 py-3 rounded-lg font-semibold uppercase transition-colors">
                                                 Customize Your Trip
                                             </button>
                                             <span className="text-gray-700 font-semibold text-lg">OR CALL +1 437 966 9023</span>
@@ -628,9 +628,9 @@ export default function TourDetailPage() {
                         <div className="!bg-amber-100 !p-6 !border-b !border-gray-200">
                             <div className="!max-w-7xl !mx-auto">
                                 <div className="flex items-center justify-center gap-5">
-                                    <span className="text-black font-medium">Was this page helpful?</span>
-                                    <ThumbsUp className="h-5 w-5 text-amber-600" />
-                                    <ThumbsDown className="h-5 w-5 text-amber-600" />
+                                    <span className="text-[#1E1E1E] font-medium">Was this page helpful?</span>
+                                    <ThumbsUp className="h-5 w-5 text-[#C46A3A]" />
+                                    <ThumbsDown className="h-5 w-5 text-[#C46A3A]" />
                                 </div>
                             </div>
                         </div>
@@ -649,7 +649,7 @@ export default function TourDetailPage() {
                                         <span className="text-gray-700 text-md font-medium">Call us now on +1 437 966 9023</span>
                                     </div>
 
-                                    <div className="flex items-center gap-4">
+                                    <div className="flex items-center gap-3">
                                         <button className="bg-[#ef2853] hover:bg-white text-white hover:text-[#ef2853] border border-[#ef2853] px-6 py-2 rounded font-semibold cursor-pointer transition">
                                             Book {selectedPackage.split("-")[0].charAt(0).toUpperCase() + selectedPackage.split("-")[0].slice(1)}{" "}
                                             Star Package
@@ -659,7 +659,7 @@ export default function TourDetailPage() {
                                         </button>
                                         <button
                                             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-                                            className="ml-4 p-2 bg-amber-500 text-white rounded-full shadow hover:shadow-md cursor-pointer transition"
+                                            className="ml-2 p-2 bg-[#1E1E1E] text-white rounded-full shadow hover:shadow-lg cursor-pointer transition"
                                         >
                                             <ArrowUp size={20} className="text-white" />
                                         </button>

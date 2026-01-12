@@ -30,7 +30,7 @@ export function TourCard({
     extraInfo,
 }: TourCardProps) {
     return (
-        <div className="group !border !border-border !rounded-xl !border !border-amber-200 !bg-amber-50 !transition-all !duration-300 !overflow-hidden">
+        <div className="group !border !border-border !rounded-xl !border !border-[#C46A3A] !bg-amber-50 !transition-all !duration-300 !overflow-hidden">
             <Link href="/tours/tour-details">
                 <div className="relative h-60 overflow-hidden">
                     <Image
@@ -42,16 +42,16 @@ export function TourCard({
                 </div>
                 <div className="!p-6">
                     <div className="flex justify-between items-start !mb-3">
-                        <span className="text-xl font-semibold text-gray-900 !block !flex-1">{title}</span>
-                        <span className="text-xl font-bold text-amber-700 !block !ml-4">{price}</span>
+                        <span className="text-md md:text-xl font-semibold text-gray-900 !block !flex-1">{title}</span>
+                        <span className="text-md md:text-xl font-bold text-[#C46A3A] !block !ml-4">{price}</span>
                     </div>
                     <div className="!flex items-center gap-2 !mb-3">
                         <div className="flex items-center gap-1">
-                            <Footprints size={16} className="text-amber-400" />
+                            <Footprints size={16} className="text-[#C46A3A]" />
                             <span className="font-bold text-sm text-gray-900">16 Places</span>
                         </div>
                         <div className="flex items-center gap-1">
-                            <Compass size={16} className="text-amber-400" />
+                            <Compass size={16} className="text-[#C46A3A]" />
                             <span className="font-bold text-sm text-gray-900">8 Cities</span>
                         </div>
                     </div>
