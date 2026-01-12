@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import NavigationMenu from "./navigation-menu";
 
 // components/Header.tsx
 export default function HomeMobileHeader() {
@@ -11,7 +12,7 @@ export default function HomeMobileHeader() {
                         <Image alt="Logo" width={160} height={50} src="https://ik.imagekit.io/288weifiq/landing-japan/logo.webp" />
                     </Link>
                 </div>
-                {/* <div className="qodef-widget-holder qodef--one">
+                <div className="qodef-widget-holder qodef--one">
                     <div id="wanderaway_core_woo_dropdown_cart-5"
                         className="widget widget_wanderaway_core_woo_dropdown_cart qodef-mobile-header-widget-area-one"
                         data-area="mobile-header">
@@ -40,7 +41,7 @@ export default function HomeMobileHeader() {
                             </div>
                         </div>
                     </div>
-                </div> */}
+                </div>
                 <a href="javascript:void(0)" className="qodef-opener-icon qodef-m qodef-source--predefined qodef-side-area-mobile-header-opener">
                     <span className="qodef-m-icon qodef--open">
                         <svg className="qodef-svg--menu" xmlns="http://www.w3.org/2000/svg" width="21" height="21"
@@ -65,28 +66,7 @@ export default function HomeMobileHeader() {
                         </span>
                     </a>
                     <nav className="qodef-m-navigation" role="navigation" aria-label="Mobile Menu">
-                        <ul id="menu-landing-anchor-menu-3" className="menu">
-                            <li className="menu-item menu-item-type-custom menu-item-object-custom menu-item-3487">
-                                <Link href="/">
-                                    <span className="qodef-menu-item-text">Home</span>
-                                </Link>
-                            </li>
-                            <li className="menu-item menu-item-type-custom menu-item-object-custom menu-item-3495">
-                                <Link href="/contact">
-                                    <span className="qodef-menu-item-text">Contact Us</span>
-                                </Link>
-                            </li>
-                            <li className="menu-item menu-item-type-custom menu-item-object-custom menu-item-3492">
-                                <Link href="#">
-                                    <span className="qodef-menu-item-text">Blog</span>
-                                </Link>
-                            </li>
-                            <li className="menu-item menu-item-type-custom menu-item-object-custom menu-item-3491">
-                                <Link href="#">
-                                    <span className="qodef-menu-item-text">Shop</span>
-                                </Link>
-                            </li>
-                        </ul>
+                        <NavigationMenu />
                     </nav>
                     <div className="ps__rail-x" style={{ left: '0px', bottom: '0px' }}>
                         <div className="ps__thumb-x" style={{ left: '0px', width: '0px' }}></div>

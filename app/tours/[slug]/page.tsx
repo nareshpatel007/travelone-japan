@@ -5,7 +5,7 @@ import CommonMobileHeader from "@/components/header/common-mobile-header";
 import CommonFooter from "@/components/footer/common-footer";
 import CommonTopHeader from "@/components/header/common-top-header";
 import { useState, useEffect, useRef } from "react";
-import { ChevronLeft, ChevronRight, Star, Heart, ArrowUp, CheckCircle2, Check, Flag } from "lucide-react";
+import { ChevronLeft, ChevronRight, Star, Heart, ArrowUp, CheckCircle2, Check, Flag, ThumbsUp, ThumbsDown } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import Image from "next/image";
 import { TourCard } from "@/components/tours/tour-card";
@@ -14,6 +14,7 @@ import { ItineraryTab } from "@/components/tour_details/itinerary-tab";
 import { CommonPlanTripModal } from "@/components/plan_your_trip/common-popup";
 import { CustomizeTrip } from "@/components/tour_details/popup/customize-trip";
 import { NewItineraryTab } from "@/components/tour_details/new-itinerary-tab";
+import FAQsList from "@/components/tour_details/faqs";
 
 // Define tour images
 const tourImages = [
@@ -103,20 +104,6 @@ const reviews = [
         text: "Worth every penny",
         location: "India",
     },
-    {
-        name: "Sophie Laurent",
-        image: "https://ik.imagekit.io/288weifiq/tr:q-40/trip_feedback/6as5d23as1d2a.jpg",
-        rating: 4,
-        text: "Fantastic memories",
-        location: "France",
-    },
-    {
-        name: "Alex Rodriguez",
-        image: "https://ik.imagekit.io/288weifiq/tr:q-40/trip_feedback/45asd2as1d2a.jpg",
-        rating: 5,
-        text: "Tour of a lifetime",
-        location: "Mexico",
-    },
 ];
 
 const tabs = [
@@ -166,17 +153,6 @@ const tours = [
         title: "Stingray Sandbar, Snorkeling, and Starfish Point",
         duration: "3 hours 45 minutes",
         price: "$5,005",
-    },
-    {
-        id: 4,
-        image: "https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/08/Destination-list-8.jpg",
-        tourType: "DAY TRIP",
-        badge: "Likely to sell out",
-        rating: 4.6,
-        reviews: 988,
-        title: "Stingray City, Snorkeling, & Starfish Adventure",
-        duration: "3 hours 30 minutes",
-        price: "$6,005",
     },
 ]
 
@@ -262,7 +238,7 @@ export default function TourDetailPage() {
 
         const handleScroll = () => {
             const scrollPercentage = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-            setShowStickyFooter(scrollPercentage > 20);
+            setShowStickyFooter(scrollPercentage > 10);
         }
 
         window.addEventListener("scroll", handleScroll);
@@ -286,10 +262,10 @@ export default function TourDetailPage() {
                     <CommonTopHeader />
                     <CommonHeader />
                     <CommonMobileHeader />
-                    <div ref={pageRef} className="min-h-screen bg-white">
-                        <div className="w-full bg-white">
+                    <div ref={pageRef} className="min-h-screen !bg-white">
+                        <div className="w-full !bg-white">
                             <div className="grid grid-cols-1 md:grid-cols-2 items-stretch">
-                                <div className="relative bg-gray-200 !h-full !overflow-hidden">
+                                <div className="relative !h-full !overflow-hidden">
                                     <img
                                         src={tourImages[currentImageIndex] || "/placeholder.svg"}
                                         alt="Tour"
@@ -315,23 +291,23 @@ export default function TourDetailPage() {
                                     </button>
                                 </div>
                                 <div className="flex flex-col h-full">
-                                    <div className="!bg-teal-800 !text-white !px-7 !py-6">
+                                    <div className="!bg-amber-400 !text-white !px-7 !py-6">
                                         <div className="max-w-7xl mx-auto">
                                             <div className="flex items-start justify-between">
                                                 <div>
-                                                    <span className="text-xl md:text-2xl font-semibold mb-2">
+                                                    <span className="text-xl md:text-2xl font-semibold !text-black !mb-2">
                                                         Maple Symphony – Japan Autumn Journey (Fully Guided Premium Package for 2025 / 2026)
                                                     </span>
                                                     <div className="!inline-block !bg-[#ef2853] !px-3 !py-0.5 !md:py-1 !rounded !text-sm !font-semibold !ml-2">Group Tour</div>
-                                                    <p className="text-md md:text-lg !mb-3">10 Days → 1 Country → 8 Cities → 30 Places</p>
-                                                    <p className="text-sm">
+                                                    <p className="text-md md:text-lg !text-black !mb-3">10 Days → 1 Country → 8 Cities → 30 Places</p>
+                                                    <p className="text-sm !text-black">
                                                         Tokyo (3 Nts) → Nikko → Mt.Fuji → Hakone (1 Nt) → Hiroshima (1 Nt) → Kyoto (2 Nts) → Nara → Osaka (2 Nts)
                                                     </p>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="!bg-green-50 !px-7 !py-6 !flex-1">
+                                    <div className="!bg-amber-50 !px-7 !py-6 !flex-1">
                                         <span className="text-xl font-bold text-gray-900 !mb-3 !block">Select Your Package</span>
                                         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 !mb-8">
                                             {packages.map((pkg) => (
@@ -339,8 +315,8 @@ export default function TourDetailPage() {
                                                     key={pkg.id}
                                                     onClick={() => setSelectedPackage(pkg.id)}
                                                     className={`!border-1 !rounded-lg !p-3 !cursor-pointer !transition-all !text-center ${selectedPackage === pkg.id
-                                                        ? "!border-teal-700 !bg-white !shadow-lg"
-                                                        : "!border-gray-300 !bg-white/50 !hover:border-teal-700"
+                                                        ? "!border-amber-700 !bg-white !shadow-lg"
+                                                        : "!border-gray-300 !bg-white/50 !hover:border-amber-700"
                                                         }`}
                                                 >
                                                     <div className="flex justify-center !mb-3">
@@ -389,20 +365,13 @@ export default function TourDetailPage() {
                                             <button
                                                 key={tab}
                                                 onClick={() => setActiveMainTab(tab)}
-                                                className={`pb-4 font-semibold transition-colors capitalize cursor-pointer ${activeMainTab === tab ? "text-teal-700 border-b-2 border-teal-700" : "text-gray-600 hover:text-gray-900"
+                                                className={`pb-4 font-semibold transition-colors capitalize cursor-pointer ${activeMainTab === tab ? "text-amber-600 border-b-2 border-amber-700" : "text-gray-600 hover:text-gray-900"
                                                     }`}
                                             >
                                                 {tabName}
                                             </button>
                                         );
                                     })}
-                                    <button
-                                        onClick={() => setActiveMainTab("new_itinerary")}
-                                        className={`pb-4 font-semibold transition-colors capitalize cursor-pointer ${activeMainTab === "new_itinerary" ? "text-teal-700 border-b-2 border-teal-700" : "text-gray-600 hover:text-gray-900"
-                                            }`}
-                                    >
-                                        New Itinerary
-                                    </button>
                                 </div>
                             </div>
 
@@ -412,7 +381,7 @@ export default function TourDetailPage() {
                                         <select
                                             value={activeTab}
                                             onChange={(e) => setActiveTab(e.target.value)}
-                                            className="!border-1 !border-teal-700 !p-3 !rounded-lg !mb-4"
+                                            className="!border-1 !border-amber-700 !p-3 !rounded-lg !mb-4"
                                         >
                                             {tabs.map((tab) => (
                                                 <option key={tab} value={tab.toLowerCase().replace(/\s+/g, "-")}>
@@ -420,7 +389,7 @@ export default function TourDetailPage() {
                                                 </option>
                                             ))}
                                         </select>
-                                        <div className="!bg-white !border-1 !border-teal-700 !rounded !p-8">
+                                        <div className="!bg-white !border-1 !border-amber-700 !rounded !p-8">
                                             <OverviewTabContent activeTab={activeTab} />
                                         </div>
                                     </div>
@@ -428,7 +397,7 @@ export default function TourDetailPage() {
                             )}
 
                             {activeMainTab === "itinerary" && <ItineraryTab itineraryData={itineraryData} device="mobile" />}
-                            
+
                             {activeMainTab === "new_itinerary" && <NewItineraryTab />}
                         </div>
 
@@ -441,20 +410,13 @@ export default function TourDetailPage() {
                                             <button
                                                 key={tab}
                                                 onClick={() => setActiveMainTab(tab)}
-                                                className={`pb-4 font-semibold transition-colors capitalize cursor-pointer ${activeMainTab === tab ? "text-teal-700 border-b-2 border-teal-700" : "text-gray-600 hover:text-gray-900"
+                                                className={`pb-4 font-semibold transition-colors capitalize cursor-pointer ${activeMainTab === tab ? "text-amber-600 border-b-2 border-amber-700" : "text-gray-600 hover:text-gray-900"
                                                     }`}
                                             >
                                                 {tabName}
                                             </button>
                                         );
                                     })}
-                                    <button
-                                        onClick={() => setActiveMainTab("new_itinerary")}
-                                        className={`pb-4 font-semibold transition-colors capitalize cursor-pointer ${activeMainTab === "new_itinerary" ? "text-teal-700 border-b-2 border-teal-700" : "text-gray-600 hover:text-gray-900"
-                                            }`}
-                                    >
-                                        New Itinerary
-                                    </button>
                                 </div>
                             </div>
 
@@ -469,8 +431,8 @@ export default function TourDetailPage() {
                                                         key={tab}
                                                         onClick={() => setActiveTab(tabKey)}
                                                         className={`px-4 py-3 text-left font-semibold rounded cursor-pointer transition-all ${activeTab === tabKey
-                                                            ? "bg-teal-700 text-white"
-                                                            : "bg-green-50 text-teal-700 hover:bg-teal-700 hover:text-white"
+                                                            ? "bg-amber-400 text-black"
+                                                            : "bg-amber-50 text-amber-700 hover:bg-amber-400 hover:text-black"
                                                             }`}
                                                     >
                                                         {tab}
@@ -478,7 +440,7 @@ export default function TourDetailPage() {
                                                 );
                                             })}
                                         </div>
-                                        <div className="!col-span-3 !bg-white !border-1 !border-teal-700 !rounded !p-8">
+                                        <div className="!col-span-3 !bg-white !border-1 !border-amber-600 !rounded !p-8">
                                             <OverviewTabContent activeTab={activeTab} />
                                         </div>
                                     </div>
@@ -486,13 +448,14 @@ export default function TourDetailPage() {
                             )}
 
                             {activeMainTab === "itinerary" && <ItineraryTab itineraryData={itineraryData} />}
-
-                            {activeMainTab === "new_itinerary" && <NewItineraryTab />}
                         </div>
 
-                        <div className="!bg-green-50 !p-12">
-                            <div className="!pb-10 !max-w-7xl !mx-auto">
-                                <span className="!text-3xl !font-bold !text-center !block !mb-12">Best Value Guarantee</span>
+                        <div className="!bg-amber-50 !px-8 !py-16">
+                            <div className="!max-w-7xl !mx-auto">
+                                <span className="text-2xl md:text-4xl font-bold text-center !block !mb-3 text-black">Best Value Guarantee</span>
+                                <p className="text-center text-amber-800 !mb-12 font-semibold">
+                                    Your satisfaction is our priority
+                                </p>
                                 <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6">
                                     {[
                                         { icon: "✓", title: "Free Cancellation", desc: "Cancel up to 2 weeks before" },
@@ -500,7 +463,7 @@ export default function TourDetailPage() {
                                         { icon: "✓", title: "24/7 Support", desc: "Always here to help" },
                                         { icon: "✓", title: "Expert Guides", desc: "Experienced professionals" },
                                     ].map((item, idx) => (
-                                        <div key={idx} className="!bg-white !border !border-teal-700 !p-6 !rounded-lg !text-center">
+                                        <div key={idx} className="!bg-white !rounded-2xl !p-8 !border-2 !border-dashed !border-amber-400 hover:shadow-xl transition-shadow duration-300 flex flex-col items-center text-center">
                                             <div className="text-xl md:text-3xl !mb-3 !text-teal-700">{item.icon}</div>
                                             <span className="!font-bold !block !mb-2">{item.title}</span>
                                             <p className="!text-md !text-gray-600">{item.desc}</p>
@@ -510,62 +473,83 @@ export default function TourDetailPage() {
                             </div>
                         </div>
 
-                        <div className="!bg-white !p-12">
+                        <div className="!bg-amber-50 !px-8 !pb-16">
                             <div className="!pb-10 !max-w-7xl !mx-auto">
-                                <span className="text-3xl !font-bold !text-center !block !mb-12">Recent Reviews</span>
-                                <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
+                                <span className="text-2xl md:text-4xl font-bold text-center !block !mb-3 text-black">Recent Reviews</span>
+                                <p className="text-center text-amber-800 !mb-12 font-semibold">
+                                    To receive our best monthly deals and travel inspiration.
+                                </p>
+                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                                     {reviews.map((review, idx) => (
                                         <div
                                             key={idx}
-                                            className="!bg-white !border !border-black !rounded-lg !overflow-hidden hover:shadow-lg transition-shadow hover:bg-gray-100"
+                                            className="!bg-white !rounded-2xl !p-8 !border-2 !border-dashed !border-amber-400 hover:shadow-xl transition-shadow duration-300 flex flex-col items-center text-center"
                                         >
-                                            <Image src={review.image || "/placeholder.svg"} alt={review.name} width={500} height={500} className="!w-full !h-50 !object-cover" />
-                                            <div className="!p-4">
-                                                <div className="flex gap-1 !mb-2">
-                                                    {[...Array(review.rating)].map((_, i) => (
-                                                        <Star key={i} size={16} className="fill-yellow-400 text-yellow-400" />
-                                                    ))}
+                                            <div className="!mb-6 relative">
+                                                <div className="w-28 h-28 rounded-full border-4 border-amber-400 overflow-hidden shadow-md">
+                                                    <Image
+                                                        src={review.image || "/placeholder.svg"}
+                                                        alt={review.name}
+                                                        width={500}
+                                                        height={500}
+                                                        className="!w-full !h-full !object-cover"
+                                                    />
                                                 </div>
-                                                <span className="!font-bold !text-md !block !mb-1">{review.name}</span>
-                                                <p className="text-sm text-gray-600 !mb-2">{review.location}</p>
-                                                <p className="text-md text-gray-700">{review.text}</p>
                                             </div>
+                                            <span className="text-2xl font-bold !text-amber-800 !block !mb-3">{review.location}</span>
+                                            <div className="flex gap-1 mb-4 justify-center">
+                                                {[...Array(review.rating)].map((_, i) => (
+                                                    <Star
+                                                        key={i}
+                                                        size={20}
+                                                        className={i < review.rating ? "!fill-amber-400 !text-amber-400" : "!fill-gray-300 !text-gray-300"}
+                                                    />
+                                                ))}
+                                            </div>
+                                            <p className="text-gray-600 mb-4 text-sm leading-relaxed">{review.text}</p>
+                                            <p className="text-amber-900 font-bold text-sm">− {review.name} −</p>
                                         </div>
                                     ))}
                                 </div>
                             </div>
                         </div>
 
-                        <div className="!bg-white !p-12">
-                            <div className="!pb-10 !max-w-7xl !mx-auto">
-                                <span className="!text-3xl !font-bold !text-center !block !mb-12">Why Travel with TravelOne</span>
+                        <div className="!bg-amber-50 !px-8 !pb-16">
+                            <div className="!max-w-7xl !mx-auto">
+                                <span className="text-2xl md:text-4xl font-bold text-center !block !mb-3 text-black">Why Travel with TravelOne</span>
+                                <p className="text-center text-amber-800 !mb-12 font-semibold">
+                                    We are committed to providing you with the best possible experience
+                                </p>
                                 <div className="grid grid-cols-2 md:grid-cols-6 gap-6">
-                                    <div className="!bg-green-50 !border !border-teal-700 !p-6 !rounded-lg !text-center">
+                                    <div className="!bg-white !rounded-2xl !p-8 !border-2 !border-dashed !border-amber-400 hover:shadow-xl transition-shadow duration-300 flex flex-col items-center text-center justify-center">
                                         <span className="!font-semibold">Transparent Planning & Pricing</span>
                                     </div>
-                                    <div className="!bg-green-50 !border !border-teal-700 !p-6 !rounded-lg !text-center">
+                                    <div className="!bg-white !rounded-2xl !p-8 !border-2 !border-dashed !border-amber-400 hover:shadow-xl transition-shadow duration-300 flex flex-col items-center text-center justify-center">
                                         <span className="!font-semibold">Local Experts & On-Ground Support</span>
                                     </div>
-                                    <div className="!bg-green-50 !border !border-teal-700 !p-6 !rounded-lg !text-center">
+                                    <div className="!bg-white !rounded-2xl !p-8 !border-2 !border-dashed !border-amber-400 hover:shadow-xl transition-shadow duration-300 flex flex-col items-center text-center justify-center">
                                         <span className="!font-semibold">Custom Itineraries Based on Your Style</span>
                                     </div>
-                                    <div className="!bg-green-50 !border !border-teal-700 !p-6 !rounded-lg !text-center">
+                                    <div className="!bg-white !rounded-2xl !p-8 !border-2 !border-dashed !border-amber-400 hover:shadow-xl transition-shadow duration-300 flex flex-col items-center text-center justify-center">
                                         <span className="!font-semibold">24x7 Assistance During Travel</span>
                                     </div>
-                                    <div className="!bg-green-50 !border !border-teal-700 !p-6 !rounded-lg !text-center">
+                                    <div className="!bg-white !rounded-2xl !p-8 !border-2 !border-dashed !border-amber-400 hover:shadow-xl transition-shadow duration-300 flex flex-col items-center text-center justify-center">
                                         <span className="!font-semibold">Enhance Trip Experience By 50%</span>
                                     </div>
-                                    <div className="!bg-green-50 !border !border-teal-700 !p-6 !rounded-lg !text-center">
+                                    <div className="!bg-white !rounded-2xl !p-8 !border-2 !border-dashed !border-amber-400 hover:shadow-xl transition-shadow duration-300 flex flex-col items-center text-center justify-center">
                                         <span className="!font-semibold">4.8 Rated by Real Travelers</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="!bg-white !p-12">
-                            <div className="!pb-10 !max-w-7xl !mx-auto">
-                                <span className="text-3xl font-bold text-center !block !mb-12">Trusted By</span>
-                                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 place-items-center">
+                        <div className="!bg-white !p-20">
+                            <div className="!max-w-7xl !mx-auto">
+                                <span className="text-2xl md:text-4xl font-bold text-center !block !mb-3 text-black">Trusted By</span>
+                                <p className="text-center text-amber-800 !mb-12 font-semibold">
+                                    We are trusted by leading tour operators
+                                </p>
+                                <div className="grid grid-cols-1 md:grid-cols-3 !gap-6 !items-center !justify-center place-items-center">
                                     <Image
                                         src="https://ik.imagekit.io/288weifiq/logo/TripAdvisor_Logo.png"
                                         alt="TripAdvisor"
@@ -593,41 +577,15 @@ export default function TourDetailPage() {
                             </div>
                         </div>
 
-                        <div className="!bg-white !p-12">
-                            <div className="!pb-10 !max-w-7xl !mx-auto">
-                                <span className="text-3xl font-bold text-center !block !mb-12">Frequently Asked Questions</span>
-                                <Accordion type="single" collapsible className="!space-y-4 !text-md">
-                                    {[
-                                        {
-                                            q: "What is included in the tour package?",
-                                            a: "All accommodation, meals, guided tours, and entrance fees are included. Personal expenses and tips are not included.",
-                                        },
-                                        {
-                                            q: "What is your cancellation policy?",
-                                            a: "Free cancellation up to 14 days before the tour. 50% refund from 14-7 days, no refund within 7 days.",
-                                        },
-                                        {
-                                            q: "Is travel insurance included?",
-                                            a: "Travel insurance is not included but highly recommended. We can assist with booking.",
-                                        },
-                                        {
-                                            q: "What is the group size?",
-                                            a: "Groups are typically 12-15 people to ensure personalized attention and flexibility.",
-                                        },
-                                    ].map((faq, idx) => (
-                                        <AccordionItem key={idx} value={`item-${idx}`} className="!border !border-black !rounded-lg !px-6">
-                                            <AccordionTrigger className="!p-0 !hover:text-teal-700">{faq.q}</AccordionTrigger>
-                                            <AccordionContent className="!pb-5 !text-gray-600">{faq.a}</AccordionContent>
-                                        </AccordionItem>
-                                    ))}
-                                </Accordion>
-                            </div>
-                        </div>
+                        <FAQsList />
 
-                        <div className="!bg-white !p-12">
-                            <div className="!pb-10 !max-w-7xl !mx-auto">
-                                <span className="text-3xl font-bold text-center !block !mb-12">You May Also Like</span>
-                                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div className="!bg-white !px-8 !p-20">
+                            <div className="!max-w-7xl !mx-auto">
+                                <span className="text-2xl md:text-4xl font-bold text-center !block !mb-3 text-black">You May Also Like</span>
+                                <p className="text-center text-amber-800 !mb-12 font-semibold">
+                                    We are committed to providing you with the best possible experience
+                                </p>
+                                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                                     {tours.map((tour) => (
                                         <TourCard key={tour.id} {...tour} />
                                     ))}
@@ -635,96 +593,83 @@ export default function TourDetailPage() {
                             </div>
                         </div>
 
-                        <div className="!bg-green-100 !py-16 !px-6">
-                            <div className="!pb-10 !max-w-7xl !mx-auto !text-center">
-                                <span className="text-3xl font-bold text-black !block !mb-8">Connect with TravelOne</span>
-                                <div className="flex flex-col items-center">
-                                    <Image
-                                        src="https://travelone.io/assets/img/bella_pic.png"
-                                        alt="Phone"
-                                        width={500}
-                                        height={500}
-                                        className="w-32 h-32 rounded-full bg-gray-100 object-cover mb-6 border-4 border-gray-200"
-                                    />
-                                    <span className="text-2xl font-bold text-gray-900 !block">Louise Berg</span>
-                                    <p className="text-teal-700 font-semibold !mb-6">Destination Expert</p>
-
-                                    <button className="border-1 border-black text-white bg-black hover:bg-white hover:text-black !cursor-pointer px-8 py-2 rounded font-semibold transition-colors">
-                                        Customize Your Trip
-                                    </button>
+                        <div className="!bg-amber-50 !py-20 !px-8">
+                            <div className="!max-w-7xl !mx-auto">
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                                    <div>
+                                        <Image
+                                            src="https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/08/Destination-list-3.jpg"
+                                            alt="Travel Expert"
+                                            width={500}
+                                            height={500}
+                                            className="!w-full !h-full !object-cover !rounded-lg !shadow-lg"
+                                        />
+                                    </div>
+                                    <div className="py-0 md:py-12">
+                                        <div className="text-amber-700 font-semibold text-sm !mb-4 uppercase tracking-wider">Travel Experts</div>
+                                        <span className="text-2xl md:text-4xl font-bold text-black !mb-6 leading-tight">
+                                            Not sure where to start? Speak to a Travel Expert
+                                        </span>
+                                        <p className="text-gray-700 text-lg !mb-8 leading-relaxed">
+                                            Our dedicated Travel Expert will take the time to understand your personal preferences and curate a
+                                            custom travel itinerary that's perfectly suited to you.
+                                        </p>
+                                        <div className="flex items-center gap-4">
+                                            <button className="bg-black hover:bg-black/80 !cursor-pointer text-white px-8 py-3 rounded-lg font-semibold uppercase transition-colors">
+                                                Customize Your Trip
+                                            </button>
+                                            <span className="text-gray-700 font-semibold text-lg">OR CALL +1 437 966 9023</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
-                        {/* <div className="bg-white py-8 px-6 border-b border-gray-200">
-                            <div className="max-w-7xl mx-auto">
-                                <div className="flex items-center justify-center gap-6">
-                                    <span className="text-gray-700 font-medium">Was this page helpful?</span>
-                                    <button className="p-2 hover:text-red-600 transition-colors text-gray-600">
-                                        <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-                                            <path d="M2 10.5a1.5 1.5 0 113 0v-7a1.5 1.5 0 01-3 0v7z" />
-                                            <path d="M6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0115.56 8H12V4a2 2 0 012-2 1 1 0 011 1v.667a4 4 0 01.8 2.4l.814 1.933H14z" />
-                                        </svg>
-                                    </button>
-                                    <button className="p-2 hover:text-red-600 transition-colors text-gray-600">
-                                        <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-                                            <path d="M18 9.5a1.5 1.5 0 11-3 0v-7a1.5 1.5 0 013 0v7z" />
-                                            <path d="M14 10.333v5.43a2 2 0 01-1.106 1.79l-.05.025A4 4 0 0111.057 18H5.641a2 2 0 01-1.962-1.608l-1.2-6A2 2 0 014.44 8H8V4a2 2 0 012-2 1 1 0 011 1v.667a4 4 0 01.8 2.4l.814 1.933H14z" />
-                                        </svg>
-                                    </button>
+                        <div className="!bg-amber-100 !p-6 !border-b !border-gray-200">
+                            <div className="!max-w-7xl !mx-auto">
+                                <div className="flex items-center justify-center gap-5">
+                                    <span className="text-black font-medium">Was this page helpful?</span>
+                                    <ThumbsUp className="h-5 w-5 text-amber-600" />
+                                    <ThumbsDown className="h-5 w-5 text-amber-600" />
                                 </div>
                             </div>
-                        </div> */}
+                        </div>
 
-                        {/* <div className="bg-slate-800 text-white py-16 px-6">
-                            <div className="max-w-2xl mx-auto text-center">
-                                <div className="text-5xl mb-6">🌴</div>
-                                <h2 className="text-4xl font-bold mb-4">We organise unforgettable vacations.</h2>
-                                <p className="text-gray-300 mb-8 text-lg">Subscribe for trending deals.</p>
-
-                                <div className="flex gap-4 max-w-md mx-auto">
-                                    <input
-                                        type="email"
-                                        placeholder="Email Address"
-                                        className="flex-1 px-4 py-3 rounded border border-gray-500 bg-slate-700 text-white placeholder-gray-400 focus:outline-none focus:border-white transition-colors"
-                                    />
-                                    <button className="bg-white hover:bg-gray-100 text-slate-800 px-8 py-3 rounded font-semibold transition-colors">
-                                        Subscribe
-                                    </button>
-                                </div>
-                            </div>
-                        </div> */}
-
-                        {/* {showStickyFooter && (
-                            <div className="fixed bottom-0 left-0 right-0 bg-gray-100 shadow-lg border-t border-gray-300 z-50">
-                                <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+                        {showStickyFooter && (
+                            <div className="hidden md:block fixed bottom-0 left-0 right-0 !bg-gray-100 !shadow-lg !border-t !border-gray-300 !z-[9999]">
+                                <div className="!max-w-7xl !mx-auto !px-6 !py-4 flex !items-center !justify-between">
                                     <div className="flex items-center gap-4">
-                                        <img src="/market-festival-crowd.jpg" alt="Tour" className="w-16 h-16 object-cover rounded" />
-                                        <span className="text-gray-700 font-medium">Call us now on +1 437 966 9023</span>
+                                        <Image
+                                            src={tourImages[0]}
+                                            alt="Logo"
+                                            width={70}
+                                            height={50}
+                                            className="!object-cover !rounded"
+                                        />
+                                        <span className="text-gray-700 text-md font-medium">Call us now on +1 437 966 9023</span>
                                     </div>
 
                                     <div className="flex items-center gap-4">
-                                        <button className="bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded font-semibold transition">
+                                        <button className="bg-[#ef2853] hover:bg-white text-white hover:text-[#ef2853] border border-[#ef2853] px-6 py-2 rounded font-semibold cursor-pointer transition">
                                             Book {selectedPackage.split("-")[0].charAt(0).toUpperCase() + selectedPackage.split("-")[0].slice(1)}{" "}
                                             Star Package
                                         </button>
-                                        <button className="bg-teal-700 hover:bg-teal-800 text-white px-6 py-2 rounded font-semibold transition">
+                                        <button className="bg-white text-black border border-black hover:bg-black hover:text-white px-6 py-2 rounded font-semibold cursor-pointer transition">
                                             Customize Trip
                                         </button>
                                         <button
                                             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-                                            className="ml-4 p-2 bg-white rounded-full shadow hover:shadow-md transition"
+                                            className="ml-4 p-2 bg-amber-500 text-white rounded-full shadow hover:shadow-md cursor-pointer transition"
                                         >
-                                            <ArrowUp size={20} className="text-gray-600" />
+                                            <ArrowUp size={20} className="text-white" />
                                         </button>
                                     </div>
                                 </div>
                             </div>
-                        )} */}
+                        )}
                     </div>
                     <CustomizeTrip open={openCustomizeTripPopup} onOpenChange={setOpenCustomizeTripPopup} />
                     <CommonFooter />
-                    {/* <CommonPlanTripModal open={open} onOpenChange={setOpen} /> */}
                 </>}
             </body>
         </>

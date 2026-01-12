@@ -23,7 +23,7 @@ export function OverviewTabContent({ activeTab }: Props) {
                             "Mt. Fuji, Kyoto, Hiroshima, Tokyo & Osaka",
                         ].map((highlight, idx) => (
                             <li key={idx} className="flex items-start gap-3 text-gray-700">
-                                <span className="text-[#ef2853] font-bold text-lg">✓</span>
+                                <span className="text-amber-700 font-bold text-lg">✓</span>
                                 <span>{highlight}</span>
                             </li>
                         ))}
@@ -50,7 +50,7 @@ export function OverviewTabContent({ activeTab }: Props) {
                                 "5-Star Hotels: Premium experience with finest facilities",
                             ].map((hotel, idx) => (
                                 <li key={idx} className="flex items-start gap-3 text-gray-700">
-                                    <span className="text-[#ef2853] font-bold">✓</span>
+                                    <span className="text-amber-700 font-bold">✓</span>
                                     <span>{hotel}</span>
                                 </li>
                             ))}
@@ -72,7 +72,7 @@ export function OverviewTabContent({ activeTab }: Props) {
                             "Kyoto historic geisha district walk",
                         ].map((activity, idx) => (
                             <li key={idx} className="flex items-start gap-3 text-gray-700">
-                                <span className="text-red-600 font-bold">✓</span>
+                                <span className="text-amber-700 font-bold">✓</span>
                                 <span>{activity}</span>
                             </li>
                         ))}
@@ -95,7 +95,7 @@ export function OverviewTabContent({ activeTab }: Props) {
                                     "Private transportation & Shinkansen",
                                 ].map((item, idx) => (
                                     <li key={idx} className="flex items-start gap-3 text-gray-700">
-                                        <span className="text-red-600 font-bold">✓</span>
+                                        <span className="text-amber-700 font-bold">✓</span>
                                         <span>{item}</span>
                                     </li>
                                 ))}
@@ -111,7 +111,7 @@ export function OverviewTabContent({ activeTab }: Props) {
                                     "Tips and gratuities",
                                 ].map((item, idx) => (
                                     <li key={idx} className="flex items-start gap-3 text-gray-700">
-                                        <span className="text-gray-400">○</span>
+                                        <span className="text-amber-700">○</span>
                                         <span>{item}</span>
                                     </li>
                                 ))}

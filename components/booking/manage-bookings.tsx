@@ -25,7 +25,7 @@ const bookings: Booking[] = [
     {
         id: "1",
         tourName: "Richmond Historic Trolley Tour",
-        image: "/historic-trolley-tour-richmond-vintage-red-trolley.jpg",
+        image: "https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/08/Destination-list-3.jpg",
         bookingNumber: "GYG52539120",
         pin: "a+NcqxYh",
         date: "December 15, 2024",
@@ -38,7 +38,7 @@ const bookings: Booking[] = [
     {
         id: "2",
         tourName: "Ghost Tour of Shockoe Bottom",
-        image: "/ghost-tour-dark-spooky-shockoe-bottom-richmond.jpg",
+        image: "https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/08/Destination-list-4.jpg",
         bookingNumber: "GYG52539121",
         pin: "b+XyzAbc",
         date: "December 20, 2024",
@@ -51,7 +51,7 @@ const bookings: Booking[] = [
     {
         id: "3",
         tourName: "Segway Tour of Richmond Landmarks",
-        image: "/segway-tour-richmond-landmark-historic.jpg",
+        image: "https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/08/Destination-list-7.jpg",
         bookingNumber: "GYG52539115",
         pin: "c+DefGhi",
         date: "November 5, 2024",
@@ -64,7 +64,7 @@ const bookings: Booking[] = [
     {
         id: "4",
         tourName: "Richmond City Sightseeing Van Tour",
-        image: "/sightseeing-tour-van-richmond-virginia-city.jpg",
+        image: "https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/08/Destination-list-8.jpg",
         bookingNumber: "GYG52539110",
         pin: "d+JklMno",
         date: "October 28, 2024",
@@ -101,18 +101,21 @@ const statusConfig = {
 }
 
 export function ManageBookings() {
-    const [activeTab, setActiveTab] = useState<"all" | BookingStatus>("all")
-    const [searchQuery, setSearchQuery] = useState("")
-    const [openDropdown, setOpenDropdown] = useState<string | null>(null)
+    // Define state
+    const [activeTab, setActiveTab] = useState<"all" | BookingStatus>("all");
+    const [searchQuery, setSearchQuery] = useState("");
+    const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
+    // Filter bookings
     const filteredBookings = bookings.filter((booking) => {
-        const matchesTab = activeTab === "all" || booking.status === activeTab
+        const matchesTab = activeTab === "all" || booking.status === activeTab;
         const matchesSearch =
             booking.tourName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            booking.bookingNumber.toLowerCase().includes(searchQuery.toLowerCase())
-        return matchesTab && matchesSearch
+            booking.bookingNumber.toLowerCase().includes(searchQuery.toLowerCase());
+        return matchesTab && matchesSearch;
     })
 
+    // Tabs
     const tabs = [
         { id: "all" as const, label: "All Bookings", count: bookings.length },
         { id: "upcoming" as const, label: "Upcoming", count: bookings.filter((b) => b.status === "upcoming").length },
@@ -123,16 +126,8 @@ export function ManageBookings() {
     return (
         <section className="py-8 md:py-12 px-4 md:px-8">
             <div className="max-w-7xl mx-auto px-4 md:px-8">
-                {/* Page Header */}
-                <div className="mb-8">
-                    <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">Manage Bookings</h1>
-                    <p className="text-gray-600">View and manage all your travel bookings in one place.</p>
-                </div>
-
-                {/* Search and Filter Bar */}
                 <div className="bg-white border border-gray-200 rounded-lg p-4 mb-6">
                     <div className="flex flex-col md:flex-row gap-4">
-                        {/* Search Input */}
                         <div className="relative flex-1">
                             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
                             <input
@@ -140,20 +135,18 @@ export function ManageBookings() {
                                 placeholder="Search by tour name or booking number..."
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
-                                className="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#f53] focus:border-transparent text-sm"
+                                className="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-amber-500 focus:border-transparent text-sm"
                             />
                         </div>
                     </div>
                 </div>
-
-                {/* Tabs */}
-                <div className="flex gap-2 mb-6 overflow-x-auto pb-2">
+                <div className="flex gap-2 !mb-6 overflow-x-auto !pb-2">
                     {tabs.map((tab) => (
                         <button
                             key={tab.id}
                             onClick={() => setActiveTab(tab.id)}
                             className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors ${activeTab === tab.id
-                                    ? "bg-[#f53] text-white"
+                                    ? "bg-amber-500 text-white"
                                     : "bg-white border border-gray-300 text-gray-700 hover:bg-gray-50"
                                 }`}
                         >
@@ -172,7 +165,7 @@ export function ManageBookings() {
                         </p>
                         <Link
                             href="/tours"
-                            className="inline-flex items-center px-6 py-3 bg-[#f53] text-white rounded-full font-medium hover:bg-[#158a9c] transition-colors"
+                            className="inline-flex items-center px-6 py-3 bg-amber-500 text-white rounded-full font-medium hover:bg-[#158a9c] transition-colors"
                         >
                             Explore Tours
                         </Link>
@@ -180,48 +173,42 @@ export function ManageBookings() {
                 ) : (
                     <div className="space-y-4">
                         {filteredBookings.map((booking) => {
-                            const status = statusConfig[booking.status]
-                            const StatusIcon = status.icon
+                            const status = statusConfig[booking.status];
+                            const StatusIcon = status.icon;
 
                             return (
                                 <div
                                     key={booking.id}
-                                    className={`bg-white border rounded-lg overflow-hidden ${booking.status === "cancelled" ? "opacity-75" : ""
+                                    className={`!bg-white !border !border-gray-200 !mb-5 !rounded-lg overflow-hidden ${booking.status === "cancelled" ? "opacity-75" : ""
                                         }`}
                                 >
-                                    <div className="p-4 md:p-6">
+                                    <div className="!p-6">
                                         <div className="flex flex-col md:flex-row gap-4">
-                                            {/* Tour Image */}
                                             <div className="flex-shrink-0">
                                                 <Image
                                                     src={booking.image || "/placeholder.svg"}
                                                     alt={booking.tourName}
-                                                    width={120}
-                                                    height={120}
-                                                    className="w-full md:w-28 h-40 md:h-28 object-cover rounded-lg"
+                                                    width={300}
+                                                    height={300}
+                                                    className="w-full h-full object-cover rounded-lg"
                                                 />
                                             </div>
-
-                                            {/* Booking Info */}
                                             <div className="flex-1 min-w-0">
-                                                <div className="flex flex-col md:flex-row md:items-start justify-between gap-3 mb-3">
+                                                <div className="flex flex-col md:flex-row md:items-start justify-between gap-3 !mb-3">
                                                     <div>
-                                                        <h2 className="font-semibold text-gray-900 text-lg mb-1">{booking.tourName}</h2>
-                                                        {/* Status Badge */}
+                                                        <span className="font-semibold text-gray-900 text-lg !block !mb-1">{booking.tourName}</span>
                                                         <div
-                                                            className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium ${status.bgColor} ${status.textColor}`}
+                                                            className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium !${status.bgColor} !${status.textColor}`}
                                                         >
                                                             <StatusIcon className="w-3.5 h-3.5" />
                                                             {status.label}
                                                         </div>
                                                     </div>
                                                     <div className="text-right">
-                                                        <span className="font-semibold text-gray-900 text-lg">{booking.price}</span>
+                                                        <span className="font-semibold !text-gray-900 text-lg">{booking.price}</span>
                                                     </div>
                                                 </div>
-
-                                                {/* Booking Details Grid */}
-                                                <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm text-gray-600 mb-4">
+                                                <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm text-gray-600 !mb-4">
                                                     <div className="flex items-center gap-2">
                                                         <Calendar className="w-4 h-4 text-gray-400" />
                                                         <span>
@@ -239,19 +226,17 @@ export function ManageBookings() {
                                                         Travelers: <span className="font-medium text-gray-700">{booking.travelers}</span>
                                                     </div>
                                                 </div>
-
-                                                {/* Action Buttons */}
-                                                <div className="flex flex-wrap items-center gap-3 pt-3 border-t border-gray-100">
+                                                <div className="flex flex-wrap items-center gap-3 !pt-3 !border-t !border-gray-100">
                                                     <Link
-                                                        href={`/booking-confirmation`}
-                                                        className="text-sm font-medium text-[#f53] hover:underline"
+                                                        href="#"
+                                                        className="text-sm font-medium text-amber-500 hover:underline"
                                                     >
                                                         View details
                                                     </Link>
                                                     {booking.status === "upcoming" && (
                                                         <>
                                                             <span className="text-gray-300">|</span>
-                                                            <button className="text-sm font-medium text-[#f53] hover:underline flex items-center gap-1.5">
+                                                            <button className="text-sm font-medium !text-amber-500 hover:underline flex items-center gap-1.5">
                                                                 <Printer className="w-4 h-4" />
                                                                 Print voucher
                                                             </button>
@@ -268,11 +253,11 @@ export function ManageBookings() {
                                                     {booking.status === "completed" && (
                                                         <>
                                                             <span className="text-gray-300">|</span>
-                                                            <Link href="#" className="text-sm font-medium text-[#f53] hover:underline">
+                                                            <Link href="#" className="text-sm font-medium text-amber-500 hover:underline">
                                                                 Write a review
                                                             </Link>
                                                             <span className="text-gray-300">|</span>
-                                                            <Link href="#" className="text-sm font-medium text-[#f53] hover:underline">
+                                                            <Link href="#" className="text-sm font-medium text-amber-500 hover:underline">
                                                                 Book again
                                                             </Link>
                                                         </>
@@ -280,7 +265,7 @@ export function ManageBookings() {
                                                     {booking.status === "cancelled" && (
                                                         <>
                                                             <span className="text-gray-300">|</span>
-                                                            <Link href="#" className="text-sm font-medium text-[#f53] hover:underline">
+                                                            <Link href="#" className="text-sm font-medium text-amber-500 hover:underline">
                                                                 Book again
                                                             </Link>
                                                         </>
@@ -294,20 +279,18 @@ export function ManageBookings() {
                         })}
                     </div>
                 )}
-
-                {/* Help Section */}
-                <div className="mt-8 bg-blue-50 border border-blue-100 rounded-lg p-4 md:p-6">
+                <div className="!mt-8 !bg-amber-50 !border !border-amber-200 !rounded-lg !p-5">
                     <div className="flex gap-4">
-                        <AlertCircle className="w-6 h-6 text-blue-600 flex-shrink-0" />
+                        <AlertCircle className="w-6 h-6 text-amber-600 flex-shrink-0" />
                         <div>
-                            <h3 className="font-semibold text-gray-900 mb-1">Need help with a booking?</h3>
-                            <p className="text-sm text-gray-600">
+                            <span className="font-semibold text-gray-900 !block !mb-1">Need help with a booking?</span>
+                            <span className="!text-sm !text-gray-600">
                                 If you have any questions or need assistance with your bookings, visit our{" "}
-                                <Link href="#" className="text-[#f53] hover:underline font-medium">
+                                <Link href="#" className="text-amber-500 hover:underline font-medium">
                                     help center
                                 </Link>{" "}
                                 or contact our customer support team.
-                            </p>
+                            </span>
                         </div>
                     </div>
                 </div>

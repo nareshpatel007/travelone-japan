@@ -5,15 +5,16 @@ import CommonMobileHeader from "@/components/header/common-mobile-header";
 import CommonFooter from "@/components/footer/common-footer";
 import CommonTopHeader from "@/components/header/common-top-header";
 import { useEffect, useState } from "react";
+import { MapPin, Phone, Mail, Clock, Send, MessageSquare, HelpCircle, FileText } from "lucide-react";
+import Link from "next/link";
 import Heading from "@/components/common/heading";
-import { TourFilters } from "@/components/tours/tour-filters";
-import { TourListingGrid } from "@/components/tours/tour-listing-grid";
-import { Pagination } from "@/components/tours/pagination";
+import { BlogList } from "@/components/blog/listing";
+import { BlogDetail } from "@/components/blog/detail";
 
-export default function CartPage() {
+export default function BlogPage() {
     // Define state
     const [ready, setReady] = useState(false);
-
+    
     useEffect(() => {
         // Wait one frame after hydration
         requestAnimationFrame(() => {
@@ -28,14 +29,14 @@ export default function CartPage() {
                     <CommonTopHeader />
                     <CommonHeader />
                     <CommonMobileHeader />
+
                     <div className="!pb-10 !max-w-7xl !mx-auto">
-                        <Heading main="Product Listing" marginBottom="0" />
+                        <Heading main="Travel Blog" sub="Discover travel tips, destination guides, and inspiring stories" />
                         <main className="!mx-auto !max-w-7xl !px-4 sm:px-6 !mb-10 lg:px-8">
-                            <TourFilters />
-                            <TourListingGrid />
-                            <Pagination />
+                            <BlogDetail />
                         </main>
                     </div>
+
                     <CommonFooter />
                 </>}
             </body>

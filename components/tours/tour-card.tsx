@@ -1,4 +1,5 @@
 import { Compass, Footprints, Heart, MoveRight, Star } from "lucide-react"
+import Image from "next/image"
 import Link from "next/link"
 
 interface TourCardProps {
@@ -29,48 +30,36 @@ export function TourCard({
     extraInfo,
 }: TourCardProps) {
     return (
-        <div className="group !border !border-border !rounded-lg">
-            <Link href="/tour-details">
-                <div className="relative rounded-xl overflow-hidden mb-2 md:mb-3 !p-2">
-                    <img
+        <div className="group !border !border-border !rounded-xl !border !border-amber-200 !bg-amber-50 !transition-all !duration-300 !overflow-hidden">
+            <Link href="/tours/tour-details">
+                <div className="relative h-60 overflow-hidden">
+                    <Image
                         src={image || "/placeholder.svg"}
                         alt={title}
-                        className="w-full h-36 sm:h-44 md:h-60 !rounded-lg object-cover hover:scale-105 transition-transform duration-300"
+                        fill
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     />
-                    <button className="absolute top-2 md:top-3 right-2 md:right-3 p-1.5 md:p-2 bg-white/90 backdrop-blur-sm rounded-full hover:bg-white transition-colors">
-                        <Heart className="h-4 w-4 md:h-5 md:w-5 text-gray-600 hover:text-[#ef2853] hover:fill-current cursor-pointer" />
-                    </button>
                 </div>
-            </Link>
-            <div className="space-y-1 md:space-y-1.5 !p-2">
-                <Link href="/tours/tour-details">
-                    <span className="!block !w-full text-sm md:text-base !font-semibold !text-black !line-clamp-2 !hover:underline !leading-snug">{title}</span>
-                </Link>
-
-                <div className="!flex gap-3">
-                    <p className="flex gap-1 items-center text-xs md:text-sm text-gray-500">
-                        <Footprints className="h-4 w-4" /> 16 Places
-                    </p>
-                    <p className="flex gap-1 items-center text-xs md:text-sm text-gray-500">|</p>
-                    <p className="flex gap-1 items-center text-xs md:text-sm text-gray-500">
-                        <Compass className="h-4 w-4" /> 6 Cities
-                    </p>
-                </div>
-
-                <div className="!flex gap-3">
-                    <p className="items-center text-xs md:text-sm text-gray-500">
+                <div className="!p-6">
+                    <div className="flex justify-between items-start !mb-3">
+                        <span className="text-xl font-semibold text-gray-900 !block !flex-1">{title}</span>
+                        <span className="text-xl font-bold text-amber-700 !block !ml-4">{price}</span>
+                    </div>
+                    <div className="!flex items-center gap-2 !mb-3">
+                        <div className="flex items-center gap-1">
+                            <Footprints size={16} className="text-amber-400" />
+                            <span className="font-bold text-sm text-gray-900">16 Places</span>
+                        </div>
+                        <div className="flex items-center gap-1">
+                            <Compass size={16} className="text-amber-400" />
+                            <span className="font-bold text-sm text-gray-900">8 Cities</span>
+                        </div>
+                    </div>
+                    <p className="text-gray-600 text-sm leading-relaxed">
                         Kyoto (3 Nights) <MoveRight className="h-4 w-4 inline-flex items-center" /> Nara (1 Night) <MoveRight className="h-4 w-4 inline-flex items-center" /> Osaka (1 Night)
                     </p>
                 </div>
-            </div>
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between !border-t !p-2">
-                <div className="flex items-center gap-1"></div>
-                <div className="text-center sm:text-right">
-                    <span className="text-[10px] md:text-sm text-gray-500 !mr-1">From </span>
-                    <span className="font-bold text-sm md:text-lg text-gray-900">{price}</span>
-                    <span className="text-[10px] md:text-sm text-gray-500 !mr-1"> / person</span>
-                </div>
-            </div>
+            </Link>
         </div>
     )
 }

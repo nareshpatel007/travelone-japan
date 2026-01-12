@@ -28,6 +28,11 @@ export default function NavigationMenu() {
                     <span className="qodef-menu-item-text">Blog</span>
                 </Link>
             </li>
+            <li className="menu-item menu-item-type-custom menu-item-object-custom">
+                <Link href="/booking">
+                    <span className="qodef-menu-item-text">Booking</span>
+                </Link>
+            </li>
         </ul>
     );
 }

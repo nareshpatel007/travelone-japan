@@ -18,11 +18,11 @@ export function ItineraryTab({ itineraryData, device = "desktop" }: Props) {
                         {itineraryData.map((dayData: any) => (
                             <div className={`!flex ${(device === "mobile") ? '!gap-3' : '!gap-6'}`}>
                                 <div className="!flex-shrink-0 !relative">
-                                    <div className={`${(device === "mobile") ? '!w-8 !h-8' : '!w-12 !h-12'} !rounded-full !bg-teal-700 !text-white !flex !items-center !justify-center !font-bold !text-md`}>
+                                    <div className={`${(device === "mobile") ? '!w-8 !h-8' : '!w-12 !h-12'} !rounded-full !bg-amber-500 !text-white !flex !items-center !justify-center !font-bold !text-md`}>
                                         {dayData.day}
                                     </div>
                                 </div>
-                                <div className="!flex-1 !bg-white !border-2 !border-teal-700 !rounded-lg !p-6 !mb-4">
+                                <div className="!flex-1 !bg-white !border-2 !border-amber-500 !rounded-lg !p-6 !mb-4">
                                     <span className="!text-lg !font-bold !text-gray-900 !mb-3 !block !uppercase">
                                         Day {dayData.day}: {dayData.title}
                                     </span>
@@ -31,7 +31,7 @@ export function ItineraryTab({ itineraryData, device = "desktop" }: Props) {
 
                                     {dayData.activities.length > 0 && (
                                         <div className="!mb-6">
-                                            <span className="!text-[#ef2853] !font-bold !block !mb-4">Activities:</span>
+                                            <span className="!text-amber-700 !font-bold !block !mb-4">Activities:</span>
                                             <div className="grid grid-cols-2 gap-4 mb-6">
                                                 {dayData.activities.map((activity: any, actIdx: number) => (
                                                     <div key={actIdx} className="flex flex-col">
@@ -55,7 +55,7 @@ export function ItineraryTab({ itineraryData, device = "desktop" }: Props) {
                                     {/* Meals */}
                                     {dayData.meals && (
                                         <div className="!border-t !border-gray-200 !pt-4 !mb-4">
-                                            <span className="!text-[#ef2853] !font-bold !mb-2">Meals:</span>
+                                            <span className="!text-amber-700 !font-bold !mb-2">Meals:</span>
                                             <p className={`!text-gray-700 ${(device === 'mobile' ? '!text-sm' : '!text-md')}`}>Lunch {dayData.meals.lunch}</p>
                                             <p className={`!text-gray-700 ${(device === 'mobile' ? '!text-sm' : '!text-md')}`}>Dinner {dayData.meals.dinner}</p>
                                         </div>
