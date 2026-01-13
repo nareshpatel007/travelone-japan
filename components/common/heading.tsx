@@ -5,11 +5,11 @@ interface Props {
     marginBottom?: string;
 }
 
-export default function Heading({ main, sub, marginBottom = '16' }: Props) {
+export default function Heading({ main, sub }: Props) {
     return (
-        <div className={`text-center space-y-2 mb-0 md:mb-${marginBottom}`}>
-            <h2 className="font-serif text-5xl font-light">{main}</h2>
-            {sub && <p className="qodef-m-text">{sub}</p>}
+        <div className="text-center space-y-2 mt-5 mb-2 md:mb-5">
+            <span className="text-3xl md:text-4xl font-bold text-gray-900 block">{main}</span>
+            <p className="text-gray-600 max-w-2xl mt-4 mx-auto">{sub}</p>
         </div>
     );
 }

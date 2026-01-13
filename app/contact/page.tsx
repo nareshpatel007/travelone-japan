@@ -7,6 +7,7 @@ import CommonTopHeader from "@/components/header/common-top-header";
 import { useEffect, useState } from "react";
 import { MapPin, Phone, Mail, Clock, Send, MessageSquare, HelpCircle, FileText } from "lucide-react";
 import Link from "next/link";
+import Heading from "@/components/common/heading";
 
 const contactInfo = [
     {
@@ -92,15 +93,9 @@ export default function ContactUsPage() {
                     <CommonHeader />
                     <CommonMobileHeader />
 
-                    <div className="!py-12 !px-8">
-                        <div className="!max-w-7xl !mx-auto">
-                            <div className="!text-center !mb-10">
-                                <span className="text-3xl md:text-4xl font-bold text-gray-900 !block !mb-4">Contact Us</span>
-                                <p className="text-gray-600 !max-w-2xl !mx-auto">
-                                    Have questions about your booking or need assistance? We're here to help. Reach out to us through any of the
-                                    channels below.
-                                </p>
-                            </div>
+                    <div className="!pb-10 !max-w-7xl !mx-auto">
+                        <Heading main="Contact Us" sub="Have questions about your booking or need assistance? We're here to help. Reach out to us through any of the channels below." />
+                        <main className="mx-auto max-w-7xl p-5 md:p-6">
                             <div className="grid md:grid-cols-3 gap-4 !mb-10">
                                 {quickLinks.map((item) => (
                                     <div
@@ -255,7 +250,7 @@ export default function ContactUsPage() {
                                     ))}
                                 </div>
                             </div>
-                        </div>
+                        </main>
                     </div>
 
                     <CommonFooter />

@@ -131,12 +131,10 @@ const tours = [
 
 export function TourListingGrid() {
     return (
-        <div className="!max-w-7xl !mx-auto px-4 md:px-8 py-6 md:py-8 !mb-15">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-6">
-                {tours.map((tour) => (
-                    <TourCard key={tour.id} {...tour} />
-                ))}
-            </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-6">
+            {tours.map((tour) => (
+                <TourCard key={tour.id} {...tour} />
+            ))}
         </div>
     )
 }

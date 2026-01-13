@@ -29,8 +29,8 @@ export default function CartPage() {
                     <CommonHeader />
                     <CommonMobileHeader />
                     <div className="!pb-10 !max-w-7xl !mx-auto">
-                        <Heading main="Product Listing" marginBottom="0" />
-                        <main className="!mx-auto !max-w-7xl !px-4 sm:px-6 !mb-10 lg:px-8">
+                        <Heading main="Product Listing" />
+                        <main className="mx-auto max-w-7xl p-5 md:p-6">
                             <TourFilters />
                             <TourListingGrid />
                             <Pagination />

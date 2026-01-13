@@ -40,7 +40,7 @@ export function TourCard({
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     />
                     <div className="absolute top-2 md:top-3 left-2 md:left-3 flex items-center gap-1 md:gap-1.5 !bg-white !px-4 !py-1 !rounded-full">
-                        <span className="text-[10px] md:text-xs text-gray-700 font-medium hidden sm:inline">Free Cancellation</span>
+                        <span className="text-sm md:text-xs text-gray-700 font-medium hidden inline">Free Cancellation</span>
                     </div>
                 </div>
                 <div className="!py-6 !space-y-3 !text-center">

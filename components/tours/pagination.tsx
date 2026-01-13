@@ -9,7 +9,7 @@ export function Pagination() {
     const totalPages = 8;
 
     return (
-        <div className="max-w-7xl mx-auto px-4 md:px-8 py-6 md:py-8 flex items-center justify-center gap-1 md:gap-2">
+        <div className="flex items-center justify-center gap-1 md:gap-2">
             <button
                 onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
                 disabled={currentPage === 1}

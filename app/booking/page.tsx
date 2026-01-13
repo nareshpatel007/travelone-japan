@@ -29,12 +29,14 @@ export default function CartPage() {
                     <CommonTopHeader />
                     <CommonHeader />
                     <CommonMobileHeader />
+
                     <div className="!pb-10 !max-w-7xl !mx-auto">
-                        <Heading main="My Bookings" sub="View and manage all your travel bookings in one place." marginBottom="0" />
-                        <main className="!mx-auto !max-w-7xl !px-4 sm:px-6 !mb-10 lg:px-8">
+                        <Heading main="My Bookings" sub="View and manage all your travel bookings in one place." />
+                        <main className="mx-auto max-w-7xl p-5 md:p-6">
                             <ManageBookings />
                         </main>
                     </div>
+
                     <CommonFooter />
                 </>}
             </body>
