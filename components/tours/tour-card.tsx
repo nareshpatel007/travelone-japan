@@ -30,34 +30,37 @@ export function TourCard({
     extraInfo,
 }: TourCardProps) {
     return (
-        <div className="group !border !border-border !rounded-xl !border !border-[#C46A3A] !bg-amber-50 !transition-all !duration-300 !overflow-hidden">
+        <div className="group !transition-all !duration-300 !overflow-hidden">
             <Link href="/tours/tour-details">
-                <div className="relative h-60 overflow-hidden">
+                <div className="relative h-80 overflow-hidden">
                     <Image
                         src={image || "/placeholder.svg"}
                         alt={title}
                         fill
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     />
+                    <div className="absolute top-2 md:top-3 left-2 md:left-3 flex items-center gap-1 md:gap-1.5 !bg-white !px-4 !py-1 !rounded-full">
+                        <span className="text-[10px] md:text-xs text-gray-700 font-medium hidden sm:inline">Free Cancellation</span>
+                    </div>
                 </div>
-                <div className="!p-6">
-                    <div className="flex justify-between items-start !mb-3">
-                        <span className="text-md md:text-xl font-semibold text-gray-900 !block !flex-1">{title}</span>
-                        <span className="text-md md:text-xl font-bold text-[#C46A3A] !block !ml-4">{price}</span>
-                    </div>
-                    <div className="!flex items-center gap-2 !mb-3">
-                        <div className="flex items-center gap-1">
-                            <Footprints size={16} className="text-[#C46A3A]" />
-                            <span className="font-bold text-sm text-gray-900">16 Places</span>
-                        </div>
-                        <div className="flex items-center gap-1">
-                            <Compass size={16} className="text-[#C46A3A]" />
-                            <span className="font-bold text-sm text-gray-900">8 Cities</span>
-                        </div>
-                    </div>
-                    <p className="text-gray-600 text-sm leading-relaxed">
+                <div className="!py-6 !space-y-3 !text-center">
+                    <span className="text-gray-900 text-sm !block">
                         Kyoto (3 Nights) <MoveRight className="h-4 w-4 inline-flex items-center" /> Nara (1 Night) <MoveRight className="h-4 w-4 inline-flex items-center" /> Osaka (1 Night)
-                    </p>
+                    </span>
+                    <span className="text-lg md:text-2xl font-strong text-gray-900 !block !flex-1">{title}</span>
+                    <div className="!flex !items-center !justify-center !mb-3">
+                        <span className="text-md md:text-sm font-bold text-[#385b21] !bg-[#d4e9e7] !px-5 !py-1.5 !block !ml-4">{price}</span>
+                    </div>
+                    {/* <div className="!flex !items-center !justify-center gap-2 !mb-3">
+                        <div className="flex items-center gap-1">
+                            <Footprints size={16} className="text-amber-600" />
+                            <span className="font-normal text-sm text-gray-900">16 Places</span>
+                        </div>
+                        <div className="flex items-center gap-1">
+                            <Compass size={16} className="text-amber-600" />
+                            <span className="font-normal text-sm text-gray-900">8 Cities</span>
+                        </div>
+                    </div> */}
                 </div>
             </Link>
         </div>
