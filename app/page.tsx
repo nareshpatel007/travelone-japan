@@ -437,8 +437,7 @@ export default function HomePage() {
                                 role="main">
                                 <div className="qodef-grid-inner">
                                     <div className="qodef-grid-item qodef-page-content-section qodef-col--content">
-                                        <div data-elementor-type="wp-page" data-elementor-id="3060"
-                                            className="elementor elementor-3060">
+                                        <div className="elementor elementor-3060">
                                             <LandingMarqueeSection setOpenPlanYourTripModel={setOpenPlanYourTripModel} />
 
                                             <section className="!py-20 bg-white">
@@ -456,7 +455,7 @@ export default function HomePage() {
                                                                 />
                                                             </div>
                                                             <div className="text-center">
-                                                                <h3 className="font-serif text-xl font-light mb-3 leading-tight">Sample Tour Title</h3>
+                                                                <h3 className="text-xl font-light mb-3 leading-tight">Sample Tour Title</h3>
                                                             </div>
                                                         </div>
                                                         <div className="flex flex-col">
@@ -469,7 +468,7 @@ export default function HomePage() {
                                                                 />
                                                             </div>
                                                             <div className="text-center">
-                                                                <h3 className="font-serif text-xl font-light mb-3 leading-tight">Sample Tour Title</h3>
+                                                                <h3 className="text-xl font-light mb-3 leading-tight">Sample Tour Title</h3>
                                                             </div>
                                                         </div>
                                                         <div className="flex flex-col">
@@ -482,7 +481,7 @@ export default function HomePage() {
                                                                 />
                                                             </div>
                                                             <div className="text-center">
-                                                                <h3 className="font-serif text-xl font-light mb-3 leading-tight">Sample Tour Title</h3>
+                                                                <h3 className="text-xl font-light mb-3 leading-tight">Sample Tour Title</h3>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -504,8 +503,8 @@ export default function HomePage() {
                                                                 />
                                                                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors" />
                                                                 <div className="absolute inset-0 flex items-center justify-center">
-                                                                    <div className="bg-white px-8 py-3 rounded">
-                                                                        <h3 className="!text-md !md:text-xl !text-white">{category.label}</h3>
+                                                                    <div className="bg-white px-5 py-2 rounded">
+                                                                        <h3 className="text-md md:text-xl text-black">{category.label}</h3>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -517,8 +516,7 @@ export default function HomePage() {
                                             <section className="!pb-20 bg-white">
                                                 <div className="!max-w-7xl !mx-auto !px-8">
                                                     <Heading main="Top Cities" sub="Lorem ipsum dolor sit amet cons ectetur adipi." />
-
-                                                    <div className="grid grid-cols-2 md:grid-cols-6 gap-6">
+                                                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
                                                         {cities.map((destination, index) => (
                                                             <div key={index} className="relative h-48 md:h-64 rounded-lg overflow-hidden group cursor-pointer">
                                                                 <Image
@@ -543,7 +541,7 @@ export default function HomePage() {
                                             <section className="!pb-20 bg-white">
                                                 <div className="!max-w-7xl !mx-auto !px-8">
                                                     <Heading main="Favourite Destinations" sub="Vestibulum id neque varius, loreet nisi ut, pharetra metus." />
-                                                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-6">
+                                                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
                                                         {populorDestination.map((destination, index) => (
                                                             <div key={index} className="flex-shrink-0 flex flex-col items-center">
                                                                 <div className="w-40 h-40 rounded-full overflow-hidden mb-4 flex-shrink-0">
@@ -564,17 +562,15 @@ export default function HomePage() {
 
                                             <section className="!py-14 !bg-[#fff9ee] px-4 sm:px-6 lg:py-20">
                                                 <div className="!max-w-7xl !mx-auto !px-4 !md:px-8">
-                                                    <Heading
-                                                        main="Top Travel Spots"
-                                                        sub="Top Travel Spots: Our Recommended Destinations A Click Away"
+                                                    <Heading main="Top Travel Spots" sub="Top Travel Spots: Our Recommended Destinations A Click Away"
                                                     />
                                                     <div className="mt-10 grid grid-cols-1 lg:grid-cols-10 gap-4 min-h-[380px]">
-                                                        <div className="relative col-span-1 lg:col-span-7 !h-[240px] overflow-hidden">
+                                                        <div className="relative col-span-1 lg:col-span-7 md:h-full overflow-hidden">
                                                             <Image
                                                                 src="https://ik.imagekit.io/288weifiq/landing-japan/home3-img-1.webp"
                                                                 alt="Featured travel destination"
                                                                 fill
-                                                                className="object-cover"
+                                                                className="w-full h-full object-cover"
                                                                 priority
                                                             />
                                                         </div>
@@ -855,9 +851,7 @@ export default function HomePage() {
                                                                 "url('https://ik.imagekit.io/288weifiq/landing-japan/Landing-marquee-img-9.png')",
                                                         }}
                                                     />
-
-                                                    {/* Content */}
-                                                    <div className="relative z-10 flex flex-col items-center text-center px-4  pt-40 pb-56">
+                                                    <div className="relative z-10 flex flex-col items-center text-center">
                                                         <h2 className="text-3xl md:text-5xl font-normal leading-tight !mb-4">
                                                             Every Travel Story’s <br /> Favorite Destination
                                                         </h2>
@@ -893,9 +887,9 @@ export default function HomePage() {
                                     borderBottomRightRadius: "12px",
                                 }}
                             >
-                                <div className="!absolute !top-16 !right-10 !translate-x-1/2 !-translate-y-1/2 !z-50">
+                                <div className="!absolute !top-16 !right-10 !translate-x-1/2 !-translate-y-1/2 !z-50 cursor-pointer">
                                     <svg
-                                        className="!absolute !inset-0 !w-10 !h-10 !cursor-pointer"
+                                        className="absolute inset-0 w-10 h-10 cursor-pointer"
                                         xmlns="http://www.w3.org/2000/svg"
                                         viewBox="0 0 110 110"
                                         fill="#a6c5a9"
@@ -905,7 +899,7 @@ export default function HomePage() {
 
                                     <button
                                         aria-label="Close"
-                                        className="relative w-10 h-10 flex items-center justify-center text-white text-sm font-semibold"
+                                        className="relative w-10 h-10 flex items-center justify-center text-white text-sm font-semibold  cursor-pointer"
                                         onClick={() => {
                                             setOpenPlanYourTripModel(false);
                                             setPlanYourTripForm(defaultFormData);
@@ -933,7 +927,7 @@ export default function HomePage() {
                                         {step > 0 && !formLoader && (
                                             <button
                                                 onClick={() => setStep(step - 1)}
-                                                className="flex items-center gap-2 px-4 py-2 text-sm md:text-md uppercase rounded-sm bg-black text-white hover:bg-black/90"
+                                                className="flex items-center gap-2 px-4 py-2 text-sm md:text-md uppercase rounded-sm bg-black text-white cursor-pointer hover:bg-black/90"
                                             >
                                                 <MoveLeft className="h-4 w-4" />
                                                 Previous
@@ -944,7 +938,7 @@ export default function HomePage() {
                                             <button
                                                 disabled={formLoader}
                                                 onClick={handleNextStep}
-                                                className="flex items-center gap-2 px-4 py-2 text-sm md:text-md uppercase rounded-sm bg-black text-white hover:bg-black/90"
+                                                className="flex items-center gap-2 px-4 py-2 text-sm md:text-md uppercase rounded-sm bg-black text-white cursor-pointer hover:bg-black/90"
                                             >
                                                 Next
                                                 {formLoader ? (
@@ -959,7 +953,7 @@ export default function HomePage() {
                                             <button
                                                 disabled={formLoader}
                                                 onClick={handlSubmitPlanYourTrip}
-                                                className="flex items-center gap-2 px-4 py-2 text-sm md:text-md uppercase rounded-sm bg-black text-white hover:bg-black/90"
+                                                className="flex items-center gap-2 px-4 py-2 text-sm md:text-md uppercase rounded-sm bg-black text-white cursor-pointer hover:bg-black/90"
                                             >
                                                 {formLoader ? (
                                                     <Loader2 className="h-4 w-4 animate-spin" />
