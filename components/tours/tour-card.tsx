@@ -44,12 +44,12 @@ export function TourCard({
                     </div>
                 </div>
                 <div className="!py-6 !space-y-3 !text-center">
-                    <span className="text-gray-900 text-sm !block">
+                    <span className="text-gray-900 text-xs !block">
                         Kyoto (3 Nights) <MoveRight className="h-4 w-4 inline-flex items-center" /> Nara (1 Night) <MoveRight className="h-4 w-4 inline-flex items-center" /> Osaka (1 Night)
                     </span>
-                    <span className="text-lg md:text-2xl font-strong text-gray-900 !block !flex-1">{title}</span>
+                    <span className="text-xl md:text-2xl font-strong text-gray-900 !block !flex-1">{title}</span>
                     <div className="!flex !items-center !justify-center !mb-3">
-                        <span className="text-md md:text-sm font-bold text-[#385b21] !bg-[#d4e9e7] !px-5 !py-1.5 !block !ml-4">{price}</span>
+                        <span className="text-xs md:text-sm font-semibold text-[#385b21] !bg-[#d4e9e7] !px-5 !py-1.5 !block">{price}</span>
                     </div>
                     {/* <div className="!flex !items-center !justify-center gap-2 !mb-3">
                         <div className="flex items-center gap-1">

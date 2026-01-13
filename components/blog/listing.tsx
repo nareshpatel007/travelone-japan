@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { BlogSidebar } from "./sidebar";
 
 const blogPosts = [
     {
@@ -74,39 +75,34 @@ const blogPosts = [
 
 export function BlogList() {
     return (
-        <div className="max-w-7xl mx-auto">
-            <div className="flex flex-col lg:flex-row gap-8 !mb-10">
-                <div className="flex-1">
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        {blogPosts.map((post) => (
-                            <div className="group !border !border-border !rounded-xl !border !border-amber-200 !bg-amber-50 !transition-all !duration-300 !overflow-hidden">
-                                <Link href={`/blog/${post.slug}`}>
-                                    <div className="relative h-60 overflow-hidden">
-                                        <Image
-                                            src={post.image || "/placeholder.svg"}
-                                            alt={post.title}
-                                            fill
-                                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                                        />
+        <div className="flex flex-col lg:flex-row gap-8 !mb-10">
+            <div className="flex-1">
+                <div className="space-y-10">
+                    {blogPosts.map((post) => (
+                        <div className="group !transition-all !duration-300 !overflow-hidden">
+                            <Link href={`/blog/${post.slug}`}>
+                                <div className="relative h-50 md:h-150 overflow-hidden">
+                                    <Image
+                                        src={post.image || "/placeholder.svg"}
+                                        alt={post.title}
+                                        fill
+                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                    />
+                                </div>
+                                <div className="py-6 space-y-4 text-center">
+                                    <div className="!flex !items-center !justify-center !mb-3">
+                                        <span className="text-xs md:text-sm font-semibold text-[#385b21] bg-[#d4e9e7] px-4 py-1 block">{post.category}</span>
                                     </div>
-                                    <div className="!p-6">
-                                        <div className="flex items-center gap-3 !mb-3">
-                                            <span className="!px-3 !py-1 !bg-amber-400 !text-white !text-xs !font-medium !rounded-full">
-                                                {post.category}
-                                            </span>
-                                            <span className="text-gray-500 text-sm">{post.readTime}</span>
-                                        </div>
-                                        <span className="text-xl font-bold text-gray-900 !block !mb-2 hover:text-amber-400 transition-colors">
-                                            {post.title}
-                                        </span>
-                                        <p className="text-gray-600 text-sm leading-relaxed">{post.excerpt}</p>
-                                    </div>
-                                </Link>
-                            </div>
-                        ))}
-                    </div>
+                                    <span className="text-xl md:text-2xl font-semibold text-gray-900 block">{post.title}</span>
+                                    <span className="text-sm md:text-lg font-strong text-gray-900 block">{post.excerpt}</span>
+                                    <span className="text-xs md:text-sm font-semibold text-gray-900 block">{post.date} by <u className="italic">{post.author}</u></span>
+                                </div>
+                            </Link>
+                        </div>
+                    ))}
                 </div>
             </div>
+            <BlogSidebar />
         </div>
     )
 }

@@ -262,14 +262,17 @@ export default function TourDetailPage() {
                     <CommonTopHeader />
                     <CommonHeader />
                     <CommonMobileHeader />
+
                     <div ref={pageRef} className="min-h-screen !bg-white">
                         <div className="w-full !bg-white">
-                            <div className="grid grid-cols-1 md:grid-cols-2 items-stretch">
+                            <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 items-stretch">
                                 <div className="relative !h-full !overflow-hidden">
-                                    <img
+                                    <Image
                                         src={tourImages[currentImageIndex] || "/placeholder.svg"}
                                         alt="Tour"
-                                        className="w-full h-full object-cover"
+                                        width={500}
+                                        height={500}
+                                        className="!w-full !h-full !object-cover"
                                     />
                                     <button
                                         onClick={() => setIsWishlisted(!isWishlisted)}
@@ -291,15 +294,15 @@ export default function TourDetailPage() {
                                     </button>
                                 </div>
                                 <div className="flex flex-col h-full">
-                                    <div className="!bg-[#F6EFE6] !text-white !px-7 !py-6">
+                                    <div className="bg-[#F6EFE6] text-white p-5 md:p-6">
                                         <div className="max-w-7xl mx-auto">
                                             <div className="flex items-start justify-between">
                                                 <div>
                                                     <span className="text-xl md:text-2xl font-semibold !text-[#1E1E1E] !mb-2">
                                                         Maple Symphony – Japan Autumn Journey (Fully Guided Premium Package for 2025 / 2026)
                                                     </span>
-                                                    <div className="!inline-block !bg-[#ef2853] !px-3 !py-0.5 !md:py-1 !rounded !text-sm !font-semibold !ml-2">Group Tour</div>
-                                                    <p className="text-md md:text-lg !text-black !mb-3">10 Days → 1 Country → 8 Cities → 30 Places</p>
+                                                    <div className="inline-block bg-[#ef2853] px-3 py-0.5 md:py-1 rounded text-sm font-semibold ml-2">Group Tour</div>
+                                                    <p className="text-md md:text-lg text-black mb-3">10 Days → 1 Country → 8 Cities → 30 Places</p>
                                                     <p className="text-sm !text-black">
                                                         Tokyo (3 Nts) → Nikko → Mt.Fuji → Hakone (1 Nt) → Hiroshima (1 Nt) → Kyoto (2 Nts) → Nara → Osaka (2 Nts)
                                                     </p>
@@ -307,9 +310,9 @@ export default function TourDetailPage() {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="!bg-amber-50 !px-7 !py-6 !flex-1">
+                                    <div className="!bg-amber-50 p-5 md:p-6 !flex-1">
                                         <span className="text-xl font-bold text-gray-900 !mb-3 !block">Select Your Package</span>
-                                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 !mb-8">
+                                        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 !mb-8">
                                             {packages.map((pkg) => (
                                                 <div
                                                     key={pkg.id}
@@ -356,8 +359,8 @@ export default function TourDetailPage() {
                             </div>
                         </div>
 
-                        <div className="block md:hidden !bg-white !p-8">
-                            <div className="!border-b !border-gray-200">
+                        <div className="bg-white p-5 md:p-12">
+                            <div className="border-b border-gray-200">
                                 <div className="flex gap-8">
                                     {["package_details", "itinerary"].map((tab) => {
                                         const tabName = (tab === "package_details") ? "Package Details" : "Itinerary";
@@ -376,54 +379,9 @@ export default function TourDetailPage() {
                             </div>
 
                             {activeMainTab === "package_details" && (
-                                <div className="!bg-white !py-7">
-                                    <div className="grid grid-cols-1">
-                                        <select
-                                            value={activeTab}
-                                            onChange={(e) => setActiveTab(e.target.value)}
-                                            className="!border-1 !border-[#2F5D50] !p-3 !rounded-lg !mb-4"
-                                        >
-                                            {tabs.map((tab) => (
-                                                <option key={tab} value={tab.toLowerCase().replace(/\s+/g, "-")}>
-                                                    {tab}
-                                                </option>
-                                            ))}
-                                        </select>
-                                        <div className="!bg-white !border-1 !border-[#2F5D50] !rounded !p-8">
-                                            <OverviewTabContent activeTab={activeTab} />
-                                        </div>
-                                    </div>
-                                </div>
-                            )}
-
-                            {activeMainTab === "itinerary" && <ItineraryTab itineraryData={itineraryData} device="mobile" />}
-
-                            {activeMainTab === "new_itinerary" && <NewItineraryTab />}
-                        </div>
-
-                        <div className="hidden md:block !bg-white !p-12">
-                            <div className="!border-b !border-gray-200">
-                                <div className="flex gap-8">
-                                    {["package_details", "itinerary"].map((tab) => {
-                                        const tabName = (tab === "package_details") ? "Package Details" : "Itinerary";
-                                        return (
-                                            <button
-                                                key={tab}
-                                                onClick={() => setActiveMainTab(tab)}
-                                                className={`pb-4 font-semibold transition-colors capitalize cursor-pointer ${activeMainTab === tab ? "text-black border-b-2 border-[#2F5D50]" : "text-gray-600 hover:text-gray-900"
-                                                    }`}
-                                            >
-                                                {tabName}
-                                            </button>
-                                        );
-                                    })}
-                                </div>
-                            </div>
-
-                            {activeMainTab === "package_details" && (
-                                <div className="!bg-white !py-7">
-                                    <div className="grid grid-cols-4 gap-3 min-h-96">
-                                        <div className="!col-span-1 !flex !flex-col !gap-2">
+                                <div className="bg-white py-7">
+                                    <div className="hidden md:grid lg:grid grid-cols-1 md:grid-cols-4 gap-3 min-h-96">
+                                        <div className="col-span-1 flex flex-col gap-2">
                                             {tabs.map((tab) => {
                                                 const tabKey = tab.toLowerCase().replace(/\s+/g, "-");
                                                 return (
@@ -440,7 +398,25 @@ export default function TourDetailPage() {
                                                 );
                                             })}
                                         </div>
-                                        <div className="!col-span-3 !bg-white !border-1 !border-[#C46A3A] !rounded !p-8">
+                                        <div className="col-span-3 bg-white border-1 border-[#C46A3A] rounded !p-8">
+                                            <OverviewTabContent activeTab={activeTab} />
+                                        </div>
+                                    </div>
+                                    <div className="block md:hidden lg:hidden">
+                                        <div className="!col-span-1 !flex !flex-col !gap-2">
+                                            <select
+                                                value={activeTab}
+                                                onChange={(e) => setActiveTab(e.target.value)}
+                                                className="!border-1 !border-[#C46A3A] !p-3 !rounded-lg !mb-4"
+                                            >
+                                                {tabs.map((tab) => (
+                                                    <option key={tab} value={tab.toLowerCase().replace(/\s+/g, "-")}>
+                                                        {tab}
+                                                    </option>
+                                                ))}
+                                            </select>
+                                        </div>
+                                        <div className="bg-white border-1 border-[#C46A3A] rounded p-6">
                                             <OverviewTabContent activeTab={activeTab} />
                                         </div>
                                     </div>
@@ -450,7 +426,7 @@ export default function TourDetailPage() {
                             {activeMainTab === "itinerary" && <ItineraryTab itineraryData={itineraryData} />}
                         </div>
 
-                        <div className="!bg-amber-50 !px-8 !py-16">
+                        <div className="bg-amber-50 py-16 px-5 md:px-0">
                             <div className="!max-w-7xl !mx-auto">
                                 <span className="text-2xl md:text-4xl font-bold text-center !block !mb-3 text-[#1E1E1E]">Best Value Guarantee</span>
                                 <p className="text-center text-[#C46A3A] !mb-12 font-semibold">
@@ -473,7 +449,7 @@ export default function TourDetailPage() {
                             </div>
                         </div>
 
-                        <div className="!bg-amber-50 !px-8 !pb-16">
+                        <div className="bg-amber-50 py-16 px-5 md:px-0">
                             <div className="!pb-10 !max-w-7xl !mx-auto">
                                 <span className="text-2xl md:text-4xl font-bold text-center !block !mb-3 text-[#1E1E1E]">Recent Reviews</span>
                                 <p className="text-center text-[#C46A3A] !mb-12 font-semibold">
@@ -514,7 +490,7 @@ export default function TourDetailPage() {
                             </div>
                         </div>
 
-                        <div className="!bg-amber-50 !px-8 !pb-16">
+                        <div className="bg-amber-50 py-16 px-5 md:px-0">
                             <div className="!max-w-7xl !mx-auto">
                                 <span className="text-2xl md:text-4xl font-bold text-center !block !mb-3 text-[#1E1E1E]">Why Travel with TravelOne</span>
                                 <p className="text-center text-[#C46A3A] !mb-12 font-semibold">
@@ -543,7 +519,7 @@ export default function TourDetailPage() {
                             </div>
                         </div>
 
-                        <div className="!bg-white !p-20">
+                        <div className="!bg-white py-16 px-5 md:px-0">
                             <div className="!max-w-7xl !mx-auto">
                                 <span className="text-2xl md:text-4xl font-bold text-center !block !mb-3 text-[#1E1E1E]">Trusted By</span>
                                 <p className="text-center text-[#C46A3A] !mb-12 font-semibold">
@@ -579,7 +555,7 @@ export default function TourDetailPage() {
 
                         <FAQsList />
 
-                        <div className="!bg-white !px-8 !p-20">
+                        <div className="!bg-white py-16 px-5 md:px-0">
                             <div className="!max-w-7xl !mx-auto">
                                 <span className="text-2xl md:text-4xl font-bold text-center !block !mb-3 text-[#1E1E1E]">You May Also Like</span>
                                 <p className="text-center text-[#C46A3A] !mb-12 font-semibold">
@@ -593,7 +569,7 @@ export default function TourDetailPage() {
                             </div>
                         </div>
 
-                        <div className="!bg-amber-50 !py-20 !px-8">
+                        <div className="!bg-amber-50 py-16 px-5 md:px-0">
                             <div className="!max-w-7xl !mx-auto">
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                                     <div>
@@ -637,7 +613,7 @@ export default function TourDetailPage() {
 
                         {showStickyFooter && (
                             <div className="hidden md:block fixed bottom-0 left-0 right-0 !bg-gray-100 !shadow-lg !border-t !border-gray-300 !z-[9999]">
-                                <div className="!max-w-7xl !mx-auto !px-6 !py-4 flex !items-center !justify-between">
+                                <div className="!max-w-7xl !mx-auto !py-3 flex !items-center !justify-between">
                                     <div className="flex items-center gap-4">
                                         <Image
                                             src={tourImages[0]}

@@ -51,7 +51,7 @@ export default function FAQsList() {
     const [expandedIndex, setExpandedIndex] = useState<number | null>(0);
 
     return (
-        <div className="!bg-amber-50 !px-8 !py-20">
+        <div className="!bg-amber-50 py-16 px-5 md:px-0">
             <div className="!max-w-7xl !mx-auto">
                 <span className="text-2xl md:text-4xl font-bold text-center !block !mb-3 text-[#1E1E1E]">Frequently Asked Questions</span>
                 <p className="text-center text-[#C46A3A] !mb-12 font-semibold">

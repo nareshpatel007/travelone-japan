@@ -14,7 +14,7 @@ export default function CommonHeader() {
 
     return (
         <>
-            <header id="qodef-page-header" role="banner">
+            <header className="!border-b !border-gray-100" id="qodef-page-header" role="banner">
                 <div id="qodef-page-header-inner">
                     <div className="qodef-header-wrapper">
                         <div className="qodef-header-logo">

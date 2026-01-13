@@ -29,9 +29,9 @@ export default function BlogPage() {
                     <CommonHeader />
                     <CommonMobileHeader />
 
-                    <div className="!pb-10 !max-w-7xl !mx-auto">
+                    <div className="max-w-7xl mx-auto">
                         <Heading main="Travel Blog" sub="Discover travel tips, destination guides, and inspiring stories" />
-                        <main className="!mx-auto !max-w-7xl !px-4 sm:px-6 !mb-10 lg:px-8">
+                        <main className="mx-auto max-w-7xl p-5 md:p-6">
                             <BlogList />
                         </main>
                     </div>
