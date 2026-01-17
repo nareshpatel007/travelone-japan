@@ -200,7 +200,7 @@ export function CommonPlanTripModal({ open, onOpenChange }: PlanTripModalProps) 
                     </div>
                     <div className="!max-w-6xl !mx-auto !px-4 !md:px-8 !py-8">
                         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-4 md:gap-6">
-                            {sampleTours.map((tour) => (
+                            {/* {sampleTours.map((tour) => (
                                 <TourCard
                                     key={tour.id}
                                     image={tour.image}
@@ -212,7 +212,7 @@ export function CommonPlanTripModal({ open, onOpenChange }: PlanTripModalProps) 
                                     tourType={tour.tourType}
                                     badge={tour.badge}
                                 />
-                            ))}
+                            ))} */}
                         </div>
                     </div>
                 </div>
