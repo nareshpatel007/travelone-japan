@@ -252,13 +252,13 @@ export function BlogDetail() {
                         </div>
                     </div>
 
-                    <div className="py-6">
+                    {/* <div className="py-6">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             {tours.map((tour) => (
                                 <TourCard key={tour.id} {...tour} />
                             ))}
                         </div>
-                    </div>
+                    </div> */}
 
                     <div className="border-t border-amber-100 pt-12">
                         <div className="mb-12">

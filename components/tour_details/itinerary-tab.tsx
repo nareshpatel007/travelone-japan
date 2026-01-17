@@ -36,7 +36,7 @@ export function ItineraryTab({ itineraryLoading, itineraryData }: Props) {
                                 <span className="text-lg font-bold text-[#1E1E1E] mb-3 block uppercase">{dayData.title}</span>
 
                                 {dayData.itinerary && dayData.itinerary.map((activity: any, actIdx: number) => (
-                                    <div key={actIdx} className="mb-4">
+                                    <div key={actIdx} className="mb-3">
                                         {activity.type === 'attraction' ? (
                                             <div className="!mb-6">
                                                 <span className="!text-[#C46A3A] !font-bold !block !mb-4">Activities:</span>
