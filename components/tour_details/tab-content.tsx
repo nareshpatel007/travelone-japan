@@ -100,7 +100,7 @@ export default function TabContent({ tour, city_nights, tour_packages, attractio
                                     <button
                                         key={tab}
                                         onClick={() => setActiveTab(tabKey)}
-                                        className={`px-4 py-3 text-left font-semibold rounded border border-[#F6EFE6] cursor-pointer transition-all ${activeTab === tabKey
+                                        className={`px-4 py-3 text-left font-semibold rounded border border-[#F6EFE6] cursor-pointer transition-all text-sm md:text-md lg:text-lg ${activeTab === tabKey
                                             ? "bg-[#F6EFE6] text-[#1E1E1E]"
                                             : "bg-amber-50 text-gray-900 hover:bg-[#F6EFE6] hover:text-[#1E1E1E]"
                                             }`}
@@ -128,7 +128,7 @@ export default function TabContent({ tour, city_nights, tour_packages, attractio
                             <select
                                 value={activeTab}
                                 onChange={(e) => setActiveTab(e.target.value)}
-                                className="!border-1 !border-[#C46A3A] !p-3 !rounded-lg !mb-4"
+                                className="border-1 border-[#C46A3A] p-3 rounded-lg mb-4 text-sm md:text-md lg:text-lg"
                             >
                                 {tabs.map((tab) => (
                                     <option key={tab} value={tab.toLowerCase().replace(/\s+/g, "-")}>
