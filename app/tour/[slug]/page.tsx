@@ -17,6 +17,9 @@ import TrustedBy from "@/components/tour_details/trusted-by";
 import TravelExpert from "@/components/tour_details/travel-experts";
 import PageHelpful from "@/components/common/helpful";
 import { CustomizeTrip } from "@/components/tour_details/popup/customize-trip";
+import { DownloadBrochure } from "@/components/tour_details/popup/download-brochure";
+import { EmailBrochure } from "@/components/tour_details/popup/email-brochure";
+import { BookingCart } from "@/components/tour_details/popup/booking-cart";
 
 export default function TourDetailPage() {
     // Get slug
@@ -30,6 +33,9 @@ export default function TourDetailPage() {
     const [selectedPackage, setSelectedPackage] = useState(2);
     const [showStickyFooter, setShowStickyFooter] = useState(false);
     const [openCustomizeTripPopup, setOpenCustomizeTripPopup] = useState(false);
+    const [openDownloadBrochurePopup, setOpenDownloadBrochurePopup] = useState(false);
+    const [openEmailBrochurePopup, setOpenEmailBrochurePopup] = useState(false);
+    const [openBookingCartPopup, setOpenBookingCartPopup] = useState(false);
     const pageRef = useRef(null);
 
     useEffect(() => {
@@ -101,6 +107,9 @@ export default function TourDetailPage() {
                             selectedPackage={selectedPackage}
                             setSelectedPackage={setSelectedPackage}
                             setOpenCustomizeTripPopup={setOpenCustomizeTripPopup}
+                            setOpenDownloadBrochurePopup={setOpenDownloadBrochurePopup}
+                            setOpenEmailBrochurePopup={setOpenEmailBrochurePopup}
+                            setOpenBookingCartPopup={setOpenBookingCartPopup}
                         />
 
                         <TabContent
@@ -140,7 +149,7 @@ export default function TourDetailPage() {
                                         <button className="bg-[#ef2853] hover:bg-white text-white hover:text-[#ef2853] border border-[#ef2853] px-6 py-2 rounded font-semibold cursor-pointer transition">
                                             Book {tourData?.tour_packages && tourData?.tour_packages.find((p: any) => p.no === selectedPackage)?.name}
                                         </button>
-                                        <button className="bg-white text-black border border-black hover:bg-black hover:text-white px-6 py-2 rounded font-semibold cursor-pointer transition">
+                                        <button className="bg-white text-black border border-black hover:bg-black hover:text-white px-6 py-2 rounded font-semibold cursor-pointer transition" onClick={() => setOpenCustomizeTripPopup(true)}>
                                             Customize Trip
                                         </button>
                                         <button
@@ -157,6 +166,9 @@ export default function TourDetailPage() {
 
                     {/* Popup modals */}
                     <CustomizeTrip open={openCustomizeTripPopup} onOpenChange={setOpenCustomizeTripPopup} />
+                    <DownloadBrochure open={openDownloadBrochurePopup} onOpenChange={setOpenDownloadBrochurePopup} />
+                    <EmailBrochure open={openEmailBrochurePopup} onOpenChange={setOpenEmailBrochurePopup} />
+                    <BookingCart open={openBookingCartPopup} onOpenChange={setOpenBookingCartPopup} />
 
                     <CommonFooter />
                 </>}

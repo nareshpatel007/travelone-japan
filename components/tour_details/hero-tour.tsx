@@ -16,9 +16,12 @@ interface Props {
     selectedPackage: any;
     setSelectedPackage: (value: any) => void;
     setOpenCustomizeTripPopup: (value: any) => void;
+    setOpenDownloadBrochurePopup: (value: any) => void;
+    setOpenEmailBrochurePopup: (value: any) => void;
+    setOpenBookingCartPopup: (value: any) => void;
 }
 
-export default function HeroTour({ isLoading, tour, packages, city_nights, selectedPackage, setSelectedPackage, setOpenCustomizeTripPopup }: Props) {
+export default function HeroTour({ isLoading, tour, packages, city_nights, selectedPackage, setSelectedPackage, setOpenCustomizeTripPopup, setOpenDownloadBrochurePopup, setOpenEmailBrochurePopup, setOpenBookingCartPopup }: Props) {
     // Define state
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [isWishlisted, setIsWishlisted] = useState(false);
@@ -150,16 +153,16 @@ export default function HeroTour({ isLoading, tour, packages, city_nights, selec
                             ))}
                         </div>
                         <div className="flex gap-3 flex-wrap !mb-3">
-                            <button className="bg-[#ef2853] border-1 border-[#ef2853] hover:bg-white hover:text-[#ef2853] text-white px-4 py-2 rounded font-semibold text-sm cursor-pointer">
+                            <button className="bg-[#ef2853] border-1 border-[#ef2853] hover:bg-white hover:text-[#ef2853] text-white px-4 py-2 rounded font-semibold text-sm cursor-pointer" onClick={() => setOpenBookingCartPopup(true)}>
                                 Book {packages.find((p: any) => p.no === selectedPackage)?.name}
                             </button>
                             <button className="bg-white border-1 border-black text-black hover:bg-black hover:text-white hover:border-[#333] cursor-pointer px-4 py-2 rounded font-semibold text-sm" onClick={() => setOpenCustomizeTripPopup(true)}>
                                 Customize Trip
                             </button>
-                            <button className="bg-white border-1 border-black text-black hover:bg-black hover:text-white hover:border-[#333] cursor-pointer px-4 py-2 rounded font-semibold text-sm">
+                            <button className="bg-white border-1 border-black text-black hover:bg-black hover:text-white hover:border-[#333] cursor-pointer px-4 py-2 rounded font-semibold text-sm" onClick={() => setOpenDownloadBrochurePopup(true)}>
                                 Download Brochure
                             </button>
-                            <button className="bg-white border-1 border-black text-black hover:bg-black hover:text-white hover:border-[#333] cursor-pointer px-4 py-2 rounded font-semibold text-sm">
+                            <button className="bg-white border-1 border-black text-black hover:bg-black hover:text-white hover:border-[#333] cursor-pointer px-4 py-2 rounded font-semibold text-sm" onClick={() => setOpenEmailBrochurePopup(true)}>
                                 Email Brochure
                             </button>
                         </div>
