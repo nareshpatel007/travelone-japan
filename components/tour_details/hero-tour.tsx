@@ -121,7 +121,7 @@ export default function HeroTour({ isLoading, tour, packages, city_nights, selec
                         </div>
                     </div>
                     <div className="!bg-amber-50 p-5 md:p-6 !flex-1">
-                        <span className="text-xl font-bold text-gray-900 !mb-3 !block">Select Your Package</span>
+                        <span className="text-md md:text-lg lg:text-xl font-bold text-gray-900 !mb-3 !block">Select Your Package</span>
                         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 !mb-8">
                             {packages.map((pkg: any) => (
                                 <div
@@ -143,7 +143,7 @@ export default function HeroTour({ isLoading, tour, packages, city_nights, selec
                                     </div>
                                     <span className="!font-bold !text-gray-900 !mb-2 !block">{pkg.name}</span>
                                     <p className="text-xs text-gray-600 line-through mb-1">${formatPrice(Number(pkg.price) + 500, 0)}</p>
-                                    <p className="text-2xl font-bold text-black mb-1">${formatPrice(pkg.price, 0)}</p>
+                                    <p className="text-xl md:text-xl lg:text-2xl font-bold text-black mb-1">${formatPrice(pkg.price, 0)}</p>
                                     <p className="text-xs text-gray-600 mb-1">Per Person</p>
                                     {pkg.no !== "1" && <p className="text-xs text-gray-600 font-normal">Double Sharing</p>}
                                 </div>

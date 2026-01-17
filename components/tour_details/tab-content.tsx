@@ -128,7 +128,7 @@ export default function TabContent({ tour, city_nights, tour_packages, attractio
                             <select
                                 value={activeTab}
                                 onChange={(e) => setActiveTab(e.target.value)}
-                                className="border-1 border-[#C46A3A] p-3 rounded-lg mb-4 text-sm md:text-md lg:text-lg"
+                                className="!border-1 !border-[#C46A3A] !p-3 !rounded-lg !mb-4 !text-sm"
                             >
                                 {tabs.map((tab) => (
                                     <option key={tab} value={tab.toLowerCase().replace(/\s+/g, "-")}>
