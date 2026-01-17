@@ -50,9 +50,9 @@ export function LoginModal({ open, onOpenChange }: Props) {
 
     return (
         <>
-            {open && <div className="!fixed !inset-0 !z-[999] !flex !items-center !justify-center !bg-black/40 !px-4">
+            {open && <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black/40 px-4">
                 <div
-                    className="!relative !w-full !max-w-[380px] !md:max-w-xl !bg-[#d9eed8] !shadow-xl !overflow-visible"
+                    className="relative w-full max-w-[380px] bg-[#d9eed8] shadow-xl overflow-visible"
                     style={{
                         borderTopLeftRadius: "180px",
                         borderTopRightRadius: "180px",

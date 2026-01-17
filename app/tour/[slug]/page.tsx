@@ -87,6 +87,7 @@ export default function TourDetailPage() {
             <body className="wp-singular page-template page-template-page-full-width page-template-page-full-width-php page page-id-280 wp-theme-wanderaway theme-wanderaway qi-blocks-1.4.3 qodef-gutenberg--no-touch qode-framework-1.2.6 woocommerce-js qodef-qi--no-touch qi-addons-for-elementor-1.9.3 wanderaway-core-1.2 wanderaway-1.1.1 qodef-content-grid-1300 qodef-back-to-top--enabled qodef-header--standard qodef-header-appearance--sticky qodef-mobile-header--side-area qodef-drop-down-second--full-width qodef-drop-down-second--default qode-export-1.0 qodef-header-standard--center qodef-search--covers-header elementor-default elementor-kit-4 elementor-page elementor-page-280 qodef-browser--chrome e--ua-blink e--ua-chrome e--ua-webkit">
                 {ready && <>
                     <CommonHeader />
+
                     {isLoading ? (
                         <div className="flex justify-center items-center min-h-screen bg-white">
                             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900"></div>
@@ -154,7 +155,9 @@ export default function TourDetailPage() {
                         )}
                     </div>}
 
+                    {/* Popup modals */}
                     <CustomizeTrip open={openCustomizeTripPopup} onOpenChange={setOpenCustomizeTripPopup} />
+
                     <CommonFooter />
                 </>}
             </body>

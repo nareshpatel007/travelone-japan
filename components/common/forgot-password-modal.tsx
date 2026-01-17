@@ -13,7 +13,7 @@ interface ForgotPasswordModalProps {
 
 export function ForgotPasswordModal({ open, onOpenChange }: ForgotPasswordModalProps) {
     const [email, setEmail] = useState("")
-    const [isSubmitted, setIsSubmitted] = useState(false)
+    const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
@@ -23,9 +23,9 @@ export function ForgotPasswordModal({ open, onOpenChange }: ForgotPasswordModalP
 
     return (
         <>
-            {open && <div className="!fixed !inset-0 !z-[999] !flex !items-center !justify-center !bg-black/40 !px-4">
+            {open && <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black/40 px-4">
                 <div
-                    className="!relative !w-full !max-w-[380px] !md:max-w-xl !bg-[#d9eed8] !shadow-xl !overflow-visible"
+                    className="relative w-full max-w-[380px] bg-[#d9eed8] shadow-xl overflow-visible"
                     style={{
                         borderTopLeftRadius: "180px",
                         borderTopRightRadius: "180px",
@@ -33,9 +33,9 @@ export function ForgotPasswordModal({ open, onOpenChange }: ForgotPasswordModalP
                         borderBottomRightRadius: "12px",
                     }}
                 >
-                    <div className="!absolute !top-16 !right-10 !translate-x-1/2 !-translate-y-1/2 !z-50">
+                    <div className="absolute top-16 right-10 translate-x-1/2 -translate-y-1/2 z-50 cursor-pointer">
                         <svg
-                            className="!absolute !inset-0 !w-10 !h-10"
+                            className="absolute inset-0 w-10 h-10"
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 110 110"
                             fill="#a6c5a9"
@@ -45,7 +45,7 @@ export function ForgotPasswordModal({ open, onOpenChange }: ForgotPasswordModalP
 
                         <button
                             aria-label="Close"
-                            className="relative w-10 h-10 flex items-center justify-center text-white text-sm font-semibold"
+                            className="relative w-10 h-10 flex items-center justify-center text-white text-sm font-semibold cursor-pointer"
                             onClick={() => {
                                 onOpenChange(false);
                             }}
@@ -53,62 +53,60 @@ export function ForgotPasswordModal({ open, onOpenChange }: ForgotPasswordModalP
                             ✕
                         </button>
                     </div>
-                    <div className="!px-6 !md:px-16 !pb-7 !pt-6">
+                    <div className="p-8 md:p-10">
                         <QuestionHeading
                             title="Reset your password"
                             subtitle="Enter your email address and we'll send you a link to reset your password"
                         />
-                        <div className="p-4 md:p-6">
-                            {!isSubmitted ? (
-                                <form onSubmit={handleSubmit} className="ऍspace-y-4">
-                                    <div>
-                                        <label className="!block !text-md !text-black">Email address</label>
-                                        <input
-                                            id="email"
-                                            type="email"
-                                            value={email}
-                                            onChange={(e) => setEmail(e.target.value)}
-                                            placeholder="Enter your email"
-                                            className="!w-full !rounded-sm !px-4 !py-2 !bg-white border"
-                                            required
-                                        />
-                                        <p className="!mt-2 text-sm text-gray-700">We'll send a password reset link to this email address</p>
-                                    </div>
+                        {!isSubmitted ? (
+                            <form onSubmit={handleSubmit} className="space-y-5">
+                                <div>
+                                    <label className="block text-md text-black">Email address</label>
+                                    <input
+                                        id="email"
+                                        type="email"
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                        placeholder="Enter your email"
+                                        className="w-full rounded-sm px-4 py-2 bg-white border border-gray-900"
+                                        required
+                                    />
+                                    <p className="mt-2 text-sm text-gray-700">We'll send a password reset link to this email address</p>
+                                </div>
 
-                                    <button
-                                        type="submit"
-                                        className="!w-full !flex !items-center !justify-center !bg-black !text-white !font-semibold !mt-3 !py-2.5 !rounded-md !hover:bg-[#333] !transition-colors !cursor-pointer"
-                                    >
-                                        Send reset link
-                                    </button>
-                                </form>
-                            ) : (
-                                <div className="!space-y-4 text-center !py-4">
-                                    <div className="flex justify-center">
-                                        <div className="h-16 w-16 !rounded-full !bg-[#005f5a]/10 flex items-center justify-center">
-                                            <CheckCircle className="h-8 w-8 !text-[#005f5a]" />
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <span className="text-xl font-semibold text-black !block !mb-2">Check your email</span>
-                                        <span className="text-sm text-gray-700 !block !mb-1">We've sent a password reset link to</span>
-                                        <span className="text-sm font-medium text-gray-900">{email}</span>
-                                    </div>
-                                    <div className="!bg-gray-50 !p-4 !rounded-lg !text-left">
-                                        <span className="!text-sm !text-gray-700 leading-relaxed">
-                                            Didn't receive the email? Check your spam folder or{" "}
-                                            <button
-                                                type="button"
-                                                onClick={() => setIsSubmitted(false)}
-                                                className="text-[#007aff] hover:underline font-medium"
-                                            >
-                                                try another email address
-                                            </button>
-                                        </span>
+                                <button
+                                    type="submit"
+                                    className="w-full flex items-center justify-center bg-black text-white font-semibold mt-3 py-2.5 rounded-md hover:bg-[#333] transition-colors cursor-pointer"
+                                >
+                                    Send reset link
+                                </button>
+                            </form>
+                        ) : (
+                            <div className="space-y-4 text-center py-4">
+                                <div className="flex justify-center">
+                                    <div className="h-16 w-16 rounded-full bg-[#2F5D50]/10 flex items-center justify-center">
+                                        <CheckCircle className="h-8 w-8 text-[#2F5D50]" />
                                     </div>
                                 </div>
-                            )}
-                        </div>
+                                <div>
+                                    <span className="text-xl font-semibold text-black block mb-2">Check your email</span>
+                                    <span className="text-sm text-gray-700 block mb-1">We've sent a password reset link to</span>
+                                    <span className="text-sm font-medium text-gray-900">{email}</span>
+                                </div>
+                                <div className="bg-gray-50 px-4 py-2 rounded-lg text-center">
+                                    <span className="text-sm text-gray-700 leading-relaxed">
+                                        Didn't receive the email?&nbsp;
+                                        <button
+                                            type="button"
+                                            onClick={() => setIsSubmitted(false)}
+                                            className="text-[#2F5D50] hover:underline font-medium"
+                                        >
+                                            Try again?
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>}

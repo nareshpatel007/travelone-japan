@@ -63,8 +63,8 @@ export default function CommonHeader() {
                     <nav className="hidden lg:flex items-center text-gray-900 gap-8 font-medium">
                         <Link className="hover:underline underline-offset-5" href="/">Home</Link>
                         <Link className="hover:underline underline-offset-5" href="/tour">Tours</Link>
-                        <Link className="hover:underline underline-offset-5" href="/about-us">About Us</Link>
-                        <Link className="hover:underline underline-offset-5" href="/contact-us">Contact Us</Link>
+                        <Link className="hover:underline underline-offset-5" href="/about">About Us</Link>
+                        <Link className="hover:underline underline-offset-5" href="/contact">Contact Us</Link>
                         <Link className="hover:underline underline-offset-5" href="/blog">Blog</Link>
                         <Link className="hover:underline underline-offset-5" href="/booking">Booking</Link>
                     </nav>
@@ -118,8 +118,8 @@ export default function CommonHeader() {
                     <nav className="flex flex-col px-6 py-6 gap-5 text-lg font-medium text-gray-800">
                         <Link href="/" onClick={() => setOpen(false)}>Home</Link>
                         <Link href="/tour" onClick={() => setOpen(false)}>Tours</Link>
-                        <Link href="/about-us" onClick={() => setOpen(false)}>About Us</Link>
-                        <Link href="/contact-us" onClick={() => setOpen(false)}>Contact Us</Link>
+                        <Link href="/about" onClick={() => setOpen(false)}>About Us</Link>
+                        <Link href="/contact" onClick={() => setOpen(false)}>Contact Us</Link>
                         <Link href="/blog" onClick={() => setOpen(false)}>Blog</Link>
                         <Link href="/booking" onClick={() => setOpen(false)}>Booking</Link>
 
