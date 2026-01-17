@@ -108,9 +108,9 @@ export function WishlistGrid() {
             {/* Tours Grid or Empty State */}
             {wishlistTours.length > 0 ? (
                 <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 !mb-10">
-                    {wishlistTours.map((tour) => (
+                    {/* {wishlistTours.map((tour) => (
                         <TourCard key={tour.id} {...tour} />
-                    ))}
+                    ))} */}
                 </div>
             ) : (
                 <div className="flex flex-col items-center justify-center py-16 md:py-24 text-center !mb-10">
@@ -132,7 +132,7 @@ export function WishlistGrid() {
                 <div className="mt-12 md:mt-16">
                     <span className="block text-xl md:text-2xl font-bold text-gray-900 !mb-6">You might also like</span>
                     <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-                        {[
+                        {/* {[
                             {
                                 id: 1,
                                 image: "https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/08/Destination-list-3.jpg",
@@ -177,7 +177,7 @@ export function WishlistGrid() {
                             }
                         ].map((tour) => (
                             <TourCard key={tour.id} {...tour} />
-                        ))}
+                        ))} */}
                     </div>
                 </div>
             )}
