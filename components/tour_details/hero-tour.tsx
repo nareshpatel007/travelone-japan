@@ -99,10 +99,10 @@ export default function HeroTour({ isLoading, tour, packages, city_nights, selec
                                             {tour?.tour_type}
                                         </span>
                                     </div>
-                                    <p className="text-md md:text-lg text-black mb-3 mt-2">
+                                    <p className="text-md md:text-lg lg:text-lg text-black mb-3 mt-2">
                                         {tour?.tour_sub_title && tour?.tour_sub_title?.join(" → ")}
                                     </p>
-                                    <p className="text-sm text-black">
+                                    <p className="text-sm md:text-md lg:text-md text-black">
                                         {city_nights.map((item: any, index: number) => (
                                             <span key={index} className="inline-flex items-center">
                                                 {item.name}
