@@ -26,7 +26,7 @@ export function CustomizeTrip({ open, onOpenChange }: Props) {
                 </button>
                 <div className="min-h-full flex items-start justify-center px-6 py-6 md:py-16">
                     <div className="w-full max-w-4xl">
-                        <h2 className="text-2xl md:text-3xl font-bold text-[#333] mb-3 md:mb-10 text-center">
+                        <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3 md:mb-10 text-center">
                             Customization Request
                         </h2>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
