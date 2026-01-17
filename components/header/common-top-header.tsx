@@ -37,13 +37,13 @@ export default function CommonTopHeader() {
                             action="#">
                             <label htmlFor="qodef-search-form-1" className="qodef-search-form-label screen-reader-text">Search</label>
                             <div className="qodef-search-form-inner">
-                                <input type="search" id="qodef-search-form-1" className="qodef-search-form-field " name="s" value="" placeholder="Search here..." />
+                                <input type="search" id="qodef-search-form-1" className="qodef-search-form-field " placeholder="Search here..." />
                                 <button type="submit" className="qodef-search-form-button has-background qodef--button-inside qodef--has-icon">
                                     <svg className="qodef-svg--search"
                                         xmlns="http://www.w3.org/2000/svg" width="14.811" height="14.811"
                                         viewBox="0 0 14.811 14.811">
-                                        <g fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round"
-                                            stroke-width="1.5" transform="translate(-2.25 -2.25)">
+                                        <g fill="none" stroke="#000" strokeLinecap="round" strokeLinejoin="round"
+                                            strokeWidth="1.5" transform="translate(-2.25 -2.25)">
                                             <circle cx="5.5" cy="5.5" r="5.5" data-name="Ellipse 7"
                                                 transform="translate(3 3)"></circle>
                                             <path d="m16 16-3.142-3.142"></path>

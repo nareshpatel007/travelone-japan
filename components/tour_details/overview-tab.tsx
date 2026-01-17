@@ -1,27 +1,28 @@
 "use client"
 
+import { ArrowRight, MoveRight, X } from "lucide-react";
+import Image from "next/image";
+
 // Define props
 type Props = {
     activeTab: string;
+    tour: any;
+    city_nights: any;
+    tour_packages: any;
+    attractions: any;
+    tour_terms: any;
+    payment_schedule: any;
+    cancellation_payment: any;
 }
 
-export function OverviewTabContent({ activeTab }: Props) {
+export function OverviewTabContent({ activeTab, tour, city_nights, tour_packages, attractions, tour_terms, payment_schedule, cancellation_payment }: Props) {
     return (
         <>
             {activeTab === "highlights" && (
                 <div>
                     <span className="!block !text-xl !font-bold !text-black !mb-6">Highlights</span>
                     <ul className="!space-y-0 !mb-8">
-                        {[
-                            "Autumn foliage at top viewing spots",
-                            "Premium small-group comfort",
-                            "Private English-speaking guide",
-                            "Private premium transport + Shinkansen",
-                            "3★ / 4★ / 5★ hotel options",
-                            "Daily breakfast & 7 dinners",
-                            "30+ spots across 8 cities",
-                            "Mt. Fuji, Kyoto, Hiroshima, Tokyo & Osaka",
-                        ].map((highlight, idx) => (
+                        {tour?.tour_highlights && tour?.tour_highlights.map((highlight: string, idx: number) => (
                             <li key={idx} className="flex items-start gap-3 text-gray-700">
                                 <span className="text-amber-700 font-bold text-lg">✓</span>
                                 <span>{highlight}</span>
@@ -31,27 +32,106 @@ export function OverviewTabContent({ activeTab }: Props) {
                     <div className="!border-t !border-gray-300 !pt-6">
                         <span className="!text-xl !block !font-bold !text-black !mb-3">Trip Flow</span>
                         <p className="text-gray-700">
-                            Tokyo (3 Nts) → Nikko → Mt.Fuji → Hakone (1 Nt) → Hiroshima (1 Nt) → Kyoto (2 Nts) → Nara → Osaka
-                            (2 Nts)
+                            {city_nights.map((item: any, index: number) => (
+                                <span key={index} className="inline-flex items-center">
+                                    {item.name}
+                                    {item.night > 0 && (
+                                        <span>&nbsp;({item.night} {item.night > 1 ? "Nights" : "Night"})
+                                        </span>
+                                    )}
+                                    {index < city_nights.length - 1 && (
+                                        <MoveRight className="h-4 w-4 mx-1 inline-flex" />
+                                    )}
+                                </span>
+                            ))}
                         </p>
                     </div>
                 </div>
             )}
 
             {activeTab === "hotels" && (
+                <div className="space-y-6">
+                    {tour_packages && tour_packages.map((item: any, index: number) => {
+                        const accommodation =
+                            typeof item.accommodation === "string"
+                                ? JSON.parse(item.accommodation)
+                                : item.accommodation;
+
+                        return (
+                            <div key={index}>
+                                <span className="text-xl block font-bold text-black mb-4">
+                                    {item.name}
+                                </span>
+                                <ul className="space-y-1">
+                                    {Object.entries(accommodation).map(
+                                        ([city, hotels]: [string, any], idx: number) => (
+                                            <li
+                                                key={idx}
+                                                className="text-gray-700"
+                                            >
+                                                <ArrowRight className="w-4 h-4 mr-2 text-amber-700 inline-block" />
+                                                <span className="font-semibold text-black">{city}:</span>{" "}
+                                                {hotels.join(", ")} or similar
+                                            </li>
+                                        )
+                                    )}
+                                </ul>
+                            </div>
+                        );
+                    })}
+                </div>
+            )}
+
+            {activeTab === "activities" && (
                 <div>
-                    <span className="!text-xl !block !font-bold !text-black !mb-6">Hotels</span>
-                    <div className="space-y-4">
-                        <p className="text-gray-700">Carefully selected premium accommodations throughout your journey:</p>
-                        <ul className="!space-y-1">
-                            {[
-                                "3-Star Hotels: Comfortable and well-located",
-                                "4-Star Hotels: Luxury amenities and service",
-                                "5-Star Hotels: Premium experience with finest facilities",
-                            ].map((hotel, idx) => (
+                    <span className="!text-xl !block !font-bold !text-black !mb-6">Activities</span>
+                    <div className="space-y-8">
+                        {attractions && Object.entries(attractions).map(([city, places]: any) => (
+                            <div key={city}>
+                                <span className="text-lg font-semibold text-gray-900 block mb-4">{city}</span>
+                                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+                                    {places.map((place: any, index: number) => (
+                                        <div key={index} className="text-center">
+                                            <div className="relative w-full h-28 rounded-xl overflow-hidden">
+                                                <Image
+                                                    src={place.image}
+                                                    alt={place.name}
+                                                    fill
+                                                    className="object-cover"
+                                                />
+                                            </div>
+                                            <p className="mt-2 text-sm md:text-md font-medium text-gray-800">{place.name}</p>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            )}
+
+            {activeTab === "inclusions-&-exclusions" && (
+                <div className="space-y-6">
+                    <div>
+                        <span className="!text-xl !block !font-bold !text-black mb-4">Inclusions</span>
+                        <ul className="space-y-2">
+                            {tour_terms?.what_is_included && tour_terms?.what_is_included.map((item: any, idx: number) => (
                                 <li key={idx} className="flex items-start gap-3 text-gray-700">
-                                    <span className="text-amber-700 font-bold">✓</span>
-                                    <span>{hotel}</span>
+                                    <span className="text-green-700 font-bold">✓</span>
+                                    <span>{item}</span>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                    <div>
+                        <span className="!text-xl !block !font-bold !text-black mb-4">Exclusions</span>
+                        <ul className="!space-y-1">
+                            {tour_terms?.what_is_not_included && tour_terms?.what_is_not_included.map((item: any, idx: number) => (
+                                <li key={idx} className="flex items-start gap-3 text-gray-700">
+                                    <span className="text-red-700">
+                                        <X className="w-4 h-4 inline-block" />
+                                    </span>
+                                    <span>{item}</span>
                                 </li>
                             ))}
                         </ul>
@@ -59,93 +139,78 @@ export function OverviewTabContent({ activeTab }: Props) {
                 </div>
             )}
 
-            {activeTab === "activities" && (
-                <div>
-                    <span className="!text-xl !block !font-bold !text-black !mb-6">Activities</span>
-                    <ul className="space-y-3">
-                        {[
-                            "Guided temple and shrine visits",
-                            "Traditional tea ceremony experience",
-                            "Local market exploration",
-                            "Mt. Fuji scenic tours",
-                            "Hiroshima Peace Memorial visit",
-                            "Kyoto historic geisha district walk",
-                        ].map((activity, idx) => (
-                            <li key={idx} className="flex items-start gap-3 text-gray-700">
-                                <span className="text-amber-700 font-bold">✓</span>
-                                <span>{activity}</span>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-            )}
-
-            {activeTab === "inclusions-&-exclusions" && (
-                <div>
-                    <span className="!text-xl !block !font-bold !text-black !mb-6">Inclusions & Exclusions</span>
-                    <div className="space-y-4">
-                        <div>
-                            <span className="font-bold text-gray-900 !block !mb-2">Included:</span>
-                            <ul className="space-y-2">
-                                {[
-                                    "Accommodation for 8 nights",
-                                    "Daily breakfast & 7 dinners",
-                                    "All entrance fees",
-                                    "Professional guide service",
-                                    "Private transportation & Shinkansen",
-                                ].map((item, idx) => (
-                                    <li key={idx} className="flex items-start gap-3 text-gray-700">
-                                        <span className="text-amber-700 font-bold">✓</span>
-                                        <span>{item}</span>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                        <div>
-                            <span className="font-bold text-gray-900 !block !mb-2">Not Included:</span>
-                            <ul className="!space-y-1">
-                                {[
-                                    "International flights",
-                                    "Travel insurance",
-                                    "Personal shopping & meals",
-                                    "Tips and gratuities",
-                                ].map((item, idx) => (
-                                    <li key={idx} className="flex items-start gap-3 text-gray-700">
-                                        <span className="text-amber-700">○</span>
-                                        <span>{item}</span>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            )}
-
             {activeTab === "terms-&-conditions" && (
-                <div>
-                    <span className="!text-xl !block !font-bold !text-black !mb-6">Terms & Conditions</span>
-                    <div className="!space-y-0 text-gray-700">
-                        <p>
-                            By booking this tour, you agree to our terms and conditions. Please read carefully before
-                            confirming your reservation.
-                        </p>
-                        <p>All bookings are subject to availability. Minimum group size is 8 participants.</p>
+                <div className="space-y-6">
+                    <div>
+                        <span className="!text-xl !block !font-bold !text-black mb-4">Terms & Conditions</span>
+                        <ul className="space-y-2">
+                            {tour_terms?.terms_conditions && tour_terms?.terms_conditions.map((item: any, idx: number) => (
+                                <li key={idx} className="flex items-start gap-3 text-gray-700">
+                                    <span className="text-green-700 font-bold">✓</span>
+                                    <span>{item}</span>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                    <div>
+                        <span className="!text-xl !block !font-bold !text-black mb-4">Important Notes</span>
+                        <ul className="!space-y-1">
+                            {tour_terms?.important_notes && tour_terms?.important_notes.map((item: any, idx: number) => (
+                                <li key={idx} className="flex items-start gap-3 text-gray-700">
+                                    <span className="text-red-700">
+                                        <X className="w-4 h-4 inline-block" />
+                                    </span>
+                                    <span>{item}</span>
+                                </li>
+                            ))}
+                        </ul>
                     </div>
                 </div>
             )}
 
             {activeTab === "payment-&-cancellation" && (
-                <div>
-                    <span className="!text-xl !block !font-bold !text-black !mb-6">Payment & Cancellation</span>
-                    <div className="!space-y-0 text-gray-700">
-                        <p>
-                            <strong>Payment:</strong> 30% deposit required to confirm booking. Full payment due 60 days before
-                            departure.
-                        </p>
-                        <p>
-                            <strong>Cancellation:</strong> Free cancellation up to 60 days before. 50% charge 30-60 days
-                            before. No refund within 30 days.
-                        </p>
+                <div className="space-y-6">
+                    <div className="space-y-4">
+                        <span className="text-xl block font-bold text-black">Payment Schedule</span>
+                        <span className="text-md block text-gray-700">The payment schedule below outlines the required installments to confirm and maintain your reservation. Each payment ensures hotel, guide, and transport allocations are secured as per your confirmed itinerary. All payments are non-transferable and must be made in U.S. Dollars (USD) via bank transfer or approved payment link.</span>
+                        <ul className="space-y-2 text-gray-700 text-sm md:text-base">
+                            {payment_schedule && payment_schedule?.map((item: any, index: number) => (
+                                <li key={index}>
+                                    <ArrowRight className="w-4 h-4 mr-2 text-amber-700 inline-block" />
+                                    {index === 0 ? (
+                                        <>Deposit - {item.percentage}% at booking</>
+                                    ) : (
+                                        <>
+                                            {item.percentage}% payment - {item.days} days before departure
+                                        </>
+                                    )}
+                                </li>
+                            ))}
+                            <li>
+                                <ArrowRight className="w-4 h-4 mr-2 text-amber-700 inline-block" />
+                                Late Payments: May result in cancellation & loss of deposit
+                            </li>
+                        </ul>
+
+                        <span className="text-md block text-gray-700">“Non-transferable” = payment can’t be reused, reassigned, or moved to another booking or person.</span>
+                    </div>
+                    <div className="space-y-4">
+                        <span className="text-xl block font-bold text-black">Cancellation Policy</span>
+                        <span className="text-md block text-gray-700">The following cancellation fees apply per person in the event of trip cancellation after booking confirmation. These charges are designed to cover non-refundable costs incurred with hotels, transportation, and local partners:</span>
+                        <ul className="space-y-2 text-gray-700 text-sm md:text-base">
+                            {cancellation_payment?.slice().sort((a: any, b: any) => {
+                                const getOrder = (d: string) => d.includes("+") ? 999 : parseInt(d.split("-")[0]);
+                                return getOrder(b.days) - getOrder(a.days);
+                            }).map((item: any, index: number) => (
+                                <li key={index}>
+                                    <ArrowRight className="w-4 h-4 mr-2 text-amber-700 inline-block" />
+                                    {item.days} days{" "}
+                                    {item.days.includes("+") ? "prior to departure" : "before departure"}
+                                    :{" "}
+                                    {index === 0 ? "USD 500 per person." : `${item.percentage}% of the total price.`}
+                                </li>
+                            ))}
+                        </ul>
                     </div>
                 </div>
             )}

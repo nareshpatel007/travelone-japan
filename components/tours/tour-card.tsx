@@ -9,7 +9,8 @@ interface TourCardProps {
     featured_image: string
     tour_type: number
     is_refundable: number
-    starting_price: string
+    starting_price: string,
+    city_nights: any
 }
 
 export function TourCard({
@@ -19,10 +20,14 @@ export function TourCard({
     tour_type,
     is_refundable,
     starting_price,
+    city_nights
 }: TourCardProps) {
+    // Parse city_nights
+    const cityNights = JSON.parse(city_nights as any);
+
     return (
         <div className="group !transition-all !duration-300 !overflow-hidden">
-            <Link href={`/tours/${slug}`}>
+            <Link href={`/tour/${slug}`}>
                 <div className="relative h-50 md:h-80 overflow-hidden">
                     <Image
                         src={featured_image || "/placeholder.svg"}
@@ -44,8 +49,21 @@ export function TourCard({
                     )}
                 </div>
                 <div className="!py-6 !space-y-3 !text-center">
-                    <span className="text-gray-900 text-xs !block">
-                        Kyoto (3 Nights) <MoveRight className="h-4 w-4 inline-flex items-center" /> Nara (1 Night) <MoveRight className="h-4 w-4 inline-flex items-center" /> Osaka (1 Night)
+                    <span className="text-gray-900 text-xs md:text-sm block">
+                        {cityNights.map((item: any, index: number) => (
+                            <span key={index} className="inline-flex items-center">
+                                {item.city_name}
+
+                                {item.night > 0 && (
+                                    <span>&nbsp;({item.night} {item.night > 1 ? "Nights" : "Night"})
+                                    </span>
+                                )}
+
+                                {index < cityNights.length - 1 && (
+                                    <MoveRight className="h-4 w-4 mx-1 inline-flex" />
+                                )}
+                            </span>
+                        ))}
                     </span>
                     <span className="text-lg md:text-2xl font-strong text-gray-900 block flex-1">{name}</span>
                     <div className="flex items-center !justify-center mb-3">

@@ -9,7 +9,7 @@ export default function NavigationMenu() {
                 </Link>
             </li>
             <li className="menu-item menu-item-type-custom menu-item-object-custom">
-                <Link href="/tours">
+                <Link href="/tour">
                     <span className="qodef-menu-item-text">Tours</span>
                 </Link>
             </li>

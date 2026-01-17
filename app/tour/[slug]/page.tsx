@@ -1,0 +1,167 @@
+"use client";
+
+import CommonHeader from "@/components/header/common-header";
+import CommonMobileHeader from "@/components/header/common-mobile-header";
+import CommonFooter from "@/components/footer/common-footer";
+import CommonTopHeader from "@/components/header/common-top-header";
+import { useState, useEffect, useRef } from "react";
+import { ArrowUp } from "lucide-react";
+import Image from "next/image";
+import FAQsList from "@/components/tour_details/faqs";
+import RelatedTours from "@/components/tour_details/related-tours";
+import { useParams } from "next/navigation";
+import HeroTour from "@/components/tour_details/hero-tour";
+import TabContent from "@/components/tour_details/tab-content";
+import BestValueGuarantee from "@/components/tour_details/best-value-guarantee";
+import Reviews from "@/components/tour_details/reviews";
+import WhyTravelOne from "@/components/tour_details/why-travelone";
+import TrustedBy from "@/components/tour_details/trusted-by";
+import TravelExpert from "@/components/tour_details/travel-experts";
+import PageHelpful from "@/components/common/helpful";
+
+export default function TourDetailPage() {
+    // Get slug
+    const params = useParams();
+    const slug = params?.slug;
+
+    // Define state
+    const [ready, setReady] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
+    const [tourData, setTourData] = useState<any>({});
+    const [selectedPackage, setSelectedPackage] = useState(2);
+    const [showStickyFooter, setShowStickyFooter] = useState(false);
+    const [openCustomizeTripPopup, setOpenCustomizeTripPopup] = useState(false);
+    const pageRef = useRef(null);
+
+    useEffect(() => {
+        // Wait one frame after hydration
+        requestAnimationFrame(() => {
+            setReady(true);
+        });
+
+        const handleScroll = () => {
+            const scrollPercentage = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            setShowStickyFooter(scrollPercentage > 10);
+        }
+
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
+
+    // Init data
+    useEffect(() => {
+        const controller = new AbortController();
+        const fetchTours = async () => {
+            try {
+                // Fetch the data
+                const response = await fetch("/api/tours/single", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ slug })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+
+                // Parse the JSON response
+                const data = await response.json();
+
+                // Update the state
+                setTourData(data?.data ?? []);
+            } catch (error: any) {
+                if (error.name !== "AbortError") {
+                    console.error("Failed to fetch single tour:", error);
+                }
+            } finally {
+                setIsLoading(false);
+            }
+        };
+        fetchTours();
+        return () => controller.abort();
+    }, []);
+
+    return (
+        <>
+            <body className="wp-singular page-template page-template-page-full-width page-template-page-full-width-php page page-id-280 wp-theme-wanderaway theme-wanderaway qi-blocks-1.4.3 qodef-gutenberg--no-touch qode-framework-1.2.6 woocommerce-js qodef-qi--no-touch qi-addons-for-elementor-1.9.3 wanderaway-core-1.2 wanderaway-1.1.1 qodef-content-grid-1300 qodef-back-to-top--enabled qodef-header--standard qodef-header-appearance--sticky qodef-mobile-header--side-area qodef-drop-down-second--full-width qodef-drop-down-second--default qode-export-1.0 qodef-header-standard--center qodef-search--covers-header elementor-default elementor-kit-4 elementor-page elementor-page-280 qodef-browser--chrome e--ua-blink e--ua-chrome e--ua-webkit">
+                {ready && <>
+                    <CommonTopHeader />
+                    <CommonHeader />
+                    <CommonMobileHeader />
+
+                    {isLoading ? (
+                        <div className="flex justify-center items-center min-h-screen bg-white">
+                            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900"></div>
+                        </div>
+                    ) : <div ref={pageRef} className="min-h-screen bg-white">
+                        <HeroTour
+                            isLoading={isLoading}
+                            tour={tourData?.tour ?? {}}
+                            city_nights={tourData?.city_nights ?? {}}
+                            packages={tourData?.tour_packages ?? []}
+                            selectedPackage={selectedPackage}
+                            setSelectedPackage={setSelectedPackage}
+                            setOpenCustomizeTripPopup={setOpenCustomizeTripPopup}
+                        />
+
+                        <TabContent
+                            tour={tourData?.tour ?? {}}
+                            city_nights={tourData?.city_nights ?? {}}
+                            tour_packages={tourData?.tour_packages ?? []}
+                            tour_terms={tourData?.tour_terms ?? {}}
+                            attractions={tourData?.attractions || {}}
+                            payment_schedule={tourData?.payment_schedule ?? []}
+                            cancellation_payment={tourData?.cancellation_payment ?? []}
+                        />
+
+                        <BestValueGuarantee />
+                        <Reviews reviews={tourData?.tour_reviews ?? []} />
+                        <WhyTravelOne />
+                        <TrustedBy />
+                        <FAQsList data={tourData?.tour_terms ?? []} />
+                        <RelatedTours tours={tourData?.related_tours || []} />
+                        <TravelExpert />
+                        <PageHelpful />
+
+                        {showStickyFooter && (
+                            <div className="hidden md:block fixed bottom-0 left-0 right-0 !bg-gray-100 !shadow-lg !border-t !border-gray-300 !z-[9999]">
+                                <div className="!max-w-7xl !mx-auto !py-3 flex !items-center !justify-between">
+                                    <div className="flex items-center gap-4">
+                                        <Image
+                                            src={tourData?.tour?.featured_image || "/placeholder-500x500.svg"}
+                                            alt={tourData?.tour?.name}
+                                            width={70}
+                                            height={50}
+                                            className="!object-cover !rounded"
+                                        />
+                                        <span className="text-gray-700 text-md font-medium">Call us now on +1 437 966 9023</span>
+                                    </div>
+
+                                    <div className="flex items-center gap-3">
+                                        <button className="bg-[#ef2853] hover:bg-white text-white hover:text-[#ef2853] border border-[#ef2853] px-6 py-2 rounded font-semibold cursor-pointer transition">
+                                            Book {tourData?.tour_packages && tourData?.tour_packages.find((p: any) => p.no === selectedPackage)?.name}
+                                        </button>
+                                        <button className="bg-white text-black border border-black hover:bg-black hover:text-white px-6 py-2 rounded font-semibold cursor-pointer transition">
+                                            Customize Trip
+                                        </button>
+                                        <button
+                                            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                                            className="ml-2 p-2 bg-[#1E1E1E] text-white rounded-full shadow hover:shadow-lg cursor-pointer transition"
+                                        >
+                                            <ArrowUp size={20} className="text-white" />
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+                    </div>}
+
+                    {/* <CustomizeTrip open={openCustomizeTripPopup} onOpenChange={setOpenCustomizeTripPopup} /> */}
+                    <CommonFooter />
+                </>}
+            </body>
+        </>
+    );
+}
