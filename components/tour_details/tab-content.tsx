@@ -137,7 +137,7 @@ export default function TabContent({ tour, city_nights, tour_packages, attractio
                                 ))}
                             </select>
                         </div>
-                        <div className="bg-white border-1 border-[#C46A3A] rounded p-6">
+                        <div className="bg-white border-1 border-[#C46A3A] rounded p-4">
                             <OverviewTabContent
                                 activeTab={activeTab}
                                 tour={tour}
