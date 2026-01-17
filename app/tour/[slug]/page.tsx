@@ -168,7 +168,7 @@ export default function TourDetailPage() {
                     <CustomizeTrip open={openCustomizeTripPopup} onOpenChange={setOpenCustomizeTripPopup} />
                     <DownloadBrochure open={openDownloadBrochurePopup} onOpenChange={setOpenDownloadBrochurePopup} />
                     <EmailBrochure open={openEmailBrochurePopup} onOpenChange={setOpenEmailBrochurePopup} />
-                    <BookingCart open={openBookingCartPopup} onOpenChange={setOpenBookingCartPopup} />
+                    <BookingCart tour={tourData?.tour ?? {}} open={openBookingCartPopup} onOpenChange={setOpenBookingCartPopup} />
 
                     <CommonFooter />
                 </>}
