@@ -41,7 +41,7 @@ export function BookingCart({ tour, open, onOpenChange }: Props) {
         if (currentStep == 0) {
             setCurrentStep(currentStep + 1)
         } else {
-            setShowResults(true);
+            // setShowResults(true);
         }
     }
 
