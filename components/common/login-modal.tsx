@@ -60,7 +60,7 @@ export function LoginModal({ open, onOpenChange }: Props) {
                         borderBottomRightRadius: "12px",
                     }}
                 >
-                    <div className="!absolute !top-16 !right-10 !translate-x-1/2 !-translate-y-1/2 !z-50">
+                    <div className="!absolute !top-16 !right-10 !translate-x-1/2 !-translate-y-1/2 !z-50 cursor-pointer">
                         <svg
                             className="!absolute !inset-0 !w-10 !h-10"
                             xmlns="http://www.w3.org/2000/svg"
@@ -72,7 +72,7 @@ export function LoginModal({ open, onOpenChange }: Props) {
 
                         <button
                             aria-label="Close"
-                            className="relative w-10 h-10 flex items-center justify-center text-white text-sm font-semibold"
+                            className="relative w-10 h-10 flex items-center justify-center text-white text-sm font-semibold cursor-pointer"
                             onClick={() => {
                                 onOpenChange(false);
                             }}
@@ -80,34 +80,34 @@ export function LoginModal({ open, onOpenChange }: Props) {
                             ✕
                         </button>
                     </div>
-                    <div className="!px-6 !md:px-16 !pb-7 !pt-6">
+                    <div className="p-8 md:p-10">
                         <QuestionHeading
                             title={`${isSignUp ? "Create an account" : "Log in to your account"}`}
                             subtitle={`${isSignUp ? "Sign up to access your bookings" : "Log in to manage your bookings and payments."}`}
                         />
-                        <div className="space-y-4">
+                        <div className="space-y-3">
                             {isSignUp && (
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                     <div>
-                                        <label className="!block !text-md !text-black !mb-0">First name</label>
+                                        <label className="block text-md text-black mb-0">First name</label>
                                         <input
                                             id="firstName"
                                             type="text"
                                             value={firstName}
                                             onChange={(e) => setFirstName(e.target.value)}
-                                            className="!w-full !rounded-sm !px-4 !py-2 !bg-white border"
+                                            className="w-full rounded-sm px-4 py-2 bg-white border border-gray-900"
                                             placeholder="First name"
                                             required
                                         />
                                     </div>
                                     <div>
-                                        <label className="!block !text-md !text-black !mb-0">Last name</label>
+                                        <label className="block text-md text-black mb-0">Last name</label>
                                         <input
                                             id="lastName"
                                             type="text"
                                             value={lastName}
                                             onChange={(e) => setLastName(e.target.value)}
-                                            className="!w-full !rounded-sm !px-4 !py-2 !bg-white border"
+                                            className="w-full rounded-sm px-4 py-2 bg-white border border-gray-900"
                                             placeholder="Last name"
                                             required
                                         />
@@ -116,25 +116,25 @@ export function LoginModal({ open, onOpenChange }: Props) {
                             )}
 
                             <div>
-                                <label className="!block !text-md !text-black !mb-0">Email address</label>
+                                <label className="block text-md text-black mb-0">Email address</label>
                                 <input
                                     id="email"
                                     type="email"
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
                                     placeholder="Enter your email"
-                                    className="!w-full !rounded-sm !px-4 !py-2 !bg-white border"
+                                    className="w-full rounded-sm px-4 py-2 bg-white border border-gray-900"
                                     required
                                 />
                             </div>
                             <div>
-                                <label className="!block !text-md !text-black !mb-0">Password</label>
+                                <label className="block text-md text-black mb-0">Password</label>
                                 <input
                                     id="password"
                                     type={showPassword ? "text" : "password"}
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
-                                    className="!w-full !rounded-sm !px-4 !py-2 !bg-white border"
+                                    className="w-full rounded-sm px-4 py-2 bg-white border border-gray-900"
                                     placeholder="Enter your password"
                                     required
                                 />
@@ -159,17 +159,17 @@ export function LoginModal({ open, onOpenChange }: Props) {
 
                             <button
                                 type="submit"
-                                className="!w-full !flex !items-center !justify-center !bg-black !text-white !font-semibold !mt-3 !py-2.5 !rounded-md !hover:bg-[#333] !transition-colors !cursor-pointer"
+                                className="w-full flex items-center justify-center bg-black text-white font-semibold mt-3 py-2.5 rounded-md hover:bg-[#666] transition-colors cursor-pointer"
                             >
                                 {isSignUp ? "Create account" : "Log in"}
                             </button>
 
-                            <div className="relative !py-3">
+                            <div className="relative py-3">
                                 <div className="absolute inset-0 flex items-center">
                                     <div className="w-full border-t border-gray-200"></div>
                                 </div>
                                 <div className="relative flex justify-center text-sm">
-                                    <span className="px-4 bg-white text-gray-500">or continue with</span>
+                                    <span className="px-4 text-gray-700">or continue with</span>
                                 </div>
                             </div>
                             <div className="grid grid-cols-1">
