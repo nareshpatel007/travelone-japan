@@ -49,7 +49,7 @@ export function TourCard({
                     )}
                 </div>
                 <div className="!py-6 !space-y-3 !text-center">
-                    <span className="text-gray-900 text-xs md:text-sm block">
+                    <span className="text-gray-900 block text-sm md:text-md lg:text-md">
                         {cityNights.map((item: any, index: number) => (
                             <span key={index} className="inline-flex items-center">
                                 {item.city_name}

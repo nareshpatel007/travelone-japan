@@ -10,10 +10,10 @@ type Props = {
 
 export default function Reviews({ reviews }: Props) {
     return (
-        <div className="bg-amber-50 py-16 px-5 md:px-0">
+        <div className="bg-white py-10 md:py-16 px-5 md:px-0">
             <div className="!pb-10 !max-w-7xl !mx-auto">
-                <span className="text-2xl md:text-4xl font-bold text-center !block !mb-3 text-[#1E1E1E]">Recent Reviews</span>
-                <p className="text-center text-[#C46A3A] !mb-12 font-semibold">
+                <span className="text-xl md:text-4xl lg:text-4xl font-bold text-center !block !mb-3 text-[#1E1E1E]">Recent Reviews</span>
+                <p className="text-sm md:text-md lg:text-lg text-center text-[#C46A3A] !mb-12 font-semibold">
                     To receive our best monthly deals and travel inspiration.
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -33,7 +33,7 @@ export default function Reviews({ reviews }: Props) {
                                     />
                                 </div>
                             </div>
-                            <span className="text-2xl font-bold !text-amber-800 !block !mb-3">{review.full_name}</span>
+                            <span className="text-md md:text-lg lg:text-xl font-bold text-amber-800 block mb-3">{review.full_name}</span>
                             <div className="flex gap-1 mb-4 justify-center">
                                 {[...Array(5)].map((_, i) => (
                                     <Star

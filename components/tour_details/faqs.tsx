@@ -12,10 +12,10 @@ export default function FAQsList({ data }: Props) {
     const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
 
     return (
-        <div className="!bg-amber-50 py-16 px-5 md:px-0">
+        <div className="bg-amber-50 py-10 md:py-16 px-5 md:px-0">
             <div className="!max-w-7xl !mx-auto">
-                <span className="text-2xl md:text-4xl font-bold text-center !block !mb-3 text-[#1E1E1E]">Frequently Asked Questions</span>
-                <p className="text-center text-[#C46A3A] !mb-12 font-semibold">
+                <span className="text-xl md:text-4xl lg:text-4xl font-bold text-center !block !mb-3 text-[#1E1E1E]">Frequently Asked Questions</span>
+                <p className="text-sm md:text-md lg:text-lg text-center text-[#C46A3A] !mb-12 font-semibold">
                     We're here to help you with any questions you may have.
                 </p>
                 <div className="space-y-0">
@@ -25,7 +25,7 @@ export default function FAQsList({ data }: Props) {
                                 onClick={() => setExpandedIndex(expandedIndex === index ? null : index)}
                                 className="w-full py-6 px-0 flex items-center justify-between border-b border-gray-300 hover:bg-amber-50/50 transition-colors duration-200 text-left group cursor-pointer"
                             >
-                                <span className="text-md md:text-xl font-normal md:font-bold text-black pr-4 flex-1 group-hover:text-[#1E1E1E] !block">
+                                <span className="text-md md:text-xl font-normal md:font-semibold text-black pr-4 flex-1 group-hover:text-[#1E1E1E] !block">
                                     {item[0]}
                                 </span>
                                 <ChevronDown
