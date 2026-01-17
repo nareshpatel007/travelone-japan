@@ -38,10 +38,10 @@ export function BookingCart({ tour, open, onOpenChange }: Props) {
 
     // Handle next step
     const handleNext = () => {
-        if (currentStep < 3) {
+        if (currentStep == 0) {
             setCurrentStep(currentStep + 1)
         } else {
-            setShowResults(true)
+            setShowResults(true);
         }
     }
 
@@ -101,13 +101,14 @@ export function BookingCart({ tour, open, onOpenChange }: Props) {
                         <span className="text-3xl md:text-4xl font-bold !text-black !text-center !block !mb-10">
                             When Would You Like to Book Your Trip?
                         </span>
+
+                        {/* Step 1 */}
                         {currentStep === 1 && (
                             <div className="w-full max-w-3xl mx-auto space-y-5">
                                 <div className="text-center space-y-3">
                                     <p className="text-md font-medium text-gray-900">
                                         Choose Your Travel Date
                                     </p>
-
                                     {tour?.tour_type === "Group Tour" ? (
                                         <select
                                             value={selectedDate ?? ""}
@@ -153,6 +154,7 @@ export function BookingCart({ tour, open, onOpenChange }: Props) {
                             </div>
                         )}
 
+                        {/* Step 2 */}
                         {currentStep === 2 && (
                             <div className="w-full max-w-4xl mx-auto space-y-6">
 
@@ -217,7 +219,6 @@ export function BookingCart({ tour, open, onOpenChange }: Props) {
                                 </div>
                             </div>
                         )}
-
                     </div>
 
                     <div className="flex items-center gap-3 !mt-12">
