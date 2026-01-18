@@ -336,7 +336,7 @@ export function BookingCart({ tour, open, onOpenChange }: Props) {
                                                         onClick={() =>
                                                             updateRoom(activeRoomIndex, "bedding", bed)
                                                         }
-                                                        className={`px-4 py-2 rounded-md border font-medium text-sm cursor-pointer ${rooms[activeRoomIndex].bedding === bed
+                                                        className={`px-2 py-2 rounded-md border font-medium text-sm cursor-pointer ${rooms[activeRoomIndex].bedding === bed
                                                             ? "bg-[#ffc765] text-[#333] shadow-md"
                                                             : "border-[#2F5D50]"
                                                             }`}
