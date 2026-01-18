@@ -22,6 +22,14 @@ type Room = {
     crib: boolean;
 };
 
+// Define room limits
+const ROOM_LIMITS: any = {
+    adults: 3,
+    child_8_12: 1,
+    child_3_7: 1,
+    infant: 1,
+};
+
 export function BookingCart({ tour, open, onOpenChange }: Props) {
     // Define state
     const [currentStep, setCurrentStep] = useState(1);
@@ -76,7 +84,21 @@ export function BookingCart({ tour, open, onOpenChange }: Props) {
         setAvailableSeats(dateObject?.available_seat || 0);
     }
 
+    const getTotalTravellers = (rooms: Room[]) => {
+        return rooms.reduce(
+            (sum, room) =>
+                sum +
+                room.adults +
+                room.child_8_12 +
+                room.child_3_7 +
+                room.infant,
+            0
+        );
+    };
+
     const addRoom = () => {
+        if (rooms.length >= availableSeats) return;
+
         setRooms((prev) => [
             ...prev,
             {
@@ -90,6 +112,7 @@ export function BookingCart({ tour, open, onOpenChange }: Props) {
                 crib: false,
             },
         ]);
+
         setActiveRoomIndex(rooms.length);
     };
 
@@ -116,13 +139,41 @@ export function BookingCart({ tour, open, onOpenChange }: Props) {
     };
 
     // Increment pax count
-    const inc = (field: keyof Room) => {
-        updateRoom(activeRoomIndex, field, rooms[activeRoomIndex][field] as number + 1);
+    const incrementCount = (field: keyof Room) => {
+        // Get current room and its field value
+        const room = rooms[activeRoomIndex];
+        const roomFieldValue = room[field] as number;
+        const roomLimit = ROOM_LIMITS[field] as number;
+
+        // Per-room limit
+        if (roomFieldValue >= roomLimit) return;
+
+        // Total seats limit
+        const totalTravellers = getTotalTravellers(rooms);
+        if (totalTravellers >= availableSeats) return;
+
+        // Update room
+        updateRoom(
+            activeRoomIndex,
+            field,
+            roomFieldValue + 1
+        );
     }
 
     // Decrement pax count
-    const dec = (field: keyof Room) => {
-        updateRoom(activeRoomIndex, field, Math.max(0, rooms[activeRoomIndex][field] as number - 1));
+    const decrementCount = (field: keyof Room) => {
+        const room = rooms[activeRoomIndex];
+        const roomFieldValue = room[field] as number;
+
+        // Prevent going below zero
+        if (roomFieldValue <= 0) return;
+
+        // Update room
+        updateRoom(
+            activeRoomIndex,
+            field,
+            roomFieldValue - 1
+        );
     }
 
     if (!open) return null;
@@ -329,11 +380,11 @@ export function BookingCart({ tour, open, onOpenChange }: Props) {
                                                     <p className="text-sm text-gray-600">{item.age}</p>
                                                 </div>
                                                 <div className="flex items-center gap-4">
-                                                    <button onClick={() => dec(item.field as keyof Room)} className="w-7 h-7 cursor-pointer rounded-full border-1 hover:bg-gray-700 hover:text-white">−</button>
+                                                    <button onClick={() => decrementCount(item.field as keyof Room)} className="w-7 h-7 cursor-pointer rounded-full border-1 hover:bg-gray-700 hover:text-white">−</button>
 
                                                     <span>{rooms[activeRoomIndex][item.field as keyof Room]}</span>
 
-                                                    <button onClick={() => inc(item.field as keyof Room)} className="w-7 h-7 cursor-pointer rounded-full border-1 hover:bg-gray-700 hover:text-white">+</button>
+                                                    <button onClick={() => incrementCount(item.field as keyof Room)} className="w-7 h-7 cursor-pointer rounded-full border-1 hover:bg-gray-700 hover:text-white">+</button>
                                                 </div>
                                             </div>
                                         ))}
