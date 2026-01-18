@@ -1,8 +1,7 @@
 "use client"
 
 import { useState } from "react";
-import { ArrowLeft, ArrowRight, Check, CheckCircle, X } from "lucide-react";
-import Image from "next/image";
+import { ArrowLeft, ArrowRight, CheckCircle, Plus, X } from "lucide-react";
 import { formatDate } from "@/lib/utils";
 
 interface Props {
@@ -11,23 +10,43 @@ interface Props {
     onOpenChange: (open: boolean) => void;
 }
 
+// Define room type
+type Room = {
+    id: number;
+    bedding: string | null;
+    adults: number;
+    child_8_12: number;
+    child_3_7: number;
+    infant: number;
+    extraBed: boolean;
+    crib: boolean;
+};
+
 export function BookingCart({ tour, open, onOpenChange }: Props) {
     // Define state
-    const [currentStep, setCurrentStep] = useState(1)
-    const [selectedDestination, setSelectedDestination] = useState<string | null>(null)
-    const [selectedCountry, setSelectedCountry] = useState<string | null>(null)
-    const [selectedDate, setSelectedDate] = useState<string>("")
-    const [selectedAttractions, setSelectedAttractions] = useState<string[]>([])
-    const [showResults, setShowResults] = useState(false)
+    const [currentStep, setCurrentStep] = useState(1);
+    const [selectedNationality, setSelectedNationality] = useState<string | null>(null);
+    const [selectedDate, setSelectedDate] = useState<string>("");
+    const [availableSeats, setAvailableSeats] = useState<number>(0);
+    const [activeRoomIndex, setActiveRoomIndex] = useState(0);
+    const [rooms, setRooms] = useState<Room[]>([
+        {
+            id: 1,
+            bedding: "Double",
+            adults: 0,
+            child_8_12: 0,
+            child_3_7: 0,
+            infant: 0,
+            extraBed: false,
+            crib: false,
+        },
+    ]);
 
     // Handle reset
     const handleReset = () => {
         setCurrentStep(1);
-        setSelectedDestination(null);
-        setSelectedCountry(null);
+        setSelectedNationality(null);
         setSelectedDate("");
-        setSelectedAttractions([]);
-        setShowResults(false);
     }
 
     // Handle close
@@ -36,47 +55,77 @@ export function BookingCart({ tour, open, onOpenChange }: Props) {
         handleReset();
     }
 
-    // Handle next step
-    const handleNext = () => {
-        if (currentStep == 0) {
-            setCurrentStep(currentStep + 1)
-        } else {
-            // setShowResults(true);
-        }
-    }
+    // Handle submit
+    const handleSubmit = () => {
 
-    // Handle previous step
-    const handlePrevious = () => {
-        if (currentStep > 1) {
-            setCurrentStep(currentStep - 1)
-        }
-    }
-
-    const canProceed = () => {
-        switch (currentStep) {
-            case 1:
-                return selectedDestination !== null
-            case 2:
-                return selectedCountry !== null
-            case 3:
-                return selectedDate !== ""
-            case 4:
-                return selectedAttractions.length > 0
-            default:
-                return false
-        }
     }
 
     // Check if date is in the future
     const isFutureDate = (dateString: string) => {
         const today = new Date();
-        today.setHours(0, 0, 0, 0); // remove time
-
+        today.setHours(0, 0, 0, 0);
         const date = new Date(dateString);
         return date > today;
     };
 
-    if (!open) return null
+    // Handle choose date
+    const handleChooseDate = (index: string) => {
+        const dateObject = tour?.group_dates[index] || null;
+        if (!dateObject) return;
+        setSelectedDate(dateObject?.group_date);
+        setAvailableSeats(dateObject?.available_seat || 0);
+    }
+
+    const addRoom = () => {
+        setRooms((prev) => [
+            ...prev,
+            {
+                id: prev.length + 1,
+                bedding: "Double",
+                adults: 0,
+                child_8_12: 0,
+                child_3_7: 0,
+                infant: 0,
+                extraBed: false,
+                crib: false,
+            },
+        ]);
+        setActiveRoomIndex(rooms.length);
+    };
+
+    const removeRoom = (index: number) => {
+        if (index === 0) return; // Do not allow removing Room 1
+
+        setRooms((prev) => {
+            const updated = prev.filter((_, i) => i !== index);
+            return updated.map((room, i) => ({ ...room, id: i + 1 }));
+        });
+
+        // Adjust active tab safely
+        setActiveRoomIndex((prev) =>
+            prev >= index ? Math.max(0, prev - 1) : prev
+        );
+    };
+
+    const updateRoom = (index: number, field: keyof Room, value: any) => {
+        setRooms((prev) =>
+            prev.map((room, i) =>
+                i === index ? { ...room, [field]: value } : room
+            )
+        );
+    };
+
+    // Increment pax count
+    const inc = (field: keyof Room) => {
+        updateRoom(activeRoomIndex, field, rooms[activeRoomIndex][field] as number + 1);
+    }
+
+    // Decrement pax count
+    const dec = (field: keyof Room) => {
+        updateRoom(activeRoomIndex, field, Math.max(0, rooms[activeRoomIndex][field] as number - 1));
+    }
+
+    if (!open) return null;
 
     return (
         <div className="fixed inset-0 z-[99999] flex items-center justify-center">
@@ -96,60 +145,87 @@ export function BookingCart({ tour, open, onOpenChange }: Props) {
                         />
                     ))}
                 </div>
-                <div className="min-h-full flex flex-col !items-center !justify-center !px-8 !py-20">
-                    <div className="w-full max-w-5xl !text-center">
-                        <span className="text-3xl md:text-4xl font-bold !text-black !text-center !block !mb-10">
+                <div className="min-h-full flex flex-col items-center justify-center px-4 md:px-8 py-20">
+                    <div className="w-full max-w-4xl">
+                        <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3 md:mb-10 text-center">
                             When Would You Like to Book Your Trip?
-                        </span>
+                        </h2>
 
                         {/* Step 1 */}
                         {currentStep === 1 && (
-                            <div className="w-full max-w-3xl mx-auto space-y-5">
-                                <div className="text-center space-y-3">
-                                    <p className="text-md font-medium text-gray-900">
-                                        Choose Your Travel Date
-                                    </p>
-                                    {tour?.tour_type === "Group Tour" ? (
-                                        <select
-                                            value={selectedDate ?? ""}
-                                            onChange={(e) => setSelectedDate(e.target.value)}
-                                            className="w-full max-w-md px-4 py-3 border border-[#2F5D50] rounded-md bg-white outline-none"
-                                        >
-                                            <option value="">Select travel date</option>
-
-                                            {tour?.group_dates
-                                                ?.filter((d: any) => isFutureDate(d.group_date))
-                                                .map((date: any, index: number) => (
-                                                    <option key={index} value={date.group_date}>
-                                                        {formatDate(date.group_date)}
+                            <div className="border border-[#2F5D50] rounded-sm p-5 space-y-4 bg-white/60">
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                                    <div>
+                                        <label className="block text-md font-medium text-[#333] mb-1">
+                                            Full Name <span className="text-red-500">*</span>
+                                        </label>
+                                        <input
+                                            placeholder="Enter your name"
+                                            className="w-full px-4 py-2 rounded-sm border border-[#2F5D50] bg-white outline-none"
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="block text-md font-medium text-[#333] mb-1">
+                                            Email <span className="text-red-500">*</span>
+                                        </label>
+                                        <input
+                                            placeholder="Enter your email"
+                                            className="w-full px-4 py-2 rounded-sm border border-[#2F5D50] bg-white outline-none"
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="block text-md font-medium text-[#333] mb-1">
+                                            Cellphone <span className="text-red-500">*</span>
+                                        </label>
+                                        <input
+                                            placeholder="Enter your cellphone"
+                                            className="w-full px-4 py-2 rounded-sm border border-[#2F5D50] bg-white outline-none"
+                                        />
+                                    </div>
+                                </div>
+                                <div className="border-t border-dashed border-gray-300 mt-6 pt-4 grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                                    <div>
+                                        <label className="block text-md font-medium text-[#333] mb-1">
+                                            Travel Date <span className="text-red-500">*</span>
+                                        </label>
+                                        {tour?.tour_type === "Group Tour" ? (
+                                            <select
+                                                value={selectedDate ?? ""}
+                                                onChange={(e) => handleChooseDate(e.target.value)}
+                                                className="w-full px-4 py-2 rounded-sm border border-[#2F5D50] bg-white outline-none"
+                                            >
+                                                <option value="">Choose travel date</option>
+                                                {tour?.group_dates?.filter((d: any) => isFutureDate(d.group_date)).map((date: any, index: number) => (
+                                                    <option key={index} value={index}>
+                                                        {`${formatDate(date.group_date)} (${date.available_seat} seats)`}
                                                     </option>
                                                 ))}
+                                            </select>
+                                        ) : (
+                                            <input
+                                                type="date"
+                                                value={selectedDate}
+                                                onChange={(e) => setSelectedDate(e.target.value)}
+                                                min={new Date().toISOString().split("T")[0]}
+                                                className="w-full max-w-md px-4 py-3 border border-[#2F5D50] rounded-md bg-white outline-none"
+                                            />
+                                        )}
+                                    </div>
+                                    <div>
+                                        <label className="block text-md font-medium text-[#333] mb-1">
+                                            Your Nationality <span className="text-red-500">*</span>
+                                        </label>
+                                        <select
+                                            value={selectedNationality ?? ""}
+                                            onChange={(e) => setSelectedNationality(e.target.value)}
+                                            className="w-full px-4 py-2 rounded-sm border border-[#2F5D50] bg-white outline-none"
+                                        >
+                                            <option value="">Select nationality</option>
+                                            <option value="USA">United States of America</option>
+                                            <option value="India">India</option>
+                                            <option value="UK">United Kingdom</option>
                                         </select>
-                                    ) : (
-                                        <input
-                                            type="date"
-                                            value={selectedDate}
-                                            onChange={(e) => setSelectedDate(e.target.value)}
-                                            min={new Date().toISOString().split("T")[0]}
-                                            className="w-full max-w-md px-4 py-3 border border-[#2F5D50] rounded-md bg-white outline-none"
-                                        />
-                                    )}
-                                </div>
-
-                                <div className="text-center space-y-3">
-                                    <p className="text-md font-medium text-gray-900">
-                                        Select Your Nationality
-                                    </p>
-                                    <select
-                                        value={selectedCountry ?? ""}
-                                        onChange={(e) => setSelectedCountry(e.target.value)}
-                                        className="w-full max-w-md px-4 py-3 border border-[#2F5D50] rounded-md bg-white outline-none"
-                                    >
-                                        <option value="">Select nationality</option>
-                                        <option value="USA">United States of America</option>
-                                        <option value="India">India</option>
-                                        <option value="UK">United Kingdom</option>
-                                    </select>
+                                    </div>
                                 </div>
                             </div>
                         )}
@@ -157,93 +233,141 @@ export function BookingCart({ tour, open, onOpenChange }: Props) {
                         {/* Step 2 */}
                         {currentStep === 2 && (
                             <div className="w-full max-w-4xl mx-auto space-y-6">
-
-                                {/* Header */}
-                                <div className="text-center space-y-1">
-                                    <h2 className="text-2xl font-semibold text-[#0F172A]">
+                                <div className="text-center mb-3">
+                                    <p className="text-xl font-semibold text-[#0F172A]">
                                         Choose Traveler Details
-                                    </h2>
-                                    <p className="text-sm text-[#004B63]">
-                                        15 Seats are available in this tour
+                                    </p>
+                                    <p className="text-sm text-gray-700">
+                                        {availableSeats} Seats are available in this tour
                                     </p>
                                 </div>
-
-                                {/* Rooms */}
-                                <div className="border border-[#2F5D50] rounded-md px-6 py-4 flex justify-between items-center">
-                                    <span className="font-medium">Rooms</span>
-                                    <div className="flex items-center gap-4">
-                                        <button className="w-8 h-8 rounded-full border border-[#004B63]">-</button>
-                                        <span>1</span>
-                                        <button className="w-8 h-8 rounded-full border border-[#004B63]">+</button>
+                                <div className="border border-[#2F5D50] rounded-sm p-5 space-y-4 bg-white/60">
+                                    <div className="flex items-center justify-between">
+                                        <p className="font-semibold">Rooms</p>
+                                        <button
+                                            onClick={addRoom}
+                                            className="flex items-center gap-1 px-4 py-1.5 font-medium rounded border border-[#2F5D50] text-sm cursor-pointer hover:bg-[#FFC765]"
+                                        >
+                                            <Plus className="h-3 w-3" /> Add Room
+                                        </button>
                                     </div>
-                                </div>
-
-                                {/* Room Card */}
-                                <div className="border border-[#2F5D50] rounded-md p-6 space-y-6">
-                                    <span className="text-red-500 font-medium">Room 1</span>
-
-                                    {/* Bedding */}
-                                    <div>
-                                        <p className="text-center font-medium mb-4">Bedding Preference</p>
-                                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                                            {["Double", "Twin", "Single", "Two Queen Bed"].map((bed) => (
-                                                <button
-                                                    key={bed}
-                                                    className="border border-[#2F5D50] rounded-md p-4 text-sm hover:border-red-500 hover:shadow"
+                                    <div className="border border-dashed border-gray-300 rounded-sm p-5 space-y-4">
+                                        <div className="flex gap-4 items-center border-b border-dashed border-gray-300 pb-2 overflow-x-auto whitespace-nowrap scrollbar-hide">
+                                            {rooms.map((room, index) => (
+                                                <div
+                                                    key={room.id}
+                                                    className="inline-flex items-center gap-1 pr-3 border-r border-dashed border-gray-300 flex-shrink-0"
                                                 >
-                                                    {bed}
-                                                </button>
+                                                    <button
+                                                        onClick={() => setActiveRoomIndex(index)}
+                                                        className={`font-medium cursor-pointer transition-colors ${activeRoomIndex === index ? "text-red-500" : "text-[#0F172A]"}`}
+                                                    >
+                                                        Room {index + 1}
+                                                    </button>
+                                                    {index > 0 && (
+                                                        <button
+                                                            onClick={() => removeRoom(index)}
+                                                            className="text-red-500 text-xs font-semibold pl-1 hover:text-red-700 cursor-pointer"
+                                                            title="Remove Room"
+                                                        >
+                                                            ✕
+                                                        </button>
+                                                    )}
+                                                </div>
                                             ))}
                                         </div>
-                                    </div>
-
-                                    {/* Pax */}
-                                    {[
-                                        { label: "Adults", age: "Ages 12 or above" },
-                                        { label: "Child", age: "Ages 8-12" },
-                                        { label: "Child", age: "Ages 3-7" },
-                                        { label: "Infant", age: "Ages 0-2" },
-                                    ].map((item) => (
-                                        <div key={item.age} className="flex justify-between items-center">
-                                            <div>
-                                                <p className="font-medium">{item.label}</p>
-                                                <p className="text-sm text-gray-600">{item.age}</p>
-                                            </div>
-                                            <div className="flex items-center gap-4">
-                                                <button className="w-8 h-8 rounded-full border border-[#004B63]">-</button>
-                                                <span>0</span>
-                                                <button className="w-8 h-8 rounded-full border border-[#004B63]">+</button>
+                                        <div>
+                                            <p className="text-center font-medium mb-4">Bedding Preference</p>
+                                            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                                                {["Double", "Twin", "Single", "Two Queen Bed"].map((bed) => (
+                                                    <button
+                                                        key={bed}
+                                                        onClick={() =>
+                                                            updateRoom(activeRoomIndex, "bedding", bed)
+                                                        }
+                                                        className={`px-4 py-2 rounded-md border font-medium text-sm cursor-pointer ${rooms[activeRoomIndex].bedding === bed
+                                                            ? "bg-[#ffc765] text-[#333] shadow-md"
+                                                            : "border-[#2F5D50]"
+                                                            }`}
+                                                    >
+                                                        {bed}
+                                                    </button>
+                                                ))}
                                             </div>
                                         </div>
-                                    ))}
+                                        <div className="flex justify-end gap-6 text-sm">
+                                            <label className="flex items-center gap-2">
+                                                <input
+                                                    type="checkbox"
+                                                    checked={rooms[activeRoomIndex].extraBed}
+                                                    onChange={(e) =>
+                                                        updateRoom(activeRoomIndex, "extraBed", e.target.checked)
+                                                    }
+                                                />
+                                                Add Extra Bed
+                                            </label>
+                                            <label className="flex items-center gap-2">
+                                                <input
+                                                    type="checkbox"
+                                                    checked={rooms[activeRoomIndex].crib}
+                                                    onChange={(e) =>
+                                                        updateRoom(activeRoomIndex, "crib", e.target.checked)
+                                                    }
+                                                />
+                                                Add Crib
+                                            </label>
+                                        </div>
+                                        {[
+                                            { label: "Adults", field: "adults", age: "Ages 12 or above" },
+                                            { label: "Child", field: "child_8_12", age: "Ages 8-12" },
+                                            { label: "Child", field: "child_3_7", age: "Ages 3-7" },
+                                            { label: "Infant", field: "infant", age: "Ages 0-2" },
+                                        ].map((item) => (
+                                            <div key={item.field} className="flex justify-between items-center">
+                                                <div>
+                                                    <p className="font-medium">{item.label}</p>
+                                                    <p className="text-sm text-gray-600">{item.age}</p>
+                                                </div>
+                                                <div className="flex items-center gap-4">
+                                                    <button onClick={() => dec(item.field as keyof Room)} className="w-7 h-7 cursor-pointer rounded-full border-1 hover:bg-gray-700 hover:text-white">−</button>
+
+                                                    <span>{rooms[activeRoomIndex][item.field as keyof Room]}</span>
+
+                                                    <button onClick={() => inc(item.field as keyof Room)} className="w-7 h-7 cursor-pointer rounded-full border-1 hover:bg-gray-700 hover:text-white">+</button>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
                                 </div>
                             </div>
                         )}
                     </div>
 
-                    <div className="flex items-center gap-3 !mt-12">
-                        {currentStep > 1 && (
+                    <div className="flex items-center gap-3 mt-5">
+                        {currentStep === 1 ? (
                             <button
-                                onClick={handlePrevious}
-                                className="flex items-center gap-2 px-8 py-3 bg-white text-[#1a2b49] rounded-lg font-medium border border-[#1a2b49] hover:bg-[#333] hover:border-[#333] transition-colors hover:text-white cursor-pointer"
+                                onClick={() => setCurrentStep(currentStep + 1)}
+                                className={`flex items-center gap-2 px-8 py-3 rounded-lg font-medium transition-colors border cursor-pointer bg-[#ffc765] text-[#333] hover:border-[#333] hover:text-white hover:bg-[#333]`}
                             >
-                                <ArrowLeft className="h-5 w-5" /> Previous
+                                Next <ArrowRight className="h-5 w-5" />
                             </button>
-                        )}
-                        <button
-                            onClick={handleNext}
-                            className={`flex items-center gap-2 px-8 py-3 rounded-lg font-medium transition-colors border cursor-pointer bg-[#ffc765] text-[#333] hover:border-[#333] hover:text-white hover:bg-[#333]`}
-                        >
-                            {currentStep === 2 ? (
-                                <>
+                        ) : (
+                            <>
+                                <button
+                                    onClick={() => setCurrentStep(currentStep - 1)}
+                                    className="flex items-center gap-2 px-8 py-3 bg-white text-[#1a2b49] rounded-lg font-medium border border-[#1a2b49] hover:bg-[#333] hover:border-[#333] transition-colors hover:text-white cursor-pointer"
+                                >
+                                    <ArrowLeft className="h-5 w-5" /> Previous
+                                </button>
+
+                                <button
+                                    onClick={handleSubmit}
+                                    className={`flex items-center gap-2 px-8 py-3 rounded-lg font-medium transition-colors border cursor-pointer bg-[#ffc765] text-[#333] hover:border-[#333] hover:text-white hover:bg-[#333]`}
+                                >
                                     <CheckCircle className="h-5 w-5" /> Submit
-                                </>
-                            ) : (
-                                <>
-                                    Next <ArrowRight className="h-5 w-5" />
-                                </>
-                            )}
-                        </button>
+                                </button>
+                            </>
+                        )}
                     </div>
                 </div>
             </div>

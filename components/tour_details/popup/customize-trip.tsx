@@ -106,7 +106,6 @@ export function CustomizeTrip({ open, onOpenChange }: Props) {
                                 </button>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
