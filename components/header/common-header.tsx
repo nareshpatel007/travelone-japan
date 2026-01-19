@@ -32,25 +32,25 @@ const DESTINATIONS = [
         title: "Ha Long Bay",
         subtitle: "Magic Places",
         image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e",
-        link: "/destination/ha-long-bay",
+        link: "/country/ha-long-bay",
     },
     {
         title: "San Francisco",
         subtitle: "Magic Places",
         image: "https://images.unsplash.com/photo-1501594907352-04cda38ebc29",
-        link: "/destination/san-francisco",
+        link: "/country/san-francisco",
     },
     {
         title: "Zanzibar",
         subtitle: "Magic Places",
         image: "https://images.unsplash.com/photo-1501785888041-af3ef285b470",
-        link: "/destination/zanzibar",
+        link: "/country/zanzibar",
     },
     {
         title: "Acropolis",
         subtitle: "Magic Places",
         image: "https://images.unsplash.com/photo-1501785888041-af3ef285b470",
-        link: "/destination/acropolis",
+        link: "/country/acropolis",
     },
 ];
 
