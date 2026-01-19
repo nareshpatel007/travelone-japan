@@ -22,10 +22,10 @@ export default function FeatureCard() {
                     </svg>
                 </div>
                 <div className="qodef-m-content">
-                    <h5 className="qodef-m-title">
+                    <h5 className="qodef-m-title !text-black">
                         1-Click Demo Import
                     </h5>
-                    <p className="qodef-m-text">
+                    <p className="qodef-m-text !text-black">
                         Get the full WanderAway demo content with one click
                     </p>
                 </div>
@@ -51,10 +51,10 @@ export default function FeatureCard() {
                     </svg>
                 </div>
                 <div className="qodef-m-content">
-                    <h5 className="qodef-m-title">
+                    <h5 className="qodef-m-title !text-black">
                         1-Click Demo Import
                     </h5>
-                    <p className="qodef-m-text">
+                    <p className="qodef-m-text !text-black">
                         Get the full WanderAway demo content with one click
                     </p>
                 </div>
@@ -80,10 +80,10 @@ export default function FeatureCard() {
                     </svg>
                 </div>
                 <div className="qodef-m-content">
-                    <h5 className="qodef-m-title">
+                    <h5 className="qodef-m-title !text-black">
                         1-Click Demo Import
                     </h5>
-                    <p className="qodef-m-text">
+                    <p className="qodef-m-text !text-black">
                         Get the full WanderAway demo content with one click
                     </p>
                 </div>
@@ -109,10 +109,10 @@ export default function FeatureCard() {
                     </svg>
                 </div>
                 <div className="qodef-m-content">
-                    <h5 className="qodef-m-title">
+                    <h5 className="qodef-m-title !text-black">
                         1-Click Demo Import
                     </h5>
-                    <p className="qodef-m-text">
+                    <p className="qodef-m-text !text-black">
                         Get the full WanderAway demo content with one click
                     </p>
                 </div>

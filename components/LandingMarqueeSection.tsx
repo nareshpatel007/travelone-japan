@@ -32,7 +32,7 @@ export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Prop
                 <div className="elementor-element elementor-element-ec76f25 elementor-widget__width-initial elementor-widget-laptop__width-initial elementor-widget-tablet__width-initial elementor-widget-mobile__width-inherit elementor-widget elementor-widget-wanderaway_core_section_title">
                     <div className="elementor-widget-container">
                         <div className="qodef-shortcode qodef-m qodef-section-title qodef-alignment--left">
-                            <h1 className="qodef-m-title">Where All the Stories From Your Travels Find Their Home.</h1>
+                            <h1 className="!text-black">Where All the Stories From Your Travels Find Their Home.</h1>
                         </div>
                     </div>
                 </div>
@@ -41,7 +41,7 @@ export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Prop
                         <div className="qodef-shortcode qodef-m qodef-info-section qodef-layout--background-text qodef-background-text-pos--top-left">
                             <div className="qodef-m-background-text"></div>
                             <div className="qodef-m-info">
-                                <p className="qodef-m-text">
+                                <p className="!text-black">
                                     Welcome to TravelOne, a theme specifically made for sharing all your travel adventures with your
                                     reading audience!
                                 </p>

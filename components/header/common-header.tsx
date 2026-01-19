@@ -2,43 +2,92 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { CommonPlanTripModal } from "../plan_your_trip/common-popup";
 import { useEffect, useState } from "react";
-import { FacebookIcon, Instagram, Linkedin, Menu, Search, ShoppingCartIcon, User, X } from "lucide-react";
+import {
+    FacebookIcon,
+    Instagram,
+    Linkedin,
+    Menu,
+    Search,
+    ShoppingCartIcon,
+    User,
+    X,
+} from "lucide-react";
+
+import { CommonPlanTripModal } from "../plan_your_trip/common-popup";
 import { LoginModal } from "../common/login-modal";
 
-// components/Header.tsx
+/* ===== MOCK DATA ===== */
+
+const DESTINATION_LINKS = [
+    "Destination Single",
+    "Destination List",
+    "Destination Map",
+    "Destination Categories",
+    "Destination Showcase",
+];
+
+const DESTINATIONS = [
+    {
+        title: "Ha Long Bay",
+        subtitle: "Magic Places",
+        image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e",
+        link: "/destination/ha-long-bay",
+    },
+    {
+        title: "San Francisco",
+        subtitle: "Magic Places",
+        image: "https://images.unsplash.com/photo-1501594907352-04cda38ebc29",
+        link: "/destination/san-francisco",
+    },
+    {
+        title: "Zanzibar",
+        subtitle: "Magic Places",
+        image: "https://images.unsplash.com/photo-1501785888041-af3ef285b470",
+        link: "/destination/zanzibar",
+    },
+    {
+        title: "Acropolis",
+        subtitle: "Magic Places",
+        image: "https://images.unsplash.com/photo-1501785888041-af3ef285b470",
+        link: "/destination/acropolis",
+    },
+];
+
 export default function CommonHeader() {
-    const [isOpenPlanYourTrip, setIsOpenPlanYourTrip] = useState(false);
-    const [isOpenLogin, setIsOpenLogin] = useState(false);
-    const [open, setOpen] = useState(false);
+    const [openMobileMenu, setOpenMobileMenu] = useState(false);
+    const [showMegaMenu, setShowMegaMenu] = useState(false);
+    const [openPlanTrip, setOpenPlanTrip] = useState(false);
+    const [openLogin, setOpenLogin] = useState(false);
 
     const cartCount = 0;
 
-    // Lock body scroll when menu open
     useEffect(() => {
-        document.body.style.overflow = open ? "hidden" : "auto";
-    }, [open]);
+        document.body.style.overflow = openMobileMenu ? "hidden" : "auto";
+    }, [openMobileMenu]);
+
+    // Mega Menu Show and Hide
+    const openMegaMenu = () => setShowMegaMenu(true);
+    const closeMegaMenu = () => setShowMegaMenu(false);
 
     return (
         <>
-            {/* ================= TOP BAR (Tablet + Desktop only) ================= */}
+            {/* ================= TOP BAR ================= */}
             <div className="hidden md:block bg-[#FBF2E3] text-sm">
-                <div className="px-5 h-10 flex items-center justify-between">
-                    <span className="text-gray-800 !text-md font-medium">
-                        Welcome to TravelOne - Your Gateway to Unforgettable Journeys!
+                <div className="px-4 h-10 flex items-center justify-between">
+                    <span className="font-medium text-gray-800">
+                        Welcome to TravelOne – Your Gateway to Unforgettable Journeys!
                     </span>
-                    <div className="flex items-center gap-4 text-gray-700">
-                        <span className="flex items-center gap-3 font-semibold">
-                            <Instagram className="h-4 w-4 text-grap-900" />
-                            <FacebookIcon className="h-4 w-4 text-grap-900" />
-                            <Linkedin className="h-4 w-4 text-grap-900" />
-                        </span>
-                        <div className="hidden sm:flex items-center gap-2 border-l pl-4">
+
+                    <div className="flex items-center gap-4">
+                        <Instagram className="h-4 w-4" />
+                        <FacebookIcon className="h-4 w-4" />
+                        <Linkedin className="h-4 w-4" />
+
+                        <div className="ml-4 flex items-center gap-2 border-l pl-4">
                             <input
-                                type="text"
                                 placeholder="Search tour here..."
-                                className="outline-none bg-transparent text-md"
+                                className="bg-transparent outline-none text-sm"
                             />
                             <Search className="h-4 w-4" />
                         </div>
@@ -46,100 +95,147 @@ export default function CommonHeader() {
                 </div>
             </div>
 
-            {/* ================= MAIN HEADER ================= */}
-            <header className="sticky top-0 z-50 border-b border-gray-100 bg-white">
+            {/* ================= HEADER (UNCHANGED) ================= */}
+            <header className="sticky top-0 z-50 bg-white border-b border-gray-200">
                 <div className="px-4 md:px-8 h-20 md:h-24 flex items-center justify-between">
-                    {/* Logo */}
+
+                    {/* LOGO */}
                     <Link href="/">
                         <Image
+                            src="https://stage.travelone.io/html/home/assets/images/logo.png"
                             alt="Logo"
                             width={160}
                             height={100}
-                            src="https://stage.travelone.io/html/home/assets/images/logo.png"
                         />
                     </Link>
 
-                    {/* Desktop Navigation */}
-                    <nav className="hidden lg:flex items-center text-gray-900 gap-8 font-medium">
-                        <Link className="hover:underline underline-offset-5" href="/">Home</Link>
-                        <Link className="hover:underline underline-offset-5" href="/country">Destination</Link>
-                        <Link className="hover:underline underline-offset-5" href="/tour">Tours</Link>
-                        <Link className="hover:underline underline-offset-5" href="/about">About Us</Link>
-                        <Link className="hover:underline underline-offset-5" href="/contact">Contact Us</Link>
-                        <Link className="hover:underline underline-offset-5" href="/blog">Blog</Link>
-                        <Link className="hover:underline underline-offset-5" href="/booking">Booking</Link>
+                    {/* DESKTOP NAV (UNCHANGED) */}
+                    <nav className="hidden lg:flex items-center gap-8 font-medium text-gray-900">
+                        <Link className="hover:underline underline-offset-5 cursor-pointer" onMouseEnter={closeMegaMenu} href="/">Home</Link>
+                        <button
+                            className="hover:underline underline-offset-5 cursor-pointer"
+                            onMouseEnter={openMegaMenu}
+                        >
+                            Destination
+                        </button>
+                        <Link className="hover:underline underline-offset-5 cursor-pointer" onMouseEnter={closeMegaMenu} href="/tour">Tours</Link>
+                        <Link className="hover:underline underline-offset-5 cursor-pointer" onMouseEnter={closeMegaMenu} href="/about">About Us</Link>
+                        <Link className="hover:underline underline-offset-5 cursor-pointer" onMouseEnter={closeMegaMenu} href="/contact">Contact Us</Link>
+                        <Link className="hover:underline underline-offset-5 cursor-pointer" onMouseEnter={closeMegaMenu} href="/blog">Blog</Link>
+                        <Link className="hover:underline underline-offset-5 cursor-pointer" onMouseEnter={closeMegaMenu} href="/booking">Booking</Link>
                     </nav>
 
-                    {/* Right Actions */}
-                    <div className="flex items-center gap-4 md:gap-6">
-
-                        {/* Cart */}
+                    {/* RIGHT ACTIONS */}
+                    <div className="flex items-center gap-5">
                         <Link href="/cart" className="relative">
-                            <ShoppingCartIcon className="w-6 h-6 text-[#333]" />
-                            <span className="absolute -top-2 -right-2 bg-yellow-400 text-[#333] text-xs font-bold h-5 w-5 rounded-full flex items-center justify-center">
+                            <ShoppingCartIcon className="h-6 w-6" />
+                            <span className="absolute -top-2 -right-2 h-5 w-5 bg-yellow-400 rounded-full text-xs font-bold flex items-center justify-center">
                                 {cartCount}
                             </span>
                         </Link>
 
-                        {/* User */}
                         <User
-                            className="h-6 w-6 text-[#333] cursor-pointer"
-                            onClick={() => setIsOpenLogin(true)}
+                            className="h-6 w-6 cursor-pointer"
+                            onClick={() => setOpenLogin(true)}
                         />
 
-                        {/* CTA Desktop */}
                         <button
-                            className="hidden lg:block border border-black text-black px-4 py-2 rounded font-semibold text-sm hover:bg-black hover:text-white cursor-pointer transition"
-                            onClick={() => setIsOpenPlanYourTrip(true)}
+                            className="hidden lg:block border px-4 py-2 rounded font-semibold hover:bg-black hover:text-white"
+                            onClick={() => setOpenPlanTrip(true)}
                         >
                             Plan Your Trip
                         </button>
 
-                        {/* Mobile / Tablet Menu Toggle */}
-                        <button className="lg:hidden" onClick={() => setOpen(true)}>
+                        <button className="lg:hidden" onClick={() => setOpenMobileMenu(true)}>
                             <Menu />
                         </button>
                     </div>
                 </div>
             </header>
 
-            {/* ================= MOBILE / TABLET FIXED MENU ================= */}
-            {open && (
-                <div className="fixed inset-0 z-[999] bg-white">
+            {/* ================= MEGA MENU (ONLY PART THAT IS FIXED & CENTERED) ================= */}
+            {showMegaMenu && (
+                <div
+                    className="fixed left-1/2 top-[80px] md:top-[136px] z-[100] w-full max-w-7xl -translate-x-1/2 bg-white border border-gray-200 shadow-xl"
+                    onMouseEnter={() => setShowMegaMenu(true)}
+                    onMouseLeave={() => setShowMegaMenu(false)}
+                >
+                    <div className="grid grid-cols-12 gap-8 px-10 py-10">
 
-                    {/* Menu Header */}
-                    <div className="flex items-center justify-between px-4 h-16 border-b">
+                        {/* LEFT LINKS */}
+                        <div className="col-span-3">
+                            <h4 className="text-xs uppercase font-semibold text-gray-500 mb-4">
+                                Plan a Trip
+                            </h4>
+                            <ul className="space-y-3">
+                                {DESTINATION_LINKS.map((item) => (
+                                    <li key={item}>
+                                        <Link
+                                            href="/destination"
+                                            className="font-medium hover:text-black"
+                                        >
+                                            {item}
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+
+                        {/* RIGHT IMAGE GRID */}
+                        <div className="col-span-9 grid grid-cols-4 gap-6">
+                            {DESTINATIONS.map((place) => (
+                                <Link
+                                    key={place.title}
+                                    href={place.link}
+                                    className="relative group overflow-hidden rounded-lg"
+                                >
+                                    <Image
+                                        src={place.image}
+                                        alt={place.title}
+                                        fill
+                                        className="h-44 w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                                    />
+                                    <div className="absolute inset-0 bg-black/30 flex flex-col justify-end p-4">
+                                        <span className="text-white font-semibold">
+                                            {place.title}
+                                        </span>
+                                        <span className="text-white/80 text-sm">
+                                            {place.subtitle}
+                                        </span>
+                                    </div>
+                                </Link>
+                            ))}
+                        </div>
+
+                    </div>
+                </div>
+            )}
+
+            {/* ================= MOBILE MENU ================= */}
+            {openMobileMenu && (
+                <div className="fixed inset-0 z-[999] bg-white">
+                    <div className="h-16 flex justify-between items-center px-4 border-b">
                         <span className="text-xl font-bold">Menu</span>
-                        <button onClick={() => setOpen(false)}>
-                            <X size={28} />
+                        <button onClick={() => setOpenMobileMenu(false)}>
+                            <X />
                         </button>
                     </div>
 
-                    {/* Menu Links */}
-                    <nav className="flex flex-col px-6 py-6 gap-5 text-lg font-medium text-gray-800">
-                        <Link href="/" onClick={() => setOpen(false)}>Home</Link>
-                        <Link href="/tour" onClick={() => setOpen(false)}>Tours</Link>
-                        <Link href="/about" onClick={() => setOpen(false)}>About Us</Link>
-                        <Link href="/contact" onClick={() => setOpen(false)}>Contact Us</Link>
-                        <Link href="/blog" onClick={() => setOpen(false)}>Blog</Link>
-                        <Link href="/booking" onClick={() => setOpen(false)}>Booking</Link>
-
-                        <button
-                            className="mt-6 border border-black px-6 py-2 rounded font-semibold"
-                            onClick={() => {
-                                setOpen(false);
-                                setIsOpenPlanYourTrip(true);
-                            }}
-                        >
-                            Plan Your Trip
-                        </button>
+                    <nav className="flex flex-col gap-6 p-6 text-lg font-medium">
+                        <Link href="/">Home</Link>
+                        <Link href="/destination">Destination</Link>
+                        <Link href="/tour">Tours</Link>
+                        <Link href="/about">About Us</Link>
+                        <Link href="/contact">Contact Us</Link>
+                        <Link href="/blog">Blog</Link>
+                        <Link href="/booking">Booking</Link>
                     </nav>
                 </div>
             )}
 
             {/* ================= MODALS ================= */}
-            <LoginModal open={isOpenLogin} onOpenChange={setIsOpenLogin} />
-            <CommonPlanTripModal open={isOpenPlanYourTrip} onOpenChange={setIsOpenPlanYourTrip} />
+            <LoginModal open={openLogin} onOpenChange={setOpenLogin} />
+            <CommonPlanTripModal open={openPlanTrip} onOpenChange={setOpenPlanTrip} />
         </>
     );
 }

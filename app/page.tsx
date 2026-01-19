@@ -503,8 +503,8 @@ export default function HomePage() {
                                                                 />
                                                                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors" />
                                                                 <div className="absolute inset-0 flex items-center justify-center">
-                                                                    <div className="bg-white px-5 py-2 rounded">
-                                                                        <h3 className="text-md md:text-xl text-black">{category.label}</h3>
+                                                                    <div className="!bg-white px-5 py-2 rounded">
+                                                                        <h3 className="text-md md:text-xl !text-black">{category.label}</h3>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -553,7 +553,7 @@ export default function HomePage() {
                                                                         className="w-full h-full object-cover"
                                                                     />
                                                                 </div>
-                                                                <p className="!text-lg !font-semibold">{destination?.name}</p>
+                                                                <p className="!text-lg !font-semibold !text-black">{destination?.name}</p>
                                                             </div>
                                                         ))}
                                                     </div>
@@ -591,10 +591,10 @@ export default function HomePage() {
                                                                     </div>
                                                                     <div className="block md:hidden w-5"></div>
                                                                     <div className="!lg:mt-4">
-                                                                        <p className="text-sm text-gray-500 !m-0 !mb-2">
+                                                                        <p className="text-sm !text-gray-500 !m-0 !mb-2">
                                                                             {destination.location}
                                                                         </p>
-                                                                        <h5 className="font-semibold text-gray-900 !m-0">
+                                                                        <h5 className="font-semibold !text-gray-900 !m-0">
                                                                             {destination.title}
                                                                         </h5>
                                                                     </div>
@@ -634,8 +634,8 @@ export default function HomePage() {
                                                         <div className="elementor-widget-container">
                                                             <div className="qodef-shortcode qodef-m qodef-info-section qodef-layout--background-text qodef-background-text-pos--top-left">
                                                                 <div className="qodef-m-info">
-                                                                    <h2 className="qodef-m-title">Dedicated Destination Showcase Module</h2>
-                                                                    <p className="qodef-m-text">Complete with destination singles, flexible lists, maps &amp; more</p>
+                                                                    <h2 className="qodef-m-title !text-black">Dedicated Destination Showcase Module</h2>
+                                                                    <p className="qodef-m-text !text-black">Complete with destination singles, flexible lists, maps &amp; more</p>
                                                                     <div className="qodef-m-button">
                                                                         <a className="qodef-shortcode qodef-m qodef-button qodef-layout--filled qodef-html--link" href="#" style={{ margin: "32px 0 0 0" }}>
                                                                             <span className="qodef-m-text">View more</span>
@@ -662,7 +662,7 @@ export default function HomePage() {
                                                                     </svg>
                                                                 </div>
                                                                 <div className="qodef-m-content">
-                                                                    <p className="qodef-m-text">Five premade destination layouts</p>
+                                                                    <p className="qodef-m-text !text-black">Five premade destination layouts</p>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -675,8 +675,8 @@ export default function HomePage() {
                                                     <div className="elementor-element elementor-element-973ff86 elementor-widget__width-initial elementor-widget-tablet__width-inherit elementor-widget elementor-widget-wanderaway_core_section_title">
                                                         <div className="elementor-widget-container">
                                                             <div className="qodef-shortcode qodef-m qodef-section-title qodef-alignment--left">
-                                                                <h2 className="qodef-m-title">A Variety of Ways to Display Posts</h2>
-                                                                <p className="qodef-m-text" style={{ marginTop: "10px", fontSize: "19px" }}>You get every layout &amp; option you’ll need to captivate the blogosphere; 3 adjustable blog list elements, tons of ways to display single posts &amp; more.</p>
+                                                                <h2 className="qodef-m-title !text-black">A Variety of Ways to Display Posts</h2>
+                                                                <p className="qodef-m-text !text-black" style={{ marginTop: "10px", fontSize: "19px" }}>You get every layout &amp; option you’ll need to captivate the blogosphere; 3 adjustable blog list elements, tons of ways to display single posts &amp; more.</p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -730,19 +730,19 @@ export default function HomePage() {
                                                 </div>
                                             </div>
 
-                                            <div className="elementor-element elementor-element-5589b48 e-con-full e-flex qodef-container-heights--disabled e-con e-parent qodef-parallax qodef--parallax-row qodef-parallax--init">
-                                                <div className="qodef-parallax-row-holder">
-                                                    <div className="qodef-parallax-img-holder !opacity-100">
-                                                        <div className="qodef-parallax-img-wrapper">
-                                                            <Image src="https://ik.imagekit.io/288weifiq/landing-japan/Landing-img-6.jpg" alt="Parallax Image" width={1920} height={900} />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className="elementor-element elementor-element-5b2aaf2 e-con-full e-flex qodef-container-heights--disabled e-con e-child">
-                                                    <div className="elementor-element elementor-element-8728b21 elementor-widget__width-initial elementor-widget-mobile__width-inherit elementor-widget elementor-widget-text-editor">
-                                                        <div className="elementor-widget-container">
-                                                            <h2><span className="!text-white">For Travels Worth Reading About.</span></h2>
-                                                        </div>
+                                            <div className="relative w-full h-150 overflow-hidden">
+                                                <Image
+                                                    src="https://ik.imagekit.io/288weifiq/landing-japan/Landing-img-6.jpg"
+                                                    alt="Travel worth reading about"
+                                                    fill
+                                                    className="absolute inset-0 w-full h-full object-cover object-center opacity-100"
+                                                />
+                                                <div className="relative h-full flex items-center justify-center px-8">
+                                                    <div className="text-center max-w-2xl">
+                                                        <h2 className="text-5xl md:text-6xl font-semibold text-white leading-tight">
+                                                            For Travels Worth<br />
+                                                            Reading About
+                                                        </h2>
                                                     </div>
                                                 </div>
                                             </div>
@@ -752,8 +752,8 @@ export default function HomePage() {
                                                     <div className="elementor-element elementor-element-1b30435 elementor-widget__width-initial elementor-widget-tablet__width-inherit elementor-widget-laptop__width-initial elementor-widget elementor-widget-wanderaway_core_section_title">
                                                         <div className="elementor-widget-container">
                                                             <div className="qodef-shortcode qodef-m qodef-section-title qodef-alignment--left">
-                                                                <h2 className="qodef-m-title">Easily Launch an Online Store Too!</h2>
-                                                                <p className="qodef-m-text" style={{ marginTop: "10px", fontSize: "19px" }}>The theme is fully compatible with the powerful &amp; free WooCommerce plugin, and on top of that you get a great set of shop page templates &amp; features.</p>
+                                                                <h2 className="qodef-m-title !text-black">Easily Launch an Online Store Too!</h2>
+                                                                <p className="qodef-m-text !text-black" style={{ marginTop: "10px", fontSize: "19px" }}>The theme is fully compatible with the powerful &amp; free WooCommerce plugin, and on top of that you get a great set of shop page templates &amp; features.</p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -852,11 +852,11 @@ export default function HomePage() {
                                                         }}
                                                     />
                                                     <div className="relative z-10 flex flex-col items-center text-center">
-                                                        <h2 className="text-3xl md:text-5xl font-normal leading-tight !mb-4">
+                                                        <h2 className="text-3xl !text-black md:text-5xl font-normal leading-tight !mb-4">
                                                             Every Travel Story’s <br /> Favorite Destination
                                                         </h2>
 
-                                                        <p className="max-w-xl text-black !mb-8">
+                                                        <p className="max-w-xl !text-black !mb-8">
                                                             Create a website the stories from your journeys truly deserve with
                                                             WanderAway, a modern travelogue & personal travel blog theme.
                                                         </p>
@@ -877,9 +877,9 @@ export default function HomePage() {
 
                     {/* Plan Your Trip Model */}
                     {openPlanYourTripModel && (
-                        <div className="!fixed !inset-0 !z-[999] !flex !items-center !justify-center !bg-black/40 !px-4">
+                        <div className="fixed inset-0 z-100 flex items-center justify-center bg-black/40 px-4">
                             <div
-                                className="!relative !w-full !max-w-[360px] !md:max-w-xl !bg-[#d9eed8] !shadow-xl !overflow-visible"
+                                className="!relative max-w-[370px] bg-[#d9eed8] shadow-xl overflow-visible"
                                 style={{
                                     borderTopLeftRadius: "180px",
                                     borderTopRightRadius: "180px",
@@ -887,7 +887,7 @@ export default function HomePage() {
                                     borderBottomRightRadius: "12px",
                                 }}
                             >
-                                <div className="!absolute !top-16 !right-10 !translate-x-1/2 !-translate-y-1/2 !z-50 cursor-pointer">
+                                <div className="absolute top-16 right-10 translate-x-1/2 -translate-y-1/2 z-50 cursor-pointer">
                                     <svg
                                         className="absolute inset-0 w-10 h-10 cursor-pointer"
                                         xmlns="http://www.w3.org/2000/svg"
@@ -910,7 +910,7 @@ export default function HomePage() {
                                         ✕
                                     </button>
                                 </div>
-                                <div className="!px-6 !md:px-16 !pb-7 !pt-6">
+                                <div className="p-6">
                                     {CurrentStep && (
                                         <CurrentStep
                                             planYourTripForm={planYourTripForm}
