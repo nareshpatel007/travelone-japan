@@ -8,7 +8,7 @@ import { TourFilters } from "@/components/tours/tour-filters";
 import { TourListingGrid } from "@/components/tours/tour-listing-grid";
 import { Pagination } from "@/components/tours/pagination";
 
-export default function CartPage() {
+export default function Page() {
     // Define state
     const [ready, setReady] = useState(false);
     const [isLoading, setIsLoading] = useState(false);

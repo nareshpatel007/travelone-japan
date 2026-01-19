@@ -2,25 +2,89 @@
 
 import type React from "react";
 import { useState } from "react";
-import { CheckCircle } from "lucide-react";
+import { CheckCircle, Download, Loader } from "lucide-react";
 import QuestionHeading from "@/components/plan_your_trip/landing/questionHeading";
 import Link from "next/link";
+import { getClientIp } from "@/lib/getClientIp";
 
 interface Props {
-    open: boolean
-    onOpenChange: (open: boolean) => void
+    tour: any;
+    open: boolean;
+    onOpenChange: (open: boolean) => void;
 }
 
-export function DownloadBrochure({ open, onOpenChange }: Props) {
+export function DownloadBrochure({ tour, open, onOpenChange }: Props) {
     // Define state
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
+    const [acceptTerms, setAcceptTerms] = useState(false);
+    const [formLoading, setFormLoading] = useState(false);
+    const [downloadUrl, setDownloadUrl] = useState("");
+    const [errors, setErrors] = useState("");
     const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
 
+    // Handle form submit
     const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault()
-        console.log("[v0] Password reset requested for:", email)
-        setIsSubmitted(true)
+        e.preventDefault();
+
+        // Update state
+        setErrors("");
+        setDownloadUrl("");
+        setFormLoading(true);
+
+        try {
+            const submitData = async () => {
+                // Validation
+                if (!phone) {
+                    setErrors("Please enter valid phone number.");
+                    return;
+                } else if (!email) {
+                    setErrors("Please enter valid email address.");
+                    return;
+                } else if (!acceptTerms) {
+                    setErrors("Please accept the Terms consent to submit your inquiry.");
+                    return;
+                }
+
+                // Send data to API route
+                const response = await fetch("/api/tours/brochure_download", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        tour_id: tour?.id,
+                        email,
+                        phone,
+                        ip_address: getClientIp(),
+                    }),
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+
+                // Parse the JSON response
+                const data = await response.json();
+
+                // Check response
+                if (data?.status) {
+                    // Update the state
+                    setIsSubmitted(true);
+                    setDownloadUrl(data?.data?.itinerary_pdf || "");
+                } else {
+                    // Set errors
+                    setErrors(data?.message || "Failed to submit form. Please try again later.");
+                }
+            };
+            submitData();
+        } catch (error: any) {
+            if (error.name !== "AbortError") {
+                console.error("Failed to submit form data:", error);
+            }
+        } finally {
+            setFormLoading(false);
+        }
     }
 
     return (
@@ -50,6 +114,10 @@ export function DownloadBrochure({ open, onOpenChange }: Props) {
                             className="relative w-10 h-10 flex items-center justify-center text-white text-sm font-semibold cursor-pointer"
                             onClick={() => {
                                 onOpenChange(false);
+                                setEmail("");
+                                setPhone("");
+                                setAcceptTerms(false);
+                                setIsSubmitted(false);
                             }}
                         >
                             ✕
@@ -58,20 +126,20 @@ export function DownloadBrochure({ open, onOpenChange }: Props) {
                     <div className="p-8 md:p-10">
                         <QuestionHeading
                             title="Download Brochure"
-                            subtitle="Get detailed information about our tours in your inbox."
+                            subtitle="Get detailed information about our tour in your inbox."
                         />
                         {!isSubmitted ? (
-                            <form onSubmit={handleSubmit} className="space-y-5">
+                            <div className="space-y-5">
                                 <div>
                                     <label className="block text-md text-black">Phone Number</label>
                                     <input
                                         id="phone"
                                         type="phone"
                                         value={phone}
+                                        autoComplete="off"
                                         onChange={(e) => setPhone(e.target.value)}
                                         placeholder="Enter your phone number"
                                         className="w-full rounded-sm px-4 py-2 bg-white border border-gray-900"
-                                        required
                                     />
                                 </div>
 
@@ -82,29 +150,37 @@ export function DownloadBrochure({ open, onOpenChange }: Props) {
                                         type="email"
                                         value={email}
                                         onChange={(e) => setEmail(e.target.value)}
+                                        autoComplete="off"
                                         placeholder="Enter your email"
                                         className="w-full rounded-sm px-4 py-2 bg-white border border-gray-900"
-                                        required
                                     />
                                 </div>
 
                                 <div className="flex items-start gap-2 pt-2">
                                     <input
                                         type="checkbox"
+                                        id="terms"
                                         className="mt-1 cursor-pointer"
+                                        onChange={(e) => setAcceptTerms(e.target.checked)}
                                     />
                                     <label className="text-xs md:text-sm text-gray-700">
                                         I agree to the <Link href="https://travelone.io/terms-conditions" target="_blank" className="underline">T&Cs</Link> and <Link href="https://travelone.io/privacy-policy" target="_blank" className="underline">Privacy Policy</Link>, and consent to receive communications from TravelOne, including follow-up call and text messages for quotes, scheduling, and call reminders, regarding my inquiry. Std msg & data rates apply. Text STOP to cancel, HELP for info.
                                     </label>
                                 </div>
 
+                                {errors && <div className="text-sm text-red-600">{errors}</div>}
+
                                 <button
-                                    type="submit"
-                                    className="w-full flex items-center justify-center bg-black text-white font-semibold mt-3 py-2.5 rounded-md hover:bg-[#333] transition-colors cursor-pointer"
+                                    type="button"
+                                    onClick={handleSubmit}
+                                    disabled={formLoading}
+                                    className="w-full flex items-center justify-center bg-black text-white font-semibold mt-3 py-2.5 rounded-md hover:bg-black/90 transition-colors cursor-pointer"
                                 >
+                                    {formLoading && <Loader className="w-4 h-4 mr-2 animate-spin" />}
+                                    {!formLoading && <CheckCircle className="w-4 h-4 mr-2" />}
                                     Download Brochure
                                 </button>
-                            </form>
+                            </div>
                         ) : (
                             <div className="space-y-4 text-center py-4">
                                 <div className="flex justify-center">
@@ -114,19 +190,18 @@ export function DownloadBrochure({ open, onOpenChange }: Props) {
                                 </div>
                                 <div>
                                     <span className="text-xl font-semibold text-black block mb-2">Check your email</span>
-                                    <span className="text-sm text-gray-700 block mb-1">We've sent a password reset link to</span>
-                                    <span className="text-sm font-medium text-gray-900">{email}</span>
+                                    <span className="text-sm text-gray-700 block">We've sent an email to {email}.</span>
                                 </div>
-                                <div className="bg-gray-50 px-4 py-2 rounded-lg text-center">
+                                <div className="text-center">
                                     <span className="text-sm text-gray-700 leading-relaxed">
-                                        Didn't receive the email?&nbsp;
-                                        <button
-                                            type="button"
-                                            onClick={() => setIsSubmitted(false)}
-                                            className="text-[#2F5D50] hover:underline font-medium"
-                                        >
-                                            Try again?
-                                        </button>
+                                        <Link href={downloadUrl} target="_blank">
+                                            <button
+                                                type="button"
+                                                className="w-full flex items-center justify-center bg-black text-white border border-black font-semibold mt-3 py-2.5 rounded-md hover:bg-white hover:text-black transition-colors cursor-pointer"
+                                            >
+                                                <Download className="w-4 h-4 mr-2" /> Download PDF
+                                            </button>
+                                        </Link>
                                     </span>
                                 </div>
                             </div>

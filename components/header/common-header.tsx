@@ -62,6 +62,7 @@ export default function CommonHeader() {
                     {/* Desktop Navigation */}
                     <nav className="hidden lg:flex items-center text-gray-900 gap-8 font-medium">
                         <Link className="hover:underline underline-offset-5" href="/">Home</Link>
+                        <Link className="hover:underline underline-offset-5" href="/country">Destination</Link>
                         <Link className="hover:underline underline-offset-5" href="/tour">Tours</Link>
                         <Link className="hover:underline underline-offset-5" href="/about">About Us</Link>
                         <Link className="hover:underline underline-offset-5" href="/contact">Contact Us</Link>

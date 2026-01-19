@@ -162,9 +162,9 @@ export default function HeroTour({ isLoading, tour, packages, city_nights, selec
                             <button className="bg-white border-1 border-black text-black hover:bg-black hover:text-white hover:border-[#333] cursor-pointer px-4 py-2 rounded font-semibold text-sm" onClick={() => setOpenDownloadBrochurePopup(true)}>
                                 Download Brochure
                             </button>
-                            <button className="bg-white border-1 border-black text-black hover:bg-black hover:text-white hover:border-[#333] cursor-pointer px-4 py-2 rounded font-semibold text-sm" onClick={() => setOpenEmailBrochurePopup(true)}>
+                            {/* <button className="bg-white border-1 border-black text-black hover:bg-black hover:text-white hover:border-[#333] cursor-pointer px-4 py-2 rounded font-semibold text-sm" onClick={() => setOpenEmailBrochurePopup(true)}>
                                 Email Brochure
-                            </button>
+                            </button> */}
                         </div>
                         <p className="text-sm text-gray-900">*Rates may change if the tour is customized</p>
                     </div>

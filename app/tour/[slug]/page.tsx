@@ -74,6 +74,11 @@ export default function TourDetailPage() {
                 // Parse the JSON response
                 const data = await response.json();
 
+                // Fetch packages
+                if(data?.data?.tour_packages?.length > 0) {
+                    setSelectedPackage(data?.data?.tour_packages[0]?.no ?? 1);
+                }
+
                 // Update the state
                 setTourData(data?.data ?? []);
             } catch (error: any) {
@@ -165,10 +170,10 @@ export default function TourDetailPage() {
                     </div>}
 
                     {/* Popup modals */}
-                    <CustomizeTrip open={openCustomizeTripPopup} onOpenChange={setOpenCustomizeTripPopup} />
-                    <DownloadBrochure open={openDownloadBrochurePopup} onOpenChange={setOpenDownloadBrochurePopup} />
-                    <EmailBrochure open={openEmailBrochurePopup} onOpenChange={setOpenEmailBrochurePopup} />
                     <BookingCart tour={tourData?.tour ?? {}} open={openBookingCartPopup} onOpenChange={setOpenBookingCartPopup} />
+                    <CustomizeTrip tour={tourData?.tour ?? {}} open={openCustomizeTripPopup} onOpenChange={setOpenCustomizeTripPopup} />
+                    <DownloadBrochure tour={tourData?.tour ?? {}} open={openDownloadBrochurePopup} onOpenChange={setOpenDownloadBrochurePopup} />
+                    <EmailBrochure open={openEmailBrochurePopup} onOpenChange={setOpenEmailBrochurePopup} />
 
                     <CommonFooter />
                 </>}

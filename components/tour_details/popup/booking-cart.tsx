@@ -413,7 +413,7 @@ export function BookingCart({ tour, open, onOpenChange }: Props) {
 
                                 <button
                                     onClick={handleSubmit}
-                                    className={`flex items-center gap-2 px-8 py-3 rounded-lg font-medium transition-colors border cursor-pointer bg-[#ffc765] text-[#333] hover:border-[#333] hover:text-white hover:bg-[#333]`}
+                                    className="flex items-center gap-2 px-8 py-3 rounded-lg font-medium transition-colors border cursor-pointer bg-[#ffc765] text-[#333] hover:border-[#333] hover:text-white hover:bg-[#333]"
                                 >
                                     <CheckCircle className="h-5 w-5" /> Submit
                                 </button>

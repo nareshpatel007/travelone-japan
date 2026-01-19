@@ -1,16 +1,100 @@
 "use client";
 
-import { CheckCircle, X } from "lucide-react";
+import { getClientIp } from "@/lib/getClientIp";
+import { CheckCircle, Loader, X } from "lucide-react";
+import Link from "next/link";
+import { useState } from "react";
 
 interface Props {
+    tour: any;
     open: boolean;
     onOpenChange: (open: boolean) => void;
 }
 
-export function CustomizeTrip({ open, onOpenChange }: Props) {
+// Define initial form data
+const initialFormData = {
+    name: "",
+    email: "",
+    phone: "",
+    best_day: "",
+    best_time: "",
+    accept_terms: false,
+};
+
+export function CustomizeTrip({ tour, open, onOpenChange }: Props) {
+    // Define state
+    const [formData, setFormData] = useState(initialFormData);
+    const [formLoading, setFormLoading] = useState(false);
+    const [errors, setErrors] = useState("");
+    const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
+
     const handleClose = () => {
         onOpenChange(false);
+        setErrors("");
+        setIsSubmitted(false);
+        setFormData(initialFormData);
+        setFormLoading(false);
     };
+
+    // Handle form submit
+    const handleSubmit = () => {
+        // Update state
+        setErrors("");
+        setFormLoading(true);
+
+        try {
+            const submitData = async () => {
+                // Validation
+                if (!formData.name || !formData.email || !formData.phone || !formData.best_day || !formData.best_time) {
+                    setErrors("Please fill in all the required fields.");
+                    return;
+                } else if (!formData.accept_terms) {
+                    setErrors("Please accept the Terms consent to submit your request.");
+                    return;
+                }
+
+                // Send data to API route
+                const response = await fetch("/api/tours/customize_trip", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        tour_id: tour?.id,
+                        name: formData.name,
+                        email: formData.email,
+                        phone: formData.phone,
+                        best_day: formData.best_day,
+                        best_time: formData.best_time,
+                        ip_address: getClientIp(),
+                    }),
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+
+                // Parse the JSON response
+                const data = await response.json();
+
+                // Check response
+                if (data?.status) {
+                    // Update the state
+                    setIsSubmitted(true);
+                } else {
+                    // Set errors
+                    setErrors(data?.message || "Failed to submit form. Please try again later.");
+                }
+            };
+            submitData();
+        } catch (error: any) {
+            if (error.name !== "AbortError") {
+                console.error("Failed to submit form data:", error);
+            }
+        } finally {
+            setFormLoading(false);
+        }
+    }
 
     if (!open) return null;
 
@@ -29,83 +113,113 @@ export function CustomizeTrip({ open, onOpenChange }: Props) {
                         <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3 md:mb-10 text-center">
                             Customization Request
                         </h2>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-                            <div>
-                                <label className="block text-md font-medium text-[#333] mb-1">
-                                    Name <span className="text-red-500">*</span>
-                                </label>
-                                <input
-                                    placeholder="Enter your name"
-                                    className="w-full px-4 py-2 rounded-sm border border-[#2F5D50] bg-white outline-none"
-                                />
-                            </div>
-                            <div>
-                                <label className="block text-md font-medium text-[#333] mb-1">
-                                    Cellphone <span className="text-red-500">*</span>
-                                </label>
-                                <input
-                                    placeholder="Enter your cellphone"
-                                    className="w-full px-4 py-2 rounded-sm border border-[#2F5D50] bg-white outline-none"
-                                />
-                                <label className="flex items-center gap-2 mt-1 text-sm font-medium text-gray-700">
-                                    <input type="checkbox" />
-                                    Are you on WhatsApp?
-                                </label>
-                            </div>
-                            <div>
-                                <label className="block text-md font-medium text-[#333] mb-1">
-                                    Email <span className="text-red-500">*</span>
-                                </label>
-                                <input
-                                    placeholder="Enter your email"
-                                    className="w-full px-4 py-2 rounded-sm border border-[#2F5D50] bg-white outline-none"
-                                />
-                            </div>
-                            <div>
-                                <label className="block text-md font-medium text-[#333] mb-1">
-                                    Budget Per Person (Excluding Flight) <span className="text-red-500">*</span>
-                                </label>
-                                <div className="flex">
-                                    <input
-                                        placeholder="Enter budget per person"
-                                        className="w-full h-11 px-4 border border-[#2F5D50] rounded-l-sm bg-white outline-none text-md"
-                                    />
-                                    <span className="h-11 px-4 flex items-center bg-gray-700 text-white text-sm font-medium rounded-r-sm">
-                                        USD
-                                    </span>
+                        <div className="border border-[#2F5D50] rounded-sm p-5 space-y-4 bg-white/60">
+                            {!isSubmitted ? (
+                                <>
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                                        <div>
+                                            <label className="block text-md font-medium text-[#333] mb-1">
+                                                Name <span className="text-red-500">*</span>
+                                            </label>
+                                            <input
+                                                placeholder="Enter your name"
+                                                value={formData.name}
+                                                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                                                className="w-full px-4 py-2 rounded-sm border border-[#2F5D50] bg-white outline-none"
+                                            />
+                                        </div>
+                                        <div>
+                                            <label className="block text-md font-medium text-[#333] mb-1">
+                                                Phone Number <span className="text-red-500">*</span>
+                                            </label>
+                                            <input
+                                                placeholder="Enter your phone number"
+                                                value={formData.phone}
+                                                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                                                className="w-full px-4 py-2 rounded-sm border border-[#2F5D50] bg-white outline-none"
+                                            />
+                                        </div>
+                                        <div>
+                                            <label className="block text-md font-medium text-[#333] mb-1">
+                                                Email <span className="text-red-500">*</span>
+                                            </label>
+                                            <input
+                                                placeholder="Enter your email"
+                                                value={formData.email}
+                                                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                                                className="w-full px-4 py-2 rounded-sm border border-[#2F5D50] bg-white outline-none"
+                                            />
+                                        </div>
+                                        <div>
+                                            <label className="block text-md font-medium text-[#333] mb-1">
+                                                Best Day to Call You <span className="text-red-500">*</span>
+                                            </label>
+                                            <select
+                                                className="w-full px-4 py-2 rounded-sm border border-[#2F5D50] bg-white outline-none"
+                                                onChange={(e) => setFormData({ ...formData, best_day: e.target.value })}
+                                            >
+                                                <option>Select option</option>
+                                                <option value="Weekdays">Weekdays</option>
+                                                <option value="Weekends">Weekends</option>
+                                                <option value="Call me now">Call me now</option>
+                                            </select>
+                                        </div>
+                                        <div>
+                                            <label className="block text-md font-medium text-[#333] mb-1">
+                                                Best Time to Call You <span className="text-red-500">*</span>
+                                            </label>
+                                            <select
+                                                className="w-full px-4 py-2 rounded-sm border border-[#2F5D50] bg-white outline-none"
+                                                onChange={(e) => setFormData({ ...formData, best_time: e.target.value })}
+                                            >
+                                                <option>Select option</option>
+                                                <option value="Morning - 9 am to 12 pm">Morning - 9 am to 12 pm</option>
+                                                <option value="Afternoon - 12 pm to 3 pm">Afternoon - 12 pm to 3 pm</option>
+                                                <option value="Afternoon - 3 pm to 6 pm">Afternoon - 3 pm to 6 pm</option>
+                                                <option value="Evening - 6 pm to 9 pm">Evening - 6 pm to 9 pm</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div className="flex items-start gap-2 pt-2">
+                                        <input
+                                            type="checkbox"
+                                            id="terms"
+                                            className="mt-1 cursor-pointer"
+                                            onChange={(e) => setFormData({ ...formData, accept_terms: e.target.checked })}
+                                        />
+                                        <label className="text-xs md:text-sm text-gray-700">
+                                            I agree to the <Link href="https://travelone.io/terms-conditions" target="_blank" className="underline">T&Cs</Link> and <Link href="https://travelone.io/privacy-policy" target="_blank" className="underline">Privacy Policy</Link>, and consent to receive communications from TravelOne, including follow-up call and text messages for quotes, scheduling, and call reminders, regarding my inquiry. Std msg & data rates apply. Text STOP to cancel, HELP for info.
+                                        </label>
+                                    </div>
+                                </>
+                            ) : (
+                                <div className="space-y-4 text-center py-4">
+                                    <div className="flex justify-center">
+                                        <div className="h-16 w-16 rounded-full bg-[#2F5D50]/10 flex items-center justify-center">
+                                            <CheckCircle className="h-8 w-8 text-[#2F5D50]" />
+                                        </div>
+                                    </div>
+                                    <div className="space-y-4">
+                                        <span className="text-md font-medium text-black block">We’ve received your request and our Japan travel experts are already reviewing your details to prepare a personalized itinerary for you.</span>
+                                        <span className="text-sm text-gray-700 block">We’ll be in touch very soon to begin planning your Japan adventure.</span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div>
-                                <label className="block text-md font-medium text-[#333] mb-1">
-                                    Hotel Preference <span className="text-red-500">*</span>
-                                </label>
-                                <select className="w-full px-4 py-2 rounded-sm border border-[#2F5D50] bg-white outline-none">
-                                    <option>Select hotel preference</option>
-                                    <option>3 Star</option>
-                                    <option>4 Star</option>
-                                    <option>5 Star</option>
-                                </select>
-                            </div>
-                            <div className="md:col-span-2">
-                                <label className="block text-md font-medium text-[#333] mb-1">
-                                    Your Travel Preferences <span className="text-red-500">*</span>
-                                </label>
-                                <textarea
-                                    rows={4}
-                                    placeholder="Your travel preferences"
-                                    className="w-full p-3 rounded-sm border border-[#2F5D50] bg-white outline-none resize-none"
-                                />
-                            </div>
-                            <div className="md:col-span-2">
-                                <button
-                                    type="button"
-                                    className="flex items-center gap-2 px-6 py-2.5 md:px-8 md:py-3 rounded-lg font-semibold bg-[#FFC765] text-[#333] hover:bg-black hover:text-white cursor-pointer transition"
-                                >
-                                    <CheckCircle className="h-5 w-5" />
-                                    Submit
-                                </button>
-                            </div>
+                            )}
                         </div>
+
+                        {!isSubmitted && <div className="space-y-5 mt-5">
+                            {errors && <div className="text-md text-red-600">{errors}</div>}
+
+                            <button
+                                type="button"
+                                onClick={handleSubmit}
+                                className="flex items-center gap-2 px-8 py-2.5 rounded-lg font-medium transition-colors border cursor-pointer bg-[#ffc765] text-[#333] hover:border-[#333] hover:text-white hover:bg-[#333]"
+                            >
+                                {formLoading && <Loader className="w-4 h-4 mr-2 animate-spin" />}
+                                {!formLoading && <CheckCircle className="w-4 h-4" />}
+                                Submit Request
+                            </button>
+                        </div>}
                     </div>
                 </div>
             </div>
