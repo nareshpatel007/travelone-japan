@@ -31,58 +31,104 @@ const images3 = [
 
 export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Props) {
     return (
-        <section className="min-h-screen grid grid-cols-1 md:grid-cols-[45%_55%] bg-[#FFF9EE]">
-            {/* LEFT SIDE */}
-            <div className="flex flex-col">
-                <HomeHeader />
+        <>
+            {/* For Desktop */}
+            <section className="hidden md:grid min-h-screen grid-cols-1 md:grid-cols-[45%_55%] bg-[#FFF9EE]">
+                <div className="flex flex-col">
+                    <HomeHeader />
+                    <div className="flex flex-1 items-center justify-center px-6 sm:px-8 lg:px-12">
+                        <div className="max-w-xl space-y-6 text-center md:text-left">
+                            <h1 className="text-black text-5xl lg:text-6xl leading-tight font-normal">
+                                Where Your Unique Persona Meets the World’s Greatest Destinations.
+                            </h1>
 
-                <div className="flex flex-1 items-center justify-center px-6 sm:px-8 lg:px-12">
-                    <div className="max-w-xl space-y-6 text-center md:text-left">
-                        <h1 className="hidden md:block text-black text-5xl lg:text-6xl leading-tight font-normal">
-                            Where Your Unique Persona Meets the World’s Greatest Destinations.
-                        </h1>
+                            <p className="text-black text-base sm:text-lg leading-relaxed max-w-md mx-auto md:mx-0">
+                                TravelOne transcends traditional booking to create a living, breathing journey synchronized in real-time to your unique Traveler Persona.
+                            </p>
 
-                        <h1 className="block md:hidden text-black text-3xl sm:text-4xl leading-tight font-normal">
-                            Where Your Unique Persona Meets the World’s Greatest Destinations.
-                        </h1>
+                            <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                                <button
+                                    onClick={() => setOpenPlanYourTripModel(true)}
+                                    className="bg-black text-white px-4 py-3 text-sm uppercase border border-black tracking-wide font-semibold hover:bg-transparent hover:text-black transition cursor-pointer"
+                                >
+                                    Begin Your Persona Mapping
+                                </button>
 
-                        <p className="text-black text-base sm:text-lg leading-relaxed max-w-md mx-auto md:mx-0">
-                            TravelOne transcends traditional booking to create a living, breathing journey synchronized in real-time to your unique Traveler Persona.
-                        </p>
-
-                        <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-                            <button
-                                onClick={() => setOpenPlanYourTripModel(true)}
-                                className="bg-black text-white px-4 py-3 text-sm uppercase border border-black tracking-wide font-semibold hover:bg-transparent hover:text-black transition cursor-pointer"
-                            >
-                                Begin Your Persona Mapping
-                            </button>
-
-                            <button
-                                className="border border-black text-black px-4 py-2.5 text-sm uppercase tracking-wide font-semibold hover:bg-black hover:text-white transition cursor-pointer"
-                            >
-                                Explore Signature Collections
-                            </button>
+                                <button
+                                    className="border border-black text-black px-4 py-2.5 text-sm uppercase tracking-wide font-semibold hover:bg-black hover:text-white transition cursor-pointer"
+                                >
+                                    Explore Signature Collections
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            {/* RIGHT SIDE */}
-            <div className="flex flex-col">
-                {/* Mobile Slider */}
-                <div className="block md:hidden">
-                    <MobileSlider images={mobileImages} />
+                {/* RIGHT SIDE */}
+                <div className="flex flex-col">
+                    {/* Mobile Slider */}
+                    <div className="block md:hidden">
+                        <MobileSlider images={mobileImages} />
+                    </div>
+
+                    {/* Desktop Slider */}
+                    <div className="hidden md:flex flex-1 gap-8 lg:gap-10 justify-center">
+                        <VerticalSlider images={images1} direction="down" />
+                        <VerticalSlider images={images2} direction="up" />
+                        <VerticalSlider images={images3} direction="down" />
+                        <VerticalSlider images={images1} direction="up" />
+                    </div>
+                </div>
+            </section>
+            
+            {/* For Mobile */}
+            <section className="block md:hidden py-20 space-y-14 bg-[#FFF9EE]">
+                <div className="flex flex-col">
+                    <HomeHeader />
+                    <div className="flex flex-1 items-center justify-center px-6 sm:px-8 lg:px-12">
+                        <div className="max-w-xl space-y-6 text-center md:text-left">
+                            <h1 className="text-black text-3xl sm:text-4xl leading-tight font-normal">
+                                Where Your Unique Persona Meets the World’s Greatest Destinations.
+                            </h1>
+
+                            <p className="text-black text-base sm:text-lg leading-relaxed max-w-md mx-auto md:mx-0">
+                                TravelOne transcends traditional booking to create a living, breathing journey synchronized in real-time to your unique Traveler Persona.
+                            </p>
+
+                            <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                                <button
+                                    onClick={() => setOpenPlanYourTripModel(true)}
+                                    className="bg-black text-white px-4 py-3 text-sm uppercase border border-black tracking-wide font-semibold hover:bg-transparent hover:text-black transition cursor-pointer"
+                                >
+                                    Begin Your Persona Mapping
+                                </button>
+
+                                <button
+                                    className="border border-black text-black px-4 py-2.5 text-sm uppercase tracking-wide font-semibold hover:bg-black hover:text-white transition cursor-pointer"
+                                >
+                                    Explore Signature Collections
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                {/* Desktop Slider */}
-                <div className="hidden md:flex flex-1 gap-8 lg:gap-10 justify-center">
-                    <VerticalSlider images={images1} direction="down" />
-                    <VerticalSlider images={images2} direction="up" />
-                    <VerticalSlider images={images3} direction="down" />
-                    <VerticalSlider images={images1} direction="up" />
+                {/* RIGHT SIDE */}
+                <div className="flex flex-col">
+                    {/* Mobile Slider */}
+                    <div className="block md:hidden">
+                        <MobileSlider images={mobileImages} />
+                    </div>
+
+                    {/* Desktop Slider */}
+                    <div className="hidden md:flex flex-1 gap-8 lg:gap-10 justify-center">
+                        <VerticalSlider images={images1} direction="down" />
+                        <VerticalSlider images={images2} direction="up" />
+                        <VerticalSlider images={images3} direction="down" />
+                        <VerticalSlider images={images1} direction="up" />
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        </>
     );
 }
