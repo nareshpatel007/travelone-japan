@@ -32,7 +32,7 @@ export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Prop
                 <HomeHeader />
                 <div className="flex items-center px-10 md:px-16 lg:px-24 py-16 md:py-50 bg-[#FFF9EE]">
                     <div className="max-w-xl space-y-6">
-                        <h1 className="text-black text-2xl md:text-6xl leading-tight font-normal">
+                        <h1 className="text-black text-4xl md:text-6xl leading-tight font-normal">
                             Where All the Stories <br />
                             From Your Travels <br />
                             Find Their Home.
