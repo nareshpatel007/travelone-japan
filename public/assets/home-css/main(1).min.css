@@ -800,38 +800,6 @@ body {
     -webkit-font-smoothing: antialiased
 }
 
-.qodef-h1,
-h1 {
-    font-family: Jost, sans-serif;
-    font-weight: 400;
-    color: #000;
-    font-size: 65px;
-    line-height: 1.1230769231em;
-    letter-spacing: -.02em;
-    margin: 25px 0;
-    -ms-word-wrap: break-word;
-    word-wrap: break-word
-}
-
-.qodef-h1 a,
-h1 a {
-    font-family: inherit;
-    font-size: inherit;
-    font-weight: inherit;
-    font-style: inherit;
-    line-height: inherit;
-    letter-spacing: inherit;
-    text-transform: inherit;
-    color: inherit
-}
-
-.qodef-h1 a:focus,
-.qodef-h1 a:hover,
-h1 a:focus,
-h1 a:hover {
-    color: var(--qode-main-color)
-}
-
 .wp-block-quote.wp-block-quote.is-large,
 .wp-block-quote.wp-block-quote.is-style-large,
 blockquote.wp-block-quote.is-large,

@@ -80,7 +80,7 @@ export function LoginModal({ open, onOpenChange }: Props) {
                             ✕
                         </button>
                     </div>
-                    <div className="p-8 md:p-10">
+                    <div className="p-6">
                         <QuestionHeading
                             title={`${isSignUp ? "Create an account" : "Log in to your account"}`}
                             subtitle={`${isSignUp ? "Sign up to access your bookings" : "Log in to manage your bookings and payments."}`}

@@ -60,11 +60,11 @@ export default function CommonFooter() {
                                     type="email"
                                     placeholder="Email"
                                     autoComplete='off'
-                                    className="flex-1 px-4 py-3 bg-white text-white placeholder-gray-500 focus:outline-none text-sm"
+                                    className="flex-1 px-4 py-3 bg-white text-black placeholder-gray-500 focus:outline-none text-sm"
                                 />
                                 <button
-                                    type="submit"
-                                    className="px-6 py-3 text-white bg-black hover:bg-white hover:text-black font-semibold text-sm cursor-pointer transition-colors"
+                                    type="button"
+                                    className="px-6 py-3 text-white bg-black hover:bg-gray-800 font-semibold text-sm cursor-pointer transition-colors"
                                 >
                                     SEND
                                 </button>
@@ -94,7 +94,7 @@ export default function CommonFooter() {
                         </div>
                     </div>
                 </div>
-                <div className="text-center text-gray-900 text-sm border-t border-black pt-8">
+                <div className="text-center text-gray-900 text-sm md:text-base border-t border-gray-400 pt-8">
                     <p>Copyright © {new Date().getFullYear()} by TravelOne Technologies Inc. All Rights Reserved.</p>
                 </div>
             </div>
@@ -103,7 +103,7 @@ export default function CommonFooter() {
             {isVisible && (
                 <button
                     onClick={scrollToTop}
-                    className="fixed bottom-8 right-8 bg-amber-500 hover:bg-amber-600 cursor-pointer text-white rounded-full p-3 shadow-lg transition-colors z-50"
+                    className="fixed bottom-8 right-8 bg-black hover:bg-gray-900 cursor-pointer text-white rounded-full p-3 shadow-lg transition-colors z-50"
                     aria-label="Scroll to top"
                 >
                     <ChevronUp size={24} />

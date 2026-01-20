@@ -14,7 +14,7 @@ export default function VerticalSlider({
     speed = 45,
 }: Props) {
     return (
-        <div className="relative h-screen overflow-hidden w-56">
+        <div className="relative h-screen overflow-hidden w-100">
             <div
                 className={`flex flex-col ${direction === "up"
                         ? "animate-marqueeUp"
@@ -26,9 +26,9 @@ export default function VerticalSlider({
                     <Image
                         key={i}
                         src={src}
-                        alt=""
-                        width={240}
-                        height={320}
+                        alt="Image"
+                        width={260}
+                        height={340}
                         className="w-full object-cover rounded-full"
                         priority
                     />

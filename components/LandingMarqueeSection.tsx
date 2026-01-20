@@ -1,8 +1,8 @@
 "use client"
 
-import Image from "next/image";
 import VerticalSlider from "./VerticalMarquee";
 import MobileSlider from "./MobileSlider";
+import HomeHeader from "./header/home-header";
 
 // Define props
 interface Props {
@@ -27,98 +27,40 @@ const images2 = [
 
 export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Props) {
     return (
-        <div className="elementor-element elementor-element-3150fd8 e-con-full e-flex qodef-container-heights--disabled e-con e-parent e-lazyloaded">
-            <div className="elementor-element elementor-element-5b79242 e-con-full e-flex qodef-container-heights--disabled e-con e-child">
-                <div className="elementor-element elementor-element-ec76f25 elementor-widget__width-initial elementor-widget-laptop__width-initial elementor-widget-tablet__width-initial elementor-widget-mobile__width-inherit elementor-widget elementor-widget-wanderaway_core_section_title">
-                    <div className="elementor-widget-container">
-                        <div className="qodef-shortcode qodef-m qodef-section-title qodef-alignment--left">
-                            <h1 className="!text-black">Where All the Stories From Your Travels Find Their Home.</h1>
-                        </div>
-                    </div>
-                </div>
-                <div className="elementor-element elementor-element-bb5aff5 elementor-widget__width-initial elementor-widget-tablet__width-initial elementor-widget-mobile_extra__width-initial elementor-widget-laptop__width-initial elementor-widget-mobile__width-inherit elementor-widget elementor-widget-wanderaway_core_info_section">
-                    <div className="elementor-widget-container">
-                        <div className="qodef-shortcode qodef-m qodef-info-section qodef-layout--background-text qodef-background-text-pos--top-left">
-                            <div className="qodef-m-background-text"></div>
-                            <div className="qodef-m-info">
-                                <p className="!text-black">
-                                    Welcome to TravelOne, a theme specifically made for sharing all your travel adventures with your
-                                    reading audience!
-                                </p>
-                                <div className="qodef-m-button !mt-5">
-                                    <span
-                                        className="qodef-shortcode qodef-m qodef-button qodef-layout--filled qodef-html--link qodef-m-text cursor-pointer"
-                                        onClick={() => setOpenPlanYourTripModel(true)}
-                                    >
-                                        Plan Your Trip
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
+        <div className="grid grid-cols-1 md:grid-cols-[45%_55%] bg-[#FFF9EE] min-h-screen">
+            <div>
+                <HomeHeader />
+                <div className="flex items-center px-10 md:px-16 lg:px-24 py-16 md:py-50 bg-[#FFF9EE]">
+                    <div className="max-w-xl space-y-6">
+                        <h1 className="text-black text-4xl md:text-6xl leading-tight font-normal">
+                            Where All the Stories <br />
+                            From Your Travels <br />
+                            Find Their Home.
+                        </h1>
+
+                        <p className="text-black text-base md:text-lg leading-relaxed max-w-md">
+                            Welcome to TravelOne, a theme specifically made for sharing all your travel adventures with your
+                            reading audience!
+                        </p>
+
+                        <button
+                            onClick={() => setOpenPlanYourTripModel(true)}
+                            className="bg-black text-white px-6 py-3 text-sm uppercase tracking-wide font-semibold hover:bg-gray-800 cursor-pointer transition"
+                        >
+                            Plan Your Trip
+                        </button>
                     </div>
                 </div>
             </div>
-
-            <div className="elementor-element elementor-element-04bed72 e-con-full e-flex qodef-container-heights--disabled e-con e-child !pb-10">
+            <div>
                 <MobileSlider images={mobileImages} />
-                <div className="hidden md:flex lg:hidden gap-6 px-8 bg-[#fbf7ef] justify-center">
-                    <VerticalSlider images={images1} direction="down" />
-                    <VerticalSlider images={images2} direction="up" />
-                </div>
-                <div className="hidden lg:flex gap-6 px-20 bg-[#fbf7ef] justify-center">
-                    <VerticalSlider images={images1} direction="down" />
-                    <VerticalSlider images={images2} direction="up" />
-                    <VerticalSlider images={images1} direction="down" />
-                    <VerticalSlider images={images2} direction="up" />
-                </div>
-            </div>
 
-            <div className="!hidden elementor-element elementor-element-04bed72 e-con-full e-flex qodef-container-heights--disabled e-con e-child">
-                <div className="elementor-element elementor-element-d6c022e elementor-hidden-laptop elementor-widget-tablet__width-inherit elementor-hidden-widescreen elementor-hidden-desktop elementor-hidden-mobile elementor-widget elementor-widget-wanderaway_core_image_marquee">
-                    <div className="elementor-widget-container">
-                        <div className="qodef-shortcode qodef-m qodef-image-marquee qodef-layout--default qodef-direction--right-to-left qodef-direction-type--horizontal">
-                            <div className="qodef-m-content qodef--desktop" style={{ height: "216px" }}>
-                                <div className="qodef-m-image qodef-image--original"
-                                    style={{
-                                        background: "url('https://ik.imagekit.io/288weifiq/landing-japan/Landing-marquee-1024-img-2.png')",
-                                        width: "1066px",
-                                        height: "216px",
-                                        animation: "qode-move-marquee-right-to-left 23s linear infinite"
-                                    }}>
-                                </div>
-                                <div className="qodef-m-image qodef-image--copy"
-                                    style={{
-                                        background: "url('https://ik.imagekit.io/288weifiq/landing-japan/Landing-marquee-1024-img-2.png')",
-                                        width: "1066px",
-                                        height: "216px",
-                                        animation: "qode-move-marquee-right-to-left 23s linear infinite",
-                                        animationName: "qode-move-marquee-right-to-left-copy"
-                                    }}>
-                                </div>
-                            </div>
-                            <div className="qodef-m-content qodef--mobile" style={{ height: "108px" }}>
-                                <div className="qodef-m-image qodef-image--original"
-                                    style={{
-                                        background: "url('https://ik.imagekit.io/288weifiq/landing-japan/Landing-marquee-1024-img-2.png')",
-                                        width: "533px",
-                                        height: "108px",
-                                        animation: "qode-move-marquee-right-to-left 23s linear infinite"
-                                    }}>
-                                </div>
-                                <div className="qodef-m-image qodef-image--copy"
-                                    style={{
-                                        background: "url('https://ik.imagekit.io/288weifiq/landing-japan/Landing-marquee-1024-img-2.png')",
-                                        width: "533px",
-                                        height: "108px",
-                                        animation: "qode-move-marquee-right-to-left 23s linear infinite",
-                                        animationName: "qode-move-marquee-right-to-left-copy"
-                                    }}>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div className="hidden md:flex lg:hidden gap-6 px-8 justify-center bg-[#FFF9EE]">
+                    <VerticalSlider images={images1} direction="down" />
+                    <VerticalSlider images={images2} direction="up" />
                 </div>
-                <div className="hidden lg:flex gap-6 px-20 bg-[#fbf7ef] justify-center">
+
+                <div className="hidden lg:flex gap-6 px-20 justify-center bg-[#FFF9EE]">
                     <VerticalSlider images={images1} direction="down" />
                     <VerticalSlider images={images2} direction="up" />
                     <VerticalSlider images={images1} direction="down" />

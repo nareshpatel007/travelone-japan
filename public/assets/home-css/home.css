@@ -106,15 +106,6 @@
     }
 }
 
-@media only screen and (max-width: 768px) {
-
-    h3,
-    .qodef-h3,
-    h3.elementor-heading-title {
-        font-size: 30px;
-    }
-}
-
 @keyframes marquee-up {
     0% {
         transform: translateY(0%);

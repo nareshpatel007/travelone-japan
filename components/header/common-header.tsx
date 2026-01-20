@@ -16,6 +16,7 @@ import {
 
 import { CommonPlanTripModal } from "../plan_your_trip/common-popup";
 import { LoginModal } from "../common/login-modal";
+import { LandingPlanTripModal } from "../plan_your_trip/landing-popup";
 
 /* ===== MOCK DATA ===== */
 
@@ -55,11 +56,14 @@ const DESTINATIONS = [
 ];
 
 export default function CommonHeader() {
+    // Define state
     const [openMobileMenu, setOpenMobileMenu] = useState(false);
     const [showMegaMenu, setShowMegaMenu] = useState(false);
     const [openPlanTrip, setOpenPlanTrip] = useState(false);
+    const [openPlanYourTripModel, setOpenPlanYourTripModel] = useState(false);
     const [openLogin, setOpenLogin] = useState(false);
 
+    // Define cart count
     const cartCount = 0;
 
     useEffect(() => {
@@ -140,8 +144,8 @@ export default function CommonHeader() {
                         />
 
                         <button
-                            className="hidden lg:block border px-4 py-2 rounded font-semibold hover:bg-black hover:text-white"
-                            onClick={() => setOpenPlanTrip(true)}
+                            className="hidden lg:block border px-4 py-2 rounded font-semibold hover:bg-black hover:text-white cursor-pointer"
+                            onClick={() => setOpenPlanYourTripModel(true)}
                         >
                             Plan Your Trip
                         </button>
@@ -236,6 +240,7 @@ export default function CommonHeader() {
             {/* ================= MODALS ================= */}
             <LoginModal open={openLogin} onOpenChange={setOpenLogin} />
             <CommonPlanTripModal open={openPlanTrip} onOpenChange={setOpenPlanTrip} />
+            <LandingPlanTripModal open={openPlanYourTripModel} onOpenChange={setOpenPlanYourTripModel} />
         </>
     );
 }
