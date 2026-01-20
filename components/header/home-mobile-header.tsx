@@ -63,12 +63,9 @@ export default function HomeMobileHeader() {
 
                     <nav className="flex flex-col gap-6 p-6 text-lg font-medium">
                         <Link href="/">Home</Link>
-                        <Link href="/destination">Destination</Link>
-                        <Link href="/tour">Tours</Link>
-                        <Link href="/about">About Us</Link>
-                        <Link href="/contact">Contact Us</Link>
-                        <Link href="/blog">Blog</Link>
-                        <Link href="/booking">Booking</Link>
+                        <Link href="/country">Destination</Link>
+                        <Link href="/about">About</Link>
+                        <Link href="/contact">Contact</Link>
                     </nav>
                 </div>
             )}
