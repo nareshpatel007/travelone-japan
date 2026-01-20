@@ -8,12 +8,6 @@ interface Props {
     setOpenPlanYourTripModel: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const mobileImages = [
-    "https://ik.imagekit.io/288weifiq/nextjs/mobile_slider_1.webp",
-    "https://ik.imagekit.io/288weifiq/nextjs/mobile_slider_2.webp",
-    "https://ik.imagekit.io/288weifiq/nextjs/mobile_slider_3.webp",
-];
-
 const images1 = [
     "https://ik.imagekit.io/288weifiq/nextjs/desktop_slider_1.webp",
     "https://ik.imagekit.io/288weifiq/nextjs/desktop_slider_1.webp",
@@ -105,7 +99,7 @@ export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Prop
                     </div>
                 </div>
                 <div className="flex flex-col">
-                    <MobileSlider images={mobileImages} />
+                    <MobileSlider />
                 </div>
             </section>
         </>
