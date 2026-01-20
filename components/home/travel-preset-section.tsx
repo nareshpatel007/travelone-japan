@@ -1,0 +1,111 @@
+"use client";
+
+import { ArrowRight, MoveRight } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+
+export default function TravelPresetSection() {
+    return (
+        <section className="bg-[#f5f8f3]">
+            <div className="grid grid-cols-1 lg:grid-cols-2 px-4 sm:px-6 lg:px-8 py-8">
+                <div className="relative flex items-center justify-center p-14 md:p-24">
+                    <div
+                        className="absolute inset-0 bg-cover bg-center"
+                        style={{
+                            backgroundImage: "url('https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/08/home1-parallax-img-1.jpg')",
+                        }}
+                    />
+
+                    {/* Collage Frame */}
+                    <div className="relative z-10 bg-white p-2 sm:p-3 shadow-xl w-full max-w-[200px] md:max-w-[420px]">
+                        <div className="grid grid-cols-2 gap-3">
+                            {/* Image 1 */}
+                            <div className="relative aspect-square overflow-hidden">
+                                <Image
+                                    src="https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/08/home-5-img-4.jpg"
+                                    alt="Travel"
+                                    fill
+                                    className="object-cover hover:scale-105 transition"
+                                />
+                            </div>
+
+                            {/* Image 2 */}
+                            <div className="relative aspect-square overflow-hidden">
+                                <Image
+                                    src="https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/08/home-5-img-6.jpg"
+                                    alt="Travel"
+                                    fill
+                                    className="object-cover hover:scale-105 transition"
+                                />
+                            </div>
+
+                            {/* Image 3 */}
+                            <div className="relative aspect-square overflow-hidden">
+                                <Image
+                                    src="https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/08/home-5-img-1.jpg"
+                                    alt="Travel"
+                                    fill
+                                    className="object-cover hover:scale-105 transition"
+                                />
+                            </div>
+
+                            {/* Image 4 */}
+                            <div className="relative aspect-square overflow-hidden">
+                                <Image
+                                    src="https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/08/home-5-img-2.jpg"
+                                    alt="Travel"
+                                    fill
+                                    className="object-cover hover:scale-105 transition"
+                                />
+                            </div>
+
+                            {/* Image 5 */}
+                            <div className="relative aspect-square overflow-hidden">
+                                <Image
+                                    src="https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/08/home-5-img-3.jpg"
+                                    alt="Travel"
+                                    fill
+                                    className="object-cover hover:scale-105 transition"
+                                />
+                            </div>
+
+                            {/* Image 6 */}
+                            <div className="relative aspect-square overflow-hidden">
+                                <Image
+                                    src="https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/08/home-5-img-5.jpg"
+                                    alt="Travel"
+                                    fill
+                                    className="object-cover hover:scale-105 transition"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* RIGHT SIDE */}
+                <div className="flex items-center px-6 sm:px-10 lg:px-20 py-16">
+                    <div className="space-y-6">
+                        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold leading-tight text-black">
+                            Your Soul, Our Compass.
+                        </h2>
+
+                        <p className="text-gray-600 text-base sm:text-lg">
+                            Traditional travel is a series of transactions. TravelOne is a transformation. We have replaced the static itinerary with a living, breathing orchestration. By mapping your Traveler Persona—your values, your pace, and your non-negotiables—we ensure that every moment of your journey feels like it was designed exclusively for you.
+                        </p>
+
+                        <p className="text-gray-600 text-base sm:text-lg">
+                            One transaction. Total accountability. Powered by Agentic AI. Driven by Human Insight.
+                        </p>
+
+                        <Link href="/about">
+                            <button className="flex items-center bg-black text-white px-6 py-3 border border-black uppercase text-sm tracking-wide hover:bg-transparent hover:text-black font-semibold cursor-pointer transition">
+                                About Us <MoveRight className="ml-2 w-4 h-4" />
+                            </button>
+                        </Link>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    );
+}

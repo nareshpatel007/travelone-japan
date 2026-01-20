@@ -16,17 +16,12 @@ export default function RootLayout({
             <head>
                 <meta httpEquiv="Content-Type" content="text/html; charset=UTF-8" />
 
-                {/* <link rel="stylesheet" href="/assets/home-css/animate.min.css" /> */}
-                {/* <link rel="stylesheet" href="/assets/home-css/sbi-styles.min.css" /> */}
-                {/* <link rel="stylesheet" href="/assets/home-css/elegant-icons.min.css" /> */}
-                {/* <link rel="stylesheet" href="/assets/home-css/all.min.css" /> */}
                 <link rel="stylesheet" href="/assets/home-css/styles.css" />
                 <link rel="stylesheet" href="/assets/home-css/grid.css" />
                 <link rel="stylesheet" href="/assets/home-css/main.css" />
                 <link rel="stylesheet" href="/assets/home-css/main.min.css" />
                 <link rel="stylesheet" href="/assets/home-css/main(1).min.css" />
                 <link rel="stylesheet" href="/assets/home-css/wanderaway-core.min.css" />
-                {/* <link rel="stylesheet" href="/assets/home-css/style.css" /> */}
                 <link rel="stylesheet" href="/assets/home-css/home.css" />
 
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -41,7 +36,6 @@ export default function RootLayout({
                 />
 
                 <link rel="stylesheet" href="/assets/home-css/main(1).css" />
-                {/* <link rel="stylesheet" href="/assets/home-css/elementor.min.css" /> */}
                 <link rel="stylesheet" href="/assets/home-css/custom-frontend.min.css" />
                 <link rel="stylesheet" href="/assets/home-css/sbi-styles.min.css" />
                 <link rel="stylesheet" href="/assets/home-css/widget-menu-anchor.min.css" />

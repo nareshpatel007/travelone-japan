@@ -1,18 +1,16 @@
-"use client"
+"use client";
 
 import VerticalSlider from "./VerticalMarquee";
 import MobileSlider from "./MobileSlider";
 import HomeHeader from "./header/home-header";
 
-// Define props
 interface Props {
-    setOpenPlanYourTripModel: React.Dispatch<React.SetStateAction<boolean>>
+    setOpenPlanYourTripModel: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-// Define images
 const mobileImages = [
     "https://ik.imagekit.io/288weifiq/landing-japan/Landing-marquee-1024-img-2.png",
-    "https://ik.imagekit.io/288weifiq/landing-japan/Landing-marquee-680-img-1.png"
+    "https://ik.imagekit.io/288weifiq/landing-japan/Landing-marquee-680-img-1.png",
 ];
 
 const images1 = [
@@ -27,50 +25,58 @@ const images2 = [
 
 export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Props) {
     return (
-        <div className="grid grid-cols-1 md:grid-cols-[45%_55%] bg-[#FFF9EE] md:min-h-screen">
-            <div>
+        <section className="grid min-h-screen grid-cols-1 md:grid-cols-[45%_55%] bg-[#FFF9EE]">
+            {/* LEFT SIDE */}
+            <div className="flex flex-col">
                 <HomeHeader />
-                <div className="flex items-center px-8 md:px-16 lg:px-24 py-16 md:py-50 bg-[#FFF9EE]">
-                    <div className="max-w-xl space-y-6">
-                        <h1 className="hidden md:block text-black text-4xl md:text-6xl leading-tight font-normal">
-                            Where All the Stories <br />
-                            From Your Travels <br />
-                            Find Their Home.
+
+                <div className="flex flex-1 items-center justify-center px-6 sm:px-8 lg:px-12">
+                    <div className="max-w-xl space-y-6 text-center md:text-left">
+                        <h1 className="hidden md:block text-black text-5xl lg:text-6xl leading-tight font-normal">
+                            Where Your Unique Persona Meets the World’s Greatest Destinations.
                         </h1>
 
-                        <h1 className="block md:hidden text-black text-4xl md:text-6xl leading-tight font-normal">
-                            Where All the Stories From Your Travels Find Their Home.
+                        <h1 className="block md:hidden text-black text-3xl sm:text-4xl leading-tight font-normal">
+                            Where Your Unique Persona Meets the World’s Greatest Destinations.
                         </h1>
 
-                        <p className="text-black text-base md:text-lg leading-relaxed max-w-md">
-                            Welcome to TravelOne, a theme specifically made for sharing all your travel adventures with your
-                            reading audience!
+                        <p className="text-black text-base sm:text-lg leading-relaxed max-w-md mx-auto md:mx-0">
+                            TravelOne transcends traditional booking to create a living, breathing journey synchronized in real-time to your unique Traveler Persona.
                         </p>
 
-                        <button
-                            onClick={() => setOpenPlanYourTripModel(true)}
-                            className="bg-black text-white px-6 py-3 text-sm uppercase tracking-wide font-semibold hover:bg-gray-800 cursor-pointer transition"
-                        >
-                            Plan Your Trip
-                        </button>
+                        <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                            <button
+                                onClick={() => setOpenPlanYourTripModel(true)}
+                                className="bg-black text-white px-4 py-3 text-sm uppercase border border-black tracking-wide font-semibold hover:bg-transparent hover:text-black transition cursor-pointer"
+                            >
+                                Begin Your Persona Mapping
+                            </button>
+
+                            <button
+                                className="border border-black text-black px-4 py-2.5 text-sm uppercase tracking-wide font-semibold hover:bg-black hover:text-white transition cursor-pointer"
+                            >
+                                Explore Signature Collections
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div>
-                <MobileSlider images={mobileImages} />
 
-                {/* <div className="hidden md:flex lg:hidden gap-6 px-8 justify-center bg-[#FFF9EE]">
-                    <VerticalSlider images={images1} direction="down" />
-                    <VerticalSlider images={images2} direction="up" />
-                </div> */}
+            {/* RIGHT SIDE */}
+            <div className="flex flex-col">
+                {/* Mobile Slider */}
+                <div className="block md:hidden">
+                    <MobileSlider images={mobileImages} />
+                </div>
 
-                <div className="hidden md:flex gap-6 px-20 justify-center bg-[#FFF9EE]">
+                {/* Desktop Slider */}
+                <div className="hidden md:flex flex-1 gap-8 lg:gap-10 justify-center">
                     <VerticalSlider images={images1} direction="down" />
                     <VerticalSlider images={images2} direction="up" />
                     <VerticalSlider images={images1} direction="down" />
                     <VerticalSlider images={images2} direction="up" />
                 </div>
             </div>
-        </div>
-    )
+        </section>
+    );
 }

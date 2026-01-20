@@ -14,12 +14,9 @@ export default function VerticalSlider({
     speed = 45,
 }: Props) {
     return (
-        <div className="relative h-screen overflow-hidden w-100">
+        <div className="relative h-screen overflow-hidden">
             <div
-                className={`flex flex-col ${direction === "up"
-                        ? "animate-marqueeUp"
-                        : "animate-marqueeDown"
-                    }`}
+                className={`flex flex-col ${direction === "up" ? "animate-marqueeUp" : "animate-marqueeDown"}`}
                 style={{ animationDuration: `${speed}s` }}
             >
                 {[...images, ...images].map((src, i) => (
@@ -28,7 +25,7 @@ export default function VerticalSlider({
                         src={src}
                         alt="Image"
                         width={260}
-                        height={340}
+                        height={350}
                         className="w-full object-cover rounded-full"
                         priority
                     />
