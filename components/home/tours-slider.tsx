@@ -23,8 +23,8 @@ export default function ToursSlider({ toursList }: Props) {
     }
 
     return (
-        <section className="py-6 px-5 md:px-10">
-            <Heading main="Popular Tours" />
+        <section className="py-6 px-5 md:px-10 py-10 md:py-12 bg-[#FFF9EE]">
+            <Heading main="Popular Japan Tours" />
 
             <div className="relative mt-6">
                 <Swiper
@@ -62,7 +62,7 @@ export default function ToursSlider({ toursList }: Props) {
                                         />
                                     </div>
                                     <div className="py-6 space-y-3 text-center">
-                                        <span className="text-lg md:text-2xl font-medium text-gray-900 block">{tour.name}</span>
+                                        <span className="text-md md:text-xl font-medium text-gray-900 block">{tour.name}</span>
                                         <div className="flex justify-center">
                                             <span className="text-xs md:text-sm font-semibold text-[#385b21] bg-[#d4e9e7] px-5 py-1.5 rounded">
                                                 USD ${formatPrice(tour.starting_price, 0)}

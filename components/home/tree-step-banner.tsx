@@ -17,22 +17,19 @@ interface DestinationCard {
 const destinations: DestinationCard[] = [
     {
         id: 1,
-        title:
-            'Step 01: The Mapping. Complete your Traveler Persona. Tell us about your "Local Soul" preferences and your logistical non-negotiables.',
+        title: 'The Mapping. Complete your Traveler Persona. Tell us about your "Local Soul" preferences and your logistical non-negotiables.',
         location: "Mexico, Mexico",
         image: "https://ik.imagekit.io/288weifiq/landing-japan/home-3-img-new-7.jpg",
     },
     {
         id: 2,
-        title:
-            "Step 02: The Match. Our Agentic AI scans our Global Strategic Zones to find the experiences that match your travel DNA with 99.9% accuracy.",
+        title: "The Match. Our Agentic AI scans our Global Strategic Zones to find the experiences that match your travel DNA with 99.9% accuracy.",
         location: "Giza, Egypt",
         image: "https://ik.imagekit.io/288weifiq/landing-japan/home-3-img-new-8.jpg",
     },
     {
         id: 3,
-        title:
-            "Step 03: The Orchestration. Once you select your collection, we handle everything. As your Merchant of Record, we manage the money, the logistics, and the real-time recovery.",
+        title: "The Orchestration. Once you select your collection, we handle everything. As your Merchant of Record, we manage the money, the logistics, and the real-time recovery.",
         location: "Bali, Indonesia",
         image: "https://ik.imagekit.io/288weifiq/landing-japan/home-3-img-new-9.jpg",
     },
@@ -40,7 +37,7 @@ const destinations: DestinationCard[] = [
 
 export default function ThreeStepBanner({ onOpenChange }: Props) {
     return (
-        <div className="max-w-7xl mx-auto px-5 md:px-5 lg:px-0">
+        <div className="max-w-7xl mx-auto px-5 md:px-5 lg:px-0 py-10 md:py-12">
             <Heading main="Start with Who, Not Where." />
             <div className="mt-10 grid grid-cols-1 lg:grid-cols-10 gap-4">
                 <div className="relative col-span-1 lg:col-span-7 overflow-hidden aspect-[4/3] lg:aspect-auto lg:min-h-[380px]">
@@ -52,7 +49,7 @@ export default function ThreeStepBanner({ onOpenChange }: Props) {
                         className="object-cover transition-transform duration-300 hover:scale-105"
                     />
 
-                    <div className="absolute inset-0 bg-black/20 hover:bg-black/30 transition-colors" />
+                    <div className="absolute inset-0 bg-black/5 hover:bg-black/30 transition-colors" />
 
                     <div className="absolute inset-0 flex items-center justify-center">
                         <button
@@ -67,8 +64,9 @@ export default function ThreeStepBanner({ onOpenChange }: Props) {
                     {destinations.map((destination) => (
                         <div
                             key={destination.id}
-                            className="flex items-start lg:flex-col lg:text-center bg-[#fcefdf] p-5 lg:p-8 rounded-sm"
+                            className="flex items-center lg:flex-col lg:text-center bg-[#fcefdf] border border-gray-200 hover:bg-white cursor-pointer hover:border-[#fcefdf] p-5 lg:p-8 rounded-sm"
                         >
+                            <span className="text-base font-semibold mb-2">{`Step: 0${destination.id}`}</span>
                             <h5 className="font-normal text-sm md:text-base text-gray-900">
                                 {destination.title}
                             </h5>

@@ -1,6 +1,6 @@
 export default function FeatureCard() {
     return (
-        <div className="space-y-22 md:space-y-22 py-18 max-w-7xl mx-auto px-5 md:px-0">
+        <div className="py-12 max-w-7xl mx-auto px-5 md:px-0">
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10">
                 <div className="flex flex-col items-center text-center">
                     <div className="mb-4 flex items-center justify-center">

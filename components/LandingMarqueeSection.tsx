@@ -27,10 +27,10 @@ export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Prop
     return (
         <>
             {/* For Desktop */}
-            <section className="hidden md:grid min-h-screen grid-cols-1 md:grid-cols-[45%_55%] bg-[#FFF9EE]">
+            <section className="hidden md:grid min-h-screen grid-cols-1 md:grid-cols-[50%_50%] bg-[#FFF9EE]">
                 <div className="flex flex-col">
                     <HomeHeader />
-                    <div className="flex flex-1 items-center justify-center px-6 sm:px-8 lg:px-12">
+                    <div className="flex flex-1 items-center justify-center px-6 md:px-10 lg:px-12">
                         <div className="max-w-xl space-y-6 text-center md:text-left">
                             <h1 className="text-black text-5xl lg:text-6xl leading-tight font-normal">
                                 Where Your Unique Persona Meets the World’s Greatest Destinations.
@@ -58,7 +58,13 @@ export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Prop
                     </div>
                 </div>
                 <div className="flex flex-col">
-                    <div className="flex flex-1 gap-8 lg:gap-10 justify-center">
+                    <div className="hidden md:flex lg:hidden flex-1 gap-8 lg:gap-10 justify-center">
+                        <VerticalSlider images={images1} direction="down" />
+                        <VerticalSlider images={images2} direction="up" />
+                        <VerticalSlider images={images3} direction="down" />
+                    </div>
+
+                    <div className="hidden lg:flex flex-1 gap-8 lg:gap-10 justify-center">
                         <VerticalSlider images={images1} direction="down" />
                         <VerticalSlider images={images2} direction="up" />
                         <VerticalSlider images={images3} direction="down" />

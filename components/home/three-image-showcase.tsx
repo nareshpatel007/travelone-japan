@@ -11,7 +11,7 @@ interface Props {
 
 export default function ThreeImageSplitSection({ destinationList }: Props) {
     return (
-        <section className="w-full px-4 sm:px-6 lg:px-8 py-8">
+        <section className="w-full px-4 md:px-6 py-10 md:py-12 bg-[#FFF9EE]">
             <Heading
                 main="Top Destinations"
             />
@@ -29,9 +29,6 @@ export default function ThreeImageSplitSection({ destinationList }: Props) {
                                 className="object-cover transition-transform duration-700 group-hover:scale-105"
                                 priority={index === 0}
                             />
-
-                            <div className="absolute inset-0 bg-black/20 group-hover:bg-black/35 transition" />
-
                             <div className="absolute bottom-5 left-5 right-5">
                                 <p className="text-white text-md sm:text-2xl font-medium leading-snug">
                                     {item.name}

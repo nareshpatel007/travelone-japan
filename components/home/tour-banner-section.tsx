@@ -11,7 +11,7 @@ interface Props {
 
 export default function TourBannerSection({ toursList }: Props) {
     return (
-        <section className="w-full bg-[#f3f7f1] py-10 sm:py-14 px-4 sm:px-6 lg:px-8">
+        <section className="w-full py-10 sm:py-14 px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_2.8fr] gap-10">
                 <div className="flex flex-col gap-6">
                     {toursList.length > 0 && toursList.slice(0, 4).map((tour: any) => (
@@ -53,8 +53,6 @@ export default function TourBannerSection({ toursList }: Props) {
                                     fill
                                     className="object-cover transition-transform duration-300 hover:scale-105"
                                 />
-
-                                <div className="absolute inset-0 bg-black/20" />
 
                                 <div className="absolute bottom-5 left-5 right-5">
                                     <h3 className="text-white text-sm sm:text-base md:text-lg font-medium leading-snug">

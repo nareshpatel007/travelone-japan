@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export default function AboutTravelone() {
     return (
-        <div className="py-24 max-w-7xl mx-auto px-5 md:px-0">
+        <div className="py-18 max-w-7xl mx-auto px-5 md:px-0">
             <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-16">
                 <div className="flex justify-center">
                     <div className="relative w-full max-w-[520px] aspect-[4/3]">
