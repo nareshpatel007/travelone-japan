@@ -175,7 +175,7 @@ export default function CommonHeader() {
                                 {DESTINATION_LINKS.map((item) => (
                                     <li key={item}>
                                         <Link
-                                            href="/destination"
+                                            href="/country"
                                             className="font-medium hover:text-black"
                                         >
                                             {item}
@@ -227,7 +227,7 @@ export default function CommonHeader() {
 
                     <nav className="flex flex-col gap-6 p-6 text-lg font-medium">
                         <Link href="/">Home</Link>
-                        <Link href="/destination">Destination</Link>
+                        <Link href="/country">Destination</Link>
                         <Link href="/tour">Tours</Link>
                         <Link href="/about">About Us</Link>
                         <Link href="/contact">Contact Us</Link>
