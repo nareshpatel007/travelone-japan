@@ -3,8 +3,6 @@
 import CommonFooter from "@/components/footer/common-footer";
 import HomeMobileHeader from "@/components/header/home-mobile-header";
 import LandingMarqueeSection from "@/components/LandingMarqueeSection";
-import Image from "next/image";
-import Heading from "@/components/common/heading";
 import FeatureCard from "@/components/FeatureCard";
 import { useEffect, useState } from "react";
 import { LandingPlanTripModal } from "@/components/plan_your_trip/landing-popup";
