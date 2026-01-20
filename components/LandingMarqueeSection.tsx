@@ -63,16 +63,8 @@ export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Prop
                         </div>
                     </div>
                 </div>
-
-                {/* RIGHT SIDE */}
                 <div className="flex flex-col">
-                    {/* Mobile Slider */}
-                    <div className="block md:hidden">
-                        <MobileSlider images={mobileImages} />
-                    </div>
-
-                    {/* Desktop Slider */}
-                    <div className="hidden md:flex flex-1 gap-8 lg:gap-10 justify-center">
+                    <div className="flex flex-1 gap-8 lg:gap-10 justify-center">
                         <VerticalSlider images={images1} direction="down" />
                         <VerticalSlider images={images2} direction="up" />
                         <VerticalSlider images={images3} direction="down" />
@@ -112,21 +104,8 @@ export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Prop
                         </div>
                     </div>
                 </div>
-
-                {/* RIGHT SIDE */}
-                <div className="flex flex-col">
-                    {/* Mobile Slider */}
-                    <div className="block md:hidden">
-                        <MobileSlider images={mobileImages} />
-                    </div>
-
-                    {/* Desktop Slider */}
-                    <div className="hidden md:flex flex-1 gap-8 lg:gap-10 justify-center">
-                        <VerticalSlider images={images1} direction="down" />
-                        <VerticalSlider images={images2} direction="up" />
-                        <VerticalSlider images={images3} direction="down" />
-                        <VerticalSlider images={images1} direction="up" />
-                    </div>
+                <div className="flex flex-col block">
+                    <MobileSlider images={mobileImages} />
                 </div>
             </section>
         </>
