@@ -52,7 +52,7 @@ export default function CommonFooter() {
                             alt="Logo"
                             width={220}
                             height={100}
-                            src="https://ik.imagekit.io/288weifiq/landing-japan/logo.webp"
+                            src="https://ik.imagekit.io/288weifiq/nextjs/logo.webp"
                         />
                         <form className="w-full max-w-xs my-8" onSubmit={(e) => e.preventDefault()}>
                             <div className="flex">

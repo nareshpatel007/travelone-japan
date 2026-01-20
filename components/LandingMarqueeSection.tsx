@@ -31,7 +31,7 @@ const images3 = [
 
 export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Props) {
     return (
-        <section className="grid min-h-screen grid-cols-1 md:grid-cols-[45%_55%] bg-[#FFF9EE]">
+        <section className="min-h-screen grid grid-cols-1 md:grid-cols-[45%_55%] bg-[#FFF9EE]">
             {/* LEFT SIDE */}
             <div className="flex flex-col">
                 <HomeHeader />

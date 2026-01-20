@@ -106,7 +106,7 @@ export default function CommonHeader() {
                     {/* LOGO */}
                     <Link href="/">
                         <Image
-                            src="https://stage.travelone.io/html/home/assets/images/logo.png"
+                            src="https://ik.imagekit.io/288weifiq/nextjs/logo.webp"
                             alt="Logo"
                             width={160}
                             height={100}

@@ -9,7 +9,7 @@ export default function HomeHeader() {
             <div className="hidden md:flex lg:flex px-4 md:px-8 h-20 md:h-24 items-center space-x-10">
                 <Link href="/">
                     <Image
-                        src="https://stage.travelone.io/html/home/assets/images/logo.png"
+                        src="https://ik.imagekit.io/288weifiq/nextjs/logo.webp"
                         alt="Logo"
                         width={160}
                         height={100}
