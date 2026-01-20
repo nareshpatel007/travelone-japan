@@ -38,7 +38,7 @@ export default function MobileSlider() {
                     disableOnInteraction: false,
                 }}
                 slidesPerView={1.3}
-                spaceBetween={24}
+                spaceBetween={10}
                 allowTouchMove={false}
                 breakpoints={{
                     640: { slidesPerView: 2.3 }
@@ -49,7 +49,7 @@ export default function MobileSlider() {
             >
                 {mobileImages.map((item, index) => (
                     <SwiperSlide key={index}>
-                        <div className="relative h-[160px] overflow-hidden">
+                        <div className="relative h-[180px] overflow-hidden">
                             <Image
                                 src={item}
                                 alt="Image"
