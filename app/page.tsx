@@ -1,7 +1,6 @@
 "use client";
 
 import CommonFooter from "@/components/footer/common-footer";
-import HomeHeader from "@/components/header/home-header";
 import HomeMobileHeader from "@/components/header/home-mobile-header";
 import LandingMarqueeSection from "@/components/LandingMarqueeSection";
 import Image from "next/image";
@@ -10,6 +9,7 @@ import FeatureCard from "@/components/FeatureCard";
 import { useEffect, useState } from "react";
 import { LandingPlanTripModal } from "@/components/plan_your_trip/landing-popup";
 
+// Define interface
 interface CategoryCard {
     id: number
     label: string
@@ -133,11 +133,14 @@ export default function HomePage() {
 
                     <LandingMarqueeSection setOpenPlanYourTripModel={setOpenPlanYourTripModel} />
 
-                    <section className="!py-20 bg-white">
-                        <div className="!max-w-8xl !mx-auto !px-8">
-                            <Heading main="Handcrafted Japan Itineraries" sub="Discover the Best of Japan with Our Handcrafted Itineraries" />
-
-                            <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-3 gap-10 items-center">
+                    <div className="space-y-22 md:space-y-22 py-18 max-w-7xl mx-auto px-5 md:px-0">
+                        {/* Section 1 */}
+                        <div>
+                            <Heading
+                                main="Handcrafted Japan Itineraries"
+                                sub="Discover the Best of Japan with Our Handcrafted Itineraries"
+                            />
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-10 items-center">
                                 <div className="flex flex-col">
                                     <div className="relative h-80 mb-6 overflow-hidden rounded-lg">
                                         <Image
@@ -148,7 +151,7 @@ export default function HomePage() {
                                         />
                                     </div>
                                     <div className="text-center">
-                                        <h3 className="text-xl font-light mb-3 leading-tight">Sample Tour Title</h3>
+                                        <h3 className="text-xl font-light mb-3 font-medium leading-tight">Sample Tour Title</h3>
                                     </div>
                                 </div>
                                 <div className="flex flex-col">
@@ -161,7 +164,7 @@ export default function HomePage() {
                                         />
                                     </div>
                                     <div className="text-center">
-                                        <h3 className="text-xl font-light mb-3 leading-tight">Sample Tour Title</h3>
+                                        <h3 className="text-xl font-light mb-3 font-medium leading-tight">Sample Tour Title</h3>
                                     </div>
                                 </div>
                                 <div className="flex flex-col">
@@ -174,15 +177,14 @@ export default function HomePage() {
                                         />
                                     </div>
                                     <div className="text-center">
-                                        <h3 className="text-xl font-light mb-3 leading-tight">Sample Tour Title</h3>
+                                        <h3 className="text-xl font-light mb-3 font-medium leading-tight">Sample Tour Title</h3>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </section>
 
-                    <section className="!pb-20 bg-white">
-                        <div className="!max-w-7xl !mx-auto !px-8">
+                        {/* Section 2 */}
+                        <div>
                             <Heading main="Quick Type Pick" sub="Nulla massa nisl, aliquam sed ante porta, suscipit facilisis nulla." />
 
                             <div className="grid grid-cols-2 md:grid-cols-2 gap-6">
@@ -204,10 +206,9 @@ export default function HomePage() {
                                 ))}
                             </div>
                         </div>
-                    </section>
 
-                    <section className="!pb-20 bg-white">
-                        <div className="!max-w-7xl !mx-auto !px-8">
+                        {/* Section 3 */}
+                        <div>
                             <Heading main="Top Cities" sub="Lorem ipsum dolor sit amet cons ectetur adipi." />
                             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
                                 {cities.map((destination, index) => (
@@ -229,10 +230,9 @@ export default function HomePage() {
                                 ))}
                             </div>
                         </div>
-                    </section>
 
-                    <section className="!pb-20 bg-white">
-                        <div className="!max-w-7xl !mx-auto !px-8">
+                        {/* Section 4 */}
+                        <div>
                             <Heading main="Favourite Destinations" sub="Vestibulum id neque varius, loreet nisi ut, pharetra metus." />
                             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
                                 {populorDestination.map((destination, index) => (
@@ -251,10 +251,9 @@ export default function HomePage() {
                                 ))}
                             </div>
                         </div>
-                    </section>
 
-                    <section className="py-14 bg-[#fff9ee] px-4 sm:px-6 lg:py-20">
-                        <div className="max-w-7xl mx-auto px-4 md:px-8">
+                        {/* Section 5 */}
+                        <div>
                             <Heading main="Top Travel Spots" sub="Top Travel Spots: Our Recommended Destinations A Click Away"
                             />
                             <div className="mt-10 grid grid-cols-1 lg:grid-cols-10 gap-4 min-h-[380px]">
@@ -296,9 +295,10 @@ export default function HomePage() {
                                 </div>
                             </div>
                         </div>
-                    </section>
+                    </div>
 
-                    <section className="relative w-full h-150 overflow-hidden">
+                    {/* Section 6 */}
+                    <div className="relative w-full h-150 overflow-hidden">
                         <Image
                             src="https://ik.imagekit.io/288weifiq/landing-japan/Landing-img-6.jpg"
                             alt="Travel worth reading about"
@@ -313,7 +313,12 @@ export default function HomePage() {
                                 </h2>
                             </div>
                         </div>
-                    </section>
+                    </div>
+
+                    {/* Section 7 */}
+                    <div className="space-y-22 md:space-y-22 py-18 max-w-7xl mx-auto px-5 md:px-0">
+                        <FeatureCard />
+                    </div>
 
                     <div id="qodef-page-outer" className="!pt-40">
                         <div id="qodef-page-inner" className="qodef-content-full-width">
@@ -517,13 +522,7 @@ export default function HomePage() {
                         </div>
                     </div>
 
-                    <section className="max-w-7xl mx-auto px-8 py-20 pb-0 md:pb-24">
-                        <div className="">
-                            <FeatureCard />
-                        </div>
-                    </section>
-
-                    <section className="relative overflow-hidden bg-white">
+                    <div className="relative overflow-hidden bg-white">
                         <div className="relative z-10 max-w-6xl mb-[-100px] md:mb-[-140px] mx-auto pt-24 md:pt-32 mb-6">
                             <div className="hidden md:block absolute left-4 md:left-29 top-16 md:top-77">
                                 <img
@@ -572,7 +571,7 @@ export default function HomePage() {
                                 </button>
                             </div>
                         </section>
-                    </section>
+                    </div>
 
                     <LandingPlanTripModal open={openPlanYourTripModel} onOpenChange={setOpenPlanYourTripModel} />
 

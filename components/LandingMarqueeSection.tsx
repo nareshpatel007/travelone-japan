@@ -27,7 +27,7 @@ const images2 = [
 
 export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Props) {
     return (
-        <div className="grid grid-cols-1 md:grid-cols-[45%_55%] bg-[#FFF9EE] min-h-screen">
+        <div className="grid grid-cols-1 md:grid-cols-[45%_55%] bg-[#FFF9EE] md:min-h-screen">
             <div>
                 <HomeHeader />
                 <div className="flex items-center px-8 md:px-16 lg:px-24 py-16 md:py-50 bg-[#FFF9EE]">
