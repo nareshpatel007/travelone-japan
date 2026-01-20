@@ -26,7 +26,7 @@ export default function VerticalSlider({
                         alt="Image"
                         width={260}
                         height={350}
-                        className="w-full object-cover rounded-full"
+                        className="w-full object-cover"
                         priority
                     />
                 ))}

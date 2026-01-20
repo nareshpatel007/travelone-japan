@@ -9,18 +9,24 @@ interface Props {
 }
 
 const mobileImages = [
-    "https://ik.imagekit.io/288weifiq/landing-japan/Landing-marquee-1024-img-2.png",
-    "https://ik.imagekit.io/288weifiq/landing-japan/Landing-marquee-680-img-1.png",
+    "https://ik.imagekit.io/288weifiq/nextjs/mobile_slider_1.webp",
+    "https://ik.imagekit.io/288weifiq/nextjs/mobile_slider_2.webp",
+    "https://ik.imagekit.io/288weifiq/nextjs/mobile_slider_3.webp",
 ];
 
 const images1 = [
-    "https://ik.imagekit.io/288weifiq/landing-japan/Landing-marquee-img-01.png",
-    "https://ik.imagekit.io/288weifiq/landing-japan/Landing-marquee-img-4.png",
+    "https://ik.imagekit.io/288weifiq/nextjs/desktop_slider_1.webp",
+    "https://ik.imagekit.io/288weifiq/nextjs/desktop_slider_1.webp",
 ];
 
 const images2 = [
-    "https://ik.imagekit.io/288weifiq/landing-japan/Landing-marquee-img-3.png",
-    "https://ik.imagekit.io/288weifiq/landing-japan/Landing-marquee-img-4.png",
+    "https://ik.imagekit.io/288weifiq/nextjs/desktop_slider_2.webp",
+    "https://ik.imagekit.io/288weifiq/nextjs/desktop_slider_2.webp",
+];
+
+const images3 = [
+    "https://ik.imagekit.io/288weifiq/nextjs/desktop_slider_3.webp",
+    "https://ik.imagekit.io/288weifiq/nextjs/desktop_slider_3.webp",
 ];
 
 export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Props) {
@@ -73,8 +79,8 @@ export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Prop
                 <div className="hidden md:flex flex-1 gap-8 lg:gap-10 justify-center">
                     <VerticalSlider images={images1} direction="down" />
                     <VerticalSlider images={images2} direction="up" />
-                    <VerticalSlider images={images1} direction="down" />
-                    <VerticalSlider images={images2} direction="up" />
+                    <VerticalSlider images={images3} direction="down" />
+                    <VerticalSlider images={images1} direction="up" />
                 </div>
             </div>
         </section>

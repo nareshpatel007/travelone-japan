@@ -17,7 +17,7 @@ export default function GlobalFinancialSection() {
             <div className="flex items-center justify-center">
                 <div className="relative w-full h-80 md:h-150 overflow-hidden">
                     <Image
-                        src="https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/08/home-5-img-13.jpg"
+                        src="https://ik.imagekit.io/288weifiq/nextjs/indonesia/beautiful-young-couple-posing-sea-beach-love-tenderness_1296-915.avif"
                         alt="Travel"
                         fill
                         priority

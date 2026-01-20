@@ -20,7 +20,7 @@ export default function MobileSlider({ images }: Props) {
                             alt=""
                             width={800}
                             height={800}
-                            className="rounded-xl object-cover"
+                            className="object-cover"
                         />
                     </div>
                 ))}

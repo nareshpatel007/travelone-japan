@@ -45,7 +45,7 @@ export default function ThreeStepBanner({ onOpenChange }: Props) {
             <div className="mt-10 grid grid-cols-1 lg:grid-cols-10 gap-4">
                 <div className="relative col-span-1 lg:col-span-7 overflow-hidden aspect-[4/3] lg:aspect-auto lg:min-h-[380px]">
                     <Image
-                        src="https://ik.imagekit.io/288weifiq/landing-japan/home3-img-1.webp"
+                        src="https://ik.imagekit.io/288weifiq/nextjs/japan/cherry-blossoms-fuji-mountain-spring-sunrise-shizuoka-japan_335224-110.jpg"
                         alt="Featured travel destination"
                         fill
                         priority

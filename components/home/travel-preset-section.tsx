@@ -12,7 +12,7 @@ export default function TravelPresetSection() {
                     <div
                         className="absolute inset-0 bg-cover bg-center"
                         style={{
-                            backgroundImage: "url('https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/08/home1-parallax-img-1.jpg')",
+                            backgroundImage: "url('https://ik.imagekit.io/288weifiq/nextjs/indonesia/rock-ocean-landscape_1296-486.jpg')",
                         }}
                     />
 
@@ -22,7 +22,7 @@ export default function TravelPresetSection() {
                             {/* Image 1 */}
                             <div className="relative aspect-square overflow-hidden">
                                 <Image
-                                    src="https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/08/home-5-img-4.jpg"
+                                    src="https://ik.imagekit.io/288weifiq/nextjs/japan/bamboo-forest-asian-woman-wearing-japanese-traditional-kimono-bamboo-forest-kyoto-japan_335224-216.avif"
                                     alt="Travel"
                                     fill
                                     className="object-cover hover:scale-105 transition"
@@ -32,7 +32,7 @@ export default function TravelPresetSection() {
                             {/* Image 2 */}
                             <div className="relative aspect-square overflow-hidden">
                                 <Image
-                                    src="https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/08/home-5-img-6.jpg"
+                                    src="https://ik.imagekit.io/288weifiq/nextjs/indonesia/young-woman-standing-temple-gates-lempuyang-luhur-temple-bali-indonesia-vintage-tone_335224-365.avif"
                                     alt="Travel"
                                     fill
                                     className="object-cover hover:scale-105 transition"
@@ -42,7 +42,7 @@ export default function TravelPresetSection() {
                             {/* Image 3 */}
                             <div className="relative aspect-square overflow-hidden">
                                 <Image
-                                    src="https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/08/home-5-img-1.jpg"
+                                    src="https://ik.imagekit.io/288weifiq/nextjs/indonesia/young-woman-standing-temple-gates-lempuyang-luhur-temple-bali-indonesia-vintage-tone_335224-365.avif"
                                     alt="Travel"
                                     fill
                                     className="object-cover hover:scale-105 transition"
@@ -52,7 +52,7 @@ export default function TravelPresetSection() {
                             {/* Image 4 */}
                             <div className="relative aspect-square overflow-hidden">
                                 <Image
-                                    src="https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/08/home-5-img-2.jpg"
+                                    src="https://ik.imagekit.io/288weifiq/nextjs/south-korea/gyeongbokgung-palace-with-cherry-blossom-spring-seoul-korea_335224-389.jpg"
                                     alt="Travel"
                                     fill
                                     className="object-cover hover:scale-105 transition"
@@ -62,7 +62,7 @@ export default function TravelPresetSection() {
                             {/* Image 5 */}
                             <div className="relative aspect-square overflow-hidden">
                                 <Image
-                                    src="https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/08/home-5-img-3.jpg"
+                                    src="https://ik.imagekit.io/288weifiq/nextjs/south-korea/gyeongbokgung-palace-night-seoul-korea_335224-351.jpg"
                                     alt="Travel"
                                     fill
                                     className="object-cover hover:scale-105 transition"
@@ -72,7 +72,7 @@ export default function TravelPresetSection() {
                             {/* Image 6 */}
                             <div className="relative aspect-square overflow-hidden">
                                 <Image
-                                    src="https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/08/home-5-img-5.jpg"
+                                    src="https://ik.imagekit.io/288weifiq/nextjs/south-korea/asian-woman-wearing-japanese-traditional-kimono-row-yellow-ginkgo-tree-autumn-autumn-park-tokyo-japan_335224-176.jpg"
                                     alt="Travel"
                                     fill
                                     className="object-cover hover:scale-105 transition"
