@@ -30,7 +30,7 @@ interface Props {
 
 export default function DestinationSection({ destinationList }: Props) {
     return (
-        <section className="w-full px-4 md:px-6 py-10 md:py-12 bg-[#FFF9EE]">
+        <section className="w-full px-4 md:px-6 py-10 md:py-12">
             <h1 className="text-black text-center text-3xl md:text-6xl leading-tight font-normal">
                 Trending Destinations
             </h1>
