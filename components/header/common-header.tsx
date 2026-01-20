@@ -229,8 +229,8 @@ export default function CommonHeader() {
                         <Link href="/">Home</Link>
                         <Link href="/country">Destination</Link>
                         <Link href="/tour">Tours</Link>
-                        <Link href="/about">About Us</Link>
-                        <Link href="/contact">Contact Us</Link>
+                        <Link href="/about">About</Link>
+                        <Link href="/contact">Contact</Link>
                         <Link href="/blog">Blog</Link>
                         <Link href="/booking">Booking</Link>
                     </nav>

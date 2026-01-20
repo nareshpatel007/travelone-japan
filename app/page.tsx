@@ -84,7 +84,6 @@ export default function HomePage() {
         <body>
             {ready && <>
                 <HomeMobileHeader />
-
                 <LandingMarqueeSection setOpenPlanYourTripModel={setOpenPlanYourTripModel} />
                 <TravelPresetSection />
                 <ThreeImageShowcase destinationList={destinationList} />
@@ -96,7 +95,6 @@ export default function HomePage() {
                 <AboutTravelone />
                 <FeatureCard />
                 <FooterCurveSection onOpenChange={setOpenPlanYourTripModel} />
-
                 <LandingPlanTripModal open={openPlanYourTripModel} onOpenChange={setOpenPlanYourTripModel} />
                 <CommonFooter />
             </>}
