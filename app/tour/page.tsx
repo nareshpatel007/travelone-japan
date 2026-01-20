@@ -39,7 +39,7 @@ export default function Page() {
     // Init data
     useEffect(() => {
         const controller = new AbortController();
-        const fetchTours = async () => {
+        const fetchInitData = async () => {
             try {
                 // Fetch the data
                 const response = await fetch("/api/tours/list", {
@@ -69,7 +69,7 @@ export default function Page() {
                 setIsLoading(false);
             }
         };
-        fetchTours();
+        fetchInitData();
         return () => controller.abort();
     }, []);
 

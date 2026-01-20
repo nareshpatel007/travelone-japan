@@ -59,7 +59,7 @@ export default function DestinationPage() {
             {ready && <>
                 <CommonHeader />
 
-                <div className="max-w-7xl mx-auto px-5 md:p-6">
+                <div className="max-w-7xl mx-auto px-5 md:px-0 md:p-6">
                     <Heading main="Top Destinations" />
                     <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6 py-8">
                         {!isLoading ? (
