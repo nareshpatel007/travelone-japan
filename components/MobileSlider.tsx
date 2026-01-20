@@ -8,7 +8,7 @@ interface Props {
 
 export default function MobileSlider({ images }: Props) {
     return (
-        <div className="block md:hidden w-full overflow-hidden">
+        <div className="block md:hidden w-full py-10 overflow-hidden">
             <div className="simple-image-slider">
                 {[...images, ...images].map((src, index) => (
                     <div
