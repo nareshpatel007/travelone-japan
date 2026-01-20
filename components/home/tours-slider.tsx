@@ -11,22 +11,17 @@ import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 
-const images = [
-    "home-5-img-4.jpg",
-    "home-5-img-6.jpg",
-    "home-5-img-1.jpg",
-    "home-5-img-3.jpg",
-    "home-5-img-5.jpg",
-    "home-5-img-2.jpg",
-    "home-5-img-4.jpg",
-    "home-5-img-6.jpg",
-    "home-5-img-1.jpg",
-    "home-5-img-3.jpg",
-    "home-5-img-5.jpg",
-    "home-5-img-2.jpg",
-];
+// Define props
+interface Props {
+    toursList: any[];
+}
 
-export default function ToursSlider() {
+export default function ToursSlider({ toursList }: Props) {
+    // Check if toursList is empty
+    if (toursList.length === 0) {
+        return null;
+    }
+
     return (
         <section className="py-6 px-5 md:px-10">
             <Heading main="Popular Tours" />
@@ -49,34 +44,28 @@ export default function ToursSlider() {
                             slidesPerView: 3,
                         },
                         1024: {
-                            slidesPerView: 6,
+                            slidesPerView: 5,
                         },
                     }}
                     className="!pb-4"
                 >
-                    {images.map((img, index) => (
-                        <SwiperSlide key={index}>
-                            <Link href="/tour">
+                    {toursList.length > 0 && toursList.map((tour: any) => (
+                        <SwiperSlide key={tour.id}>
+                            <Link href={`/tour/${tour.slug}`}>
                                 <div className="flex flex-col">
-                                    {/* Image */}
                                     <div className="relative aspect-[3/4] overflow-hidden">
                                         <Image
-                                            src={`https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/08/${img}`}
-                                            alt="Tour"
+                                            src={tour.featured_image || "/placeholder.svg"}
+                                            alt={tour.name}
                                             fill
                                             className="object-cover transition-transform duration-300 hover:scale-105"
                                         />
                                     </div>
-
-                                    {/* Content */}
                                     <div className="py-6 space-y-3 text-center">
-                                        <span className="text-lg md:text-2xl font-medium text-gray-900 block">
-                                            Culinary journeys reveal the heart of a destination’s culture.
-                                        </span>
-
+                                        <span className="text-lg md:text-2xl font-medium text-gray-900 block">{tour.name}</span>
                                         <div className="flex justify-center">
                                             <span className="text-xs md:text-sm font-semibold text-[#385b21] bg-[#d4e9e7] px-5 py-1.5 rounded">
-                                                USD ${formatPrice(5452, 0)}
+                                                USD ${formatPrice(tour.starting_price, 0)}
                                             </span>
                                         </div>
                                     </div>

@@ -104,7 +104,7 @@ export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Prop
                         </div>
                     </div>
                 </div>
-                <div className="flex flex-col block">
+                <div className="flex flex-col">
                     <MobileSlider images={mobileImages} />
                 </div>
             </section>

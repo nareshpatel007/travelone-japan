@@ -19,6 +19,9 @@ import TourBannerSection from "@/components/home/tour-banner-section";
 export default function HomePage() {
     // Define state
     const [ready, setReady] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
+    const [destinationList, setDestinationList] = useState<any[]>([]);
+    const [toursList, setToursList] = useState<any[]>([]);
     const [openPlanYourTripModel, setOpenPlanYourTripModel] = useState<boolean>(false);
 
     useEffect(() => {
@@ -28,6 +31,55 @@ export default function HomePage() {
         });
     }, []);
 
+    useEffect(() => {
+        const controller = new AbortController();
+
+        const loadInitData = async () => {
+            try {
+                setIsLoading(true);
+
+                const [destResponse, toursResponse] = await Promise.all([
+                    fetch("/api/destination/list", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        signal: controller.signal,
+                    }),
+                    fetch("/api/tours/list", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        signal: controller.signal,
+                    }),
+                ]);
+
+                if (!destResponse.ok || !toursResponse.ok) {
+                    throw new Error("Failed to fetch initial data");
+                }
+
+                const [destData, toursData] = await Promise.all([
+                    destResponse.json(),
+                    toursResponse.json(),
+                ]);
+
+                setDestinationList(destData?.data ?? []);
+                setToursList(toursData?.data?.result ?? []);
+            } catch (error: any) {
+                if (error.name !== "AbortError") {
+                    console.error("Init data fetch failed:", error);
+                }
+            } finally {
+                setIsLoading(false);
+            }
+        };
+
+        loadInitData();
+
+        return () => controller.abort();
+    }, []);
+
     return (
         <body>
             {ready && <>
@@ -35,10 +87,10 @@ export default function HomePage() {
 
                 <LandingMarqueeSection setOpenPlanYourTripModel={setOpenPlanYourTripModel} />
                 <TravelPresetSection />
-                <ThreeImageShowcase />
-                <DestinationSection />
-                <ToursSlider />
-                <TourBannerSection />
+                <ThreeImageShowcase destinationList={destinationList} />
+                <DestinationSection destinationList={destinationList} />
+                <ToursSlider toursList={toursList} />
+                <TourBannerSection toursList={toursList} />
                 <GlobalFinancialSection />
                 <ThreeStepBanner onOpenChange={setOpenPlanYourTripModel} />
                 <AboutTravelone />
