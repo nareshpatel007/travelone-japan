@@ -12,7 +12,7 @@ export default function GlobalFinancialSection() {
                         Your Global Financial Safeguard.
                     </h1>
 
-                    <p className="text-gray-600 text-base">Travel with the confidence of North American financial protection. TravelOne USA acts as your Merchant of Record. We assume the liability, we manage the global taxes, and we guarantee your refunds. You simply explore.</p>
+                    <p className="text-gray-600 text-md">Travel with the confidence of North American financial protection. TravelOne USA acts as your Merchant of Record. We assume the liability, we manage the global taxes, and we guarantee your refunds. You simply explore.</p>
                 </div>
             </div>
             <div className="flex items-center justify-center">
