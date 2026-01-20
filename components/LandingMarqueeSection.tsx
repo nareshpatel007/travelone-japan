@@ -59,12 +59,12 @@ export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Prop
             <div>
                 <MobileSlider images={mobileImages} />
 
-                <div className="hidden md:flex lg:hidden gap-6 px-8 justify-center bg-[#FFF9EE]">
+                {/* <div className="hidden md:flex lg:hidden gap-6 px-8 justify-center bg-[#FFF9EE]">
                     <VerticalSlider images={images1} direction="down" />
                     <VerticalSlider images={images2} direction="up" />
-                </div>
+                </div> */}
 
-                <div className="hidden lg:flex gap-6 px-20 justify-center bg-[#FFF9EE]">
+                <div className="hidden md:flex gap-6 px-20 justify-center bg-[#FFF9EE]">
                     <VerticalSlider images={images1} direction="down" />
                     <VerticalSlider images={images2} direction="up" />
                     <VerticalSlider images={images1} direction="down" />

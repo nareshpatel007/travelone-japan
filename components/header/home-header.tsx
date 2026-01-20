@@ -16,12 +16,9 @@ export default function HomeHeader() {
                     />
                 </Link>
                 <nav className="hidden lg:flex items-center gap-8 font-medium text-gray-900">
-                    <Link className="hover:underline underline-offset-5 cursor-pointer" href="/">Home</Link>
-                    <Link className="hover:underline underline-offset-5 cursor-pointer" href="/tour">Tours</Link>
-                    <Link className="hover:underline underline-offset-5 cursor-pointer" href="/about">About Us</Link>
-                    <Link className="hover:underline underline-offset-5 cursor-pointer" href="/contact">Contact Us</Link>
-                    <Link className="hover:underline underline-offset-5 cursor-pointer" href="/blog">Blog</Link>
-                    <Link className="hover:underline underline-offset-5 cursor-pointer" href="/booking">Booking</Link>
+                    <Link className="hover:underline underline-offset-5 cursor-pointer" href="/country">Destinations</Link>
+                    <Link className="hover:underline underline-offset-5 cursor-pointer" href="/about">About</Link>
+                    <Link className="hover:underline underline-offset-5 cursor-pointer" href="/contact">Contact</Link>
                 </nav>
             </div>
         </>
