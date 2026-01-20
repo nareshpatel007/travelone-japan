@@ -82,7 +82,7 @@ export default function TravelPresetSection() {
             </div>
             <div className="flex items-center px-6 sm:px-10 lg:px-20 py-16">
                 <div className="space-y-6">
-                    <h1 className="text-black text-5xl lg:text-6xl leading-tight font-normal">
+                    <h1 className="text-black text-3xl lg:text-6xl leading-tight font-normal">
                         Your Soul, Our Compass.
                     </h1>
 

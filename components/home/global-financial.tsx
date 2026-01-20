@@ -8,9 +8,9 @@ export default function GlobalFinancialSection() {
             <div className="bg-[#FFF9EE] flex items-center px-6 sm:px-10 lg:px-16 py-14">
                 <div className="max-w-2xl space-y-6">
 
-                    <h2 className="text-black text-5xl md:text-6xl leading-tight font-normal">
+                    <h1 className="text-black text-3xl md:text-6xl leading-tight font-normal">
                         Your Global Financial Safeguard.
-                    </h2>
+                    </h1>
 
                     <p className="text-gray-600 text-base">Travel with the confidence of North American financial protection. TravelOne USA acts as your Merchant of Record. We assume the liability, we manage the global taxes, and we guarantee your refunds. You simply explore.</p>
                 </div>

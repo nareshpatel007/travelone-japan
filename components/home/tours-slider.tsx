@@ -24,9 +24,10 @@ export default function ToursSlider({ toursList }: Props) {
 
     return (
         <section className="py-6 px-5 md:px-10 py-10 md:py-12 bg-[#FFF9EE]">
-            <Heading main="Popular Japan Tours" />
-
-            <div className="relative mt-6">
+            <h1 className="text-black text-center text-3xl md:text-6xl leading-tight font-normal">
+                Popular Japan Tours
+            </h1>
+            <div className="relative pt-5">
                 <Swiper
                     modules={[Navigation]}
                     navigation={{

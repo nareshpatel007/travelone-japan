@@ -12,9 +12,9 @@ interface Props {
 export default function ThreeImageSplitSection({ destinationList }: Props) {
     return (
         <section className="w-full px-4 md:px-6 py-10 md:py-12 bg-[#FFF9EE]">
-            <Heading
-                main="Top Destinations"
-            />
+            <h1 className="text-black text-center text-3xl md:text-6xl leading-tight font-normal">
+                Top Destinations
+            </h1>
             <div className="pt-5 grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr] gap-4">
                 {destinationList && destinationList.slice(0, 3).map((item, index) => (
                     <div

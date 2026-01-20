@@ -38,7 +38,9 @@ const destinations: DestinationCard[] = [
 export default function ThreeStepBanner({ onOpenChange }: Props) {
     return (
         <div className="max-w-7xl mx-auto px-5 md:px-5 lg:px-0 py-10 md:py-12">
-            <Heading main="Start with Who, Not Where." />
+            <h1 className="text-black text-center text-3xl md:text-6xl leading-tight font-normal">
+                Start with Who, Not Where.
+            </h1>
             <div className="mt-10 grid grid-cols-1 lg:grid-cols-10 gap-4">
                 <div className="relative col-span-1 lg:col-span-7 overflow-hidden aspect-[4/3] lg:aspect-auto lg:min-h-[380px]">
                     <Image

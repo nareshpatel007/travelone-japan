@@ -20,7 +20,7 @@ export default function AboutTravelone() {
                     </div>
                 </div>
                 <div className="text-center lg:text-left max-w-xl mx-auto space-y-6">
-                    <h2 className="text-4xl sm:text-5xl font-medium leading-tight text-black">
+                    <h2 className="text-black text-3xl md:text-6xl leading-tight font-normal">
                         Hi, I’m Bhavin Vora.
                         <br />
                         Founder & CEO.
