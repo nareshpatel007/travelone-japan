@@ -7,7 +7,7 @@ interface Props {
 export default function PageHeading({ main, sub }: Props) {
     return (
         <div className="w-full text-center px-4 sm:px-6 lg:px-0 mb-4 md:mb-8 space-y-2">
-            <h1 className="text-black text-2xl md:text-5xl font-normal leading-tight">
+            <h1 className="text-black text-3xl md:text-5xl font-normal leading-tight">
                 {main}
             </h1>
             {sub && (
