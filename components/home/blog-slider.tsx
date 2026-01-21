@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Heading from "../common/heading";
 import Link from "next/link";
-import { formatPrice } from "@/lib/utils";
+import { formatDate, formatPrice } from "@/lib/utils";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper/modules";
@@ -13,12 +13,12 @@ import "swiper/css/navigation";
 
 // Define props
 interface Props {
-    toursList: any[];
+    blogList: any[];
 }
 
-export default function ToursSlider({ toursList }: Props) {
-    // Check if toursList is empty
-    if (toursList.length === 0) {
+export default function BlogSlider({ blogList }: Props) {
+    // Check if list is empty
+    if (blogList.length === 0) {
         return null;
     }
 
@@ -26,10 +26,10 @@ export default function ToursSlider({ toursList }: Props) {
         <section className="py-6 px-5 md:px-10 py-10 md:py-20 space-y-10 bg-[#FFF9EE]">
             <div className="space-y-2 text-center">
                 <h1 className="text-black text-3xl md:text-6xl leading-tight font-normal">
-                    The Precision of Tradition
+                    Latest Blogs
                 </h1>
                 <span className="text-black text-md">
-                    Immerse yourself in Omotenashi reimagined through intricate logistics.
+                    Our latest blog posts on TravelOne
                 </span>
             </div>
             <div className="relative">
@@ -58,40 +58,31 @@ export default function ToursSlider({ toursList }: Props) {
                     }}
                     className="!pb-4"
                 >
-                    {toursList.length > 0 && toursList.map((tour: any) => (
-                        <SwiperSlide key={tour.id}>
-                            <Link href={`/tour/${tour.slug}`}>
-                                <div className="flex flex-col">
+                    {blogList.length > 0 && blogList.map((post: any) => (
+                        <SwiperSlide key={post.id}>
+                            <Link href={`/blog/${post.post_slug}`}>
+                                <div className="flex flex-col h-full">
                                     <div className="relative aspect-square overflow-hidden">
                                         <Image
-                                            src={tour.featured_image || "/placeholder.svg"}
-                                            alt={tour.name}
+                                            src={post.featured_image || "/placeholder.svg"}
+                                            alt={post.image_title || "Blog Image"}
                                             fill
                                             className="object-cover transition-transform duration-300 hover:scale-105"
                                         />
                                     </div>
-                                    <div className="py-6 space-y-3 text-center">
-                                        <span className="text-md md:text-xl font-medium text-gray-900 block">{tour.name}</span>
-                                        <div className="flex justify-center">
-                                            <span className="text-xs md:text-sm font-semibold text-[#385b21] bg-[#d4e9e7] px-5 py-1.5 rounded">
-                                                Start from USD ${formatPrice(tour.starting_price, 0)}
-                                            </span>
-                                        </div>
+                                    <div className="py-6 space-y-1 text-center flex-1 flex flex-col justify-between">
+                                        <span className="text-xs md:text-sm font-semibold text-gray-900 block">
+                                            {formatDate(post.created_at || new Date())}
+                                        </span>
+                                        <span className="text-md md:text-lg font-medium text-gray-900 block line-clamp-2">
+                                            {post.post_title}
+                                        </span>
                                     </div>
                                 </div>
                             </Link>
                         </SwiperSlide>
                     ))}
                 </Swiper>
-
-                {/* CUSTOM ARROWS */}
-                {/* <button className="tour-prev absolute -left-4 top-1/2 -translate-y-1/2 z-10 bg-white text-black border shadow rounded-full w-10 h-10 flex items-center justify-center cursor-pointer hover:bg-black hover:text-white">
-                    ‹
-                </button>
-
-                <button className="tour-next absolute -right-4 top-1/2 -translate-y-1/2 z-10 bg-white text-black border shadow rounded-full w-10 h-10 flex items-center justify-center cursor-pointer hover:bg-black hover:text-white">
-                    ›
-                </button> */}
             </div>
         </section>
     );

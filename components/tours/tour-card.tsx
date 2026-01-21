@@ -1,7 +1,7 @@
-import { formatPrice } from "@/lib/utils"
-import { Compass, Footprints, Heart, MoveRight, Star } from "lucide-react"
-import Image from "next/image"
-import Link from "next/link"
+import { formatPrice } from "@/lib/utils";
+import { MoveRight } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 
 interface TourCardProps {
     name: string
@@ -22,57 +22,71 @@ export function TourCard({
     starting_price,
     city_nights
 }: TourCardProps) {
-    // Parse city_nights
     const cityNights = JSON.parse(city_nights as any);
 
     return (
-        <div className="group !transition-all !duration-300 !overflow-hidden">
-            <Link href={`/tour/${slug}`}>
-                <div className="relative h-50 md:h-80 overflow-hidden">
-                    <Image
-                        src={featured_image || "/placeholder.svg"}
-                        alt={name}
-                        fill
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
+        <div className="group h-full">
+            <Link href={`/tour/${slug}`} className="h-full block">
+                <div className="flex flex-col h-full border border-gray-200 transition-all duration-300">
 
-                    {(tour_type || is_refundable === 1) && (
-                        <div className="absolute top-2 md:top-3 left-2 md:left-3 flex overflow-hidden rounded-full bg-white">
-                            {tour_type && (
-                                <span className="px-4 py-1 text-xs text-gray-700 font-medium border-r border-gray-200">{tour_type}</span>
-                            )}
+                    {/* IMAGE (same height always) */}
+                    <div className="relative h-52 md:h-80 overflow-hidden">
+                        <Image
+                            src={featured_image || "/placeholder.svg"}
+                            alt={name}
+                            fill
+                            className="object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
 
-                            {is_refundable === 1 && (
-                                <span className="px-4 py-1 text-xs text-gray-700 font-medium">Free Cancellation</span>
-                            )}
-                        </div>
-                    )}
-                </div>
-                <div className="!py-6 !space-y-3 !text-center">
-                    <span className="text-gray-900 block text-sm md:text-md lg:text-md">
-                        {cityNights.map((item: any, index: number) => (
-                            <span key={index} className="inline-flex items-center">
-                                {item.city_name}
-
-                                {item.night > 0 && (
-                                    <span>&nbsp;({item.night} {item.night > 1 ? "Nights" : "Night"})
+                        {(tour_type || is_refundable === 1) && (
+                            <div className="absolute top-3 left-3 flex rounded-full bg-amber-400 overflow-hidden text-black">
+                                {tour_type && (
+                                    <span className="px-3 py-1 text-xs font-medium border-r border-gray-200">
+                                        {tour_type}
                                     </span>
                                 )}
-
-                                {index < cityNights.length - 1 && (
-                                    <MoveRight className="h-4 w-4 mx-1 inline-flex" />
+                                {is_refundable === 1 && (
+                                    <span className="px-3 py-1 text-xs font-medium">
+                                        Free Cancellation
+                                    </span>
                                 )}
+                            </div>
+                        )}
+                    </div>
+
+                    {/* CONTENT */}
+                    <div className="flex flex-col flex-1 p-6 text-center space-y-3">
+
+                        {/* TITLE (fixed spacing) */}
+                        <h3 className="text-lg md:text-xl font-medium text-gray-900 line-clamp-2">
+                            {name}
+                        </h3>
+
+                        {/* ROUTE */}
+                        <div className="text-sm text-gray-800">
+                            {cityNights.map((item: any, index: number) => (
+                                <span key={index} className="inline-flex items-center">
+                                    {item.city_name}
+                                    {item.night > 0 && (
+                                        <span>&nbsp;({item.night} {item.night > 1 ? "Nights" : "Night"})</span>
+                                    )}
+                                    {index < cityNights.length - 1 && (
+                                        <MoveRight className="h-4 w-4 mx-1" />
+                                    )}
+                                </span>
+                            ))}
+                        </div>
+
+                        {/* PRICE — STICKS TO BOTTOM */}
+                        <div className="mt-auto flex justify-center pt-4">
+                            <span className="text-xs md:text-sm font-semibold text-[#385b21] bg-[#d4e9e7] px-5 py-1.5 rounded-sm">
+                                Start from USD ${formatPrice(starting_price, 0)}
                             </span>
-                        ))}
-                    </span>
-                    <span className="text-lg md:text-2xl font-strong text-gray-900 block flex-1">{name}</span>
-                    <div className="flex items-center !justify-center mb-3">
-                        <span className="text-xs md:text-sm font-semibold rounded-xs text-[#385b21] bg-[#d4e9e7] px-5 py-1.5 block">
-                            USD ${formatPrice(starting_price, 0)}
-                        </span>
+                        </div>
+
                     </div>
                 </div>
             </Link>
         </div>
-    )
+    );
 }

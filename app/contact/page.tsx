@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { MapPin, Phone, Mail, Clock, Send, MessageSquare, HelpCircle, FileText } from "lucide-react";
 import Link from "next/link";
 import Heading from "@/components/common/heading";
+import PageHeading from "@/components/common/page-heading";
 
 // Contact info
 const contactInfo = [
@@ -84,12 +85,12 @@ export default function ContactUsPage() {
             {ready && <>
                 <CommonHeader />
 
-                <div className="max-w-7xl mx-auto px-5 md:px-0 md:p-6">
-                    <Heading
+                <div className="max-w-7xl mx-auto px-5 md:px-0 md:p-6 py-0 md:py-10">
+                    <PageHeading
                         main="Contact Us"
                         sub="Have questions about your booking or need assistance? We're here to help. Reach out to us through any of the channels below."
                     />
-                    <div className="grid md:grid-cols-3 gap-4 py-5">
+                    <div className="grid md:grid-cols-3 gap-4">
                         {quickLinks.map((item) => (
                             <div
                                 key={item.title}

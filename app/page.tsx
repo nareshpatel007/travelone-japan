@@ -16,6 +16,7 @@ import ThreeStepBanner from "@/components/home/tree-step-banner";
 import ToursSlider from "@/components/home/tours-slider";
 import TourBannerSection from "@/components/home/tour-banner-section";
 import FullBannerSection from "@/components/home/full-banner";
+import BlogSlider from "@/components/home/blog-slider";
 
 export default function HomePage() {
     // Define state
@@ -23,6 +24,7 @@ export default function HomePage() {
     const [isLoading, setIsLoading] = useState(true);
     const [destinationList, setDestinationList] = useState<any[]>([]);
     const [toursList, setToursList] = useState<any[]>([]);
+    const [blogList, setBlogList] = useState<any[]>([]);
     const [openPlanYourTripModel, setOpenPlanYourTripModel] = useState<boolean>(false);
 
     useEffect(() => {
@@ -39,7 +41,7 @@ export default function HomePage() {
             try {
                 setIsLoading(true);
 
-                const [destResponse, toursResponse] = await Promise.all([
+                const [destResponse, toursResponse, blogResponse] = await Promise.all([
                     fetch("/api/destination/list", {
                         method: "POST",
                         headers: {
@@ -54,19 +56,29 @@ export default function HomePage() {
                         },
                         signal: controller.signal,
                     }),
+                    fetch("/api/blog/list", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        signal: controller.signal,
+                    }),
                 ]);
 
-                if (!destResponse.ok || !toursResponse.ok) {
+                if (!destResponse.ok || !toursResponse.ok || !blogResponse.ok) {
                     throw new Error("Failed to fetch initial data");
                 }
 
-                const [destData, toursData] = await Promise.all([
+                const [destData, toursData, blogData] = await Promise.all([
                     destResponse.json(),
                     toursResponse.json(),
+                    blogResponse.json(),
                 ]);
 
+                // Update state
                 setDestinationList(destData?.data ?? []);
                 setToursList(toursData?.data?.result ?? []);
+                setBlogList(blogData?.data?.result ?? []);
             } catch (error: any) {
                 if (error.name !== "AbortError") {
                     console.error("Init data fetch failed:", error);
@@ -94,6 +106,7 @@ export default function HomePage() {
                 <GlobalFinancialSection />
                 <ThreeStepBanner onOpenChange={setOpenPlanYourTripModel} />
                 <AboutTravelone />
+                <BlogSlider blogList={blogList} />
                 <FullBannerSection />
                 <FeatureCard />
                 <FooterCurveSection onOpenChange={setOpenPlanYourTripModel} />

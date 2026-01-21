@@ -9,6 +9,7 @@ import Image from "next/image";
 import { BlogSidebar } from "@/components/blog/sidebar";
 import { formatDate } from "@/lib/utils";
 import { Pagination } from "@/components/tours/pagination";
+import PageHeading from "@/components/common/page-heading";
 
 export default function BlogPage() {
     // Define state
@@ -62,7 +63,7 @@ export default function BlogPage() {
         fetchInitData();
         return () => controller.abort();
     }, []);
-    
+
     // Pagination data
     useEffect(() => {
         const controller = new AbortController();
@@ -107,12 +108,12 @@ export default function BlogPage() {
         <body>
             {ready && <>
                 <CommonHeader />
-                <div className="max-w-7xl mx-auto px-5 md:px-0 md:p-6">
-                    <Heading
+                <div className="max-w-7xl mx-auto px-5 md:px-0 md:p-6 py-0 md:py-10">
+                    <PageHeading
                         main="Travel Blog"
                         sub="Discover travel tips, destination guides, and inspiring stories from our experts."
                     />
-                    <div className="flex flex-col lg:flex-row gap-8 py-6">
+                    <div className="flex flex-col lg:flex-row gap-8">
                         <div className="flex-1">
                             <div className="space-y-10">
                                 {!isLoading && blogList && blogList.map((post) => (
