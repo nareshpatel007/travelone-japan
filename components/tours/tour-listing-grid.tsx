@@ -17,20 +17,18 @@ export function TourListingGrid({ tourList }: Props) {
                     ))}
                 </div>
             ) : (
-                <>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-6">
+                <div className="space-y-3 md:space-y-6">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-6">
                         <Skeleton height={300} />
                         <div className="hidden lg:block"><Skeleton height={300} /></div>
                         <div className="hidden lg:block"><Skeleton height={300} /></div>
-                        <div className="hidden lg:block"><Skeleton height={300} /></div>
                     </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-6">
-                        <div className="hidden lg:block"><Skeleton height={300} /></div>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-6">
                         <div className="hidden lg:block"><Skeleton height={300} /></div>
                         <div className="hidden lg:block"><Skeleton height={300} /></div>
                         <div className="hidden lg:block"><Skeleton height={300} /></div>
                     </div>
-                </>
+                </div>
             )}
         </>
     )
