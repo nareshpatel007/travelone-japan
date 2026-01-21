@@ -35,7 +35,7 @@ export default function DestinationSection({ destinationList }: Props) {
                 Trending Destinations
             </h1>
             <div className="pt-5 grid grid-cols-1 md:grid-cols-4 gap-4">
-                {destinationList && destinationList.slice(0, 4).map((item, index) => (
+                {destinationList && destinationList.slice().reverse().slice(0, 4).map((item, index) => (
                     <div
                         key={index}
                         className="group relative overflow-hidden h-[420px] sm:h-[480px] lg:h-[520px] cursor-pointer"
