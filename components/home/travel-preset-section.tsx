@@ -41,7 +41,7 @@ export default function TravelPresetSection() {
                         {/* Image 3 */}
                         <div className="relative aspect-square overflow-hidden">
                             <Image
-                                src="https://ik.imagekit.io/288weifiq/nextjs/indonesia/young-woman-standing-temple-gates-lempuyang-luhur-temple-bali-indonesia-vintage-tone_335224-365.avif"
+                                src="https://ik.imagekit.io/288weifiq/nextjs/canada/niagara-falls-panorama_649448-3341.jpg?updatedAt=1768983789942"
                                 alt="Travel"
                                 fill
                                 className="object-cover hover:scale-105 transition"
