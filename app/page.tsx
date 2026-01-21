@@ -98,16 +98,19 @@ export default function HomePage() {
             {ready && <>
                 <HomeMobileHeader />
                 <LandingMarqueeSection setOpenPlanYourTripModel={setOpenPlanYourTripModel} />
-                <TravelPresetSection />
+                {/* <TravelPresetSection /> */}
                 <ThreeImageShowcase destinationList={destinationList} />
-                <DestinationSection destinationList={destinationList} />
-                <ToursSlider toursList={toursList} />
-                <GlobalFinancialSection />
+                {/* <DestinationSection destinationList={destinationList} /> */}
                 <ThreeStepBanner onOpenChange={setOpenPlanYourTripModel} />
-                <AboutTravelone />
-                <BlogSlider blogList={blogList} />
-                <FullBannerSection onOpenChange={setOpenPlanYourTripModel} />
+                <ToursSlider toursList={toursList} />
+                
+                
+                <GlobalFinancialSection />
                 <FeatureCard />
+                <AboutTravelone />
+                <FullBannerSection onOpenChange={setOpenPlanYourTripModel} />
+                <BlogSlider blogList={blogList} />
+                
                 <FooterCurveSection onOpenChange={setOpenPlanYourTripModel} />
                 <LandingPlanTripModal open={openPlanYourTripModel} onOpenChange={setOpenPlanYourTripModel} />
                 <CommonFooter />

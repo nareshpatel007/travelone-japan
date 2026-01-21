@@ -22,7 +22,33 @@ export default function CommonFooter() {
 
     return (
         <footer className="bg-[#fcefdf] text-black">
-            <div className="max-w-7xl mx-auto px-6 py-16">
+            <div className="max-w-7xl mx-auto px-6 py-16 space-y-10">
+                <div className="order-2 flex flex-col items-center text-center">
+                    <Image
+                        alt="Logo"
+                        width={220}
+                        height={100}
+                        draggable={false}
+                        src="https://ik.imagekit.io/288weifiq/nextjs/logo.webp"
+                    />
+
+                    <div className="w-full max-w-xs my-8">
+                        <div className="flex">
+                            <input
+                                type="email"
+                                placeholder="Email"
+                                autoComplete="off"
+                                className="flex-1 px-4 py-3 bg-white text-black text-sm focus:outline-none"
+                            />
+                            <button
+                                type="button"
+                                className="px-6 py-3 bg-black text-white text-sm font-semibold hover:bg-gray-800 transition"
+                            >
+                                SEND
+                            </button>
+                        </div>
+                    </div>
+                </div>
                 <div className="grid grid-cols-1 gap-12 md:grid-cols-4 mb-12">
                     {/* MENU 1 */}
                     <div className="order-1 text-center md:text-left">
@@ -45,7 +71,7 @@ export default function CommonFooter() {
                             </li>
                         </ul>
                     </div>
-                    
+
                     {/* MENU 2 */}
                     <div className="order-1 text-center md:text-left">
                         <h3 className="font-semibold text-lg mb-6">The Ecosystem</h3>
@@ -67,7 +93,7 @@ export default function CommonFooter() {
                             </li>
                         </ul>
                     </div>
-                    
+
                     {/* MENU 3 */}
                     <div className="order-1 text-center md:text-left">
                         <h3 className="font-semibold text-lg mb-6">Support</h3>
@@ -89,7 +115,7 @@ export default function CommonFooter() {
                             </li>
                         </ul>
                     </div>
-                    
+
                     {/* MENU 4 */}
                     <div className="order-1 text-center md:text-left">
                         <h3 className="font-semibold text-lg mb-6">Legal & Compliance</h3>
@@ -111,34 +137,6 @@ export default function CommonFooter() {
                             </li>
                         </ul>
                     </div>
-
-                    {/* CENTER FORM — SECOND ON MOBILE */}
-                    {/* <div className="order-2 flex flex-col items-center text-center">
-                        <Image
-                            alt="Logo"
-                            width={220}
-                            height={100}
-                            draggable={false}
-                            src="https://ik.imagekit.io/288weifiq/nextjs/logo.webp"
-                        />
-
-                        <div className="w-full max-w-xs my-8">
-                            <div className="flex">
-                                <input
-                                    type="email"
-                                    placeholder="Email"
-                                    autoComplete="off"
-                                    className="flex-1 px-4 py-3 bg-white text-black text-sm focus:outline-none"
-                                />
-                                <button
-                                    type="button"
-                                    className="px-6 py-3 bg-black text-white text-sm font-semibold hover:bg-gray-800 transition"
-                                >
-                                    SEND
-                                </button>
-                            </div>
-                        </div>
-                    </div> */}
                 </div>
 
                 {/* COPYRIGHT */}

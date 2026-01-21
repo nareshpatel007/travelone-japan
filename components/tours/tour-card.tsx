@@ -40,7 +40,7 @@ export function TourCard({
                         />
 
                         {(tour_type || is_refundable === 1) && (
-                            <div className="absolute top-3 left-3 flex rounded-full bg-amber-400 overflow-hidden text-black">
+                            <div className="absolute top-3 left-3 flex rounded-full bg-black overflow-hidden text-white">
                                 {tour_type && (
                                     <span className="px-3 py-1 text-xs font-medium border-r border-gray-200">
                                         {tour_type}
