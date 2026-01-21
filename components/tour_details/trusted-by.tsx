@@ -5,12 +5,16 @@ import Image from "next/image"
 export default function TrustedBy() {
     return (
         <div className="bg-white py-10 md:py-16 px-5 md:px-0">
-            <div className="!max-w-7xl !mx-auto">
-                <span className="text-xl md:text-4xl lg:text-4xl font-bold text-center !block !mb-3 text-[#1E1E1E]">Trusted By</span>
-                <p className="text-sm md:text-md lg:text-lg text-center text-[#C46A3A] !mb-12 font-semibold">
-                    We are trusted by leading tour operators
-                </p>
-                <div className="grid grid-cols-1 md:grid-cols-3 !gap-6 !items-center !justify-center place-items-center">
+            <div className="max-w-7xl mx-auto space-y-10">
+                <div className="text-center space-y-1">
+                    <h3 className="text-black text-3xl md:text-5xl leading-tight font-normal">
+                        Trusted By
+                    </h3>
+                    <span className="text-sm md:text-lg text-[#C46A3A] font-medium">
+                        We are trusted by leading tour operators
+                    </span>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center justify-center place-items-center">
                     <Image
                         src="https://ik.imagekit.io/288weifiq/logo/TripAdvisor_Logo.png"
                         alt="TripAdvisor"

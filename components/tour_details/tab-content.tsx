@@ -75,14 +75,14 @@ export default function TabContent({ tour, city_nights, tour_packages, attractio
                 <div className="flex gap-8">
                     <button
                         onClick={() => setActiveMainTab("package_details")}
-                        className={`pb-4 font-semibold transition-colors capitalize cursor-pointer ${activeMainTab === "package_details" ? "text-black border-b-2 border-[#C46A3A]" : "text-gray-600 hover:text-gray-900"
+                        className={`pb-4 text-lg font-medium transition-colors capitalize cursor-pointer ${activeMainTab === "package_details" ? "text-black border-b-2 border-[#C46A3A]" : "text-gray-600 hover:text-gray-900"
                             }`}
                     >
                         Package Details
                     </button>
                     <button
                         onClick={() => setActiveMainTab("itinerary")}
-                        className={`pb-4 font-semibold transition-colors capitalize cursor-pointer ${activeMainTab === "itinerary" ? "text-black border-b-2 border-[#C46A3A]" : "text-gray-600 hover:text-gray-900"
+                        className={`pb-4 text-lg font-medium transition-colors capitalize cursor-pointer ${activeMainTab === "itinerary" ? "text-black border-b-2 border-[#C46A3A]" : "text-gray-600 hover:text-gray-900"
                             }`}
                     >
                         Itinerary
@@ -100,7 +100,7 @@ export default function TabContent({ tour, city_nights, tour_packages, attractio
                                     <button
                                         key={tab}
                                         onClick={() => setActiveTab(tabKey)}
-                                        className={`px-4 py-3 text-left font-semibold rounded border border-[#F6EFE6] cursor-pointer transition-all text-sm md:text-md lg:text-lg ${activeTab === tabKey
+                                        className={`px-4 py-3 text-left font-medium rounded border border-[#F6EFE6] cursor-pointer transition-all text-sm md:text-base ${activeTab === tabKey
                                             ? "bg-[#F6EFE6] text-[#1E1E1E]"
                                             : "bg-amber-50 text-gray-900 hover:bg-[#F6EFE6] hover:text-[#1E1E1E]"
                                             }`}

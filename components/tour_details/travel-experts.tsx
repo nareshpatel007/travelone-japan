@@ -1,6 +1,7 @@
 "use client"
 
 import Image from "next/image"
+import Link from "next/link"
 
 export default function TravelExpert() {
     return (
@@ -16,20 +17,27 @@ export default function TravelExpert() {
                             className="!w-full !h-full !object-cover !rounded-lg !shadow-lg"
                         />
                     </div>
-                    <div className="py-0 md:py-12">
-                        <div className="text-[#C46A3A] font-semibold text-sm !mb-4 uppercase tracking-wider">Travel Experts</div>
-                        <span className="text-2xl md:text-4xl font-bold text-[#1E1E1E] !mb-6 leading-tight">
-                            Not sure where to start? Speak to a Travel Expert
+                    <div className="py-0 md:py-12 space-y-5">
+                        <span className="text-sm md:text-lg text-[#C46A3A] font-medium">
+                            Travel Experts
                         </span>
-                        <p className="text-gray-700 text-lg !mb-8 leading-relaxed">
+
+                        <h3 className="text-black text-3xl md:text-5xl leading-tight font-normal">
+                            Not sure where to start? Speak to a Travel Expert
+                        </h3>
+
+                        <p className="text-gray-700 text-lg leading-relaxed">
                             Our dedicated Travel Expert will take the time to understand your personal preferences and curate a
                             custom travel itinerary that's perfectly suited to you.
                         </p>
+
                         <div className="flex items-center gap-4">
-                            <button className="bg-black hover:bg-[#1E1E1E] !cursor-pointer text-white px-8 py-3 rounded-lg font-semibold uppercase transition-colors">
+                            <button className="bg-black hover:bg-[#1E1E1E] cursor-pointer text-white px-8 py-3 rounded-sm font-medium transition-colors">
                                 Customize Your Trip
                             </button>
-                            <span className="text-gray-700 font-semibold text-lg">OR CALL +1 437 966 9023</span>
+                            <span className="text-gray-700 font-medium text-base">
+                                OR CALL <Link href="tel:1-437-966-9023">+1 437 966 9023</Link>
+                            </span>
                         </div>
                     </div>
                 </div>

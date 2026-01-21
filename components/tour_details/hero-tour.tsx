@@ -95,17 +95,17 @@ export default function HeroTour({ isLoading, tour, packages, city_nights, selec
                             <div className="flex items-start justify-between">
                                 <div>
                                     <div className="flex items-center gap-2 flex-wrap">
-                                        <span className="text-xl md:text-2xl font-semibold text-[#1E1E1E]">
+                                        <span className="text-black text-xl md:text-2xl leading-tight font-normal">
                                             {tour?.name}
                                         </span>
                                         <span className="inline-block bg-[#ef2853] px-3 py-0.5 md:py-1 rounded text-sm font-semibold text-white">
                                             {tour?.tour_type}
                                         </span>
                                     </div>
-                                    <p className="text-md md:text-lg lg:text-lg text-black mb-3 mt-2">
+                                    <p className="text-md md:text-lg text-black mb-3 mt-2">
                                         {tour?.tour_sub_title && tour?.tour_sub_title?.join(" → ")}
                                     </p>
-                                    <p className="text-sm md:text-md lg:text-md text-black">
+                                    <p className="text-sm md:text-md text-black">
                                         {city_nights.map((item: any, index: number) => (
                                             <span key={index} className="inline-flex items-center">
                                                 {item.name}
@@ -123,30 +123,30 @@ export default function HeroTour({ isLoading, tour, packages, city_nights, selec
                             </div>
                         </div>
                     </div>
-                    <div className="!bg-amber-50 p-5 md:p-6 !flex-1">
-                        <span className="text-md md:text-lg lg:text-xl font-bold text-gray-900 !mb-3 !block">Select Your Package</span>
-                        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 !mb-8">
+                    <div className="bg-amber-50 p-5 md:p-6 flex-1">
+                        <span className="text-md md:text-lg font-medium text-gray-900 mb-3 block">Select Your Package</span>
+                        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
                             {packages.map((pkg: any) => (
                                 <div
                                     key={pkg.no}
                                     onClick={() => setSelectedPackage(pkg.no)}
-                                    className={`!border-1 !rounded-lg !p-3 !cursor-pointer !transition-all !text-center ${selectedPackage === pkg.no
-                                        ? "!border-[#2F5D50] !bg-white !shadow-lg"
-                                        : "!border-gray-300 !bg-white/50 !hover:border-[#2F5D50]"
+                                    className={`border-1 rounded-lg p-3 cursor-pointer transition-all text-center ${selectedPackage === pkg.no
+                                        ? "border-[#2F5D50] bg-white shadow-lg"
+                                        : "border-gray-300 bg-white/50 hover:border-[#2F5D50]"
                                         }`}
                                 >
                                     <div className="flex justify-center !mb-3">
                                         {selectedPackage === pkg.no ? (
-                                            <div className="!w-6 !h-6 !bg-[#ef2853] !rounded-full !flex !items-center !justify-center !text-white !font-bold">
+                                            <div className="w-6 h-6 bg-[#ef2853] rounded-full flex items-center justify-center text-white font-bold">
                                                 <Check className="h-4 w-4" />
                                             </div>
                                         ) : (
-                                            <div className="w-6 h-6 !border-2 !border-gray-300 !rounded-full"></div>
+                                            <div className="w-6 h-6 border-2 border-gray-300 rounded-full"></div>
                                         )}
                                     </div>
-                                    <span className="!font-bold !text-gray-900 !mb-2 !block">{pkg.name}</span>
+                                    <span className="font-medium text-gray-900 mb-2 block">{pkg.name}</span>
                                     <p className="text-xs text-gray-600 line-through mb-1">${formatPrice(Number(pkg.price) + 500, 0)}</p>
-                                    <p className="text-xl md:text-xl lg:text-2xl font-bold text-black mb-1">${formatPrice(pkg.price, 0)}</p>
+                                    <p className="text-xl md:text-lg font-semibold text-black mb-1">${formatPrice(pkg.price, 0)}</p>
                                     <p className="text-xs text-gray-600 mb-1">Per Person</p>
                                     {pkg.no !== "1" && <p className="text-xs text-gray-600 font-normal">Double Sharing</p>}
                                 </div>

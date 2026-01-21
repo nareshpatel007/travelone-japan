@@ -20,6 +20,7 @@ import { CustomizeTrip } from "@/components/tour_details/popup/customize-trip";
 import { DownloadBrochure } from "@/components/tour_details/popup/download-brochure";
 import { EmailBrochure } from "@/components/tour_details/popup/email-brochure";
 import { BookingCart } from "@/components/tour_details/popup/booking-cart";
+import Skeleton from "react-loading-skeleton";
 
 export default function TourDetailPage() {
     // Get slug
@@ -67,20 +68,19 @@ export default function TourDetailPage() {
                     body: JSON.stringify({ slug })
                 });
 
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
+                // Check response
+                if (response.ok) {
+                    // Parse the JSON response
+                    const data = await response.json();
+
+                    // Fetch packages
+                    if (data?.data?.tour_packages?.length > 0) {
+                        setSelectedPackage(data?.data?.tour_packages[0]?.no ?? 1);
+                    }
+
+                    // Update the state
+                    setTourData(data?.data ?? []);
                 }
-
-                // Parse the JSON response
-                const data = await response.json();
-
-                // Fetch packages
-                if (data?.data?.tour_packages?.length > 0) {
-                    setSelectedPackage(data?.data?.tour_packages[0]?.no ?? 1);
-                }
-
-                // Update the state
-                setTourData(data?.data ?? []);
             } catch (error: any) {
                 if (error.name !== "AbortError") {
                     console.error("Failed to fetch single tour:", error);
@@ -99,8 +99,9 @@ export default function TourDetailPage() {
                 <CommonHeader />
 
                 {isLoading ? (
-                    <div className="flex justify-center items-center min-h-screen bg-white">
-                        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900"></div>
+                    <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <Skeleton height={500} />
+                        <Skeleton height={500} />
                     </div>
                 ) : <div ref={pageRef} className="min-h-screen bg-white">
                     <HeroTour
