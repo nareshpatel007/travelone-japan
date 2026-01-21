@@ -35,16 +35,16 @@ export default function CommonFooter() {
                         <h3 className="font-semibold text-lg mb-6">Company Links</h3>
                         <ul className="space-y-3">
                             <li>
-                                <Link href="/terms-service" className="hover:underline underline-offset-4">Terms of Service</Link>
+                                <Link href="/legal/terms-service" className="hover:underline underline-offset-4">Terms of Service</Link>
                             </li>
                             <li>
-                                <Link href="/privacy-policy" className="hover:underline underline-offset-4">Privacy & Data Asset Policy</Link>
+                                <Link href="/legal/privacy-policy" className="hover:underline underline-offset-4">Privacy & Data Asset Policy</Link>
                             </li>
                             <li>
-                                <Link href="/refund-policy" className="hover:underline underline-offset-4">Refund & Cancellation Policy</Link>
+                                <Link href="/legal/refund-policy" className="hover:underline underline-offset-4">Refund & Cancellation Policy</Link>
                             </li>
                             <li>
-                                <Link href="/ai-transparency-disclosure" className="hover:underline underline-offset-4">
+                                <Link href="/legal/ai-transparency-disclosure" className="hover:underline underline-offset-4">
                                 Ethical AI & Algorithm Transparency Disclosure</Link>
                             </li>
                         </ul>
@@ -83,17 +83,17 @@ export default function CommonFooter() {
                         <h3 className="font-semibold text-lg mb-6">Tip & Tricks</h3>
                         <ul className="space-y-3">
                             <li>
-                                <Link href="/impact-statement" className="hover:underline underline-offset-4">Modern Slavery & Local Impact Statement</Link>
+                                <Link href="/legal/impact-statement" className="hover:underline underline-offset-4">Modern Slavery & Local Impact Statement</Link>
                             </li>
                             <li>
-                                <Link href="/accessibility-statement" className="hover:underline underline-offset-4">Accessibility Statement</Link>
+                                <Link href="/legal/accessibility-statement" className="hover:underline underline-offset-4">Accessibility Statement</Link>
                             </li>
                             <li>
-                                <Link href="/mors-security" className="hover:underline underline-offset-4">
+                                <Link href="/legal/mors-security" className="hover:underline underline-offset-4">
                                 Merchant of Record (MoR) Security</Link>
                             </li>
                             <li>
-                                <Link href="/manage-my-persona" className="hover:underline underline-offset-4">Manage My Persona</Link>
+                                <Link href="/legal/manage-my-persona" className="hover:underline underline-offset-4">Manage My Persona</Link>
                             </li>
                         </ul>
                     </div>
