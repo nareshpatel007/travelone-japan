@@ -45,20 +45,18 @@ export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Prop
                                 TravelOne transcends traditional booking to create a living, breathing journey synchronized in real-time to your unique Traveler Persona.
                             </p>
 
-                            <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-                                <button
-                                    onClick={() => setOpenPlanYourTripModel(true)}
-                                    className="bg-black text-white px-4 py-3 text-sm uppercase border border-black tracking-wide font-semibold hover:bg-transparent hover:text-black transition cursor-pointer"
-                                >
-                                    Begin Your Persona Mapping
-                                </button>
+                            <button
+                                onClick={() => setOpenPlanYourTripModel(true)}
+                                className="bg-black text-white px-4 py-3 text-sm uppercase border border-black tracking-wide font-semibold hover:bg-transparent hover:text-black transition cursor-pointer"
+                            >
+                                Begin Your Persona Mapping
+                            </button>
 
-                                <button
-                                    className="border border-black text-black px-4 py-2.5 text-sm uppercase tracking-wide font-semibold hover:bg-black hover:text-white transition cursor-pointer"
-                                >
-                                    Explore Signature Collections
-                                </button>
-                            </div>
+                            <button
+                                className="border border-black text-black px-4 py-2.5 text-sm uppercase tracking-wide font-semibold hover:bg-black hover:text-white transition cursor-pointer"
+                            >
+                                Explore Signature Collections
+                            </button>
                         </div>
                     </div>
                 </div>

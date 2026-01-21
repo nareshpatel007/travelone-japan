@@ -30,11 +30,16 @@ interface Props {
 
 export default function DestinationSection({ destinationList }: Props) {
     return (
-        <section className="w-full px-4 md:px-6 py-10 md:py-12">
-            <h1 className="text-black text-center text-3xl md:text-6xl leading-tight font-normal">
-                Trending Destinations
-            </h1>
-            <div className="pt-5 grid grid-cols-1 md:grid-cols-4 gap-4">
+        <section className="w-full px-4 md:px-6 py-10 md:py-12 space-y-10">
+            <div className="space-y-2 text-center">
+                <h1 className="text-black text-3xl md:text-6xl leading-tight font-normal">
+                    The Global Pulse
+                </h1>
+                <span className="text-black text-md">
+                    Explore the world’s most sought-after routes, orchestrated in real-time.
+                </span>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                 {destinationList && destinationList.slice().reverse().slice(0, 4).map((item, index) => (
                     <div
                         key={index}

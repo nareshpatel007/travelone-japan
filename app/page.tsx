@@ -102,12 +102,11 @@ export default function HomePage() {
                 <ThreeImageShowcase destinationList={destinationList} />
                 <DestinationSection destinationList={destinationList} />
                 <ToursSlider toursList={toursList} />
-                {/* <TourBannerSection toursList={toursList} /> */}
                 <GlobalFinancialSection />
                 <ThreeStepBanner onOpenChange={setOpenPlanYourTripModel} />
                 <AboutTravelone />
                 <BlogSlider blogList={blogList} />
-                <FullBannerSection />
+                <FullBannerSection onOpenChange={setOpenPlanYourTripModel} />
                 <FeatureCard />
                 <FooterCurveSection onOpenChange={setOpenPlanYourTripModel} />
                 <LandingPlanTripModal open={openPlanYourTripModel} onOpenChange={setOpenPlanYourTripModel} />

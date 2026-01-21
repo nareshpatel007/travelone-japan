@@ -26,7 +26,7 @@ export default function ToursSlider({ toursList }: Props) {
         <section className="py-6 px-5 md:px-10 py-10 md:py-20 space-y-10 bg-[#FFF9EE]">
             <div className="space-y-2 text-center">
                 <h1 className="text-black text-3xl md:text-6xl leading-tight font-normal">
-                    The Precision of Tradition
+                    Japan: The Precision of Tradition
                 </h1>
                 <span className="text-black text-md">
                     Immerse yourself in Omotenashi reimagined through intricate logistics.
@@ -84,15 +84,6 @@ export default function ToursSlider({ toursList }: Props) {
                         </SwiperSlide>
                     ))}
                 </Swiper>
-
-                {/* CUSTOM ARROWS */}
-                {/* <button className="tour-prev absolute -left-4 top-1/2 -translate-y-1/2 z-10 bg-white text-black border shadow rounded-full w-10 h-10 flex items-center justify-center cursor-pointer hover:bg-black hover:text-white">
-                    ‹
-                </button>
-
-                <button className="tour-next absolute -right-4 top-1/2 -translate-y-1/2 z-10 bg-white text-black border shadow rounded-full w-10 h-10 flex items-center justify-center cursor-pointer hover:bg-black hover:text-white">
-                    ›
-                </button> */}
             </div>
         </section>
     );
