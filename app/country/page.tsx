@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import Heading from "@/components/common/heading";
 import Image from "next/image";
 import Link from "next/link";
+import PageHeading from "@/components/common/page-heading";
 
 export default function DestinationPage() {
     // Define state
@@ -60,8 +61,11 @@ export default function DestinationPage() {
                 <CommonHeader />
 
                 <div className="max-w-7xl mx-auto px-5 md:px-0 md:p-6">
-                    <Heading main="Top Destinations" />
-                    <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6 py-8">
+                    <PageHeading
+                        main="Top Destinations"
+                        sub="Discover the most popular destinations around the world."
+                    />
+                    <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6 mb-5">
                         {!isLoading ? (
                             <>
                                 {destinationList && destinationList.map((item, index) => (

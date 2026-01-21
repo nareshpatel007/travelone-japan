@@ -108,7 +108,7 @@ export default function BlogPage() {
         <body>
             {ready && <>
                 <CommonHeader />
-                <div className="max-w-7xl mx-auto px-5 md:px-0 md:p-6 py-0 md:py-10">
+                <div className="max-w-7xl mx-auto px-5 md:px-0 md:p-6">
                     <PageHeading
                         main="Travel Blog"
                         sub="Discover travel tips, destination guides, and inspiring stories from our experts."

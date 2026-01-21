@@ -18,40 +18,27 @@ import { CommonPlanTripModal } from "../plan_your_trip/common-popup";
 import { LoginModal } from "../common/login-modal";
 import { LandingPlanTripModal } from "../plan_your_trip/landing-popup";
 
-/* ===== MOCK DATA ===== */
-
-const DESTINATION_LINKS = [
-    "Destination Single",
-    "Destination List",
-    "Destination Map",
-    "Destination Categories",
-    "Destination Showcase",
-];
-
+// Define mega menu destinations list
 const DESTINATIONS = [
     {
-        title: "Ha Long Bay",
-        subtitle: "Magic Places",
-        image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e",
-        link: "/country/ha-long-bay",
+        title: "Spain",
+        image: "https://ik.imagekit.io/288weifiq/nextjs/spain/palace-communication-summer-dusk-madrid_1398-2169.jpg",
+        link: "/country/spain",
     },
     {
-        title: "San Francisco",
-        subtitle: "Magic Places",
-        image: "https://images.unsplash.com/photo-1501594907352-04cda38ebc29",
-        link: "/country/san-francisco",
+        title: "France",
+        image: "https://ik.imagekit.io/288weifiq/nextjs/france/famous-eiffel-tower-paris-with-gorgeous-colors_268835-830.jpg",
+        link: "/country/france",
     },
     {
-        title: "Zanzibar",
-        subtitle: "Magic Places",
-        image: "https://images.unsplash.com/photo-1501785888041-af3ef285b470",
-        link: "/country/zanzibar",
+        title: "Switzerland",
+        image: "https://ik.imagekit.io/288weifiq/nextjs/switzerland/beautiful-shot-diablerets-glacier-blue-sky-switzerland_181624-23044.jpg",
+        link: "/country/switzerland",
     },
     {
-        title: "Acropolis",
-        subtitle: "Magic Places",
-        image: "https://images.unsplash.com/photo-1501785888041-af3ef285b470",
-        link: "/country/acropolis",
+        title: "Canada",
+        image: "https://ik.imagekit.io/288weifiq/nextjs/canada/niagara-falls-panorama_649448-3341.jpg",
+        link: "/country/canada",
     },
 ];
 
@@ -100,7 +87,7 @@ export default function CommonHeader() {
             </div>
 
             {/* ================= HEADER (UNCHANGED) ================= */}
-            <header className="sticky top-0 z-50 bg-white border-b border-gray-200">
+            <header className="top-0 z-50 bg-white border-b border-gray-200">
                 <div className="px-4 md:px-8 h-20 md:h-24 flex items-center justify-between">
 
                     {/* LOGO */}
@@ -116,15 +103,17 @@ export default function CommonHeader() {
                     {/* DESKTOP NAV (UNCHANGED) */}
                     <nav className="hidden lg:flex items-center gap-8 font-medium text-gray-900">
                         <Link className="hover:underline underline-offset-5 cursor-pointer" onMouseEnter={closeMegaMenu} href="/">Home</Link>
-                        <button
-                            className="hover:underline underline-offset-5 cursor-pointer"
-                            onMouseEnter={openMegaMenu}
-                        >
-                            Destination
-                        </button>
+                        <Link href="/country">
+                            <button
+                                className="hover:underline underline-offset-5 cursor-pointer"
+                                onMouseEnter={openMegaMenu}
+                            >
+                                Destination
+                            </button>
+                        </Link>
                         <Link className="hover:underline underline-offset-5 cursor-pointer" onMouseEnter={closeMegaMenu} href="/tour">Tours</Link>
-                        <Link className="hover:underline underline-offset-5 cursor-pointer" onMouseEnter={closeMegaMenu} href="/about">About Us</Link>
-                        <Link className="hover:underline underline-offset-5 cursor-pointer" onMouseEnter={closeMegaMenu} href="/contact">Contact Us</Link>
+                        <Link className="hover:underline underline-offset-5 cursor-pointer" onMouseEnter={closeMegaMenu} href="/about">About</Link>
+                        <Link className="hover:underline underline-offset-5 cursor-pointer" onMouseEnter={closeMegaMenu} href="/contact">Contact</Link>
                         <Link className="hover:underline underline-offset-5 cursor-pointer" onMouseEnter={closeMegaMenu} href="/blog">Blog</Link>
                         <Link className="hover:underline underline-offset-5 cursor-pointer" onMouseEnter={closeMegaMenu} href="/booking">Booking</Link>
                     </nav>
@@ -169,23 +158,36 @@ export default function CommonHeader() {
                         {/* LEFT LINKS */}
                         <div className="col-span-3">
                             <h4 className="text-xs uppercase font-semibold text-gray-500 mb-4">
-                                Plan a Trip
+                                Trending Destinations
                             </h4>
                             <ul className="space-y-3">
-                                {DESTINATION_LINKS.map((item) => (
-                                    <li key={item}>
-                                        <Link
-                                            href="/country"
-                                            className="font-medium hover:text-black"
-                                        >
-                                            {item}
-                                        </Link>
-                                    </li>
-                                ))}
+                                <li>
+                                    <Link href="/country/japan" className="font-medium hover:text-black">
+                                        Japan
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link href="/country/indonesia" className="font-medium hover:text-black">
+                                        Indonesia
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link href="/country/vietnam" className="font-medium hover:text-black">
+                                        Vietnam
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link href="/country/south-korea" className="font-medium hover:text-black">
+                                        South Korea
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link href="/country/thailand" className="font-medium hover:text-black">
+                                        Thailand
+                                    </Link>
+                                </li>
                             </ul>
                         </div>
-
-                        {/* RIGHT IMAGE GRID */}
                         <div className="col-span-9 grid grid-cols-4 gap-6">
                             {DESTINATIONS.map((place) => (
                                 <Link
@@ -194,17 +196,14 @@ export default function CommonHeader() {
                                     className="relative group overflow-hidden rounded-lg"
                                 >
                                     <Image
-                                        src={place.image}
+                                        src={place.image || "/placeholder.svg"}
                                         alt={place.title}
                                         fill
                                         className="h-44 w-full object-cover transition-transform duration-300 group-hover:scale-105"
                                     />
-                                    <div className="absolute inset-0 bg-black/30 flex flex-col justify-end p-4">
+                                    <div className="absolute inset-0 bg-black/10 flex flex-col justify-end p-4">
                                         <span className="text-white font-semibold">
                                             {place.title}
-                                        </span>
-                                        <span className="text-white/80 text-sm">
-                                            {place.subtitle}
                                         </span>
                                     </div>
                                 </Link>

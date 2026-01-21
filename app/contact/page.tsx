@@ -85,7 +85,7 @@ export default function ContactUsPage() {
             {ready && <>
                 <CommonHeader />
 
-                <div className="max-w-7xl mx-auto px-5 md:px-0 md:p-6 py-0 md:py-10">
+                <div className="max-w-7xl mx-auto px-5 md:px-0 md:p-6">
                     <PageHeading
                         main="Contact"
                         sub="Have questions about your booking or need assistance? We're here to help. Reach out to us through any of the channels below."
@@ -94,16 +94,16 @@ export default function ContactUsPage() {
                         {quickLinks.map((item) => (
                             <div
                                 key={item.title}
-                                className="!bg-white !rounded-xl !p-6 !border !border-gray-200 hover:shadow-md transition-shadow"
+                                className="bg-white rounded-xl p-6 border border-gray-200 hover:shadow-md transition-shadow"
                             >
                                 <div className="flex items-start gap-4">
-                                    <div className="!p-3 !bg-[#ffc765]/10 !rounded-lg">
-                                        <item.icon className="!h-6 !w-6 !text-[#ffa200]" />
+                                    <div className="p-3 bg-[#ffc765]/10 rounded-lg">
+                                        <item.icon className="h-6 w-6 text-[#ffa200]" />
                                     </div>
                                     <div>
-                                        <span className="font-semibold text-gray-900 !block !mb-1">{item.title}</span>
-                                        <span className="text-sm text-gray-600 !block !mb-3">{item.description}</span>
-                                        <Link href={item.link} className="text-sm font-medium !hover:underline">
+                                        <span className="font-medium text-gray-900 block mb-1">{item.title}</span>
+                                        <span className="text-sm md:text-base text-gray-600 block mb-3">{item.description}</span>
+                                        <Link href={item.link} className="text-sm font-medium hover:underline">
                                             {item.linkText} →
                                         </Link>
                                     </div>
@@ -113,17 +113,17 @@ export default function ContactUsPage() {
                     </div>
                     <div className="flex flex-col lg:flex-row gap-4 py-5">
                         <div className="flex-1">
-                            <div className="!bg-white !rounded-xl !p-8 !border !border-gray-200">
-                                <span className="text-xl font-bold text-gray-900 !block !mb-6">
+                            <div className="rounded-xl p-8 border border-gray-200 space-y-7">
+                                <span className="text-xl font-medium text-gray-900 block">
                                     Contact the TravelOne Support Team
                                 </span>
 
                                 {isSubmitted ? (
-                                    <div className="!text-center !py-12">
-                                        <div className="!w-16 !h-16 !bg-[#ffc765]/20 !rounded-full !flex !items-center !justify-center !mx-auto !mb-4">
+                                    <div className="text-center py-12">
+                                        <div className="w-16 h-16 bg-[#ffc765]/20 rounded-full flex items-center justify-center mx-auto mb-4">
                                             <Send className="h-8 w-8 text-[#ffa200]" />
                                         </div>
-                                        <span className="text-xl font-semibold text-gray-900 !block !mb-2">Message Sent!</span>
+                                        <span className="text-xl font-semibold text-gray-900 block mb-2">Message Sent!</span>
                                         <span className="text-gray-600 !block !mb-6">
                                             Thank you for contacting us. We'll get back to you within 24 hours.
                                         </span>
@@ -141,7 +141,7 @@ export default function ContactUsPage() {
                                     <div className="space-y-6">
                                         <div className="grid md:grid-cols-2 gap-5">
                                             <div>
-                                                <label className="block text-sm font-medium text-gray-700 mb-2">Your Name *</label>
+                                                <label className="block text-sm md:text-base font-medium text-gray-700 mb-2">Your Name *</label>
                                                 <input
                                                     type="text"
                                                     required
@@ -152,7 +152,7 @@ export default function ContactUsPage() {
                                                 />
                                             </div>
                                             <div>
-                                                <label className="block text-sm font-medium text-gray-700 mb-2">Email Address *</label>
+                                                <label className="block text-sm md:text-base font-medium text-gray-700 mb-2">Email Address *</label>
                                                 <input
                                                     type="email"
                                                     required
@@ -166,7 +166,7 @@ export default function ContactUsPage() {
 
                                         <div className="grid md:grid-cols-2 gap-5">
                                             <div>
-                                                <label className="block text-sm font-medium text-gray-700 mb-2">Subject *</label>
+                                                <label className="block text-sm md:text-base font-medium text-gray-700 mb-2">Subject *</label>
                                                 <select
                                                     value={formData.subject}
                                                     onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
@@ -182,7 +182,7 @@ export default function ContactUsPage() {
                                                 </select>
                                             </div>
                                             <div>
-                                                <label className="block text-sm font-medium text-gray-700 mb-2">Booking Reference Number (Optional)</label>
+                                                <label className="block text-sm md:text-base font-medium text-gray-700 mb-2">Booking Reference Number (Optional)</label>
                                                 <input
                                                     type="text"
                                                     value={formData.bookingNumber}
@@ -193,7 +193,7 @@ export default function ContactUsPage() {
                                             </div>
                                         </div>
                                         <div>
-                                            <label className="block text-sm font-medium text-gray-700 mb-2">Your Message *</label>
+                                            <label className="block text-sm md:text-base font-medium text-gray-700 mb-2">Your Message *</label>
                                             <textarea
                                                 required
                                                 rows={5}
@@ -226,24 +226,56 @@ export default function ContactUsPage() {
                                 )}
                             </div>
                         </div>
-                        <div className="lg:w-80 !space-y-4">
-                            {contactInfo.map((item) => (
-                                <div key={item.title} className="!bg-white !rounded-xl !p-5 !border !border-gray-200">
-                                    <div className="!flex !items-start !gap-4">
-                                        <div className="!p-2 !bg-[#ffc765]/10 !rounded-lg">
-                                            <item.icon className="h-5 w-5 text-[#ffa200]" />
-                                        </div>
-                                        <div>
-                                            <span className="font-semibold text-gray-900 !block !mb-2">{item.title}</span>
-                                            {item.details.map((detail, idx) => (
-                                                <p key={idx} className="text-sm text-gray-600">
-                                                    {detail}
-                                                </p>
-                                            ))}
-                                        </div>
+                        <div className="lg:w-80 space-y-4">
+                            <div className="bg-white rounded-xl p-5 border border-gray-200">
+                                <div className="flex items-start gap-4">
+                                    <div className="p-2 bg-[#ffc765]/10 rounded-lg">
+                                        <MapPin className="h-5 w-5 text-[#ffa200]" />
+                                    </div>
+                                    <div>
+                                        <span className="font-semibold text-gray-900 block mb-2">
+                                            Address
+                                        </span>
+                                        <p className="text-sm text-gray-600">
+                                            19 Grand Trunk Crescent, Toronto, ON M5J 3A3
+                                        </p>
                                     </div>
                                 </div>
-                            ))}
+                            </div>
+                            <div className="bg-white rounded-xl p-5 border border-gray-200">
+                                <div className="flex items-start gap-4">
+                                    <div className="p-2 bg-[#ffc765]/10 rounded-lg">
+                                        <Phone className="h-5 w-5 text-[#ffa200]" />
+                                    </div>
+                                    <div>
+                                        <span className="font-semibold text-gray-900 block mb-2">
+                                            Phone
+                                        </span>
+                                        <Link href="tel:+1-437-966-9023" className="hover:underline">
+                                            <p className="text-sm text-gray-600">
+                                                +1 437 966 9023
+                                            </p>
+                                        </Link>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="bg-white rounded-xl p-5 border border-gray-200">
+                                <div className="flex items-start gap-4">
+                                    <div className="p-2 bg-[#ffc765]/10 rounded-lg">
+                                        <Mail className="h-5 w-5 text-[#ffa200]" />
+                                    </div>
+                                    <div>
+                                        <span className="font-semibold text-gray-900 block mb-2">
+                                            Email
+                                        </span>
+                                        <Link href="mailto:connect@travelone.io" className="hover:underline">
+                                            <p className="text-sm text-gray-600">
+                                                connect@travelone.io
+                                            </p>
+                                        </Link>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -147,22 +147,22 @@ export default function TourDetailPage() {
                                         height={50}
                                         className="!object-cover !rounded"
                                     />
-                                    <span className="text-gray-700 text-md font-medium">Call us now on +1 437 966 9023</span>
+                                    <span className="text-gray-700 text-base font-medium">Call us now on +1 437 966 9023</span>
                                 </div>
 
                                 <div className="flex items-center gap-3">
-                                    <button className="bg-[#ef2853] hover:bg-white text-white hover:text-[#ef2853] border border-[#ef2853] px-6 py-2 rounded font-semibold cursor-pointer transition">
+                                    <button className="bg-[#ef2853] hover:bg-white text-white hover:text-[#ef2853] border border-[#ef2853] px-6 py-2 rounded text-base font-medium cursor-pointer transition">
                                         Book {tourData?.tour_packages && tourData?.tour_packages.find((p: any) => p.no === selectedPackage)?.name}
                                     </button>
-                                    <button className="bg-white text-black border border-black hover:bg-black hover:text-white px-6 py-2 rounded font-semibold cursor-pointer transition" onClick={() => setOpenCustomizeTripPopup(true)}>
+                                    <button className="bg-white text-black border border-black hover:bg-black hover:text-white px-6 py-2 rounded text-base font-medium cursor-pointer transition" onClick={() => setOpenCustomizeTripPopup(true)}>
                                         Customize Trip
                                     </button>
-                                    <button
+                                    {/* <button
                                         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
                                         className="ml-2 p-2 bg-[#1E1E1E] text-white rounded-full shadow hover:shadow-lg cursor-pointer transition"
                                     >
                                         <ArrowUp size={20} className="text-white" />
-                                    </button>
+                                    </button> */}
                                 </div>
                             </div>
                         </div>
