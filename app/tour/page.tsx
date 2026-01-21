@@ -78,7 +78,10 @@ export default function Page() {
             {ready && <>
                 <CommonHeader />
                 <div className="max-w-7xl mx-auto px-5 md:p-6">
-                    <PageHeading main="All Tours Listing" />
+                    <PageHeading
+                        main="All Tours Listing"
+                        sub="Find the perfect tour for your next adventure."
+                    />
                     <div className="mb-5">
                         <TourFilters
                             isLoading={isLoading}

@@ -35,6 +35,7 @@ export function TourCard({
                             src={featured_image || "/placeholder.svg"}
                             alt={name}
                             fill
+                            draggable={false}
                             className="object-cover group-hover:scale-105 transition-transform duration-300"
                         />
 
