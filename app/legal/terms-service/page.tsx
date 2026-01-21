@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import Heading from "@/components/common/heading";
 import Link from "next/link";
 import { ChevronDown } from "lucide-react";
+import PageHeading from "@/components/common/page-heading";
 
 const sections = [
     {
@@ -169,73 +170,48 @@ export default function Page() {
     }, []);
 
     return (
-        <>
-            <body className="wp-singular page-template page-template-page-full-width page-template-page-full-width-php page page-id-280 wp-theme-wanderaway theme-wanderaway qi-blocks-1.4.3 qodef-gutenberg--no-touch qode-framework-1.2.6 woocommerce-js qodef-qi--no-touch qi-addons-for-elementor-1.9.3 wanderaway-core-1.2 wanderaway-1.1.1 qodef-content-grid-1300 qodef-back-to-top--enabled qodef-header--standard qodef-header-appearance--sticky qodef-mobile-header--side-area qodef-drop-down-second--full-width qodef-drop-down-second--default qode-export-1.0 qodef-header-standard--center qodef-search--covers-header elementor-default elementor-kit-4 elementor-page elementor-page-280 qodef-browser--chrome e--ua-blink e--ua-chrome e--ua-webkit">
-                {ready && <>
-                    <CommonHeader />
+        <body>
+            {ready && <>
+                <CommonHeader />
 
-                    <div className="!pb-10 !max-w-7xl !mx-auto">
-                        <Heading main="Privacy Policy" sub="Last Updated: December 1, 2024" />
-                        <main className="!mx-auto !max-w-7xl !px-4 sm:px-6 !mb-10 lg:px-8">
-                            <div className="!bg-white !rounded-xl !p-6 !border !border-gray-200 !mb-8">
-                                <span className="font-semibold text-gray-900 !block !mb-4">Table of Contents</span>
-                                <nav className="!grid md:grid-cols-2 !gap-2">
-                                    {sections.map((section, index) => (
-                                        <a key={section.id} href={`#${section.id}`} className="!text-sm text-[#f53] hover:underline">
-                                            {index + 1}. {section.title}
-                                        </a>
-                                    ))}
-                                </nav>
-                            </div>
-                            {/* Content Sections */}
-                            <div className="!space-y-4">
-                                {sections.map((section) => (
-                                    <div
-                                        key={section.id}
-                                        id={section.id}
-                                        className="!bg-white !rounded-xl !border !border-gray-200 !overflow-hidden"
-                                    >
-                                        <button
-                                            onClick={() => toggleSection(section.id)}
-                                            className="w-full flex items-center justify-between !p-5 text-left hover:bg-gray-50 transition-colors"
-                                        >
-                                            <span className="font-semibold text-gray-900 !block">{section.title}</span>
-                                            <ChevronDown
-                                                className={`h-5 w-5 text-gray-500 transition-transform ${expandedSections.includes(section.id) ? "rotate-180" : ""
-                                                    }`}
-                                            />
-                                        </button>
-                                        {expandedSections.includes(section.id) && (
-                                            <div
-                                                className="!px-5 !pb-5 prose prose-sm max-w-none prose-headings:text-gray-900 prose-p:text-gray-600 prose-li:text-gray-600 prose-strong:text-gray-800 prose-ul:mt-2 prose-li:mt-1"
-                                                dangerouslySetInnerHTML={{ __html: section.content }}
-                                            />
-                                        )}
-                                    </div>
-                                ))}
-                            </div>
+                <div className="max-w-4xl mx-auto px-5 md:px-0 md:p-6 py-5 md:py-6">
+                    <PageHeading
+                        main="Terms of Service"
+                    />
+                    <div className="space-y-12">
 
-                            {/* Footer Actions */}
-                            <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
-                                <Link
-                                    href="/contact"
-                                    className="px-6 py-3 bg-[#f53] text-white font-medium rounded-full transition-colors text-center"
-                                >
-                                    Contact Us
-                                </Link>
-                                <Link
-                                    href="/"
-                                    className="px-6 py-3 border border-gray-300 text-gray-700 font-medium rounded-full hover:bg-gray-50 transition-colors text-center"
-                                >
-                                    Back to Home
-                                </Link>
-                            </div>
-                        </main>
+                        {sections.map((section) => (
+                            <section key={section.id} id={section.id} className="space-y-4">
+
+                                {/* SECTION TITLE */}
+                                <h2 className="text-xl md:text-2xl font-medium text-black">
+                                    {section.title}
+                                </h2>
+
+                                {/* SECTION CONTENT */}
+                                <div
+                                    className="
+                    prose prose-gray max-w-none
+                    prose-p:leading-relaxed
+                    prose-ul:list-disc
+                    prose-ul:pl-6
+                    prose-li:my-1
+                "
+                                    dangerouslySetInnerHTML={{ __html: section.content }}
+                                />
+
+                            </section>
+                        ))}
+
+                        {/* LAST UPDATED */}
+                        <div className="pt-12 text-sm text-gray-500 border-t border-gray-300">
+                            Last updated: {new Date().toLocaleDateString()}
+                        </div>
                     </div>
+                </div>
 
-                    <CommonFooter />
-                </>}
-            </body>
-        </>
+                <CommonFooter />
+            </>}
+        </body>
     );
 }
