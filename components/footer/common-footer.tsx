@@ -23,14 +23,8 @@ export default function CommonFooter() {
     return (
         <footer className="bg-[#fcefdf] text-black">
             <div className="max-w-7xl mx-auto px-6 py-16">
-                <div
-                    className="
-                        grid grid-cols-1 gap-12
-                        md:grid-cols-4
-                        mb-12
-                    "
-                >
-                    {/* MENU 1 — FIRST ON MOBILE */}
+                <div className="grid grid-cols-1 gap-12 md:grid-cols-4 mb-12">
+                    {/* MENU 1 */}
                     <div className="order-1 text-center md:text-left">
                         <h3 className="font-semibold text-lg mb-6">Company</h3>
                         <ul className="space-y-3">
