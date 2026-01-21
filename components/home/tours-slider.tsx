@@ -36,7 +36,7 @@ export default function ToursSlider({ toursList }: Props) {
                 <Swiper
                     modules={[Autoplay, Navigation]}
                     loop
-                    autoplay={{ delay: 4000 }}
+                    autoplay={{ delay: 4000, disableOnInteraction: false }}
                     navigation={{
                         nextEl: ".tour-next",
                         prevEl: ".tour-prev",
@@ -44,7 +44,8 @@ export default function ToursSlider({ toursList }: Props) {
                     spaceBetween={24}
                     slidesPerView={1}
                     slidesPerGroup={1}
-                    allowTouchMove={false}
+                    allowTouchMove={true}
+                    grabCursor={true}
                     breakpoints={{
                         640: {
                             slidesPerView: 2,

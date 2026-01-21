@@ -35,8 +35,8 @@ export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Prop
             <section className="hidden md:grid min-h-screen grid-cols-1 md:grid-cols-[45%_55%] lg:grid-cols-[50%_50%] bg-[#FFF9EE]">
                 <div className="flex flex-col">
                     <HomeHeader />
-                    <div className="flex flex-1 items-center px-24">
-                        <div className="max-w-xl space-y-6 text-center md:text-left">
+                    <div className="flex flex-1 items-center px-20">
+                        <div className="max-w-lg space-y-6 text-center md:text-left">
                             <h1 className="text-black text-5xl lg:text-6xl leading-tight font-normal">
                                 Where Your Unique Persona Meets the World’s Greatest Destinations.
                             </h1>
@@ -85,7 +85,7 @@ export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Prop
                     <HomeHeader />
                     <div className="flex flex-1 items-center justify-center px-6 sm:px-8 lg:px-12">
                         <div className="max-w-xl space-y-6 text-center md:text-left">
-                            <h1 className="text-black text-3xl sm:text-4xl leading-tight font-normal">
+                            <h1 className="text-black text-3xl leading-tight font-normal">
                                 Where Your Unique Persona Meets the World’s Greatest Destinations.
                             </h1>
 
