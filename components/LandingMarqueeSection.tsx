@@ -27,16 +27,16 @@ export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Prop
     return (
         <>
             {/* For Desktop */}
-            <section className="hidden md:grid min-h-screen grid-cols-1 md:grid-cols-[50%_50%] bg-[#FFF9EE]">
+            <section className="hidden md:grid min-h-screen grid-cols-1 md:grid-cols-[45%_55%] lg:grid-cols-[50%_50%] bg-[#FFF9EE]">
                 <div className="flex flex-col">
                     <HomeHeader />
-                    <div className="flex flex-1 items-center px-10 lg:px-16">
+                    <div className="flex flex-1 items-center px-24">
                         <div className="max-w-xl space-y-6 text-center md:text-left">
                             <h1 className="text-black text-5xl lg:text-6xl leading-tight font-normal">
                                 Where Your Unique Persona Meets the World’s Greatest Destinations.
                             </h1>
 
-                            <p className="text-black text-base sm:text-lg leading-relaxed max-w-md mx-auto md:mx-0">
+                            <p className="text-black text-base sm:text-lg leading-relaxed md:mx-0">
                                 TravelOne transcends traditional booking to create a living, breathing journey synchronized in real-time to your unique Traveler Persona.
                             </p>
 
@@ -58,21 +58,22 @@ export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Prop
                     </div>
                 </div>
                 <div className="flex flex-col">
-                    <div className="hidden md:flex lg:hidden flex-1 gap-8 lg:gap-10 justify-center">
+                    <div className="flex flex-1 gap-8 lg:gap-10 justify-center">
+                        {/* Always visible */}
                         <VerticalSlider images={images1} direction="down" />
                         <VerticalSlider images={images2} direction="up" />
                         <VerticalSlider images={images3} direction="down" />
-                    </div>
 
-                    <div className="hidden lg:flex flex-1 gap-8 lg:gap-10 justify-center">
-                        <VerticalSlider images={images1} direction="down" />
-                        <VerticalSlider images={images2} direction="up" />
-                        <VerticalSlider images={images3} direction="down" />
-                        <VerticalSlider images={images1} direction="up" />
+                        {/* Only on wide desktop (xl+) — NO wrapper */}
+                        <VerticalSlider
+                            images={images1}
+                            direction="up"
+                            className="hidden xl:block"
+                        />
                     </div>
                 </div>
             </section>
-            
+
             {/* For Mobile */}
             <section className="block md:hidden py-20 space-y-14 bg-[#FFF9EE]">
                 <div className="flex flex-col">

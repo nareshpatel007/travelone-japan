@@ -21,36 +21,22 @@ export default function AboutTravelone() {
                 </div>
                 <div className="text-center lg:text-left max-w-xl mx-auto space-y-6">
                     <h2 className="text-black text-3xl md:text-6xl leading-tight font-normal">
-                        Hi, I’m Bhavin Vora.
-                        <br />
-                        Founder & CEO.
+                        A Vision for the $9T Industry.
                     </h2>
 
-                    <p className="text-gray-600 text-base sm:text-lg leading-relaxed">After spending 2”decades leading global strategy for travel industry icons, I realized that true luxury was missing a soul. I created TravelOne to change that. We use intelligence to orchestrate the world, but we use your persona to make it feel like home. Welcome to the future of travel.</p>
+                    <p className="text-gray-600 text-base sm:text-lg leading-relaxed">
+                        Decades of leadership redefining modern travel.
+                    </p>
+
+                    <p className="text-gray-600 text-base sm:text-lg leading-relaxed">
+                        After spending two decades leading global strategy for travel industry icons, I realized that true luxury was missing a soul. I created TravelOne to change that. We use intelligence to orchestrate the world, but we use your persona to make it feel like home. Welcome to the future of travel.
+                    </p>
 
                     {/* Social Icons */}
                     <div className="flex justify-center lg:justify-start gap-4 pt-4">
-                        <Link href="https://www.facebook.com/travelone.technologies.inc/" target="_blank">
-                            <span className="w-10 h-10 rounded-full bg-amber-50 text-black border hover:bg-black hover:text-white flex items-center justify-center cursor-pointer">
-                                <FacebookIcon className="h-5 w-5" />
-                            </span>
-                        </Link>
-                        
-                        <Link href="https://www.instagram.com/travelone.io/" target="_blank">
-                            <span className="w-10 h-10 rounded-full bg-amber-50 text-black border hover:bg-black hover:text-white flex items-center justify-center cursor-pointer">
-                                <Instagram className="h-5 w-5" />
-                            </span>
-                        </Link>
-                        
                         <Link href="https://www.linkedin.com/company/travelone-technologies-inc/" target="_blank">
                             <span className="w-10 h-10 rounded-full bg-amber-50 text-black border hover:bg-black hover:text-white flex items-center justify-center cursor-pointer">
                                 <Linkedin className="h-5 w-5" />
-                            </span>
-                        </Link>
-
-                        <Link href="https://www.youtube.com/@traveloneio" target="_blank">
-                            <span className="w-10 h-10 rounded-full bg-amber-50 text-black border hover:bg-black hover:text-white flex items-center justify-center cursor-pointer">
-                                <Youtube className="h-5 w-5" />
                             </span>
                         </Link>
                     </div>

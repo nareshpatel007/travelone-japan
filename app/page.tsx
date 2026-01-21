@@ -15,6 +15,7 @@ import AboutTravelone from "@/components/home/about-travelone";
 import ThreeStepBanner from "@/components/home/tree-step-banner";
 import ToursSlider from "@/components/home/tours-slider";
 import TourBannerSection from "@/components/home/tour-banner-section";
+import FullBannerSection from "@/components/home/full-banner";
 
 export default function HomePage() {
     // Define state
@@ -89,10 +90,11 @@ export default function HomePage() {
                 <ThreeImageShowcase destinationList={destinationList} />
                 <DestinationSection destinationList={destinationList} />
                 <ToursSlider toursList={toursList} />
-                <TourBannerSection toursList={toursList} />
+                {/* <TourBannerSection toursList={toursList} /> */}
                 <GlobalFinancialSection />
                 <ThreeStepBanner onOpenChange={setOpenPlanYourTripModel} />
                 <AboutTravelone />
+                <FullBannerSection />
                 <FeatureCard />
                 <FooterCurveSection onOpenChange={setOpenPlanYourTripModel} />
                 <LandingPlanTripModal open={openPlanYourTripModel} onOpenChange={setOpenPlanYourTripModel} />

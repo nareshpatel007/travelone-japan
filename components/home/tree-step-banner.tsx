@@ -37,10 +37,15 @@ const destinations: DestinationCard[] = [
 
 export default function ThreeStepBanner({ onOpenChange }: Props) {
     return (
-        <div className="max-w-7xl mx-auto px-5 md:px-5 lg:px-0 py-10 md:py-12">
-            <h1 className="text-black text-center text-3xl md:text-6xl leading-tight font-normal">
-                Start with Who, Not Where.
-            </h1>
+        <div className="py-6 px-5 md:px-10 py-10 space-y-10">
+            <div className="space-y-2 text-center">
+                <h1 className="text-black text-3xl md:text-6xl leading-tight font-normal">
+                    Start with Who, Not Where.
+                </h1>
+                <span className="text-black text-md">
+                    Initialize your travel DNA and let Agentic AI match your soul to the world.
+                </span>
+            </div>
             <div className="mt-10 grid grid-cols-1 lg:grid-cols-10 gap-4">
                 <div className="relative col-span-1 lg:col-span-7 overflow-hidden aspect-[4/3] lg:aspect-auto lg:min-h-[380px]">
                     <Image
@@ -68,10 +73,12 @@ export default function ThreeStepBanner({ onOpenChange }: Props) {
                             key={destination.id}
                             className="flex items-center lg:flex-col lg:text-center bg-[#fcefdf] border border-gray-200 hover:bg-white cursor-pointer hover:border-[#fcefdf] p-5 lg:p-8 rounded-sm"
                         >
-                            <span className="text-base font-semibold mb-2">{`Step: 0${destination.id}`}</span>
-                            <h5 className="font-normal text-sm md:text-base text-gray-900">
-                                {destination.title}
-                            </h5>
+                            <div className="text-base md:text-lg mb-2">
+                                <span className="font-semibold">
+                                    {`Step: 0${destination.id}`}
+                                </span>
+                                &nbsp;- {destination.title}
+                            </div>
                         </div>
                     ))}
                 </div>

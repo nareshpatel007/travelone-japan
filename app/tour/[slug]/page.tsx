@@ -75,7 +75,7 @@ export default function TourDetailPage() {
                 const data = await response.json();
 
                 // Fetch packages
-                if(data?.data?.tour_packages?.length > 0) {
+                if (data?.data?.tour_packages?.length > 0) {
                     setSelectedPackage(data?.data?.tour_packages[0]?.no ?? 1);
                 }
 
@@ -94,90 +94,88 @@ export default function TourDetailPage() {
     }, []);
 
     return (
-        <>
-            <body className="wp-singular page-template page-template-page-full-width page-template-page-full-width-php page page-id-280 wp-theme-wanderaway theme-wanderaway qi-blocks-1.4.3 qodef-gutenberg--no-touch qode-framework-1.2.6 woocommerce-js qodef-qi--no-touch qi-addons-for-elementor-1.9.3 wanderaway-core-1.2 wanderaway-1.1.1 qodef-content-grid-1300 qodef-back-to-top--enabled qodef-header--standard qodef-header-appearance--sticky qodef-mobile-header--side-area qodef-drop-down-second--full-width qodef-drop-down-second--default qode-export-1.0 qodef-header-standard--center qodef-search--covers-header elementor-default elementor-kit-4 elementor-page elementor-page-280 qodef-browser--chrome e--ua-blink e--ua-chrome e--ua-webkit">
-                {ready && <>
-                    <CommonHeader />
+        <body>
+            {ready && <>
+                <CommonHeader />
 
-                    {isLoading ? (
-                        <div className="flex justify-center items-center min-h-screen bg-white">
-                            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900"></div>
-                        </div>
-                    ) : <div ref={pageRef} className="min-h-screen bg-white">
-                        <HeroTour
-                            isLoading={isLoading}
-                            tour={tourData?.tour ?? {}}
-                            city_nights={tourData?.city_nights ?? {}}
-                            packages={tourData?.tour_packages ?? []}
-                            selectedPackage={selectedPackage}
-                            setSelectedPackage={setSelectedPackage}
-                            setOpenCustomizeTripPopup={setOpenCustomizeTripPopup}
-                            setOpenDownloadBrochurePopup={setOpenDownloadBrochurePopup}
-                            setOpenEmailBrochurePopup={setOpenEmailBrochurePopup}
-                            setOpenBookingCartPopup={setOpenBookingCartPopup}
-                        />
+                {isLoading ? (
+                    <div className="flex justify-center items-center min-h-screen bg-white">
+                        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900"></div>
+                    </div>
+                ) : <div ref={pageRef} className="min-h-screen bg-white">
+                    <HeroTour
+                        isLoading={isLoading}
+                        tour={tourData?.tour ?? {}}
+                        city_nights={tourData?.city_nights ?? {}}
+                        packages={tourData?.tour_packages ?? []}
+                        selectedPackage={selectedPackage}
+                        setSelectedPackage={setSelectedPackage}
+                        setOpenCustomizeTripPopup={setOpenCustomizeTripPopup}
+                        setOpenDownloadBrochurePopup={setOpenDownloadBrochurePopup}
+                        setOpenEmailBrochurePopup={setOpenEmailBrochurePopup}
+                        setOpenBookingCartPopup={setOpenBookingCartPopup}
+                    />
 
-                        <TabContent
-                            tour={tourData?.tour ?? {}}
-                            city_nights={tourData?.city_nights ?? {}}
-                            tour_packages={tourData?.tour_packages ?? []}
-                            tour_terms={tourData?.tour_terms ?? {}}
-                            attractions={tourData?.attractions || {}}
-                            payment_schedule={tourData?.payment_schedule ?? []}
-                            cancellation_payment={tourData?.cancellation_payment ?? []}
-                        />
+                    <TabContent
+                        tour={tourData?.tour ?? {}}
+                        city_nights={tourData?.city_nights ?? {}}
+                        tour_packages={tourData?.tour_packages ?? []}
+                        tour_terms={tourData?.tour_terms ?? {}}
+                        attractions={tourData?.attractions || {}}
+                        payment_schedule={tourData?.payment_schedule ?? []}
+                        cancellation_payment={tourData?.cancellation_payment ?? []}
+                    />
 
-                        <BestValueGuarantee />
-                        <Reviews reviews={tourData?.tour_reviews ?? []} />
-                        <WhyTravelOne />
-                        <TrustedBy />
-                        <FAQsList data={tourData?.tour_terms ?? []} />
-                        <RelatedTours tours={tourData?.related_tours || []} />
-                        <TravelExpert />
-                        <PageHelpful />
+                    <BestValueGuarantee />
+                    <Reviews reviews={tourData?.tour_reviews ?? []} />
+                    <WhyTravelOne />
+                    <TrustedBy />
+                    <FAQsList data={tourData?.tour_terms ?? []} />
+                    <RelatedTours tours={tourData?.related_tours || []} />
+                    <TravelExpert />
+                    <PageHelpful />
 
-                        {showStickyFooter && (
-                            <div className="hidden md:block fixed bottom-0 left-0 right-0 !bg-gray-100 !shadow-lg !border-t !border-gray-300 !z-[9999]">
-                                <div className="!max-w-7xl !mx-auto !py-3 flex !items-center !justify-between">
-                                    <div className="flex items-center gap-4">
-                                        <Image
-                                            src={tourData?.tour?.featured_image || "/placeholder-500x500.svg"}
-                                            alt={tourData?.tour?.name}
-                                            width={70}
-                                            height={50}
-                                            className="!object-cover !rounded"
-                                        />
-                                        <span className="text-gray-700 text-md font-medium">Call us now on +1 437 966 9023</span>
-                                    </div>
+                    {showStickyFooter && (
+                        <div className="hidden md:block fixed bottom-0 left-0 right-0 !bg-gray-100 !shadow-lg !border-t !border-gray-300 !z-[9999]">
+                            <div className="!max-w-7xl !mx-auto !py-3 flex !items-center !justify-between">
+                                <div className="flex items-center gap-4">
+                                    <Image
+                                        src={tourData?.tour?.featured_image || "/placeholder-500x500.svg"}
+                                        alt={tourData?.tour?.name}
+                                        width={70}
+                                        height={50}
+                                        className="!object-cover !rounded"
+                                    />
+                                    <span className="text-gray-700 text-md font-medium">Call us now on +1 437 966 9023</span>
+                                </div>
 
-                                    <div className="flex items-center gap-3">
-                                        <button className="bg-[#ef2853] hover:bg-white text-white hover:text-[#ef2853] border border-[#ef2853] px-6 py-2 rounded font-semibold cursor-pointer transition">
-                                            Book {tourData?.tour_packages && tourData?.tour_packages.find((p: any) => p.no === selectedPackage)?.name}
-                                        </button>
-                                        <button className="bg-white text-black border border-black hover:bg-black hover:text-white px-6 py-2 rounded font-semibold cursor-pointer transition" onClick={() => setOpenCustomizeTripPopup(true)}>
-                                            Customize Trip
-                                        </button>
-                                        <button
-                                            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-                                            className="ml-2 p-2 bg-[#1E1E1E] text-white rounded-full shadow hover:shadow-lg cursor-pointer transition"
-                                        >
-                                            <ArrowUp size={20} className="text-white" />
-                                        </button>
-                                    </div>
+                                <div className="flex items-center gap-3">
+                                    <button className="bg-[#ef2853] hover:bg-white text-white hover:text-[#ef2853] border border-[#ef2853] px-6 py-2 rounded font-semibold cursor-pointer transition">
+                                        Book {tourData?.tour_packages && tourData?.tour_packages.find((p: any) => p.no === selectedPackage)?.name}
+                                    </button>
+                                    <button className="bg-white text-black border border-black hover:bg-black hover:text-white px-6 py-2 rounded font-semibold cursor-pointer transition" onClick={() => setOpenCustomizeTripPopup(true)}>
+                                        Customize Trip
+                                    </button>
+                                    <button
+                                        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                                        className="ml-2 p-2 bg-[#1E1E1E] text-white rounded-full shadow hover:shadow-lg cursor-pointer transition"
+                                    >
+                                        <ArrowUp size={20} className="text-white" />
+                                    </button>
                                 </div>
                             </div>
-                        )}
-                    </div>}
+                        </div>
+                    )}
+                </div>}
 
-                    {/* Popup modals */}
-                    <BookingCart tour={tourData?.tour ?? {}} open={openBookingCartPopup} onOpenChange={setOpenBookingCartPopup} />
-                    <CustomizeTrip tour={tourData?.tour ?? {}} open={openCustomizeTripPopup} onOpenChange={setOpenCustomizeTripPopup} />
-                    <DownloadBrochure tour={tourData?.tour ?? {}} open={openDownloadBrochurePopup} onOpenChange={setOpenDownloadBrochurePopup} />
-                    <EmailBrochure open={openEmailBrochurePopup} onOpenChange={setOpenEmailBrochurePopup} />
+                {/* Popup modals */}
+                <BookingCart tour={tourData?.tour ?? {}} open={openBookingCartPopup} onOpenChange={setOpenBookingCartPopup} />
+                <CustomizeTrip tour={tourData?.tour ?? {}} open={openCustomizeTripPopup} onOpenChange={setOpenCustomizeTripPopup} />
+                <DownloadBrochure tour={tourData?.tour ?? {}} open={openDownloadBrochurePopup} onOpenChange={setOpenDownloadBrochurePopup} />
+                <EmailBrochure open={openEmailBrochurePopup} onOpenChange={setOpenEmailBrochurePopup} />
 
-                    <CommonFooter />
-                </>}
-            </body>
-        </>
+                <CommonFooter />
+            </>}
+        </body>
     );
 }

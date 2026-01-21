@@ -1,120 +1,100 @@
+import { CheckCircle, CheckLine, Clock10, Flag, MapPin } from "lucide-react";
+
 export default function FeatureCard() {
     return (
-        <div className="py-12 max-w-7xl mx-auto px-5 md:px-0">
+        <div className="py-12 max-w-7xl mx-auto px-5 md:px-0 space-y-10">
+            <div className="text-center">
+                <h1 className="text-black text-3xl md:text-6xl leading-tight font-normal">
+                    Why TravelOne
+                </h1>
+            </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10">
-                <div className="flex flex-col items-center text-center">
-                    <div className="mb-4 flex items-center justify-center">
+                <div className="flex flex-col items-center text-center space-y-5">
+                    <div className="relative w-20 h-20 flex items-center justify-center">
+                        {/* Scalloped Background */}
                         <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="76"
-                            height="79"
-                            viewBox="0 0 75.766 79.377"
+                            viewBox="0 0 100 100"
+                            className="absolute inset-0"
                         >
                             <path
+                                d="M50 2 L58 8 L68 6 L74 14 L84 16 L86 26 L94 32 L92 42 L98 50 L92 58 L94 68 L86 74 L84 84 L74 86 L68 94 L58 92 L50 98 L42 92 L32 94 L26 86 L16 84 L14 74 L6 68 L8 58 L2 50 L8 42 L6 32 L14 26 L16 16 L26 14 L32 6 L42 8 Z"
                                 fill="#edf3ed"
-                                d="M75.21 52.543c-1.283 3.768-7.9 4.642-10.157 7.665-2.338 3.132-1.363 9.748-4.484 11.951-3.152 2.224-9.021-.955-12.7.187-3.643 1.13-6.713 7.094-10.606 7.031-3.757-.06-6.635-6.077-10.382-7.367s-9.687 1.689-12.692-.58c-3.114-2.351-1.906-8.955-4.1-12.094-2.211-3.171-8.786-4.277-9.922-7.978-1.124-3.664 3.678-8.291 3.74-12.207.06-3.778-4.637-8.549-3.354-12.318s7.9-4.642 10.157-7.664c2.337-3.132 1.363-9.748 4.484-11.951 3.152-2.224 9.021.955 12.7-.187C31.537 5.901 34.606-.063 38.5 0c3.757.06 6.635 6.076 10.382 7.367s9.688-1.689 12.692.58c3.114 2.351 1.906 8.955 4.1 12.094 2.211 3.171 8.787 4.277 9.922 7.978 1.124 3.664-3.678 8.291-3.74 12.207-.06 3.778 4.637 8.549 3.354 12.317Z"
-                            />
-                            <path
-                                fill="#385b21"
-                                stroke="#385b21"
-                                strokeWidth=".2"
-                                d="M46.034 41.745c-.5-.078-1.03-.148-1.591-.211l-.342-1.663-1.307-6.354a.509.509 0 0 0-.608-.394 40.453 40.453 0 0 1-4.868.81 42.754 42.754 0 0 1-5.007-.81.508.508 0 0 0-.607.405l-1.168 6.344-.31 1.685c-.486.057-.95.12-1.386.189-1.957.309-3.958.77-3.958 1.846s2 1.538 3.958 1.846a65.914 65.914 0 0 0 17.193 0c1.957-.308 3.958-.769 3.958-1.846s-2-1.538-3.957-1.847Z"
                             />
                         </svg>
+
+                        {/* Icon */}
+                        <MapPin className="relative z-10 w-8 h-8 text-[#385b21]" />
                     </div>
                     <div className="qodef-m-content">
-                        <h5 className="qodef-m-title !text-black">
-                            1-Click Demo Import
-                        </h5>
                         <p className="qodef-m-text !text-black">
-                            Get the full WanderAway demo content with one click
+                            Persona-Driven Mapping Define your travel DNA for a perfectly synchronized journey.
                         </p>
                     </div>
                 </div>
-                <div className="flex flex-col items-center text-center">
-                    <div className="mb-4 flex items-center justify-center">
+                <div className="flex flex-col items-center text-center space-y-5">
+                    <div className="relative w-20 h-20 flex items-center justify-center">
+                        {/* Scalloped Background */}
                         <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="76"
-                            height="79"
-                            viewBox="0 0 75.766 79.377"
+                            viewBox="0 0 100 100"
+                            className="absolute inset-0"
                         >
                             <path
+                                d="M50 2 L58 8 L68 6 L74 14 L84 16 L86 26 L94 32 L92 42 L98 50 L92 58 L94 68 L86 74 L84 84 L74 86 L68 94 L58 92 L50 98 L42 92 L32 94 L26 86 L16 84 L14 74 L6 68 L8 58 L2 50 L8 42 L6 32 L14 26 L16 16 L26 14 L32 6 L42 8 Z"
                                 fill="#edf3ed"
-                                d="M75.21 52.543c-1.283 3.768-7.9 4.642-10.157 7.665-2.338 3.132-1.363 9.748-4.484 11.951-3.152 2.224-9.021-.955-12.7.187-3.643 1.13-6.713 7.094-10.606 7.031-3.757-.06-6.635-6.077-10.382-7.367s-9.687 1.689-12.692-.58c-3.114-2.351-1.906-8.955-4.1-12.094-2.211-3.171-8.786-4.277-9.922-7.978-1.124-3.664 3.678-8.291 3.74-12.207.06-3.778-4.637-8.549-3.354-12.318s7.9-4.642 10.157-7.664c2.337-3.132 1.363-9.748 4.484-11.951 3.152-2.224 9.021.955 12.7-.187C31.537 5.901 34.606-.063 38.5 0c3.757.06 6.635 6.076 10.382 7.367s9.688-1.689 12.692.58c3.114 2.351 1.906 8.955 4.1 12.094 2.211 3.171 8.787 4.277 9.922 7.978 1.124 3.664-3.678 8.291-3.74 12.207-.06 3.778 4.637 8.549 3.354 12.317Z"
-                            />
-                            <path
-                                fill="#385b21"
-                                stroke="#385b21"
-                                strokeWidth=".2"
-                                d="M46.034 41.745c-.5-.078-1.03-.148-1.591-.211l-.342-1.663-1.307-6.354a.509.509 0 0 0-.608-.394 40.453 40.453 0 0 1-4.868.81 42.754 42.754 0 0 1-5.007-.81.508.508 0 0 0-.607.405l-1.168 6.344-.31 1.685c-.486.057-.95.12-1.386.189-1.957.309-3.958.77-3.958 1.846s2 1.538 3.958 1.846a65.914 65.914 0 0 0 17.193 0c1.957-.308 3.958-.769 3.958-1.846s-2-1.538-3.957-1.847Z"
                             />
                         </svg>
+
+                        {/* Icon */}
+                        <Clock10 className="relative z-10 w-8 h-8 text-[#385b21]" />
                     </div>
                     <div className="qodef-m-content">
-                        <h5 className="qodef-m-title !text-black">
-                            1-Click Demo Import
-                        </h5>
                         <p className="qodef-m-text !text-black">
-                            Get the full WanderAway demo content with one click
+                            Agentic AI Orchestration Silent real-time recovery that resolves friction before it begins.
                         </p>
                     </div>
                 </div>
-                <div className="flex flex-col items-center text-center">
-                    <div className="mb-4 flex items-center justify-center">
+                <div className="flex flex-col items-center text-center space-y-5">
+                    <div className="relative w-20 h-20 flex items-center justify-center">
+                        {/* Scalloped Background */}
                         <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="76"
-                            height="79"
-                            viewBox="0 0 75.766 79.377"
+                            viewBox="0 0 100 100"
+                            className="absolute inset-0"
                         >
                             <path
+                                d="M50 2 L58 8 L68 6 L74 14 L84 16 L86 26 L94 32 L92 42 L98 50 L92 58 L94 68 L86 74 L84 84 L74 86 L68 94 L58 92 L50 98 L42 92 L32 94 L26 86 L16 84 L14 74 L6 68 L8 58 L2 50 L8 42 L6 32 L14 26 L16 16 L26 14 L32 6 L42 8 Z"
                                 fill="#edf3ed"
-                                d="M75.21 52.543c-1.283 3.768-7.9 4.642-10.157 7.665-2.338 3.132-1.363 9.748-4.484 11.951-3.152 2.224-9.021-.955-12.7.187-3.643 1.13-6.713 7.094-10.606 7.031-3.757-.06-6.635-6.077-10.382-7.367s-9.687 1.689-12.692-.58c-3.114-2.351-1.906-8.955-4.1-12.094-2.211-3.171-8.786-4.277-9.922-7.978-1.124-3.664 3.678-8.291 3.74-12.207.06-3.778-4.637-8.549-3.354-12.318s7.9-4.642 10.157-7.664c2.337-3.132 1.363-9.748 4.484-11.951 3.152-2.224 9.021.955 12.7-.187C31.537 5.901 34.606-.063 38.5 0c3.757.06 6.635 6.076 10.382 7.367s9.688-1.689 12.692.58c3.114 2.351 1.906 8.955 4.1 12.094 2.211 3.171 8.787 4.277 9.922 7.978 1.124 3.664-3.678 8.291-3.74 12.207-.06 3.778 4.637 8.549 3.354 12.317Z"
-                            />
-                            <path
-                                fill="#385b21"
-                                stroke="#385b21"
-                                strokeWidth=".2"
-                                d="M46.034 41.745c-.5-.078-1.03-.148-1.591-.211l-.342-1.663-1.307-6.354a.509.509 0 0 0-.608-.394 40.453 40.453 0 0 1-4.868.81 42.754 42.754 0 0 1-5.007-.81.508.508 0 0 0-.607.405l-1.168 6.344-.31 1.685c-.486.057-.95.12-1.386.189-1.957.309-3.958.77-3.958 1.846s2 1.538 3.958 1.846a65.914 65.914 0 0 0 17.193 0c1.957-.308 3.958-.769 3.958-1.846s-2-1.538-3.957-1.847Z"
                             />
                         </svg>
+
+                        {/* Icon */}
+                        <Flag className="relative z-10 w-8 h-8 text-[#385b21]" />
                     </div>
                     <div className="qodef-m-content">
-                        <h5 className="qodef-m-title !text-black">
-                            1-Click Demo Import
-                        </h5>
                         <p className="qodef-m-text !text-black">
-                            Get the full WanderAway demo content with one click
+                            Strategic Intelligence Zones Exclusive expert access in Japan, Kenya, and the Nordic Circle.
                         </p>
                     </div>
                 </div>
-                <div className="flex flex-col items-center text-center">
-                    <div className="mb-4 flex items-center justify-center">
+                <div className="flex flex-col items-center text-center space-y-5">
+                    <div className="relative w-20 h-20 flex items-center justify-center">
+                        {/* Scalloped Background */}
                         <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="76"
-                            height="79"
-                            viewBox="0 0 75.766 79.377"
+                            viewBox="0 0 100 100"
+                            className="absolute inset-0"
                         >
                             <path
+                                d="M50 2 L58 8 L68 6 L74 14 L84 16 L86 26 L94 32 L92 42 L98 50 L92 58 L94 68 L86 74 L84 84 L74 86 L68 94 L58 92 L50 98 L42 92 L32 94 L26 86 L16 84 L14 74 L6 68 L8 58 L2 50 L8 42 L6 32 L14 26 L16 16 L26 14 L32 6 L42 8 Z"
                                 fill="#edf3ed"
-                                d="M75.21 52.543c-1.283 3.768-7.9 4.642-10.157 7.665-2.338 3.132-1.363 9.748-4.484 11.951-3.152 2.224-9.021-.955-12.7.187-3.643 1.13-6.713 7.094-10.606 7.031-3.757-.06-6.635-6.077-10.382-7.367s-9.687 1.689-12.692-.58c-3.114-2.351-1.906-8.955-4.1-12.094-2.211-3.171-8.786-4.277-9.922-7.978-1.124-3.664 3.678-8.291 3.74-12.207.06-3.778-4.637-8.549-3.354-12.318s7.9-4.642 10.157-7.664c2.337-3.132 1.363-9.748 4.484-11.951 3.152-2.224 9.021.955 12.7-.187C31.537 5.901 34.606-.063 38.5 0c3.757.06 6.635 6.076 10.382 7.367s9.688-1.689 12.692.58c3.114 2.351 1.906 8.955 4.1 12.094 2.211 3.171 8.787 4.277 9.922 7.978 1.124 3.664-3.678 8.291-3.74 12.207-.06 3.778 4.637 8.549 3.354 12.317Z"
-                            />
-                            <path
-                                fill="#385b21"
-                                stroke="#385b21"
-                                strokeWidth=".2"
-                                d="M46.034 41.745c-.5-.078-1.03-.148-1.591-.211l-.342-1.663-1.307-6.354a.509.509 0 0 0-.608-.394 40.453 40.453 0 0 1-4.868.81 42.754 42.754 0 0 1-5.007-.81.508.508 0 0 0-.607.405l-1.168 6.344-.31 1.685c-.486.057-.95.12-1.386.189-1.957.309-3.958.77-3.958 1.846s2 1.538 3.958 1.846a65.914 65.914 0 0 0 17.193 0c1.957-.308 3.958-.769 3.958-1.846s-2-1.538-3.957-1.847Z"
                             />
                         </svg>
+
+                        {/* Icon */}
+                        <CheckCircle className="relative z-10 w-8 h-8 text-[#385b21]" />
                     </div>
+
                     <div className="qodef-m-content">
-                        <h5 className="qodef-m-title !text-black">
-                            1-Click Demo Import
-                        </h5>
                         <p className="qodef-m-text !text-black">
-                            Get the full WanderAway demo content with one click
+                            Merchant of Record Trust One secure transaction with total North American accountability.
                         </p>
                     </div>
                 </div>

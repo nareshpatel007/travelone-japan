@@ -6,7 +6,7 @@ import Link from "next/link";
 import { formatPrice } from "@/lib/utils";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
+import { Autoplay, Navigation } from "swiper/modules";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -23,13 +23,20 @@ export default function ToursSlider({ toursList }: Props) {
     }
 
     return (
-        <section className="py-6 px-5 md:px-10 py-10 md:py-12 bg-[#FFF9EE]">
-            <h1 className="text-black text-center text-3xl md:text-6xl leading-tight font-normal">
-                Popular Japan Tours
-            </h1>
-            <div className="relative pt-5">
+        <section className="py-6 px-5 md:px-10 py-10 md:py-20 space-y-10 bg-[#FFF9EE]">
+            <div className="space-y-2 text-center">
+                <h1 className="text-black text-3xl md:text-6xl leading-tight font-normal">
+                    The Precision of Tradition
+                </h1>
+                <span className="text-black text-md">
+                    Immerse yourself in Omotenashi reimagined through intricate logistics.
+                </span>
+            </div>
+            <div className="relative">
                 <Swiper
-                    modules={[Navigation]}
+                    modules={[Autoplay, Navigation]}
+                    loop
+                    autoplay={{ delay: 4000 }}
                     navigation={{
                         nextEl: ".tour-next",
                         prevEl: ".tour-prev",
@@ -37,6 +44,7 @@ export default function ToursSlider({ toursList }: Props) {
                     spaceBetween={24}
                     slidesPerView={1}
                     slidesPerGroup={1}
+                    allowTouchMove={false}
                     breakpoints={{
                         640: {
                             slidesPerView: 2,
@@ -66,7 +74,7 @@ export default function ToursSlider({ toursList }: Props) {
                                         <span className="text-md md:text-xl font-medium text-gray-900 block">{tour.name}</span>
                                         <div className="flex justify-center">
                                             <span className="text-xs md:text-sm font-semibold text-[#385b21] bg-[#d4e9e7] px-5 py-1.5 rounded">
-                                                USD ${formatPrice(tour.starting_price, 0)}
+                                                Start from USD ${formatPrice(tour.starting_price, 0)}
                                             </span>
                                         </div>
                                     </div>
@@ -77,13 +85,13 @@ export default function ToursSlider({ toursList }: Props) {
                 </Swiper>
 
                 {/* CUSTOM ARROWS */}
-                <button className="tour-prev absolute -left-4 top-1/2 -translate-y-1/2 z-10 bg-white text-black border shadow rounded-full w-10 h-10 flex items-center justify-center cursor-pointer hover:bg-black hover:text-white">
+                {/* <button className="tour-prev absolute -left-4 top-1/2 -translate-y-1/2 z-10 bg-white text-black border shadow rounded-full w-10 h-10 flex items-center justify-center cursor-pointer hover:bg-black hover:text-white">
                     ‹
                 </button>
 
                 <button className="tour-next absolute -right-4 top-1/2 -translate-y-1/2 z-10 bg-white text-black border shadow rounded-full w-10 h-10 flex items-center justify-center cursor-pointer hover:bg-black hover:text-white">
                     ›
-                </button>
+                </button> */}
             </div>
         </section>
     );

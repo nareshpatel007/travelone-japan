@@ -82,9 +82,15 @@ export default function TravelPresetSection() {
             </div>
             <div className="flex items-center px-6 sm:px-10 lg:px-20 py-16">
                 <div className="space-y-6">
-                    <h1 className="text-black text-3xl lg:text-6xl leading-tight font-normal">
-                        Your Soul, Our Compass.
-                    </h1>
+                    <div className="space-y-6">
+                        <h1 className="text-black text-3xl lg:text-6xl leading-tight font-normal">
+                            Your Soul, Our Compass.
+                        </h1>
+
+                        <span className="text-gray-600 text-base sm:text-lg">
+                            Replacing static itineraries with aAgentic, breathing orchestration.
+                        </span>
+                    </div>
 
                     <p className="text-gray-600 text-base sm:text-lg">
                         Traditional travel is a series of transactions. TravelOne is a transformation. We have replaced the static itinerary with a living, breathing orchestration. By mapping your Traveler Persona—your values, your pace, and your non-negotiables—we ensure that every moment of your journey feels like it was designed exclusively for you.
