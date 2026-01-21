@@ -3,10 +3,13 @@ import { CheckCircle, CheckLine, Clock10, Flag, MapPin } from "lucide-react";
 export default function FeatureCard() {
     return (
         <div className="py-12 max-w-7xl mx-auto px-5 md:px-0 space-y-10">
-            <div className="text-center">
+            <div className="text-center space-y-2">
                 <h1 className="text-black text-3xl md:text-6xl leading-tight font-normal">
-                    Why TravelOne
+                    Why TravelOne?
                 </h1>
+                <span className="text-black text-md">
+                    Why the world’s most discerning travelers choose Persona-led orchestration.
+                </span>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10">
                 <div className="flex flex-col items-center text-center space-y-5">
