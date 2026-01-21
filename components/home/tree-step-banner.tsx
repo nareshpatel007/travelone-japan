@@ -8,30 +8,22 @@ interface Props {
 }
 
 interface DestinationCard {
-    id: number;
-    title: string;
-    location: string;
-    image: string;
+    heading: string;
+    text: string;
 }
 
 const destinations: DestinationCard[] = [
     {
-        id: 1,
-        title: 'The Mapping. Complete your Traveler Persona. Tell us about your "Local Soul" preferences and your logistical non-negotiables.',
-        location: "Mexico, Mexico",
-        image: "https://ik.imagekit.io/288weifiq/landing-japan/home-3-img-new-7.jpg",
+        heading: "Step: 01 - The Mapping",
+        text: 'Complete your Traveler Persona. Tell us about your "Local Soul" preferences and your logistical non-negotiables.',
     },
     {
-        id: 2,
-        title: "The Match. Our Agentic AI scans our Global Strategic Zones to find the experiences that match your travel DNA with 99.9% accuracy.",
-        location: "Giza, Egypt",
-        image: "https://ik.imagekit.io/288weifiq/landing-japan/home-3-img-new-8.jpg",
+        heading: "Step: 02 - The Match",
+        text: "Our Agentic AI scans our Global Strategic Zones to find the experiences that match your travel DNA with 99.9% accuracy.",
     },
     {
-        id: 3,
-        title: "The Orchestration. Once you select your collection, we handle everything. As your Merchant of Record, we manage the money, the logistics, and the real-time recovery.",
-        location: "Bali, Indonesia",
-        image: "https://ik.imagekit.io/288weifiq/landing-japan/home-3-img-new-9.jpg",
+        heading: "Step: 03 - The Orchestration",
+        text: "Once you select your collection, we handle everything. As your Merchant of Record, we manage the money, the logistics, and the real-time recovery."
     },
 ];
 
@@ -68,16 +60,18 @@ export default function ThreeStepBanner({ onOpenChange }: Props) {
                     </div>
                 </div>
                 <div className="col-span-1 lg:col-span-3 flex flex-col gap-3">
-                    {destinations.map((destination) => (
+                    {destinations.map((destination, index) => (
                         <div
-                            key={destination.id}
+                            key={index}
                             className="flex items-center lg:flex-col lg:text-center bg-[#fcefdf] border border-gray-200 hover:bg-white cursor-pointer hover:border-[#fcefdf] p-5 lg:p-8 rounded-sm"
                         >
-                            <div className="text-base md:text-lg mb-2">
-                                <span className="font-semibold">
-                                    {`Step: 0${destination.id}`}
+                            <div className="space-y-2">
+                                <h3 className="font-semibold text-md md:text-lg">
+                                    {destination.heading}
+                                </h3>
+                                <span className="font-normal text-base">
+                                    {destination.text}
                                 </span>
-                                &nbsp;- {destination.title}
                             </div>
                         </div>
                     ))}
