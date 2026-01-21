@@ -103,14 +103,11 @@ export default function HomePage() {
                 {/* <DestinationSection destinationList={destinationList} /> */}
                 <ThreeStepBanner onOpenChange={setOpenPlanYourTripModel} />
                 <ToursSlider toursList={toursList} />
-                
-                
                 <GlobalFinancialSection />
                 <FeatureCard />
                 <AboutTravelone />
                 <FullBannerSection onOpenChange={setOpenPlanYourTripModel} />
                 <BlogSlider blogList={blogList} />
-                
                 <FooterCurveSection onOpenChange={setOpenPlanYourTripModel} />
                 <LandingPlanTripModal open={openPlanYourTripModel} onOpenChange={setOpenPlanYourTripModel} />
                 <CommonFooter />
