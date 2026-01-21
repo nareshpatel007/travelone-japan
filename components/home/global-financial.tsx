@@ -21,7 +21,7 @@ export default function GlobalFinancialSection() {
             <div className="flex items-center justify-center">
                 <div className="relative w-full h-80 md:h-150 overflow-hidden">
                     <Image
-                        src="https://ik.imagekit.io/288weifiq/nextjs/usa-canada-flags-blue-sky-background-3d-illustration_519469-2002.avif"
+                        src="https://ik.imagekit.io/288weifiq/nextjs/canada-day-celebration-with-maple-leaf-symbol_23-2151440473.jpg"
                         alt="Canada USA Flag"
                         fill
                         priority
