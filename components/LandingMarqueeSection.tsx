@@ -9,18 +9,23 @@ interface Props {
 }
 
 const images1 = [
-    "https://ik.imagekit.io/288weifiq/nextjs/desktop_slider_1.webp",
-    "https://ik.imagekit.io/288weifiq/nextjs/desktop_slider_1.webp",
+    "https://ik.imagekit.io/288weifiq/nextjs/slider_1.webp",
+    "https://ik.imagekit.io/288weifiq/nextjs/slider_1.webp",
 ];
 
 const images2 = [
-    "https://ik.imagekit.io/288weifiq/nextjs/desktop_slider_2.webp",
-    "https://ik.imagekit.io/288weifiq/nextjs/desktop_slider_2.webp",
+    "https://ik.imagekit.io/288weifiq/nextjs/slider_2.webp",
+    "https://ik.imagekit.io/288weifiq/nextjs/slider_2.webp",
 ];
 
 const images3 = [
-    "https://ik.imagekit.io/288weifiq/nextjs/desktop_slider_3.webp",
-    "https://ik.imagekit.io/288weifiq/nextjs/desktop_slider_3.webp",
+    "https://ik.imagekit.io/288weifiq/nextjs/slider_3.webp",
+    "https://ik.imagekit.io/288weifiq/nextjs/slider_3.webp",
+];
+
+const images4 = [
+    "https://ik.imagekit.io/288weifiq/nextjs/slider_4.webp",
+    "https://ik.imagekit.io/288weifiq/nextjs/slider_4.webp",
 ];
 
 export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Props) {
@@ -66,7 +71,7 @@ export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Prop
 
                         {/* Only on wide desktop (xl+) — NO wrapper */}
                         <VerticalSlider
-                            images={images1}
+                            images={images4}
                             direction="up"
                             className="hidden xl:block"
                         />
