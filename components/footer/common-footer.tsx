@@ -26,32 +26,100 @@ export default function CommonFooter() {
                 <div
                     className="
                         grid grid-cols-1 gap-12
-                        md:grid-cols-3
+                        md:grid-cols-4
                         mb-12
                     "
                 >
                     {/* MENU 1 — FIRST ON MOBILE */}
                     <div className="order-1 text-center md:text-left">
-                        <h3 className="font-semibold text-lg mb-6">Company Links</h3>
+                        <h3 className="font-semibold text-lg mb-6">Company</h3>
                         <ul className="space-y-3">
                             <li>
-                                <Link href="/legal/terms-service" className="hover:underline underline-offset-4">Terms of Service</Link>
+                                <Link href="/about" className="hover:underline underline-offset-4">About</Link>
                             </li>
                             <li>
-                                <Link href="/legal/privacy-policy" className="hover:underline underline-offset-4">Privacy & Data Asset Policy</Link>
+                                <Link href="/contact" className="hover:underline underline-offset-4">Contact</Link>
                             </li>
                             <li>
-                                <Link href="/legal/refund-policy" className="hover:underline underline-offset-4">Refund & Cancellation Policy</Link>
+                                <Link href="/country" className="hover:underline underline-offset-4">Global Destinations</Link>
                             </li>
                             <li>
-                                <Link href="/legal/ai-transparency-disclosure" className="hover:underline underline-offset-4">
-                                Ethical AI & Algorithm Transparency Disclosure</Link>
+                                <Link href="/blog" className="hover:underline underline-offset-4">News & Press</Link>
+                            </li>
+                            <li>
+                                <Link href="/careers" className="hover:underline underline-offset-4">Careers</Link>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    {/* MENU 2 */}
+                    <div className="order-1 text-center md:text-left">
+                        <h3 className="font-semibold text-lg mb-6">The Ecosystem</h3>
+                        <ul className="space-y-3">
+                            <li>
+                                <Link href="https://travelone.io" className="hover:underline underline-offset-4">Traveler Portal</Link>
+                            </li>
+                            <li>
+                                <Link href="https://tech.travelone.io" className="hover:underline underline-offset-4">Tech Hub</Link>
+                            </li>
+                            <li>
+                                <Link href="https://agent.travelone.io" className="hover:underline underline-offset-4">Travel Agent</Link>
+                            </li>
+                            <li>
+                                <Link href="#" className="hover:underline underline-offset-4">Manage My Persona</Link>
+                            </li>
+                            <li>
+                                <Link href="#" className="hover:underline underline-offset-4">Partner Login</Link>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    {/* MENU 3 */}
+                    <div className="order-1 text-center md:text-left">
+                        <h3 className="font-semibold text-lg mb-6">Support</h3>
+                        <ul className="space-y-3">
+                            <li>
+                                <Link href="#" className="hover:underline underline-offset-4">Help Centre</Link>
+                            </li>
+                            <li>
+                                <Link href="#" className="hover:underline underline-offset-4">FAQs</Link>
+                            </li>
+                            <li>
+                                <Link href="#" className="hover:underline underline-offset-4">Merchant of Record Security</Link>
+                            </li>
+                            <li>
+                                <Link href="#" className="hover:underline underline-offset-4">Travel Advisory</Link>
+                            </li>
+                            <li>
+                                <Link href="#" className="hover:underline underline-offset-4">Accessibility Statement</Link>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    {/* MENU 4 */}
+                    <div className="order-1 text-center md:text-left">
+                        <h3 className="font-semibold text-lg mb-6">Legal & Compliance</h3>
+                        <ul className="space-y-3">
+                            <li>
+                                <Link href="#" className="hover:underline underline-offset-4">Terms of Service</Link>
+                            </li>
+                            <li>
+                                <Link href="#" className="hover:underline underline-offset-4">Privacy & Data Asset Policy</Link>
+                            </li>
+                            <li>
+                                <Link href="#" className="hover:underline underline-offset-4">Refund & Cancellation Polic</Link>
+                            </li>
+                            <li>
+                                <Link href="#" className="hover:underline underline-offset-4">Ethical AI Disclosure</Link>
+                            </li>
+                            <li>
+                                <Link href="#" className="hover:underline underline-offset-4">Modern Slavery Statement</Link>
                             </li>
                         </ul>
                     </div>
 
                     {/* CENTER FORM — SECOND ON MOBILE */}
-                    <div className="order-2 flex flex-col items-center text-center">
+                    {/* <div className="order-2 flex flex-col items-center text-center">
                         <Image
                             alt="Logo"
                             width={220}
@@ -76,27 +144,7 @@ export default function CommonFooter() {
                                 </button>
                             </div>
                         </div>
-                    </div>
-
-                    {/* MENU 2 — THIRD ON MOBILE */}
-                    <div className="order-3 text-center md:text-left">
-                        <h3 className="font-semibold text-lg mb-6">Tip & Tricks</h3>
-                        <ul className="space-y-3">
-                            <li>
-                                <Link href="/legal/impact-statement" className="hover:underline underline-offset-4">Modern Slavery & Local Impact Statement</Link>
-                            </li>
-                            <li>
-                                <Link href="/legal/accessibility-statement" className="hover:underline underline-offset-4">Accessibility Statement</Link>
-                            </li>
-                            <li>
-                                <Link href="/legal/mors-security" className="hover:underline underline-offset-4">
-                                Merchant of Record (MoR) Security</Link>
-                            </li>
-                            <li>
-                                <Link href="/legal/manage-my-persona" className="hover:underline underline-offset-4">Manage My Persona</Link>
-                            </li>
-                        </ul>
-                    </div>
+                    </div> */}
                 </div>
 
                 {/* COPYRIGHT */}
