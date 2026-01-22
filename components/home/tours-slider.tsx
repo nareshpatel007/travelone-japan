@@ -23,7 +23,7 @@ export default function ToursSlider({ toursList }: Props) {
     }
 
     return (
-        <section className="py-6 px-5 md:px-10 py-10 md:py-20 space-y-10 bg-[#FFF9EE]">
+        <section className="py-6 px-5 md:px-10 py-10 md:py-10 space-y-10 bg-[#FFF9EE]">
             <div className="space-y-2 text-center">
                 <h1 className="text-black text-3xl md:text-6xl leading-tight font-normal">
                     Japan: The Precision of Tradition

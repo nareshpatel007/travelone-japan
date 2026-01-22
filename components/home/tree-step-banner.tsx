@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import Heading from "../common/heading";
 
 interface Props {
     onOpenChange: (open: boolean) => void;
@@ -12,7 +11,7 @@ interface DestinationCard {
     text: string;
 }
 
-const destinations: DestinationCard[] = [
+const sections: DestinationCard[] = [
     {
         heading: "Step 01: Record Your Persona",
         text: 'Complete our digital mapping to record your specific values, pace, and travel non-negotiables.',
@@ -60,7 +59,7 @@ export default function ThreeStepBanner({ onOpenChange }: Props) {
                     </div>
                 </div>
                 <div className="col-span-1 lg:col-span-3 flex flex-col gap-3">
-                    {destinations.map((destination, index) => (
+                    {sections.map((destination, index) => (
                         <div
                             key={index}
                             className="flex items-center lg:flex-col lg:text-center bg-[#fcefdf] border border-gray-200 hover:bg-white cursor-pointer hover:border-[#fcefdf] p-5 lg:p-8 rounded-sm"
