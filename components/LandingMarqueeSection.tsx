@@ -9,23 +9,23 @@ interface Props {
 }
 
 const images1 = [
-    "https://wanderaway.qodeinteractive.com/wp-content/uploads/2024/01/Landing-marquee-img-01.png",
-    "https://wanderaway.qodeinteractive.com/wp-content/uploads/2024/01/Landing-marquee-img-01.png",
+    "https://ik.imagekit.io/288weifiq/nextjs/Landing-marquee-img-01.png",
+    "https://ik.imagekit.io/288weifiq/nextjs/Landing-marquee-img-01.png",
 ];
 
 const images2 = [
-    "https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/09/Landing-marquee-img-2.png",
-    "https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/09/Landing-marquee-img-2.png",
+    "https://ik.imagekit.io/288weifiq/nextjs/Landing-marquee-img-2.png",
+    "https://ik.imagekit.io/288weifiq/nextjs/Landing-marquee-img-2.png",
 ];
 
 const images3 = [
-    "https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/09/Landing-marquee-img-3.png",
-    "https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/09/Landing-marquee-img-3.png",
+    "https://ik.imagekit.io/288weifiq/nextjs/Landing-marquee-img-3.png",
+    "https://ik.imagekit.io/288weifiq/nextjs/Landing-marquee-img-3.png",
 ];
 
 const images4 = [
-    "https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/09/Landing-marquee-img-4.png",
-    "https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/09/Landing-marquee-img-4.png",
+    "https://ik.imagekit.io/288weifiq/nextjs/Landing-marquee-img-4.png",
+    "https://ik.imagekit.io/288weifiq/nextjs/Landing-marquee-img-4.png",
 ];
 
 export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Props) {

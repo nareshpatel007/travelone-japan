@@ -10,13 +10,13 @@ type Props = {
 
 export default function Reviews({ reviews }: Props) {
     return (
-        <div className="bg-white py-10 md:py-16 px-5 md:px-0">
+        <div className="bg-white py-10 md:py-12 px-5 md:px-0">
             <div className="pb-10 max-w-7xl mx-auto space-y-8">
                 <div className="text-center space-y-1">
                     <h3 className="text-black text-3xl md:text-5xl leading-tight font-normal">
                         Recent Reviews
                     </h3>
-                    <span className="text-sm md:text-lg text-[#C46A3A] font-medium">
+                    <span className="text-sm md:text-lg text-black">
                         To receive our best monthly deals and travel inspiration.
                     </span>
                 </div>
@@ -24,10 +24,10 @@ export default function Reviews({ reviews }: Props) {
                     {reviews.map((review, idx) => (
                         <div
                             key={idx}
-                            className="!bg-white !rounded-2xl !p-8 !border-2 !border-dashed !border-[#C46A3A] hover:shadow-xl transition-shadow duration-300 flex flex-col items-center text-center"
+                            className="bg-[#FFF9EE] rounded-2xl p-8 border-2 border-dashed border-black hover:shadow-xl transition-shadow duration-300 flex flex-col items-center text-center"
                         >
-                            <div className="!mb-6 relative">
-                                <div className="w-28 h-28 rounded-full border-1 border-[#C46A3A] overflow-hidden shadow-md">
+                            <div className="mb-6 relative">
+                                <div className="w-28 h-28 rounded-full border-1 border-black overflow-hidden shadow-md">
                                     <Image
                                         src={typeof review.images === "string" ? JSON.parse(review.images)[0] : review.images?.[0]}
                                         alt={review.full_name || "User"}
@@ -37,7 +37,7 @@ export default function Reviews({ reviews }: Props) {
                                     />
                                 </div>
                             </div>
-                            <span className="text-md md:text-lg font-medium text-amber-800 block mb-3">{review.full_name}</span>
+                            <span className="text-md md:text-lg font-medium text-black block mb-3">{review.full_name}</span>
                             <div className="flex gap-1 mb-4 justify-center">
                                 {[...Array(5)].map((_, i) => (
                                     <Star
@@ -47,7 +47,7 @@ export default function Reviews({ reviews }: Props) {
                                     />
                                 ))}
                             </div>
-                            <p className="text-gray-600 mb-4 text-sm md:text-base leading-relaxed">{review.review}</p>
+                            <p className="text-black mb-4 text-sm md:text-base leading-relaxed">{review.review}</p>
                         </div>
                     ))}
                 </div>

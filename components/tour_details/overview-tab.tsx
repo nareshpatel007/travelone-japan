@@ -24,7 +24,7 @@ export function OverviewTabContent({ activeTab, tour, city_nights, tour_packages
                     <ul className="space-y-1">
                         {tour?.tour_highlights && tour?.tour_highlights.map((highlight: string, idx: number) => (
                             <li key={idx} className="flex items-start gap-2 md:gap-3 text-sm md:text-base text-gray-700">
-                                <span className="text-amber-700 font-bold">✓</span>
+                                <span className="text-black font-bold">✓</span>
                                 <span>{highlight}</span>
                             </li>
                         ))}
@@ -62,7 +62,7 @@ export function OverviewTabContent({ activeTab, tour, city_nights, tour_packages
                                         ([city, hotels]: [string, any], idx: number) => (
                                             <li key={idx} className="flex items-start gap-2 md:gap-3 text-gray-700 text-sm md:text-base">
                                                 <span className="text-green-700 font-bold">
-                                                    <ArrowRight className="w-4 h-4 text-amber-700 inline-block" />
+                                                    <ArrowRight className="w-4 h-4 text-black inline-block" />
                                                 </span>
                                                 <div>
                                                     <span className="font-semibold text-black">{city}:</span>
@@ -143,7 +143,7 @@ export function OverviewTabContent({ activeTab, tour, city_nights, tour_packages
                             {tour_terms?.terms_conditions && tour_terms?.terms_conditions.map((item: any, idx: number) => (
                                 <li key={idx} className="flex items-start gap-3 text-gray-700 text-sm md:text-base">
                                     <span className="text-green-700 font-bold">
-                                        <ArrowRight className="w-4 h-4 text-amber-700 inline-block" />
+                                        <ArrowRight className="w-4 h-4 text-black inline-block" />
                                     </span>
                                     <span>{item}</span>
                                 </li>
@@ -156,7 +156,7 @@ export function OverviewTabContent({ activeTab, tour, city_nights, tour_packages
                             {tour_terms?.important_notes && tour_terms?.important_notes.map((item: any, idx: number) => (
                                 <li key={idx} className="flex items-start gap-3 text-gray-700 text-sm md:text-base">
                                     <span className="text-red-700">
-                                        <ArrowRight className="w-4 h-4 text-amber-700 inline-block" />
+                                        <ArrowRight className="w-4 h-4 text-black inline-block" />
                                     </span>
                                     <span>{item}</span>
                                 </li>
@@ -175,7 +175,7 @@ export function OverviewTabContent({ activeTab, tour, city_nights, tour_packages
                             {payment_schedule && payment_schedule.map((item: any, idx: number) => (
                                 <li key={idx} className="flex items-start gap-3 text-gray-700 text-sm md:text-base">
                                     <span className="text-red-700">
-                                        <ArrowRight className="w-4 h-4 text-amber-700 inline-block" />
+                                        <ArrowRight className="w-4 h-4 text-black inline-block" />
                                     </span>
                                     <span>
                                         {idx === 0 ? (
@@ -190,7 +190,7 @@ export function OverviewTabContent({ activeTab, tour, city_nights, tour_packages
                             ))}
                             <li className="flex items-start gap-3 text-gray-700 text-sm md:text-base">
                                 <span className="text-red-700">
-                                    <ArrowRight className="w-4 h-4 text-amber-700 inline-block" />
+                                    <ArrowRight className="w-4 h-4 text-black inline-block" />
                                 </span>
                                 <span>
                                     Late Payments: May result in cancellation & loss of deposit
@@ -212,7 +212,7 @@ export function OverviewTabContent({ activeTab, tour, city_nights, tour_packages
                             }).map((item: any, index: number) => (
                                 <li key={index} className="flex items-start gap-3 text-gray-700 text-sm md:text-base">
                                     <span className="text-red-700">
-                                        <ArrowRight className="w-4 h-4 text-amber-700 inline-block" />
+                                        <ArrowRight className="w-4 h-4 text-black inline-block" />
                                     </span>
                                     <span>
                                         {item.days} days{" "}

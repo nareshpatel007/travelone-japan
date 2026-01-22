@@ -31,7 +31,7 @@ export default function StickyHomeHeader() {
                 <div className="fixed bottom-0 left-0 right-0 bg-white shadow-lg border-t border-black z-50">
                     <div className="hidden md:flex max-w-7xl mx-auto py-3 items-center justify-between">
                         <div className="flex items-center gap-8">
-                            <span className="text-gray-700 text-base font-medium">
+                            <span className="text-black text-base font-medium">
                                 <Link className="hover:underline" href="mailto:connect@travelone.io">connect@travelone.io</Link> | <Link className="hover:underline" href="tel:+14379669023">+1 437 966 9023</Link>
                             </span>
                         </div>

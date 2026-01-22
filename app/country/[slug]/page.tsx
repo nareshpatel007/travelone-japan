@@ -6,6 +6,14 @@ import HeroBannerSection from "@/components/destination/hero-banner";
 import CommonHeader from "@/components/header/common-header";
 import CommonFooter from "@/components/footer/common-footer";
 import IntroSection from "@/components/destination/intro-section";
+import RelatedTours from "@/components/tour_details/related-tours";
+import TrustedBy from "@/components/tour_details/trusted-by";
+import WhyTravelOne from "@/components/tour_details/why-travelone";
+import Reviews from "@/components/tour_details/reviews";
+import TopCities from "@/components/destination/top-cities";
+import ThreeBoxSection from "@/components/destination/three-box-section";
+import FAQsSection from "@/components/destination/faqs";
+import PageHelpful from "@/components/common/helpful";
 
 export default function TourDetailPage() {
     // Get slug
@@ -72,7 +80,19 @@ export default function TourDetailPage() {
                 ) : (
                     <>
                         <HeroBannerSection pageData={pageData} />
-                        <IntroSection />
+                        <IntroSection pageData={pageData} />
+                        <RelatedTours
+                            title={`Handcrafted ${pageData?.single?.name} Itineraries`}
+                            column={2}
+                            tours={pageData?.related_tours.slice(0, 2) || []}
+                        />
+                        <TrustedBy />
+                        <WhyTravelOne />
+                        <Reviews reviews={pageData?.reviews ?? []} />
+                        <TopCities country={pageData?.single?.name} cities={pageData?.top_cities ?? []} />
+                        <ThreeBoxSection pageData={pageData} />
+                        <FAQsSection pageData={pageData} />
+                        <PageHelpful />
                     </>
                 )}
 

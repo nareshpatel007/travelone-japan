@@ -89,32 +89,27 @@ export default function ThreeImageSplitSection({ destinationList }: Props) {
 
                 {/* ROW 2 — 4 IMAGE GRID */}
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 h-[300px] sm:h-[340px] lg:h-[380px]">
-                    {destinationList
-                        ?.slice()
-                        .reverse()
-                        .slice(0, 4)
-                        .map((item, index) => (
-                            <div
-                                key={index}
-                                className="relative overflow-hidden group cursor-pointer"
-                            >
-                                <Link href={`/country/${item.slug}`}>
-                                    <Image
-                                        src={item.featured_image || "/placeholder.svg"}
-                                        alt={item.name}
-                                        fill
-                                        className="object-cover transition-transform duration-700 group-hover:scale-105"
-                                    />
-                                    <div className="absolute bottom-5 left-5 right-5">
-                                        <p className="text-white text-sm sm:text-lg font-medium leading-snug">
-                                            {item.name}
-                                        </p>
-                                    </div>
-                                </Link>
-                            </div>
-                        ))}
+                    {destinationList.slice(3, 7).map((item, index) => (
+                        <div
+                            key={index}
+                            className="relative overflow-hidden group cursor-pointer"
+                        >
+                            <Link href={`/country/${item.slug}`}>
+                                <Image
+                                    src={item.featured_image || "/placeholder.svg"}
+                                    alt={item.name}
+                                    fill
+                                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                                />
+                                <div className="absolute bottom-5 left-5 right-5">
+                                    <p className="text-white text-sm sm:text-lg font-medium leading-snug">
+                                        {item.name}
+                                    </p>
+                                </div>
+                            </Link>
+                        </div>
+                    ))}
                 </div>
-
             </div>
         </section>
     );

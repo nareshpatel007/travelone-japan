@@ -44,7 +44,7 @@ export default function HeroTour({ isLoading, tour, packages, city_nights, selec
     };
 
     return (
-        <div className="w-full !bg-white">
+        <div className="w-full bg-white">
             <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 items-stretch">
                 <div className="relative overflow-hidden w-full h-[220px] sm:h-[300px] md:h-full lg:h-full">
                     <div
@@ -90,12 +90,12 @@ export default function HeroTour({ isLoading, tour, packages, city_nights, selec
                     </button>
                 </div>
                 <div className="flex flex-col h-full">
-                    <div className="bg-[#F6EFE6] text-white p-5 md:p-6">
+                    <div className="bg-[#FFF9EE] text-white p-5 md:p-6 border-b border-gray-200">
                         <div className="max-w-7xl mx-auto">
                             <div className="flex items-start justify-between">
                                 <div>
                                     <div className="flex items-center gap-2 flex-wrap">
-                                        <span className="text-black text-xl md:text-2xl leading-tight font-normal">
+                                        <span className="text-black text-xl md:text-2xl leading-tight font-medium">
                                             {tour?.name}
                                         </span>
                                         <span className="inline-block bg-[#ef2853] px-3 py-0.5 md:py-1 rounded text-sm font-semibold text-white">
@@ -123,7 +123,7 @@ export default function HeroTour({ isLoading, tour, packages, city_nights, selec
                             </div>
                         </div>
                     </div>
-                    <div className="bg-amber-50 p-5 md:p-6 flex-1">
+                    <div className="bg-[#FFF9EE]/50 p-5 md:p-6 flex-1">
                         <span className="text-md md:text-lg font-medium text-gray-900 mb-3 block">Select Your Package</span>
                         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
                             {packages.map((pkg: any) => (

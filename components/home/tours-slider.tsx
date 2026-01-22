@@ -24,11 +24,11 @@ export default function ToursSlider({ toursList }: Props) {
 
     return (
         <section className="py-6 px-5 md:px-10 py-10 md:py-10 space-y-10 bg-[#FFF9EE]">
-            <div className="space-y-2 text-center">
-                <h1 className="text-black text-3xl md:text-6xl leading-tight font-normal">
+            <div className="text-black space-y-2 text-center">
+                <h1 className="text-3xl md:text-6xl leading-tight font-normal">
                     Japan: The Precision of Tradition
                 </h1>
-                <span className="text-black text-md">
+                <span className="text-md">
                     Immerse yourself in Omotenashi reimagined through intricate logistics.
                 </span>
             </div>

@@ -62,7 +62,7 @@ export default function ThreeStepBanner({ onOpenChange }: Props) {
                     {sections.map((destination, index) => (
                         <div
                             key={index}
-                            className="flex items-center lg:flex-col lg:text-center bg-[#fcefdf] border border-gray-200 hover:bg-white cursor-pointer hover:border-[#fcefdf] p-5 lg:p-8 rounded-sm"
+                            className="flex items-center lg:flex-col lg:text-center bg-[#FFF9EE] border border-gray-300 hover:bg-white cursor-pointer hover:border-black p-5 lg:p-8"
                         >
                             <div className="space-y-2">
                                 <h3 className="font-semibold text-md md:text-lg">

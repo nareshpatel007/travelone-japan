@@ -11,8 +11,10 @@ import {
     Menu,
     Search,
     ShoppingCartIcon,
+    Twitter,
     User,
     X,
+    Youtube,
 } from "lucide-react";
 
 import { CommonPlanTripModal } from "../plan_your_trip/common-popup";
@@ -72,10 +74,35 @@ export default function CommonHeader() {
                         Welcome to TravelOne – Your Gateway to Unforgettable Journeys!
                     </span>
 
-                    <div className="flex items-center gap-4">
-                        <Instagram className="h-4 w-4" />
-                        <FacebookIcon className="h-4 w-4" />
-                        <Linkedin className="h-4 w-4" />
+                    <div className="flex items-center">
+                        <div className="flex items-center gap-5 text-xs font-semibold tracking-wide uppercase text-black">
+                            <Link
+                                href="https://www.youtube.com/@traveloneio"
+                                target="_blank"
+                                className="flex items-center gap-1.5 hover:underline underline-offset-4"
+                            >
+                                <Youtube className="w-4 h-4 text-red-600" />
+                                Youtube
+                            </Link>
+
+                            <Link
+                                href="https://www.instagram.com/travelone.io/"
+                                target="_blank"
+                                className="flex items-center gap-1.5 hover:underline underline-offset-4"
+                            >
+                                <Instagram className="w-3.5 h-3.5 text-pink-500" />
+                                Instagram
+                            </Link>
+
+                            <Link
+                                href="https://www.linkedin.com/company/travelone-technologies-inc/"
+                                target="_blank"
+                                className="flex items-center gap-1.5 hover:underline underline-offset-4"
+                            >
+                                <Linkedin className="w-3.5 h-3.5 text-blue-500" />
+                                LinkedIn
+                            </Link>
+                        </div>
 
                         <div className="ml-4 flex items-center gap-2 border-l pl-4">
                             <input
@@ -116,8 +143,6 @@ export default function CommonHeader() {
                         <Link className="hover:underline underline-offset-5 cursor-pointer" onMouseEnter={closeMegaMenu} href="/tour">Tours</Link>
                         <Link className="hover:underline underline-offset-5 cursor-pointer" onMouseEnter={closeMegaMenu} href="/about">About</Link>
                         <Link className="hover:underline underline-offset-5 cursor-pointer" onMouseEnter={closeMegaMenu} href="/contact">Contact</Link>
-                        <Link className="hover:underline underline-offset-5 cursor-pointer" onMouseEnter={closeMegaMenu} href="/blog">Blog</Link>
-                        <Link className="hover:underline underline-offset-5 cursor-pointer" onMouseEnter={closeMegaMenu} href="/booking">Booking</Link>
                     </nav>
 
                     {/* RIGHT ACTIONS */}
@@ -239,8 +264,6 @@ export default function CommonHeader() {
                         <Link href="/tour">Tours</Link>
                         <Link href="/about">About</Link>
                         <Link href="/contact">Contact</Link>
-                        <Link href="/blog">Blog</Link>
-                        <Link href="/booking">Booking</Link>
                     </nav>
                 </div>
             )}

@@ -18,6 +18,7 @@ import TourBannerSection from "@/components/home/tour-banner-section";
 import FullBannerSection from "@/components/home/full-banner";
 import BlogSlider from "@/components/home/blog-slider";
 import StickyHomeHeader from "@/components/header/sticky-home-header";
+import WhyTravelOne from "@/components/home/why-travelone";
 
 export default function HomePage() {
     // Define state
@@ -101,13 +102,12 @@ export default function HomePage() {
                 <LandingMarqueeSection setOpenPlanYourTripModel={setOpenPlanYourTripModel} />
                 <ThreeStepBanner onOpenChange={setOpenPlanYourTripModel} />
                 <ThreeImageShowcase destinationList={destinationList} />
-                <FeatureCard />
+                <WhyTravelOne />
                 <ToursSlider toursList={toursList} />
                 <GlobalFinancialSection />
                 <AboutTravelone />
                 <FullBannerSection onOpenChange={setOpenPlanYourTripModel} />
                 <BlogSlider blogList={blogList} />
-                <FooterCurveSection onOpenChange={setOpenPlanYourTripModel} />
                 <CommonFooter isStickyShow={true} />
                 <StickyHomeHeader />
                 <LandingPlanTripModal open={openPlanYourTripModel} onOpenChange={setOpenPlanYourTripModel} />

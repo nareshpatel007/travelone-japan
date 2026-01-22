@@ -86,7 +86,7 @@ export function TourFilters({
     return (
         <div className="pb-4">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4">
-                <span className="text-sm md:text-md text-gray-600">Showing {totalCount} tours</span>
+                <span className="text-sm md:text-base text-black">Showing {totalCount} tours</span>
                 <div className="flex items-center gap-3">
                     {isLoading && <Loader2 className="animate-spin h-5 w-5 text-gray-600" />}
                     <Sheet open={isSidebarFilterOpen} onOpenChange={setIsSidebarFilterOpen}>
@@ -227,8 +227,8 @@ export function TourFilters({
                             onClick={() => setSortDropdownOpen(!sortDropdownOpen)}
                             className="flex items-center gap-1 md:gap-2 border border-gray-300 rounded-md px-3 md:px-4 py-2.5 md:py-2.5 hover:border-gray-400 text-gray-600 transition-colors cursor-pointer"
                         >
-                            <span className="hidden sm:inline text-sm text-gray-600">Sort by:</span>
-                            <span className="text-xs sm:text-sm font-medium text-gray-600 sm:max-w-none truncate">
+                            <span className="hidden sm:inline text-sm text-black">Sort by:</span>
+                            <span className="text-xs sm:text-sm font-normal text-black sm:max-w-none truncate">
                                 {sortDisplay}
                             </span>
                             <ChevronDown
@@ -250,7 +250,7 @@ export function TourFilters({
                                                 setCurrentPage(1);
                                             }}
                                             className={`w-full text-left px-4 py-2.5 text-sm transition-colors cursor-pointer ${sortFilter === option?.value
-                                                ? "bg-[#1a2b49]/5 text-[#1a2b49] font-medium"
+                                                ? "bg-[#FFF9EE] text-black font-medium"
                                                 : "text-gray-700 hover:bg-gray-50"
                                                 }`}
                                         >

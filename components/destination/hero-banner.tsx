@@ -21,18 +21,22 @@ export default function HeroBannerSection({ pageData }: Props) {
                     alt={pageData?.single?.name || "Image"}
                     fill
                     priority
+                    draggable="false"
                     className="object-cover"
                 />
 
                 <div className="absolute inset-0 bg-black/10" />
 
                 <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 space-y-5">
-                    <h1 className="text-white text-4xl sm:text-5xl lg:text-6xl font-semibold leading-tight max-w-4xl">
-                        {pageData?.single?.extra_data?.hero_main_title}
-                    </h1>
+                    <div className="text-white space-y-2 text-center">
+                        <h1 className="text-3xl md:text-6xl leading-tight font-normal">
+                            {pageData?.single?.extra_data?.hero_main_title}
+                        </h1>
+                    </div>
+
                     <button
                         onClick={() => setOpenPlanYourTripModel(true)}
-                        className="bg-black text-white hover:bg-white hover:text-black border border-black font-semibold px-6 py-3 rounded-sm cursor-pointer transition"
+                        className="bg-black text-white hover:bg-white hover:text-black border border-black font-semibold px-7 py-3 rounded-sm cursor-pointer transition"
                     >
                         Plan Your Japan Trip
                     </button>

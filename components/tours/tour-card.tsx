@@ -64,7 +64,7 @@ export function TourCard({
                         </h3>
 
                         {/* ROUTE */}
-                        <div className="text-sm text-gray-800">
+                        <div className="text-sm text-black">
                             {cityNights.map((item: any, index: number) => (
                                 <span key={index} className="inline-flex items-center">
                                     {item.city_name}

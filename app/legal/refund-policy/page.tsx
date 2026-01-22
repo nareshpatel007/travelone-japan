@@ -52,7 +52,7 @@ export default function Page() {
                             </h2>
                             <ul className="space-y-2 list-inside">
                                 <li className="text-base font-normal text-black list-disc">
-                                    <b>Self-Service Cancellations:</b> Travelers may request cancellations via the travelone.io dashboard.
+                                    <b>Self-Service Cancellations:</b> Travelers may request cancellations via the <span className="text-amber-600">travelone.io</span> dashboard.
                                 </li>
                                 <li className="text-base font-normal text-black list-disc">
                                     <b>Variable Terms:</b> Because we orchestrate inventory from multiple global providers (Airlines, Hotels, and Local Ground Specialists), the specific refundability of your trip depends on the "Rate Rules" selected at the time of booking.

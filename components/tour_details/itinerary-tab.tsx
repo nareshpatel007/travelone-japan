@@ -30,16 +30,16 @@ export function ItineraryTab({ itineraryLoading, itineraryData }: Props) {
                     {itineraryData.map((dayData: any) => (
                         <div className="flex gap-3 md:gap-6">
                             <div className="flex-shrink-0 relative">
-                                <div className="w-10 h-10 rounded-full bg-[#1E1E1E] text-white flex items-center justify-center font-bold text-md">{dayData.day_no}</div>
+                                <div className="w-10 h-10 rounded-full bg-black text-white flex items-center justify-center font-bold text-md">{dayData.day_no}</div>
                             </div>
                             <div className="flex-1 bg-white border-2 border-gray-300 rounded-lg p-5 md:p-6">
-                                <span className="text-md md:text-lg font-semibold text-[#1E1E1E] mb-3 block uppercase">{dayData.title}</span>
+                                <span className="text-md md:text-lg font-semibold text-black mb-3 block uppercase">{dayData.title}</span>
 
                                 {dayData.itinerary && dayData.itinerary.map((activity: any, actIdx: number) => (
                                     <div key={actIdx} className="mb-3">
                                         {activity.type === 'attraction' ? (
                                             <div className="!mb-6">
-                                                <span className="text-[#C46A3A] text-base font-bold block mb-4">Activities:</span>
+                                                <span className="text-black text-base font-bold block mb-4">Activities:</span>
                                                 <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-2 gap-4 mb-6">
                                                     {activity.attractions.map((attraction: any, idx: number) => (
                                                         <div key={idx} className="flex flex-col">
@@ -63,8 +63,8 @@ export function ItineraryTab({ itineraryLoading, itineraryData }: Props) {
                                                 </div>
                                             </div>
                                         ) : (
-                                            <p className={`flex inline-block text-gray-700 text-sm md:text-base whitespace-pre-line`}>
-                                                <ArrowRight className="w-4 h-4 mr-2 text-amber-700 inline-block" />
+                                            <p className={`flex inline-block text-black text-sm md:text-base whitespace-pre-line`}>
+                                                <ArrowRight className="w-4 h-4 mr-2 text-black inline-block" />
                                                 {activity.title}
                                             </p>
                                         )}

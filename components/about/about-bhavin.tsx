@@ -4,7 +4,7 @@ import { FacebookIcon, Instagram, Linkedin, Youtube } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function AboutTravelone() {
+export default function AboutBhavin() {
     return (
         <div className="max-w-7xl mx-auto px-5 md:px-0 py-0 md:py-16 space-y-10">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
@@ -21,15 +21,15 @@ export default function AboutTravelone() {
                 </div>
                 <div className="text-center lg:text-left max-w-xl mx-auto space-y-6">
                     <h2 className="text-black text-3xl md:text-6xl leading-tight font-normal">
-                        A Vision for the $9T Industry.
+                        The Leadership
                     </h2>
 
                     <p className="text-black text-base sm:text-lg leading-relaxed">
-                        Hi, I’m Bhavin Vora. Founder & CEO.
+                        Bhavin Vora | Founder & CEO
                     </p>
 
                     <p className="text-black text-base sm:text-lg leading-relaxed">
-                        After spending two decades leading global strategy for travel industry icons, I realized that true luxury was missing a soul. I created TravelOne to change that. We use intelligence to orchestrate the world, but we use your persona to make it feel like home. Welcome to the future of travel.
+                        With nearly two decades of experience leading digital transformation for global retail icons like the Flamingo Transworld, Riya Travel, Bhavin Vora brings "Big Data" precision to the world of travel. An expert in AI Orchestration and consumer behavior, Bhavin founded TravelOne to solve the "Complexity Crisis" in the travel industry and bring high-scale personalization to North America.
                     </p>
 
                     {/* Social Icons */}

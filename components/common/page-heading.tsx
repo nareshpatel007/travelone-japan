@@ -11,7 +11,7 @@ export default function PageHeading({ main, sub }: Props) {
                 {main}
             </h1>
             {sub && (
-                <p className="text-gray-600 text-sm sm:text-base max-w-3xl mx-auto leading-relaxed">
+                <p className="text-black text-sm sm:text-base max-w-3xl mx-auto leading-relaxed">
                     {sub}
                 </p>
             )}

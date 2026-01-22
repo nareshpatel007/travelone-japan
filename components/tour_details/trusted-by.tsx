@@ -4,13 +4,13 @@ import Image from "next/image"
 
 export default function TrustedBy() {
     return (
-        <div className="bg-white py-10 md:py-16 px-5 md:px-0">
-            <div className="max-w-7xl mx-auto space-y-10">
+        <div className="bg-white py-10 md:py-20 px-5 md:px-0">
+            <div className="max-w-7xl mx-auto space-y-14">
                 <div className="text-center space-y-1">
                     <h3 className="text-black text-3xl md:text-5xl leading-tight font-normal">
                         Trusted By
                     </h3>
-                    <span className="text-sm md:text-lg text-[#C46A3A] font-medium">
+                    <span className="text-sm md:text-lg text-black">
                         We are trusted by leading tour operators
                     </span>
                 </div>

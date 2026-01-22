@@ -21,6 +21,7 @@ import { DownloadBrochure } from "@/components/tour_details/popup/download-broch
 import { EmailBrochure } from "@/components/tour_details/popup/email-brochure";
 import { BookingCart } from "@/components/tour_details/popup/booking-cart";
 import Skeleton from "react-loading-skeleton";
+import Link from "next/link";
 
 export default function TourDetailPage() {
     // Get slug
@@ -137,17 +138,19 @@ export default function TourDetailPage() {
                     <PageHelpful />
 
                     {showStickyFooter && (
-                        <div className="hidden md:block fixed bottom-0 left-0 right-0 !bg-gray-100 !shadow-lg !border-t !border-gray-300 !z-[9999]">
-                            <div className="!max-w-7xl !mx-auto !py-3 flex !items-center !justify-between">
+                        <div className="hidden md:block fixed bottom-0 left-0 right-0 bg-gray-100 shadow-lg border-t border-gray-300 z-50">
+                            <div className="max-w-7xl mx-auto py-3 flex items-center justify-between">
                                 <div className="flex items-center gap-4">
                                     <Image
                                         src={tourData?.tour?.featured_image || "/placeholder-500x500.svg"}
                                         alt={tourData?.tour?.name}
                                         width={70}
                                         height={50}
-                                        className="!object-cover !rounded"
+                                        className="object-cover rounded"
                                     />
-                                    <span className="text-gray-700 text-base font-medium">Call us now on +1 437 966 9023</span>
+                                    <span className="text-black text-base font-normal">
+                                        Call us now on <Link href="tel:+1-437-966-9023" className="hover:underline cursor-pointer">+1 437 966 9023</Link>
+                                    </span>
                                 </div>
 
                                 <div className="flex items-center gap-3">
@@ -175,7 +178,7 @@ export default function TourDetailPage() {
                 <DownloadBrochure tour={tourData?.tour ?? {}} open={openDownloadBrochurePopup} onOpenChange={setOpenDownloadBrochurePopup} />
                 <EmailBrochure open={openEmailBrochurePopup} onOpenChange={setOpenEmailBrochurePopup} />
 
-                <CommonFooter />
+                <CommonFooter isStickyShow={true} />
             </>}
         </body>
     );
