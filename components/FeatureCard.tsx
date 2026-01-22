@@ -26,7 +26,7 @@ const features = [
 
 export default function FeatureCard() {
     return (
-        <div className="py-12 max-w-7xl mx-auto px-5 md:px-0 space-y-10">
+        <div className="max-w-7xl mx-auto px-5 md:px-0 py-0 md:py-14 space-y-10">
             {/* Heading */}
             <div className="text-center space-y-2">
                 <h1 className="text-black text-3xl md:text-6xl leading-tight font-normal">
