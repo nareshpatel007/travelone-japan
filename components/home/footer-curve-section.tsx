@@ -11,25 +11,25 @@ export default function FooterCurveSection({ onOpenChange }: Props) {
             <div className="relative z-10 max-w-6xl mb-[-100px] md:mb-[-140px] mx-auto pt-24 md:pt-32 mb-6">
                 <div className="hidden md:block absolute left-4 md:left-29 top-16 md:top-77">
                     <img
-                        src="https://ik.imagekit.io/288weifiq/nextjs/japan/beautiful-landscape-mountain-fuji-with-chureito-pagoda-around-maple-leaf-tree-autumn-season_74190-9895.avif"
+                        src="https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/09/Landing-marquee-img-5.png"
                         alt="Image"
-                        className="w-24 h-32 md:w-40 md:h-40 rounded-full object-cover"
+                        className="w-24 h-32 md:w-40 md:h-50 object-contain"
                     />
                 </div>
 
                 <div className="hidden md:block absolute right-4 md:right-21 top-12 md:top-30">
                     <img
-                        src="https://ik.imagekit.io/288weifiq/nextjs/indonesia/woman-standing-pond-with-colorful-fish-tirta-gangga-water-palace-bali-indonesia_335224-358.avif"
+                        src="https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/09/Landing-marquee-img-6.png"
                         alt="Image"
-                        className="w-24 h-24 md:w-54 md:h-50 rounded-full object-cover"
+                        className="w-24 h-24 md:w-57 md:h-70 object-contain"
                     />
                 </div>
 
                 <div className="flex justify-center">
                     <img
-                        src="https://ik.imagekit.io/288weifiq/nextjs/indonesia/young-woman-standing-temple-gates-lempuyang-luhur-temple-bali-indonesia-vintage-tone_335224-365.avif"
+                        src="https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/09/Landing-marquee-img-7.png"
                         alt="Image"
-                        className="w-56 h-80 md:w-110 md:h-[580px] rounded-full object-cover"
+                        className="w-56 h-80 md:w-110 md:h-[580px] object-contain"
                     />
                 </div>
             </div>

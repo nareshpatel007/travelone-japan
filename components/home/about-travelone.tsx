@@ -24,11 +24,11 @@ export default function AboutTravelone() {
                         A Vision for the $9T Industry.
                     </h2>
 
-                    <p className="text-gray-600 text-base sm:text-lg leading-relaxed">
+                    <p className="text-black text-base sm:text-lg leading-relaxed">
                         Hi, I’m Bhavin Vora. Founder & CEO.
                     </p>
 
-                    <p className="text-gray-600 text-base sm:text-lg leading-relaxed">
+                    <p className="text-black text-base sm:text-lg leading-relaxed">
                         After spending two decades leading global strategy for travel industry icons, I realized that true luxury was missing a soul. I created TravelOne to change that. We use intelligence to orchestrate the world, but we use your persona to make it feel like home. Welcome to the future of travel.
                     </p>
 
