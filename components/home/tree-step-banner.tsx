@@ -28,7 +28,7 @@ const sections: DestinationCard[] = [
 
 export default function ThreeStepBanner({ onOpenChange }: Props) {
     return (
-        <div className="py-6 px-5 md:px-10 py-10 space-y-10">
+        <div className="py-6 px-5 md:px-10 py-14 space-y-10">
             <div className="space-y-2 text-center">
                 <h1 className="text-black text-3xl md:text-6xl leading-tight font-normal">
                     Start with Who, Not Where.

@@ -25,7 +25,7 @@ export default function AboutTravelone() {
                     </h2>
 
                     <p className="text-gray-600 text-base sm:text-lg leading-relaxed">
-                        Decades of leadership redefining modern travel.
+                        Hi, I’m Bhavin Vora. Founder & CEO.
                     </p>
 
                     <p className="text-gray-600 text-base sm:text-lg leading-relaxed">
