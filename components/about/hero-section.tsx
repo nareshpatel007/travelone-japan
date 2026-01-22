@@ -17,7 +17,7 @@ export default function HeroSection() {
                     <h1 className="text-3xl md:text-6xl leading-tight font-normal">
                         The Global Standard for Persona-Led Travel Orchestration.
                     </h1>
-                    <span className="text-md">
+                    <span className="text-md flex max-w-2xl mx-auto">
                         We are a technology-driven travel platform that records traveler personas to deliver 100% personalized global journeys.
                     </span>
                 </div>
