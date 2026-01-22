@@ -4,19 +4,19 @@ import { CheckCircle, Clock10, Flag, MapPin } from "lucide-react";
 const features = [
     {
         icon: MapPin,
-        text: "Persona-Driven Mapping Define your travel DNA for a perfectly synchronized journey.",
+        text: "Recorded Personas: Your unique travel DNA is recorded to automate perfect planning.",
     },
     {
         icon: Clock10,
-        text: "Agentic AI Orchestration Silent real-time recovery that resolves friction before it begins.",
+        text: "100% Personalized: Every itinerary is built from scratch based on your recorded data.",
     },
     {
         icon: Flag,
-        text: "Strategic Intelligence Zones Exclusive expert access in Japan, Kenya, and the Nordic Circle.",
+        text: "Unified Payments: One secure transaction managed by us as your Merchant of Record.",
     },
     {
         icon: CheckCircle,
-        text: "Merchant of Record Trust One secure transaction with total North American accountability.",
+        text: "Total Accountability: We manage every detail of your journey from departure to return.",
     },
 ];
 

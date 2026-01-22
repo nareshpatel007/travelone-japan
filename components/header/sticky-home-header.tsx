@@ -28,9 +28,8 @@ export default function StickyHomeHeader() {
     return (
         <>
             {showStickyFooter && (
-                <div className="fixed bottom-0 left-0 right-0 bg-gray-100 shadow-lg border-t border-gray-300 z-50">
+                <div className="fixed bottom-0 left-0 right-0 bg-white shadow-lg border-t border-black z-50">
                     <div className="hidden md:flex max-w-7xl mx-auto py-3 items-center justify-between">
-                        {/* LEFT SIDE */}
                         <div className="flex items-center gap-8">
                             <Link href="/">
                                 <Image
@@ -40,16 +39,6 @@ export default function StickyHomeHeader() {
                                     height={100}
                                 />
                             </Link>
-
-                            <nav className="flex items-center gap-8 font-medium text-gray-900">
-                                <Link className="hover:underline underline-offset-5 cursor-pointer" href="/">Home</Link>
-                                <Link className="hover:underline underline-offset-5 cursor-pointer" href="/country">Destinations</Link>
-                                <Link className="hover:underline underline-offset-5 cursor-pointer" href="/tour">Tours</Link>
-                                <Link className="hover:underline underline-offset-5 cursor-pointer" href="/about">About</Link>
-                                <Link className="hover:underline underline-offset-5 cursor-pointer" href="/contact">Contact</Link>
-                                <Link className="hover:underline underline-offset-5 cursor-pointer" href="/blog">Blog</Link>
-                                <Link className="hover:underline underline-offset-5 cursor-pointer" href="/booking">Booking</Link>
-                            </nav>
                         </div>
 
                         {/* RIGHT SIDE */}

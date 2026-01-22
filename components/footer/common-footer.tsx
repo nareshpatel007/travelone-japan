@@ -141,7 +141,7 @@ export default function CommonFooter() {
                 </div>
 
                 {/* COPYRIGHT */}
-                <div className="text-center text-gray-900 text-sm md:text-base border-t border-gray-400 pt-8">
+                <div className="text-center text-gray-900 text-sm md:text-base border-t border-gray-400 pt-8 mb-10">
                     © Copyright {new Date().getFullYear()} TravelOne Technologies Inc. | All Rights Reserved.
                 </div>
             </div>
