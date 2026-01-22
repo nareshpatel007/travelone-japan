@@ -71,7 +71,7 @@ export default function CommonHeader() {
             <div className="hidden md:block bg-[#FBF2E3] text-sm">
                 <div className="px-4 h-10 flex items-center justify-between">
                     <span className="font-medium text-gray-800">
-                        Welcome to TravelOne – Your Gateway to Unforgettable Journeys!
+                        TravelOne — A Global Platform Synchronizing Your Journey to Your Persona.
                     </span>
 
                     <div className="flex items-center">
