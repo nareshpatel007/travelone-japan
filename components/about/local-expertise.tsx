@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function LocalExpertise() {
     return (
-        <section className="grid grid-cols-1 md:grid-cols-3 gap-4 px-4 sm:px-6 lg:px-8 py-8">
+        <section className="grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr] gap-4 px-4 sm:px-6 lg:px-8 py-8">
             <div className="flex items-center px-6 sm:px-10 lg:px-16 py-14">
                 <div className="max-w-2xl space-y-6">
                     <div className="space-y-6">
@@ -16,11 +16,11 @@ export default function LocalExpertise() {
                         </span>
                     </div>
 
-                    <p className="text-black text-base sm:text-lg">Intelligence: We don't just book; we orchestrate using local masters in our vetted destinations.</p>
+                    <p className="text-black text-base sm:text-lg"><b>Intelligence:</b> We don't just book; we orchestrate using local masters in our vetted destinations.</p>
 
-                    <p className="text-black text-base sm:text-lg">Security: Headquartered in North America, providing a secure legal and financial framework.</p>
+                    <p className="text-black text-base sm:text-lg"><b>Security:</b> Headquartered in North America, providing a secure legal and financial framework.</p>
 
-                    <p className="text-black text-base sm:text-lg">Compliance: Fully registered and compliant with international travel and tax regulations.</p>
+                    <p className="text-black text-base sm:text-lg"><b>Compliance:</b> Fully registered and compliant with international travel and tax regulations.</p>
                 </div>
             </div>
             <div className="flex items-center justify-center">

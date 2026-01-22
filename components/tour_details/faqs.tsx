@@ -29,7 +29,7 @@ export default function FAQsList({ data }: Props) {
                                 onClick={() => setExpandedIndex(expandedIndex === index ? null : index)}
                                 className="w-full py-6 px-0 flex items-center justify-between border-b border-gray-300 hover:bg-amber-50/50 transition-colors duration-200 text-left group cursor-pointer"
                             >
-                                <span className="text-md md:text-lg font-normal text-black pr-4 flex-1 group-hover:text-[#1E1E1E] block">
+                                <span className="text-md md:text-lg font-normal text-black pr-4 flex-1 block">
                                     {item[0]}
                                 </span>
                                 <ChevronDown

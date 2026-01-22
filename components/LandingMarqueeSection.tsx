@@ -3,6 +3,7 @@
 import VerticalSlider from "./VerticalMarquee";
 import MobileSlider from "./MobileSlider";
 import HomeHeader from "./header/home-header";
+import Link from "next/link";
 
 interface Props {
     setOpenPlanYourTripModel: React.Dispatch<React.SetStateAction<boolean>>;
@@ -52,11 +53,13 @@ export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Prop
                                 Begin Your Persona Mapping
                             </button>
 
-                            <button
-                                className="border border-black text-black px-4 py-2.5 text-sm uppercase tracking-wide font-semibold hover:bg-black hover:text-white transition cursor-pointer"
-                            >
-                                Explore Signature Collections
-                            </button>
+                            <Link href="/country">
+                                <button
+                                    className="border border-black text-black px-4 py-2.5 text-sm uppercase tracking-wide font-semibold hover:bg-black hover:text-white transition cursor-pointer"
+                                >
+                                    Explore Signature Collections
+                                </button>
+                            </Link>
                         </div>
                     </div>
                 </div>

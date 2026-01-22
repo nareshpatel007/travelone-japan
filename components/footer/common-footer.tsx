@@ -75,7 +75,7 @@ export default function CommonFooter({ isStickyShow = false }: Props) {
                                     <Link href="/country" className="hover:underline underline-offset-4">Global Destinations</Link>
                                 </li>
                                 <li>
-                                    <Link href="/blog" className="hover:underline underline-offset-4">News & Press</Link>
+                                    <Link href="/blog" className="hover:underline underline-offset-4">Blog</Link>
                                 </li>
                                 <li>
                                     <Link href="/careers" className="hover:underline underline-offset-4">Careers</Link>

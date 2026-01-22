@@ -16,11 +16,11 @@ export default function StartWithWho() {
                         </span>
                     </div>
 
-                    <p className="text-black text-base sm:text-lg">Recorded Data: We capture your unique travel DNA to eliminate the guesswork in planning.</p>
+                    <p className="text-black text-base sm:text-lg"><b>Recorded Data:</b> We capture your unique travel DNA to eliminate the guesswork in planning.</p>
 
-                    <p className="text-black text-base sm:text-lg">Total Personalization: Every journey is built from scratch based on your recorded persona.</p>
+                    <p className="text-black text-base sm:text-lg"><b>Total Personalization:</b> Every journey is built from scratch based on your recorded persona.</p>
 
-                    <p className="text-black text-base sm:text-lg">Global Accountability: As your Merchant of Record, we manage all financial and logistical liability.</p>
+                    <p className="text-black text-base sm:text-lg"><b>Global Accountability:</b> As your Merchant of Record, we manage all financial and logistical liability.</p>
                 </div>
             </div>
             <div className="flex items-center justify-center">

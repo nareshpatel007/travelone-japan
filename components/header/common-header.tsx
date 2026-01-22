@@ -137,7 +137,7 @@ export default function CommonHeader() {
                                 className="hover:underline underline-offset-5 cursor-pointer"
                                 onMouseEnter={openMegaMenu}
                             >
-                                Destination
+                                Destinations
                             </button>
                         </Link>
                         <Link className="hover:underline underline-offset-5 cursor-pointer" onMouseEnter={closeMegaMenu} href="/tour">Tours</Link>
@@ -260,7 +260,7 @@ export default function CommonHeader() {
 
                     <nav className="flex flex-col gap-6 p-6 text-lg font-medium">
                         <Link href="/">Home</Link>
-                        <Link href="/country">Destination</Link>
+                        <Link href="/country">Destinations</Link>
                         <Link href="/tour">Tours</Link>
                         <Link href="/about">About</Link>
                         <Link href="/contact">Contact</Link>
