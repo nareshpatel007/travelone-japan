@@ -5,7 +5,12 @@ import { ChevronUp } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-export default function CommonFooter() {
+// Define props
+type Props = {
+    isStickyShow?: boolean
+};
+
+export default function CommonFooter({ isStickyShow = false }: Props) {
     // Define state
     const [isVisible, setIsVisible] = useState(false);
 
@@ -23,17 +28,19 @@ export default function CommonFooter() {
 
     return (
         <footer className="bg-[#fcefdf] text-black">
-            <div className="max-w-7xl mx-auto px-6 py-16 space-y-10">
-                <div className="order-2 flex flex-col items-center text-center">
-                    <Image
-                        alt="Logo"
-                        width={220}
-                        height={100}
-                        draggable={false}
-                        src="https://ik.imagekit.io/288weifiq/nextjs/logo.webp"
-                    />
-
-                    <div className="w-full max-w-md my-8">
+            <div className="max-w-7xl mx-auto px-6 py-16 space-y-14">
+                <div className="order-2 flex flex-col items-center space-y-6 text-center">
+                    <div>
+                        <Image
+                            alt="Logo"
+                            width={220}
+                            height={100}
+                            draggable={false}
+                            src="https://ik.imagekit.io/288weifiq/nextjs/logo.webp"
+                        />
+                        <span className="text-base">Subscribe for trending deals.</span>
+                    </div>
+                    <div className="w-full max-w-md">
                         <div className="flex">
                             <input
                                 type="email"
@@ -141,7 +148,7 @@ export default function CommonFooter() {
                 </div>
 
                 {/* COPYRIGHT */}
-                <div className="text-center text-gray-900 text-sm md:text-base border-t border-gray-400 pt-8 mb-10">
+                <div className={`text-center text-gray-900 text-sm md:text-base border-t border-gray-400 pt-8 ${isStickyShow ? 'mb-10' : ''}`}>
                     © Copyright {new Date().getFullYear()} TravelOne Technologies Inc. | All Rights Reserved.
                 </div>
             </div>

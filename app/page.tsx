@@ -109,7 +109,7 @@ export default function HomePage() {
                 <BlogSlider blogList={blogList} />
                 <FooterCurveSection onOpenChange={setOpenPlanYourTripModel} />
                 <LandingPlanTripModal open={openPlanYourTripModel} onOpenChange={setOpenPlanYourTripModel} />
-                <CommonFooter />
+                <CommonFooter isStickyShow={true} />
                 <StickyHomeHeader />
             </>}
         </body>

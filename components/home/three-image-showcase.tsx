@@ -92,7 +92,7 @@ export default function ThreeImageSplitSection({ destinationList }: Props) {
                     {destinationList
                         ?.slice()
                         .reverse()
-                        .slice(3, 7)
+                        .slice(0, 4)
                         .map((item, index) => (
                             <div
                                 key={index}
