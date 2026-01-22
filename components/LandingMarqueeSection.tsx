@@ -9,34 +9,34 @@ interface Props {
 }
 
 const images1 = [
-    "https://ik.imagekit.io/288weifiq/nextjs/slider_1.webp",
-    "https://ik.imagekit.io/288weifiq/nextjs/slider_1.webp",
+    "https://wanderaway.qodeinteractive.com/wp-content/uploads/2024/01/Landing-marquee-img-01.png",
+    "https://wanderaway.qodeinteractive.com/wp-content/uploads/2024/01/Landing-marquee-img-01.png",
 ];
 
 const images2 = [
-    "https://ik.imagekit.io/288weifiq/nextjs/slider_2.webp",
-    "https://ik.imagekit.io/288weifiq/nextjs/slider_2.webp",
+    "https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/09/Landing-marquee-img-2.png",
+    "https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/09/Landing-marquee-img-2.png",
 ];
 
 const images3 = [
-    "https://ik.imagekit.io/288weifiq/nextjs/slider_3.webp",
-    "https://ik.imagekit.io/288weifiq/nextjs/slider_3.webp",
+    "https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/09/Landing-marquee-img-2.png",
+    "https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/09/Landing-marquee-img-2.png",
 ];
 
 const images4 = [
-    "https://ik.imagekit.io/288weifiq/nextjs/slider_4.webp",
-    "https://ik.imagekit.io/288weifiq/nextjs/slider_4.webp",
+    "https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/09/Landing-marquee-img-4.png",
+    "https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/09/Landing-marquee-img-4.png",
 ];
 
 export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Props) {
     return (
         <>
             {/* For Desktop */}
-            <section className="hidden md:grid min-h-screen grid-cols-1 md:grid-cols-[45%_55%] lg:grid-cols-2 bg-[#FFF9EE]">
+            <section className="hidden md:grid min-h-screen grid-cols-1 bg-[#FFF9EE] md:grid-cols-[45%_55%]">
                 <div className="flex flex-col">
                     <HomeHeader />
                     <div className="flex flex-1 items-center px-20">
-                        <div className="max-w-lg space-y-6 text-center md:text-left">
+                        <div className="max-w-xl space-y-6 text-center md:text-left">
                             <h1 className="text-black text-3xl lg:text-6xl leading-tight font-normal">
                                 We Record Your Traveler Persona to Create Personalized Travel Plans.
                             </h1>
@@ -47,7 +47,7 @@ export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Prop
 
                             <button
                                 onClick={() => setOpenPlanYourTripModel(true)}
-                                className="bg-black text-white px-4 py-3 text-sm uppercase border border-black tracking-wide font-semibold hover:bg-transparent hover:text-black transition cursor-pointer"
+                                className="bg-black text-white px-4 py-2.5 text-sm uppercase border border-black tracking-wide font-semibold hover:bg-transparent hover:text-black transition cursor-pointer mr-5"
                             >
                                 Begin Your Persona Mapping
                             </button>
