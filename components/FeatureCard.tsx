@@ -4,19 +4,23 @@ import { CheckCircle, Clock10, Flag, MapPin } from "lucide-react";
 const features = [
     {
         icon: MapPin,
-        text: "Recorded Personas: Your unique travel DNA is recorded to automate perfect planning.",
+        heading: "Recorded Personas",
+        text: "Your unique travel DNA is recorded to automate perfect planning.",
     },
     {
         icon: Clock10,
-        text: "100% Personalized: Every itinerary is built from scratch based on your recorded data.",
+        heading: "100% Personalized",
+        text: "Every itinerary is built from scratch based on your recorded data.",
     },
     {
         icon: Flag,
-        text: "Unified Payments: One secure transaction managed by us as your Merchant of Record.",
+        heading: "Unified Payments",
+        text: "One secure transaction managed by us as your Merchant of Record.",
     },
     {
         icon: CheckCircle,
-        text: "Total Accountability: We manage every detail of your journey from departure to return.",
+        heading: "Total Accountability",
+        text: "We manage every detail of your journey from departure to return.",
     },
 ];
 
@@ -57,8 +61,11 @@ export default function FeatureCard() {
                                 <Icon className="relative z-10 w-8 h-8 text-black" />
                             </div>
 
-                            <div className="qodef-m-content">
-                                <p className="qodef-m-text !text-black">
+                            <div className="space-y-2">
+                                <h3 className="text-black font-semibold">
+                                    {feature.heading}
+                                </h3>
+                                <p className="text-black">
                                     {feature.text}
                                 </p>
                             </div>
