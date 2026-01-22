@@ -35,7 +35,7 @@ export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Prop
             <section className="hidden md:grid min-h-screen grid-cols-1 bg-[#FFF9EE] md:grid-cols-[50%_50%]">
                 <div className="flex flex-col">
                     <HomeHeader />
-                    <div className="flex flex-1 items-center px-20">
+                    <div className="flex flex-1 items-center px-12">
                         <div className="max-w-xl space-y-6 text-center md:text-left">
                             <h1 className="text-black text-3xl lg:text-6xl leading-tight font-normal">
                                 We Record Your Traveler Persona to Create Personalized Travel Plans.
