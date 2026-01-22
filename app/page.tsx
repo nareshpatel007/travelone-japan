@@ -99,8 +99,8 @@ export default function HomePage() {
             {ready && <>
                 <HomeMobileHeader />
                 <LandingMarqueeSection setOpenPlanYourTripModel={setOpenPlanYourTripModel} />
-                <ThreeImageShowcase destinationList={destinationList} />
                 <ThreeStepBanner onOpenChange={setOpenPlanYourTripModel} />
+                <ThreeImageShowcase destinationList={destinationList} />
                 <ToursSlider toursList={toursList} />
                 <GlobalFinancialSection />
                 <FeatureCard />

@@ -14,16 +14,16 @@ interface DestinationCard {
 
 const destinations: DestinationCard[] = [
     {
-        heading: "Step: 01 - The Mapping",
-        text: 'Complete your Traveler Persona. Tell us about your "Local Soul" preferences and your logistical non-negotiables.',
+        heading: "Step 01: Record Your Persona",
+        text: 'Complete our digital mapping to record your specific values, pace, and travel non-negotiables.',
     },
     {
-        heading: "Step: 02 - The Match",
-        text: "Our Agentic AI scans our Global Strategic Zones to find the experiences that match your travel DNA with 99.9% accuracy.",
+        heading: "Step 02: Generate Personalized Plans",
+        text: "Our platform analyzes your recorded persona to create 100% personalized itineraries in our strategic zones.",
     },
     {
-        heading: "Step: 03 - The Orchestration",
-        text: "Once you select your collection, we handle everything. As your Merchant of Record, we manage the money, the logistics, and the real-time recovery."
+        heading: "Step 03: Real-Time Orchestration",
+        text: "We manage every logistical detail and payment as your Merchant of Record with real-time support."
     },
 ];
 

@@ -41,7 +41,7 @@ export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Prop
                                 We Record Your Traveler Persona to Create Personalized Travel Plans.
                             </h1>
 
-                            <p className="text-black text-base sm:text-lg leading-relaxed md:mx-0">
+                            <p className="text-black text-base sm:text-lg leading-relaxed">
                                 Our platform delivers 100% personalized journeys by synchronizing your unique persona with real-time global orchestration.
                             </p>
 
