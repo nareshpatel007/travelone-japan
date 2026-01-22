@@ -33,7 +33,7 @@ export default function FooterCurveSection({ onOpenChange }: Props) {
                     />
                 </div>
             </div>
-            <section className="relative w-full overflow-hidden pt-34 pb-10 md:pt-40">
+            <section className="relative w-full overflow-hidden pt-34 pb-0 md:pt-40">
                 <div
                     className="absolute inset-0 bg-no-repeat bg-top bg-cover"
                     style={{ backgroundImage: "url('https://ik.imagekit.io/288weifiq/landing-japan/Landing-marquee-img-9.png')" }}

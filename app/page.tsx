@@ -101,16 +101,16 @@ export default function HomePage() {
                 <LandingMarqueeSection setOpenPlanYourTripModel={setOpenPlanYourTripModel} />
                 <ThreeStepBanner onOpenChange={setOpenPlanYourTripModel} />
                 <ThreeImageShowcase destinationList={destinationList} />
+                <FeatureCard />
                 <ToursSlider toursList={toursList} />
                 <GlobalFinancialSection />
-                <FeatureCard />
                 <AboutTravelone />
                 <FullBannerSection onOpenChange={setOpenPlanYourTripModel} />
                 <BlogSlider blogList={blogList} />
                 <FooterCurveSection onOpenChange={setOpenPlanYourTripModel} />
-                <LandingPlanTripModal open={openPlanYourTripModel} onOpenChange={setOpenPlanYourTripModel} />
                 <CommonFooter isStickyShow={true} />
                 <StickyHomeHeader />
+                <LandingPlanTripModal open={openPlanYourTripModel} onOpenChange={setOpenPlanYourTripModel} />
             </>}
         </body>
     );

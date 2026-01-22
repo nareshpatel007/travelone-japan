@@ -28,7 +28,7 @@ export default function CommonFooter({ isStickyShow = false }: Props) {
 
     return (
         <footer className="bg-[#fcefdf] text-black">
-            <div className="max-w-7xl mx-auto px-6 py-16 space-y-14">
+            <div className={`max-w-7xl mx-auto px-6 space-y-14 ${isStickyShow ? 'py-12' : 'py-16'}`}>
                 <div className="order-2 flex flex-col items-center space-y-6 text-center">
                     <div>
                         <Image
