@@ -17,6 +17,7 @@ import ToursSlider from "@/components/home/tours-slider";
 import TourBannerSection from "@/components/home/tour-banner-section";
 import FullBannerSection from "@/components/home/full-banner";
 import BlogSlider from "@/components/home/blog-slider";
+import StickyHomeHeader from "@/components/header/sticky-home-header";
 
 export default function HomePage() {
     // Define state
@@ -98,9 +99,7 @@ export default function HomePage() {
             {ready && <>
                 <HomeMobileHeader />
                 <LandingMarqueeSection setOpenPlanYourTripModel={setOpenPlanYourTripModel} />
-                {/* <TravelPresetSection /> */}
                 <ThreeImageShowcase destinationList={destinationList} />
-                {/* <DestinationSection destinationList={destinationList} /> */}
                 <ThreeStepBanner onOpenChange={setOpenPlanYourTripModel} />
                 <ToursSlider toursList={toursList} />
                 <GlobalFinancialSection />
@@ -111,6 +110,7 @@ export default function HomePage() {
                 <FooterCurveSection onOpenChange={setOpenPlanYourTripModel} />
                 <LandingPlanTripModal open={openPlanYourTripModel} onOpenChange={setOpenPlanYourTripModel} />
                 <CommonFooter />
+                <StickyHomeHeader />
             </>}
         </body>
     );

@@ -6,6 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 export default function CommonFooter() {
+    // Define state
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
@@ -32,27 +33,27 @@ export default function CommonFooter() {
                         src="https://ik.imagekit.io/288weifiq/nextjs/logo.webp"
                     />
 
-                    <div className="w-full max-w-xs my-8">
+                    <div className="w-full max-w-md my-8">
                         <div className="flex">
                             <input
                                 type="email"
                                 placeholder="Email"
                                 autoComplete="off"
-                                className="flex-1 px-4 py-3 bg-white text-black text-sm focus:outline-none"
+                                className="flex-1 px-4 py-3 border border-gray-500 bg-white text-black text-sm focus:outline-none"
                             />
                             <button
                                 type="button"
-                                className="px-6 py-3 bg-black text-white text-sm font-semibold hover:bg-gray-800 transition"
+                                className="px-6 py-3 uppercase bg-black text-white text-sm font-semibold hover:bg-black/90 cursor-pointer transition"
                             >
-                                SEND
+                                Submit
                             </button>
                         </div>
                     </div>
                 </div>
-                <div className="grid grid-cols-1 gap-12 md:grid-cols-4 mb-12">
+                <div className="grid grid-cols-2 gap-12 md:grid-cols-4 mb-12">
                     {/* MENU 1 */}
-                    <div className="order-1 text-center md:text-left">
-                        <h3 className="font-semibold text-lg mb-6">Company</h3>
+                    <div className='space-y-6'>
+                        <h3 className="font-semibold text-lg">Company</h3>
                         <ul className="space-y-3">
                             <li>
                                 <Link href="/about" className="hover:underline underline-offset-4">About</Link>
@@ -73,8 +74,8 @@ export default function CommonFooter() {
                     </div>
 
                     {/* MENU 2 */}
-                    <div className="order-1 text-center md:text-left">
-                        <h3 className="font-semibold text-lg mb-6">The Ecosystem</h3>
+                    <div className='space-y-6'>
+                        <h3 className="font-semibold text-lg">The Ecosystem</h3>
                         <ul className="space-y-3">
                             <li>
                                 <Link href="https://travelone.io" className="hover:underline underline-offset-4">Traveler Portal</Link>
@@ -95,8 +96,8 @@ export default function CommonFooter() {
                     </div>
 
                     {/* MENU 3 */}
-                    <div className="order-1 text-center md:text-left">
-                        <h3 className="font-semibold text-lg mb-6">Support</h3>
+                    <div className='space-y-6'>
+                        <h3 className="font-semibold text-lg">Support</h3>
                         <ul className="space-y-3">
                             <li>
                                 <Link href="#" className="hover:underline underline-offset-4">Help Centre</Link>
@@ -117,8 +118,8 @@ export default function CommonFooter() {
                     </div>
 
                     {/* MENU 4 */}
-                    <div className="order-1 text-center md:text-left">
-                        <h3 className="font-semibold text-lg mb-6">Legal & Compliance</h3>
+                    <div className='space-y-6'>
+                        <h3 className="font-semibold text-lg">Legal & Compliance</h3>
                         <ul className="space-y-3">
                             <li>
                                 <Link href="#" className="hover:underline underline-offset-4">Terms of Service</Link>

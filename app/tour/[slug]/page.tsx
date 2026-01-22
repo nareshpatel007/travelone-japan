@@ -31,7 +31,7 @@ export default function TourDetailPage() {
     const [ready, setReady] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const [tourData, setTourData] = useState<any>({});
-    const [selectedPackage, setSelectedPackage] = useState(2);
+    const [selectedPackage, setSelectedPackage] = useState(1);
     const [showStickyFooter, setShowStickyFooter] = useState(false);
     const [openCustomizeTripPopup, setOpenCustomizeTripPopup] = useState(false);
     const [openDownloadBrochurePopup, setOpenDownloadBrochurePopup] = useState(false);

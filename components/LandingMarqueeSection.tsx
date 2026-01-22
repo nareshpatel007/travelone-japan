@@ -38,11 +38,11 @@ export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Prop
                     <div className="flex flex-1 items-center px-20">
                         <div className="max-w-lg space-y-6 text-center md:text-left">
                             <h1 className="text-black text-3xl lg:text-6xl leading-tight font-normal">
-                                Where Your Unique Persona Meets the World’s Greatest Destinations.
+                                We Record Your Traveler Persona to Create Personalized Travel Plans.
                             </h1>
 
                             <p className="text-black text-base sm:text-lg leading-relaxed md:mx-0">
-                                TravelOne transcends traditional booking to create a living, breathing journey synchronized in real-time to your unique Traveler Persona.
+                                Our platform delivers 100% personalized journeys by synchronizing your unique persona with real-time global orchestration.
                             </p>
 
                             <button
@@ -84,11 +84,11 @@ export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Prop
                     <div className="flex flex-1 items-center justify-center px-6 sm:px-8 lg:px-12">
                         <div className="max-w-xl space-y-6 text-center md:text-left">
                             <h1 className="text-black text-3xl leading-tight font-normal">
-                                Where Your Unique Persona Meets the World’s Greatest Destinations.
+                                We Record Your Traveler Persona to Create Personalized Travel Plans.
                             </h1>
 
                             <p className="text-black text-base sm:text-lg leading-relaxed max-w-md mx-auto md:mx-0">
-                                TravelOne transcends traditional booking to create a living, breathing journey synchronized in real-time to your unique Traveler Persona.
+                                Our platform delivers 100% personalized journeys by synchronizing your unique persona with real-time global orchestration.
                             </p>
 
                             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
