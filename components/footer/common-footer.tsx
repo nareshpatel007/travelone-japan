@@ -157,7 +157,7 @@ export default function CommonFooter({ isStickyShow = false }: Props) {
             {isVisible && (
                 <button
                     onClick={scrollToTop}
-                    className="fixed bottom-8 right-8 bg-black text-white rounded-full p-3 shadow-lg hover:bg-gray-900 transition z-50 cursor-pointer"
+                    className={`fixed ${isStickyShow ? 'bottom-20' : 'bottom-8'} right-8 bg-black text-white rounded-full p-3 shadow-lg hover:bg-gray-900 transition z-50 cursor-pointer`}
                     aria-label="Scroll to top"
                 >
                     <ChevronUp size={24} />
