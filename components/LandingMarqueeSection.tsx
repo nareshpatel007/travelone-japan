@@ -19,8 +19,8 @@ const images2 = [
 ];
 
 const images3 = [
-    "https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/09/Landing-marquee-img-2.png",
-    "https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/09/Landing-marquee-img-2.png",
+    "https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/09/Landing-marquee-img-3.png",
+    "https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/09/Landing-marquee-img-3.png",
 ];
 
 const images4 = [
