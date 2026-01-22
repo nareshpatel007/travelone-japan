@@ -40,7 +40,7 @@ export default function OurVision() {
                     </div>
                     <div className="w-full max-w-[500px] mx-auto lg:mx-0">
                         <Image
-                            src="https://ik.imagekit.io/288weifiq/nextjs/tourist-taking-photos-nature-landscape-using-his-smartphone_346278-385.jpg"
+                            src="https://ik.imagekit.io/288weifiq/nextjs/travel-explore-global-destination-trip-adventure-concept_53876-121559.avif"
                             alt="Travelers enjoying an experience"
                             width={500}
                             height={500}

@@ -26,7 +26,7 @@ export default function StartWithWho() {
             <div className="flex items-center justify-center">
                 <div className="relative w-full h-80 md:h-150 overflow-hidden">
                     <Image
-                        src="https://ik.imagekit.io/288weifiq/nextjs/thailand/beautiful-girl-sitting-boat-looking-mountains-ratchaprapha-dam-khao-sok-national-park-surat-thani-province-thailand_335224-837.avif"
+                        src="https://ik.imagekit.io/288weifiq/nextjs/front-view-young-man-summer-vacation-taking-photos-with-camera-pink-wall_140725-113208.jpg"
                         alt="Canada USA Flag"
                         fill
                         priority

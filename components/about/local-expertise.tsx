@@ -26,7 +26,7 @@ export default function LocalExpertise() {
             <div className="flex items-center justify-center">
                 <div className="relative w-full h-80 md:h-150 overflow-hidden">
                     <Image
-                        src="https://ik.imagekit.io/288weifiq/nextjs/greece/travel-mediterranean-aegean-traditional-architecture_1203-4774.jpg"
+                        src="https://ik.imagekit.io/288weifiq/nextjs/close-up-autumn-journey-elements-assortment_23-2148634117.jpg"
                         alt="Canada USA Flag"
                         fill
                         priority
@@ -37,7 +37,7 @@ export default function LocalExpertise() {
             <div className="flex items-center justify-center">
                 <div className="relative w-full h-80 md:h-150 overflow-hidden">
                     <Image
-                        src="https://ik.imagekit.io/288weifiq/nextjs/south-korea/haedong-yonggungsa-temple-haeundae-sea-busan-buddhist-temple-busan-south-korea_335224-436.avif"
+                        src="https://ik.imagekit.io/288weifiq/nextjs/girl-jumping-with-excitement-doorway-with-sea_181624-20834.jpg"
                         alt="Canada USA Flag"
                         fill
                         priority

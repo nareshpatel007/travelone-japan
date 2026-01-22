@@ -2,9 +2,9 @@ import Image from "next/image";
 
 export default function HeroSection() {
     return (
-        <div className="relative h-[300px] md:h-[400px] overflow-hidden">
+        <div className="relative h-[300px] md:h-[450px] overflow-hidden">
             <Image
-                src="https://ik.imagekit.io/288weifiq/nextjs/tourist-carrying-luggage_23-2151747328.avif"
+                src="https://ik.imagekit.io/288weifiq/nextjs/man-with-backpack-strolling-by-beach-fluffy-clouds_1258-296115.jpg"
                 alt="Travel Experience"
                 fill
                 className="object-cover"
