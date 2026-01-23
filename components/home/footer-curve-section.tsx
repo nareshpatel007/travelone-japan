@@ -35,7 +35,7 @@ export default function FooterCurveSection() {
                         />
                     </div>
                 </div>
-                <section className="relative w-full overflow-hidden pt-34 pb-0 md:pt-40">
+                <section className="relative w-full overflow-hidden px-5 md:px-0 pt-34 md:pt-40">
                     <div
                         className="absolute inset-0 bg-no-repeat bg-top bg-cover"
                         style={{ backgroundImage: "url('https://ik.imagekit.io/288weifiq/nextjs/footer-curve-design.png')" }}
