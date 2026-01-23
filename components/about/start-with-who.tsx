@@ -8,7 +8,7 @@ export default function StartWithWho() {
             <div className="bg-[#FFF9EE] flex items-center px-6 sm:px-10 lg:px-16 py-14">
                 <div className="max-w-2xl space-y-6">
                     <div className="space-y-6">
-                        <h1 className="text-black text-3xl lg:text-6xl leading-tight font-normal">
+                        <h1 className="text-3xl md:text-6xl leading-tight font-normal">
                             Start with Who, Not Where.
                         </h1>
                         <span className="text-black text-base sm:text-lg">

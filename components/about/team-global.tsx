@@ -9,7 +9,7 @@ export default function TeamSection() {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-12">
                     {/* HEADER */}
                     <div className="max-w-3xl mx-auto text-center space-y-4">
-                        <h3 className="text-black text-2xl sm:text-3xl md:text-5xl leading-tight font-normal">
+                        <h3 className="text-3xl md:text-6xl leading-tight font-normal">
                             The Team: Global Intel, Human-in-the-Loop
                         </h3>
 
@@ -52,7 +52,7 @@ export default function TeamSection() {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-12">
                     {/* HEADER */}
                     <div className="max-w-3xl mx-auto text-center space-y-4">
-                        <h3 className="text-black text-2xl sm:text-3xl md:text-5xl leading-tight font-normal">
+                        <h3 className="text-3xl md:text-6xl leading-tight font-normal">
                             On-Ground Intelligence (Global Strategic Zones)
                         </h3>
 

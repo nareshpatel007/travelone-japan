@@ -5,7 +5,7 @@ export default function ArchitectureModern() {
         <section className="max-w-5xl mx-auto px-5 md:px-0 py-12 space-y-12">
             <div className="text-center space-y-8">
                 {/* Heading */}
-                <h3 className="text-black text-3xl md:text-5xl leading-tight font-normal">
+                <h3 className="text-3xl md:text-6xl leading-tight font-normal">
                     The Architecture of Modern Wanders
                 </h3>
 

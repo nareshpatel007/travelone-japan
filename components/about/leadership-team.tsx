@@ -47,9 +47,9 @@ export default function LeadershipTeam() {
 
                     {/* CONTENT */}
                     <div className="space-y-6 text-center lg:text-left">
-                        <h2 className="text-4xl md:text-5xl font-normal text-black">
+                        <h3 className="text-3xl md:text-6xl leading-tight font-normal">
                             The Leadership
-                        </h2>
+                        </h3>
 
                         <p className="text-lg font-medium text-black">
                             Bhavin Vora <span className="text-gray-600">| Founder & CEO</span>

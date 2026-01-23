@@ -7,6 +7,8 @@ import { MapPin, Phone, Mail, Clock, Send, MessageSquare, HelpCircle, FileText }
 import Link from "next/link";
 import Heading from "@/components/common/heading";
 import PageHeading from "@/components/common/page-heading";
+import FullBannerSection from "@/components/about/full-banner";
+import StartWithWho from "@/components/about/start-with-who";
 
 // Contact info
 const contactInfo = [
@@ -85,7 +87,7 @@ export default function ContactUsPage() {
             {ready && <>
                 <CommonHeader />
 
-                <div className="max-w-7xl mx-auto px-5 md:px-0 md:p-6">
+                <div className="max-w-7xl mx-auto px-5 md:px-0 py-6">
                     <PageHeading
                         main="Contact"
                         sub="We're here to help. Reach out to us through any of the channels below."
@@ -258,6 +260,10 @@ export default function ContactUsPage() {
                         </div>
                     </div>
                 </div>
+
+                <StartWithWho />
+
+                <FullBannerSection />
 
                 <CommonFooter />
             </>}

@@ -7,8 +7,6 @@ import HeroSection from "@/components/about/hero-section";
 import OurVision from "@/components/about/our-vision";
 import TravelOneJourney from "@/components/about/timeline-journey";
 import LeadershipTeam from "@/components/about/leadership-team";
-import FullBannerSection from "@/components/about/full-banner";
-import StartWithWho from "@/components/about/start-with-who";
 import LocalExpertise from "@/components/about/local-expertise";
 import ArchitectureModern from "@/components/about/architecture-modern";
 import OurCommitment from "@/components/about/our-commitment";
@@ -32,14 +30,12 @@ export default function AboutPage() {
                 <CommonHeader />
                 <HeroSection />
                 <ArchitectureModern />
+                <WhoWeAreSection />
                 <OurVision />
+                <TeamGlobalIntelSection />
                 <TravelOneJourney />
-                <StartWithWho />
                 <LeadershipTeam />
                 <LocalExpertise />
-                <FullBannerSection />
-                <WhoWeAreSection />
-                <TeamGlobalIntelSection />
                 <OurCommitment />
                 <CommonFooter />
             </>}

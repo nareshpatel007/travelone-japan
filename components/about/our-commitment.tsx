@@ -22,7 +22,7 @@ export default function OurCommitment() {
 
                         {/* TEXT */}
                         <div className="md:w-2/3 space-y-4">
-                            <h3 className="text-black text-2xl sm:text-3xl md:text-5xl leading-tight font-normal">
+                            <h3 className="text-3xl md:text-6xl leading-tight font-normal">
                                 Our Commitment to You
                             </h3>
 
