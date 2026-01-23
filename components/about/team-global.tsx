@@ -39,7 +39,7 @@ export default function TeamSection() {
                         {/* IMAGE */}
                         <div className="relative aspect-[4/3] overflow-hidden">
                             <Image
-                                src="https://images.unsplash.com/photo-1531482615713-2afd69097998"
+                                src="https://ik.imagekit.io/288weifiq/nextjs/canada-day-celebration-with-maple-leaf-symbol_23-2151440520.jpg"
                                 alt="Leadership and R&D team"
                                 fill
                                 className="object-cover"
