@@ -236,9 +236,11 @@ export default function CommonHeader() {
                                     </Link>
                                 </li>
                             </ul>
-                            <button className="bg-black text-white rounded-sm uppercase font-medium border border-black tracking-wide hover:bg-transparent hover:text-black transition cursor-pointer px-4 py-2.5 text-xs">
-                                All Destinations
-                            </button>
+                            <Link href="/country" className="hover:underline">
+                                <button className="bg-black text-white rounded-sm uppercase font-medium border border-black tracking-wide hover:bg-transparent hover:text-black transition cursor-pointer px-4 py-2.5 text-xs">
+                                    All Destinations
+                                </button>
+                            </Link>
                         </div>
                         <div className="col-span-9 grid grid-cols-4 gap-6">
                             {DESTINATIONS.map((place) => (
@@ -275,7 +277,6 @@ export default function CommonHeader() {
                             <X />
                         </button>
                     </div>
-
                     <nav className="flex flex-col gap-6 p-6 text-lg font-medium">
                         <Link href="/">Home</Link>
                         <Link href="/country">Destinations</Link>
