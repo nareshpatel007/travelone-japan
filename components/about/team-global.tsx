@@ -84,7 +84,7 @@ export default function TeamSection() {
                             {
                                 title: "The African Wild",
                                 text: "Safari and conservation specialists in Kenya.",
-                                image: "https://ik.imagekit.io/288weifiq/nextjs/savannah-landscape-national-park-kenya-africa_167946-107.avif",
+                                image: "https://ik.imagekit.io/288weifiq/nextjs/24254.jpg",
                             },
                             {
                                 title: "The North American Home",
