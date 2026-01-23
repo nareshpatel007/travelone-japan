@@ -12,6 +12,7 @@ export default function DestinationPage() {
     // Define state
     const [ready, setReady] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
+    const [selectedDestination, setSelectedDestination] = useState<string>("all");
     const [destinationList, setDestinationList] = useState<any[]>([]);
     const [countriesList, setCountriesList] = useState<any[]>([]);
 
@@ -60,46 +61,82 @@ export default function DestinationPage() {
         return () => controller.abort();
     }, []);
 
+    // Filter countries
+    const filteredCountries = selectedDestination === "all" ? countriesList : countriesList.filter(
+        (country) => country.destination_name === selectedDestination
+    );
+
     return (
         <body>
             {ready && <>
                 <CommonHeader />
 
-                <div className="max-w-7xl mx-auto px-5 md:px-0 md:p-6">
+                <div className="max-w-7xl mx-auto px-5 md:px-0 py-6">
                     <PageHeading
                         main="Top Destinations"
                         sub="Discover the most popular destinations around the world."
                     />
-                    <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6 mb-5">
-                        {!isLoading ? (
-                            <>
-                                {countriesList && countriesList.map((item, index) => (
-                                    <div key={index} className="relative h-48 md:h-64 rounded-lg overflow-hidden group cursor-pointer">
+
+                    {!isLoading ? (
+                        <div className="space-y-8">
+                            <div className="flex flex-wrap gap-3 justify-center md:justify-start">
+                                <button
+                                    onClick={() => setSelectedDestination("all")}
+                                    className={`cursor-pointer px-5 py-2 rounded-full text-sm font-medium border transition ${selectedDestination === "all"
+                                        ? "bg-black text-white border-black"
+                                        : "bg-white text-black border-gray-300 hover:border-black"
+                                        }`}
+                                >
+                                    All Destinations
+                                </button>
+
+                                {/* DYNAMIC DESTINATIONS */}
+                                {destinationList.map((destination, index) => (
+                                    <button
+                                        key={index}
+                                        onClick={() => setSelectedDestination(destination)}
+                                        className={`cursor-pointer px-5 py-2 rounded-full text-sm font-medium border transition ${selectedDestination === destination
+                                            ? "bg-black text-white border-black"
+                                            : "bg-white text-black border-gray-300 hover:border-black"
+                                            }`}
+                                    >
+                                        {destination}
+                                    </button>
+                                ))}
+                            </div>
+                            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
+                                {filteredCountries.map((item, index) => (
+                                    <div
+                                        key={index}
+                                        className="relative h-48 md:h-64 rounded-lg overflow-hidden group cursor-pointer"
+                                    >
                                         <Link href={`/country/${item.slug}`}>
                                             <Image
                                                 src={item?.featured_image || "/placeholder.svg"}
                                                 alt={item?.name || "Destination"}
                                                 fill
-                                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                                className="object-cover group-hover:scale-105 transition-transform duration-300"
                                             />
 
-                                            <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-black/30 to-transparent"></div>
+                                            <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-black/30 to-transparent" />
 
                                             <div className="absolute inset-0 flex items-center justify-center">
-                                                <h3 className="text-lg md:text-2xl font-semibold text-white">{item.name}</h3>
+                                                <h3 className="text-lg md:text-2xl font-semibold text-white">
+                                                    {item.name}
+                                                </h3>
                                             </div>
                                         </Link>
                                     </div>
                                 ))}
-                            </>
-                        ) : (
-                            <>
-                                {Array.from({ length: 6 }).map((_, index) => (
-                                    <div key={index} className="animate-pulse bg-gray-200 rounded-lg h-48 md:h-64"></div>
-                                ))}
-                            </>
-                        )}
-                    </div>
+                            </div>
+                        </div>
+                    ) : (
+                        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
+                            {Array.from({ length: 6 }).map((_, index) => (
+                                <div key={index} className="animate-pulse bg-gray-200 rounded-lg h-48 md:h-64"></div>
+                            ))}
+                        </div>
+                    )}
                 </div>
 
                 <CommonFooter />
