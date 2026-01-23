@@ -12,7 +12,7 @@ const leadership = [
     },
     {
         name: "Pranav Amin",
-        role: "B2B Marketing and Sales - USA Region",
+        role: "Sales Manager - Canada",
         image: "https://ik.imagekit.io/288weifiq/team/img_team_63e33bb2382cf1-81493713-48358927.png"
     },
     {
