@@ -49,7 +49,7 @@ export default function GlobalFinancialSection() {
 
             {/* RIGHT IMAGE */}
             <div className="flex items-center justify-center">
-                <div className="relative w-full aspect-[4/3] overflow-hidden">
+                <div className="relative w-full aspect-square overflow-hidden">
                     <Image
                         src="https://ik.imagekit.io/288weifiq/nextjs/canada-day-celebration-with-maple-leaf-symbol_23-2151440473.jpg"
                         alt="Canada USA Flag"

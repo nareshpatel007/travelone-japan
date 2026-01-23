@@ -30,8 +30,30 @@ export default function CommonFooter({ isStickyShow = false }: Props) {
     return (
         <>
             <FooterCurveSection />
+
+            {/* LOGOS */}
+            <div className="flex flex-wrap items-center justify-center gap-6 bg-[#FFF9EE] py-10">
+                <Image
+                    src="https://ik.imagekit.io/288weifiq/nextjs/81-814150_acta-logo-clipart.png"
+                    alt="ACTA"
+                    width={160}
+                    height={80}
+                    draggable="false"
+                    className="object-contain h-auto w-20 md:w-26"
+                />
+
+                <Image
+                    src="https://ik.imagekit.io/288weifiq/nextjs/tico-logo_final.c6b6399c5942.jpg"
+                    alt="TICO"
+                    width={160}
+                    height={80}
+                    draggable="false"
+                    className="object-contain h-auto w-20 md:w-26"
+                />
+            </div>
+
             <footer className="bg-[#FFF9EE] text-black">
-                <div className={`max-w-7xl mx-auto px-6 space-y-12 ${isStickyShow ? 'py-12' : 'py-16'}`}>
+                <div className={`max-w-7xl mx-auto px-6 space-y-12 ${isStickyShow ? 'pb-12' : 'pb-5'}`}>
                     <div className="order-2 flex flex-col items-center space-y-6 text-center">
                         <div>
                             <Image

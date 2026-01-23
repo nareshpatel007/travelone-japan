@@ -16,6 +16,7 @@ export default function FooterCurveSection() {
                             src="https://ik.imagekit.io/288weifiq/nextjs/Landing-marquee-img-5.png"
                             alt="Image"
                             className="w-24 h-32 md:w-40 md:h-50 object-contain"
+                            draggable="false"
                         />
                     </div>
 
@@ -24,6 +25,7 @@ export default function FooterCurveSection() {
                             src="https://ik.imagekit.io/288weifiq/nextjs/Landing-marquee-img-6.png"
                             alt="Image"
                             className="w-24 h-24 md:w-57 md:h-70 object-contain"
+                            draggable="false"
                         />
                     </div>
 
@@ -32,6 +34,7 @@ export default function FooterCurveSection() {
                             src="https://ik.imagekit.io/288weifiq/nextjs/Landing-marquee-img-7.png"
                             alt="Image"
                             className="w-56 h-80 md:w-110 md:h-[580px] object-contain"
+                            draggable="false"
                         />
                     </div>
                 </div>
