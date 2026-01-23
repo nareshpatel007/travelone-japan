@@ -10,9 +10,7 @@ interface Props {
 
 export default function ThreeImageSplitSection({ destinationList }: Props) {
     return (
-        <section className="py-6 px-5 md:px-10 py-10 md:py-10 space-y-8 bg-[#FFF9EE]">
-
-            {/* HEADING */}
+        <section className="py-6 px-5 md:px-10 py-12 space-y-12 bg-[#FFF9EE]">
             <div className="space-y-2 text-center">
                 <h1 className="text-black text-3xl md:text-6xl leading-tight font-normal">
                     The Signature Collection
@@ -21,10 +19,8 @@ export default function ThreeImageSplitSection({ destinationList }: Props) {
                     Hand-vetted master destinations curated for the ultra-luxury explorer.
                 </span>
             </div>
-
             <div className="space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-4 h-[420px] sm:h-[480px] lg:h-[520px]">
-
                     {/* 50% IMAGE */}
                     {destinationList?.[0] && (
                         <div className="relative md:col-span-2 overflow-hidden group cursor-pointer">

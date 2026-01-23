@@ -26,7 +26,7 @@ const features = [
 
 export default function WhyTravelOne() {
     return (
-        <div className="max-w-7xl mx-auto px-5 md:px-0 py-0 md:py-16 space-y-10">
+        <div className="max-w-7xl mx-auto px-5 md:px-0 py-12 space-y-12">
             <div className="text-center space-y-2">
                 <h1 className="text-black text-3xl md:text-6xl leading-tight font-normal">
                     Why TravelOne?
@@ -35,12 +35,9 @@ export default function WhyTravelOne() {
                     Why the world’s most discerning travelers choose Persona-led orchestration.
                 </span>
             </div>
-
-            {/* Features */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-12">
                 {features.map((feature, index) => {
                     const Icon = feature.icon;
-
                     return (
                         <div
                             key={index}

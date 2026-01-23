@@ -1,13 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import Heading from "../common/heading";
 import Link from "next/link";
-import { formatDate, formatPrice } from "@/lib/utils";
-
+import { formatDate } from "@/lib/utils";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper/modules";
-
 import "swiper/css";
 import "swiper/css/navigation";
 
@@ -23,7 +20,7 @@ export default function BlogSlider({ blogList }: Props) {
     }
 
     return (
-        <section className="py-6 px-5 md:px-10 py-10 md:py-10 space-y-10 bg-[#FFF9EE]">
+        <section className="px-5 md:px-10 py-12 space-y-12 bg-[#FFF9EE]">
             <div className="space-y-2 text-center">
                 <h1 className="text-black text-3xl md:text-6xl leading-tight font-normal">
                     Latest Blogs
@@ -36,7 +33,10 @@ export default function BlogSlider({ blogList }: Props) {
                 <Swiper
                     modules={[Autoplay, Navigation]}
                     loop
-                    autoplay={{ delay: 4000, disableOnInteraction: false }}
+                    autoplay={{
+                        delay: 4000,
+                        disableOnInteraction: false
+                    }}
                     navigation={{
                         nextEl: ".tour-next",
                         prevEl: ".tour-prev",
@@ -57,7 +57,6 @@ export default function BlogSlider({ blogList }: Props) {
                             slidesPerView: 5,
                         },
                     }}
-                    className="!pb-4"
                 >
                     {blogList.length > 0 && blogList.map((post: any) => (
                         <SwiperSlide key={post.id}>

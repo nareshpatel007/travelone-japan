@@ -31,7 +31,7 @@ export default function CommonFooter({ isStickyShow = false }: Props) {
         <>
             <FooterCurveSection />
             <footer className="bg-[#FFF9EE] text-black">
-                <div className={`max-w-7xl mx-auto px-6 space-y-14 ${isStickyShow ? 'py-12' : 'py-16'}`}>
+                <div className={`max-w-7xl mx-auto px-6 space-y-12 ${isStickyShow ? 'py-12' : 'py-16'}`}>
                     <div className="order-2 flex flex-col items-center space-y-6 text-center">
                         <div>
                             <Image
@@ -60,7 +60,7 @@ export default function CommonFooter({ isStickyShow = false }: Props) {
                             </div>
                         </div>
                     </div>
-                    <div className="grid grid-cols-2 md:grid-cols-4 mb-12">
+                    <div className="grid grid-cols-2 md:grid-cols-4 mb-0 md:mb-12 space-y-12 md:space-y-0">
                         {/* MENU 1 */}
                         <div className='space-y-6'>
                             <h3 className="font-semibold text-lg">Company</h3>
@@ -151,7 +151,7 @@ export default function CommonFooter({ isStickyShow = false }: Props) {
                     </div>
 
                     {/* COPYRIGHT */}
-                    <div className={`text-center text-gray-900 text-sm md:text-base pt-5 ${isStickyShow ? 'mb-10' : ''}`}>
+                    <div className={`text-center text-gray-900 text-sm md:text-base pt-5 md:pt-0 ${isStickyShow ? 'mb-0 sm:mb-10' : ''}`}>
                         © Copyright {new Date().getFullYear()} TravelOne Technologies Inc. | All Rights Reserved.
                     </div>
                 </div>

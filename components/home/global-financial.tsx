@@ -4,9 +4,9 @@ import Image from "next/image";
 
 export default function GlobalFinancialSection() {
     return (
-        <section className="grid grid-cols-1 lg:grid-cols-2 gap-4 px-4 sm:px-6 lg:px-8 py-8">
-            <div className="bg-[#FFF9EE] flex items-center px-6 sm:px-10 lg:px-16 py-14">
-                <div className="max-w-2xl space-y-6">
+        <section className="grid grid-cols-1 lg:grid-cols-2 gap-4 px-5 sm:px-6 lg:px-8 py-8">
+            <div className="bg-[#FFF9EE] flex items-center px-8 md:px-16 py-8 md:py-14">
+                <div className="max-w-2xl space-y-6 text-center md:text-left">
                     <div className="space-y-6">
                         <h1 className="text-black text-3xl lg:text-6xl leading-tight font-normal">
                             Your Global Financial Safeguard.

@@ -18,12 +18,12 @@ interface Props {
 
 export default function ToursSlider({ toursList }: Props) {
     // Check if toursList is empty
-    if (toursList.length === 0) {
+    if (!toursList || toursList.length === 0) {
         return null;
     }
 
     return (
-        <section className="py-6 px-5 md:px-10 py-10 md:py-10 space-y-10 bg-[#FFF9EE]">
+        <section className="px-5 md:px-10 py-12 space-y-12 bg-[#FFF9EE]">
             <div className="text-black space-y-2 text-center">
                 <h1 className="text-3xl md:text-6xl leading-tight font-normal">
                     Japan: The Precision of Tradition
@@ -57,7 +57,6 @@ export default function ToursSlider({ toursList }: Props) {
                             slidesPerView: 5,
                         },
                     }}
-                    className="!pb-4"
                 >
                     {toursList.length > 0 && toursList.map((tour: any) => (
                         <SwiperSlide key={tour.id}>

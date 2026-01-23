@@ -81,7 +81,7 @@ export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Prop
             </section>
 
             {/* For Mobile */}
-            <section className="block md:hidden py-20 space-y-14 bg-[#FFF9EE]">
+            <section className="block md:hidden py-12 space-y-12 bg-[#FFF9EE]">
                 <div className="flex flex-col">
                     <HomeHeader />
                     <div className="flex flex-1 items-center justify-center px-6 sm:px-8 lg:px-12">

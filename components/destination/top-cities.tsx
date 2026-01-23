@@ -31,7 +31,7 @@ export default function TopCities({ country, cities }: Props) {
                         />
 
                         {/* Overlay */}
-                        <div className="absolute inset-0 bg-black/25" />
+                        <div className="absolute inset-0 bg-black/10" />
 
                         {/* Text */}
                         <div className="absolute inset-0 flex items-center justify-center">

@@ -28,7 +28,7 @@ const sections: DestinationCard[] = [
 
 export default function ThreeStepBanner({ onOpenChange }: Props) {
     return (
-        <div className="py-6 px-5 md:px-10 py-14 space-y-10">
+        <div className="px-5 md:px-10 py-12 space-y-12">
             <div className="space-y-2 text-center">
                 <h1 className="text-black text-3xl md:text-6xl leading-tight font-normal">
                     Start with Who, Not Where.
@@ -64,7 +64,7 @@ export default function ThreeStepBanner({ onOpenChange }: Props) {
                             key={index}
                             className="flex items-center lg:flex-col lg:text-center bg-[#FFF9EE] border border-gray-300 hover:bg-white cursor-pointer hover:border-black p-5 lg:p-8"
                         >
-                            <div className="space-y-2">
+                            <div className="space-y-2 text-center">
                                 <h3 className="font-semibold text-md md:text-lg">
                                     {destination.heading}
                                 </h3>

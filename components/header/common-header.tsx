@@ -20,6 +20,7 @@ import {
 import { CommonPlanTripModal } from "../plan_your_trip/common-popup";
 import { LoginModal } from "../common/login-modal";
 import { LandingPlanTripModal } from "../plan_your_trip/landing-popup";
+import { Button } from "../ui/button";
 
 // Define mega menu destinations list
 const DESTINATIONS = [
@@ -60,6 +61,21 @@ export default function CommonHeader() {
     useEffect(() => {
         document.body.style.overflow = openMobileMenu ? "hidden" : "auto";
     }, [openMobileMenu]);
+
+    // Mega Menu Hide on scroll
+    useEffect(() => {
+        if (!showMegaMenu) return;
+
+        const handleScroll = () => {
+            setShowMegaMenu(false);
+        };
+
+        window.addEventListener("scroll", handleScroll, { passive: true });
+
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, [showMegaMenu]);
 
     // Mega Menu Show and Hide
     const openMegaMenu = () => setShowMegaMenu(true);
@@ -118,7 +134,6 @@ export default function CommonHeader() {
             {/* ================= HEADER (UNCHANGED) ================= */}
             <header className="top-0 z-50 bg-white border-b border-gray-200">
                 <div className="px-4 md:px-8 h-20 md:h-24 flex items-center justify-between">
-
                     {/* LOGO */}
                     <Link href="/">
                         <Image
@@ -190,37 +205,40 @@ export default function CommonHeader() {
                     <div className="grid grid-cols-12 gap-8 px-10 py-10">
 
                         {/* LEFT LINKS */}
-                        <div className="col-span-3">
-                            <h4 className="text-xs uppercase font-semibold text-gray-500 mb-4">
+                        <div className="col-span-3 space-y-4">
+                            <h4 className="text-sm uppercase font-semibold text-black">
                                 Trending Destinations
                             </h4>
-                            <ul className="space-y-3">
+                            <ul className="space-y-3 font-normal text-black">
                                 <li>
-                                    <Link href="/country/japan" className="font-medium hover:text-black">
+                                    <Link href="/country/japan" className="hover:underline">
                                         Japan
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link href="/country/indonesia" className="font-medium hover:text-black">
+                                    <Link href="/country/indonesia" className="hover:underline">
                                         Indonesia
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link href="/country/vietnam" className="font-medium hover:text-black">
+                                    <Link href="/country/vietnam" className="hover:underline">
                                         Vietnam
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link href="/country/south-korea" className="font-medium hover:text-black">
+                                    <Link href="/country/south-korea" className="hover:underline">
                                         South Korea
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link href="/country/thailand" className="font-medium hover:text-black">
+                                    <Link href="/country/thailand" className="hover:underline">
                                         Thailand
                                     </Link>
                                 </li>
                             </ul>
+                            <button className="bg-black text-white rounded-sm uppercase font-medium border border-black tracking-wide hover:bg-transparent hover:text-black transition cursor-pointer px-4 py-2.5 text-xs">
+                                All Destinations
+                            </button>
                         </div>
                         <div className="col-span-9 grid grid-cols-4 gap-6">
                             {DESTINATIONS.map((place) => (
