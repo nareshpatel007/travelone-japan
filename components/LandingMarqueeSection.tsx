@@ -71,11 +71,11 @@ export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Prop
                         <VerticalSlider images={images3} direction="down" />
 
                         {/* Only on wide desktop (xl+) — NO wrapper */}
-                        <VerticalSlider
+                        {/* <VerticalSlider
                             images={images4}
                             direction="up"
                             className="hidden xl:block"
-                        />
+                        /> */}
                     </div>
                 </div>
             </section>
