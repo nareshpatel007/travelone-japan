@@ -6,9 +6,15 @@ export default function WhoWeAreSection() {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-12">
                 {/* HEADING */}
                 <div className="max-w-3xl mx-auto text-center space-y-4">
-                    <h3 className="text-3xl md:text-6xl leading-tight font-normal">
-                        Who We Are: A Dual-Continent Powerhouse
-                    </h3>
+                    <div>
+                        <h3 className="text-3xl md:text-6xl leading-tight font-normal">
+                            Who We Are
+                        </h3>
+
+                        <h3 className="text-3xl md:text-6xl leading-tight font-normal">
+                            A Dual-Continent Powerhouse
+                        </h3>
+                    </div>
 
                     <p className="text-black text-base sm:text-lg leading-relaxed">
                         TravelOne operates as a sophisticated synergy between technology and service,

@@ -8,10 +8,16 @@ export default function TeamSection() {
             <section className="bg-white py-12">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-12">
                     {/* HEADER */}
-                    <div className="max-w-3xl mx-auto text-center space-y-4">
-                        <h3 className="text-3xl md:text-6xl leading-tight font-normal">
-                            The Team: Global Intel, Human-in-the-Loop
-                        </h3>
+                    <div className="max-w-5xl mx-auto text-center space-y-4">
+                        <div>
+                            <h3 className="text-3xl md:text-6xl leading-tight font-normal">
+                                The Team
+                            </h3>
+
+                            <h3 className="text-3xl md:text-6xl leading-tight font-normal">
+                                Global Intel, Human-in-the-loop
+                            </h3>
+                        </div>
 
                         <p className="text-black text-base sm:text-lg leading-relaxed">
                             Technology provides the speed, but people provide the judgment. Our team is a curated
@@ -51,10 +57,16 @@ export default function TeamSection() {
             <section className="bg-white py-12">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-12">
                     {/* HEADER */}
-                    <div className="max-w-3xl mx-auto text-center space-y-4">
-                        <h3 className="text-3xl md:text-6xl leading-tight font-normal">
-                            On-Ground Intelligence (Global Strategic Zones)
-                        </h3>
+                    <div className="max-w-5xl mx-auto text-center space-y-4">
+                        <div>
+                            <h3 className="text-3xl md:text-6xl leading-tight font-normal">
+                                On-Ground Intelligence
+                            </h3>
+
+                            <h3 className="text-3xl md:text-6xl leading-tight font-normal">
+                                (Global Strategic Zones)
+                            </h3>
+                        </div>
 
                         <p className="text-black text-base sm:text-lg leading-relaxed">
                             We have built a dedicated support network across the globe. These aren't just partners;
