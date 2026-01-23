@@ -78,7 +78,7 @@ export default function HomePage() {
                 ]);
 
                 // Update state
-                setDestinationList(destData?.data ?? []);
+                setDestinationList(destData?.data?.countries ?? []);
                 setToursList(toursData?.data?.result ?? []);
                 setBlogList(blogData?.data?.result ?? []);
             } catch (error: any) {

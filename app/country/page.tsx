@@ -13,6 +13,7 @@ export default function DestinationPage() {
     const [ready, setReady] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const [destinationList, setDestinationList] = useState<any[]>([]);
+    const [countriesList, setCountriesList] = useState<any[]>([]);
 
     useEffect(() => {
         // Wait one frame after hydration
@@ -45,7 +46,8 @@ export default function DestinationPage() {
                 const data = await response.json();
 
                 // Update the state
-                setDestinationList(data?.data ?? []);
+                setCountriesList(data?.data?.countries ?? []);
+                setDestinationList(data?.data?.destinations ?? []);
             } catch (error: any) {
                 if (error.name !== "AbortError") {
                     console.error("Failed to fetch tours:", error);
@@ -71,7 +73,7 @@ export default function DestinationPage() {
                     <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6 mb-5">
                         {!isLoading ? (
                             <>
-                                {destinationList && destinationList.map((item, index) => (
+                                {countriesList && countriesList.map((item, index) => (
                                     <div key={index} className="relative h-48 md:h-64 rounded-lg overflow-hidden group cursor-pointer">
                                         <Link href={`/country/${item.slug}`}>
                                             <Image
