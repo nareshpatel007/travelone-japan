@@ -69,27 +69,27 @@ export default function TeamSection() {
                             {
                                 title: "The Asian Frontier",
                                 text: "Specialist teams in Japan, South Korea, Vietnam, Indonesia, Thailand, and India.",
-                                image: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34",
+                                image: "https://ik.imagekit.io/288weifiq/nextjs/china-arch_1127-3673.jpg",
                             },
                             {
                                 title: "The European Heartland",
                                 text: "Local experts across Italy, Spain, Portugal, Greece, France, and Switzerland.",
-                                image: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34",
+                                image: "https://ik.imagekit.io/288weifiq/nextjs/munich-marienplatz_181624-9114.jpg",
                             },
                             {
                                 title: "The Nordic & Arctic Circles",
                                 text: "Navigational experts in Norway, Iceland, Denmark, Sweden, and Finland.",
-                                image: "https://images.unsplash.com/photo-1482192505345-5655af888cc4",
+                                image: "https://ik.imagekit.io/288weifiq/nextjs/norway/view-red-cottages-by-coastline-hamnoy-lofoten-islands-norway_181624-33160.jpg?updatedAt=1768983789930",
                             },
                             {
                                 title: "The African Wild",
                                 text: "Safari and conservation specialists in Kenya.",
-                                image: "https://images.unsplash.com/photo-1516426122078-c23e76319801",
+                                image: "https://ik.imagekit.io/288weifiq/nextjs/savannah-landscape-national-park-kenya-africa_167946-107.avif",
                             },
                             {
                                 title: "The North American Home",
                                 text: "Comprehensive logistical support across Canada and the USA.",
-                                image: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
+                                image: "https://ik.imagekit.io/288weifiq/nextjs/canada/niagara-falls-panorama_649448-3341.jpg?updatedAt=1768983789942",
                             },
                         ].map((region, index) => (
                             <div
