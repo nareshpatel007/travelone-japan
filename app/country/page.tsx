@@ -31,7 +31,10 @@ export default function DestinationPage() {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
-                    }
+                    },
+                    body: JSON.stringify({
+                        order_by: "name",
+                    }),
                 });
 
                 if (!response.ok) {
