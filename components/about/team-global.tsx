@@ -1,0 +1,123 @@
+"use client";
+
+import Image from "next/image";
+
+export default function TeamSection() {
+    return (
+        <>
+            <section className="bg-white py-12">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-12">
+                    {/* HEADER */}
+                    <div className="max-w-3xl mx-auto text-center space-y-4">
+                        <h3 className="text-black text-2xl sm:text-3xl md:text-5xl leading-tight font-normal">
+                            The Team: Global Intel, Human-in-the-Loop
+                        </h3>
+
+                        <p className="text-black text-base sm:text-lg leading-relaxed">
+                            Technology provides the speed, but people provide the judgment. Our team is a curated
+                            network of technical architects and on-ground specialists who ensure that the TravelOne
+                            platform operates with precision and local nuance.
+                        </p>
+                    </div>
+
+                    {/* LEADERSHIP + IMAGE (SINGLE SECTION) */}
+                    <div className="bg-[#FFF9EE] grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+                        {/* TEXT */}
+                        <div className="p-8 md:p-10 space-y-4">
+                            <h3 className="text-black text-xl md:text-2xl font-medium">
+                                Leadership & R&D (North America)
+                            </h3>
+
+                            <p className="text-black text-base sm:text-lg leading-relaxed">
+                                Our core team consists of Data Scientists, AI Architects, and Travel Operations veterans
+                                based in Toronto, the USA and India. This group focuses on the integrity of the Agentic AI
+                                and the security of our Merchant of Record framework, ensuring that every transaction is
+                                seamless and legally sound.
+                            </p>
+                        </div>
+
+                        {/* IMAGE */}
+                        <div className="relative aspect-[4/3] overflow-hidden">
+                            <Image
+                                src="https://images.unsplash.com/photo-1531482615713-2afd69097998"
+                                alt="Leadership and R&D team"
+                                fill
+                                className="object-cover"
+                            />
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section className="bg-white py-12">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-12">
+                    {/* HEADER */}
+                    <div className="max-w-3xl mx-auto text-center space-y-4">
+                        <h3 className="text-black text-2xl sm:text-3xl md:text-5xl leading-tight font-normal">
+                            On-Ground Intelligence (Global Strategic Zones)
+                        </h3>
+
+                        <p className="text-black text-base sm:text-lg leading-relaxed">
+                            We have built a dedicated support network across the globe. These aren't just partners;
+                            they are local intelligence units who feed real-world, real-time data back into our AI
+                            to ensure our "Local Soul" remains accurate.
+                        </p>
+                    </div>
+
+                    {/* REGION GRID */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {[
+                            {
+                                title: "The Asian Frontier",
+                                text: "Specialist teams in Japan, South Korea, Vietnam, Indonesia, Thailand, and India.",
+                                image: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34",
+                            },
+                            {
+                                title: "The European Heartland",
+                                text: "Local experts across Italy, Spain, Portugal, Greece, France, and Switzerland.",
+                                image: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34",
+                            },
+                            {
+                                title: "The Nordic & Arctic Circles",
+                                text: "Navigational experts in Norway, Iceland, Denmark, Sweden, and Finland.",
+                                image: "https://images.unsplash.com/photo-1482192505345-5655af888cc4",
+                            },
+                            {
+                                title: "The African Wild",
+                                text: "Safari and conservation specialists in Kenya.",
+                                image: "https://images.unsplash.com/photo-1516426122078-c23e76319801",
+                            },
+                            {
+                                title: "The North American Home",
+                                text: "Comprehensive logistical support across Canada and the USA.",
+                                image: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
+                            },
+                        ].map((region, index) => (
+                            <div
+                                key={index}
+                                className="group border border-gray-200 overflow-hidden"
+                            >
+                                <div className="relative h-44 overflow-hidden">
+                                    <Image
+                                        src={region.image}
+                                        alt={region.title}
+                                        fill
+                                        className="object-cover transition-transform duration-700 group-hover:scale-105"
+                                    />
+                                </div>
+
+                                <div className="p-6 space-y-2">
+                                    <h4 className="font-medium text-black">
+                                        {region.title}
+                                    </h4>
+                                    <p className="text-black text-sm sm:text-base leading-relaxed">
+                                        {region.text}
+                                    </p>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+        </>
+    );
+}

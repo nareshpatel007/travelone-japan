@@ -10,6 +10,10 @@ import LeadershipTeam from "@/components/about/leadership-team";
 import FullBannerSection from "@/components/about/full-banner";
 import StartWithWho from "@/components/about/start-with-who";
 import LocalExpertise from "@/components/about/local-expertise";
+import ArchitectureModern from "@/components/about/architecture-modern";
+import OurCommitment from "@/components/about/our-commitment";
+import WhoWeAreSection from "@/components/about/who-we-are";
+import TeamGlobalIntelSection from "@/components/about/team-global";
 
 export default function AboutPage() {
     // Define state
@@ -27,12 +31,16 @@ export default function AboutPage() {
             {ready && <>
                 <CommonHeader />
                 <HeroSection />
+                <ArchitectureModern />
                 <OurVision />
                 <TravelOneJourney />
                 <StartWithWho />
                 <LeadershipTeam />
                 <LocalExpertise />
                 <FullBannerSection />
+                <WhoWeAreSection />
+                <TeamGlobalIntelSection />
+                <OurCommitment />
                 <CommonFooter />
             </>}
         </body>
