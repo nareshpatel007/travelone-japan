@@ -4,7 +4,7 @@ export default function HeroSection() {
     return (
         <div className="relative h-[300px] md:h-[450px] overflow-hidden">
             <Image
-                src="https://ik.imagekit.io/288weifiq/nextjs/2151440518.jpg"
+                src="https://ik.imagekit.io/288weifiq/nextjs/25099.jpg"
                 alt="Travel Experience"
                 fill
                 className="object-cover"
