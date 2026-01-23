@@ -18,15 +18,27 @@ export default function GlobalFinancialSection() {
 
                     <p className="text-black text-base sm:text-lg">Travel with the confidence of North American financial protection. TravelOne USA acts as your Merchant of Record. We assume the liability, we manage the global taxes, and we guarantee your refunds. You simply explore.</p>
 
-                    <Image
-                        src="https://ik.imagekit.io/288weifiq/nextjs/81-814150_acta-logo-clipart.png"
-                        alt="acta logo"
-                        width={200}
-                        height={200}
-                        className="object-cover transition-transform duration-700 hover:scale-105"
-                    />
+                    <div className="flex gap-8">
+                        <Image
+                            src="https://ik.imagekit.io/288weifiq/nextjs/81-814150_acta-logo-clipart.png"
+                            alt="acta logo"
+                            width={200}
+                            height={200}
+                            className="object-cover transition-transform duration-700 hover:scale-105"
+                        />
+                        
+                        <Image
+                            src="https://ik.imagekit.io/288weifiq/nextjs/tico-logo_final.c6b6399c5942.jpg"
+                            alt="acta logo"
+                            width={200}
+                            height={200}
+                            className="object-cover transition-transform duration-700 hover:scale-105"
+                        />
+                    </div>
 
-                    <p className="text-black text-base sm:text-lg">Our global operations are led by certified members of the industry's leading professional associations.</p>
+                    <p className="text-black text-base sm:text-lg">
+                        Global operations managed by TICO-certified advisors and ACTA-registered industry professionals.
+                    </p>
                 </div>
             </div>
             <div className="flex items-center justify-center">
