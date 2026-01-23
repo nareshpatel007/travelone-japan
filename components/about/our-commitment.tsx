@@ -12,7 +12,7 @@ export default function OurCommitment() {
                         <div className="md:w-1/3 flex items-center justify-center">
                             <div className="relative w-24 sm:w-28 md:w-full aspect-square">
                                 <Image
-                                    src="/placeholder.svg"
+                                    src="https://ik.imagekit.io/288weifiq/nextjs/front-view-young-female-with-bag-preparing-vacation-blue-space_140725-87812.jpg"
                                     alt="Our Commitment"
                                     fill
                                     sizes="(max-width: 768px) 120px, 300px"
