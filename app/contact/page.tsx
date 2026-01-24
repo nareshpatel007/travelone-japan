@@ -3,56 +3,11 @@
 import CommonHeader from "@/components/header/common-header";
 import CommonFooter from "@/components/footer/common-footer";
 import { useEffect, useState } from "react";
-import { MapPin, Phone, Mail, Clock, Send, MessageSquare, HelpCircle, FileText } from "lucide-react";
+import { MapPin, Phone, Mail, Send, MessageSquare, HelpCircle, FileText } from "lucide-react";
 import Link from "next/link";
-import Heading from "@/components/common/heading";
 import PageHeading from "@/components/common/page-heading";
 import FullBannerSection from "@/components/about/full-banner";
 import StartWithWho from "@/components/about/start-with-who";
-
-// Contact info
-const contactInfo = [
-    {
-        icon: MapPin,
-        title: "Address",
-        details: ["19 Grand Trunk Crescent, Toronto, ON M5J 3A3"],
-    },
-    {
-        icon: Phone,
-        title: "Phone",
-        details: ["+1 437 966 9023"],
-    },
-    {
-        icon: Mail,
-        title: "Email",
-        details: ["connect@travelone.io"],
-    }
-];
-
-// Quick links
-const quickLinks = [
-    {
-        icon: MessageSquare,
-        title: "Live Chat",
-        description: "Chat with our support team in real-time",
-        link: "#",
-        linkText: "Start Chat",
-    },
-    {
-        icon: HelpCircle,
-        title: "Help Center",
-        description: "Find answers to frequently asked questions",
-        link: "#",
-        linkText: "Visit Help Center",
-    },
-    {
-        icon: FileText,
-        title: "Manage Booking",
-        description: "View, modify or cancel your bookings",
-        link: "/bookings",
-        linkText: "Go to Bookings",
-    },
-];
 
 export default function ContactUsPage() {
     // Define state
