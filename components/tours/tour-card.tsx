@@ -25,7 +25,7 @@ export function TourCard({
     city_nights
 }: TourCardProps) {
     // Parse json
-    const tourSummary = JSON.parse(tour_sub_title as any);
+    const tourSummary = tour_sub_title ? JSON.parse(tour_sub_title as any) : [];
     const cityNights = JSON.parse(city_nights as any);
 
     return (

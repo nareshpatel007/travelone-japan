@@ -2,8 +2,6 @@
 
 import type React from "react";
 import { useState } from "react";
-import { X, Eye, EyeOff, CheckCircle2 } from "lucide-react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { ForgotPasswordModal } from "./forgot-password-modal";
 import QuestionHeading from "../plan_your_trip/landing/questionHeading";
 import Link from "next/link";
