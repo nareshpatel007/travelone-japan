@@ -87,16 +87,6 @@ export function LandingPlanTripModal({ open, onOpenChange }: PlanTripModalProps)
         onOpenChange(false);
     }
 
-    const updateForm = (key: string, value: any) => {
-        setPlanYourTripForm((prev: any) => ({
-            ...prev,
-            [key]: value,
-        }));
-
-        // Clear error once user fixes it
-        setErrors("");
-    };
-
     // Validate step
     const validateStep = () => {
         // Define error

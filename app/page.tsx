@@ -19,6 +19,7 @@ import FullBannerSection from "@/components/home/full-banner";
 import BlogSlider from "@/components/home/blog-slider";
 import StickyHomeHeader from "@/components/header/sticky-home-header";
 import WhyTravelOne from "@/components/home/why-travelone";
+import { CommonPlanTripModal } from "@/components/plan_your_trip/common-popup";
 
 export default function HomePage() {
     // Define state
@@ -110,7 +111,7 @@ export default function HomePage() {
                 <BlogSlider blogList={blogList} />
                 <CommonFooter isStickyShow={true} />
                 <StickyHomeHeader />
-                <LandingPlanTripModal open={openPlanYourTripModel} onOpenChange={setOpenPlanYourTripModel} />
+                <CommonPlanTripModal open={openPlanYourTripModel} onOpenChange={setOpenPlanYourTripModel} />
             </>}
         </body>
     );
