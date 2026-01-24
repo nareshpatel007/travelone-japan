@@ -3,45 +3,30 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import {
-    FacebookIcon,
-    Heart,
-    Instagram,
-    Linkedin,
-    Menu,
-    Search,
-    ShoppingCartIcon,
-    Twitter,
-    User,
-    X,
-    Youtube,
-} from "lucide-react";
-
 import { CommonPlanTripModal } from "../plan_your_trip/common-popup";
 import { LoginModal } from "../common/login-modal";
-import { LandingPlanTripModal } from "../plan_your_trip/landing-popup";
-import { Button } from "../ui/button";
+import { Heart, Instagram, Linkedin, Menu, Search, ShoppingCartIcon, User, X, Youtube } from "lucide-react";
 
 // Define mega menu destinations list
 const DESTINATIONS = [
     {
+        title: "Switzerland",
+        image: "/common/switzerland.jpg",
+        link: "/country/switzerland",
+    },
+    {
         title: "Spain",
-        image: "https://ik.imagekit.io/288weifiq/nextjs/spain/palace-communication-summer-dusk-madrid_1398-2169.jpg",
+        image: "/common/spain.jpg",
         link: "/country/spain",
     },
     {
         title: "France",
-        image: "https://ik.imagekit.io/288weifiq/nextjs/france/famous-eiffel-tower-paris-with-gorgeous-colors_268835-830.jpg",
+        image: "/common/france.jpg",
         link: "/country/france",
     },
     {
-        title: "Switzerland",
-        image: "https://ik.imagekit.io/288weifiq/nextjs/switzerland/beautiful-shot-diablerets-glacier-blue-sky-switzerland_181624-23044.jpg",
-        link: "/country/switzerland",
-    },
-    {
         title: "Canada",
-        image: "https://ik.imagekit.io/288weifiq/nextjs/canada/niagara-falls-panorama_649448-3341.jpg",
+        image: "/common/canada.jpg",
         link: "/country/canada",
     },
 ];
@@ -50,8 +35,7 @@ export default function CommonHeader() {
     // Define state
     const [openMobileMenu, setOpenMobileMenu] = useState(false);
     const [showMegaMenu, setShowMegaMenu] = useState(false);
-    const [openPlanTrip, setOpenPlanTrip] = useState(false);
-    const [openPlanYourTripModel, setOpenPlanYourTripModel] = useState(false);
+    const [openCommonPlanTrip, setOpenCommonPlanTrip] = useState(false);
     const [openLogin, setOpenLogin] = useState(false);
 
     // Define count
@@ -182,8 +166,8 @@ export default function CommonHeader() {
                         />
 
                         <button
-                            className="hidden lg:block border px-4 py-2 rounded font-semibold hover:bg-black hover:text-white cursor-pointer"
-                            onClick={() => setOpenPlanYourTripModel(true)}
+                            className="hidden lg:block border border-black px-4 py-2 rounded-sm font-medium hover:bg-black hover:text-white cursor-pointer"
+                            onClick={() => setOpenCommonPlanTrip(true)}
                         >
                             Plan Your Trip
                         </button>
@@ -216,6 +200,11 @@ export default function CommonHeader() {
                                     </Link>
                                 </li>
                                 <li>
+                                    <Link href="/country/south-korea" className="hover:underline">
+                                        South Korea
+                                    </Link>
+                                </li>
+                                <li>
                                     <Link href="/country/indonesia" className="hover:underline">
                                         Indonesia
                                     </Link>
@@ -223,11 +212,6 @@ export default function CommonHeader() {
                                 <li>
                                     <Link href="/country/vietnam" className="hover:underline">
                                         Vietnam
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link href="/country/south-korea" className="hover:underline">
-                                        South Korea
                                     </Link>
                                 </li>
                                 <li>
@@ -289,8 +273,7 @@ export default function CommonHeader() {
 
             {/* ================= MODALS ================= */}
             <LoginModal open={openLogin} onOpenChange={setOpenLogin} />
-            <CommonPlanTripModal open={openPlanTrip} onOpenChange={setOpenPlanTrip} />
-            <LandingPlanTripModal open={openPlanYourTripModel} onOpenChange={setOpenPlanYourTripModel} />
+            <CommonPlanTripModal open={openCommonPlanTrip} onOpenChange={setOpenCommonPlanTrip} />
         </>
     );
 }

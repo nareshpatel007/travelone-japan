@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { useState } from "react";
-import { LandingPlanTripModal } from "../plan_your_trip/landing-popup";
+import { CommonPlanTripModal } from "../plan_your_trip/common-popup";
 
 export default function FullBannerSection() {
     // Define state
@@ -15,12 +15,12 @@ export default function FullBannerSection() {
                     fill
                     className="absolute inset-0 w-full h-full object-cover object-center opacity-100"
                 />
-                <div className="relative h-full flex items-center justify-center px-8">
-                    <div className="text-center text-white max-w-2xl space-y-4">
+                <div className="relative h-full flex items-center justify-center px-5 md:px-0">
+                    <div className="text-center text-white space-y-5">
                         <h1 className="text-3xl md:text-6xl leading-tight font-normal">
                             Travel is a Result of Your Persona.
                         </h1>
-                        <p className="text-base">
+                        <p className="text-base md:text-lg">
                             Join the world’s most discerning travelers in a world that is perfectly synchronized to you.
                         </p>
                         <button
@@ -34,7 +34,7 @@ export default function FullBannerSection() {
             </div>
 
             {/* Plan Your Trip Modal */}
-            <LandingPlanTripModal open={openPlanYourTripModel} onOpenChange={setOpenPlanYourTripModel} />
+            <CommonPlanTripModal open={openPlanYourTripModel} onOpenChange={setOpenPlanYourTripModel} />
         </>
     );
 }

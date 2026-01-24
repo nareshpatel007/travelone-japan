@@ -1,8 +1,7 @@
-import { MapPin } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { LandingPlanTripModal } from "../plan_your_trip/landing-popup";
 import { useState } from "react";
+import { CommonPlanTripModal } from "../plan_your_trip/common-popup";
 
 export default function OurVision() {
     // Define state
@@ -52,7 +51,7 @@ export default function OurVision() {
             </div>
 
             {/* Plan Your Trip Modal */}
-            <LandingPlanTripModal open={openPlanYourTripModel} onOpenChange={setOpenPlanYourTripModel} />
+            <CommonPlanTripModal open={openPlanYourTripModel} onOpenChange={setOpenPlanYourTripModel} />
         </>
     );
 }

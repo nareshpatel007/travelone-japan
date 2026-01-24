@@ -325,9 +325,9 @@ export function CommonPlanTripModal({ open, onOpenChange }: Props) {
             <div className="relative w-full h-full bg-[#fef4e4] overflow-auto">
                 <button
                     onClick={handleClose}
-                    className="absolute top-6 right-6 z-50 p-2 bg-black hover:bg-black rounded-full transition-colors cursor-pointer"
+                    className="absolute top-6 right-6 z-50 p-2 border border-black bg-black hover:bg-white rounded-full transition-colors cursor-pointer"
                 >
-                    <X className="h-5 w-5 text-white" />
+                    <X className="h-5 w-5 text-white hover:text-black" />
                 </button>
 
                 <div className="min-h-full flex flex-col items-center justify-center px-5 py-10 space-y-5">

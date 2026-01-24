@@ -4,13 +4,14 @@ import Image from "next/image";
 import Link from "next/link";
 
 interface TourCardProps {
-    name: string
-    slug: string
-    featured_image: string
-    tour_type: number
-    is_refundable: number
-    starting_price: string,
-    city_nights: any
+    name: string;
+    slug: string;
+    featured_image: string;
+    tour_type: number;
+    tour_sub_title: string;
+    is_refundable: number;
+    starting_price: string;
+    city_nights: string;
 }
 
 export function TourCard({
@@ -18,18 +19,19 @@ export function TourCard({
     slug,
     featured_image,
     tour_type,
+    tour_sub_title,
     is_refundable,
     starting_price,
     city_nights
 }: TourCardProps) {
+    // Parse json
+    const tourSummary = JSON.parse(tour_sub_title as any);
     const cityNights = JSON.parse(city_nights as any);
 
     return (
         <div className="group h-full">
             <Link href={`/tour/${slug}`} className="h-full block">
                 <div className="flex flex-col h-full border border-gray-200 transition-all duration-300">
-
-                    {/* IMAGE (same height always) */}
                     <div className="relative h-52 md:h-80 overflow-hidden">
                         <Image
                             src={featured_image || "/placeholder.svg"}
@@ -54,17 +56,21 @@ export function TourCard({
                             </div>
                         )}
                     </div>
-
-                    {/* CONTENT */}
-                    <div className="flex flex-col flex-1 p-6 text-center space-y-3">
-
-                        {/* TITLE (fixed spacing) */}
+                    <div className="flex flex-col flex-1 p-6 text-center space-y-4">
+                        {/* Title */}
                         <h3 className="text-lg md:text-xl font-medium text-gray-900 line-clamp-2">
                             {name}
                         </h3>
 
-                        {/* ROUTE */}
-                        <div className="text-sm text-black">
+                        {/* Tour Summary */}
+                        {tourSummary && tourSummary.length > 0 && <div className="text-sm text-black">
+                            <span className="inline-flex items-center">
+                                {tourSummary[0]} / {tourSummary[3].replace("Places", "Locations")} / {tourSummary[1]}
+                            </span>
+                        </div>}
+
+                        {/* City nights */}
+                        {cityNights && cityNights.length > 0 && <div className="text-sm text-black">
                             {cityNights.map((item: any, index: number) => (
                                 <span key={index} className="inline-flex items-center">
                                     {item.city_name}
@@ -76,15 +82,14 @@ export function TourCard({
                                     )}
                                 </span>
                             ))}
-                        </div>
+                        </div>}
 
-                        {/* PRICE — STICKS TO BOTTOM */}
+                        {/* Start Price */}
                         <div className="mt-auto flex justify-center pt-4">
                             <span className="text-xs md:text-sm font-semibold text-[#385b21] bg-[#d4e9e7] px-5 py-1.5 rounded-sm">
                                 Start from USD ${formatPrice(starting_price, 0)}
                             </span>
                         </div>
-
                     </div>
                 </div>
             </Link>

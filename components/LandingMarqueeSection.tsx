@@ -10,23 +10,18 @@ interface Props {
 }
 
 const images1 = [
-    "https://ik.imagekit.io/288weifiq/nextjs/Landing-marquee-img-01.png",
-    "https://ik.imagekit.io/288weifiq/nextjs/Landing-marquee-img-01.png",
+    "/home/Landing-marquee-img-01.png",
+    "/home/Landing-marquee-img-01.png",
 ];
 
 const images2 = [
-    "https://ik.imagekit.io/288weifiq/nextjs/Landing-marquee-img-2.png",
-    "https://ik.imagekit.io/288weifiq/nextjs/Landing-marquee-img-2.png",
+    "/home/Landing-marquee-img-2.png",
+    "/home/Landing-marquee-img-2.png",
 ];
 
 const images3 = [
-    "https://ik.imagekit.io/288weifiq/nextjs/Landing-marquee-img-3.png",
-    "https://ik.imagekit.io/288weifiq/nextjs/Landing-marquee-img-3.png",
-];
-
-const images4 = [
-    "https://ik.imagekit.io/288weifiq/nextjs/Landing-marquee-img-4.png",
-    "https://ik.imagekit.io/288weifiq/nextjs/Landing-marquee-img-4.png",
+    "/home/Landing-marquee-img-4.png",
+    "/home/Landing-marquee-img-4.png",
 ];
 
 export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Props) {
@@ -65,17 +60,9 @@ export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Prop
                 </div>
                 <div className="flex flex-col">
                     <div className="flex flex-1 gap-8 lg:gap-10 justify-center">
-                        {/* Always visible */}
                         <VerticalSlider images={images1} direction="down" />
                         <VerticalSlider images={images2} direction="up" />
                         <VerticalSlider images={images3} direction="down" />
-
-                        {/* Only on wide desktop (xl+) — NO wrapper */}
-                        {/* <VerticalSlider
-                            images={images4}
-                            direction="up"
-                            className="hidden xl:block"
-                        /> */}
                     </div>
                 </div>
             </section>

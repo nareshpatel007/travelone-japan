@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { LandingPlanTripModal } from "../plan_your_trip/landing-popup";
+import { CommonPlanTripModal } from "../plan_your_trip/common-popup";
 
 export default function FooterCurveSection() {
     // Define state
@@ -52,7 +52,7 @@ export default function FooterCurveSection() {
 
                         <button
                             onClick={() => setOpenPlanYourTripModel(true)}
-                            className="bg-black text-white px-4 py-3 text-sm uppercase border border-black tracking-wide font-normal hover:bg-black/90 transition cursor-pointer"
+                            className="bg-black text-white px-6 py-3 text-sm border border-black tracking-wide font-medium uppercase hover:bg-black/90 transition cursor-pointer"
                         >
                             Begin Your Persona Mapping
                         </button>
@@ -61,7 +61,7 @@ export default function FooterCurveSection() {
             </div>
 
             {/* MODAL */}
-            <LandingPlanTripModal open={openPlanYourTripModel} onOpenChange={setOpenPlanYourTripModel} />
+            <CommonPlanTripModal open={openPlanYourTripModel} onOpenChange={setOpenPlanYourTripModel} />
         </>
     );
 }
