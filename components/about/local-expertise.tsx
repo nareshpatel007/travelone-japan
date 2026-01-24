@@ -56,8 +56,7 @@ export default function LocalExpertise() {
                     </div>
 
                     <p className="text-black text-base sm:text-lg pt-2">
-                        Global operations managed by TICO-certified advisors and ACTA-registered
-                        industry professionals.
+                        Global operations managed by TICO-certified advisors and ACTA-registered industry professionals.
                     </p>
                 </div>
             </div>

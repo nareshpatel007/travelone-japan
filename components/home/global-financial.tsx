@@ -6,7 +6,6 @@ import Link from "next/link";
 export default function GlobalFinancialSection() {
     return (
         <section className="grid grid-cols-1 lg:grid-cols-2 gap-8 px-5 md:px-10 py-12">
-            {/* LEFT CONTENT */}
             <div className="flex items-center p-12 bg-[#FFF9EE]">
                 <div className="max-w-2xl space-y-6 text-center lg:text-left">
                     <h1 className="text-black text-3xl sm:text-4xl lg:text-6xl leading-tight font-normal">
