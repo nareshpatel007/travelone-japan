@@ -17,6 +17,7 @@ export function LoginModal({ open, onOpenChange }: Props) {
     // Define state
     const [isSignUp, setIsSignUp] = useState(false);
     const [isFormLoading, setIsFormLoading] = useState(false);
+    const [isRegistered, setIsRegistered] = useState(false);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [firstName, setFirstName] = useState("");

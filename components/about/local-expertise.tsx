@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 
 export default function LocalExpertise() {
     return (
@@ -31,21 +32,27 @@ export default function LocalExpertise() {
 
                     {/* LOGOS */}
                     <div className="flex flex-wrap items-center justify-center lg:justify-start gap-6 pt-4">
-                        <Image
-                            src="https://ik.imagekit.io/288weifiq/nextjs/81-814150_acta-logo-clipart.png"
-                            alt="ACTA"
-                            width={160}
-                            height={80}
-                            className="object-contain h-auto w-20 md:w-26"
-                        />
+                        <Link href="/partnership/ACTA-License.jpeg" target="_blank">
+                            <Image
+                                src="/common/acta-logo.webp"
+                                alt="ACTA"
+                                width={160}
+                                height={80}
+                                draggable="false"
+                                className="object-contain h-auto w-20 md:w-26"
+                            />
+                        </Link>
 
-                        <Image
-                            src="https://ik.imagekit.io/288weifiq/nextjs/tico-logo_final.c6b6399c5942.jpg"
-                            alt="TICO"
-                            width={160}
-                            height={80}
-                            className="object-contain h-auto w-20 md:w-26"
-                        />
+                        <Link href="/partnership/TICO-Bhavin-Vora.pdf" target="_blank">
+                            <Image
+                                src="/common/tico-logo.webp"
+                                alt="TICO"
+                                width={160}
+                                height={80}
+                                draggable="false"
+                                className="object-contain h-auto w-20 md:w-26"
+                            />
+                        </Link>
                     </div>
 
                     <p className="text-black text-base sm:text-lg pt-2">
