@@ -34,23 +34,27 @@ export default function CommonFooter({ isStickyShow = false }: Props) {
 
             {/* LOGOS */}
             <div className="flex flex-wrap items-center justify-center gap-6 bg-[#FFF9EE] py-10">
-                <Image
-                    src="/common/acta-logo.webp"
-                    alt="ACTA"
-                    width={160}
-                    height={80}
-                    draggable="false"
-                    className="object-contain h-auto w-20 md:w-26"
-                />
+                <Link href="/partnership/ACTA-License.jpeg" target="_blank">
+                    <Image
+                        src="/common/acta-logo.webp"
+                        alt="ACTA"
+                        width={160}
+                        height={80}
+                        draggable="false"
+                        className="object-contain h-auto w-20 md:w-26"
+                    />
+                </Link>
 
-                <Image
-                    src="/common/tico-logo.webp"
-                    alt="TICO"
-                    width={160}
-                    height={80}
-                    draggable="false"
-                    className="object-contain h-auto w-20 md:w-26"
-                />
+                <Link href="/partnership/TICO-Bhavin-Vora.pdf" target="_blank">
+                    <Image
+                        src="/common/tico-logo.webp"
+                        alt="TICO"
+                        width={160}
+                        height={80}
+                        draggable="false"
+                        className="object-contain h-auto w-20 md:w-26"
+                    />
+                </Link>
             </div>
 
             <footer className="bg-[#FFF9EE] text-black">

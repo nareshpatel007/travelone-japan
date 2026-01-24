@@ -25,11 +25,14 @@ export default function NotFound() {
                         <div className="relative mb-8">
                             <h1 className="text-[120px] md:text-[180px] font-bold text-black opacity-10 leading-none">404</h1>
                         </div>
-                        <h2 className="text-2xl md:text-3xl font-bold text-[#1E1E1E] mb-4">Oops! Looks like you're off the map</h2>
-                        <p className="text-md md:text-lg text-gray-600 mb-10 max-w-2xl mx-auto">
+
+                        <h2 className="text-3xl md:text-4xl font-semibold text-[#1E1E1E] mb-4">Oops! Looks like you're off the map</h2>
+
+                        <p className="text-base md:text-lg text-black mb-10 max-w-2xl mx-auto">
                             The page you're looking for doesn't exist. But don't worry, there are plenty of amazing destinations waiting
                             to be explored.
                         </p>
+
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                             <Link
                                 href="/"
