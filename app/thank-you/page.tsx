@@ -40,6 +40,9 @@ export default function Page() {
 
                         <div className="space-y-3">
                             <p className="text-black text-sm md:text-base">The next step is to move from a concept to a signature plan. Because 2026 availability for top-tier Ryokans and private drivers is already tightening, we recommend a brief 15-minute Vision Consultation.</p>
+                        </div>
+
+                        <div className="space-y-3">
                             <p className="text-black text-sm md:text-base">On this call, we will:</p>
                             <p className="text-black text-sm md:text-base">1. Review your "Design Wizard" inputs.</p>
                             <p className="text-black text-sm md:text-base">2. Share 2–3 exclusive route concepts tailored to your pace.</p>
