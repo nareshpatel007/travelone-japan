@@ -4,26 +4,27 @@ import Image from "next/image";
 import Link from "next/link";
 import { Linkedin } from "lucide-react";
 
+// Leadership Team
 const leadership = [
     {
         name: "Vipul Shah",
         role: "CTO",
-        image: "https://ik.imagekit.io/288weifiq/team/img_team_63e33ba779f7f6-39405930-32732924.png"
+        image: "/about/img_team_63e33ba779f7f6-39405930-32732924.webp"
     },
     {
         name: "Pranav Amin",
         role: "Sales Manager - Canada",
-        image: "https://ik.imagekit.io/288weifiq/team/img_team_63e33bb2382cf1-81493713-48358927.png"
+        image: "/about/img_team_63e33bb2382cf1-81493713-48358927.webp"
     },
     {
         name: "Louise Berg",
         role: "Social Media & Destination Expert",
-        image: "https://ik.imagekit.io/288weifiq/team/img_team_63e33bbf427638-77996729-78363986.png"
+        image: "/about/img_team_63e33bbf427638-77996729-78363986.webp"
     },
     {
         name: "Michael Bronfman",
         role: "Sales Manager - Canada",
-        image: "https://ik.imagekit.io/288weifiq/team/img_team_63e33bceb55f81-24897182-80425447.png"
+        image: "/about/img_team_63e33bceb55f81-24897182-80425447.webp"
     },
 ];
 
@@ -36,7 +37,7 @@ export default function LeadershipTeam() {
                     <div className="flex justify-center">
                         <div className="relative w-full max-w-md aspect-square rounded-xl overflow-hidden">
                             <Image
-                                src="https://ik.imagekit.io/288weifiq/team/img_team_674b22f265e656-43103817-70883790.png"
+                                src="/about/img_team_674b22f265e656-43103817-70883790.webp"
                                 alt="Bhavin Vora"
                                 fill
                                 className="object-cover"
@@ -75,8 +76,8 @@ export default function LeadershipTeam() {
                     </div>
                 </div>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-                    {leadership.map((member) => (
-                        <div key={member.name} className="text-center space-y-6">
+                    {leadership.map((member, index) => (
+                        <div key={index} className="text-center space-y-6">
                             <div className="relative flex justify-center">
                                 <div className="absolute -inset-2 rounded-lg bg-[#FFF9EE] border border-amber-200 opacity-90 blur-[1px]" />
                                 <div className="relative w-28 h-28 md:w-32 md:h-32 rounded-lg overflow-hidden">

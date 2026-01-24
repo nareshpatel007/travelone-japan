@@ -37,7 +37,6 @@ export default function AboutPage() {
                 <TravelOneJourney />
                 <LeadershipTeam />
                 <LocalExpertise />
-                
                 <CommonFooter />
             </>}
         </body>
