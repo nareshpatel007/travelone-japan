@@ -22,9 +22,9 @@ export default function Page() {
 
                 <div className="max-w-7xl mx-auto px-5 md:px-0 py-6">
                     <PageHeading
-                        main="Your Private Journey is Now in Design."
+                        main="Your Private Journey is Now in Design"
                     />
-                    <div className="text-center space-y-8 text-black text-sm md:text-base">
+                    <div className="text-center space-y-8 text-black text-base md:text-lg">
                         <p>
                             Thank you for sharing your vision. We’ve received your preferences, and our team is already reviewing your "vibe" and "flow" requirements.
                         </p>
