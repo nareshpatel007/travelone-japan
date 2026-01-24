@@ -6,14 +6,14 @@ export async function POST(req: Request) {
 
     // Make API request
     const body = await req.json().catch(() => ({}));
-    const res = await fetch("${process.env.API_URL}plan_your_trip/landing", {
+    const res = await fetch(`${process.env.API_URL}auth/register`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
             "Requested-Domain": domainUrl
         },
         body: JSON.stringify(body)
-    });
+    })
 
     // Check response
     const text = await res.text();

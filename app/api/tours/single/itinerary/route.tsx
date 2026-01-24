@@ -6,7 +6,7 @@ export async function POST(req: Request) {
 
     // Make API request
     const body = await req.json().catch(() => ({}));
-    const res = await fetch(`https://api.travelone.io/api/v1/next/travelone/tours/single/itinerary`, {
+    const res = await fetch(`${process.env.API_URL}tours/single/itinerary`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
