@@ -1,5 +1,6 @@
 "use client";
 
+import { Link } from "lucide-react";
 import Image from "next/image";
 
 export default function GlobalFinancialSection() {
@@ -22,23 +23,27 @@ export default function GlobalFinancialSection() {
                     </p>
 
                     <div className="flex flex-wrap items-center justify-center lg:justify-start gap-6 pt-4">
-                        <Image
-                            src="/common/acta-logo.webp"
-                            alt="ACTA"
-                            width={160}
-                            height={80}
-                            draggable="false"
-                            className="object-contain h-auto w-20 md:w-26"
-                        />
+                        <Link href="/partnership/ACTA-License.jpeg" target="_blank">
+                            <Image
+                                src="/common/acta-logo.webp"
+                                alt="ACTA"
+                                width={160}
+                                height={80}
+                                draggable="false"
+                                className="object-contain h-auto w-20 md:w-26"
+                            />
+                        </Link>
 
-                        <Image
-                            src="/common/tico-logo.webp"
-                            alt="TICO"
-                            width={160}
-                            height={80}
-                            draggable="false"
-                            className="object-contain h-auto w-20 md:w-26"
-                        />
+                        <Link href="/partnership/TICO-Bhavin-Vora.pdf" target="_blank">
+                            <Image
+                                src="/common/tico-logo.webp"
+                                alt="TICO"
+                                width={160}
+                                height={80}
+                                draggable="false"
+                                className="object-contain h-auto w-20 md:w-26"
+                            />
+                        </Link>
                     </div>
 
                     <p className="text-black text-base sm:text-lg pt-2">
