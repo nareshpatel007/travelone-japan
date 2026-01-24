@@ -2,7 +2,7 @@
 
 export default function ArchitectureModern() {
     return (
-        <section className="max-w-5xl mx-auto px-5 md:px-0 py-12 space-y-12">
+        <section className="max-w-7xl md:max-w-5xl mx-auto px-5 md:px-0 py-12 space-y-12">
             <div className="text-center space-y-8">
                 {/* Heading */}
                 <h3 className="text-3xl md:text-6xl leading-tight font-normal">

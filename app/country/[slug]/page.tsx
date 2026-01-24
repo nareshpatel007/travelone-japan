@@ -14,6 +14,7 @@ import TopCities from "@/components/destination/top-cities";
 import ThreeBoxSection from "@/components/destination/three-box-section";
 import FAQsSection from "@/components/destination/faqs";
 import PageHelpful from "@/components/common/helpful";
+import Skeleton from "react-loading-skeleton";
 
 export default function TourDetailPage() {
     // Get slug
@@ -53,7 +54,7 @@ export default function TourDetailPage() {
                 const data = await response.json();
 
                 // Update the state
-                if(data?.status) {
+                if (data?.status) {
                     setPageData(data?.data ?? []);
                 }
             } catch (error: any) {
@@ -74,8 +75,10 @@ export default function TourDetailPage() {
                 <CommonHeader />
 
                 {isLoading ? (
-                    <div className="flex justify-center items-center min-h-screen bg-white">
-                        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900"></div>
+                    <div className="p-5 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6">
+                        {Array.from({ length: 3 }).map((_, index) => (
+                            <div key={index} className="animate-pulse bg-gray-200 rounded-lg h-48 md:h-64"></div>
+                        ))}
                     </div>
                 ) : (
                     <>

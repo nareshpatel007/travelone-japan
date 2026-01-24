@@ -10,29 +10,29 @@ export default function OurVision() {
 
     return (
         <>
-            <div className="max-w-7xl mx-auto px-5 md:px-0 py-10 md:py-14">
+            <div className="max-w-7xl mx-auto px-5 md:px-0 py-12">
                 <div className="flex flex-col lg:flex-row gap-10 items-center">
-                    <div className="flex-1 space-y-6">
+                    <div className="text-center flex-1 space-y-6">
                         <div className="text-black">
                             <h3 className="text-3xl md:text-6xl leading-tight font-normal">
                                 The Persona-First Era
                             </h3>
                         </div>
 
-                        <p className="text-gray-600 leading-relaxed">
+                        <p className="text-base text-black leading-relaxed">
                             The era of generic travel search is over. TravelOne is pioneering the <b>Traveler Persona Asset</b>. We don't just book trips; we record and refine your travel DNA—your preferences, your "vibes," and your non-negotiables. By building this proprietary data asset, we ensure that every subsequent trip we curate for you is more accurate, more effortless, and more personal than the last.
                         </p>
 
                         <button
                             onClick={() => setOpenPlanYourTripModel(true)}
-                            className="bg-black text-white px-4 py-2.5 text-sm uppercase border border-black tracking-wide font-semibold hover:bg-transparent hover:text-black transition cursor-pointer mr-5"
+                            className="bg-black text-white w-full py-2 md:w-auto md:px-4 md:py-2.5 text-sm uppercase border border-black tracking-wide font-semibold hover:bg-transparent hover:text-black transition cursor-pointer mr-5"
                         >
                             Begin Your Persona Mapping
                         </button>
 
                         <Link href="/country">
                             <button
-                                className="border border-black text-black px-4 py-2.5 text-sm uppercase tracking-wide font-semibold hover:bg-black hover:text-white transition cursor-pointer"
+                                className="border border-black text-black w-full py-2 md:w-auto md:px-4 md:py-2.5 text-sm uppercase tracking-wide font-semibold hover:bg-black hover:text-white transition cursor-pointer"
                             >
                                 Explore Signature Collections
                             </button>

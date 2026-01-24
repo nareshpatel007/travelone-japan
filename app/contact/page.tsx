@@ -94,11 +94,7 @@ export default function ContactUsPage() {
                     />
                     <div className="flex flex-col lg:flex-row gap-4">
                         <div className="flex-1">
-                            <div className="rounded-xl p-8 border border-gray-200 space-y-7">
-                                <span className="text-xl font-medium text-gray-900 block">
-                                    Contact the TravelOne Support Team
-                                </span>
-
+                            <div className="rounded-xl p-5 md:p-8 border border-gray-200 space-y-7">
                                 {isSubmitted ? (
                                     <div className="text-center py-12">
                                         <div className="w-16 h-16 bg-[#FFF9EE] rounded-full flex items-center justify-center mx-auto mb-4">

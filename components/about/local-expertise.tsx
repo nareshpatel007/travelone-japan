@@ -7,20 +7,27 @@ export default function LocalExpertise() {
         <section className="grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr] gap-4 px-4 sm:px-6 lg:px-8 py-8">
             <div className="flex items-center px-6 sm:px-10 p-12 bg-[#FFF9EE]">
                 <div className="max-w-2xl space-y-6">
-                    <div className="space-y-6">
+                    <div className="space-y-6 text-center md:text-left">
                         <h1 className="text-3xl md:text-6xl leading-tight font-normal">
                             Local Expertise, Global Scale.
                         </h1>
-                        <span className="text-black text-base sm:text-lg">
-                            We operate through Strategic Intelligence Zones to ensure ground-level precision.
-                        </span>
                     </div>
 
-                    <p className="text-black text-base sm:text-lg"><b>Intelligence:</b> We don't just book; we orchestrate using local masters in our vetted destinations.</p>
+                    <p className="text-black text-base sm:text-lg">
+                        We operate through Strategic Intelligence Zones to ensure ground-level precision.
+                    </p>
 
-                    <p className="text-black text-base sm:text-lg"><b>Security:</b> Headquartered in North America, providing a secure legal and financial framework.</p>
+                    <p className="text-black text-base sm:text-lg">
+                        <b>Intelligence:</b> We don't just book; we orchestrate using local masters in our vetted destinations.
+                    </p>
 
-                    <p className="text-black text-base sm:text-lg"><b>Compliance:</b> Fully registered and compliant with international travel and tax regulations.</p>
+                    <p className="text-black text-base sm:text-lg">
+                        <b>Security:</b> Headquartered in North America, providing a secure legal and financial framework.
+                    </p>
+
+                    <p className="text-black text-base sm:text-lg">
+                        <b>Compliance:</b> Fully registered and compliant with international travel and tax regulations.
+                    </p>
 
                     {/* LOGOS */}
                     <div className="flex flex-wrap items-center justify-center lg:justify-start gap-6 pt-4">

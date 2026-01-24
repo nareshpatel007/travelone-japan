@@ -13,11 +13,16 @@ export default function TopCities({ country, cities }: Props) {
     if (!cities || cities.length === 0 || !country) return null;
 
     return (
-        <div className="max-w-7xl mx-auto px-5 md:px-0 space-y-8 py-10 md:py-12">
-            <h2 className="text-center text-3xl md:text-4xl font-semibold text-black">
-                Top Cities in {country || "Unknown"}
-            </h2>
-            <div className="flex md:grid md:grid-cols-5 gap-6 overflow-x-auto md:overflow-visible pb-2">
+        <div className="max-w-7xl mx-auto px-5 md:px-0 py-12 space-y-12">
+            <div className="text-center space-y-1">
+                <h3 className="text-black text-3xl md:text-6xl leading-tight font-normal">
+                    Top Cities in {country || "Unknown"}
+                </h3>
+                <span className="text-sm md:text-lg text-black">
+                    Find the best cities to visit in {country || "Unknown"}
+                </span>
+            </div>
+            <div className="flex md:grid md:grid-cols-5 gap-6 overflow-x-auto md:overflow-visible">
                 {cities.map((city: any) => (
                     <div
                         key={city.id}

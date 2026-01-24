@@ -2,10 +2,10 @@
 
 export default function WhyTravelOne() {
     return (
-        <div className="bg-[#FFF9EE] py-10 md:py-16 px-5 md:px-0">
-            <div className="max-w-7xl mx-auto space-y-10">
+        <div className="bg-[#FFF9EE] py-12 px-5 md:px-0">
+            <div className="max-w-7xl mx-auto space-y-12">
                 <div className="text-center space-y-1">
-                    <h3 className="text-black text-3xl md:text-5xl leading-tight font-normal">
+                    <h3 className="text-black text-3xl md:text-6xl leading-tight font-normal">
                         Why Travel with TravelOne
                     </h3>
                     <span className="text-sm md:text-lg text-black">

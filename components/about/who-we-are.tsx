@@ -3,10 +3,10 @@
 export default function WhoWeAreSection() {
     return (
         <section className="bg-[#FFF9EE] py-12">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-12">
+            <div className="max-w-7xl mx-auto px-5 md:px-0 space-y-12">
                 {/* HEADING */}
                 <div className="max-w-3xl mx-auto text-center space-y-4">
-                    <div>
+                    <div className="space-y-1">
                         <h3 className="text-3xl md:text-6xl leading-tight font-normal">
                             Who We Are
                         </h3>
@@ -23,7 +23,7 @@ export default function WhoWeAreSection() {
                 </div>
 
                 {/* TWO-PART LAYOUT */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 max-w-6xl mx-auto">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
                     {/* CANADA */}
                     <div className="bg-white border border-black p-8 md:p-10 text-center md:text-left space-y-4">
                         <h3 className="text-black text-md md:text-xl font-medium">

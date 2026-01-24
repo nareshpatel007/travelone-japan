@@ -28,8 +28,8 @@ export default function HeroBannerSection({ pageData }: Props) {
                 <div className="absolute inset-0 bg-black/10" />
 
                 <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 space-y-5">
-                    <div className="text-white space-y-2 text-center">
-                        <h1 className="text-3xl md:text-6xl leading-tight font-normal">
+                    <div className="space-y-2 text-center">
+                        <h1 className="text-white text-3xl md:text-6xl leading-tight font-normal">
                             {pageData?.single?.extra_data?.hero_main_title}
                         </h1>
                     </div>

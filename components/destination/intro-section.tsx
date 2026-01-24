@@ -7,10 +7,10 @@ interface Props {
 
 export default function IntroSection({ pageData }: Props) {
     return (
-        <section className="max-w-4xl mx-auto px-5 md:px-0 md:p-6 py-0 md:py-12">
+        <section className="max-w-7xl md:max-w-5xl mx-auto px-5 md:px-0 py-12">
             <div className="text-center space-y-8">
                 {/* Heading */}
-                <h3 className="text-black text-3xl md:text-5xl leading-tight font-normal">
+                <h3 className="text-black text-3xl md:text-6xl leading-tight font-normal">
                     {pageData?.single?.extra_data?.first_desc_title}
                 </h3>
 

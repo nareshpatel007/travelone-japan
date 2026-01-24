@@ -7,7 +7,7 @@ interface Props {
 
 export default function ThreeBoxSection({ pageData }: Props) {
     return (
-        <section className="max-w-7xl mx-auto px-5 md:px-0 md:p-6 py-0 md:py-5">
+        <section className="max-w-7xl mx-auto px-5 md:px-0 py-12">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div className="bg-white rounded-xl overflow-hidden shadow-lg p-6 space-y-4">
                     <h3 className="text-black text-2xl font-semibold">

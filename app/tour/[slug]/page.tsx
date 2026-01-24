@@ -3,7 +3,6 @@
 import CommonHeader from "@/components/header/common-header";
 import CommonFooter from "@/components/footer/common-footer";
 import { useState, useEffect, useRef } from "react";
-import { ArrowUp } from "lucide-react";
 import Image from "next/image";
 import FAQsList from "@/components/tour_details/faqs";
 import RelatedTours from "@/components/tour_details/related-tours";

@@ -79,29 +79,22 @@ export default function DestinationPage() {
 
                     {!isLoading ? (
                         <div className="space-y-8">
-                            <div className="flex flex-wrap gap-3 justify-center md:justify-start">
-                                <button
+                            <div className="flex gap-3 overflow-x-auto pb-2 md:flex-wrap md:justify-start scrollbar-hide">
+                                <FilterButton
+                                    active={selectedDestination === "all"}
+                                    label="All Destinations"
                                     onClick={() => setSelectedDestination("all")}
-                                    className={`cursor-pointer px-5 py-2 rounded-full text-sm font-medium border transition ${selectedDestination === "all"
-                                        ? "bg-black text-white border-black"
-                                        : "bg-white text-black border-gray-300 hover:border-black"
-                                        }`}
-                                >
-                                    All Destinations
-                                </button>
+                                />
 
-                                {/* DYNAMIC DESTINATIONS */}
                                 {destinationList.map((destination, index) => (
-                                    <button
+                                    <FilterButton
                                         key={index}
-                                        onClick={() => setSelectedDestination(destination)}
-                                        className={`cursor-pointer px-5 py-2 rounded-full text-sm font-medium border transition ${selectedDestination === destination
-                                            ? "bg-black text-white border-black"
-                                            : "bg-white text-black border-gray-300 hover:border-black"
-                                            }`}
-                                    >
-                                        {destination}
-                                    </button>
+                                        label={destination}
+                                        active={selectedDestination === destination}
+                                        onClick={() =>
+                                            setSelectedDestination(destination)
+                                        }
+                                    />
                                 ))}
                             </div>
                             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
@@ -142,5 +135,29 @@ export default function DestinationPage() {
                 <CommonFooter />
             </>}
         </body>
+    );
+}
+
+// Filter button
+function FilterButton({
+    label,
+    active,
+    onClick,
+}: {
+    label: string;
+    active: boolean;
+    onClick: () => void;
+}) {
+    return (
+        <button
+            onClick={onClick}
+            className={`whitespace-nowrap px-5 py-2 rounded-full text-sm font-medium border transition
+                ${active
+                    ? "bg-black text-white border-black"
+                    : "bg-white text-black border-gray-300 hover:border-black"
+                }`}
+        >
+            {label}
+        </button>
     );
 }

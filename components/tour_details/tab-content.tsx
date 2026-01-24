@@ -124,11 +124,11 @@ export default function TabContent({ tour, city_nights, tour_packages, attractio
                         </div>
                     </div>
                     <div className="block md:hidden lg:hidden">
-                        <div className="!col-span-1 !flex !flex-col !gap-2">
+                        <div className="col-span-1 flex flex-col gap-2">
                             <select
                                 value={activeTab}
                                 onChange={(e) => setActiveTab(e.target.value)}
-                                className="!border-1 !border-[#C46A3A] !p-3 !rounded-sm !font-semibold !mb-4 !text-sm"
+                                className="border border-black p-3 rounded-sm font-semibold mb-4 text-sm"
                             >
                                 {tabs.map((tab) => (
                                     <option key={tab} value={tab.toLowerCase().replace(/\s+/g, "-")}>
@@ -137,7 +137,7 @@ export default function TabContent({ tour, city_nights, tour_packages, attractio
                                 ))}
                             </select>
                         </div>
-                        <div className="bg-white border-1 border-[#C46A3A] rounded p-4">
+                        <div className="bg-white border-1 border-black rounded p-4">
                             <OverviewTabContent
                                 activeTab={activeTab}
                                 tour={tour}

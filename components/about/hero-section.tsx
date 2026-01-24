@@ -12,7 +12,7 @@ export default function HeroSection() {
 
             <div className="absolute inset-0 bg-black/30" />
 
-            <div className="absolute inset-0 flex max-w-5xl mx-auto items-center justify-center">
+            <div className="absolute inset-0 flex max-w-5xl mx-auto px-10 md:px-0 items-center justify-center">
                 <div className="text-center text-white space-y-2">
                     <h1 className="text-3xl md:text-6xl leading-tight font-normal">
                         The Global Standard for Persona-Led Travel Orchestration.

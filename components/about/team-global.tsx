@@ -5,11 +5,11 @@ import Image from "next/image";
 export default function TeamSection() {
     return (
         <>
-            <section className="bg-white py-12">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-12">
+            <section className="bg-white py-12 space-y-12">
+                <div className="max-w-7xl mx-auto px-5 sm:px-0 space-y-12">
                     {/* HEADER */}
                     <div className="max-w-5xl mx-auto text-center space-y-4">
-                        <div>
+                        <div className="space-y-1">
                             <h3 className="text-3xl md:text-6xl leading-tight font-normal">
                                 The Team
                             </h3>
@@ -29,7 +29,7 @@ export default function TeamSection() {
                     {/* LEADERSHIP + IMAGE (SINGLE SECTION) */}
                     <div className="bg-[#FFF9EE] grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
                         {/* TEXT */}
-                        <div className="p-8 md:p-10 space-y-4">
+                        <div className="p-8 md:p-10 space-y-5 text-center md:text-left">
                             <h3 className="text-black text-xl md:text-2xl font-medium">
                                 Leadership & R&D (North America)
                             </h3>
@@ -54,11 +54,10 @@ export default function TeamSection() {
                     </div>
                 </div>
             </section>
-            <section className="bg-white py-12">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-12">
-                    {/* HEADER */}
+            <section className="bg-white py-12 space-y-12">
+                <div className="max-w-7xl mx-auto px-5 sm:px-0 space-y-12">
                     <div className="max-w-5xl mx-auto text-center space-y-4">
-                        <div>
+                        <div className="space-y-1">
                             <h3 className="text-3xl md:text-6xl leading-tight font-normal">
                                 On-Ground Intelligence
                             </h3>
@@ -117,7 +116,7 @@ export default function TeamSection() {
                                     />
                                 </div>
 
-                                <div className="p-6 space-y-2">
+                                <div className="p-6 space-y-2 text-center md:text-left">
                                     <h4 className="font-medium text-black">
                                         {region.title}
                                     </h4>

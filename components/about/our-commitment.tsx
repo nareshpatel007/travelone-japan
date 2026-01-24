@@ -4,8 +4,8 @@ import Image from "next/image";
 
 export default function OurCommitment() {
     return (
-        <section className="bg-[#FFF9EE] py-12 md:py-16">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        <section className="bg-[#FFF9EE] py-12">
+            <div className="max-w-7xl mx-auto px-5 md:px-0">
                 <div className="max-w-5xl mx-auto">
                     <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12 text-center md:text-left">
                         {/* IMAGE */}
