@@ -24,7 +24,7 @@ export default function Page() {
                     <PageHeading
                         main="Your Private Journey is Now in Design."
                     />
-                    <div className="text-center space-y-12">
+                    <div className="text-center space-y-8">
                         <p className="text-black text-sm md:text-base">
                             Thank you for sharing your vision. We’ve received your preferences, and our team is already reviewing your "vibe" and "flow" requirements.
                         </p>
