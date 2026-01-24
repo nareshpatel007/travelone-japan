@@ -13,7 +13,7 @@ export default function ContactUsPage() {
                 <PageHeading
                     main="Your Private Journey is Now in Design."
                 />
-                <div className="flex items-center justify-center px-5 md:px-0 py-12 space-y-12">
+                <div className="flex items-center justify-center space-y-12">
                     <p className="text-gray-600">
                         Thank you for sharing your vision. We’ve received your preferences, and our team is already reviewing your "vibe" and "flow" requirements.
                     </p>
