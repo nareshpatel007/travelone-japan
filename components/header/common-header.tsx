@@ -137,7 +137,7 @@ export default function CommonHeader() {
                     {/* LOGO */}
                     <Link href="/">
                         <Image
-                            src="https://ik.imagekit.io/288weifiq/nextjs/logo.webp"
+                            src="/common/logo.webp"
                             alt="Logo"
                             width={160}
                             height={100}

@@ -29,12 +29,13 @@ export default function CommonFooter({ isStickyShow = false }: Props) {
 
     return (
         <>
+            {/* TOP FOOTER */}
             <FooterCurveSection />
 
             {/* LOGOS */}
             <div className="flex flex-wrap items-center justify-center gap-6 bg-[#FFF9EE] py-10">
                 <Image
-                    src="https://ik.imagekit.io/288weifiq/nextjs/81-814150_acta-logo-clipart.png"
+                    src="/common/acta-logo.webp"
                     alt="ACTA"
                     width={160}
                     height={80}
@@ -43,7 +44,7 @@ export default function CommonFooter({ isStickyShow = false }: Props) {
                 />
 
                 <Image
-                    src="https://ik.imagekit.io/288weifiq/nextjs/tico-logo_final.c6b6399c5942.jpg"
+                    src="/common/tico-logo.webp"
                     alt="TICO"
                     width={160}
                     height={80}
@@ -61,7 +62,7 @@ export default function CommonFooter({ isStickyShow = false }: Props) {
                                 width={220}
                                 height={100}
                                 draggable={false}
-                                src="https://ik.imagekit.io/288weifiq/nextjs/logo.webp"
+                                src="/common/logo.webp"
                             />
                             <span className="text-base">Subscribe for trending deals.</span>
                         </div>

@@ -21,28 +21,28 @@ export default function GlobalFinancialSection() {
                         manage global taxes, and guarantee your refunds. You simply explore.
                     </p>
 
-                    {/* LOGOS */}
                     <div className="flex flex-wrap items-center justify-center lg:justify-start gap-6 pt-4">
                         <Image
-                            src="https://ik.imagekit.io/288weifiq/nextjs/81-814150_acta-logo-clipart.png"
+                            src="/common/acta-logo.webp"
                             alt="ACTA"
                             width={160}
                             height={80}
+                            draggable="false"
                             className="object-contain h-auto w-20 md:w-26"
                         />
 
                         <Image
-                            src="https://ik.imagekit.io/288weifiq/nextjs/tico-logo_final.c6b6399c5942.jpg"
+                            src="/common/tico-logo.webp"
                             alt="TICO"
                             width={160}
                             height={80}
+                            draggable="false"
                             className="object-contain h-auto w-20 md:w-26"
                         />
                     </div>
 
                     <p className="text-black text-base sm:text-lg pt-2">
-                        Global operations managed by TICO-certified advisors and ACTA-registered
-                        industry professionals.
+                        Global operations managed by TICO-certified advisors and ACTA-registered industry professionals.
                     </p>
                 </div>
             </div>

@@ -13,7 +13,7 @@ export default function FooterCurveSection() {
                 <div className="relative z-10 max-w-6xl mb-[-100px] md:mb-[-140px] mx-auto pt-24 md:pt-32 mb-6">
                     <div className="hidden md:block absolute left-4 md:left-29 top-16 md:top-77">
                         <img
-                            src="https://ik.imagekit.io/288weifiq/nextjs/Landing-marquee-img-5.png"
+                            src="/footer/Landing-marquee-img-5.png"
                             alt="Image"
                             className="w-24 h-32 md:w-40 md:h-50 object-contain"
                             draggable="false"
@@ -22,7 +22,7 @@ export default function FooterCurveSection() {
 
                     <div className="hidden md:block absolute right-4 md:right-21 top-12 md:top-30">
                         <img
-                            src="https://ik.imagekit.io/288weifiq/nextjs/Landing-marquee-img-6.png"
+                            src="/footer/Landing-marquee-img-6.png"
                             alt="Image"
                             className="w-24 h-24 md:w-57 md:h-70 object-contain"
                             draggable="false"
@@ -31,7 +31,7 @@ export default function FooterCurveSection() {
 
                     <div className="flex justify-center">
                         <img
-                            src="https://ik.imagekit.io/288weifiq/nextjs/Landing-marquee-img-7.png"
+                            src="/footer/Landing-marquee-img-7.png"
                             alt="Image"
                             className="w-56 h-80 md:w-110 md:h-[580px] object-contain"
                             draggable="false"

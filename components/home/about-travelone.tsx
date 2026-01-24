@@ -9,13 +9,13 @@ export default function AboutTravelone() {
         <div className="max-w-7xl mx-auto px-5 md:px-0 py-16 space-y-12">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
                 <div className="flex justify-center">
-                    <div className="relative w-full max-w-[520px] aspect-[4/3]">
+                    <div className="relative w-full max-w-md aspect-square rounded-xl overflow-hidden">
                         <Image
-                            src="https://ik.imagekit.io/288weifiq/nextjs/bhavin_solo.jpg"
+                            src="/about/img_team_674b22f265e656-43103817-70883790.webp"
                             alt="About TravelOne"
                             fill
+                            className="object-cover"
                             priority
-                            className="object-cover shadow-xl"
                         />
                     </div>
                 </div>
