@@ -34,7 +34,7 @@ export default function StepFirstVisit({
     };
 
     return (
-        <div className="w-full max-w-3xl space-y-5">
+        <div className="space-y-5">
             <QuestionHeading
                 title={`Is this your first time visiting ${planYourTripForm?.country_name}?`}
             />

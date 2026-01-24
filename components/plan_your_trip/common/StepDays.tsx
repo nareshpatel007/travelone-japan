@@ -31,7 +31,7 @@ export default function StepDays({
     };
 
     return (
-        <div className="w-full max-w-3xl space-y-5">
+        <div className="space-y-5">
             <QuestionHeading title="How many days would you like to dedicate to this journey?" />
             <div className="max-h-[55vh] md:max-h-[60vh] overflow-y-auto space-y-3">
                 <Option

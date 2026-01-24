@@ -80,7 +80,7 @@ export default function StepCountries({
 
     return (
         <>
-            <div className="w-full max-w-3xl space-y-8">
+            <div className="space-y-8">
                 <QuestionHeading
                     title="Which country do you want to visit?"
                 />

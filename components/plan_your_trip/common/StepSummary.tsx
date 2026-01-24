@@ -100,7 +100,7 @@ export default function StepSummary({ planYourTripForm, jumpToStep }: Props) {
     );
 
     return (
-        <div className="w-full max-w-3xl space-y-5">
+        <div className="space-y-5">
             <QuestionHeading title="Question Summary" />
             <div className="border border-black rounded-sm p-5 space-y-5 bg-white/60 max-h-[55vh] md:max-h-[60vh] overflow-y-auto space-y-3">
                 {visibleItems.map((item, index) => {

@@ -31,7 +31,7 @@ export default function StepTripDesign({
     };
 
     return (
-        <div className="w-full max-w-4xl space-y-5">
+        <div className="space-y-5">
             <QuestionHeading
                 title="How would you like to receive your trip design?"
             />

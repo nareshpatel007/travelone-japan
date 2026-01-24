@@ -3,7 +3,6 @@
 import CommonHeader from "@/components/header/common-header";
 import CommonFooter from "@/components/footer/common-footer";
 import { useEffect, useState } from "react";
-import Heading from "@/components/common/heading";
 import Link from "next/link";
 import Image from "next/image";
 import { BlogSidebar } from "@/components/blog/sidebar";

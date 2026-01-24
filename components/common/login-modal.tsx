@@ -5,6 +5,7 @@ import { useState } from "react";
 import { ForgotPasswordModal } from "./forgot-password-modal";
 import QuestionHeading from "../plan_your_trip/landing/questionHeading";
 import Link from "next/link";
+import { Loader, Loader2 } from "lucide-react";
 
 // Define props
 interface Props {
@@ -14,36 +15,82 @@ interface Props {
 
 export function LoginModal({ open, onOpenChange }: Props) {
     // Define state
-    const [isSignUp, setIsSignUp] = useState(false)
-    const [showPassword, setShowPassword] = useState(false)
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
-    const [firstName, setFirstName] = useState("")
-    const [lastName, setLastName] = useState("")
-    const [showForgotPassword, setShowForgotPassword] = useState(false)
+    const [isSignUp, setIsSignUp] = useState(false);
+    const [isFormLoading, setIsFormLoading] = useState(false);
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [showForgotPassword, setShowForgotPassword] = useState(false);
+    const [errors, setErrors] = useState<string>("");
 
     // Handle login submit
     const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault()
-        console.log(isSignUp ? "Sign up" : "Log in", { email, password, firstName, lastName })
+        e.preventDefault();
+        console.log(isSignUp ? "Sign up" : "Log in", { email, password, firstName, lastName });
     }
 
+    // Reset form
     const resetForm = () => {
-        setEmail("")
-        setPassword("")
-        setFirstName("")
-        setLastName("")
-        setShowPassword(false)
+        setErrors("");
+        setEmail("");
+        setPassword("");
+        setFirstName("");
+        setLastName("");
     }
 
+    // Toggle mode for registration
     const toggleMode = () => {
-        setIsSignUp(!isSignUp)
-        resetForm()
+        setIsSignUp(!isSignUp);
+        resetForm();
     }
 
+    // Handle forgot password
     const handleForgotPassword = () => {
-        onOpenChange(false)
-        setShowForgotPassword(true)
+        onOpenChange(false);
+        setShowForgotPassword(true);
+    }
+
+    // Handle login process
+    const handleLogin = async () => {
+        // Update state
+        setErrors("");
+        setIsFormLoading(true);
+
+        try {
+            // Fetch the data
+            const response = await fetch("/api/auth/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ email, password }),
+            });
+
+            // Parse the JSON response
+            const data = await response.json();
+
+            // Check response
+            if (data.status) {
+                // Update state
+                resetForm();
+                onOpenChange(false);
+            } else {
+                setErrors(data?.message ?? "Something went wrong. Please try again.");
+            }
+        } catch (error: any) {
+            if (error.name !== "AbortError") {
+                console.error("Failed to fetch tours:", error);
+            }
+        } finally {
+            // Update state
+            setIsFormLoading(false);
+        }
+    }
+
+    // Handle registration process
+    const handleSignUp = () => {
+
     }
 
     return (
@@ -83,7 +130,11 @@ export function LoginModal({ open, onOpenChange }: Props) {
                             title={`${isSignUp ? "Create an account" : "Log in to your account"}`}
                             subtitle={`${isSignUp ? "Sign up to access your bookings" : "Log in to manage your bookings and payments."}`}
                         />
-                        <div className="space-y-3">
+                        <div className="space-y-2">
+                            {errors && <div className="flex items-center justify-center">
+                                <p className="text-sm md:text-base text-red-500">{errors}</p>
+                            </div>}
+
                             {isSignUp && (
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                     <div>
@@ -120,24 +171,26 @@ export function LoginModal({ open, onOpenChange }: Props) {
                                     type="email"
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
+                                    autoComplete="off"
                                     placeholder="Enter your email"
                                     className="w-full rounded-sm px-4 py-2 bg-white border border-gray-900"
-                                    required
                                 />
                             </div>
+
                             <div>
                                 <label className="block text-md text-black mb-0">Password</label>
                                 <input
                                     id="password"
-                                    type={showPassword ? "text" : "password"}
+                                    type="password"
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
+                                    autoComplete="off"
                                     className="w-full rounded-sm px-4 py-2 bg-white border border-gray-900"
                                     placeholder="Enter your password"
-                                    required
                                 />
                             </div>
-                            {isSignUp && <div className="flex items-start gap-2 pt-2">
+
+                            {isSignUp && <div className="flex items-start gap-2">
                                 <input
                                     type="checkbox"
                                     className="mt-1 cursor-pointer"
@@ -156,9 +209,11 @@ export function LoginModal({ open, onOpenChange }: Props) {
                             )}
 
                             <button
-                                type="submit"
-                                className="w-full flex items-center justify-center bg-black text-white font-semibold mt-3 py-2.5 rounded-md hover:bg-[#666] transition-colors cursor-pointer"
+                                onClick={isSignUp ? handleSignUp : handleLogin}
+                                disabled={isFormLoading}
+                                className="w-full flex items-center justify-center bg-black text-white font-semibold mt-3 py-2.5 rounded-md hover:bg-black/90 transition-colors cursor-pointer"
                             >
+                                {isFormLoading && <Loader2 className="h-4 w-4 mr-2 animate-spin" />}
                                 {isSignUp ? "Create account" : "Log in"}
                             </button>
 

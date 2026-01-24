@@ -135,7 +135,7 @@ export default function StepTravelers({
     const activeData: any = activeTab === "family" ? familyCount : groupCount;
 
     return (
-        <div className="w-full max-w-3xl space-y-5">
+        <div className="space-y-5">
             <QuestionHeading title="Who's traveling and how many of you?" />
             <div className="max-h-[55vh] md:max-h-[60vh] overflow-y-auto space-y-3">
                 <div className="grid grid-cols-3 gap-3 mb-3 md:mb-6 items-center text-center">

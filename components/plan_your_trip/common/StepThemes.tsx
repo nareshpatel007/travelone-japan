@@ -51,7 +51,7 @@ export default function StepThemes({
     };
 
     return (
-        <div className="w-full max-w-3xl space-y-5">
+        <div className="space-y-5">
             <QuestionHeading title="What theme do you want for this trip?" />
             <div className="max-h-[55vh] md:max-h-[60vh] overflow-y-auto space-y-3">
                 {themes.map((theme, i) => (

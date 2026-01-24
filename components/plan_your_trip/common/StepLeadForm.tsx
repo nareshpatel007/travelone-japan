@@ -40,7 +40,7 @@ export default function StepLeadForm({
     };
 
     return (
-        <div className="w-full max-w-3xl space-y-5">
+        <div className="space-y-5">
             <QuestionHeading
                 title="Secure Your Custom Design"
                 subtitle="Our Lead Designer will review your profile personally"

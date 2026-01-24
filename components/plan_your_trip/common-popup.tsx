@@ -320,72 +320,73 @@ export function CommonPlanTripModal({ open, onOpenChange }: Props) {
     if (!open) return null;
 
     return (
-        <div className="fixed inset-0 z-[99999] flex items-center justify-center">
+        <div className="fixed inset-0 z-[100] flex items-center justify-center">
             <div className="absolute inset-0 bg-black/40" onClick={handleClose} />
-            <div className="relative w-full h-full bg-[#fef4e4] overflow-auto">
+            <div className="relative w-full h-full bg-[#FFF6E5] overflow-auto">
                 <button
                     onClick={handleClose}
-                    className="absolute top-6 right-6 z-50 p-2 border border-black bg-black hover:bg-white rounded-full transition-colors cursor-pointer"
+                    className="absolute top-6 right-6 z-10 p-2 rounded-full bg-[#FFC765] hover:bg-black hover:text-white cursor-pointer transition"
                 >
-                    <X className="h-5 w-5 text-white hover:text-black" />
+                    <X className="h-5 w-5" />
                 </button>
-
-                <div className="min-h-full flex flex-col items-center justify-center px-5 py-10 space-y-5">
-                    {/* Screen Step */}
-                    {CurrentStep && (
-                        <CurrentStep
-                            planYourTripForm={planYourTripForm}
-                            setPlanYourTripForm={setPlanYourTripForm}
-                            jumpToStep={jumpToStep}
-                        />
-                    )}
-
-                    {/* Error */}
-                    {errors && (
-                        <p className="text-red-600 text-sm md:text-base">{errors}</p>
-                    )}
-
-                    {/* Navigation */}
-                    <div className="flex items-center gap-3">
-                        {step > 0 && !formLoader && (
-                            <button
-                                onClick={() => setStep(step - 1)}
-                                className="flex items-center gap-2 px-8 py-2.5 bg-white text-black rounded-sm font-medium border border-black hover:bg-black transition-colors hover:text-white cursor-pointer"
-                            >
-                                <MoveLeft className="h-4 w-4" />
-                                Previous
-                            </button>
+                <div className="min-h-full flex items-start justify-center px-6 py-10 md:py-16">
+                    <div className="w-full max-w-4xl space-y-5">
+                        {/* Screen Step */}
+                        {CurrentStep && (
+                            <CurrentStep
+                                planYourTripForm={planYourTripForm}
+                                setPlanYourTripForm={setPlanYourTripForm}
+                                jumpToStep={jumpToStep}
+                            />
                         )}
 
-                        {CurrentStepKey !== "summary" && (
-                            <button
-                                disabled={formLoader}
-                                onClick={handleNextStep}
-                                className="flex items-center gap-2 px-8 py-2.5 bg-black text-white rounded-sm font-medium border border-black hover:bg-white transition-colors hover:text-black cursor-pointer"
-                            >
-                                Next
-                                {formLoader ? (
-                                    <Loader2 className="h-4 w-4 animate-spin" />
-                                ) : (
-                                    <MoveRight className="h-4 w-4" />
-                                )}
-                            </button>
+                        {/* Error */}
+                        {errors && (
+                            <p className="text-red-600 text-sm md:text-base">{errors}</p>
                         )}
 
-                        {CurrentStepKey === "summary" && (
-                            <button
-                                disabled={formLoader}
-                                onClick={handlSubmitPlanYourTrip}
-                                className="flex items-center gap-2 px-8 py-2.5 bg-black text-white rounded-sm font-medium border border-black hover:bg-white transition-colors hover:text-black cursor-pointer"
-                            >
-                                {formLoader ? (
-                                    <Loader2 className="h-4 w-4 animate-spin" />
-                                ) : (
-                                    <CheckCircle className="h-5 w-5" />
-                                )}
-                                Submit
-                            </button>
-                        )}
+                        {/* Navigation */}
+                        <div className="flex gap-3">
+                            {step > 0 && !formLoader && (
+                                <button
+                                    onClick={() => setStep(step - 1)}
+                                    className="flex items-center gap-2 px-8 py-2.5 bg-white text-black rounded-sm font-medium border border-black hover:bg-black transition-colors hover:text-white cursor-pointer"
+                                >
+                                    <MoveLeft className="h-4 w-4" />
+                                    Previous
+                                </button>
+                            )}
+
+                            {CurrentStepKey !== "summary" && (
+                                <button
+                                    disabled={formLoader}
+                                    onClick={handleNextStep}
+                                    className="flex items-center gap-2 px-8 py-2.5 bg-black text-white rounded-sm font-medium border border-black hover:bg-white transition-colors hover:text-black cursor-pointer"
+                                >
+                                    Next
+                                    {formLoader ? (
+                                        <Loader2 className="h-4 w-4 animate-spin" />
+                                    ) : (
+                                        <MoveRight className="h-4 w-4" />
+                                    )}
+                                </button>
+                            )}
+
+                            {CurrentStepKey === "summary" && (
+                                <button
+                                    disabled={formLoader}
+                                    onClick={handlSubmitPlanYourTrip}
+                                    className="flex items-center gap-2 px-8 py-2.5 bg-black text-white rounded-sm font-medium border border-black hover:bg-white transition-colors hover:text-black cursor-pointer"
+                                >
+                                    {formLoader ? (
+                                        <Loader2 className="h-4 w-4 animate-spin" />
+                                    ) : (
+                                        <CheckCircle className="h-5 w-5" />
+                                    )}
+                                    Submit
+                                </button>
+                            )}
+                        </div>
                     </div>
                 </div>
             </div>

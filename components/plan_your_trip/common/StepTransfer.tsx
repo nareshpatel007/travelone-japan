@@ -31,7 +31,7 @@ export default function StepTransfer({
     };
 
     return (
-        <div className="w-full max-w-3xl space-y-5">
+        <div className="space-y-5">
             <QuestionHeading title="Tell us how you’d like to travel between places" />
             <div className="max-h-[55vh] md:max-h-[60vh] overflow-y-auto space-y-3">
                 <Option

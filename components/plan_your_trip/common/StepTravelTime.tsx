@@ -65,7 +65,7 @@ export default function StepTravelTime({
     const monthsToShow = selected ? monthMap[selected] || allMonths : allMonths;
 
     return (
-        <div className="w-full max-w-3xl space-y-5">
+        <div className="space-y-5">
             <QuestionHeading
                 title="When do you plan to travel?"
             />
