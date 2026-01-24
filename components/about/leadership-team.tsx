@@ -26,6 +26,16 @@ const leadership = [
         role: "Sales Manager - Canada",
         image: "/about/img_team_63e33bceb55f81-24897182-80425447.webp"
     },
+    {
+        name: "Himani Bhatt ",
+        role: "Destination Expert",
+        image: "/about/img_team_674b22f265e656-43103817-78894512.webp"
+    },
+    {
+        name: "Naresh Patel",
+        role: "Tech Lead - India",
+        image: "/about/img_team_674b22f265e656-43103817-78454512.webp"
+    },
 ];
 
 export default function LeadershipTeam() {
@@ -89,7 +99,7 @@ export default function LeadershipTeam() {
                                     />
                                 </div>
                             </div>
-                            <div className="space-y-1">
+                            <div className="space-y-0">
                                 <p className="font-semibold text-md md:text-lg text-black">{member.name}</p>
                                 <p className="text-sm md:text-base text-black">{member.role}</p>
                             </div>
