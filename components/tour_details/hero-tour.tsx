@@ -2,15 +2,16 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { Check, ChevronLeft, ChevronRight, Heart, MoveRight } from "lucide-react";
-import Skeleton from 'react-loading-skeleton';
+import { Check, ChevronLeft, ChevronRight, Heart, Loader2, MoveRight } from "lucide-react";
 import 'react-loading-skeleton/dist/skeleton.css';
 import { formatPrice } from "@/lib/utils";
+import { getLoginCookie } from "@/lib/auth";
 
 // Define props
 interface Props {
     isLoading: boolean;
     tour: any;
+    is_wishlisted: boolean;
     packages: any;
     city_nights: any;
     selectedPackage: any;
@@ -21,10 +22,23 @@ interface Props {
     setOpenBookingCartPopup: (value: any) => void;
 }
 
-export default function HeroTour({ isLoading, tour, packages, city_nights, selectedPackage, setSelectedPackage, setOpenCustomizeTripPopup, setOpenDownloadBrochurePopup, setOpenEmailBrochurePopup, setOpenBookingCartPopup }: Props) {
+export default function HeroTour({
+    isLoading,
+    tour,
+    is_wishlisted,
+    packages,
+    city_nights,
+    selectedPackage,
+    setSelectedPackage,
+    setOpenCustomizeTripPopup,
+    setOpenDownloadBrochurePopup,
+    setOpenEmailBrochurePopup,
+    setOpenBookingCartPopup
+}: Props) {
     // Define state
+    const [isFormLoading, setIsFormLoading] = useState<boolean>(false);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
-    const [isWishlisted, setIsWishlisted] = useState(false);
+    const [isWishlisted, setIsWishlisted] = useState(is_wishlisted);
 
     // Total images
     const totalImages = tour?.media_gallery?.sightseeing?.length || 0;
@@ -41,6 +55,48 @@ export default function HeroTour({ isLoading, tour, packages, city_nights, selec
         setCurrentImageIndex((prev) =>
             prev === 0 ? totalImages - 1 : prev - 1
         );
+    };
+
+    // Handle wishlist
+    const handleWishlist = async () => {
+        // Update state
+        setIsFormLoading(true);
+
+        try {
+            // Get user data
+            const user = getLoginCookie();
+
+            // Validate form
+            if (!user) {
+                return;
+            }
+
+            // Fetch the data
+            const response = await fetch("/api/tours/wishlist", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    tour_id: tour?.id,
+                    user_id: user?.user_id,
+                    action: isWishlisted ? "remove" : "add",
+                })
+            });
+
+            // Parse the JSON response
+            const data = await response.json();
+
+            // Check response
+            if (data.status) {
+                setIsWishlisted(!isWishlisted);
+            }
+        } catch (error: any) {
+            console.error("Failed to add to wishlist");
+        } finally {
+            // Update state
+            setIsFormLoading(false);
+        }
     };
 
     return (
@@ -65,16 +121,15 @@ export default function HeroTour({ isLoading, tour, packages, city_nights, selec
                         ))}
                     </div>
                     <button
-                        onClick={() => setIsWishlisted(!isWishlisted)}
+                        onClick={handleWishlist}
                         className="absolute top-4 right-4 bg-white/90 hover:bg-white p-2 rounded-full shadow-lg cursor-pointer transition"
                     >
-                        <Heart
+                        {isFormLoading && <Loader2 className="w-4 h-4 animate-spin" />}
+
+                        {!isFormLoading && <Heart
                             size={24}
-                            className={`${isWishlisted
-                                ? "fill-[#ef2853] text-[#ef2853]"
-                                : "text-gray-600 hover:fill-[#ef2853] hover:text-[#ef2853]"
-                                }`}
-                        />
+                            className={`${isWishlisted ? "fill-[#ef2853] text-[#ef2853]" : "text-gray-600 hover:fill-[#ef2853] hover:text-[#ef2853]"}`}
+                        />}
                     </button>
                     <button
                         onClick={prevImage}

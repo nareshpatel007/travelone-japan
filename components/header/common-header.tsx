@@ -214,7 +214,7 @@ export default function CommonHeader() {
                                 />
 
                                 {openProfileMenu && loginUserData && (
-                                    <div className="absolute right-0 mt-3 w-48 bg-white border shadow-lg rounded-md overflow-hidden z-50">
+                                    <div className="absolute right-0 mt-3 w-48 bg-white border shadow-lg rounded-sm overflow-hidden z-50">
                                         <div className="px-4 py-3 border-b bg-gray-100">
                                             <p className="text-base font-medium">
                                                 Hi, {`${loginUserData.first_name} ${loginUserData.last_name}`}

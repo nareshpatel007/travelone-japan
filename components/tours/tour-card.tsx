@@ -3,7 +3,8 @@ import { MoveRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
-interface TourCardProps {
+// Define interface
+interface Props {
     name: string;
     slug: string;
     featured_image: string;
@@ -23,7 +24,7 @@ export function TourCard({
     is_refundable,
     starting_price,
     city_nights
-}: TourCardProps) {
+}: Props) {
     // Parse json
     const tourSummary = tour_sub_title ? JSON.parse(tour_sub_title as any) : [];
     const cityNights = JSON.parse(city_nights as any);

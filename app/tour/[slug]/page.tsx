@@ -21,6 +21,7 @@ import { EmailBrochure } from "@/components/tour_details/popup/email-brochure";
 import { BookingCart } from "@/components/tour_details/popup/booking-cart";
 import Skeleton from "react-loading-skeleton";
 import Link from "next/link";
+import { getLoginCookie } from "@/lib/auth";
 
 export default function TourDetailPage() {
     // Get slug
@@ -59,13 +60,19 @@ export default function TourDetailPage() {
         const controller = new AbortController();
         const fetchTours = async () => {
             try {
+                // Get user data
+                const user = getLoginCookie();
+
                 // Fetch the data
                 const response = await fetch("/api/tours/single", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
                     },
-                    body: JSON.stringify({ slug })
+                    body: JSON.stringify({
+                        slug,
+                        user_id: user?.user_id
+                    }),
                 });
 
                 // Check response
@@ -107,6 +114,7 @@ export default function TourDetailPage() {
                     <HeroTour
                         isLoading={isLoading}
                         tour={tourData?.tour ?? {}}
+                        is_wishlisted={tourData?.is_wishlist}
                         city_nights={tourData?.city_nights ?? {}}
                         packages={tourData?.tour_packages ?? []}
                         selectedPackage={selectedPackage}
@@ -156,9 +164,11 @@ export default function TourDetailPage() {
                                     <button className="bg-[#ef2853] hover:bg-white text-white hover:text-[#ef2853] border border-[#ef2853] px-6 py-2 rounded text-base font-medium cursor-pointer transition">
                                         Book {tourData?.tour_packages && tourData?.tour_packages.find((p: any) => p.no === selectedPackage)?.name}
                                     </button>
+
                                     <button className="bg-white text-black border border-black hover:bg-black hover:text-white px-6 py-2 rounded text-base font-medium cursor-pointer transition" onClick={() => setOpenCustomizeTripPopup(true)}>
                                         Customize Trip
                                     </button>
+
                                     {/* <button
                                         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
                                         className="ml-2 p-2 bg-[#1E1E1E] text-white rounded-full shadow hover:shadow-lg cursor-pointer transition"
