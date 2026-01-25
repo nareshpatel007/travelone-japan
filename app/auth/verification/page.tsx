@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { CheckCircle, Loader2, X } from "lucide-react";
 
-export default function Page() {
+export default function AccountVerificationPage() {
     // Define hooks
     const searchParams = useSearchParams();
     const router = useRouter();

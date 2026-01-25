@@ -7,7 +7,7 @@ import PageHeading from "@/components/common/page-heading";
 import { CheckCircle, Loader2 } from "lucide-react";
 import { useSearchParams, useRouter } from "next/navigation";
 
-export default function Page() {
+export default function ResetPasswordPage() {
     // Define hooks
     const searchParams = useSearchParams();
     const router = useRouter();

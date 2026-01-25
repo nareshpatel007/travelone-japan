@@ -18,3 +18,23 @@ export function removeLoginCookie() {
 export function isLoggedIn() {
     return !!getLoginCookie();
 }
+
+// Add wishlist count
+export function addWishlistCount(action: string = 'add') {
+    let current_count: any = localStorage.getItem('wishlist_count') || 0;
+    current_count = Number(current_count);
+    let new_count = action === 'add' ? (current_count + 1) : (current_count - 1);
+    new_count = new_count > 0 ? new_count : 0;
+    localStorage.setItem('wishlist_count', new_count.toString());
+
+    // Update count for div class
+    const wishlist_count_div = document.getElementById('wishlist_count');
+    if (wishlist_count_div) {
+        wishlist_count_div.textContent = new_count.toString();
+    }
+}
+
+// Get wishlist count
+export function getWishlistCount() {
+    return localStorage.getItem('wishlist_count') || 0;
+}

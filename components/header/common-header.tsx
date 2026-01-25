@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { CommonPlanTripModal } from "../plan_your_trip/common-popup";
 import { LoginModal } from "../common/login-modal";
 import { Heart, Instagram, Linkedin, ListCheck, LogOut, Menu, Search, ShoppingCartIcon, User, User2, X, Youtube } from "lucide-react";
-import { getLoginCookie, isLoggedIn, removeLoginCookie } from "@/lib/auth";
+import { getLoginCookie, getWishlistCount, isLoggedIn, removeLoginCookie } from "@/lib/auth";
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
 
@@ -53,7 +53,7 @@ export default function CommonHeader() {
     const pathname = usePathname();
 
     // Define count
-    const wishlistCount = 0;
+    const wishlistCount = getWishlistCount();
     const cartCount = 0;
 
     useEffect(() => {
@@ -190,14 +190,14 @@ export default function CommonHeader() {
                     <div className="flex items-center gap-6">
                         <Link href="/wishlist" className="relative">
                             <Heart className="h-6 w-6" />
-                            <span className="absolute -top-2 -right-2 h-5 w-5 bg-yellow-400 rounded-full text-xs font-bold flex items-center justify-center">
+                            <span id="wishlist_count" className="absolute -top-2 -right-2 h-5 w-5 bg-yellow-400 rounded-full text-xs font-bold flex items-center justify-center">
                                 {wishlistCount}
                             </span>
                         </Link>
 
                         <Link href="/cart" className="relative">
                             <ShoppingCartIcon className="h-6 w-6" />
-                            <span className="absolute -top-2 -right-2 h-5 w-5 bg-yellow-400 rounded-full text-xs font-bold flex items-center justify-center">
+                            <span id="cart_count" className="absolute -top-2 -right-2 h-5 w-5 bg-yellow-400 rounded-full text-xs font-bold flex items-center justify-center">
                                 {cartCount}
                             </span>
                         </Link>
