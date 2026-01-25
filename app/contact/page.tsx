@@ -140,7 +140,7 @@ export default function ContactUsPage() {
                                             type="button"
                                             onClick={handleSubmit}
                                             disabled={isSubmitting}
-                                            className="w-full md:w-auto px-8 py-3 bg-black text-white font-medium rounded-full hover:bg-black/90 cursor-pointer transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                                            className="w-full md:w-auto px-8 py-2.5 bg-black text-white font-medium rounded-sm hover:bg-black/90 cursor-pointer transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                                         >
                                             {isSubmitting ? (
                                                 <>

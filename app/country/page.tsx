@@ -151,7 +151,7 @@ function FilterButton({
     return (
         <button
             onClick={onClick}
-            className={`whitespace-nowrap px-5 py-2 rounded-full text-sm font-medium border transition
+            className={`whitespace-nowrap px-5 py-2 rounded-full text-sm font-medium border cursor-pointer transition
                 ${active
                     ? "bg-black text-white border-black"
                     : "bg-white text-black border-gray-300 hover:border-black"

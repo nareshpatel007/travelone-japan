@@ -2,7 +2,7 @@
 
 import type React from "react"
 import { useState } from "react"
-import { X, Mail, CheckCircle } from "lucide-react"
+import { X, Mail, CheckCircle, Loader2 } from "lucide-react"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog"
 import QuestionHeading from "../plan_your_trip/landing/questionHeading"
 
@@ -12,13 +12,63 @@ interface ForgotPasswordModalProps {
 }
 
 export function ForgotPasswordModal({ open, onOpenChange }: ForgotPasswordModalProps) {
-    const [email, setEmail] = useState("")
+    // Define state
+    const [isFormLoading, setIsFormLoading] = useState(false);
+    const [email, setEmail] = useState("");
     const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
+    const [errors, setErrors] = useState<string>("");
 
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault()
-        console.log("[v0] Password reset requested for:", email)
-        setIsSubmitted(true)
+    // Handle reset
+    const handleReset = () => {
+        setErrors("");
+        setEmail("");
+        setIsSubmitted(false);
+        setIsFormLoading(false);
+    }
+
+    // Handle submit
+    const handleSubmit = async () => {
+        // Update state
+        setErrors("");
+        setIsFormLoading(true);
+
+        try {
+            // Validate form
+            if (!email) {
+                setErrors("Email is required.");
+                return;
+            }
+
+            // Fetch the data
+            const response = await fetch("/api/auth/forgot_password", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ email })
+            });
+
+            // Parse the JSON response
+            const data = await response.json();
+
+            // Check response
+            if (data.status) {
+                // Update state
+                setErrors("");
+                setEmail("");
+                setIsSubmitted(true);
+            } else {
+                // Update state
+                setErrors(data?.message ?? "Something went wrong. Please try again.");
+            }
+        } catch (error: any) {
+            if (error.name !== "AbortError") {
+                console.error("Failed to fetch tours:", error);
+            }
+        } finally {
+            // Update state
+            setIsFormLoading(false);
+        }
     }
 
     return (
@@ -48,18 +98,24 @@ export function ForgotPasswordModal({ open, onOpenChange }: ForgotPasswordModalP
                             className="relative w-10 h-10 flex items-center justify-center text-white text-sm font-semibold cursor-pointer"
                             onClick={() => {
                                 onOpenChange(false);
+                                handleReset();
                             }}
                         >
                             ✕
                         </button>
                     </div>
-                    <div className="p-8 md:p-10">
+                    <div className="p-6">
                         <QuestionHeading
-                            title="Reset your password"
+                            title="Forgot password"
                             subtitle="Enter your email address and we'll send you a link to reset your password"
                         />
+
+                        {errors && <div className="flex items-center justify-center">
+                            <p className="text-sm md:text-base text-red-500">{errors}</p>
+                        </div>}
+
                         {!isSubmitted ? (
-                            <form onSubmit={handleSubmit} className="space-y-5">
+                            <div className="space-y-5">
                                 <div>
                                     <label className="block text-md text-black">Email address</label>
                                     <input
@@ -69,18 +125,20 @@ export function ForgotPasswordModal({ open, onOpenChange }: ForgotPasswordModalP
                                         onChange={(e) => setEmail(e.target.value)}
                                         placeholder="Enter your email"
                                         className="w-full rounded-sm px-4 py-2 bg-white border border-gray-900"
-                                        required
                                     />
                                     <p className="mt-2 text-sm text-gray-700">We'll send a password reset link to this email address</p>
                                 </div>
 
                                 <button
                                     type="submit"
+                                    onClick={handleSubmit}
+                                    disabled={isFormLoading}
                                     className="w-full flex items-center justify-center bg-black text-white font-semibold mt-3 py-2.5 rounded-md hover:bg-[#333] transition-colors cursor-pointer"
                                 >
+                                    {isFormLoading && <Loader2 className="h-4 w-4 mr-2 animate-spin" />}
                                     Send reset link
                                 </button>
-                            </form>
+                            </div>
                         ) : (
                             <div className="space-y-4 text-center py-4">
                                 <div className="flex justify-center">

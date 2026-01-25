@@ -25,3 +25,9 @@ export function formatPrice(price: any, decimal = 2) {
     // Return formatted price
     return formattedPrice
 }
+
+// Email validator
+export function isValidEmail(email: string) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}

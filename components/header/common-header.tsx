@@ -2,10 +2,13 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { CommonPlanTripModal } from "../plan_your_trip/common-popup";
 import { LoginModal } from "../common/login-modal";
-import { Heart, Instagram, Linkedin, Menu, Search, ShoppingCartIcon, User, X, Youtube } from "lucide-react";
+import { Heart, Instagram, Linkedin, ListCheck, LogOut, Menu, Search, ShoppingCartIcon, User, User2, X, Youtube } from "lucide-react";
+import { getLoginCookie, isLoggedIn, removeLoginCookie } from "@/lib/auth";
+import { usePathname } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 // Define mega menu destinations list
 const DESTINATIONS = [
@@ -32,11 +35,22 @@ const DESTINATIONS = [
 ];
 
 export default function CommonHeader() {
+    // Define route
+    const router = useRouter();
+
     // Define state
     const [openMobileMenu, setOpenMobileMenu] = useState(false);
     const [showMegaMenu, setShowMegaMenu] = useState(false);
     const [openCommonPlanTrip, setOpenCommonPlanTrip] = useState(false);
     const [openLogin, setOpenLogin] = useState(false);
+    const [openProfileMenu, setOpenProfileMenu] = useState(false);
+
+    // Get user data
+    const loginUserData = isLoggedIn() ? getLoginCookie() : null;
+
+    // Define ref
+    const menuRef = useRef<HTMLDivElement>(null);
+    const pathname = usePathname();
 
     // Define count
     const wishlistCount = 0;
@@ -45,6 +59,10 @@ export default function CommonHeader() {
     useEffect(() => {
         document.body.style.overflow = openMobileMenu ? "hidden" : "auto";
     }, [openMobileMenu]);
+
+    useEffect(() => {
+        setOpenProfileMenu(false);
+    }, [pathname]);
 
     // Mega Menu Hide on scroll
     useEffect(() => {
@@ -60,6 +78,30 @@ export default function CommonHeader() {
             window.removeEventListener("scroll", handleScroll);
         };
     }, [showMegaMenu]);
+
+    // Click outside handler
+    useEffect(() => {
+        function handleClickOutside(event: MouseEvent) {
+            if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+                setOpenProfileMenu(false);
+            }
+        }
+
+        if (openProfileMenu) {
+            document.addEventListener("mousedown", handleClickOutside);
+        }
+
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [openProfileMenu]);
+
+    // Handle Logout
+    const logout = async () => {
+        removeLoginCookie();
+        setOpenProfileMenu(false);
+        router.refresh();
+    };
 
     // Mega Menu Show and Hide
     const openMegaMenu = () => setShowMegaMenu(true);
@@ -160,10 +202,57 @@ export default function CommonHeader() {
                             </span>
                         </Link>
 
-                        <User
-                            className="h-6 w-6 cursor-pointer"
-                            onClick={() => setOpenLogin(true)}
-                        />
+                        {isLoggedIn() ? (
+                            <div className="relative" ref={menuRef}>
+                                <Image
+                                    src="/common/user-profile.webp"
+                                    alt="User"
+                                    width={26}
+                                    height={26}
+                                    className="flex items-center gap-2 cursor-pointer"
+                                    onClick={() => setOpenProfileMenu(true)}
+                                />
+
+                                {openProfileMenu && loginUserData && (
+                                    <div className="absolute right-0 mt-3 w-48 bg-white border shadow-lg rounded-md overflow-hidden z-50">
+                                        <div className="px-4 py-3 border-b bg-gray-100">
+                                            <p className="text-base font-medium">
+                                                Hi, {`${loginUserData.first_name} ${loginUserData.last_name}`}
+                                            </p>
+                                        </div>
+
+                                        <Link
+                                            href="/account"
+                                            className="flex items-center gap-2 px-4 py-2 hover:bg-gray-100"
+                                        >
+                                            <User2 size={16} />
+                                            Profile
+                                        </Link>
+
+                                        <Link
+                                            href="/bookings"
+                                            className="flex items-center gap-2 px-4 py-2 hover:bg-gray-100"
+                                        >
+                                            <ListCheck size={16} />
+                                            My Bookings
+                                        </Link>
+
+                                        <button
+                                            onClick={logout}
+                                            className="flex items-center gap-2 px-4 py-2 w-full hover:bg-gray-100 cursor-pointer text-left"
+                                        >
+                                            <LogOut size={16} />
+                                            Logout
+                                        </button>
+                                    </div>
+                                )}
+                            </div>
+                        ) : (
+                            <User
+                                className="h-6 w-6 cursor-pointer"
+                                onClick={() => setOpenLogin(true)}
+                            />
+                        )}
 
                         <button
                             className="hidden lg:block border border-black px-4 py-2 rounded-sm font-medium hover:bg-black hover:text-white cursor-pointer"

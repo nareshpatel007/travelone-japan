@@ -5,7 +5,10 @@ import { useState } from "react";
 import { ForgotPasswordModal } from "./forgot-password-modal";
 import QuestionHeading from "../plan_your_trip/landing/questionHeading";
 import Link from "next/link";
-import { Loader, Loader2 } from "lucide-react";
+import { CheckCircle, Loader, Loader2 } from "lucide-react";
+import { setLoginCookie } from "@/lib/auth";
+import { useRouter } from "next/navigation";
+import { isValidEmail } from "@/lib/utils";
 
 // Define props
 interface Props {
@@ -14,6 +17,9 @@ interface Props {
 }
 
 export function LoginModal({ open, onOpenChange }: Props) {
+    // Define route
+    const router = useRouter();
+
     // Define state
     const [isSignUp, setIsSignUp] = useState(false);
     const [isFormLoading, setIsFormLoading] = useState(false);
@@ -22,6 +28,7 @@ export function LoginModal({ open, onOpenChange }: Props) {
     const [password, setPassword] = useState("");
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
+    const [acceptTerms, setAcceptTerms] = useState(false);
     const [showForgotPassword, setShowForgotPassword] = useState(false);
     const [errors, setErrors] = useState<string>("");
 
@@ -38,6 +45,8 @@ export function LoginModal({ open, onOpenChange }: Props) {
         setPassword("");
         setFirstName("");
         setLastName("");
+        setAcceptTerms(false);
+        setIsRegistered(false);
     }
 
     // Toggle mode for registration
@@ -59,6 +68,12 @@ export function LoginModal({ open, onOpenChange }: Props) {
         setIsFormLoading(true);
 
         try {
+            // Validate form
+            if (!email || !password) {
+                setErrors("All fields are required.");
+                return;
+            }
+
             // Fetch the data
             const response = await fetch("/api/auth/login", {
                 method: "POST",
@@ -73,9 +88,15 @@ export function LoginModal({ open, onOpenChange }: Props) {
 
             // Check response
             if (data.status) {
+                // set cookie value
+                setLoginCookie(data?.data);
+
                 // Update state
                 resetForm();
                 onOpenChange(false);
+
+                // Reload page
+                router.refresh();
             } else {
                 setErrors(data?.message ?? "Something went wrong. Please try again.");
             }
@@ -90,8 +111,61 @@ export function LoginModal({ open, onOpenChange }: Props) {
     }
 
     // Handle registration process
-    const handleSignUp = () => {
+    const handleSignUp = async () => {
+        // Update state
+        setErrors("");
+        setIsFormLoading(true);
+        setIsRegistered(false);
 
+        try {
+            // Validate form
+            if (!email || !password || !firstName || !lastName) {
+                setErrors("All fields are required.");
+                return;
+            } else if (password.length < 8) {
+                setErrors("Password must be at least 8 characters.");
+                return;
+            } else if(isValidEmail(email) === false) {
+                setErrors("Please enter a valid email address.");
+                return;
+            } else if(!acceptTerms) {
+                setErrors("Please accept the terms and conditions.");
+                return;
+            }
+
+            // Fetch the data
+            const response = await fetch("/api/auth/register", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    email,
+                    password,
+                    first_name: firstName,
+                    last_name: lastName
+                }),
+            });
+
+            // Parse the JSON response
+            const data = await response.json();
+
+            // Check response
+            if (data.status) {
+                // Update state
+                setIsRegistered(true);
+            } else {
+                // Set error
+                setErrors(data?.message ?? "Something went wrong. Please try again.");
+            }
+        } catch (error: any) {
+            if (error.name !== "AbortError") {
+                console.error("Failed to fetch tours:", error);
+            }
+        } finally {
+            // Update state
+            setIsFormLoading(false);
+        }
     }
 
     return (
@@ -120,7 +194,9 @@ export function LoginModal({ open, onOpenChange }: Props) {
                             aria-label="Close"
                             className="relative w-10 h-10 flex items-center justify-center text-white text-sm font-semibold cursor-pointer"
                             onClick={() => {
+                                resetForm();
                                 onOpenChange(false);
+                                setIsSignUp(false);
                             }}
                         >
                             ✕
@@ -131,7 +207,23 @@ export function LoginModal({ open, onOpenChange }: Props) {
                             title={`${isSignUp ? "Create an account" : "Log in to your account"}`}
                             subtitle={`${isSignUp ? "Sign up to access your bookings" : "Log in to manage your bookings and payments."}`}
                         />
-                        <div className="space-y-2">
+
+                        {isRegistered && (
+                            <div className="space-y-4 text-center py-4">
+                                <div className="flex justify-center">
+                                    <div className="h-16 w-16 rounded-full bg-[#2F5D50]/10 flex items-center justify-center">
+                                        <CheckCircle className="h-8 w-8 text-[#2F5D50]" />
+                                    </div>
+                                </div>
+                                <div>
+                                    <span className="text-xl font-semibold text-black block mb-2">Check your email</span>
+                                    <span className="text-sm text-gray-700 block mb-1">We've sent a account activation link to</span>
+                                    <span className="text-sm font-medium text-gray-900">{email}</span>
+                                </div>
+                            </div>
+                        )}
+
+                        {!isRegistered && <div className="space-y-2">
                             {errors && <div className="flex items-center justify-center">
                                 <p className="text-sm md:text-base text-red-500">{errors}</p>
                             </div>}
@@ -195,6 +287,8 @@ export function LoginModal({ open, onOpenChange }: Props) {
                                 <input
                                     type="checkbox"
                                     className="mt-1 cursor-pointer"
+                                    checked={acceptTerms}
+                                    onChange={(e) => setAcceptTerms(e.target.checked)}
                                 />
                                 <label className="text-xs md:text-sm text-gray-700">
                                     By signing up, you agree to our <Link href="https://travelone.io/terms-conditions" target="_blank" className="underline">T&Cs</Link> and <Link href="https://travelone.io/privacy-policy" target="_blank" className="underline">Privacy Policy</Link>, including the use of cookies.
@@ -218,15 +312,16 @@ export function LoginModal({ open, onOpenChange }: Props) {
                                 {isSignUp ? "Create account" : "Log in"}
                             </button>
 
-                            <div className="relative py-3">
+                            {/* <div className="relative py-3">
                                 <div className="absolute inset-0 flex items-center">
                                     <div className="w-full border-t border-gray-200"></div>
                                 </div>
                                 <div className="relative flex justify-center text-sm">
                                     <span className="px-4 text-gray-700">or continue with</span>
                                 </div>
-                            </div>
-                            <div className="grid grid-cols-1">
+                            </div> */}
+
+                            {/* <div className="grid grid-cols-1">
                                 <button
                                     type="button"
                                     className="flex items-center justify-center !bg-white !gap-2 !px-4 !py-2 !border !border-gray-300 rounded-lg hover:bg-black-200 transition-colors cursor-pointer"
@@ -251,14 +346,15 @@ export function LoginModal({ open, onOpenChange }: Props) {
                                     </svg>
                                     <span className="text-xs sm:text-sm font-medium text-gray-700">Google</span>
                                 </button>
-                            </div>
+                            </div> */}
+
                             <p className="text-center text-sm text-gray-600 pt-2">
                                 {isSignUp ? "Already have an account?" : "Don't have an account?"}{" "}
                                 <button type="button" onClick={toggleMode} className="text-black hover:text-black/80 font-medium hover:underline cursor-pointer">
                                     {isSignUp ? "Log in" : "Sign up"}
                                 </button>
                             </p>
-                        </div>
+                        </div>}
                     </div>
                 </div>
             </div>}
