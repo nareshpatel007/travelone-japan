@@ -76,7 +76,7 @@ export default function HeroTour({
 
         try {
             // Fetch the data
-            const response = await fetch("/api/tours/wishlist", {
+            const response = await fetch("/api/wishlist", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

@@ -6,7 +6,7 @@ export async function POST(req: Request) {
 
     // Make API request
     const body = await req.json().catch(() => ({}));
-    const res = await fetch(`${process.env.API_URL}tours/single/wishlist`, {
+    const res = await fetch(`${process.env.API_URL}/wishlist/add`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
