@@ -60,7 +60,7 @@ export default function WishlistPage() {
 
         fetchInitData();
         return () => controller.abort();
-    }, [is_logged_in, user?.user_id]);
+    }, []);
 
     return (
         <body>
