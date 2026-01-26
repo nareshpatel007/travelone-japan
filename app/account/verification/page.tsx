@@ -8,9 +8,9 @@ import { CheckCircle, Loader2, X } from "lucide-react";
 
 export default function AccountVerificationPage() {
     // Define hooks
-    const searchParams = useSearchParams();
-    const router = useRouter();
-    const token = searchParams.get("token");
+    // const searchParams = useSearchParams();
+    // const router = useRouter();
+    const token = ""; // searchParams.get("token");
 
     // Define state
     const [ready, setReady] = useState(false);
@@ -53,7 +53,7 @@ export default function AccountVerificationPage() {
             setMessage("Your account has been successfully verified.");
 
             // Optional redirect after success
-            setTimeout(() => router.push("/"), 5000);
+            // setTimeout(() => router.push("/"), 5000);
         } catch (error: any) {
             // Update state
             setStatus("error");
