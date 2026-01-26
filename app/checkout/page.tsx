@@ -9,21 +9,20 @@ import OrderSummary from "@/components/checkout/order-summary";
 import FAQSection from "@/components/checkout/faq-section";
 import PageHeading from "@/components/common/page-heading";
 import { getCartData, getLoginCookie, isLoggedIn } from "@/lib/auth";
-import { useSearchParams, useRouter } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import PaymentSchedule from "@/components/checkout/payment-schedule";
 import { ShoppingBasket } from "lucide-react";
 import StripeProvider from "@/components/providers/StripeProvider";
 
 export default function CheckoutPage() {
     // Define hooks
-    // const searchParams = useSearchParams();
-    const router = useRouter();
-    const payment_type = "full_payment"; // searchParams.get("type") || "full_payment";
+    const searchParams = useSearchParams();
 
     // Define state
     const [ready, setReady] = useState(false);
     const [expandedFAQ, setExpandedFAQ] = useState<string | null>(null);
     const [isLoading, setIsLoading] = useState(true);
+    const [paymentType, setPaymentType] = useState<string>("full_payment");
     const [cartData, setCartData] = useState<any>({});
     const [stripeHandlingFee, setStripeHandlingFee] = useState<number>(0);
     const [formData, setFormData] = useState<any>({
@@ -40,6 +39,13 @@ export default function CheckoutPage() {
             setReady(true);
         });
     }, []);
+
+    useEffect(() => {
+        const type = searchParams.get("type");
+        if (type) {
+            setPaymentType(type);
+        }
+    }, [searchParams]);
 
     // Init data
     useEffect(() => {
@@ -79,8 +85,7 @@ export default function CheckoutPage() {
                     setCartData(data?.data ?? {});
 
                     // Calc 4% handing fee on total price
-                    // const handlingFee = ((payment_type == 'part_payment' ? data?.data?.part_payment : data?.data?.full_payment) * 4) / 100;
-                    const handlingFee = 0;
+                    const handlingFee = ((paymentType == 'part_payment' ? data?.data?.part_payment : data?.data?.full_payment) * 4) / 100;
                     setStripeHandlingFee(handlingFee);
                 }
             } catch (error: any) {
@@ -115,7 +120,7 @@ export default function CheckoutPage() {
 
                             <StripeProvider>
                                 <PaymentMethod
-                                    paymentType={payment_type}
+                                    paymentType={paymentType}
                                     cartData={cartData}
                                     formData={formData}
                                     stripeHandlingFee={stripeHandlingFee}
@@ -123,7 +128,7 @@ export default function CheckoutPage() {
                             </StripeProvider>
                         </div>
                         <div className="col-span-1 space-y-4">
-                            <OrderSummary paymentType={payment_type} cartData={cartData} />
+                            <OrderSummary paymentType={paymentType} cartData={cartData} />
                             <PaymentSchedule cartData={cartData} />
                             <FAQSection expandedFAQ={expandedFAQ} setExpandedFAQ={setExpandedFAQ} />
                         </div>
