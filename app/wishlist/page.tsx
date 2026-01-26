@@ -14,10 +14,6 @@ export default function WishlistPage() {
     const [isLoading, setIsLoading] = useState(true);
     const [toursData, setToursData] = useState<any[]>([]);
 
-    // Define functions
-    const is_logged_in = isLoggedIn();
-    const user = getLoginCookie();
-
     useEffect(() => {
         requestAnimationFrame(() => {
             setReady(true);
@@ -29,6 +25,11 @@ export default function WishlistPage() {
 
         const fetchInitData = async () => {
             try {
+                // Define functions
+                const is_logged_in = isLoggedIn();
+                const user = getLoginCookie();
+
+                // Validation for login
                 if (!is_logged_in || !user?.user_id) {
                     return;
                 }
