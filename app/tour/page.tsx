@@ -82,34 +82,32 @@ export default function Page() {
                         main="All Tours Listing"
                         sub="Find the perfect tour for your next adventure."
                     />
-                    <div className="mb-5">
-                        <TourFilters
-                            isLoading={isLoading}
-                            setAppliedFilter={setAppliedFilter}
-                            setResetFilter={setResetFilter}
-                            setIsSidebarFilterOpen={setIsSidebarFilterOpen}
-                            isSidebarFilterOpen={isSidebarFilterOpen}
-                            totalCount={totalCount}
-                            sortFilter={sortFilter}
-                            setSortFilter={setSortFilter}
-                            setCurrentPage={setCurrentPage}
-                            minPrice={minPrice}
-                            setMinPrice={setMinPrice}
-                            maxPrice={maxPrice}
-                            setMaxPrice={setMaxPrice}
-                            setSelectedCountry={setSelectedCountry}
-                            selectedCountry={selectedCountry}
-                            filterOptions={filterOptions}
-                        />
-                        <TourListingGrid
-                            tourList={tourList}
-                        />
-                        <Pagination
-                            currentPage={currentPage}
-                            setCurrentPage={setCurrentPage}
-                            totalPages={totalPages}
-                        />
-                    </div>
+                    <TourFilters
+                        isLoading={isLoading}
+                        setAppliedFilter={setAppliedFilter}
+                        setResetFilter={setResetFilter}
+                        setIsSidebarFilterOpen={setIsSidebarFilterOpen}
+                        isSidebarFilterOpen={isSidebarFilterOpen}
+                        totalCount={totalCount}
+                        sortFilter={sortFilter}
+                        setSortFilter={setSortFilter}
+                        setCurrentPage={setCurrentPage}
+                        minPrice={minPrice}
+                        setMinPrice={setMinPrice}
+                        maxPrice={maxPrice}
+                        setMaxPrice={setMaxPrice}
+                        setSelectedCountry={setSelectedCountry}
+                        selectedCountry={selectedCountry}
+                        filterOptions={filterOptions}
+                    />
+                    <TourListingGrid
+                        tourList={tourList}
+                    />
+                    <Pagination
+                        currentPage={currentPage}
+                        setCurrentPage={setCurrentPage}
+                        totalPages={totalPages}
+                    />
                 </div>
                 <CommonFooter />
             </>}

@@ -1,5 +1,5 @@
 import { formatPrice } from "@/lib/utils";
-import { MoveRight } from "lucide-react";
+import { Heart, MoveRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -41,6 +41,15 @@ export function TourCard({
                             draggable={false}
                             className="object-cover group-hover:scale-105 transition-transform duration-300"
                         />
+
+                        {/* {showWishlist && <button
+                            className="absolute top-4 right-4 bg-white/90 hover:bg-white p-2 rounded-full shadow-lg cursor-pointer transition"
+                        >
+                            <Heart
+                                size={24}
+                                className="text-gray-600 hover:fill-[#ef2853] hover:text-[#ef2853]"
+                            />
+                        </button>} */}
 
                         {(tour_type || is_refundable === 1) && (
                             <div className="absolute top-3 left-3 flex rounded-full bg-black overflow-hidden text-white">

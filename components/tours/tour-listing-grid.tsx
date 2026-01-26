@@ -4,7 +4,7 @@ import 'react-loading-skeleton/dist/skeleton.css';
 
 // Define props
 type Props = {
-    tourList: any
+    tourList: any;
 }
 
 export function TourListingGrid({ tourList }: Props) {
