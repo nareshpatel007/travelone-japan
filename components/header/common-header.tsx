@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { CommonPlanTripModal } from "../plan_your_trip/common-popup";
 import { LoginModal } from "../common/login-modal";
 import { Heart, Instagram, Linkedin, ListCheck, LogOut, Menu, Search, ShoppingCartIcon, User, User2, X, Youtube } from "lucide-react";
-import { getLoginCookie, getWishlistCount, isLoggedIn, removeLoginCookie } from "@/lib/auth";
+import { getCartData, getLoginCookie, getWishlistCount, isLoggedIn, removeLoginCookie } from "@/lib/auth";
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
 
@@ -54,7 +54,7 @@ export default function CommonHeader() {
 
     // Define count
     const wishlistCount = getWishlistCount();
-    const cartCount = 0;
+    const cartCount = getCartData() ? 1 : 0;
 
     useEffect(() => {
         document.body.style.overflow = openMobileMenu ? "hidden" : "auto";

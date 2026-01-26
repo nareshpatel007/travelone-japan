@@ -1,68 +1,127 @@
-"use client"
+"use client";
 
-import { Trash2, Plus, Minus } from "lucide-react"
-import Image from "next/image"
-import { useState } from "react"
+import { formatDate, formatPrice } from "@/lib/utils";
+import { Trash2, ArrowRight, CalendarCheck, Building } from "lucide-react";
+import Image from "next/image";
 
-interface CartItemProps {
-    item: {
-        id: number
-        title: string
-        image: string
-        price: number
-        quantity: number
-        details: string
-        travelDate: string
-        roomInfo: string
-    }
+interface Props {
+    cartData: any;
 }
 
-export function CartItem({ item }: CartItemProps) {
-    const [quantity, setQuantity] = useState(item.quantity)
+// Define traveler labels
+const travelerLabels: Record<string, string> = {
+    adults: "Adults",
+    child_8_12: "Child (Age 8–12)",
+    child_3_7: "Child (Age 3–7)",
+    infant: "Infant",
+    extra_adult: "Extra Adult",
+    extra_child: "Extra Child",
+    single_supplement: "Single Supplement",
+};
 
-    const handleQuantityChange = (newQuantity: number) => {
-        if (newQuantity > 0) {
-            setQuantity(newQuantity)
-        }
-    }
+export function CartItem({ cartData }: Props) {
+    const tourSummary = JSON.parse(
+        cartData?.cart?.tour_info?.tour_sub_title || "[]"
+    );
 
     return (
-        <div className="rounded-lg !border !border-border !bg-white !p-6 !mb-4">
-            <div className="flex gap-4 sm:gap-6">
-                <div className="flex-shrink-0">
-                    <div className="h-24 w-24 sm:h-32 sm:w-32 !rounded-lg !overflow-hidden !bg-black/20">
-                        <Image src={item.image || "/placeholder.svg"} alt={item.title} className="!h-full !w-full !object-cover" width={100} height={100} />
+        <div className="rounded-md border border-black bg-white overflow-hidden">
+            <div className="grid grid-cols-1 sm:grid-cols-[180px_1fr] md:grid-cols-[220px_1fr]">
+                <div className="p-2 sm:p-3">
+                    <div className="relative h-48 sm:h-full min-h-[160px] rounded-sm overflow-hidden bg-gray-200">
+                        <Image
+                            src={cartData?.cart?.tour_info?.featured_image || "/placeholder.svg"}
+                            alt={cartData?.cart?.tour_info?.tour_name || "Image"}
+                            fill
+                            className="object-cover"
+                            priority
+                        />
                     </div>
                 </div>
-                <div className="flex-1 min-w-0">
-                    <span className="!text-[20px] !font-semibold !text-foreground !text-balance">{item.title}</span>
-                    <p className="!mt-1 !text-sm !text-muted-foreground">{item.details}</p>
-                    <div className="mt-3 space-y-2 text-sm">
-                        <div className="flex items-center gap-2 text-muted-foreground">
-                            <span>📅</span>
-                            <span>{item.travelDate}</span>
-                        </div>
-                        <div className="flex items-center gap-2 text-muted-foreground">
-                            <span>🏠</span>
-                            <span>{item.roomInfo}</span>
+                <div className="p-4 flex flex-col justify-between space-y-5">
+                    <div className="flex items-center justify-center">
+                        <h2 className="text-lg sm:text-xl font-semibold text-black">
+                            {cartData?.cart?.tour_info?.tour_name}
+                        </h2>
+
+                        <button
+                            className="p-2 text-red-600 hover:bg-red-50 rounded-md transition cursor-pointer"
+                            aria-label="Remove item"
+                        >
+                            <Trash2 className="h-4 w-4" />
+                        </button>
+                    </div>
+
+                    <div className="space-y-2 text-sm text-black">
+                        <p className="flex flex-wrap items-center gap-1">
+                            {tourSummary.map((item: string, index: number) => (
+                                <span key={index} className="flex items-center gap-1">
+                                    {item}
+                                    {index < tourSummary.length - 1 && (
+                                        <ArrowRight className="h-4 w-4" />
+                                    )}
+                                </span>
+                            ))}
+                        </p>
+
+                        <div className="flex items-center gap-2">
+                            <span>
+                                <CalendarCheck className="h-4 w-4" />
+                            </span>
+                            <span>Travel date: {formatDate(cartData?.cart?.booking_date)}</span>
                         </div>
                     </div>
-                    <div className="!mt-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-                        <div className="!text-lg !font-semibold !text-foreground">${(item.price * quantity).toLocaleString()}</div>
-                        <div className="!flex !items-center !gap-3">
-                            <button
-                                className="!p-2 !text-red-600 !cursor-pointer !rounded-lg !transition-colors"
-                                aria-label="Remove item"
-                            >
-                                <Trash2 className="h-5 w-5" />
-                            </button>
-                        </div>
+
+                    <div className="overflow-x-auto">
+                        <table className="w-full border border-blue-600 text-base text-black">
+                            <thead>
+                                <tr className="border-b border-blue-600 text-center font-medium">
+                                    <th className="px-3 py-2 text-base border-r border-blue-600"></th>
+                                    <th className="px-3 py-2 text-base border-r border-blue-600">Count</th>
+                                    <th className="px-3 py-2 text-base border-r border-blue-600">Per Person</th>
+                                    <th className="px-3 py-2 text-base">Total ($)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {cartData?.travelers && Object.entries(cartData.travelers).filter(([_, value]: any) => value.count > 0).map(([key, value]: any) => (
+                                    <tr
+                                        key={key}
+                                        className="text-center border-b border-blue-600"
+                                    >
+                                        <td className="px-3 py-2 text-sm border-r border-blue-600 text-left font-medium">
+                                            {travelerLabels[key] ?? key}
+                                        </td>
+
+                                        <td className="px-3 py-2 text-sm border-r border-blue-600">
+                                            {value.count}
+                                        </td>
+
+                                        <td className="px-3 py-2 text-sm border-r border-blue-600">
+                                            ${value.per_price.toLocaleString()}
+                                        </td>
+
+                                        <td className="px-3 py-2 text-sm font-semibold">
+                                            ${value.total_price.toLocaleString()}
+                                        </td>
+                                    </tr>
+                                ))}
+
+                                <tr>
+                                    <td
+                                        colSpan={3}
+                                        className="px-3 py-2 text-sm text-right font-medium border-r border-blue-600"
+                                    >
+                                        Total Amount
+                                    </td>
+                                    <td className="px-3 py-2 text-sm text-red-600 font-semibold text-center">
+                                        ${formatPrice(cartData?.sub_total, 0)}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-                    <button className="!mt-3 !text-sm !font-medium text-gray-500 hover:text-black !cursor-pointer">
-                        Change date or participants
-                    </button>
                 </div>
             </div>
         </div>
-    )
+    );
 }

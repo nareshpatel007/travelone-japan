@@ -38,3 +38,13 @@ export function addWishlistCount(action: string = 'add') {
 export function getWishlistCount() {
     return localStorage.getItem('wishlist_count') || 0;
 }
+
+// Add cart data
+export function addCartData(cart_id: string) {
+    localStorage.setItem('cart_id', cart_id);
+}
+
+// Get cart data
+export function getCartData() {
+    return localStorage.getItem('cart_id');
+}

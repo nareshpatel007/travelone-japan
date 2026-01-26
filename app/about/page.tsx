@@ -12,6 +12,7 @@ import ArchitectureModern from "@/components/about/architecture-modern";
 import OurCommitment from "@/components/about/our-commitment";
 import WhoWeAreSection from "@/components/about/who-we-are";
 import TeamGlobalIntelSection from "@/components/about/team-global";
+import StickyHomeHeader from "@/components/header/sticky-home-header";
 
 export default function AboutPage() {
     // Define state
@@ -37,7 +38,8 @@ export default function AboutPage() {
                 <TravelOneJourney />
                 <LeadershipTeam />
                 <LocalExpertise />
-                <CommonFooter />
+                <CommonFooter isStickyShow={true} />
+                <StickyHomeHeader />
             </>}
         </body>
     );

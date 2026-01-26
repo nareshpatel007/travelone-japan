@@ -48,16 +48,16 @@ const faqs = [
 
 export default function FAQSection({ expandedFAQ, setExpandedFAQ }: FAQSectionProps) {
     return (
-        <div className="!border !border-border !rounded-lg !overflow-hidden !bg-card">
-            <div className="!px-6 !py-4 !border-b !border-border !bg-secondary/30">
-                <span className="block text-xl font-semibold text-foreground">Frequently Asked Questions</span>
+        <div className="border border-border rounded-sm overflow-hidden bg-card">
+            <div className="px-6 py-4 border-b border-black bg-secondary/30">
+                <span className="text-xl font-semibold text-foreground">Frequently Asked Questions</span>
             </div>
-            <div className="!divide-y !divide-border">
+            <div className="divide-y divide-border">
                 {faqs.map((faq) => (
                     <button
                         key={faq.id}
                         onClick={() => setExpandedFAQ(expandedFAQ === faq.id ? null : faq.id)}
-                        className="w-full text-left px-6 py-4 hover:bg-secondary/20 transition-colors"
+                        className="w-full text-left px-6 py-4 hover:bg-secondary/20 transition-colors cursor-pointer"
                     >
                         <div className="flex items-start justify-between gap-4">
                             <span className="font-medium text-foreground text-black flex-1 text-sm sm:text-base">
@@ -74,7 +74,7 @@ export default function FAQSection({ expandedFAQ, setExpandedFAQ }: FAQSectionPr
 
                         {/* Answer */}
                         {expandedFAQ === faq.id && (
-                            <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{faq.answer}</p>
+                            <p className="mt-3 text-base text-muted-foreground leading-relaxed">{faq.answer}</p>
                         )}
                     </button>
                 ))}

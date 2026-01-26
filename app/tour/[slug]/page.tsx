@@ -58,7 +58,7 @@ export default function TourDetailPage() {
     // Init data
     useEffect(() => {
         const controller = new AbortController();
-        const fetchTours = async () => {
+        const loadInitData = async () => {
             try {
                 // Get user data
                 const user = getLoginCookie();
@@ -96,7 +96,7 @@ export default function TourDetailPage() {
                 setIsLoading(false);
             }
         };
-        fetchTours();
+        loadInitData();
         return () => controller.abort();
     }, []);
 
@@ -182,7 +182,12 @@ export default function TourDetailPage() {
                 </div>}
 
                 {/* Popup modals */}
-                <BookingCart tour={tourData?.tour ?? {}} open={openBookingCartPopup} onOpenChange={setOpenBookingCartPopup} />
+                <BookingCart
+                    tour={tourData?.tour ?? {}}
+                    selectedPackage={selectedPackage}
+                    open={openBookingCartPopup}
+                    onOpenChange={setOpenBookingCartPopup}
+                />
                 <CustomizeTrip tour={tourData?.tour ?? {}} open={openCustomizeTripPopup} onOpenChange={setOpenCustomizeTripPopup} />
                 <DownloadBrochure tour={tourData?.tour ?? {}} open={openDownloadBrochurePopup} onOpenChange={setOpenDownloadBrochurePopup} />
                 <EmailBrochure open={openEmailBrochurePopup} onOpenChange={setOpenEmailBrochurePopup} />

@@ -3,83 +3,83 @@
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 
-export default function PassengerForm() {
-    // Define state
-    const [title, setTitle] = useState("Mr.");
-    const [showTitleMenu, setShowTitleMenu] = useState(false);
+// Define interface
+interface Props {
+    formData: any;
+    setFormData: React.Dispatch<React.SetStateAction<any>>;
+}
 
+export default function PassengerForm({ formData, setFormData }: Props) {
     return (
-        <div className="!border !border-border !rounded-lg !p-6 !bg-card !mb-4">
-            <span className="!text-xl font-semibold text-foreground mb-6 text-black !mb-4 !block">Lead Passenger Details</span>
-            <div className="!space-y-4">
-                <div className="!grid grid-cols-1 sm:grid-cols-3 gap-4">
-                    <div className="relative">
-                        <label className="block text-sm font-medium text-muted-foreground mb-2">Title</label>
-                        <button
-                            onClick={() => setShowTitleMenu(!showTitleMenu)}
-                            className="!w-full !px-4 !py-3 border border-[#e8e8e8] rounded-sm bg-input text-foreground flex items-center justify-between hover:border-accent transition-colors"
+        <div className="border border-border rounded-sm p-6 bg-card mb-4">
+            <span className="text-xl font-semibold text-foreground mb-6 text-black mb-4 block">Lead Passenger Details</span>
+            <div className="space-y-4">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <div className="space-y-2">
+                        <label className="block text-base font-medium text-muted-foreground">Title</label>
+                        <select
+                            value={formData.title}
+                            onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+                            className="w-full px-4 py-2 border border-border rounded-sm bg-input text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-accent/50"
                         >
-                            <span>{title}</span>
-                            <ChevronDown size={18} className="text-muted-foreground" />
-                        </button>
-                        {showTitleMenu && (
-                            <div className="!absolute !top-full !left-0 !right-0 !mt-0 !bg-white !border !border-[#e8e8e8] !rounded-sm !shadow-lg !z-[99999]">
-                                {["Mr.", "Mrs.", "Ms.", "Dr."].map((option) => (
-                                    <button
-                                        key={option}
-                                        onClick={() => {
-                                            setTitle(option)
-                                            setShowTitleMenu(false)
-                                        }}
-                                        className="!block !w-full !text-left px-4 py-3 hover:bg-secondary text-foreground first:rounded-t-lg last:rounded-b-lg transition-colors"
-                                    >
-                                        {option}
-                                    </button>
-                                ))}
-                            </div>
-                        )}
+                            <option value="Mr.">Mr.</option>
+                            <option value="Mrs.">Mrs.</option>
+                            <option value="Ms.">Ms.</option>
+                            <option value="Miss">Miss</option>
+                            <option value="Dr.">Dr.</option>
+                        </select>
                     </div>
-                    <div>
-                        <label className="block text-sm font-medium text-muted-foreground mb-2">First Name</label>
+                    <div className="space-y-2">
+                        <label className="block text-base font-medium text-muted-foreground mb-2">First Name</label>
                         <input
                             type="text"
+                            value={formData.first_name}
+                            onChange={(e) => setFormData({ ...formData, first_name: e.target.value })}
                             placeholder="First Name"
-                            className="px-4 py-3 border border-border rounded-lg bg-input text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-accent/50"
+                            className="w-full px-4 py-2 border border-border rounded-sm bg-input text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-accent/50"
                         />
                     </div>
-                    <div>
-                        <label className="block text-sm font-medium text-muted-foreground mb-2">Last Name</label>
+                    <div className="space-y-2">
+                        <label className="block text-base font-medium text-muted-foreground mb-2">Last Name</label>
                         <input
                             type="text"
+                            value={formData.last_name}
+                            onChange={(e) => setFormData({ ...formData, last_name: e.target.value })}
                             placeholder="Last Name"
-                            className="px-4 py-3 border border-border rounded-lg bg-input text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-accent/50"
+                            className="w-full px-4 py-2 border border-border rounded-sm bg-input text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-accent/50"
                         />
                     </div>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                        <label className="block text-sm font-medium text-muted-foreground mb-2">Email Address</label>
+                    <div className="space-y-2">
+                        <label className="block text-base font-medium text-muted-foreground mb-2">Email Address</label>
                         <input
                             type="email"
+                            value={formData.email}
+                            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                             placeholder="Email Address"
-                            className="px-4 py-3 border border-border rounded-lg bg-input text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-accent/50"
+                            className="w-full px-4 py-2 border border-border rounded-sm bg-input text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-accent/50"
                         />
                     </div>
-                    <div>
-                        <label className="block text-sm font-medium text-muted-foreground mb-2">Mobile Number</label>
+                    <div className="space-y-2">
+                        <label className="block text-base font-medium text-muted-foreground mb-2">Mobile Number</label>
                         <input
                             type="tel"
+                            value={formData.phone}
+                            onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                             placeholder="Mobile Number"
-                            className="px-4 py-3 border border-border rounded-lg bg-input text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-accent/50"
+                            className="w-full px-4 py-2 border border-border rounded-sm bg-input text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-accent/50"
                         />
                     </div>
                 </div>
                 <div>
-                    <label className="block text-sm font-medium text-muted-foreground mb-2">Special Requirements</label>
+                    <label className="block text-base font-medium text-muted-foreground mb-2">Special Requirements</label>
                     <textarea
                         placeholder="Any special requests or requirements?"
+                        value={formData.special_request}
+                        onChange={(e) => setFormData({ ...formData, special_request: e.target.value })}
                         rows={2}
-                        className="!w-full px-4 py-3 border border-border !h-30 rounded-lg bg-input text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-accent/50 resize-none"
+                        className="w-full px-4 py-2 border border-border h-24 rounded-sm bg-input text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-accent/50"
                     />
                 </div>
             </div>

@@ -8,6 +8,7 @@ import Link from "next/link";
 import PageHeading from "@/components/common/page-heading";
 import FullBannerSection from "@/components/about/full-banner";
 import StartWithWho from "@/components/about/start-with-who";
+import StickyHomeHeader from "@/components/header/sticky-home-header";
 
 export default function ContactUsPage() {
     // Define state
@@ -214,7 +215,8 @@ export default function ContactUsPage() {
 
                 <StartWithWho />
                 <FullBannerSection />
-                <CommonFooter />
+                <CommonFooter isStickyShow={true} />
+                <StickyHomeHeader />
             </>}
         </body>
     );
