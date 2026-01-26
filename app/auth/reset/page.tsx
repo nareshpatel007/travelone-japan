@@ -5,13 +5,18 @@ import CommonFooter from "@/components/footer/common-footer";
 import { useEffect, useState } from "react";
 import PageHeading from "@/components/common/page-heading";
 import { CheckCircle, Loader2 } from "lucide-react";
-import { useSearchParams, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 
-export default function ResetPasswordPage() {
-    // Define hooks
-    // const searchParams = useSearchParams();
-    // const router = useRouter();
-    const token = ""; // searchParams.get("token");
+interface PageProps {
+    searchParams: {
+        token?: string;
+    };
+}
+
+export default function Page({ searchParams }: PageProps) {
+    // Get query parms
+    const router = useRouter();
+    const token = searchParams.token ?? "";
 
     // Define state
     const [ready, setReady] = useState<boolean>(false);
@@ -72,7 +77,7 @@ export default function ResetPasswordPage() {
                 setIsLoading(false);
 
                 // Redirect to page
-                // router.push("/");
+                router.push("/");
             } else {
                 // Set error
                 setErrors(data.message || "Something went wrong. Please try again.");

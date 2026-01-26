@@ -3,14 +3,19 @@
 import CommonHeader from "@/components/header/common-header";
 import CommonFooter from "@/components/footer/common-footer";
 import { useEffect, useState } from "react";
-import { useSearchParams, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { CheckCircle, Loader2, X } from "lucide-react";
 
-export default function AccountVerificationPage() {
-    // Define hooks
-    // const searchParams = useSearchParams();
-    // const router = useRouter();
-    const token = ""; // searchParams.get("token");
+interface PageProps {
+    searchParams: {
+        token?: string;
+    };
+}
+
+export default function Page({ searchParams }: PageProps) {
+    // Get query parms
+    const router = useRouter();
+    const token = searchParams.token ?? "";
 
     // Define state
     const [ready, setReady] = useState(false);
@@ -53,7 +58,7 @@ export default function AccountVerificationPage() {
             setMessage("Your account has been successfully verified.");
 
             // Optional redirect after success
-            // setTimeout(() => router.push("/"), 5000);
+            setTimeout(() => router.push("/"), 5000);
         } catch (error: any) {
             // Update state
             setStatus("error");

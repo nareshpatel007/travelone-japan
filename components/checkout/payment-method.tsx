@@ -208,11 +208,13 @@ export default function PaymentMethod({ paymentType, cartData, stripeHandlingFee
                     disabled={isPaymentDone || isLoading || !stripe}
                     className="w-full bg-black hover:bg-black/90 cursor-pointer text-white font-semibold text-base py-2.5 px-2 rounded-sm transition-colors flex items-center justify-center gap-2"
                 >
-                    {isPaymentDone && <CheckCheck size={20} />}
-                    {!isPaymentDone && isLoading && <Loader2 size={20} className="animate-spin" />}
-                    {!isPaymentDone && !isLoading && <Lock size={20} />}
-                    {!isPaymentDone && paymentMethod === "credit-card" ? "Pay with Credit Card" : "Pay with Bank Transfer"}
-                    {isPaymentDone && "Payment successful 🎉"}
+                    {isPaymentDone ? <>
+                        <CheckCheck size={20} />Payment successful 🎉
+                    </> : <>
+                        {isLoading && <Loader2 size={20} className="animate-spin" />}
+                        {!isLoading && <Lock size={20} />}
+                        {paymentMethod === "credit-card" ? "Pay with Credit Card" : "Pay with Bank Transfer"}
+                    </>}
                 </button>
             </div>
         </div>
