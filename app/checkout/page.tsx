@@ -16,9 +16,9 @@ import StripeProvider from "@/components/providers/StripeProvider";
 
 export default function CheckoutPage() {
     // Define hooks
-    const searchParams = useSearchParams();
+    // const searchParams = useSearchParams();
     const router = useRouter();
-    const payment_type = searchParams.get("type") || "full_payment";
+    const payment_type = "full_payment"; // searchParams.get("type") || "full_payment";
 
     // Define state
     const [ready, setReady] = useState(false);
@@ -79,7 +79,8 @@ export default function CheckoutPage() {
                     setCartData(data?.data ?? {});
 
                     // Calc 4% handing fee on total price
-                    const handlingFee = ((payment_type == 'part_payment' ? data?.data?.part_payment : data?.data?.full_payment) * 4) / 100;
+                    // const handlingFee = ((payment_type == 'part_payment' ? data?.data?.part_payment : data?.data?.full_payment) * 4) / 100;
+                    const handlingFee = 0;
                     setStripeHandlingFee(handlingFee);
                 }
             } catch (error: any) {
