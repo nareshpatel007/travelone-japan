@@ -48,3 +48,8 @@ export function addCartData(cart_id: string) {
 export function getCartData() {
     return localStorage.getItem('cart_id');
 }
+
+// Delete cart data
+export function deleteCartData() {
+    localStorage.removeItem('cart_id');
+}

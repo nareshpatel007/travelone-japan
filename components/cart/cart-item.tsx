@@ -56,7 +56,7 @@ export function CartItem({ cartData }: Props) {
                         <p className="flex flex-wrap items-center gap-1">
                             {tourSummary.map((item: string, index: number) => (
                                 <span key={index} className="flex items-center gap-1">
-                                    {item}
+                                    {item.replace("Places", "Locations")}
                                     {index < tourSummary.length - 1 && (
                                         <ArrowRight className="h-4 w-4" />
                                     )}

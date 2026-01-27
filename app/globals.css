@@ -8,6 +8,8 @@
     --text-primary: #1E1E1E;
     --text-secondary: #6F6F6F;
     --border-light: #E6DED4;
+
+    --main-header: #FFF9EE;
 }
 
 @theme inline {

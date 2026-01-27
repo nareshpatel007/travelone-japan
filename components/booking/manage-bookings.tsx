@@ -1,274 +1,143 @@
 "use client"
 
-import { useState } from "react"
-import { Calendar, CheckCircle, Clock, MapPin, Search, Printer, X, AlertCircle } from "lucide-react"
-import Image from "next/image"
-import Link from "next/link"
+import { useState } from "react";
+import { Calendar, MapPin, Search, Printer, X, AlertCircle, ArrowRight, Eye } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { formatDate, formatPrice } from "@/lib/utils";
 
-type BookingStatus = "upcoming" | "completed" | "cancelled"
+// Define booking status
+type BookingStatus = "upcoming" | "on_hold" | "completed" | "cancelled";
 
-interface Booking {
-    id: string
-    tourName: string
-    image: string
-    bookingNumber: string
-    pin: string
-    date: string
-    time: string
-    location: string
-    travelers: string
-    price: string
-    status: BookingStatus
+// Define interface
+interface Props {
+    bookingData: any;
 }
 
-const bookings: Booking[] = [
-    {
-        id: "1",
-        tourName: "Richmond Historic Trolley Tour",
-        image: "https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/08/Destination-list-3.jpg",
-        bookingNumber: "GYG52539120",
-        pin: "a+NcqxYh",
-        date: "December 15, 2024",
-        time: "10:00 AM",
-        location: "Richmond, Virginia",
-        travelers: "2 Adults",
-        price: "₹3,900",
-        status: "upcoming",
-    },
-    {
-        id: "2",
-        tourName: "Ghost Tour of Shockoe Bottom",
-        image: "https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/08/Destination-list-4.jpg",
-        bookingNumber: "GYG52539121",
-        pin: "b+XyzAbc",
-        date: "December 20, 2024",
-        time: "8:00 PM",
-        location: "Shockoe Bottom, Richmond",
-        travelers: "3 Adults, 1 Child",
-        price: "₹5,200",
-        status: "upcoming",
-    },
-    {
-        id: "3",
-        tourName: "Segway Tour of Richmond Landmarks",
-        image: "https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/08/Destination-list-7.jpg",
-        bookingNumber: "GYG52539115",
-        pin: "c+DefGhi",
-        date: "November 5, 2024",
-        time: "2:00 PM",
-        location: "Downtown Richmond",
-        travelers: "2 Adults",
-        price: "₹4,500",
-        status: "completed",
-    },
-    {
-        id: "4",
-        tourName: "Richmond City Sightseeing Van Tour",
-        image: "https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/08/Destination-list-8.jpg",
-        bookingNumber: "GYG52539110",
-        pin: "d+JklMno",
-        date: "October 28, 2024",
-        time: "11:00 AM",
-        location: "Richmond, Virginia",
-        travelers: "1 Adult",
-        price: "₹1,950",
-        status: "cancelled",
-    },
-]
-
-const statusConfig = {
-    upcoming: {
-        label: "Upcoming",
-        bgColor: "bg-blue-50",
-        textColor: "text-blue-700",
-        borderColor: "border-blue-200",
-        icon: Clock,
-    },
-    completed: {
-        label: "Completed",
-        bgColor: "bg-green-50",
-        textColor: "text-green-700",
-        borderColor: "border-green-200",
-        icon: CheckCircle,
-    },
-    cancelled: {
-        label: "Cancelled",
-        bgColor: "bg-gray-50",
-        textColor: "text-gray-500",
-        borderColor: "border-gray-200",
-        icon: X,
-    },
-}
-
-export function ManageBookings() {
+export function ManageBookings({ bookingData }: Props) {
     // Define state
     const [activeTab, setActiveTab] = useState<"all" | BookingStatus>("all");
     const [searchQuery, setSearchQuery] = useState("");
     const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
     // Filter bookings
-    const filteredBookings = bookings.filter((booking) => {
+    const filteredBookings = bookingData.filter((booking: any) => {
         const matchesTab = activeTab === "all" || booking.status === activeTab;
-        const matchesSearch =
-            booking.tourName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            booking.bookingNumber.toLowerCase().includes(searchQuery.toLowerCase());
+        const matchesSearch = booking.booking_ref_no.toLowerCase().includes(searchQuery.toLowerCase());
         return matchesTab && matchesSearch;
     })
 
     // Tabs
     const tabs = [
-        { id: "all" as const, label: "All Bookings", count: bookings.length },
-        { id: "upcoming" as const, label: "Upcoming", count: bookings.filter((b) => b.status === "upcoming").length },
-        { id: "completed" as const, label: "Completed", count: bookings.filter((b) => b.status === "completed").length },
-        { id: "cancelled" as const, label: "Cancelled", count: bookings.filter((b) => b.status === "cancelled").length },
+        { id: "all" as const, label: "All Bookings", count: bookingData.length },
+        { id: "upcoming" as const, label: "Upcoming", count: bookingData.filter((b: any) => b.status === "PROCESSING").length },
+        { id: "on_hold" as const, label: "On Hold", count: bookingData.filter((b: any) => b.status === "ON_HOLD").length },
+        { id: "completed" as const, label: "Completed", count: bookingData.filter((b: any) => b.status === "COMPLETED").length },
+        { id: "cancelled" as const, label: "Cancelled", count: bookingData.filter((b: any) => b.status === "CANCELLED").length },
     ]
 
     return (
-        <>
-            <div className="mb-6">
-                <div className="flex flex-col md:flex-row gap-4">
-                    <div className="relative flex-1">
-                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-                        <input
-                            type="text"
-                            placeholder="Search by tour name or booking number..."
-                            value={searchQuery}
-                            onChange={(e) => setSearchQuery(e.target.value)}
-                            className="w-full pl-10 pr-4 py-2.5 border border-gray-300 !rounded-md focus:outline-none focus:ring-1 focus:ring-amber-500 focus:border-transparent text-sm"
-                        />
-                    </div>
+        <div className="space-y-6">
+            {/* Search */}
+            <div className="flex flex-col md:flex-row gap-4">
+                <div className="relative flex-1">
+                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                    <input
+                        type="text"
+                        placeholder="Search booking reference number..."
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        className="w-full pl-10 pr-4 py-2.5 border border-gray-200 rounded-sm text-sm md:text-base"
+                    />
                 </div>
             </div>
-            <div className="flex gap-2 !mb-6 overflow-x-auto !pb-2">
+
+            {/* Tabs */}
+            {/* <div className="flex gap-2 overflow-x-auto">
                 {tabs.map((tab) => (
                     <button
                         key={tab.id}
                         onClick={() => setActiveTab(tab.id)}
-                        className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors ${activeTab === tab.id
-                            ? "bg-amber-500 text-white"
-                            : "bg-white border border-gray-300 text-gray-700 hover:bg-gray-50"
+                        className={`px-4 py-2 rounded-sm text-sm font-medium whitespace-nowrap border border-black transition-colors cursor-pointer ${activeTab === tab.id
+                            ? "bg-black text-white"
+                            : "bg-white text-black border-black/50 hover:bg-black hover:text-white"
                             }`}
                     >
                         {tab.label} ({tab.count})
                     </button>
                 ))}
-            </div>
+            </div> */}
 
             {/* Bookings List */}
-            {filteredBookings.length === 0 ? (
-                <div className="bg-white border border-gray-200 rounded-lg p-12 text-center">
-                    <AlertCircle className="w-12 h-12 text-gray-300 mx-auto mb-4" />
-                    <h3 className="text-lg font-medium text-gray-900 mb-2">No bookings found</h3>
-                    <p className="text-gray-500 mb-6">
-                        {searchQuery ? "Try adjusting your search terms." : "You don't have any bookings in this category yet."}
-                    </p>
-                    <Link
-                        href="/tours"
-                        className="inline-flex items-center px-6 py-3 bg-amber-500 text-white rounded-full font-medium hover:bg-[#158a9c] transition-colors"
-                    >
-                        Explore Tours
-                    </Link>
-                </div>
-            ) : (
-                <div className="space-y-4">
-                    {filteredBookings.map((booking) => {
-                        const status = statusConfig[booking.status];
+            {filteredBookings.length > 0 ? (
+                <div className="space-y-5">
+                    {filteredBookings.map((booking: any, index: number) => {
+                        const status = booking.status;
                         const StatusIcon = status.icon;
+
+                        // Json parse
+                        const tourInfo = JSON.parse(booking.tour_info || "[]");
+                        const tourSummary = JSON.parse(tourInfo?.tour_sub_title || "[]");
 
                         return (
                             <div
-                                key={booking.id}
-                                className={`!bg-white !border !border-gray-200 !mb-5 !rounded-lg overflow-hidden ${booking.status === "cancelled" ? "opacity-75" : ""
+                                key={index}
+                                className={`bg-white border border-gray-200 rounded-lg overflow-hidden ${booking.status === "CANCELLED" ? "opacity-75" : ""
                                     }`}
                             >
                                 <div className="!p-6">
                                     <div className="flex flex-col md:flex-row gap-4">
                                         <div className="flex-shrink-0">
-                                            <Image
-                                                src={booking.image || "/placeholder.svg"}
-                                                alt={booking.tourName}
-                                                width={300}
-                                                height={300}
-                                                className="w-full h-full object-cover rounded-lg"
-                                            />
+                                            <Link href={`bookings/${booking.checkout_id}`}>
+                                                <Image
+                                                    src={tourInfo?.featured_image || "/placeholder.svg"}
+                                                    alt={tourInfo?.tour_name || "Placeholder"}
+                                                    width={200}
+                                                    height={200}
+                                                    className="w-full h-full object-cover rounded-lg"
+                                                />
+                                            </Link>
                                         </div>
-                                        <div className="flex-1 min-w-0">
-                                            <div className="flex flex-col md:flex-row md:items-start justify-between gap-3 !mb-3">
-                                                <div>
-                                                    <span className="font-semibold text-gray-900 text-lg !block !mb-1">{booking.tourName}</span>
-                                                    <div
-                                                        className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium !${status.bgColor} !${status.textColor}`}
-                                                    >
-                                                        <StatusIcon className="w-3.5 h-3.5" />
-                                                        {status.label}
-                                                    </div>
+                                        <div className="flex-1 min-w-0 space-y-2 md:space-y-4">
+                                            <div className="flex flex-col md:flex-row md:items-start justify-between gap-3 mb-3">
+                                                <div className="space-y-2">
+                                                    <Link href={`bookings/${booking.checkout_id}`}>
+                                                        <span className="font-semibold text-black text-md md:text-lg block hover:underline">
+                                                            {tourInfo?.tour_name}
+                                                        </span>
+                                                    </Link>
                                                 </div>
-                                                <div className="text-right">
-                                                    <span className="font-semibold !text-gray-900 text-lg">{booking.price}</span>
-                                                </div>
-                                            </div>
-                                            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm text-gray-600 !mb-4">
-                                                <div className="flex items-center gap-2">
-                                                    <Calendar className="w-4 h-4 text-gray-400" />
-                                                    <span>
-                                                        {booking.date} at {booking.time}
+                                                <div className="hidden md:block text-right">
+                                                    <span className="font-semibold text-gray-900 text-sm md:text-base">
+                                                        Booking Amount: ${formatPrice(booking?.payable_amount, 0)}
                                                     </span>
                                                 </div>
-                                                <div className="flex items-center gap-2">
-                                                    <MapPin className="w-4 h-4 text-gray-400" />
-                                                    <span>{booking.location}</span>
-                                                </div>
-                                                <div className="text-gray-500">
-                                                    Booking: <span className="font-medium text-gray-700">{booking.bookingNumber}</span>
-                                                </div>
-                                                <div className="text-gray-500">
-                                                    Travelers: <span className="font-medium text-gray-700">{booking.travelers}</span>
+                                            </div>
+                                            <div className="block md:hidden">
+                                                <span className="font-semibold text-gray-900 text-sm md:text-base">
+                                                    Booking Amount: ${formatPrice(booking?.payable_amount, 0)}
+                                                </span>
+                                            </div>
+                                            <div className="grid grid-cols-1 text-sm text-black space-y-3">
+                                                <div className="flex items-center gap-2 text-sm md:text-base">
+                                                    {tourSummary.map((item: string, index: number) => (
+                                                        <span key={index} className="flex items-center gap-1">
+                                                            {item.replace("Places", "Locations")}
+                                                            {index < tourSummary.length - 1 && (
+                                                                <ArrowRight className="h-4 w-4" />
+                                                            )}
+                                                        </span>
+                                                    ))}
                                                 </div>
                                             </div>
-                                            <div className="flex flex-wrap items-center gap-3 !pt-3 !border-t !border-gray-100">
-                                                <Link
-                                                    href="#"
-                                                    className="text-sm font-medium text-amber-500 hover:underline"
-                                                >
-                                                    View details
-                                                </Link>
-                                                {booking.status === "upcoming" && (
-                                                    <>
-                                                        <span className="text-gray-300">|</span>
-                                                        <button className="text-sm font-medium !text-amber-500 hover:underline flex items-center gap-1.5">
-                                                            <Printer className="w-4 h-4" />
-                                                            Print voucher
-                                                        </button>
-                                                        <span className="text-gray-300">|</span>
-                                                        <button className="text-sm font-medium text-gray-600 hover:text-gray-900 hover:underline">
-                                                            Modify booking
-                                                        </button>
-                                                        <span className="text-gray-300">|</span>
-                                                        <button className="text-sm font-medium text-red-600 hover:underline">
-                                                            Cancel booking
-                                                        </button>
-                                                    </>
-                                                )}
-                                                {booking.status === "completed" && (
-                                                    <>
-                                                        <span className="text-gray-300">|</span>
-                                                        <Link href="#" className="text-sm font-medium text-amber-500 hover:underline">
-                                                            Write a review
-                                                        </Link>
-                                                        <span className="text-gray-300">|</span>
-                                                        <Link href="#" className="text-sm font-medium text-amber-500 hover:underline">
-                                                            Book again
-                                                        </Link>
-                                                    </>
-                                                )}
-                                                {booking.status === "cancelled" && (
-                                                    <>
-                                                        <span className="text-gray-300">|</span>
-                                                        <Link href="#" className="text-sm font-medium text-amber-500 hover:underline">
-                                                            Book again
-                                                        </Link>
-                                                    </>
-                                                )}
+                                            <div className="grid grid-cols-1 text-sm text-black space-y-3">
+                                                <div className="flex items-center gap-2 text-sm md:text-base">
+                                                    <Calendar className="w-4 h-4 text-black" />
+                                                    Travel Date: <span>{formatDate(booking.travel_date)}</span>
+                                                </div>
+                                                <div className="text-black text-sm md:text-base">
+                                                    Booking Number: <span className="font-medium">#{booking.booking_ref_no}</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -277,22 +146,44 @@ export function ManageBookings() {
                         )
                     })}
                 </div>
+            ) : (
+                <div className="bg-white border border-gray-200 rounded-sm p-12 text-center space-y-5">
+                    <div className="space-y-2">
+                        <AlertCircle className="w-12 h-12 text-gray-300 mx-auto" />
+                        <h3 className="text-lg font-medium text-black">
+                            {searchQuery ? "No results found" : "No bookings found"}
+                        </h3>
+                        <p className="text-gray-500">
+                            {searchQuery ? "Try adjusting your search terms." : "You don't have any bookings in this category yet."}
+                        </p>
+                    </div>
+                    <Link
+                        href="/country"
+                        className="inline-flex items-center px-6 py-2 bg-black text-white border border-black rounded-sm font-medium hover:bg-white hover:text-black cursor-pointer transition-colors"
+                    >
+                        Explore Destinations
+                    </Link>
+                </div>
             )}
-            <div className="!mt-8 !bg-amber-50 !border !border-amber-200 !rounded-lg !p-5">
-                <div className="flex gap-4">
-                    <AlertCircle className="w-6 h-6 text-amber-600 flex-shrink-0" />
-                    <div>
-                        <span className="font-semibold text-gray-900 !block !mb-1">Need help with a booking?</span>
-                        <span className="!text-sm !text-gray-600">
-                            If you have any questions or need assistance with your bookings, visit our{" "}
-                            <Link href="#" className="text-amber-500 hover:underline font-medium">
-                                help center
-                            </Link>{" "}
-                            or contact our customer support team.
-                        </span>
+
+            {/* Need help */}
+            {filteredBookings.length !== 0 && (
+                <div className="bg-[#FFF9EE] border border-amber-300 rounded-sm p-5">
+                    <div className="flex gap-4">
+                        <AlertCircle className="w-6 h-6 text-amber-600 flex-shrink-0" />
+                        <div className="space-y-1">
+                            <span className="font-semibold text-black block">Need help with a booking?</span>
+                            <span className="!text-sm text-black">
+                                If you have any questions or need assistance with your bookings, visit our{" "}
+                                <Link href="/contact" className="text-black underline font-medium">
+                                    help center
+                                </Link>{" "}
+                                or contact our customer support team.
+                            </span>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </>
+            )}
+        </div>
     )
 }

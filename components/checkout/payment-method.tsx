@@ -4,7 +4,7 @@ import { useState } from "react";
 import { CheckCheck, Loader2, Lock } from "lucide-react";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import { formatPrice } from "@/lib/utils";
-import { getLoginCookie, isLoggedIn } from "@/lib/auth";
+import { deleteCartData, getLoginCookie, isLoggedIn } from "@/lib/auth";
 import { useRouter } from "next/navigation";
 
 // Define interface
@@ -51,9 +51,7 @@ export default function PaymentMethod({ paymentType, cartData, stripeHandlingFee
 
             // Define order amount
             let order_amount: number = (paymentType == 'part_payment') ? cartData.part_payment : cartData.full_payment;
-            if (paymentMethod === 'credit-card') {
-                order_amount += stripeHandlingFee;
-            }
+            order_amount += stripeHandlingFee;
 
             try {
                 // Create PaymentIntent
@@ -86,7 +84,7 @@ export default function PaymentMethod({ paymentType, cartData, stripeHandlingFee
                 // Handle result
                 if (result.error) {
                     // Set error
-                    setErrors(result.error.message || "Payment failed");
+                    setErrors(result.error.message || "You payment was not successful. If money was debited from your account, it will be refunded within 5-7 business days. Please try again later.");
                 } else if (result.paymentIntent?.status === "succeeded") {
                     // Get payment intent ID
                     const paymentIntentId = result?.paymentIntent?.id;
@@ -128,19 +126,85 @@ export default function PaymentMethod({ paymentType, cartData, stripeHandlingFee
                     const data = await response.json();
 
                     // Check response
-                    if (!data.status) {
-                        // Set error
-                        setErrors(data.message);
-                        return;
-                    } else {
+                    if (data.status) {
+                        // Delete cart data
+                        deleteCartData();
+
                         // Redirect to thank you page
                         setIsPaymentDone(true);
                         router.push(`/checkout/${data?.data.order_id}`);
+                    } else {
+                        // Set error
+                        setErrors(data.message || "Booking creation failed. Please try again.");
+                        return;
                     }
                 }
             } catch (err: any) {
                 // Set error
-                setErrors("Something went wrong");
+                setErrors("Something went wrong. Please try again.");
+            } finally {
+                // Update state
+                setIsLoading(false);
+            }
+        } else if (paymentMethod === 'bank-transfer') {
+            // Update state
+            setIsLoading(true);
+            setErrors("");
+
+            // Define order amount
+            let order_amount: number = (paymentType == 'part_payment') ? cartData.part_payment : cartData.full_payment;
+
+            try {
+                // Fetch the data
+                const response = await fetch("/api/checkout/bank_transfer", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        cart_id: cartData?.cart?.id,
+                        user_id: is_logged_in ? user?.user_id : "",
+                        payment_type: paymentType,
+                        payable_amount: cartData?.full_payment,
+                        sub_total_amount: cartData?.sub_total,
+                        order_amount: order_amount,
+                        title: formData?.title,
+                        first_name: formData?.first_name,
+                        last_name: formData?.last_name,
+                        email: formData?.email,
+                        phone: formData?.phone,
+                        special_request: formData?.special_request,
+                        upcoming_payments: cartData?.upcoming_payments,
+                        traveller_price: {
+                            adults: cartData?.travelers?.adults?.per_price,
+                            child_8_12: cartData?.travelers?.child_8_12?.per_price,
+                            child_3_7: cartData?.travelers?.child_3_7?.per_price,
+                            infant: cartData?.travelers?.infant?.per_price,
+                            extra_adult: cartData?.travelers?.extra_adult?.per_price,
+                            single_supplement: cartData?.travelers?.single_supplement?.per_price
+                        }
+                    })
+                });
+
+                // Parse the JSON response
+                const data = await response.json();
+
+                // Check response
+                if (data.status) {
+                    // Delete cart data
+                    deleteCartData();
+
+                    // Redirect to thank you page
+                    setIsPaymentDone(true);
+                    router.push(`/checkout/${data?.data.order_id}`);
+                } else {
+                    // Set error
+                    setErrors(data.message || "Booking creation failed. Please try again.");
+                    return;
+                }
+            } catch (err: any) {
+                // Set error
+                setErrors("Something went wrong. Please try again.");
             } finally {
                 // Update state
                 setIsLoading(false);
@@ -167,11 +231,11 @@ export default function PaymentMethod({ paymentType, cartData, stripeHandlingFee
                 </div>
 
                 {/* Credit Card Notice */}
-                {paymentMethod === "credit-card" && (
+                {paymentMethod === "credit-card" ? (
                     <>
                         <div className="bg-amber-50 border border-amber-300 rounded-sm p-4 space-y-3">
                             <span className="block font-semibold text-black">Credit Card Payment Notice</span>
-                            <div className="space-y-2 text-sm text-black">
+                            <div className="space-y-3 text-sm text-black">
                                 <p>
                                     Please note that a 4% credit card processing fee will be applied to all payments made by credit or
                                     debit card. This fee is charged by the payment processor and is non-refundable.
@@ -194,6 +258,15 @@ export default function PaymentMethod({ paymentType, cartData, stripeHandlingFee
                             />
                         </div>
                     </>
+                ) : (
+                    <div className="bg-amber-50 border border-amber-300 rounded-sm p-4 space-y-3">
+                        <span className="block font-semibold text-black">Bank Transfer Payment</span>
+                        <div className="space-y-3 text-sm text-black">
+                            <p>
+                                We accept payments through bank transfer. After you place your booking, we’ll send you the bank details. Once the payment is completed, you’ll receive a confirmation email from us.
+                            </p>
+                        </div>
+                    </div>
                 )}
 
                 {errors && (
