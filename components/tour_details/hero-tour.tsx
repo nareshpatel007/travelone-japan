@@ -113,7 +113,7 @@ export default function HeroTour({
 
     return (
         <>
-            <div className="w-full bg-white">
+            <div className="w-full">
                 <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 items-stretch">
                     <div className="relative overflow-hidden w-full h-[220px] sm:h-[300px] md:h-full lg:h-full">
                         <div
@@ -158,10 +158,10 @@ export default function HeroTour({
                         </button>
                     </div>
                     <div className="flex flex-col h-full">
-                        <div className="bg-[#FFF9EE] text-white p-5 md:p-6 border-b border-gray-200">
+                        <div className="bg-[#FFF9EE] text-white p-5 md:p-6 border-b border-[#d9cec1]">
                             <div className="max-w-7xl mx-auto">
                                 <div className="flex items-start justify-between">
-                                    <div>
+                                    <div className="space-y-3">
                                         <div className="flex items-center gap-2 flex-wrap">
                                             <span className="text-black text-xl md:text-2xl leading-tight font-medium">
                                                 {tour?.name}
@@ -170,9 +170,11 @@ export default function HeroTour({
                                                 {tour?.tour_type}
                                             </span>
                                         </div>
-                                        <p className="text-md md:text-lg text-black mb-3 mt-2">
+
+                                        <p className="text-sm md:text-base text-black">
                                             {tour?.tour_sub_title && tour?.tour_sub_title?.join(" → ")}
                                         </p>
+
                                         <p className="text-sm md:text-md text-black">
                                             {city_nights.map((item: any, index: number) => (
                                                 <span key={index} className="inline-flex items-center">
@@ -191,19 +193,19 @@ export default function HeroTour({
                                 </div>
                             </div>
                         </div>
-                        <div className="bg-[#FFF9EE]/50 p-5 md:p-6 flex-1">
+                        <div className="bg-[#FFF9EE]/50 p-5 md:p-6 flex-1 border-b border-[#d9cec1]">
                             <span className="text-md md:text-lg font-medium text-gray-900 mb-3 block">Select Your Package</span>
                             <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
                                 {packages.map((pkg: any) => (
                                     <div
                                         key={pkg.no}
                                         onClick={() => setSelectedPackage(pkg.no)}
-                                        className={`border-1 rounded-lg p-3 cursor-pointer transition-all text-center ${selectedPackage === pkg.no
+                                        className={`border-1 rounded-sm p-3 space-y-2 cursor-pointer transition-all text-center ${selectedPackage === pkg.no
                                             ? "border-[#2F5D50] bg-white shadow-lg"
                                             : "border-gray-300 bg-white/50 hover:border-[#2F5D50]"
                                             }`}
                                     >
-                                        <div className="flex justify-center !mb-3">
+                                        <div className="flex justify-center">
                                             {selectedPackage === pkg.no ? (
                                                 <div className="w-6 h-6 bg-[#ef2853] rounded-full flex items-center justify-center text-white font-bold">
                                                     <Check className="h-4 w-4" />
@@ -212,15 +214,20 @@ export default function HeroTour({
                                                 <div className="w-6 h-6 border-2 border-gray-300 rounded-full"></div>
                                             )}
                                         </div>
-                                        <span className="font-medium text-gray-900 mb-2 block">{pkg.name}</span>
-                                        <p className="text-xs text-gray-600 line-through mb-1">${formatPrice(Number(pkg.price) + 500, 0)}</p>
-                                        <p className="text-xl md:text-lg font-semibold text-black mb-1">${formatPrice(pkg.price, 0)}</p>
-                                        <p className="text-xs text-gray-600 mb-1">Per Person</p>
+
+                                        <span className="font-medium text-gray-900 block">{pkg.name}</span>
+
+                                        <div className="space-y-1">
+                                            <p className="text-xs text-gray-600 line-through">${formatPrice(Number(pkg.price) + 500, 0)}</p>
+                                            <p className="text-xl md:text-lg font-semibold text-black">${formatPrice(pkg.price, 0)}</p>
+                                            <p className="text-xs text-gray-600">Per Person</p>
+                                        </div>
+
                                         {pkg.no !== "1" && <p className="text-xs text-gray-600 font-normal">Double Sharing</p>}
                                     </div>
                                 ))}
                             </div>
-                            <div className="flex gap-3 flex-wrap !mb-3">
+                            <div className="flex gap-3 flex-wrap mb-3">
                                 <button className="bg-[#ef2853] border-1 border-[#ef2853] hover:bg-white hover:text-[#ef2853] text-white px-4 py-2 rounded font-semibold text-sm cursor-pointer" onClick={() => setOpenBookingCartPopup(true)}>
                                     Book {packages.find((p: any) => p.no === selectedPackage)?.name}
                                 </button>

@@ -1,12 +1,12 @@
-"use client"
+"use client";
 
 import { useState } from "react";
 import { ItineraryTab } from "./itinerary-tab";
 import { WalletNotesTab } from "./wallet-notes";
 import { TermsTab } from "./terms-tab";
 import TravellerInfoTab from "./traveller-info";
+import PaymentsTab from "./payments-tab";
 
-// Define props
 interface Props {
     itineraryData: any;
     walletNotes: any;
@@ -15,61 +15,77 @@ interface Props {
     cancellationPolicy: any;
 }
 
-export default function TabContent({ itineraryData, walletNotes, termsData, paymentSchedule, cancellationPolicy }: Props) {
-    // Define state
+export default function TabContent({
+    itineraryData,
+    walletNotes,
+    termsData,
+    paymentSchedule,
+    cancellationPolicy,
+}: Props) {
     const [activeMainTab, setActiveMainTab] = useState("itinerary");
 
+    const tabs = [
+        { key: "itinerary", label: "Itinerary" },
+        { key: "travellers_info", label: "Traveller's Info" },
+        { key: "payments", label: "Payments" },
+        { key: "wallet_notes", label: "Credit / Debit Notes" },
+        { key: "terms", label: "Terms" },
+    ];
+
     return (
-        <div className="bg-white p-5 md:p-10">
-            <div className="border-b border-gray-200">
-                <div className="flex gap-12">
-                    <button
-                        onClick={() => setActiveMainTab("itinerary")}
-                        className={`pb-4 text-lg font-medium transition-colors capitalize cursor-pointer ${activeMainTab === "itinerary" ? "text-black border-b-2 border-black" : "text-black hover:border-b-2 hover:border-black"
-                            }`}
-                    >
-                        Itinerary
-                    </button>
-                    <button
-                        onClick={() => setActiveMainTab("travellers_info")}
-                        className={`pb-4 text-lg font-medium transition-colors capitalize cursor-pointer ${activeMainTab === "travellers_info" ? "text-black border-b-2 border-black" : "text-black hover:border-b-2 hover:border-black"
-                            }`}
-                    >
-                        Traveller's Info
-                    </button>
-                    <button
-                        onClick={() => setActiveMainTab("payments")}
-                        className={`pb-4 text-lg font-medium transition-colors capitalize cursor-pointer ${activeMainTab === "payments" ? "text-black border-b-2 border-black" : "text-black hover:border-b-2 hover:border-black"
-                            }`}
-                    >
-                        Payments
-                    </button>
-                    <button
-                        onClick={() => setActiveMainTab("wallet_notes")}
-                        className={`pb-4 text-lg font-medium transition-colors capitalize cursor-pointer ${activeMainTab === "wallet_notes" ? "text-black border-b-2 border-black" : "text-black hover:border-b-2 hover:border-black"
-                            }`}
-                    >
-                        Credit / Debit Notes
-                    </button>
-                    <button
-                        onClick={() => setActiveMainTab("terms")}
-                        className={`pb-4 text-lg font-medium transition-colors capitalize cursor-pointer ${activeMainTab === "terms" ? "text-black border-b-2 border-black" : "text-black hover:border-b-2 hover:border-black"
-                            }`}
-                    >
-                        Terms
-                    </button>
+        <div className="bg-[#FFF9EE] p-4 md:px-10 md:py-8">
+
+            {/* TABS */}
+            <div className="border-b border-[#d9cec1]">
+                <div
+                    className="
+                        flex gap-6 md:gap-12
+                        overflow-x-auto md:overflow-visible
+                        whitespace-nowrap
+                        scroll-smooth
+                        no-scrollbar
+                    "
+                >
+                    {tabs.map((tab) => (
+                        <button
+                            key={tab.key}
+                            onClick={() => setActiveMainTab(tab.key)}
+                            className={`
+                                pb-3 md:pb-4
+                                text-sm md:text-lg
+                                font-medium
+                                transition-all
+                                cursor-pointer
+                                ${activeMainTab === tab.key
+                                    ? "text-black border-b-2 border-black"
+                                    : "text-gray-700 hover:text-black hover:border-b-2 hover:border-black"
+                                }
+                            `}
+                        >
+                            {tab.label}
+                        </button>
+                    ))}
                 </div>
             </div>
 
-            {/* Itinerrary tab */}
-            {activeMainTab === "itinerary" && <ItineraryTab itineraryData={itineraryData} />}
-            {activeMainTab === "wallet_notes" && <WalletNotesTab walletNotes={walletNotes} />}
-            {activeMainTab === "travellers_info" && <TravellerInfoTab />}
-            {activeMainTab === "terms" && <TermsTab
-                termsData={termsData}
-                paymentSchedule={paymentSchedule}
-                cancellationPolicy={cancellationPolicy}
-            />}
+            {/* TAB CONTENT */}
+            <div>
+                {activeMainTab === "itinerary" && (
+                    <ItineraryTab itineraryData={itineraryData} />
+                )}
+                {activeMainTab === "travellers_info" && <TravellerInfoTab />}
+                {activeMainTab === "payments" && <PaymentsTab />}
+                {activeMainTab === "wallet_notes" && (
+                    <WalletNotesTab walletNotes={walletNotes} />
+                )}
+                {activeMainTab === "terms" && (
+                    <TermsTab
+                        termsData={termsData}
+                        paymentSchedule={paymentSchedule}
+                        cancellationPolicy={cancellationPolicy}
+                    />
+                )}
+            </div>
         </div>
-    )
+    );
 }

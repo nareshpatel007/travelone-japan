@@ -3,7 +3,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { useState } from "react";
-import { LandingPlanTripModal } from "../plan_your_trip/landing-popup";
+import { CommonPlanTripModal } from "../plan_your_trip/common-popup";
 
 export default function TravelExpert() {
     // Define state
@@ -41,7 +41,7 @@ export default function TravelExpert() {
                                 <div className="hidden md:flex items-center gap-4">
                                     <button
                                         onClick={() => setOpenPlanYourTripModel(true)}
-                                        className="bg-black hover:bg-[#1E1E1E] cursor-pointer text-white px-8 py-2.5 rounded-sm font-medium transition-colors"
+                                        className="px-6 md:px-8 py-3 bg-black text-white text-sm font-medium tracking-wide hover:bg-black/90 transition uppercase cursor-pointer"
                                     >
                                         Customize Your Trip
                                     </button>
@@ -53,7 +53,7 @@ export default function TravelExpert() {
                                 <div className="block md:hidden space-y-5 text-center">
                                     <button
                                         onClick={() => setOpenPlanYourTripModel(true)}
-                                        className="bg-black hover:bg-[#1E1E1E] cursor-pointer text-white px-8 py-2.5 rounded-sm font-medium transition-colors"
+                                        className="px-6 md:px-8 py-3 bg-black text-white text-sm font-medium tracking-wide hover:bg-black/90 transition uppercase cursor-pointer"
                                     >
                                         Customize Your Trip
                                     </button>
@@ -68,7 +68,7 @@ export default function TravelExpert() {
             </div>
 
             {/* MODAL */}
-            <LandingPlanTripModal open={openPlanYourTripModel} onOpenChange={setOpenPlanYourTripModel} />
+            <CommonPlanTripModal open={openPlanYourTripModel} onOpenChange={setOpenPlanYourTripModel} />
         </>
     )
 }

@@ -2,6 +2,7 @@
 
 import { ArrowRight, MoveRight, X } from "lucide-react";
 import Image from "next/image";
+import { useState } from "react";
 
 // Define props
 type Props = {
@@ -16,11 +17,17 @@ type Props = {
 }
 
 export function OverviewTabContent({ activeTab, tour, city_nights, tour_packages, attractions, tour_terms, payment_schedule, cancellation_payment }: Props) {
+    // Define cities
+    const cities = Object.keys(attractions);
+
+    // Define state
+    const [activeCity, setActiveCity] = useState(cities[0]);
+
     return (
         <>
             {activeTab === "highlights" && (
                 <div className="space-y-5">
-                    <span className="text-md md:text-lg block font-semibold text-black">Highlights</span>
+                    <span className="text-base md:text-2xl block font-semibold md:font-medium text-black">Highlights</span>
                     <ul className="space-y-1">
                         {tour?.tour_highlights && tour?.tour_highlights.map((highlight: string, idx: number) => (
                             <li key={idx} className="flex items-start gap-2 md:gap-3 text-sm md:text-base text-gray-700">
@@ -30,7 +37,7 @@ export function OverviewTabContent({ activeTab, tour, city_nights, tour_packages
                         ))}
                     </ul>
                     <div className="border-t border-gray-300"></div>
-                    <span className="text-md md:text-lg block font-semibold text-black">Trip Flow</span>
+                    <span className="text-base md:text-2xl block font-semibold md:font-medium text-black">Trip Flow</span>
                     <p className="text-gray-700 text-sm md:text-base">
                         {city_nights.map((item: any, index: number) => (
                             <span key={index} className="inline-flex items-center">
@@ -54,7 +61,7 @@ export function OverviewTabContent({ activeTab, tour, city_nights, tour_packages
                         const accommodation = typeof item.accommodation === "string" ? JSON.parse(item.accommodation) : item.accommodation;
                         return (
                             <div key={index} className="space-y-4">
-                                <span className="text-md md:text-lg block font-semibold text-black">
+                                <span className="text-base md:text-2xl block font-semibold md:font-medium text-black">
                                     {item.name}
                                 </span>
                                 <ul className="space-y-1">
@@ -79,26 +86,51 @@ export function OverviewTabContent({ activeTab, tour, city_nights, tour_packages
             )}
 
             {activeTab === "activities" && (
-                <div className="space-y-5">
-                    <span className="text-md md:text-lg block font-semibold text-black">Activities</span>
-                    <div className="space-y-8">
-                        {attractions && Object.entries(attractions).map(([city, places]: any) => (
-                            <div key={city} className="space-y-3">
-                                <span className="text-md md:text-lg block font-semibold text-black">{city}</span>
-                                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
-                                    {places.map((place: any, index: number) => (
-                                        <div key={index} className="text-center space-y-2">
-                                            <div className="relative w-full h-28 rounded-xl overflow-hidden">
-                                                <Image
-                                                    src={place.image}
-                                                    alt={place.name}
-                                                    fill
-                                                    className="object-cover"
-                                                />
-                                            </div>
-                                            <p className="text-md md:text-base block font-normal text-black">{place.name}</p>
-                                        </div>
-                                    ))}
+                <div className="space-y-6">
+                    {/* SECTION TITLE */}
+                    <span className="text-base md:text-2xl block font-semibold text-black">
+                        Activities
+                    </span>
+
+                    {/* TABS */}
+                    <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-thin">
+                        {cities.map((city) => (
+                            <button
+                                key={city}
+                                onClick={() => setActiveCity(city)}
+                                className={`whitespace-nowrap px-5 py-2 rounded-full text-sm md:text-base border transition cursor-pointer ${activeCity === city
+                                        ? "bg-black text-white border-black"
+                                        : "bg-white text-black border-gray-300 hover:border-black"
+                                    }`}
+                            >
+                                {city}
+                            </button>
+                        ))}
+                    </div>
+
+                    {/* ATTRACTIONS GRID */}
+                    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+                        {attractions[activeCity]?.map((place: any, index: number) => (
+                            <div
+                                key={index}
+                                className="group relative rounded-sm overflow-hidden aspect-square cursor-pointer"
+                            >
+                                {/* IMAGE */}
+                                <Image
+                                    src={place.image}
+                                    alt={place.name}
+                                    fill
+                                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                                />
+
+                                {/* GRADIENT OVERLAY */}
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-black/10" />
+
+                                {/* CENTERED TITLE */}
+                                <div className="absolute inset-0 flex items-center justify-center px-3">
+                                    <p className="text-white text-sm md:text-xl font-medium text-center leading-snug drop-shadow-md">
+                                        {place.name}
+                                    </p>
                                 </div>
                             </div>
                         ))}
@@ -109,7 +141,7 @@ export function OverviewTabContent({ activeTab, tour, city_nights, tour_packages
             {activeTab === "inclusions-&-exclusions" && (
                 <div className="space-y-6">
                     <div className="space-y-5">
-                        <span className="text-md md:text-lg block font-semibold text-black">Inclusions</span>
+                        <span className="text-base md:text-2xl block font-semibold md:font-medium text-black">Inclusions</span>
                         <ul className="space-y-1">
                             {tour_terms?.what_is_included && tour_terms?.what_is_included.map((item: any, idx: number) => (
                                 <li key={idx} className="flex items-start gap-3 text-gray-700 text-sm md:text-base">
@@ -120,7 +152,7 @@ export function OverviewTabContent({ activeTab, tour, city_nights, tour_packages
                         </ul>
                     </div>
                     <div className="space-y-5">
-                        <span className="text-md md:text-lg block font-semibold text-black">Exclusions</span>
+                        <span className="text-base md:text-2xl block font-semibold md:font-medium text-black">Exclusions</span>
                         <ul className="space-y-1">
                             {tour_terms?.what_is_not_included && tour_terms?.what_is_not_included.map((item: any, idx: number) => (
                                 <li key={idx} className="flex items-start gap-3 text-gray-700 text-sm md:text-base">
@@ -138,7 +170,7 @@ export function OverviewTabContent({ activeTab, tour, city_nights, tour_packages
             {activeTab === "terms-&-conditions" && (
                 <div className="space-y-6">
                     <div className="space-y-5">
-                        <span className="text-md md:text-lg block font-semibold text-black">Terms & Conditions</span>
+                        <span className="text-base md:text-2xl block font-semibold md:font-medium text-black">Terms & Conditions</span>
                         <ul className="space-y-1">
                             {tour_terms?.terms_conditions && tour_terms?.terms_conditions.map((item: any, idx: number) => (
                                 <li key={idx} className="flex items-start gap-3 text-gray-700 text-sm md:text-base">
@@ -151,7 +183,7 @@ export function OverviewTabContent({ activeTab, tour, city_nights, tour_packages
                         </ul>
                     </div>
                     <div className="space-y-5">
-                        <span className="text-md md:text-lg block font-semibold text-black">Important Notes</span>
+                        <span className="text-base md:text-2xl block font-semibold md:font-medium text-black">Important Notes</span>
                         <ul className="space-y-1">
                             {tour_terms?.important_notes && tour_terms?.important_notes.map((item: any, idx: number) => (
                                 <li key={idx} className="flex items-start gap-3 text-gray-700 text-sm md:text-base">
@@ -169,7 +201,7 @@ export function OverviewTabContent({ activeTab, tour, city_nights, tour_packages
             {activeTab === "payment-&-cancellation" && (
                 <div className="space-y-6">
                     <div className="space-y-5">
-                        <span className="text-md md:text-lg block font-semibold text-black">Payment Schedule</span>
+                        <span className="text-base md:text-2xl block font-semibold md:font-medium text-black">Payment Schedule</span>
                         <span className="text-md block text-gray-700 text-sm md:text-base">The payment schedule below outlines the required installments to confirm and maintain your reservation. Each payment ensures hotel, guide, and transport allocations are secured as per your confirmed itinerary. All payments are non-transferable and must be made in U.S. Dollars (USD) via bank transfer or approved payment link.</span>
                         <ul className="space-y-1">
                             {payment_schedule && payment_schedule.map((item: any, idx: number) => (
@@ -201,7 +233,7 @@ export function OverviewTabContent({ activeTab, tour, city_nights, tour_packages
                         <span className="text-md block text-gray-700 text-sm md:text-base">“Non-transferable” = payment can’t be reused, reassigned, or moved to another booking or person.</span>
                     </div>
                     <div className="space-y-5">
-                        <span className="text-md md:text-lg block font-semibold text-black">Cancellation Policy</span>
+                        <span className="text-base md:text-2xl block font-semibold md:font-medium text-black">Cancellation Policy</span>
 
                         <span className="text-md block text-gray-700 text-sm md:text-base">The following cancellation fees apply per person in the event of trip cancellation after booking confirmation. These charges are designed to cover non-refundable costs incurred with hotels, transportation, and local partners:</span>
 

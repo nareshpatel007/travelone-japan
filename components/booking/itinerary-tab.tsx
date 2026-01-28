@@ -1,6 +1,6 @@
 "use client"
 
-import { ArrowRight, Loader2 } from "lucide-react";
+import { Circle } from "lucide-react";
 import Image from "next/image";
 
 // Define props
@@ -13,48 +13,57 @@ export function ItineraryTab({ itineraryData }: Props) {
     if (!itineraryData) return null;
 
     return (
-        <div className="py-7">
+        <div className="py-5 md:py-7">
             <div className="relative">
-                <div className="absolute left-4.5 top-5 bottom-0 w-1 bg-gray-300"></div>
+                <div className="absolute left-4.5 top-5 bottom-0 w-1 bg-[#d9cec1]"></div>
                 <div className="space-y-6">
                     {itineraryData.map((dayData: any) => (
-                        <div className="flex gap-3 md:gap-6">
+                        <div key={dayData.day_no} className="flex gap-3 md:gap-6">
                             <div className="flex-shrink-0 relative">
-                                <div className="w-10 h-10 rounded-full bg-black text-white flex items-center justify-center font-bold text-md">{dayData.day_no}</div>
+                                <div className="w-10 h-10 rounded-full bg-black text-white flex items-center justify-center font-bold text-md">
+                                    {dayData.day_no}
+                                </div>
                             </div>
-                            <div className="flex-1 bg-white border-2 border-gray-300 rounded-lg p-5 md:p-6">
-                                <span className="text-md md:text-lg font-semibold text-black mb-3 block uppercase">{dayData.title}</span>
+                            <div className="flex-1 bg-white border-1 border-[#d9cec1] rounded-md p-5 md:p-6 space-y-4 hover:shadow-md transition-shadow duration-300">
+                                <span className="text-md md:text-2xl font-medium text-black block">{dayData.title}</span>
 
                                 {dayData.itinerary && dayData.itinerary.map((activity: any, actIdx: number) => (
-                                    <div key={actIdx} className="mb-3">
+                                    <div key={actIdx}>
                                         {activity.type === 'attraction' ? (
-                                            <div className="!mb-6">
-                                                <span className="text-black text-base font-bold block mb-4">Activities:</span>
-                                                <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-2 gap-4 mb-6">
+                                            <div className="space-y-5">
+                                                <span className="text-black text-base md:text-xl font-medium block mb-4">
+                                                    Activities:
+                                                </span>
+                                                <div className="grid grid-cols-2 md:grid-cols-5 gap-6 items-stretch">
                                                     {activity.attractions.map((attraction: any, idx: number) => (
-                                                        <div key={idx} className="flex flex-col space-y-2">
-                                                            <div className="relative w-full overflow-hidden rounded mb-4 aspect-square lg:aspect-[16/9]">
-                                                                <Image
-                                                                    src={attraction.featured_image || "/placeholder.svg"}
-                                                                    alt={attraction.attraction_name}
-                                                                    fill
-                                                                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 33vw"
-                                                                    className="object-cover object-center"
-                                                                />
+                                                        <div key={idx} className="h-full">
+                                                            <div className="flex flex-col h-full border border-[#d9cec1] bg-[#FFF9EE] hover:shadow-md transition-shadow duration-300">
+                                                                <div className="relative w-full aspect-square lg:aspect-[16/9] overflow-hidden">
+                                                                    <Image
+                                                                        src={attraction?.featured_image || "/placeholder.svg"}
+                                                                        alt={attraction?.attraction_name || "Attraction"}
+                                                                        fill
+                                                                        sizes="(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 20vw"
+                                                                        className="object-cover object-center"
+                                                                    />
+                                                                </div>
+                                                                <div className="flex flex-col flex-1 p-4 space-y-2">
+                                                                    <span className="font-semibold text-base text-gray-900">
+                                                                        {attraction.attraction_name}
+                                                                    </span>
+
+                                                                    <p className="text-black text-sm md:text-base leading-relaxed flex-1">
+                                                                        {attraction.description}
+                                                                    </p>
+                                                                </div>
                                                             </div>
-                                                            <span className="font-semibold text-base text-black text-md block">
-                                                                {attraction.attraction_name}
-                                                            </span>
-                                                            <p className="text-gray-600 text-sm md:text-base leading-relaxed">
-                                                                {attraction.description}
-                                                            </p>
                                                         </div>
                                                     ))}
                                                 </div>
                                             </div>
                                         ) : (
                                             <p className={`flex inline-block text-black text-sm md:text-base whitespace-pre-line`}>
-                                                <ArrowRight className="w-4 h-4 mr-2 text-black inline-block" />
+                                                <Circle className="w-4 h-4 mr-2 fill-[#a6c5a9] text-[#a6c5a9] inline-block" />
                                                 {activity.title}
                                             </p>
                                         )}

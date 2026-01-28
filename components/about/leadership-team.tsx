@@ -13,7 +13,7 @@ const leadership = [
     },
     {
         name: "Pranav Amin",
-        role: "Sales Manager - Canada",
+        role: "Sales Manager - USA",
         image: "/about/img_team_63e33bb2382cf1-81493713-48358927.webp"
     },
     {

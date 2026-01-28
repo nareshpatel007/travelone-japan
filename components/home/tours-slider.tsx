@@ -13,10 +13,12 @@ import "swiper/css/navigation";
 
 // Define props
 interface Props {
+    title?: string;
+    subTitle?: string;
     toursList: any[];
 }
 
-export default function ToursSlider({ toursList }: Props) {
+export default function ToursSlider({ title, subTitle, toursList }: Props) {
     // Check if toursList is empty
     if (!toursList || toursList.length === 0) {
         return null;
@@ -26,10 +28,10 @@ export default function ToursSlider({ toursList }: Props) {
         <section className="px-5 md:px-10 py-12 space-y-12 bg-[#FFF9EE]">
             <div className="text-black space-y-2 text-center">
                 <h1 className="text-3xl md:text-6xl leading-tight font-normal">
-                    Japan: The Precision of Tradition
+                    {title || "Japan: The Precision of Tradition"}
                 </h1>
                 <span className="text-md">
-                    Immerse yourself in Omotenashi reimagined through intricate logistics.
+                    {subTitle || "Experience the beauty and culture of Japan, where tradition meets innovation."}
                 </span>
             </div>
             <div className="relative">
@@ -73,7 +75,7 @@ export default function ToursSlider({ toursList }: Props) {
                                     <div className="py-6 space-y-3 text-center">
                                         <span className="text-md md:text-xl font-medium text-gray-900 block">{tour.name}</span>
                                         <div className="flex justify-center">
-                                            <span className="text-xs md:text-sm font-semibold text-[#385b21] bg-[#d4e9e7] px-5 py-1.5 rounded">
+                                            <span className="text-xs md:text-sm font-semibold text-black bg-amber-300 px-5 py-1.5 rounded">
                                                 Start from USD ${formatPrice(tour.starting_price, 0)}
                                             </span>
                                         </div>

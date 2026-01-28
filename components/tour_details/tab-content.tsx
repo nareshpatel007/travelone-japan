@@ -70,8 +70,8 @@ export default function TabContent({ tour, city_nights, tour_packages, attractio
     }, [activeMainTab]);
 
     return (
-        <div className="bg-white p-5 md:p-12">
-            <div className="border-b border-gray-200">
+        <div className="bg-[#FFF9EE] p-5 md:px-10 md:py-8">
+            <div className="border-b border-[#d9cec1]">
                 <div className="flex gap-8">
                     <button
                         onClick={() => setActiveMainTab("package_details")}
@@ -91,8 +91,8 @@ export default function TabContent({ tour, city_nights, tour_packages, attractio
             </div>
 
             {activeMainTab === "package_details" && (
-                <div className="bg-white py-7">
-                    <div className="hidden md:grid lg:grid grid-cols-1 md:grid-cols-4 gap-3 min-h-96">
+                <div className="py-7">
+                    <div className="hidden md:grid lg:grid grid-cols-1 md:grid-cols-4 gap-4 min-h-96">
                         <div className="col-span-1 flex flex-col gap-2">
                             {tabs.map((tab) => {
                                 const tabKey = tab.toLowerCase().replace(/\s+/g, "-");
@@ -100,9 +100,9 @@ export default function TabContent({ tour, city_nights, tour_packages, attractio
                                     <button
                                         key={tab}
                                         onClick={() => setActiveTab(tabKey)}
-                                        className={`px-4 py-3 text-left font-medium rounded border border-[#FFF9EE] cursor-pointer transition-all text-sm md:text-base ${activeTab === tabKey
+                                        className={`px-4 py-3 text-left font-medium rounded border border-black cursor-pointer transition-all text-sm md:text-base ${activeTab === tabKey
                                             ? "bg-black text-white"
-                                            : "bg-[#FFF9EE] text-black hover:bg-black hover:text-white"
+                                            : "bg-white text-black !border-[#d9cec1] hover:bg-black hover:text-white"
                                             }`}
                                     >
                                         {tab}
@@ -110,7 +110,7 @@ export default function TabContent({ tour, city_nights, tour_packages, attractio
                                 );
                             })}
                         </div>
-                        <div className="col-span-3 bg-white border-1 border-black rounded !p-8">
+                        <div className="col-span-3 bg-white border-1 border-[#d9cec1] rounded-sm p-8">
                             <OverviewTabContent
                                 activeTab={activeTab}
                                 tour={tour}

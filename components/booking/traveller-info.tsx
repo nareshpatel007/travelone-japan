@@ -1,11 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronDown, ChevronUp } from "lucide-react";
+import { ChevronDown, ChevronLeft, ChevronRight, ChevronUp } from "lucide-react";
 
 // Swiper
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Mousewheel } from "swiper/modules";
+import { Mousewheel, Navigation } from "swiper/modules";
 import TravellerForm from "./traveller-form";
 import "swiper/css";
 
@@ -20,24 +20,23 @@ export default function TravellerInfoTab() {
     const [open, setOpen] = useState<number | null>(0);
 
     return (
-        <div className="max-w-6xl mx-auto px-4 py-10">
-
-            {/* ================= MOBILE (ACCORDION) ================= */}
-            <div className="md:hidden space-y-4">
+        <>
+            {/* MOBILE */}
+            <div className="md:hidden space-y-5 py-5">
                 {travellers.map((t, index) => (
                     <div
                         key={index}
-                        className="border rounded-md overflow-hidden"
+                        className="border border-[#d9cec1] rounded-sm overflow-hidden"
                     >
                         <button
                             onClick={() => setOpen(open === index ? null : index)}
-                            className="w-full flex justify-between items-center px-4 py-3 bg-green-100"
+                            className="w-full flex justify-between items-center text-black px-4 py-3 bg-white"
                         >
                             <div className="text-left">
-                                <p className="font-semibold text-sm">
+                                <p className="font-medium text-sm">
                                     {t.type} {index + 1}
                                 </p>
-                                <span className="text-xs text-gray-600">{t.ageLabel}</span>
+                                <span className="text-xs text-black">{t.ageLabel}</span>
                             </div>
                             {open === index ? <ChevronUp /> : <ChevronDown />}
                         </button>
@@ -45,6 +44,7 @@ export default function TravellerInfoTab() {
                         {open === index && (
                             <div className="p-4">
                                 <TravellerForm
+                                    headerBox={false}
                                     index={index}
                                     title={t.type}
                                     ageLabel={t.ageLabel}
@@ -55,28 +55,52 @@ export default function TravellerInfoTab() {
                 ))}
             </div>
 
-            {/* ================= DESKTOP (VERTICAL SLIDER) ================= */}
-            <div className="hidden md:block">
-                <Swiper
-                    direction="vertical"
-                    slidesPerView={1}
-                    mousewheel
-                    modules={[Mousewheel]}
-                    className="h-[650px]"
+            {/* DESKTOP */}
+            <div className="hidden md:block relative py-6">
+                {/* Navigation Buttons */}
+                <button className="prevRef absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-black text-white border border-black rounded-full p-2 hover:bg-white hover:text-black transition cursor-pointer"
                 >
-                    {travellers.map((t, index) => (
-                        <SwiperSlide key={index} className="p-6">
-                            <div className="bg-white border rounded-md p-6 shadow-sm">
-                                <TravellerForm
-                                    index={index}
-                                    title={t.type}
-                                    ageLabel={t.ageLabel}
-                                />
-                            </div>
-                        </SwiperSlide>
-                    ))}
-                </Swiper>
+                    <ChevronLeft size={20} />
+                </button>
+
+                <button className="nextRef absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-black text-white border border-black rounded-full p-2 hover:bg-white hover:text-black transition cursor-pointer"
+                >
+                    <ChevronRight size={20} />
+                </button>
+
+                {/* Swiper */}
+                <div className="px-14">
+                    <Swiper
+                        modules={[Navigation, Mousewheel]}
+                        spaceBetween={24}
+                        slidesPerView={3}
+                        slidesPerGroup={1}
+                        grabCursor
+                        mousewheel
+                        navigation={{
+                            prevEl: ".prevRef",
+                            nextEl: ".nextRef",
+                        }}
+                        breakpoints={{
+                            640: { slidesPerView: 2 },
+                            768: { slidesPerView: 3 },
+                            1024: { slidesPerView: 3 },
+                        }}
+                    >
+                        {travellers.map((t: any, index: number) => (
+                            <SwiperSlide key={index} className="px-1">
+                                <div className="bg-white border border-[#d9cec1] rounded-sm p-6 hover:shadow-xl transition-shadow duration-300">
+                                    <TravellerForm
+                                        index={index}
+                                        title={t.type}
+                                        ageLabel={t.ageLabel}
+                                    />
+                                </div>
+                            </SwiperSlide>
+                        ))}
+                    </Swiper>
+                </div>
             </div>
-        </div>
+        </>
     );
 }

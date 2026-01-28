@@ -22,7 +22,7 @@ export function TermsTabContent({
             {activeTab === "inclusions-exclusions" && (
                 <div className="space-y-6">
                     <div className="space-y-5">
-                        <span className="text-md md:text-lg block font-semibold text-black">Inclusions</span>
+                        <span className="text-base md:text-2xl block font-semibold md:font-medium text-black">Inclusions</span>
                         <ul className="space-y-1">
                             {termsData?.what_is_included && termsData?.what_is_included.map((item: any, idx: number) => (
                                 <li key={idx} className="flex items-start gap-3 text-gray-700 text-sm md:text-base">
@@ -33,7 +33,7 @@ export function TermsTabContent({
                         </ul>
                     </div>
                     <div className="space-y-5">
-                        <span className="text-md md:text-lg block font-semibold text-black">Exclusions</span>
+                        <span className="text-base md:text-2xl block font-semibold md:font-medium text-black">Exclusions</span>
                         <ul className="space-y-1">
                             {termsData?.what_is_not_included && termsData?.what_is_not_included.map((item: any, idx: number) => (
                                 <li key={idx} className="flex items-start gap-3 text-gray-700 text-sm md:text-base">
@@ -52,7 +52,7 @@ export function TermsTabContent({
             {activeTab === "terms-conditions" && (
                 <div className="space-y-6">
                     <div className="space-y-5">
-                        <span className="text-md md:text-lg block font-semibold text-black">Terms & Conditions</span>
+                        <span className="text-base md:text-2xl block font-semibold md:font-medium text-black">Terms & Conditions</span>
                         <ul className="space-y-1">
                             {termsData?.terms_conditions && termsData?.terms_conditions.map((item: any, idx: number) => (
                                 <li key={idx} className="flex items-start gap-3 text-gray-700 text-sm md:text-base">
@@ -71,7 +71,7 @@ export function TermsTabContent({
             {activeTab === "payment-schedule" && (
                 <div className="space-y-6">
                     <div className="space-y-5">
-                        <span className="text-md md:text-lg block font-semibold text-black">Payment Schedule</span>
+                        <span className="text-base md:text-2xl block font-semibold md:font-medium text-black">Payment Schedule</span>
                         <span className="text-md block text-gray-700 text-sm md:text-base">The payment schedule below outlines the required installments to confirm and maintain your reservation. Each payment ensures hotel, guide, and transport allocations are secured as per your confirmed itinerary. All payments are non-transferable and must be made in U.S. Dollars (USD) via bank transfer or approved payment link.</span>
                         <ul className="space-y-1">
                             {paymentSchedule && paymentSchedule.map((item: any, idx: number) => (
@@ -109,7 +109,7 @@ export function TermsTabContent({
             {activeTab === "cancellation-policy" && (
                 <div className="space-y-6">
                     <div className="space-y-5">
-                        <span className="text-md md:text-lg block font-semibold text-black">Cancellation Policy</span>
+                        <span className="text-base md:text-2xl block font-semibold md:font-medium text-black">Cancellation Policy</span>
 
                         <span className="text-md block text-gray-700 text-sm md:text-base">The following cancellation fees apply per person in the event of trip cancellation after booking confirmation. These charges are designed to cover non-refundable costs incurred with hotels, transportation, and local partners:</span>
 
@@ -136,7 +136,7 @@ export function TermsTabContent({
             {activeTab === "important-notes" && (
                 <div className="space-y-6">
                     <div className="space-y-5">
-                        <span className="text-md md:text-lg block font-semibold text-black">Important Notes</span>
+                        <span className="text-base md:text-2xl block font-semibold md:font-medium text-black">Important Notes</span>
                         <ul className="space-y-1">
                             {termsData?.important_notes && termsData?.important_notes.map((item: any, idx: number) => (
                                 <li key={idx} className="flex items-start gap-3 text-gray-700 text-sm md:text-base">

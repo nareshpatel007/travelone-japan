@@ -5,6 +5,7 @@ import { ChevronUp } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import FooterCurveSection from '../home/footer-curve-section';
+import NewsletterSubscribe from './newsletter';
 
 // Define props
 type Props = {
@@ -59,7 +60,8 @@ export default function CommonFooter({ isStickyShow = false }: Props) {
 
             <footer className="bg-[#FFF9EE] text-black">
                 <div className={`max-w-7xl mx-auto px-6 space-y-12 ${isStickyShow ? 'pb-12' : 'pb-5'}`}>
-                    <div className="order-2 flex flex-col items-center space-y-6 text-center">
+                    {/* Logo */}
+                    <div className="order-2 flex flex-col items-center text-center">
                         <div>
                             <Image
                                 alt="Logo"
@@ -68,25 +70,13 @@ export default function CommonFooter({ isStickyShow = false }: Props) {
                                 draggable={false}
                                 src="/common/logo.webp"
                             />
-                            <span className="text-base">Subscribe for trending deals.</span>
-                        </div>
-                        <div className="w-full max-w-md">
-                            <div className="flex">
-                                <input
-                                    type="email"
-                                    placeholder="Email"
-                                    autoComplete="off"
-                                    className="flex-1 px-4 py-3 border border-gray-500 bg-white text-black text-sm focus:outline-none"
-                                />
-                                <button
-                                    type="button"
-                                    className="px-6 py-3 uppercase bg-black text-white text-sm font-semibold hover:bg-black/90 cursor-pointer transition"
-                                >
-                                    Submit
-                                </button>
-                            </div>
                         </div>
                     </div>
+
+                    {/* Newsletter */}
+                    <NewsletterSubscribe />
+
+                    {/* Footer Menus */}
                     <div className="grid grid-cols-2 md:grid-cols-4 mb-0 md:mb-12 space-y-12 md:space-y-0">
                         {/* MENU 1 */}
                         <div className='space-y-6'>

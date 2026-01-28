@@ -4,17 +4,18 @@ import { useState } from "react";
 import Image from "next/image";
 import { BedDouble, Check, ChevronLeft, ChevronRight, Heart, Loader2, MoveRight } from "lucide-react";
 import 'react-loading-skeleton/dist/skeleton.css';
-import { formatPrice } from "@/lib/utils";
+import { formatDate, formatPrice } from "@/lib/utils";
 import { addWishlistCount, getLoginCookie, isLoggedIn } from "@/lib/auth";
 import { LoginModal } from "../common/login-modal";
 
 // Define props
 interface Props {
+    orderData: any;
     tour: any;
-    roomData: any;
+    cartData: any;
 }
 
-export default function HeroTour({ tour, roomData }: Props) {
+export default function HeroTour({ orderData, tour, cartData }: Props) {
     // Define state
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
@@ -75,7 +76,7 @@ export default function HeroTour({ tour, roomData }: Props) {
                         </button>
                     </div>
                     <div className="flex flex-col h-full">
-                        <div className="bg-[#FFF9EE] text-white p-5 md:p-6 border-b border-gray-200">
+                        <div className="bg-[#FFF9EE] text-white p-5 md:p-6 border-b border-[#d9cec1]">
                             <div className="max-w-7xl mx-auto">
                                 <div className="flex items-start justify-between">
                                     <div className="space-y-3">
@@ -88,66 +89,56 @@ export default function HeroTour({ tour, roomData }: Props) {
                                         <p className="text-sm md:text-base text-black">
                                             {tourSummary && tourSummary?.join(" → ")}
                                         </p>
-                                        
-                                        <p className="text-sm md:text-base font-medium text-red-500">
-                                            #TO-29092026-MOL-280478-2
+
+                                        <p className="flex items-center gap-2 text-sm md:text-base font-medium text-red-500">
+                                            Booking Reference <MoveRight size={16} /> #{orderData?.booking_ref_no}
                                         </p>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div className="bg-[#FFF9EE]/50 p-5 md:p-6 flex-1 space-y-6">
+                        <div className="bg-[#FFF9EE]/50 p-5 md:p-6 flex-1 border-b border-[#d9cec1] space-y-8">
                             <div className="space-y-2 text-sm md:text-base">
                                 <p className="font-medium text-black">
-                                    Booking for Molly John X 2 Travellers
+                                    Booking for {`${orderData?.customer_prefix} ${orderData?.customer_fname} ${orderData?.customer_lname}`} X {cartData?.total_travelers} Traveller{`${cartData?.total_travelers > 1 ? "s" : ""}`}
                                 </p>
                                 <p className="text-black">
                                     Travel Date:
                                     <span className="text-red-500 font-semibold">
-                                        {" "}September 29, 2026
+                                        {` ${formatDate(cartData?.booking_date)}`}
                                     </span>
                                 </p>
                             </div>
 
                             <div className="overflow-x-auto">
-                                <table className="w-full border border-black border-collapse text-sm sm:text-base">
+                                <table className="w-full border border-[#d9cec1] border-collapse text-sm sm:text-base">
                                     <thead>
-                                        <tr className="border-b border-black">
-                                            <th className="border-r border-black px-3 py-2 text-left">
-                                                Room
-                                            </th>
-                                            <th className="border-r border-black px-3 py-2 text-left">
-                                                Traveler Type
-                                            </th>
-                                            <th className="border-r border-black px-3 py-2 text-left">
-                                                Bedding
-                                            </th>
-                                            <th className="px-3 py-2 text-center">
-                                                Count
-                                            </th>
+                                        <tr className="border-b border-[#d9cec1]">
+                                            <th className="bg-white font-medium border-r border-[#d9cec1] px-3 py-2 text-left">Room</th>
+                                            <th className="bg-white font-medium border-r border-[#d9cec1] px-3 py-2 text-left">Bedding</th>
+                                            <th className="bg-white font-medium border-r border-[#d9cec1] px-3 py-2 text-left">Traveler Type / Count</th>
                                         </tr>
                                     </thead>
-
                                     <tbody>
-                                        {roomData.map((room: any, roomIndex: number) => (
-                                            <tr
-                                                key={roomIndex}
-                                                className="border-b border-black last:border-b-0"
-                                            >
-                                                <td className="border-r border-black px-3 py-2">
-                                                    Room {room.room_no}
+                                        {cartData?.room_data && cartData?.room_data.map((room: any, roomIndex: number) => (
+                                            <tr key={roomIndex} className="border-b border-black text-sm sm:text-base">
+                                                <td className="bg-white font-normal border-r border-black px-3 py-2">
+                                                    Room {roomIndex + 1}
                                                 </td>
-
-                                                <td className="border-r border-black px-3 py-2">
-                                                    Adults
+                                                <td className="bg-white font-normal border-r border-black px-3 py-2">
+                                                    {room?.bedding_preference == 'double' && "Double"}
+                                                    {room?.bedding_preference == 'single' && "Single"}
+                                                    {room?.bedding_preference == 'twin' && "Twin"}
+                                                    {room?.bedding_preference == 'two_queen_bed' && "Two Queen Bed"}
                                                 </td>
-
-                                                <td className="border-r border-black px-3 py-2">
-                                                    Double
-                                                </td>
-
-                                                <td className="px-3 py-2 text-center font-medium">
-                                                    1
+                                                <td className="bg-white font-normal border-r border-black px-3 py-2 space-y-1">
+                                                    {room?.adults > 0 && <span className="block">Adults: {room?.adults}</span>}
+                                                    {room?.child_8_12 > 0 && <span className="block">Child (8-12): {room?.child_8_12}</span>}
+                                                    {room?.child_3_7 > 0 && <span className="block">Child (3-7): {room?.child_3_7}</span>}
+                                                    {room?.infant > 0 && <span className="block">Infant: {room?.infant}</span>}
+                                                    {room?.extra_adult > 0 && <span className="block">Extra Adult: 1</span>}
+                                                    {room?.extra_crib > 0 && <span className="block">Extra Adult: 1</span>}
+                                                    {room?.single_supplement > 0 && <span className="block">Single Supplement: {room?.single_supplement}</span>}
                                                 </td>
                                             </tr>
                                         ))}

@@ -22,6 +22,8 @@ import { BookingCart } from "@/components/tour_details/popup/booking-cart";
 import Skeleton from "react-loading-skeleton";
 import Link from "next/link";
 import { getLoginCookie } from "@/lib/auth";
+import ToursSlider from "@/components/home/tours-slider";
+import VideoHeroSection from "@/components/tour_details/video-hero";
 
 export default function TourDetailPage() {
     // Get slug
@@ -140,7 +142,12 @@ export default function TourDetailPage() {
                     <WhyTravelOne />
                     <TrustedBy />
                     <FAQsList data={tourData?.tour_terms ?? []} />
-                    <RelatedTours tours={tourData?.related_tours || []} />
+                    <ToursSlider
+                        title="You may also like"
+                        subTitle="We are committed to providing you with the best possible experience."
+                        toursList={tourData?.related_tours}
+                    />
+                    <VideoHeroSection />
                     <TravelExpert />
                     <PageHelpful />
 

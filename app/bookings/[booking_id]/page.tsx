@@ -68,10 +68,11 @@ export default function Page() {
                 {!booking_id && <NotFoundError />}
 
                 {/* Single Booking Page */}
-                {!isLoading && booking_id && <div className="min-h-screen bg-white">
+                {!isLoading && booking_id && <div className="bg-white">
                     <HeroTour
+                        orderData={bookingData?.order}
                         tour={bookingData?.cart_data?.tour_info}
-                        roomData={bookingData?.cart_data?.room_data}
+                        cartData={bookingData?.cart_data}
                     />
 
                     <TabContent

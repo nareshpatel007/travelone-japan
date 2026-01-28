@@ -75,8 +75,7 @@ export default function Reviews({ reviews }: Props) {
 
 function ReviewCard({ review }: { review: any }) {
     return (
-        <div className="bg-[#FFF9EE] rounded-2xl p-8 border-2 border-dashed border-black hover:shadow-xl transition-shadow duration-300
-                        flex flex-col items-center text-center h-full">
+        <div className="bg-white rounded-2xl p-8 border-2 border-dashed border-black hover:shadow-xl transition-shadow duration-300 flex flex-col items-center text-center h-full">
             
             {/* Avatar */}
             <div className="mb-6">

@@ -1,6 +1,7 @@
 "use client"
 
 import Image from "next/image"
+import Link from "next/link"
 
 export default function TrustedBy() {
     return (
@@ -10,33 +11,40 @@ export default function TrustedBy() {
                     Trusted By
                 </h3>
                 <span className="text-sm md:text-lg text-black">
-                    We are trusted by leading tour operators
+                    We are trusted by leading organizations. Global operations managed by TICO-certified advisors and ACTA-registered industry professionals.
                 </span>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center justify-center place-items-center">
-                <Image
-                    src="https://ik.imagekit.io/288weifiq/logo/TripAdvisor_Logo.png"
-                    alt="TripAdvisor"
-                    width={500}
-                    height={500}
-                    className="w-70 h-12 object-contain"
-                />
+                <Link href="/partnership/ACTA-License.jpeg" target="_blank">
+                    <Image
+                        src="/common/acta-logo.webp"
+                        alt="ACTA"
+                        width={160}
+                        height={80}
+                        draggable="false"
+                        className="object-contain h-auto w-20 md:w-36"
+                    />
+                </Link>
 
                 <Image
                     src="https://ik.imagekit.io/288weifiq/logo/viator.png"
-                    alt="Viator"
-                    width={500}
-                    height={500}
-                    className="w-48 h-12 object-contain"
+                    alt="TICO"
+                    width={160}
+                    height={80}
+                    draggable="false"
+                    className="object-contain h-auto w-20 md:w-36"
                 />
 
-                <Image
-                    src="https://ik.imagekit.io/288weifiq/logo/jnto.png"
-                    alt="JNTO"
-                    width={500}
-                    height={500}
-                    className="w-30 h-12 object-contain"
-                />
+                <Link href="/partnership/TICO-Bhavin-Vora.pdf" target="_blank">
+                    <Image
+                        src="/common/tico-logo.webp"
+                        alt="TICO"
+                        width={160}
+                        height={80}
+                        draggable="false"
+                        className="object-contain h-auto w-20 md:w-30"
+                    />
+                </Link>
             </div>
         </div>
     )
