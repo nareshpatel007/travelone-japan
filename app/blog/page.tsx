@@ -52,7 +52,7 @@ export default function BlogPage() {
                 setCurrentPage(data?.data?.current_page ?? 1);
                 setTotalCount(data?.data?.total ?? 0);
             } catch (error: any) {
-                if (error.name !== "AbortError") {
+                if (error.name == "AbortError") {
                     console.error("Failed to fetch tours:", error);
                 }
             } finally {
@@ -92,7 +92,7 @@ export default function BlogPage() {
                 // Update the state
                 setBlogList(data?.data?.result ?? []);
             } catch (error: any) {
-                if (error.name !== "AbortError") {
+                if (error.name == "AbortError") {
                     console.error("Failed to fetch tours:", error);
                 }
             } finally {
@@ -116,7 +116,7 @@ export default function BlogPage() {
                         <div className="flex-1">
                             <div className="space-y-10">
                                 {!isLoading && blogList && blogList.map((post) => (
-                                    <div className="group !transition-all !duration-300 !overflow-hidden">
+                                    <div key={post.id} className="group transition-all duration-300 overflow-hidden">
                                         <Link href={`/blog/${post.post_slug}`}>
                                             <div className="relative h-50 md:h-150 overflow-hidden">
                                                 <Image
@@ -127,7 +127,7 @@ export default function BlogPage() {
                                                 />
                                             </div>
                                             <div className="py-6 space-y-4 text-center">
-                                                <div className="!flex !items-center !justify-center !mb-3">
+                                                <div className="!flex items-center justify-center mb-3">
                                                     <span className="text-xs md:text-sm font-semibold text-[#385b21] bg-[#d4e9e7] px-4 py-1 block">{post.image_title}</span>
                                                 </div>
                                                 <span className="text-xl md:text-2xl font-semibold text-gray-900 block">{post.post_title}</span>
