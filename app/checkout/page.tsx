@@ -3,6 +3,8 @@
 export const dynamic = "force-dynamic";
 
 import { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
+
 import CommonHeader from "@/components/header/common-header";
 import CommonFooter from "@/components/footer/common-footer";
 import PassengerForm from "@/components/checkout/passenger-form";
@@ -10,33 +12,32 @@ import PaymentMethod from "@/components/checkout/payment-method";
 import OrderSummary from "@/components/checkout/order-summary";
 import FAQSection from "@/components/checkout/faq-section";
 import PageHeading from "@/components/common/page-heading";
-import { getCartData, getLoginCookie, isLoggedIn } from "@/lib/auth";
 import PaymentSchedule from "@/components/checkout/payment-schedule";
-import { ShoppingBasket } from "lucide-react";
 import StripeProvider from "@/components/providers/StripeProvider";
-import { useSearchParams } from "next/navigation";
+
+import { getCartData, getLoginCookie, isLoggedIn } from "@/lib/auth";
+import { ShoppingBasket } from "lucide-react";
 
 export default function Page() {
-    // Get query parms
     const searchParams = useSearchParams();
-    // const paymentType = searchParams.get("type") ?? 'full_payment';
 
-    // Define state
     const [ready, setReady] = useState(false);
     const [paymentType, setPaymentType] = useState("full_payment");
     const [expandedFAQ, setExpandedFAQ] = useState<string | null>(null);
     const [isLoading, setIsLoading] = useState(true);
     const [cartData, setCartData] = useState<any>({});
-    const [stripeHandlingFee, setStripeHandlingFee] = useState<number>(0);
-    const [formData, setFormData] = useState<any>({
+    const [stripeHandlingFee, setStripeHandlingFee] = useState(0);
+
+    const [formData, setFormData] = useState({
         title: "Mr.",
         first_name: "",
         last_name: "",
         email: "",
         phone: "",
-        special_request: ""
+        special_request: "",
     });
 
+    /* ✅ Read query params safely (client only) */
     useEffect(() => {
         const type = searchParams.get("type");
         if (type) {
@@ -44,64 +45,56 @@ export default function Page() {
         }
     }, [searchParams]);
 
+    /* ✅ Prevent hydration mismatch */
     useEffect(() => {
-        requestAnimationFrame(() => {
-            setReady(true);
-        });
+        setReady(true);
     }, []);
 
-    // Init data
+    /* ✅ Load cart data (depends on paymentType) */
     useEffect(() => {
         const controller = new AbortController();
+
         const loadInitData = async () => {
             try {
-                // Get login data
                 const is_logged_in = isLoggedIn();
                 const user = getLoginCookie();
-
-                // Get cart ID
                 const cart_id = getCartData();
 
-                // If non login and required cart ID
-                if (!is_logged_in && !cart_id) {
-                    return;
-                }
+                if (!is_logged_in && !cart_id) return;
 
-                // Fetch the data
                 const response = await fetch("/api/cart/view", {
                     method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
+                    headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
                         user_id: is_logged_in ? user?.user_id : null,
-                        cart_id
+                        cart_id,
                     }),
                 });
 
-                // Parse the JSON response
                 const data = await response.json();
 
-                // Check response
                 if (data?.status) {
-                    // Update the state
-                    setCartData(data?.data ?? {});
+                    setCartData(data.data ?? {});
 
-                    // Calc 4% handing fee on total price
-                    const handlingFee = ((paymentType == 'part_payment' ? data?.data?.part_payment : data?.data?.full_payment) * 4) / 100;
-                    setStripeHandlingFee(handlingFee);
+                    const baseAmount =
+                        paymentType === "part_payment"
+                            ? data?.data?.part_payment
+                            : data?.data?.full_payment;
+
+                    setStripeHandlingFee((baseAmount * 4) / 100);
                 }
-            } catch (error: any) {
-                if (error.name !== "AbortError") {
-                    console.error("Failed to fetch cart data:", error);
+            } catch (err: any) {
+                if (err.name !== "AbortError") {
+                    console.error("Cart fetch failed:", err);
                 }
             } finally {
                 setIsLoading(false);
             }
         };
+
         loadInitData();
         return () => controller.abort();
-    }, []);
+    }, [paymentType]);
 
     return (
         <body>
