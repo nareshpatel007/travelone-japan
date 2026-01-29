@@ -17,10 +17,11 @@ import { useSearchParams } from "next/navigation";
 export default function Page() {
     // Get query parms
     const searchParams = useSearchParams();
-    const payment_type = searchParams.get("type") ?? 'full_payment';
+    // const paymentType = searchParams.get("type") ?? 'full_payment';
 
     // Define state
     const [ready, setReady] = useState(false);
+    const [paymentType, setPaymentType] = useState("full_payment");
     const [expandedFAQ, setExpandedFAQ] = useState<string | null>(null);
     const [isLoading, setIsLoading] = useState(true);
     const [cartData, setCartData] = useState<any>({});
@@ -33,6 +34,13 @@ export default function Page() {
         phone: "",
         special_request: ""
     });
+
+    useEffect(() => {
+        const type = searchParams.get("type");
+        if (type) {
+            setPaymentType(type);
+        }
+    }, [searchParams]);
 
     useEffect(() => {
         requestAnimationFrame(() => {
@@ -78,7 +86,7 @@ export default function Page() {
                     setCartData(data?.data ?? {});
 
                     // Calc 4% handing fee on total price
-                    const handlingFee = ((payment_type == 'part_payment' ? data?.data?.part_payment : data?.data?.full_payment) * 4) / 100;
+                    const handlingFee = ((paymentType == 'part_payment' ? data?.data?.part_payment : data?.data?.full_payment) * 4) / 100;
                     setStripeHandlingFee(handlingFee);
                 }
             } catch (error: any) {
@@ -113,7 +121,7 @@ export default function Page() {
 
                             <StripeProvider>
                                 <PaymentMethod
-                                    paymentType={payment_type}
+                                    paymentType={paymentType}
                                     cartData={cartData}
                                     formData={formData}
                                     stripeHandlingFee={stripeHandlingFee}
@@ -121,9 +129,9 @@ export default function Page() {
                             </StripeProvider>
                         </div>
                         <div className="col-span-1 space-y-4">
-                            <OrderSummary paymentType={payment_type} cartData={cartData} />
+                            <OrderSummary paymentType={paymentType} cartData={cartData} />
 
-                            {payment_type == 'part_payment' && <PaymentSchedule cartData={cartData} />}
+                            {paymentType == 'part_payment' && <PaymentSchedule cartData={cartData} />}
 
                             <FAQSection expandedFAQ={expandedFAQ} setExpandedFAQ={setExpandedFAQ} />
                         </div>
