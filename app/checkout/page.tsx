@@ -12,12 +12,10 @@ import { getCartData, getLoginCookie, isLoggedIn } from "@/lib/auth";
 import PaymentSchedule from "@/components/checkout/payment-schedule";
 import { ShoppingBasket } from "lucide-react";
 import StripeProvider from "@/components/providers/StripeProvider";
-import { useSearchParams } from "next/navigation";
 
 export default function Page() {
-    // Get query parms
-    // const searchParams = useSearchParams();
-    const paymentType = "part_payment"; // searchParams.get("type") ?? 'full_payment';
+    // Get query params
+    const paymentType = getQuery("type", "full_payment");
 
     // Define state
     const [ready, setReady] = useState(false);
@@ -158,3 +156,8 @@ export default function Page() {
         </body>
     );
 }
+
+export const getQuery = (key: string, fallback = "") =>
+    typeof window === "undefined"
+        ? fallback
+        : new URLSearchParams(window.location.search).get(key) ?? fallback;
