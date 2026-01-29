@@ -71,7 +71,7 @@ export default function NewsletterSubscribe() {
                     <button
                         onClick={handleSubmit}
                         disabled={isFormLoading || isCompleted}
-                        className="px-6 md:px-8 py-3 bg-black text-white text-sm md:text-base font-semibold tracking-wide uppercase hover:bg-black/90 transition"
+                        className="flex items-center justify-center gap-2 px-6 md:px-8 py-3 bg-black text-white text-sm md:text-base font-semibold tracking-wide uppercase hover:bg-black/90 transition"
                     >
                         {isFormLoading && <Loader2 className="animate-spin h-5 w-5 text-white" />}
                         {isCompleted ? "Subscribed" : "Subscribe"}
