@@ -2,28 +2,27 @@
 
 import { useState } from "react";
 import { ChevronDown, ChevronLeft, ChevronRight, ChevronUp } from "lucide-react";
-
-// Swiper
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Mousewheel, Navigation } from "swiper/modules";
 import TravellerForm from "./traveller-form";
 import "swiper/css";
 
-const travellers = [
-    { type: "Adult", ageLabel: "Ages 12 or above" },
-    { type: "Adult", ageLabel: "Ages 12 or above" },
-    { type: "Child", ageLabel: "Age 8–12" },
-    { type: "Infant", ageLabel: "Below 3" },
-];
+// Define state
+interface Props {
+    orderData: any;
+    cartData: any;
+    travellerData: any;
+}
 
-export default function TravellerInfoTab() {
+export default function TravellerInfoTab({ orderData, cartData, travellerData }: Props) {
+    // Define state
     const [open, setOpen] = useState<number | null>(0);
 
     return (
         <>
             {/* MOBILE */}
             <div className="md:hidden space-y-5 py-5">
-                {travellers.map((t, index) => (
+                {travellerData.map((item: any, index: number) => (
                     <div
                         key={index}
                         className="border border-[#d9cec1] rounded-sm overflow-hidden"
@@ -34,9 +33,11 @@ export default function TravellerInfoTab() {
                         >
                             <div className="text-left">
                                 <p className="font-medium text-sm">
-                                    {t.type} {index + 1}
+                                    {item.title}
                                 </p>
-                                <span className="text-xs text-black">{t.ageLabel}</span>
+                                <span className="text-xs text-black">
+                                    {item.subtitle}
+                                </span>
                             </div>
                             {open === index ? <ChevronUp /> : <ChevronDown />}
                         </button>
@@ -45,9 +46,9 @@ export default function TravellerInfoTab() {
                             <div className="p-4">
                                 <TravellerForm
                                     headerBox={false}
-                                    index={index}
-                                    title={t.type}
-                                    ageLabel={t.ageLabel}
+                                    orderData={orderData}
+                                    totalRooms={cartData?.total_rooms || 1}
+                                    item={item}
                                 />
                             </div>
                         )}
@@ -58,18 +59,22 @@ export default function TravellerInfoTab() {
             {/* DESKTOP */}
             <div className="hidden md:block relative py-6">
                 {/* Navigation Buttons */}
-                <button className="prevRef absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-black text-white border border-black rounded-full p-2 hover:bg-white hover:text-black transition cursor-pointer"
-                >
-                    <ChevronLeft size={20} />
-                </button>
+                {travellerData && travellerData.length > 3 && (
+                    <>
+                        <button className="prevRef absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-black text-white border border-black rounded-full p-2 hover:bg-white hover:text-black transition cursor-pointer"
+                        >
+                            <ChevronLeft size={20} />
+                        </button>
 
-                <button className="nextRef absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-black text-white border border-black rounded-full p-2 hover:bg-white hover:text-black transition cursor-pointer"
-                >
-                    <ChevronRight size={20} />
-                </button>
+                        <button className="nextRef absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-black text-white border border-black rounded-full p-2 hover:bg-white hover:text-black transition cursor-pointer"
+                        >
+                            <ChevronRight size={20} />
+                        </button>
+                    </>
+                )}
 
                 {/* Swiper */}
-                <div className="px-14">
+                <div className={`${travellerData && travellerData.length > 3 ? "px-14" : ""}`}>
                     <Swiper
                         modules={[Navigation, Mousewheel]}
                         spaceBetween={24}
@@ -87,13 +92,13 @@ export default function TravellerInfoTab() {
                             1024: { slidesPerView: 3 },
                         }}
                     >
-                        {travellers.map((t: any, index: number) => (
+                        {travellerData.map((item: any, index: number) => (
                             <SwiperSlide key={index} className="px-1">
                                 <div className="bg-white border border-[#d9cec1] rounded-sm p-6 hover:shadow-xl transition-shadow duration-300">
                                     <TravellerForm
-                                        index={index}
-                                        title={t.type}
-                                        ageLabel={t.ageLabel}
+                                        orderData={orderData}
+                                        totalRooms={cartData?.total_rooms || 1}
+                                        item={item}
                                     />
                                 </div>
                             </SwiperSlide>

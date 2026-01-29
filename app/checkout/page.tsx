@@ -12,16 +12,12 @@ import { getCartData, getLoginCookie, isLoggedIn } from "@/lib/auth";
 import PaymentSchedule from "@/components/checkout/payment-schedule";
 import { ShoppingBasket } from "lucide-react";
 import StripeProvider from "@/components/providers/StripeProvider";
+import { useSearchParams } from "next/navigation";
 
-interface PageProps {
-    searchParams: {
-        type?: string;
-    };
-}
-
-export default function Page({ searchParams }: PageProps) {
+export default function Page() {
     // Get query parms
-    const payment_type = searchParams.type ?? "full_payment";
+    const searchParams = useSearchParams();
+    const payment_type = searchParams.get("type") ?? 'full_payment';
 
     // Define state
     const [ready, setReady] = useState(false);
@@ -126,7 +122,9 @@ export default function Page({ searchParams }: PageProps) {
                         </div>
                         <div className="col-span-1 space-y-4">
                             <OrderSummary paymentType={payment_type} cartData={cartData} />
-                            <PaymentSchedule cartData={cartData} />
+
+                            {payment_type == 'part_payment' && <PaymentSchedule cartData={cartData} />}
+
                             <FAQSection expandedFAQ={expandedFAQ} setExpandedFAQ={setExpandedFAQ} />
                         </div>
                     </div>}

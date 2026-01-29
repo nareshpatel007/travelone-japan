@@ -91,16 +91,18 @@ export function BookingConfirmation({ orderData }: Props) {
                                 <Download className="w-4 h-4" />
                                 Download Itinerary
                             </button>
-                            
+
                             <button className="flex items-center gap-2 px-4 py-2 text-base bg-black text-white rounded-sm font-medium border border-black hover:bg-white hover:text-black hover:border-black cursor-pointer transition-colors">
                                 <File className="w-4 h-4" />
                                 Download Invoice
                             </button>
 
-                            {orderData?.order?.payment_method == 'Bank Transfer' && <button className="flex items-center gap-2 px-4 py-2 text-base bg-black text-white rounded-sm font-medium border border-black hover:bg-white hover:text-black hover:border-black cursor-pointer transition-colors">
-                                <CalendarCheck className="w-4 h-4" />
-                                Booking Details
-                            </button>}
+                            {orderData?.order?.payment_method == 'Bank Transfer' && <Link href={`/bookings/${orderData?.order?.checkout_id}`}>
+                                <button className="flex items-center gap-2 px-4 py-2 text-base bg-black text-white rounded-sm font-medium border border-black hover:bg-white hover:text-black hover:border-black cursor-pointer transition-colors">
+                                    <CalendarCheck className="w-4 h-4" />
+                                    Booking Details
+                                </button>
+                            </Link>}
 
                             <Link href="/contact">
                                 <button className="flex items-center gap-2 px-4 py-2 text-base bg-white text-black rounded-sm font-medium border border-black hover:bg-black hover:text-white hover:border-black cursor-pointer transition-colors">

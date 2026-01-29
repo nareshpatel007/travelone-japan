@@ -20,7 +20,6 @@ export default function BlogPage() {
     const [totalCount, setTotalCount] = useState<any>(0);
 
     useEffect(() => {
-        // Wait one frame after hydration
         requestAnimationFrame(() => {
             setReady(true);
         });

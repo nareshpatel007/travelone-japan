@@ -5,23 +5,9 @@ import CommonFooter from "@/components/footer/common-footer";
 import { useEffect, useState } from "react";
 import { CartItem } from "@/components/cart/cart-item";
 import { CartSummary } from "@/components/cart/cart-summary";
-import Heading from "@/components/common/heading";
 import PageHeading from "@/components/common/page-heading";
 import { ChevronDown, ShoppingBasket } from "lucide-react";
 import { getCartData, getLoginCookie, isLoggedIn } from "@/lib/auth";
-
-const cartItems = [
-    {
-        id: 1,
-        title: "Crafted in Japan: Tokyo to Kyoto Traditions",
-        image: "https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/08/Destination-list-2.jpg",
-        price: 4900,
-        quantity: 2,
-        details: "10 Days • 1 Country • 4 Cities • 35 Places",
-        travelDate: "Mar, 01 2026 (Sunday)",
-        roomInfo: "Room 1 [Double] - 2 Adults",
-    }
-]
 
 // Define benefits
 const BENEFITS = [

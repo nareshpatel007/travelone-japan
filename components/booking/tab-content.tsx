@@ -7,23 +7,34 @@ import { TermsTab } from "./terms-tab";
 import TravellerInfoTab from "./traveller-info";
 import PaymentsTab from "./payments-tab";
 
+// Define props
 interface Props {
+    orderData: any;
+    cartData: any;
     itineraryData: any;
+    travellerData: any;
     walletNotes: any;
     termsData: any;
     paymentSchedule: any;
+    paymentHistory: any;
     cancellationPolicy: any;
 }
 
 export default function TabContent({
+    orderData,
+    cartData,
     itineraryData,
+    travellerData,
     walletNotes,
     termsData,
     paymentSchedule,
+    paymentHistory,
     cancellationPolicy,
 }: Props) {
+    // Define state
     const [activeMainTab, setActiveMainTab] = useState("itinerary");
 
+    // Define tabs
     const tabs = [
         { key: "itinerary", label: "Itinerary" },
         { key: "travellers_info", label: "Traveller's Info" },
@@ -34,18 +45,8 @@ export default function TabContent({
 
     return (
         <div className="bg-[#FFF9EE] p-4 md:px-10 md:py-8">
-
-            {/* TABS */}
             <div className="border-b border-[#d9cec1]">
-                <div
-                    className="
-                        flex gap-6 md:gap-12
-                        overflow-x-auto md:overflow-visible
-                        whitespace-nowrap
-                        scroll-smooth
-                        no-scrollbar
-                    "
-                >
+                <div className="flex gap-6 md:gap-12 overflow-x-auto md:overflow-visible whitespace-nowrap scroll-smooth no-scrollbar">
                     {tabs.map((tab) => (
                         <button
                             key={tab.key}
@@ -67,14 +68,19 @@ export default function TabContent({
                     ))}
                 </div>
             </div>
-
-            {/* TAB CONTENT */}
             <div>
                 {activeMainTab === "itinerary" && (
                     <ItineraryTab itineraryData={itineraryData} />
                 )}
-                {activeMainTab === "travellers_info" && <TravellerInfoTab />}
-                {activeMainTab === "payments" && <PaymentsTab />}
+                {activeMainTab === "travellers_info" && <TravellerInfoTab
+                    orderData={orderData}
+                    cartData={cartData}
+                    travellerData={travellerData}
+                />}
+                {activeMainTab === "payments" && <PaymentsTab
+                    orderData={orderData}
+                    paymentHistory={paymentHistory}
+                />}
                 {activeMainTab === "wallet_notes" && (
                     <WalletNotesTab walletNotes={walletNotes} />
                 )}

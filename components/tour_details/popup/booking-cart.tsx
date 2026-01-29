@@ -7,6 +7,7 @@ import QuestionHeading from "@/components/plan_your_trip/common/questionHeading"
 import { addCartData, getLoginCookie, isLoggedIn } from "@/lib/auth";
 import { useRouter } from "next/navigation";
 import { getClientIp } from "@/lib/getClientIp";
+import nationalityList from "@/lib/nationality";
 
 interface Props {
     tour: any;
@@ -56,6 +57,9 @@ const ROOM_LIMITS: any = {
 export function BookingCart({ tour, selectedPackage, open, onOpenChange }: Props) {
     // Define route
     const router = useRouter();
+
+    // Define nationality
+    const nationality = nationalityList();
 
     // Define state
     const [currentStep, setCurrentStep] = useState(1);
@@ -388,9 +392,9 @@ export function BookingCart({ tour, selectedPackage, open, onOpenChange }: Props
                                             className="w-full px-4 py-2 text-base rounded-sm border border-[#2F5D50] bg-white outline-none"
                                         >
                                             <option value="">Select nationality</option>
-                                            <option value="USA">United States of America</option>
-                                            <option value="United Kingdom">United Kingdom</option>
-                                            <option value="India">India</option>
+                                            {nationality.map((item: string, index: number) => (
+                                                <option key={index} value={item}>{item}</option>
+                                            ))}
                                         </select>
                                     </div>
                                 </div>

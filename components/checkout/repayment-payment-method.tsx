@@ -9,13 +9,14 @@ import { useRouter } from "next/navigation";
 
 // Define interface
 interface Props {
-    paymentType: string;
-    cartData: any;
+    orderData: any;
+    paymentData: any;
+    walletAmount: number;
     stripeHandlingFee: number;
-    formData: any;
+    setIsPaymentDone: (value: boolean) => void;
 }
 
-export default function PaymentMethod({ paymentType, cartData, stripeHandlingFee, formData }: Props) {
+export default function RepaymentPaymentMethod({ orderData, paymentData, walletAmount, stripeHandlingFee, setIsPaymentDone }: Props) {
     // Define route
     const router = useRouter();
 
@@ -26,21 +27,10 @@ export default function PaymentMethod({ paymentType, cartData, stripeHandlingFee
     // Define state
     const [errors, setErrors] = useState<string>("");
     const [isLoading, setIsLoading] = useState<boolean>(false);
-    const [isPaymentDone, setIsPaymentDone] = useState<boolean>(false);
     const [paymentMethod, setPaymentMethod] = useState<string>("credit-card");
-
-    // Get login user
-    const is_logged_in = isLoggedIn();
-    const user = getLoginCookie();
 
     // Handle payment
     const handlePayment = async () => {
-        // Validation
-        if (!formData.title || !formData.first_name || !formData.last_name || !formData.email || !formData.phone) {
-            setErrors("Please fill in all the required fields");
-            return;
-        }
-
         // For Credit Card Payment
         if (paymentMethod === 'credit-card') {
             if (!stripe || !elements) return;
@@ -50,8 +40,7 @@ export default function PaymentMethod({ paymentType, cartData, stripeHandlingFee
             setErrors("");
 
             // Define order amount
-            let order_amount: number = (paymentType == 'part_payment') ? cartData.part_payment : cartData.full_payment;
-            order_amount += stripeHandlingFee;
+            const order_amount: number = Number(paymentData?.amount) + Number(walletAmount) + Number(stripeHandlingFee);
 
             try {
                 // Create PaymentIntent
@@ -62,8 +51,9 @@ export default function PaymentMethod({ paymentType, cartData, stripeHandlingFee
                     },
                     body: JSON.stringify({
                         amount: Math.round(order_amount * 100),
-                        email: formData?.email,
-                        order_id: cartData?.cart?.id,
+                        email: orderData?.customer_email,
+                        checkout_id: orderData?.checkout_id,
+                        payment_id: paymentData?.id
                     }),
                 });
 
@@ -75,8 +65,8 @@ export default function PaymentMethod({ paymentType, cartData, stripeHandlingFee
                     payment_method: {
                         card: elements.getElement(CardElement)!,
                         billing_details: {
-                            name: `${formData.first_name} ${formData.last_name}`,
-                            email: formData.email,
+                            name: `${orderData?.customer_fname} ${orderData?.customer_lname}`,
+                            email: orderData?.customer_email
                         },
                     },
                 });
@@ -90,35 +80,17 @@ export default function PaymentMethod({ paymentType, cartData, stripeHandlingFee
                     const paymentIntentId = result?.paymentIntent?.id;
 
                     // Fetch the data
-                    const response = await fetch("/api/checkout/credit_card", {
+                    const response = await fetch("/api/checkout/repayment/credit_card", {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json",
                         },
                         body: JSON.stringify({
                             payment_intent_id: paymentIntentId,
-                            cart_id: cartData?.cart?.id,
-                            user_id: is_logged_in ? user?.user_id : "",
-                            payment_type: paymentType,
-                            payable_amount: cartData?.full_payment,
-                            sub_total_amount: cartData?.sub_total,
-                            order_amount: order_amount,
-                            title: formData?.title,
-                            first_name: formData?.first_name,
-                            last_name: formData?.last_name,
-                            email: formData?.email,
-                            phone: formData?.phone,
-                            special_request: formData?.special_request,
-                            stripe_handling_fee: stripeHandlingFee,
-                            upcoming_payments: cartData?.upcoming_payments,
-                            traveller_price: {
-                                adults: cartData?.travelers?.adults?.per_price,
-                                child_8_12: cartData?.travelers?.child_8_12?.per_price,
-                                child_3_7: cartData?.travelers?.child_3_7?.per_price,
-                                infant: cartData?.travelers?.infant?.per_price,
-                                extra_adult: cartData?.travelers?.extra_adult?.per_price,
-                                single_supplement: cartData?.travelers?.single_supplement?.per_price
-                            }
+                            booking_ref_no: orderData?.booking_ref_no,
+                            payment_id: paymentData?.id,
+                            payable_amount: order_amount,
+                            stripe_handling_fee: stripeHandlingFee
                         })
                     });
 
@@ -127,21 +99,16 @@ export default function PaymentMethod({ paymentType, cartData, stripeHandlingFee
 
                     // Check response
                     if (data.status) {
-                        // Delete cart data
-                        deleteCartData();
-
-                        // Redirect to thank you page
                         setIsPaymentDone(true);
-                        router.push(`/checkout/${data?.data.order_id}`);
                     } else {
                         // Set error
-                        setErrors(data.message || "Booking creation failed. Please try again.");
+                        setErrors(data.message || "Payment failed. Please try again. If money was debited from your account, it will be refunded within 5-7 business days.");
                         return;
                     }
                 }
             } catch (err: any) {
                 // Set error
-                setErrors("Something went wrong. Please try again.");
+                setErrors("Something went wrong. Please try again. If money was debited from your account, it will be refunded within 5-7 business days.");
             } finally {
                 // Update state
                 setIsLoading(false);
@@ -152,37 +119,20 @@ export default function PaymentMethod({ paymentType, cartData, stripeHandlingFee
             setErrors("");
 
             // Define order amount
-            let order_amount: number = (paymentType == 'part_payment') ? cartData.part_payment : cartData.full_payment;
+            let order_amount: number = Number(paymentData?.amount) + Number(walletAmount);
 
             try {
                 // Fetch the data
-                const response = await fetch("/api/checkout/bank_transfer", {
+                const response = await fetch("/api/checkout/repayment/bank_transfer", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
                     },
                     body: JSON.stringify({
-                        cart_id: cartData?.cart?.id,
-                        user_id: is_logged_in ? user?.user_id : "",
-                        payment_type: paymentType,
-                        payable_amount: cartData?.full_payment,
-                        sub_total_amount: cartData?.sub_total,
-                        order_amount: order_amount,
-                        title: formData?.title,
-                        first_name: formData?.first_name,
-                        last_name: formData?.last_name,
-                        email: formData?.email,
-                        phone: formData?.phone,
-                        special_request: formData?.special_request,
-                        upcoming_payments: cartData?.upcoming_payments,
-                        traveller_price: {
-                            adults: cartData?.travelers?.adults?.per_price,
-                            child_8_12: cartData?.travelers?.child_8_12?.per_price,
-                            child_3_7: cartData?.travelers?.child_3_7?.per_price,
-                            infant: cartData?.travelers?.infant?.per_price,
-                            extra_adult: cartData?.travelers?.extra_adult?.per_price,
-                            single_supplement: cartData?.travelers?.single_supplement?.per_price
-                        }
+                        booking_ref_no: orderData?.booking_ref_no,
+                        payment_id: paymentData?.id,
+                        payable_amount: order_amount,
+                        stripe_handling_fee: stripeHandlingFee
                     })
                 });
 
@@ -191,20 +141,15 @@ export default function PaymentMethod({ paymentType, cartData, stripeHandlingFee
 
                 // Check response
                 if (data.status) {
-                    // Delete cart data
-                    deleteCartData();
-
-                    // Redirect to thank you page
                     setIsPaymentDone(true);
-                    router.push(`/checkout/${data?.data.order_id}`);
                 } else {
                     // Set error
-                    setErrors(data.message || "Booking creation failed. Please try again.");
+                    setErrors(data.message || "Something went wrong. Please try again. If money was debited from your account, it will be refunded within 5-7 business days.");
                     return;
                 }
             } catch (err: any) {
                 // Set error
-                setErrors("Something went wrong. Please try again.");
+                setErrors("Something went wrong. Please try again. If money was debited from your account, it will be refunded within 5-7 business days.");
             } finally {
                 // Update state
                 setIsLoading(false);
@@ -278,16 +223,12 @@ export default function PaymentMethod({ paymentType, cartData, stripeHandlingFee
 
                 <button
                     onClick={handlePayment}
-                    disabled={isPaymentDone || isLoading || !stripe}
+                    disabled={isLoading || !stripe}
                     className="w-full bg-black hover:bg-black/90 cursor-pointer text-white font-semibold text-base py-2.5 px-2 rounded-sm transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                    {isPaymentDone ? <>
-                        <CheckCheck size={20} />Payment successful 🎉
-                    </> : <>
-                        {isLoading && <Loader2 size={20} className="animate-spin" />}
-                        {!isLoading && <Lock size={20} />}
-                        {paymentMethod === "credit-card" ? "Pay with Credit Card" : "Pay with Bank Transfer"}
-                    </>}
+                    {isLoading && <Loader2 size={20} className="animate-spin" />}
+                    {!isLoading && <Lock size={20} />}
+                    {paymentMethod === "credit-card" ? "Pay with Credit Card" : "Pay with Bank Transfer"}
                 </button>
             </div>
         </div>

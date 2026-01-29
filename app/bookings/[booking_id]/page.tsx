@@ -7,6 +7,7 @@ import CommonFooter from "@/components/footer/common-footer"
 import NotFoundError from "@/components/common/not-found-error";
 import HeroTour from "@/components/booking/hero-tour";
 import TabContent from "@/components/booking/tab-content";
+import { isLoggedIn } from "@/lib/auth";
 
 export default function Page() {
     // Get slug
@@ -64,11 +65,8 @@ export default function Page() {
             {ready && <>
                 <CommonHeader />
 
-                {/* Not Found Error Page */}
-                {!booking_id && <NotFoundError />}
-
                 {/* Single Booking Page */}
-                {!isLoading && booking_id && <div className="bg-white">
+                {!isLoading && isLoggedIn() && booking_id && <div className="bg-white">
                     <HeroTour
                         orderData={bookingData?.order}
                         tour={bookingData?.cart_data?.tour_info}
@@ -76,13 +74,36 @@ export default function Page() {
                     />
 
                     <TabContent
+                        orderData={bookingData?.order}
+                        cartData={bookingData?.cart_data}
                         itineraryData={bookingData?.tour_itinerary || []}
+                        travellerData={bookingData?.travellers_data || []}
                         walletNotes={bookingData?.wallet_notes || []}
                         termsData={bookingData?.tour_terms || []}
                         paymentSchedule={bookingData?.payment_schedule || []}
+                        paymentHistory={bookingData?.payment_history || []}
                         cancellationPolicy={bookingData?.cancellation_policy || []}
                     />
                 </div>}
+
+                {/* Loading */}
+                {isLoading && isLoggedIn() && booking_id && <div className="max-w-7xl mx-auto px-5 md:px-0 py-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        {Array.from({ length: 2 }).map((_, index) => (
+                            <div key={index} className="animate-pulse bg-gray-200 rounded-lg h-48 md:h-120"></div>
+                        ))}
+                    </div>
+                </div>}
+
+                {/* For non login */}
+                {!isLoggedIn() && <NotFoundError
+                    heading="You are not logged in"
+                    subHeading="Please login to view and manage your bookings."
+                    needButton={false}
+                />}
+
+                {/* Not Found Error Page */}
+                {!booking_id && isLoggedIn() && <NotFoundError />}
 
                 <CommonFooter />
             </>}

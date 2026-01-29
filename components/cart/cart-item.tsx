@@ -20,6 +20,7 @@ const travelerLabels: Record<string, string> = {
 };
 
 export function CartItem({ cartData }: Props) {
+    // Parse tour summary
     const tourSummary = JSON.parse(
         cartData?.cart?.tour_info?.tour_sub_title || "[]"
     );
@@ -44,12 +45,12 @@ export function CartItem({ cartData }: Props) {
                             {cartData?.cart?.tour_info?.tour_name}
                         </h2>
 
-                        <button
+                        {/* <button
                             className="p-2 text-red-600 hover:bg-red-50 rounded-md transition cursor-pointer"
                             aria-label="Remove item"
                         >
                             <Trash2 className="h-4 w-4" />
-                        </button>
+                        </button> */}
                     </div>
 
                     <div className="space-y-2 text-sm text-black">

@@ -69,9 +69,10 @@ const recentPosts = [
 ]
 
 export function BlogSidebar() {
-    const sliderRef = useRef<HTMLDivElement>(null)
-    const [currentSlide, setCurrentSlide] = useState(0)
-    const [email, setEmail] = useState("")
+    // Define state
+    const [currentSlide, setCurrentSlide] = useState(0);
+    const [email, setEmail] = useState("");
+    const sliderRef = useRef<HTMLDivElement>(null);
 
     const scroll = (direction: "left" | "right") => {
         if (sliderRef.current) {

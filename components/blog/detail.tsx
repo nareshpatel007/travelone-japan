@@ -1,11 +1,12 @@
 "use client"
 
 import Link from "next/link"
-import { Calendar, Clock, ArrowLeft, Share2, Facebook, Twitter, Linkedin, FacebookIcon, TwitterIcon, InstagramIcon, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react"
+import { Calendar, Clock, ArrowLeft, Share2, Facebook, Twitter, Linkedin, FacebookIcon, TwitterIcon, InstagramIcon, ArrowRight, ChevronLeft, ChevronRight, Loader2, CheckCircle } from "lucide-react"
 import { BlogSidebar } from "./sidebar"
 import Image from "next/image"
 import { TourCard } from "../tours/tour-card"
 import { useState } from "react"
+import { formatDate } from "@/lib/utils"
 
 const blogPost = {
     slug: "top-10-hidden-gems-in-europe",
@@ -95,31 +96,81 @@ const comments = [
     },
 ];
 
-export function BlogDetail() {
+// Define interface
+interface Props {
+    blogPost: any;
+    commentData: any;
+}
+
+// Define comment form
+const initCommentForm = {
+    name: "",
+    email: "",
+    comment: ""
+};
+
+export function BlogDetail({ blogPost, commentData }: Props) {
+    // Define state
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [carouselRef, setCarouselRef] = useState<HTMLDivElement | null>(null);
-    const [formData, setFormData] = useState({
-        comment: "",
-        name: "",
-        email: "",
-        website: "",
-    })
-    const [saveInfo, setSaveInfo] = useState(false)
+    const [isFormLoading, setIsFormLoading] = useState(false);
+    const [formData, setFormData] = useState(initCommentForm);
+    const [errors, setErrors] = useState("");
 
+    // Next slider navigation
     const nextImage = () => {
-        setCurrentImageIndex((prev) => (prev + 1) % blogPost.gallery.length)
+        setCurrentImageIndex((prev) => (prev + 1) % blogPost.gallery.length);
     }
 
+    // Previous slider navigation
     const prevImage = () => {
-        setCurrentImageIndex((prev) => (prev - 1 + blogPost.gallery.length) % blogPost.gallery.length)
+        setCurrentImageIndex((prev) => (prev - 1 + blogPost.gallery.length) % blogPost.gallery.length);
     }
 
-    const handleCommentSubmit = (e: React.FormEvent) => {
-        e.preventDefault()
-        console.log("[v0] Comment submitted:", formData)
-        setFormData({ comment: "", name: "", email: "", website: "" })
+    // Handle comment submit
+    const handleCommentSubmit = async () => {
+        // Check validation
+        if (!formData.name || !formData.email || !formData.comment) {
+            setErrors("All fields are required.");
+            return;
+        }
+
+        // Update state
+        setIsFormLoading(true);
+        setErrors("");
+
+        try {
+            // Fetch the data
+            const response = await fetch("/api/blog/post_comment", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(formData),
+            });
+
+            // Parse the JSON response
+            const data = await response.json();
+
+            // Check response
+            if (data.status) {
+                // Update state
+                setFormData(initCommentForm);
+                setErrors("");
+            } else {
+                // Update state
+                setErrors(data.message || "Something went wrong. Please try again.");
+            }
+        } catch (error) {
+            // Set error
+            setErrors("Something went wrong. Please try again.");
+        } finally {
+            // Update state
+            setIsFormLoading(false);
+        }
     }
 
+    // Scroll carousel
     const scrollCarousel = (direction: "left" | "right") => {
         if (carouselRef) {
             const scrollAmount = 250
@@ -130,7 +181,7 @@ export function BlogDetail() {
 
     return (
         <>
-            <section className="w-full bg-white mb-10">
+            {/* <section className="w-full bg-white mb-10">
                 <div className="max-w-7xl mx-auto">
                     <div className="grid grid-cols-2 gap-6 md:gap-8">
                         <Link href="/blog/hidden-beaches" className="group relative h-64 md:h-100 rounded-lg overflow-hidden">
@@ -147,8 +198,6 @@ export function BlogDetail() {
                                 </h3>
                             </div>
                         </Link>
-
-                        {/* Featured Card 2 */}
                         <Link href="/blog/budget-travel-tips" className="group relative h-64 md:h-100 rounded-lg overflow-hidden">
                             <Image
                                 src="https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/08/Destination-list-9.jpg"
@@ -165,19 +214,26 @@ export function BlogDetail() {
                         </Link>
                     </div>
                 </div>
-            </section>
+            </section> */}
 
             <div className="flex flex-col lg:flex-row gap-8">
                 <article className="flex-1">
                     <div className="relative w-full h-96 md:h-[500px] bg-gray-200 overflow-hidden">
                         <Image
+                            src={blogPost.featured_image || "/placeholder.svg"}
+                            alt={blogPost?.meta_title || "Blog featured"}
+                            fill
+                            className="object-cover"
+                            priority
+                        />
+                        {/* <Image
                             src={blogPost.gallery[currentImageIndex] || "/placeholder.svg"}
                             alt="Blog featured"
                             fill
                             className="object-cover"
                             priority
-                        />
-                        <button
+                        /> */}
+                        {/* <button
                             onClick={prevImage}
                             className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white p-2 rounded-full shadow-lg transition-all z-10"
                         >
@@ -188,10 +244,10 @@ export function BlogDetail() {
                             className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white p-2 rounded-full shadow-lg transition-all z-10"
                         >
                             <ChevronRight size={24} className="text-gray-900" />
-                        </button>
+                        </button> */}
 
                         {/* Dot Indicators */}
-                        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+                        {/* <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-10">
                             {blogPost.gallery.map((_, index) => (
                                 <button
                                     key={index}
@@ -201,18 +257,21 @@ export function BlogDetail() {
                                     aria-label={`Go to image ${index + 1}`}
                                 />
                             ))}
-                        </div>
+                        </div> */}
                     </div>
                     <div className="py-6 space-y-4 text-center">
                         <div className="!flex !items-center !justify-center !mb-3">
-                            <span className="text-xs md:text-sm font-semibold text-[#385b21] bg-[#d4e9e7] px-4 py-1 block">{blogPost.category}</span>
+                            <span className="text-xs md:text-sm font-semibold text-[#385b21] bg-[#d4e9e7] px-4 py-1 block">
+                                Published on {formatDate(blogPost.created_at)}
+                            </span>
                         </div>
-                        <span className="text-lg md:text-4xl font-semibold text-gray-900 block">{blogPost.title}</span>
+                        <span className="text-lg md:text-4xl font-semibold text-gray-900 block">{blogPost.post_title}</span>
                         <div
                             className="text-sm md:text-lg font-strong text-gray-900 block"
-                            dangerouslySetInnerHTML={{ __html: blogPost.content }}
+                            dangerouslySetInnerHTML={{ __html: blogPost.post_content }}
                         />
                     </div>
+
                     <div className="my-7 text-center">
                         <div className="flex flex-wrap gap-5 justify-center">
                             <FacebookIcon className="h-6 w-6" />
@@ -220,7 +279,8 @@ export function BlogDetail() {
                             <InstagramIcon className="h-6 w-6" />
                         </div>
                     </div>
-                    <div className="mt-8 py-4 border-t border-b border-gray-200 text-center">
+
+                    {/* <div className="mt-8 py-4 border-t border-b border-gray-200 text-center">
                         <div className="flex flex-wrap gap-2 justify-center">
                             {["Europe", "Travel Tips", "Hidden Gems", "Adventure", "Budget Travel"].map((tag) => (
                                 <span
@@ -231,19 +291,19 @@ export function BlogDetail() {
                                 </span>
                             ))}
                         </div>
-                    </div>
+                    </div> */}
 
                     <div className="bg-[#edf3ed] p-10 my-6 shadow-sm">
                         <div className="flex items-start gap-6">
                             <Image
-                                src={blogPost.authorImage || "/placeholder.svg"}
-                                alt={blogPost.author}
+                                src="/common/bella_pic.png"
+                                alt="TravelOne"
                                 width={64}
                                 height={64}
                                 className="w-30 h-30 rounded-full object-cover"
                             />
                             <div>
-                                <span className="font-semibold text-gray-900 block mb-1">About {blogPost.author}</span>
+                                <span className="font-semibold text-gray-900 block mb-1">About TravelOne</span>
                                 <p className="text-gray-600 text-md">
                                     Sarah is a passionate traveler and writer with over 10 years of experience exploring hidden corners
                                     of the world. She specializes in off-the-beaten-path destinations and sustainable travel practices.
@@ -261,16 +321,16 @@ export function BlogDetail() {
                     </div> */}
 
                     <div className="border-t border-amber-100 pt-12">
-                        <div className="mb-12">
+                        {commentData && commentData.length > 0 && <div className="mb-12">
                             <h2 className="text-2xl font-bold text-gray-900 mb-8">Comments</h2>
                             <div className="space-y-6">
-                                {comments.map((comment) => (
-                                    <div key={comment.id} className="flex gap-4 pb-6 border-b border-gray-100">
+                                {commentData.map((comment: any, index: number) => (
+                                    <div key={index} className="flex gap-4 pb-6 border-b border-gray-100">
                                         <div className="flex-shrink-0">
                                             <div className="w-16 h-16 relative rounded-full overflow-hidden bg-gray-200">
                                                 <Image
                                                     src={comment.avatar || "/placeholder.svg"}
-                                                    alt={comment.author}
+                                                    alt={comment.name}
                                                     fill
                                                     className="object-cover"
                                                 />
@@ -279,19 +339,20 @@ export function BlogDetail() {
                                         <div className="flex-1">
                                             <div className="flex items-center justify-between mb-2">
                                                 <div>
-                                                    <h3 className="font-bold text-gray-900">{comment.author}</h3>
-                                                    <p className="text-sm text-gray-500">{comment.date}</p>
+                                                    <h3 className="font-bold text-gray-900">{comment.name}</h3>
+                                                    <p className="text-sm text-gray-500">{formatDate(comment.created_at)}</p>
                                                 </div>
                                                 <button className="flex items-center gap-1 text-black hover:text-gray-900 cursor-pointer text-sm font-semibold">
                                                     Reply <ArrowRight size={16} />
                                                 </button>
                                             </div>
-                                            <p className="text-gray-700">{comment.text}</p>
+                                            <p className="text-gray-700">{comment.comment}</p>
                                         </div>
                                     </div>
                                 ))}
                             </div>
-                        </div>
+                        </div>}
+
                         <div className="bg-white py-8">
                             <h2 className="text-2xl font-bold text-gray-900 mb-4">Leave a Reply</h2>
                             <p className="text-sm text-gray-600 mb-6">
@@ -299,23 +360,7 @@ export function BlogDetail() {
                                 <span className="text-red-600">*</span>
                             </p>
 
-                            <form onSubmit={handleCommentSubmit} className="space-y-6">
-                                <div>
-                                    <label htmlFor="comment" className="block text-sm font-semibold text-gray-900 mb-2">
-                                        Your Comment <span className="text-red-600">*</span>
-                                    </label>
-                                    <textarea
-                                        id="comment"
-                                        value={formData.comment}
-                                        onChange={(e) => setFormData({ ...formData, comment: e.target.value })}
-                                        required
-                                        rows={6}
-                                        className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-gray-900 resize-none"
-                                        placeholder="Your Comment *"
-                                    />
-                                </div>
-
-                                {/* Name and Email Fields */}
+                            <div className="space-y-6">
                                 <div className="grid grid-cols-2 gap-6">
                                     <div>
                                         <label htmlFor="name" className="block text-sm font-semibold text-gray-900 mb-2">
@@ -347,47 +392,40 @@ export function BlogDetail() {
                                     </div>
                                 </div>
 
-                                {/* Website Field */}
                                 <div>
-                                    <label htmlFor="website" className="block text-sm font-semibold text-gray-900 mb-2">
-                                        Website
+                                    <label htmlFor="comment" className="block text-sm font-semibold text-gray-900 mb-2">
+                                        Your Comment <span className="text-red-600">*</span>
                                     </label>
-                                    <input
-                                        type="url"
-                                        id="website"
-                                        value={formData.website}
-                                        onChange={(e) => setFormData({ ...formData, website: e.target.value })}
-                                        className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-gray-900"
-                                        placeholder="Website"
+                                    <textarea
+                                        id="comment"
+                                        value={formData.comment}
+                                        onChange={(e) => setFormData({ ...formData, comment: e.target.value })}
+                                        required
+                                        rows={6}
+                                        className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-gray-900 resize-none"
+                                        placeholder="Your Comment *"
                                     />
                                 </div>
-                                <label className="flex items-center gap-3 cursor-pointer">
-                                    <input
-                                        type="checkbox"
-                                        checked={saveInfo}
-                                        onChange={(e) => setSaveInfo(e.target.checked)}
-                                        className="w-4 h-4 border border-gray-300 rounded cursor-pointer focus:ring-1 focus:ring-gray-900"
-                                    />
-                                    <span className="text-sm text-gray-700">
-                                        Save my name, email, and website in this browser for the next time I comment.
-                                    </span>
-                                </label>
+
                                 <div>
                                     <button
-                                        type="submit"
-                                        className="bg-gray-900 hover:bg-gray-800 text-white font-bold py-3 px-8 rounded-lg transition-colors"
+                                        onClick={handleCommentSubmit}
+                                        disabled={!formData.name || !formData.email || !formData.comment || isFormLoading}
+                                        className="bg-black text-white hover:bg-black/90 font-medium py-3 px-8 rounded-sm transition-colors"
                                     >
+                                        {isFormLoading && <Loader2 className="h-4 w-4 animate-spin" />}
+                                        {!isFormLoading && <CheckCircle className="h-4 w-4" />}
                                         POST COMMENT
                                     </button>
                                 </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </article>
                 <BlogSidebar />
             </div>
 
-            <div className="max-w-7xl mx-auto py-6">
+            {/* <div className="max-w-7xl mx-auto py-6">
                 <div className="relative">
                     <button
                         onClick={() => scrollCarousel("left")}
@@ -434,7 +472,7 @@ export function BlogDetail() {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> */}
         </>
     )
 }

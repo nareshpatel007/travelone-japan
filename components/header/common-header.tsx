@@ -146,13 +146,18 @@ export default function CommonHeader() {
                             </Link>
                         </div>
 
-                        <div className="ml-4 flex items-center gap-2 border-l pl-4">
-                            <input
-                                placeholder="Search tour here..."
-                                className="bg-transparent outline-none text-sm"
-                            />
-                            <Search className="h-4 w-4" />
-                        </div>
+                        {/* Search form */}
+                        <form action="/search" method="get">
+                            <div className="ml-4 flex items-center gap-2 border-l pl-4">
+                                <input
+                                    name="keyword"
+                                    placeholder="Search tour here..."
+                                    className="bg-transparent outline-none text-sm"
+                                    autoComplete="off"
+                                />
+                                <Search className="h-4 w-4" />
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
