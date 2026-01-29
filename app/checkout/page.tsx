@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 "use client";
 
 import { useEffect, useState } from "react";
@@ -17,11 +18,11 @@ import { useSearchParams } from "next/navigation";
 export default function Page() {
     // Get query parms
     const searchParams = useSearchParams();
-    // const paymentType = searchParams.get("type") ?? 'full_payment';
+    const paymentType = searchParams.get("type") ?? 'full_payment';
 
     // Define state
     const [ready, setReady] = useState(false);
-    const [paymentType, setPaymentType] = useState("full_payment");
+    // const [paymentType, setPaymentType] = useState("full_payment");
     const [expandedFAQ, setExpandedFAQ] = useState<string | null>(null);
     const [isLoading, setIsLoading] = useState(true);
     const [cartData, setCartData] = useState<any>({});
