@@ -35,6 +35,12 @@ export default function PaymentMethod({ paymentType, cartData, stripeHandlingFee
 
     // Handle payment
     const handlePayment = async () => {
+        // Check stripe load
+        if (paymentMethod === 'credit-card' && (!stripe || !elements)) {
+            setErrors("Payment failed. Stripe is not loaded. Please contact your admin.");
+            return;
+        }
+
         // Validation
         if (!formData.title || !formData.first_name || !formData.last_name || !formData.email || !formData.phone) {
             setErrors("Please fill in all the required fields");
@@ -278,11 +284,12 @@ export default function PaymentMethod({ paymentType, cartData, stripeHandlingFee
 
                 <button
                     onClick={handlePayment}
-                    disabled={isPaymentDone || isLoading || !stripe}
+                    disabled={isPaymentDone || isLoading}
                     className="w-full bg-black hover:bg-black/90 cursor-pointer text-white font-semibold text-base py-2.5 px-2 rounded-sm transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                     {isPaymentDone ? <>
-                        <CheckCheck size={20} />Payment successful 🎉
+                        <CheckCheck size={20} />
+                        {paymentMethod === "credit-card" ? "Payment successful 🎉" : "Booking Confirmed 🎉"}
                     </> : <>
                         {isLoading && <Loader2 size={20} className="animate-spin" />}
                         {!isLoading && <Lock size={20} />}
