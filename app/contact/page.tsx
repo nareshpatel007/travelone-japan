@@ -13,13 +13,15 @@ import StickyHomeHeader from "@/components/header/sticky-home-header";
 export default function ContactUsPage() {
     // Define state
     const [ready, setReady] = useState(false);
-    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [isFormLoading, setIsFormLoading] = useState(false);
     const [isSubmitted, setIsSubmitted] = useState(false);
+    const [errors, setErrors] = useState("");
     const [formData, setFormData] = useState({
         name: "",
         email: "",
+        phone: "",
         subject: "",
-        bookingNumber: "",
+        reference_no: "",
         message: "",
     });
 
@@ -30,12 +32,45 @@ export default function ContactUsPage() {
     }, []);
 
     // Handle form submit
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        setIsSubmitting(true);
-        await new Promise((resolve) => setTimeout(resolve, 1500));
-        setIsSubmitting(false);
-        setIsSubmitted(true);
+    const handleSubmit = async () => {
+        // Validation
+        if (!formData.name || !formData.email || !formData.phone || !formData.subject || !formData.message) {
+            setErrors("Please fill in all the required fields.");
+            return;
+        }
+
+        // Update state
+        setIsFormLoading(true);
+        setErrors("");
+
+        try {
+            // API call
+            const res = await fetch("/api/contact", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(formData),
+            });
+
+            // Update state
+            const data = await res.json();
+
+            // Handle response
+            if (data.status) {
+                // Update state
+                setIsSubmitted(true);
+            } else {
+                // Set error
+                setErrors(data.message || "Something went wrong. Please try again.");
+            }
+        } catch (error) {
+            // Set error
+            setErrors("Something went wrong. Please try again.");
+        } finally {
+            // Update state
+            setIsFormLoading(false);
+        }
     }
 
     return (
@@ -62,8 +97,15 @@ export default function ContactUsPage() {
                                         </span>
                                         <button
                                             onClick={() => {
-                                                setIsSubmitted(false)
-                                                setFormData({ name: "", email: "", subject: "", bookingNumber: "", message: "" })
+                                                setIsSubmitted(false);
+                                                setFormData({
+                                                    name: "",
+                                                    email: "",
+                                                    phone: "",
+                                                    subject: "",
+                                                    reference_no: "",
+                                                    message: ""
+                                                });
                                             }}
                                             className="!text-black font-medium hover:underline"
                                         >
@@ -99,6 +141,17 @@ export default function ContactUsPage() {
 
                                         <div className="grid md:grid-cols-2 gap-5">
                                             <div>
+                                                <label className="block text-sm md:text-base font-medium text-gray-700 mb-2">Contact Number *</label>
+                                                <input
+                                                    type="text"
+                                                    required
+                                                    value={formData.phone}
+                                                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                                                    className="w-full px-4 py-2 border border-gray-300 rounded-sm outline-none transition-all resize-none focus:ring-1 focus:ring-[#333] focus:ring-opacity-50"
+                                                    placeholder="Contact Number"
+                                                />
+                                            </div>
+                                            <div>
                                                 <label className="block text-sm md:text-base font-medium text-gray-700 mb-2">Subject *</label>
                                                 <select
                                                     value={formData.subject}
@@ -114,17 +167,19 @@ export default function ContactUsPage() {
                                                     <option value="Other Issue">Other Issue</option>
                                                 </select>
                                             </div>
-                                            <div>
-                                                <label className="block text-sm md:text-base font-medium text-gray-700 mb-2">Booking Reference Number (Optional)</label>
-                                                <input
-                                                    type="text"
-                                                    value={formData.bookingNumber}
-                                                    onChange={(e) => setFormData({ ...formData, bookingNumber: e.target.value })}
-                                                    className="w-full px-4 py-2 border border-gray-300 rounded-sm outline-none transition-all resize-none focus:ring-1 focus:ring-[#333] focus:ring-opacity-50"
-                                                    placeholder="Booking Number"
-                                                />
-                                            </div>
                                         </div>
+
+                                        <div>
+                                            <label className="block text-sm md:text-base font-medium text-gray-700 mb-2">Booking Reference Number (Optional)</label>
+                                            <input
+                                                type="text"
+                                                value={formData.reference_no}
+                                                onChange={(e) => setFormData({ ...formData, reference_no: e.target.value })}
+                                                className="w-full px-4 py-2 border border-gray-300 rounded-sm outline-none transition-all resize-none focus:ring-1 focus:ring-[#333] focus:ring-opacity-50"
+                                                placeholder="Booking Number"
+                                            />
+                                        </div>
+
                                         <div>
                                             <label className="block text-sm md:text-base font-medium text-gray-700 mb-2">Your Message *</label>
                                             <textarea
@@ -137,13 +192,15 @@ export default function ContactUsPage() {
                                             />
                                         </div>
 
+                                        {errors && <div className="text-red-500 text-sm mt-2">{errors}</div>}
+
                                         <button
                                             type="button"
                                             onClick={handleSubmit}
-                                            disabled={isSubmitting}
+                                            disabled={isFormLoading}
                                             className="w-full md:w-auto px-8 py-2.5 bg-black text-white font-medium rounded-sm hover:bg-black/90 cursor-pointer transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                                         >
-                                            {isSubmitting ? (
+                                            {isFormLoading ? (
                                                 <>
                                                     <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
                                                     Sending...
