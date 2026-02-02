@@ -200,8 +200,8 @@ export function CustomizeTrip({ tour, open, onOpenChange }: Props) {
                                         </div>
                                     </div>
                                     <div className="space-y-4">
-                                        <span className="text-md font-medium text-black block">We’ve received your request and our Japan travel experts are already reviewing your details to prepare a personalized itinerary for you.</span>
-                                        <span className="text-sm text-gray-700 block">We’ll be in touch very soon to begin planning your Japan adventure.</span>
+                                        <span className="text-md md:text-lg font-medium text-black block">We’ve received your request and our travel experts are already reviewing your details to prepare a personalized itinerary for you.</span>
+                                        <span className="text-sm md:text-base text-black block">We’ll be in touch very soon to begin planning your trip.</span>
                                     </div>
                                 </div>
                             )}

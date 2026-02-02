@@ -192,7 +192,7 @@ export default function ContactUsPage() {
                                             />
                                         </div>
 
-                                        {errors && <div className="text-red-500 text-sm mt-2">{errors}</div>}
+                                        {errors && <div className="text-red-500 text-sm md:text-base mt-2">{errors}</div>}
 
                                         <button
                                             type="button"
