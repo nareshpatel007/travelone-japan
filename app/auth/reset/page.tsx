@@ -7,16 +7,10 @@ import PageHeading from "@/components/common/page-heading";
 import { CheckCircle, Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 
-interface PageProps {
-    searchParams: {
-        token?: string;
-    };
-}
-
-export default function Page({ searchParams }: PageProps) {
-    // Get query parms
+export default function Page() {
+    // Get query params
     const router = useRouter();
-    const token = searchParams.token ?? "";
+    const token = getQuery("token", "");
 
     // Define state
     const [ready, setReady] = useState<boolean>(false);
@@ -147,3 +141,8 @@ export default function Page({ searchParams }: PageProps) {
         </body>
     );
 }
+
+export const getQuery = (key: string, fallback = "") =>
+    typeof window === "undefined"
+        ? fallback
+        : new URLSearchParams(window.location.search).get(key) ?? fallback;
