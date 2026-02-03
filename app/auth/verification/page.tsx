@@ -6,16 +6,10 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { CheckCircle, Loader2, X } from "lucide-react";
 
-interface PageProps {
-    searchParams: {
-        token?: string;
-    };
-}
-
-export default function Page({ searchParams }: PageProps) {
+export default function Page() {
     // Get query parms
     const router = useRouter();
-    const token = searchParams.token ?? "";
+    const token = getQuery("token", "");
 
     // Define state
     const [ready, setReady] = useState(false);
@@ -93,3 +87,8 @@ export default function Page({ searchParams }: PageProps) {
         </body>
     );
 }
+
+export const getQuery = (key: string, fallback = "") =>
+    typeof window === "undefined"
+        ? fallback
+        : new URLSearchParams(window.location.search).get(key) ?? fallback;
