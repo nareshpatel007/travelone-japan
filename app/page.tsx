@@ -18,7 +18,6 @@ import { CommonPlanTripModal } from "@/components/plan_your_trip/common-popup";
 export default function HomePage() {
     // Define state
     const [ready, setReady] = useState(false);
-    const [isLoading, setIsLoading] = useState(true);
     const [destinationList, setDestinationList] = useState<any[]>([]);
     const [toursList, setToursList] = useState<any[]>([]);
     const [blogList, setBlogList] = useState<any[]>([]);
@@ -36,8 +35,6 @@ export default function HomePage() {
 
         const loadInitData = async () => {
             try {
-                setIsLoading(true);
-
                 const [destResponse, toursResponse, blogResponse] = await Promise.all([
                     fetch("/api/destination/list", {
                         method: "POST",
@@ -80,8 +77,6 @@ export default function HomePage() {
                 if (error.name !== "AbortError") {
                     console.error("Init data fetch failed:", error);
                 }
-            } finally {
-                setIsLoading(false);
             }
         };
 
