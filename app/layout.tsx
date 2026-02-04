@@ -17,9 +17,7 @@ export const metadata: Metadata = {
         "travel booking"
     ],
     icons: {
-        icon: "/favicon.png",
-        apple: "/favicon.png",
-        shortcut: "/favicon.png"
+        icon: "https://ik.imagekit.io/288weifiq/nextjs/favicon.png"
     },
     robots: "index, follow",
     metadataBase: new URL("https://travelone.io"),
