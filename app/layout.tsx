@@ -66,13 +66,13 @@ export default function RootLayout({
                 />
 
                 <link rel="stylesheet" href="/assets/home-css/main(1).css" />
-                {/* <link rel="stylesheet" href="/assets/home-css/custom-frontend.min.css" />
+                <link rel="stylesheet" href="/assets/home-css/custom-frontend.min.css" />
                 <link rel="stylesheet" href="/assets/home-css/sbi-styles.min.css" />
                 <link rel="stylesheet" href="/assets/home-css/widget-menu-anchor.min.css" />
                 <link rel="stylesheet" href="/assets/home-css/magnific-popup.css" />
                 <link rel="stylesheet" href="/assets/home-css/post-3060.css" />
                 <link rel="stylesheet" href="/assets/home-css/roboto.css" />
-                <link rel="stylesheet" href="/assets/home-css/robotoslab.css" /> */}
+                <link rel="stylesheet" href="/assets/home-css/robotoslab.css" />
                 <link rel="stylesheet" href="/assets/home-css/wc-blocks.css" />
 
                 <Script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></Script>
