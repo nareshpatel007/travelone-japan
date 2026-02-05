@@ -114,9 +114,7 @@ export default function TourDetailPage() {
                     </div>
                 ) : <div ref={pageRef} className="min-h-screen bg-white">
                     <HeroTour
-                        isLoading={isLoading}
                         tour={tourData?.tour ?? {}}
-                        is_wishlisted={tourData?.is_wishlist}
                         city_nights={tourData?.city_nights ?? {}}
                         packages={tourData?.tour_packages ?? []}
                         selectedPackage={selectedPackage}

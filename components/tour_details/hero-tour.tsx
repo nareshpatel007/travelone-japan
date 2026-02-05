@@ -1,18 +1,16 @@
 "use client"
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { Check, ChevronLeft, ChevronRight, Heart, Loader2, MoveRight } from "lucide-react";
 import 'react-loading-skeleton/dist/skeleton.css';
 import { formatPrice } from "@/lib/utils";
-import { addWishlistCount, getLoginCookie, isLoggedIn } from "@/lib/auth";
+import { findTourInWishlist, getLoginCookie, isLoggedIn, updateHeaderWishlistCount } from "@/lib/auth";
 import { LoginModal } from "../common/login-modal";
 
 // Define props
 interface Props {
-    isLoading: boolean;
     tour: any;
-    is_wishlisted: boolean;
     packages: any;
     city_nights: any;
     selectedPackage: any;
@@ -24,9 +22,7 @@ interface Props {
 }
 
 export default function HeroTour({
-    isLoading,
     tour,
-    is_wishlisted,
     packages,
     city_nights,
     selectedPackage,
@@ -38,9 +34,13 @@ export default function HeroTour({
 }: Props) {
     // Define state
     const [openLogin, setOpenLogin] = useState<boolean>(false);
-    const [isFormLoading, setIsFormLoading] = useState<boolean>(false);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
-    const [isWishlisted, setIsWishlisted] = useState(is_wishlisted);
+    const [isWishlisted, setIsWishlisted] = useState(false);
+
+    // Check if tour is wishlisted
+    useEffect(() => {
+        setIsWishlisted(findTourInWishlist(tour?.id));
+    }, [tour]);
 
     // Total images
     const totalImages = tour?.media_gallery?.sightseeing?.length || 0;
@@ -60,54 +60,23 @@ export default function HeroTour({
     };
 
     // Handle wishlist
-    const handleWishlist = async () => {
-        // Check user login
-        const is_logged_in = isLoggedIn();
-        const user = getLoginCookie();
-
-        // Check if user is logged in
-        if (!is_logged_in) {
-            setOpenLogin(true);
-            return;
-        }
-
-        // Update state
-        setIsFormLoading(true);
-
+    const handleWishlist = () => {
         try {
-            // Fetch the data
-            const response = await fetch("/api/wishlist", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    tour_id: tour?.id,
-                    user_id: user?.user_id,
-                    action: isWishlisted ? "remove" : "add",
-                })
-            });
+            // Get wishlist
+            const stored = localStorage.getItem("wishlist");
+            const wishlist: number[] = stored ? JSON.parse(stored) : [];
 
-            // Parse the JSON response
-            const data = await response.json();
+            // Update wishlist
+            const updatedWishlist = isWishlisted ? wishlist.filter((tourId) => tourId !== tour?.id) : [...wishlist, tour?.id];
 
-            // Check response
-            if (data.status) {
-                // Update flag
-                setIsWishlisted(!isWishlisted);
+            // Set wishlist
+            localStorage.setItem("wishlist", JSON.stringify([...new Set(updatedWishlist)]));
 
-                // Count localstorage
-                if (isWishlisted) {
-                    addWishlistCount("remove");
-                } else {
-                    addWishlistCount("add");
-                }
-            }
-        } catch (error: any) {
-            console.error("Failed to add to wishlist");
-        } finally {
             // Update state
-            setIsFormLoading(false);
+            setIsWishlisted((prev) => !prev);
+            updateHeaderWishlistCount();
+        } catch (error) {
+            console.error("Wishlist error:", error);
         }
     };
 
@@ -137,12 +106,10 @@ export default function HeroTour({
                             onClick={handleWishlist}
                             className="absolute top-4 right-4 bg-white/90 hover:bg-white p-2 rounded-full shadow-lg cursor-pointer transition"
                         >
-                            {isFormLoading && <Loader2 size={24} className="animate-spin" />}
-
-                            {!isFormLoading && <Heart
+                            <Heart
                                 size={24}
                                 className={`${isWishlisted ? "fill-[#ef2853] text-[#ef2853]" : "text-gray-600 hover:fill-[#ef2853] hover:text-[#ef2853]"}`}
-                            />}
+                            />
                         </button>
                         <button
                             onClick={prevImage}

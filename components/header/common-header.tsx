@@ -196,14 +196,14 @@ export default function CommonHeader() {
                         <Link href="/wishlist" className="relative">
                             <Heart className="h-6 w-6" />
                             <span id="wishlist_count" className="absolute -top-2 -right-2 h-5 w-5 bg-yellow-400 rounded-full text-xs font-bold flex items-center justify-center">
-                                {wishlistCount}
+                                {wishlistCount || 0}
                             </span>
                         </Link>
 
                         <Link href="/cart" className="relative">
                             <ShoppingCartIcon className="h-6 w-6" />
                             <span id="cart_count" className="absolute -top-2 -right-2 h-5 w-5 bg-yellow-400 rounded-full text-xs font-bold flex items-center justify-center">
-                                {cartCount}
+                                {cartCount || 0}
                             </span>
                         </Link>
 

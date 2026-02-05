@@ -25,28 +25,28 @@ export default function WishlistPage() {
 
         const fetchInitData = async () => {
             try {
-                // Define functions
-                const is_logged_in = isLoggedIn();
-                const user = getLoginCookie();
+                setIsLoading(true);
 
-                // Validation for login
-                if (!is_logged_in || !user?.user_id) {
-                    return;
-                }
+                // Get wishlist
+                const stored = localStorage.getItem("wishlist");
+                const wishlist: number[] = stored ? JSON.parse(stored) : [];
 
+                // Call API request
                 const response = await fetch("/api/wishlist/list", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
                     },
                     body: JSON.stringify({
-                        user_id: user.user_id,
+                        tour_ids: wishlist
                     }),
                     signal: controller.signal,
                 });
 
+                // Parse the JSON response
                 const data = await response.json();
 
+                // Update state
                 if (data.status) {
                     setToursData(data?.data ?? []);
                 }
@@ -55,6 +55,7 @@ export default function WishlistPage() {
                     console.error("Failed to fetch wishlist:", error);
                 }
             } finally {
+                // Update state
                 setIsLoading(false);
             }
         };
