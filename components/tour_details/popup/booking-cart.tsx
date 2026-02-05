@@ -533,7 +533,7 @@ export function BookingCart({ tour, selectedPackage, open, onOpenChange }: Props
                         {currentStep === 1 ? (
                             <button
                                 onClick={handleNextStep}
-                                className={`flex items-center gap-2 px-8 py-2.5 rounded-md font-medium transition-colors border border-black cursor-pointer bg-black text-white hover:text-black hover:bg-white`}
+                                className="flex items-center gap-2 px-8 py-2.5 rounded-md font-medium transition-colors border border-black cursor-pointer bg-black text-white hover:text-black hover:bg-white"
                             >
                                 Next <ArrowRight className="h-5 w-5" />
                             </button>

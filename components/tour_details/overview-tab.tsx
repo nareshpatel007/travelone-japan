@@ -58,6 +58,7 @@ export function OverviewTabContent({ activeTab, tour, city_nights, tour_packages
             {activeTab === "hotels" && (
                 <div className="space-y-6">
                     {tour_packages && tour_packages.map((item: any, index: number) => {
+                        if (item.name === 'Without Stay') return null;
                         const accommodation = typeof item.accommodation === "string" ? JSON.parse(item.accommodation) : item.accommodation;
                         return (
                             <div key={index} className="space-y-4">

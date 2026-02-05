@@ -6,6 +6,8 @@ import { CheckCircle, Download, Loader } from "lucide-react";
 import QuestionHeading from "@/components/plan_your_trip/landing/questionHeading";
 import Link from "next/link";
 import { getClientIp } from "@/lib/getClientIp";
+import { PhoneInput } from "react-international-phone";
+import "react-international-phone/style.css";
 
 interface Props {
     tour: any;
@@ -132,14 +134,13 @@ export function DownloadBrochure({ tour, open, onOpenChange }: Props) {
                             <div className="space-y-5">
                                 <div>
                                     <label className="block text-md text-black">Phone Number</label>
-                                    <input
-                                        id="phone"
-                                        type="phone"
-                                        value={phone}
-                                        autoComplete="off"
-                                        onChange={(e) => setPhone(e.target.value)}
+                                    <PhoneInput
+                                        defaultCountry="us"
                                         placeholder="Enter your phone number"
-                                        className="w-full rounded-sm px-4 py-2 bg-white border border-gray-900"
+                                        value={phone}
+                                        onChange={(e) => setPhone(e)}
+                                        className="w-full px-4 py-0.5 text-base rounded-sm border border-gray-900 bg-white outline-none"
+                                        inputClassName="w-full !border-0 text-sm md:text-md !border-white"
                                     />
                                 </div>
 
@@ -174,7 +175,7 @@ export function DownloadBrochure({ tour, open, onOpenChange }: Props) {
                                     type="button"
                                     onClick={handleSubmit}
                                     disabled={formLoading}
-                                    className="w-full flex items-center justify-center bg-black text-white font-semibold mt-3 py-2.5 rounded-md hover:bg-black/90 transition-colors cursor-pointer"
+                                    className="w-full flex items-center justify-center bg-black text-white font-semibold mt-3 py-2.5 rounded-md hover:bg-black/90 transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                                 >
                                     {formLoading && <Loader className="w-4 h-4 mr-2 animate-spin" />}
                                     {!formLoading && <CheckCircle className="w-4 h-4 mr-2" />}

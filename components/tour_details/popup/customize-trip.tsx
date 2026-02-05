@@ -1,9 +1,12 @@
 "use client";
 
+import QuestionHeading from "@/components/plan_your_trip/common/questionHeading";
 import { getClientIp } from "@/lib/getClientIp";
 import { CheckCircle, Loader, X } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
+import { PhoneInput } from "react-international-phone";
+import "react-international-phone/style.css";
 
 interface Props {
     tour: any;
@@ -108,11 +111,12 @@ export function CustomizeTrip({ tour, open, onOpenChange }: Props) {
                 >
                     <X className="h-5 w-5" />
                 </button>
-                <div className="min-h-full flex items-start justify-center px-6 py-6 md:py-16">
-                    <div className="w-full max-w-4xl">
-                        <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3 md:mb-10 text-center">
-                            Customization Request
-                        </h2>
+                <div className="min-h-full flex flex-col items-center justify-center px-4 md:px-8 py-20 space-y-5">
+                    <div className="w-full max-w-4xl space-y-5">
+                        <QuestionHeading
+                            title="Customization Request"
+                        />
+
                         <div className="border border-[#2F5D50] rounded-sm p-5 space-y-4 bg-white/60">
                             {!isSubmitted ? (
                                 <>
@@ -132,11 +136,13 @@ export function CustomizeTrip({ tour, open, onOpenChange }: Props) {
                                             <label className="block text-md font-medium text-[#333] mb-1">
                                                 Phone Number <span className="text-red-500">*</span>
                                             </label>
-                                            <input
+                                            <PhoneInput
+                                                defaultCountry="us"
                                                 placeholder="Enter your phone number"
                                                 value={formData.phone}
-                                                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                                                className="w-full px-4 py-2 rounded-sm border border-[#2F5D50] bg-white outline-none"
+                                                onChange={(e) => setFormData({ ...formData, phone: e })}
+                                                className="w-full px-4 py-0.5 text-base rounded-sm border border-[#2F5D50] bg-white outline-none"
+                                                inputClassName="w-full !border-0 text-sm md:text-md !border-white"
                                             />
                                         </div>
                                         <div>
@@ -206,21 +212,26 @@ export function CustomizeTrip({ tour, open, onOpenChange }: Props) {
                                 </div>
                             )}
                         </div>
-
-                        {!isSubmitted && <div className="space-y-5 mt-5">
-                            {errors && <div className="text-md text-red-600">{errors}</div>}
-
-                            <button
-                                type="button"
-                                onClick={handleSubmit}
-                                className="flex items-center gap-2 px-8 py-2.5 rounded-lg font-medium transition-colors border cursor-pointer bg-[#ffc765] text-[#333] hover:border-[#333] hover:text-white hover:bg-[#333]"
-                            >
-                                {formLoading && <Loader className="w-4 h-4 mr-2 animate-spin" />}
-                                {!formLoading && <CheckCircle className="w-4 h-4" />}
-                                Submit Request
-                            </button>
-                        </div>}
                     </div>
+
+                    {errors && (
+                        <div className="relative space-x-2 text-red-500" role="alert">
+                            <strong className="font-bold">Error!</strong>
+                            <span className="block sm:inline">{errors}</span>
+                        </div>
+                    )}
+
+                    {!isSubmitted && <div className="flex items-center">
+                        <button
+                            type="button"
+                            onClick={handleSubmit}
+                            className="flex items-center gap-2 px-8 py-2.5 rounded-md font-medium transition-colors border border-black cursor-pointer bg-black text-white hover:text-black hover:bg-white disabled:opacity-50 disabled:cursor-not-allowed"
+                        >
+                            {formLoading && <Loader className="w-4 h-4 mr-2 animate-spin" />}
+                            {!formLoading && <CheckCircle className="w-4 h-4" />}
+                            Submit Request
+                        </button>
+                    </div>}
                 </div>
             </div>
         </div>
