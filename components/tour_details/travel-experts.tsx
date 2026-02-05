@@ -16,7 +16,7 @@ export default function TravelExpert() {
                     <div className="max-w-5xl mx-auto">
                         <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12 text-center md:text-left">
                             <div className="md:w-1/3 flex items-center justify-center">
-                                <div className="relative w-24 sm:w-28 md:w-60 aspect-square">
+                                <div className="relative w-34 md:w-60 aspect-square">
                                     <Image
                                         src="/common/bella_pic.png"
                                         alt="Our Commitment"

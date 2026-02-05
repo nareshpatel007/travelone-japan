@@ -237,7 +237,7 @@ export function TourFilters({
 
                         {/* Dropdown Menu */}
                         {sortDropdownOpen && (
-                            <div className="absolute right-0 top-full mt-1 w-56 bg-white border border-gray-200 rounded-sm shadow-lg z-50">
+                            <div className="absolute right-0 top-full mt-1 w-full md:w-56 bg-white border border-gray-200 rounded-sm shadow-lg z-50">
                                 {sortOptions.map((option) => (
                                     <button
                                         key={option?.value}
