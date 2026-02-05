@@ -350,7 +350,7 @@ export function CommonPlanTripModal({ open, onOpenChange }: Props) {
                             {step > 0 && !formLoader && (
                                 <button
                                     onClick={() => setStep(step - 1)}
-                                    className="flex items-center gap-2 px-8 py-2.5 bg-white text-black rounded-sm font-medium border border-black hover:bg-black transition-colors hover:text-white cursor-pointer"
+                                    className="flex items-center gap-2 px-8 py-2.5 bg-white text-black rounded-sm font-medium border border-black hover:bg-black transition-colors hover:text-white cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                                 >
                                     <MoveLeft className="h-4 w-4" />
                                     Previous
@@ -361,7 +361,7 @@ export function CommonPlanTripModal({ open, onOpenChange }: Props) {
                                 <button
                                     disabled={formLoader}
                                     onClick={handleNextStep}
-                                    className="flex items-center gap-2 px-8 py-2.5 bg-black text-white rounded-sm font-medium border border-black hover:bg-white transition-colors hover:text-black cursor-pointer"
+                                    className="flex items-center gap-2 px-8 py-2.5 bg-black text-white rounded-sm font-medium border border-black hover:bg-white transition-colors hover:text-black cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                                 >
                                     Next
                                     {formLoader ? (
@@ -376,7 +376,7 @@ export function CommonPlanTripModal({ open, onOpenChange }: Props) {
                                 <button
                                     disabled={formLoader}
                                     onClick={handlSubmitPlanYourTrip}
-                                    className="flex items-center gap-2 px-8 py-2.5 bg-black text-white rounded-sm font-medium border border-black hover:bg-white transition-colors hover:text-black cursor-pointer"
+                                    className="flex items-center gap-2 px-8 py-2.5 bg-black text-white rounded-sm font-medium border border-black hover:bg-white transition-colors hover:text-black cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                                 >
                                     {formLoader ? (
                                         <Loader2 className="h-4 w-4 animate-spin" />

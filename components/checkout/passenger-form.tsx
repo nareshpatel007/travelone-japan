@@ -1,7 +1,7 @@
 "use client"
 
-import { useState } from "react";
-import { ChevronDown } from "lucide-react";
+import { PhoneInput } from "react-international-phone";
+import "react-international-phone/style.css";
 
 // Define interface
 interface Props {
@@ -63,12 +63,13 @@ export default function PassengerForm({ formData, setFormData }: Props) {
                     </div>
                     <div className="space-y-2">
                         <label className="block text-base font-medium text-muted-foreground mb-2">Mobile Number</label>
-                        <input
-                            type="tel"
+                        <PhoneInput
+                            defaultCountry="us"
                             value={formData.phone}
-                            onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                            placeholder="Mobile Number"
-                            className="w-full px-4 py-2 border border-border rounded-sm bg-input text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-accent/50"
+                            onChange={(e) => setFormData({ ...formData, phone: e })}
+                            placeholder="Enter your phone number"
+                            className="w-full rounded-sm py-0.5 px-3 text-sm md:text-md text-black font-medium bg-white border border-black"
+                            inputClassName="w-full !border-0 !border-white"
                         />
                     </div>
                 </div>

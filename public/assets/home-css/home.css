@@ -116,3 +116,11 @@
     scrollbar-width: thin;
     scrollbar-color: #333 transparent;
 }
+
+.react-international-phone-input {
+    font-size: 15px !important;
+}
+
+.react-international-phone-country-selector-button {
+    border: 0px solid transparent !important;
+}

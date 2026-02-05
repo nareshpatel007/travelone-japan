@@ -8,6 +8,8 @@ import { addCartData, getLoginCookie, isLoggedIn } from "@/lib/auth";
 import { useRouter } from "next/navigation";
 import { getClientIp } from "@/lib/getClientIp";
 import nationalityList from "@/lib/nationality";
+import { PhoneInput } from "react-international-phone";
+import "react-international-phone/style.css";
 
 interface Props {
     tour: any;
@@ -130,7 +132,10 @@ export function BookingCart({ tour, selectedPackage, open, onOpenChange }: Props
     };
 
     const addRoom = () => {
-        if (rooms.length >= availableSeats) return;
+        // If group tour then do not allow adding more than available seats
+        if (tour?.tour_type === "Group Tour" && rooms.length >= availableSeats) return;
+
+        // Add new room
         setRooms((prev) => [
             ...prev,
             {
@@ -146,6 +151,8 @@ export function BookingCart({ tour, selectedPackage, open, onOpenChange }: Props
                 single_supplement: 0,
             },
         ]);
+
+        // Adjust active tab
         setActiveRoomIndex(rooms.length);
     };
 
@@ -183,7 +190,9 @@ export function BookingCart({ tour, selectedPackage, open, onOpenChange }: Props
 
         // Total seats limit
         const totalTravellers = getTotalTravellers(rooms);
-        if (totalTravellers >= availableSeats) return;
+
+        // If group tour then do not allow adding more than available seats
+        if (tour?.tour_type === "Group Tour" && totalTravellers >= availableSeats) return;
 
         // Update room
         updateRoom(
@@ -345,11 +354,13 @@ export function BookingCart({ tour, selectedPackage, open, onOpenChange }: Props
                                         <label className="block text-md font-medium text-[#333] mb-1">
                                             Cellphone <span className="text-red-500">*</span>
                                         </label>
-                                        <input
+                                        <PhoneInput
+                                            defaultCountry="us"
+                                            placeholder="Enter your phone number"
                                             value={userPhone}
-                                            onChange={(e) => setUserPhone(e.target.value)}
-                                            placeholder="Enter your cellphone"
-                                            className="w-full px-4 py-2 text-base rounded-sm border border-[#2F5D50] bg-white outline-none"
+                                            onChange={(e) => setUserPhone(e)}
+                                            className="w-full px-4 py-1 text-base rounded-sm border border-[#2F5D50] bg-white outline-none"
+                                            inputClassName="w-full !border-0 text-sm md:text-md !border-white"
                                         />
                                     </div>
                                 </div>}
@@ -378,7 +389,7 @@ export function BookingCart({ tour, selectedPackage, open, onOpenChange }: Props
                                                 value={selectedDate}
                                                 onChange={(e) => setSelectedDate(e.target.value)}
                                                 min={new Date().toISOString().split("T")[0]}
-                                                className="w-full max-w-md text-base px-4 py-3 border border-[#2F5D50] rounded-md bg-white outline-none"
+                                                className="w-full text-base px-4 py-2 border border-[#2F5D50] rounded-md bg-white outline-none"
                                             />
                                         )}
                                     </div>
@@ -408,9 +419,11 @@ export function BookingCart({ tour, selectedPackage, open, onOpenChange }: Props
                                     <p className="text-xl font-semibold text-[#0F172A]">
                                         Choose Traveler Details
                                     </p>
-                                    <p className="text-sm text-gray-700">
-                                        {availableSeats} Seats are available in this tour
-                                    </p>
+                                    {tour?.tour_type === "Group Tour" && (
+                                        <p className="text-sm text-gray-700">
+                                            {availableSeats} Seats are available in this tour
+                                        </p>
+                                    )}
                                 </div>
                                 <div className="border border-[#2F5D50] rounded-sm p-5 space-y-4 bg-white/60">
                                     <div className="flex items-center justify-between">
@@ -536,7 +549,7 @@ export function BookingCart({ tour, selectedPackage, open, onOpenChange }: Props
                                 <button
                                     onClick={handleSubmit}
                                     disabled={isFormLoading}
-                                    className="flex items-center gap-2 px-8 py-2.5 rounded-md font-medium transition-colors border cursor-pointer bg-[#ffc765] text-[#333] hover:border-[#333] hover:text-white hover:bg-[#333]"
+                                    className="flex items-center gap-2 px-8 py-2.5 rounded-md font-medium transition-colors border cursor-pointer bg-[#ffc765] text-[#333] hover:border-[#333] hover:text-white hover:bg-[#333] disabled:opacity-50 disabled:cursor-not-allowed"
                                 >
                                     {isFormLoading && <Loader2 className="animate-spin h-5 w-5" />}
                                     {!isFormLoading && <CheckCircle className="h-5 w-5" />}

@@ -361,7 +361,7 @@ export function LandingPlanTripModal({ open, onOpenChange }: PlanTripModalProps)
                         {step > 0 && !formLoader && (
                             <button
                                 onClick={() => setStep(step - 1)}
-                                className="flex items-center gap-2 px-4 py-2 text-sm md:text-md uppercase rounded-sm bg-black text-white cursor-pointer hover:bg-black/90"
+                                className="flex items-center gap-2 px-4 py-2 text-sm md:text-md uppercase rounded-sm bg-black text-white cursor-pointer hover:bg-black/90 disabled:opacity-50 disabled:cursor-not-allowed"
                             >
                                 <MoveLeft className="h-4 w-4" />
                                 Previous
@@ -372,7 +372,7 @@ export function LandingPlanTripModal({ open, onOpenChange }: PlanTripModalProps)
                             <button
                                 disabled={formLoader}
                                 onClick={handleNextStep}
-                                className="flex items-center gap-2 px-4 py-2 text-sm md:text-md uppercase rounded-sm bg-black text-white cursor-pointer hover:bg-black/90"
+                                className="flex items-center gap-2 px-4 py-2 text-sm md:text-md uppercase rounded-sm bg-black text-white cursor-pointer hover:bg-black/90 disabled:opacity-50 disabled:cursor-not-allowed"
                             >
                                 Next
                                 {formLoader ? (
@@ -387,7 +387,7 @@ export function LandingPlanTripModal({ open, onOpenChange }: PlanTripModalProps)
                             <button
                                 disabled={formLoader}
                                 onClick={handlSubmitPlanYourTrip}
-                                className="flex items-center gap-2 px-4 py-2 text-sm md:text-md uppercase rounded-sm bg-black text-white cursor-pointer hover:bg-black/90"
+                                className="flex items-center gap-2 px-4 py-2 text-sm md:text-md uppercase rounded-sm bg-black text-white cursor-pointer hover:bg-black/90 disabled:opacity-50 disabled:cursor-not-allowed"
                             >
                                 {formLoader ? (
                                     <Loader2 className="h-4 w-4 animate-spin" />

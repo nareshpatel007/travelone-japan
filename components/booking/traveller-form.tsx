@@ -8,6 +8,8 @@ import { FlightPreference } from "./traveller_info/flight";
 import { MealPreference } from "./traveller_info/meal";
 import { VisaPreference } from "./traveller_info/visa";
 import { LuggagePreference } from "./traveller_info/luggage";
+import { PhoneInput } from "react-international-phone";
+import "react-international-phone/style.css";
 
 // Define props
 interface Props {
@@ -177,11 +179,13 @@ export default function TravellerForm({ headerBox = true, orderData, totalRooms,
                     {/* Phone Number */}
                     <div className="flex flex-col space-y-1">
                         <label className="text-sm">Phone Number</label>
-                        <input
-                            type="text"
+                        <PhoneInput
+                            defaultCountry="us"
                             value={travellers.phone}
-                            onChange={(e) => handleChange("phone", e.target.value)}
-                            className="bg-white border border-black px-3 py-2 rounded-sm text-sm md:text-base focus:ring-1 focus:ring-black"
+                            onChange={(e) => handleChange("phone", e)}
+                            placeholder="Enter your phone number"
+                            className="w-full rounded-sm py-0.5 px-3 text-sm md:text-md text-black font-medium bg-white border border-black"
+                            inputClassName="w-full !border-0 text-sm md:text-md !border-white"
                         />
                     </div>
 
@@ -283,7 +287,7 @@ export default function TravellerForm({ headerBox = true, orderData, totalRooms,
                         <span onClick={() => setOpenFlightModal(true)} className="px-4 py-1 text-sm md:text-base bg-[#d9eed8] text-black border border-black rounded-sm hover:bg-black hover:text-white cursor-pointer">
                             Flight
                         </span>
-                        
+
                         <span onClick={() => setOpenLuggageModal(true)} className="px-4 py-1 text-sm md:text-base bg-[#d9eed8] text-black border border-black rounded-sm hover:bg-black hover:text-white cursor-pointer">
                             Luggage
                         </span>
@@ -333,7 +337,7 @@ export default function TravellerForm({ headerBox = true, orderData, totalRooms,
                 formData={travellers.flight_json}
                 handleChange={handleChange}
             />}
-            
+
             {openLuggageModal && <LuggagePreference
                 open={openLuggageModal}
                 setOpenChange={setOpenLuggageModal}

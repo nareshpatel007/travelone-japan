@@ -1,6 +1,9 @@
-"use client";
+"use client"
+
 import { useEffect, useState } from "react";
 import QuestionHeading from "./questionHeading";
+import { PhoneInput } from "react-international-phone";
+import "react-international-phone/style.css";
 
 interface Props {
     planYourTripForm: any;
@@ -70,16 +73,17 @@ export default function StepLeadForm({
                     />
                 </div>
                 <div>
-                    <label className="!block !text-md !text-black !mb-0">Mobile number</label>
-                    <input
-                        type="tel"
+                    <label className="block text-md text-black mb-0">Mobile number</label>
+                    <PhoneInput
+                        defaultCountry="us"
                         value={mobile}
                         onChange={(e) => {
-                            setMobile(e.target.value);
-                            updateForm("mobile", e.target.value);
+                            setMobile(e);
+                            updateForm("mobile", e);
                         }}
-                        placeholder="Enter your mobile number"
-                        className="w-full rounded-sm px-4 py-2 bg-white border border-gray-900"
+                        placeholder="Enter your phone number"
+                        className="w-full rounded-sm py-0.5 px-3 text-sm md:text-md text-black font-medium bg-white border border-gray-900"
+                        inputClassName="w-full !border-0 text-sm md:text-md !border-white"
                     />
                 </div>
                 <div className="flex items-start gap-2 pt-2">

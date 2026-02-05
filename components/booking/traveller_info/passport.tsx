@@ -91,6 +91,7 @@ export function PassportPreference({ open, setOpenChange, handleChange, formData
                 <div className="px-6 py-5 space-y-4">
                     {normalized?.file && (
                         <div>
+                            <label className="block text-sm font-medium mb-1">Your uploaded passport file is here</label>
                             <Link href={normalized?.file} target="_blank">
                                 <button className="flex items-center gap-2 bg-black text-white px-4 py-2 rounded-sm text-sm hover:underline cursor-pointer">
                                     <Download size={16} />

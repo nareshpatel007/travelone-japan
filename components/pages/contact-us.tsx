@@ -9,6 +9,8 @@ import PageHeading from "@/components/common/page-heading";
 import FullBannerSection from "@/components/about/full-banner";
 import StartWithWho from "@/components/about/start-with-who";
 import StickyHomeHeader from "@/components/header/sticky-home-header";
+import { PhoneInput } from "react-international-phone";
+import "react-international-phone/style.css";
 
 export default function ContactPage() {
     // Define state
@@ -142,13 +144,13 @@ export default function ContactPage() {
                                         <div className="grid md:grid-cols-2 gap-5">
                                             <div>
                                                 <label className="block text-sm md:text-base font-medium text-gray-700 mb-2">Contact Number *</label>
-                                                <input
-                                                    type="text"
-                                                    required
+                                                <PhoneInput
+                                                    defaultCountry="us"
                                                     value={formData.phone}
-                                                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                                                    className="w-full px-4 py-2 border border-gray-300 rounded-sm outline-none transition-all resize-none focus:ring-1 focus:ring-[#333] focus:ring-opacity-50"
-                                                    placeholder="Contact Number"
+                                                    onChange={(e) => setFormData({ ...formData, phone: e })}
+                                                    placeholder="Enter your phone number"
+                                                    className="w-full rounded-sm py-0.5 px-3 text-sm md:text-md text-black font-medium bg-white border border-gray-300"
+                                                    inputClassName="w-full !border-0 !border-white"
                                                 />
                                             </div>
                                             <div>
