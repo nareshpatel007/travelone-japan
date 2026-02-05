@@ -12,7 +12,7 @@ export default function NewsletterSubscribe() {
     // Handle submit
     const handleSubmit = async () => {
         // Validation
-        if(email == "") {
+        if (email == "") {
             return;
         }
 
@@ -21,7 +21,7 @@ export default function NewsletterSubscribe() {
 
         try {
             // Call API request
-            const response = await fetch("/api/newsletter", {
+            await fetch("/api/newsletter", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -29,15 +29,9 @@ export default function NewsletterSubscribe() {
                 body: JSON.stringify({ email }),
             });
 
-            // Convert to JSON
-            const data = await response.json();
-
-            // Check response
-            if (data.status) {
-                // Update state
-                setEmail("");
-                setIsCompleted(true);
-            }
+            // Update state
+            setEmail("");
+            setIsCompleted(true);
         } catch (error: any) {
             console.error("Failed to subscribe to newsletter:", error);
         } finally {
@@ -59,23 +53,35 @@ export default function NewsletterSubscribe() {
                 </div>
 
                 {/* RIGHT FORM */}
-                <div className="flex w-full md:w-auto max-w-3xl gap-3">
-                    <input
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        placeholder="Enter your email"
-                        className="flex-1 px-4 py-3 text-sm md:text-base border border-[#d9cec1] bg-white text-black border border-gray-300 focus:outline-none focus:ring-1 focus:ring-black rounded-none"
-                    />
+                <div className="w-full md:w-auto max-w-3xl">
+                    {/* Input + button row */}
+                    <div className="flex gap-3">
+                        <input
+                            type="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            placeholder="Enter your email"
+                            className="flex-1 px-4 py-3 text-sm md:text-base border border-gray-300 bg-white text-black focus:outline-none focus:ring-1 focus:ring-black rounded-none"
+                        />
 
-                    <button
-                        onClick={handleSubmit}
-                        disabled={isFormLoading || isCompleted}
-                        className="flex items-center justify-center gap-2 px-6 md:px-8 py-3 bg-black text-white text-sm md:text-base font-semibold tracking-wide uppercase hover:bg-black/90 transition cursor-pointer"
-                    >
-                        {isFormLoading && <Loader2 className="animate-spin h-5 w-5 text-white" />}
-                        {isCompleted ? "Subscribed" : "Subscribe"}
-                    </button>
+                        <button
+                            onClick={handleSubmit}
+                            disabled={isFormLoading || isCompleted}
+                            className="flex items-center justify-center gap-2 px-6 md:px-8 py-3 bg-black text-white text-sm md:text-base font-semibold tracking-wide uppercase cursor-pointer hover:bg-black/90 transition disabled:opacity-60"
+                        >
+                            {isFormLoading && (
+                                <Loader2 className="h-5 w-5 animate-spin text-white" />
+                            )}
+                            {isCompleted ? "Subscribed" : "Subscribe"}
+                        </button>
+                    </div>
+
+                    {/* Success message */}
+                    {isCompleted && (
+                        <p className="mt-2 text-sm text-green-600">
+                            You have been subscribed.
+                        </p>
+                    )}
                 </div>
             </div>
         </section>
