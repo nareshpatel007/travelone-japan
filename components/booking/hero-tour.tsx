@@ -2,11 +2,9 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { BedDouble, Check, ChevronLeft, ChevronRight, Heart, Loader2, MoveRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, MoveRight } from "lucide-react";
 import 'react-loading-skeleton/dist/skeleton.css';
-import { formatDate, formatPrice } from "@/lib/utils";
-import { addWishlistCount, getLoginCookie, isLoggedIn } from "@/lib/auth";
-import { LoginModal } from "../common/login-modal";
+import { formatDate } from "@/lib/utils";
 
 // Define props
 interface Props {
