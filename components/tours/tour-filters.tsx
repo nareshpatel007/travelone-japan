@@ -57,12 +57,11 @@ export function TourFilters({
 
     // Define sort options
     const sortOptions = [
-        { value: "traveler_rating", label: "Recommended" },
+        { value: "newest_first", label: "Recommended" },
         { value: "price_low_to_high", label: "Price: Low to High" },
         { value: "price_high_to_low", label: "Price: High to Low" },
         { value: "duration_low_to_high", label: "Duration: Short to Long" },
         { value: "duration_high_to_low", label: "Duration: Long to Short" },
-        { value: "newest_first", label: "Newest First" },
     ];
 
     const toggleSection = (section: string) => {
@@ -88,19 +87,19 @@ export function TourFilters({
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4">
                 <span className="text-sm md:text-base text-black">Showing {totalCount} tours</span>
                 <div className="flex items-center gap-3">
-                    {isLoading && <Loader2 className="animate-spin h-5 w-5 text-gray-600" />}
+                    {isLoading && <Loader2 className="animate-spin h-5 w-5 text-black" />}
                     <Sheet open={isSidebarFilterOpen} onOpenChange={setIsSidebarFilterOpen}>
                         <SheetTrigger asChild>
-                            {/* <button className="flex items-center gap-2 px-4 md:px-5 py-2 md:py-2.5 border border-gray-300 rounded-md hover:border-gray-400 transition-colors cursor-pointer">
-                                <SlidersHorizontal className="h-4 w-4 text-gray-600" />
-                                <span className="text-sm text-gray-700">Filter</span>
+                            {/* <button className="flex items-center gap-2 px-4 md:px-5 py-2 md:py-2.5 border border-black rounded-sm hover:border-black transition-colors cursor-pointer">
+                                <SlidersHorizontal className="h-4 w-4 text-black" />
+                                <span className="text-sm text-black">Filter</span>
                             </button> */}
                         </SheetTrigger>
                         <SheetContent side="left" className="!w-full !z-[200] !bg-white sm:w-[320px] md:w-[380px] !p-4 !overflow-y-auto">
                             <div className="sticky top-0 bg-white z-10 border-b border-gray-200">
                                 <div className="flex items-center justify-between p-4">
-                                    <h2 className="text-xl font-semibold text-[#1a2b49]">Filter</h2>
-                                    <button onClick={() => setIsSidebarFilterOpen(false)} className="text-gray-500 hover:text-gray-700">
+                                    <h2 className="text-xl font-semibold text-black">Filter</h2>
+                                    <button onClick={() => setIsSidebarFilterOpen(false)} className="text-gray-500 hover:text-black">
                                         <X className="h-5 w-5" />
                                     </button>
                                 </div>
@@ -111,7 +110,7 @@ export function TourFilters({
                                             setCurrentPage(1);
                                         }}
                                         disabled={isLoading}
-                                        className="flex-1 py-2.5 px-4 border border-[#1a2b49] rounded-md text-sm font-medium text-[#1a2b49] hover:bg-[#1a2b49] hover:text-white cursor-pointer transition-colors"
+                                        className="flex-1 py-2 px-4 border border-black rounded-sm text-sm md:text-base font-medium text-black hover:bg-black hover:text-white cursor-pointer transition-colors"
                                     >
                                         Reset
                                     </button>
@@ -121,7 +120,7 @@ export function TourFilters({
                                             setCurrentPage(1);
                                         }}
                                         disabled={isLoading}
-                                        className="flex-1 flex items-center justify-center py-2.5 px-4 bg-[#1a2b49] text-white rounded-md border border-[#1a2b49] text-sm font-medium hover:bg-white hover:text-[#1a2b49] hover:border-[#1a2b49] cursor-pointer transition-colors"
+                                        className="flex-1 flex items-center justify-center py-2 px-4 bg-black text-white rounded-sm border border-black text-sm md:text-base font-medium hover:bg-white hover:text-black hover:border-black cursor-pointer transition-colors"
                                     >
                                         {/* {isLoading && <Loader2 className="animate-spin h-5 w-5 mr-2" />} */}
                                         Apply
@@ -135,7 +134,7 @@ export function TourFilters({
                                             onClick={() => toggleSection("country")}
                                             className="flex items-center justify-between w-full text-left mb-3"
                                         >
-                                            <h3 className="text-base font-semibold text-[#1a2b49]">Country</h3>
+                                            <h3 className="text-base font-semibold text-black">Country</h3>
                                             <ChevronDown
                                                 className={`h-4 w-4 text-gray-500 transition-transform duration-300 ease-in-out ${expandedSections.includes("country") ? "rotate-180" : ""
                                                     }`}
@@ -154,9 +153,9 @@ export function TourFilters({
                                                             name="country"
                                                             checked={selectedCountry === item.id}
                                                             onChange={() => setSelectedCountry(item.id)}
-                                                            className="w-4 h-4 text-[#1a9cb0] border-gray-300 focus:ring-[#1a9cb0]"
+                                                            className="w-4 h-4 text-[#1a9cb0] border-black focus:ring-[#1a9cb0]"
                                                         />
-                                                        <span className="text-sm text-gray-700">{item?.name}</span>
+                                                        <span className="text-sm text-black">{item?.name}</span>
                                                     </label>
                                                 ))}
                                                 {/* {filterOptions?.countries.length > 5 && (
@@ -177,7 +176,7 @@ export function TourFilters({
                                         onClick={() => toggleSection("price")}
                                         className="flex items-center justify-between w-full text-left mb-3"
                                     >
-                                        <h3 className="text-base font-semibold text-[#1a2b49]">Price</h3>
+                                        <h3 className="text-base font-semibold text-black">Price</h3>
                                         <ChevronDown
                                             className={`h-4 w-4 text-gray-500 transition-transform duration-300 ease-in-out ${expandedSections.includes("price") ? "rotate-180" : ""
                                                 }`}
@@ -189,28 +188,28 @@ export function TourFilters({
                                             }`}
                                     >
                                         <div className="flex items-center gap-2 w-full">
-                                            <div className="flex-1 flex items-center border border-gray-300 rounded-md overflow-hidden">
+                                            <div className="flex-1 flex items-center border border-black rounded-sm overflow-hidden">
                                                 <input
                                                     type="text"
                                                     placeholder="Min"
                                                     value={minPrice}
                                                     onChange={(e) => setMinPrice(e.target.value)}
-                                                    className="flex-1 w-full px-3 py-2 text-sm text-gray-700 focus:outline-none"
+                                                    className="flex-1 w-full px-3 py-2 text-sm text-black focus:outline-none"
                                                 />
-                                                <span className="px-2 py-2 bg-gray-100 text-gray-500 text-sm border-l border-gray-300">
+                                                <span className="px-2 py-2 bg-gray-100 text-gray-500 text-sm border-l border-black">
                                                     $
                                                 </span>
                                             </div>
                                             <span className="text-gray-500 text-sm">to</span>
-                                            <div className="flex-1 flex items-center border border-gray-300 rounded-md overflow-hidden">
+                                            <div className="flex-1 flex items-center border border-black rounded-sm overflow-hidden">
                                                 <input
                                                     type="text"
                                                     placeholder="Max"
                                                     value={maxPrice}
                                                     onChange={(e) => setMaxPrice(e.target.value)}
-                                                    className="flex-1 w-full px-3 py-2 text-sm text-gray-700 focus:outline-none"
+                                                    className="flex-1 w-full px-3 py-2 text-sm text-black focus:outline-none"
                                                 />
-                                                <span className="px-2 py-2 bg-gray-100 text-gray-500 text-sm border-l border-gray-300">
+                                                <span className="px-2 py-2 bg-gray-100 text-gray-500 text-sm border-l border-black">
                                                     $
                                                 </span>
                                             </div>
@@ -225,7 +224,7 @@ export function TourFilters({
                     <div className="relative" ref={sortDropdownRef}>
                         <button
                             onClick={() => setSortDropdownOpen(!sortDropdownOpen)}
-                            className="flex items-center gap-1 md:gap-2 border border-gray-300 rounded-md px-3 md:px-4 py-2.5 md:py-2.5 hover:border-gray-400 text-gray-600 transition-colors cursor-pointer"
+                            className="flex items-center gap-1 md:gap-2 border border-black rounded-sm px-3 md:px-4 py-2.5 md:py-2.5 hover:border-black text-black transition-colors cursor-pointer"
                         >
                             <span className="hidden sm:inline text-sm text-black">Sort by:</span>
                             <span className="text-xs sm:text-sm font-normal text-black sm:max-w-none truncate">
@@ -238,26 +237,25 @@ export function TourFilters({
 
                         {/* Dropdown Menu */}
                         {sortDropdownOpen && (
-                            <div className="absolute right-0 top-full mt-1 w-56 bg-white border border-gray-200 rounded-md shadow-lg z-50">
-                                <div className="py-1">
-                                    {sortOptions.map((option) => (
-                                        <button
-                                            key={option?.value}
-                                            onClick={() => {
-                                                setSortFilter(option?.value);
-                                                setSortDisplay(option?.label);
-                                                setSortDropdownOpen(false);
-                                                setCurrentPage(1);
-                                            }}
-                                            className={`w-full text-left px-4 py-2.5 text-sm transition-colors cursor-pointer ${sortFilter === option?.value
-                                                ? "bg-[#FFF9EE] text-black font-medium"
-                                                : "text-gray-700 hover:bg-gray-50"
-                                                }`}
-                                        >
-                                            {option?.label}
-                                        </button>
-                                    ))}
-                                </div>
+                            <div className="absolute right-0 top-full mt-1 w-56 bg-white border border-gray-200 rounded-sm shadow-lg z-50">
+                                {sortOptions.map((option) => (
+                                    <button
+                                        key={option?.value}
+                                        onClick={() => {
+                                            setSortFilter(option?.value);
+                                            setSortDisplay(option?.label);
+                                            setSortDropdownOpen(false);
+                                            setAppliedFilter(true);
+                                            setCurrentPage(1);
+                                        }}
+                                        className={`w-full text-left px-4 py-2.5 text-sm transition-colors cursor-pointer ${sortFilter === option?.value
+                                            ? "bg-black text-white"
+                                            : "bg-white text-black hover:bg-black hover:text-white"
+                                            }`}
+                                    >
+                                        {option?.label}
+                                    </button>
+                                ))}
                             </div>
                         )}
                     </div>

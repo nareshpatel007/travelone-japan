@@ -1,14 +1,15 @@
 "use client";
 
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, Loader2 } from "lucide-react";
 
 type Props = {
+    isLoading?: boolean;
     currentPage: number;
     setCurrentPage: (page: number) => void;
     totalPages: number;
 };
 
-export function Pagination({ currentPage, setCurrentPage, totalPages }: Props) {
+export function Pagination({ isLoading = false, currentPage, setCurrentPage, totalPages }: Props) {
     if (totalPages <= 1) return null;
 
     const getPages = () => {
@@ -67,10 +68,10 @@ export function Pagination({ currentPage, setCurrentPage, totalPages }: Props) {
                     <button
                         key={page}
                         onClick={() => setCurrentPage(page as number)}
-                        className={`w-8 h-8 md:w-10 md:h-10 rounded-full text-xs md:text-sm font-medium transition-colors cursor-pointer border border-gray-300 ${currentPage === page ? "!border-[#1E1E1E] bg-[#1E1E1E] text-white" : "text-gray-700 hover:bg-gray-50"
+                        className={`flex items-center justify-center w-8 h-8 md:w-10 md:h-10 rounded-full text-xs md:text-sm font-medium transition-colors cursor-pointer border border-gray-300 ${currentPage === page ? "!border-[#1E1E1E] bg-[#1E1E1E] text-white" : "text-gray-700 hover:bg-gray-50"
                             }`}
                     >
-                        {page}
+                        {currentPage === page && isLoading ? <Loader2 className="h-5 w-5 animate-spin" /> : page}
                     </button>
                 )
             )}

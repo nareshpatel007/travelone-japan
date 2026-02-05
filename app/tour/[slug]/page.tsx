@@ -166,7 +166,10 @@ export default function TourDetailPage() {
                                 </div>
 
                                 <div className="flex items-center gap-3">
-                                    <button className="bg-[#ef2853] hover:bg-white text-white hover:text-[#ef2853] border border-[#ef2853] px-6 py-2 rounded text-base font-medium cursor-pointer transition">
+                                    <button
+                                        onClick={() => setOpenBookingCartPopup(true)}
+                                        className="bg-[#ef2853] hover:bg-white text-white hover:text-[#ef2853] border border-[#ef2853] px-6 py-2 rounded text-base font-medium cursor-pointer transition"
+                                    >
                                         Book {tourData?.tour_packages && tourData?.tour_packages.find((p: any) => p.no === selectedPackage)?.name}
                                     </button>
 

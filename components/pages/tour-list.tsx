@@ -19,7 +19,7 @@ export default function ToursPage() {
 
     // Filter state
     const [isSidebarFilterOpen, setIsSidebarFilterOpen] = useState(false);
-    const [sortFilter, setSortFilter] = useState<string>('traveler_rating');
+    const [sortFilter, setSortFilter] = useState<string>('newest_first');
     const [minPrice, setMinPrice] = useState<string>('');
     const [maxPrice, setMaxPrice] = useState<string>('');
     const [filterOptions, setFilterOptions] = useState<string[]>([]);
@@ -30,7 +30,6 @@ export default function ToursPage() {
     const [resetFilter, setResetFilter] = useState(false);
 
     useEffect(() => {
-        // Wait one frame after hydration
         requestAnimationFrame(() => {
             setReady(true);
         });
@@ -38,20 +37,41 @@ export default function ToursPage() {
 
     // Init data
     useEffect(() => {
+        if (!ready) return;
         const controller = new AbortController();
-        const fetchInitData = async () => {
+        const fetchTours = async () => {
             try {
+                // Set loading
+                setIsLoading(true);
+
+                // Define url
+                const url = appliedFilter ? "/api/tours/filter" : "/api/tours/list";
+
+                // Define body
+                const body = appliedFilter
+                    ? {
+                        page: currentPage,
+                        sort: sortFilter,
+                        min_price: minPrice,
+                        max_price: maxPrice,
+                        country: selectedCountry,
+                    }
+                    : {
+                        page: currentPage,
+                    };
+
                 // Fetch the data
-                const response = await fetch("/api/tours/list", {
+                const response = await fetch(url, {
                     method: "POST",
                     headers: {
-                        "Content-Type": "application/json",
-                    }
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(body),
+                    signal: controller.signal,
                 });
 
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
+                // Check response
+                if (!response.ok) return;
 
                 // Parse the JSON response
                 const data = await response.json();
@@ -61,6 +81,9 @@ export default function ToursPage() {
                 setTotalPages(data?.data?.last_page ?? 0);
                 setCurrentPage(data?.data?.current_page ?? 1);
                 setTotalCount(data?.data?.total ?? 0);
+
+                // Scroll to top
+                window.scrollTo({ top: 0, behavior: "smooth" });
             } catch (error: any) {
                 if (error.name !== "AbortError") {
                     console.error("Failed to fetch tours:", error);
@@ -69,9 +92,17 @@ export default function ToursPage() {
                 setIsLoading(false);
             }
         };
-        fetchInitData();
+        fetchTours();
         return () => controller.abort();
-    }, []);
+    }, [
+        ready,
+        currentPage,
+        appliedFilter,
+        sortFilter,
+        minPrice,
+        maxPrice,
+        selectedCountry,
+    ]);
 
     return (
         <body>
@@ -104,6 +135,7 @@ export default function ToursPage() {
                         tourList={tourList}
                     />
                     <Pagination
+                        isLoading={isLoading}
                         currentPage={currentPage}
                         setCurrentPage={setCurrentPage}
                         totalPages={totalPages}
