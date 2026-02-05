@@ -147,7 +147,9 @@ export default function TourDetailPage() {
                     />
                     <VideoHeroSection />
                     <TravelExpert />
-                    <PageHelpful />
+                    <PageHelpful
+                        pageName={`tour/${tourData?.tour?.slug}`}
+                    />
 
                     {showStickyFooter && (
                         <div className="hidden md:block fixed bottom-0 left-0 right-0 bg-gray-100 shadow-lg border-t border-gray-300 z-50">
