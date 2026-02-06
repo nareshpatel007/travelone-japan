@@ -8,6 +8,7 @@ import Link from "next/link";
 import { getClientIp } from "@/lib/getClientIp";
 import { PhoneInput } from "react-international-phone";
 import "react-international-phone/style.css";
+import { set } from "date-fns";
 
 interface Props {
     tour: any;
@@ -26,60 +27,56 @@ export function DownloadBrochure({ tour, open, onOpenChange }: Props) {
     const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
 
     // Handle form submit
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-
-        // Update state
-        setErrors("");
-        setDownloadUrl("");
-        setFormLoading(true);
-
+    const handleSubmit = async () => {
         try {
-            const submitData = async () => {
-                // Validation
-                if (!phone) {
-                    setErrors("Please enter valid phone number.");
-                    return;
-                } else if (!email) {
-                    setErrors("Please enter valid email address.");
-                    return;
-                } else if (!acceptTerms) {
-                    setErrors("Please accept the Terms consent to submit your inquiry.");
-                    return;
-                }
+            // Validation
+            if (!phone) {
+                setErrors("Please enter valid phone number.");
+                return;
+            } else if (!email) {
+                setErrors("Please enter valid email address.");
+                return;
+            } else if (!acceptTerms) {
+                setErrors("Please accept the Terms consent to submit your inquiry.");
+                return;
+            }
 
-                // Send data to API route
-                const response = await fetch("/api/tours/brochure_download", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                        tour_id: tour?.id,
-                        email,
-                        phone,
-                        ip_address: getClientIp(),
-                    }),
-                });
+            // Update state
+            setErrors("");
+            setDownloadUrl("");
+            setFormLoading(true);
 
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
+            // Send data to API route
+            const response = await fetch("/api/tours/brochure_download", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    tour_id: tour?.id,
+                    email,
+                    phone,
+                    ip_address: getClientIp(),
+                }),
+            });
 
-                // Parse the JSON response
-                const data = await response.json();
+            // Check response
+            if (!response.ok) {
+                setErrors("Failed to submit form. Please try again later.");
+            }
 
-                // Check response
-                if (data?.status) {
-                    // Update the state
-                    setIsSubmitted(true);
-                    setDownloadUrl(data?.data?.itinerary_pdf || "");
-                } else {
-                    // Set errors
-                    setErrors(data?.message || "Failed to submit form. Please try again later.");
-                }
-            };
-            submitData();
+            // Parse the JSON response
+            const data = await response.json();
+
+            // Check response
+            if (data?.status) {
+                // Update the state
+                setIsSubmitted(true);
+                setDownloadUrl(data?.data?.itinerary_pdf || "");
+            } else {
+                // Set errors
+                setErrors(data?.message || "Failed to submit form. Please try again later.");
+            }
         } catch (error: any) {
             if (error.name !== "AbortError") {
                 console.error("Failed to submit form data:", error);
