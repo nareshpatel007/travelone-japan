@@ -1,9 +1,10 @@
 "use client"
 
 import { formatDate, formatPrice } from "@/lib/utils";
-import { CalendarCheck, CheckCircle, Download, File, HelpCircle, Info, Printer, Star, X } from "lucide-react";
+import { CalendarCheck, CheckCircle, Download, File, HelpCircle, Info, Loader2, Printer, Star, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 
 // Define interface
 interface Props {
@@ -11,6 +12,47 @@ interface Props {
 }
 
 export function BookingConfirmation({ orderData }: Props) {
+    // Define state
+    const [loading, setLoading] = useState(false);
+    const [downloadAction, setDownloadAction] = useState('itinerary');
+    const [errors, setErrors] = useState<string>("");
+
+    // Handle download itinerary
+    const handleDownload = async (action: string) => {
+        // Open new tab
+        const newTab = window.open("", "_blank");
+
+        try {
+            // Set loading
+            setLoading(true);
+
+            // Call API
+            const res = await fetch(`/api/bookings/download/${action}`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    checkout_id: orderData?.order?.checkout_id
+                })
+            });
+
+            // Parse the JSON response
+            const data = await res.json();
+
+            // Check response
+            if (data?.status && data?.data) {
+                newTab!.location.href = data.data; // 👈 LOAD PDF
+            } else {
+                newTab?.close();
+                setErrors(data?.message || "PDF not available");
+            }
+        } catch (error) {
+            newTab?.close();
+            setErrors("Something went wrong. Please try again.");
+        } finally {
+            setLoading(false);
+        }
+    };
+
     return (
         <div className="space-y-8">
             {(orderData?.order?.status === 'REJECTED' || orderData?.order?.status === 'CANCELLED') ? <div className="text-center space-y-6">
@@ -87,13 +129,27 @@ export function BookingConfirmation({ orderData }: Props) {
                             </div>
                         </div>
                         <div className="border-t border-gray-200 p-4 flex gap-3 justify-right">
-                            <button className="flex items-center gap-2 px-4 py-2 text-base bg-black text-white rounded-sm font-medium border border-black hover:bg-white hover:text-black hover:border-black cursor-pointer transition-colors">
-                                <Download className="w-4 h-4" />
+                            <button
+                                onClick={() => {
+                                    setDownloadAction('itinerary');
+                                    handleDownload('itinerary');
+                                }}
+                                disabled={loading && downloadAction === 'itinerary'}
+                                className="flex items-center gap-2 px-4 py-2 text-base bg-black text-white rounded-sm font-medium border border-black hover:bg-white hover:text-black hover:border-black cursor-pointer transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                            >
+                                {loading && downloadAction === 'itinerary' ? <Loader2 className="w-4 h-4 animate-spin" /> : <Download className="w-4 h-4" />}
                                 Download Itinerary
                             </button>
 
-                            <button className="flex items-center gap-2 px-4 py-2 text-base bg-black text-white rounded-sm font-medium border border-black hover:bg-white hover:text-black hover:border-black cursor-pointer transition-colors">
-                                <File className="w-4 h-4" />
+                            <button
+                                onClick={() => {
+                                    setDownloadAction('invoice');
+                                    handleDownload('invoice');
+                                }}
+                                disabled={loading && downloadAction === 'invoice'}
+                                className="flex items-center gap-2 px-4 py-2 text-base bg-black text-white rounded-sm font-medium border border-black hover:bg-white hover:text-black hover:border-black cursor-pointer transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                            >
+                                {loading && downloadAction === 'invoice' ? <Loader2 className="w-4 h-4 animate-spin" /> : <File className="w-4 h-4" />}
                                 Download Invoice
                             </button>
 

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { ChevronLeft, ChevronRight, MoveRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, Download, File, Loader2, MessageCircleMore, MessageSquare, MoveRight } from "lucide-react";
 import 'react-loading-skeleton/dist/skeleton.css';
 import { formatDate } from "@/lib/utils";
 
@@ -15,6 +15,9 @@ interface Props {
 
 export default function HeroTour({ orderData, tour, cartData }: Props) {
     // Define state
+    const [loading, setLoading] = useState(false);
+    const [downloadAction, setDownloadAction] = useState('itinerary');
+    const [errors, setErrors] = useState<string>("");
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
     // Total images
@@ -37,6 +40,42 @@ export default function HeroTour({ orderData, tour, cartData }: Props) {
     // Convert json parse
     const tourSummary = tour?.tour_sub_title ? JSON.parse(tour.tour_sub_title) : [];
     const media_gallery = tour?.media_gallery ? JSON.parse(tour.media_gallery) : [];
+
+    // Handle download itinerary
+    const handleDownload = async (action: string) => {
+        // Open new tab
+        const newTab = window.open("", "_blank");
+
+        try {
+            // Set loading
+            setLoading(true);
+
+            // Call API
+            const res = await fetch(`/api/bookings/download/${action}`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    checkout_id: orderData?.checkout_id
+                })
+            });
+
+            // Parse the JSON response
+            const data = await res.json();
+
+            // Check response
+            if (data?.status && data?.data) {
+                newTab!.location.href = data.data; // 👈 LOAD PDF
+            } else {
+                newTab?.close();
+                setErrors(data?.message || "PDF not available");
+            }
+        } catch (error) {
+            newTab?.close();
+            setErrors("Something went wrong. Please try again.");
+        } finally {
+            setLoading(false);
+        }
+    };
 
     return (
         <>
@@ -145,17 +184,34 @@ export default function HeroTour({ orderData, tour, cartData }: Props) {
                             </div>
 
                             <div className="flex flex-wrap gap-4">
-                                <button className="bg-[#ef2853] border-1 border-[#ef2853] hover:bg-white hover:text-[#ef2853] text-white px-4 py-2 rounded font-semibold text-sm cursor-pointer">
+                                <button
+                                    onClick={() => {
+                                        setDownloadAction('itinerary');
+                                        handleDownload('itinerary');
+                                    }}
+                                    disabled={loading && downloadAction === 'itinerary'}
+                                    className="flex items-center gap-2 bg-[#ef2853] border-1 border-[#ef2853] hover:bg-white hover:text-[#ef2853] text-white px-4 py-2 rounded font-semibold text-sm cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                                >
+                                    {loading && downloadAction === 'itinerary' ? <Loader2 className="w-4 h-4 animate-spin" /> : <Download className="w-4 h-4" />}
                                     Download Itinerary
                                 </button>
 
-                                <button className="bg-white border-1 border-black text-black hover:bg-black hover:text-white hover:border-[#333] cursor-pointer px-4 py-2 rounded font-semibold text-sm">
+                                <button
+                                    onClick={() => {
+                                        setDownloadAction('invoice');
+                                        handleDownload('invoice');
+                                    }}
+                                    disabled={loading && downloadAction === 'invoice'}
+                                    className="flex items-center gap-2 bg-white border-1 border-black text-black hover:bg-black hover:text-white hover:border-[#333] cursor-pointer px-4 py-2 rounded font-semibold text-sm disabled:opacity-50 disabled:cursor-not-allowed"
+                                >
+                                    {loading && downloadAction === 'invoice' ? <Loader2 className="w-4 h-4 animate-spin" /> : <File className="w-4 h-4" />}
                                     Download Invoice
                                 </button>
 
-                                <button className="bg-white border-1 border-black text-black hover:bg-black hover:text-white hover:border-[#333] cursor-pointer px-4 py-2 rounded font-semibold text-sm">
+                                {/* <button className="flex items-center gap-2 bg-white border-1 border-black text-black hover:bg-black hover:text-white hover:border-[#333] cursor-pointer px-4 py-2 rounded font-semibold text-sm">
+                                    <MessageCircleMore className="w-4 h-4" />
                                     Chat
-                                </button>
+                                </button> */}
                             </div>
                         </div>
                     </div>
