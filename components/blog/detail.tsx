@@ -286,7 +286,6 @@ export function BlogDetail({ blogPost, commentData }: Props) {
                         </p>
 
                         <div className="space-y-5">
-                            {/* NAME + EMAIL */}
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                                 <div>
                                     <label
@@ -303,7 +302,7 @@ export function BlogDetail({ blogPost, commentData }: Props) {
                                             setFormData({ ...formData, name: e.target.value })
                                         }
                                         required
-                                        placeholder="Your Name *"
+                                        placeholder="Your Name"
                                         className="w-full px-4 py-3 text-sm sm:text-base border border-black rounded-sm focus:outline-none focus:ring-1 focus:ring-gray-900"
                                     />
                                 </div>
@@ -323,7 +322,7 @@ export function BlogDetail({ blogPost, commentData }: Props) {
                                             setFormData({ ...formData, email: e.target.value })
                                         }
                                         required
-                                        placeholder="Your Email *"
+                                        placeholder="Your Email"
                                         className="w-full px-4 py-3 text-sm sm:text-base border border-black rounded-sm focus:outline-none focus:ring-1 focus:ring-gray-900"
                                     />
                                 </div>
@@ -345,7 +344,7 @@ export function BlogDetail({ blogPost, commentData }: Props) {
                                     }
                                     required
                                     rows={5}
-                                    placeholder="Your Comment *"
+                                    placeholder="Your Comment"
                                     className="w-full px-4 py-3 text-sm sm:text-base border border-black rounded-sm focus:outline-none focus:ring-1 focus:ring-gray-900 resize-none"
                                 />
                             </div>
