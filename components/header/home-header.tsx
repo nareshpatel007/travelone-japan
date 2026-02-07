@@ -12,7 +12,9 @@ export default function HomeHeader() {
                         src="https://ik.imagekit.io/288weifiq/nextjs/logo.webp"
                         alt="Logo"
                         width={160}
-                        height={100}
+                        height={80}
+                        draggable="false"
+                        className="object-contain h-auto w-20 md:w-26"
                     />
                 </Link>
                 <nav className="hidden lg:flex items-center gap-8 font-medium text-gray-900">
