@@ -101,7 +101,6 @@ export function TourCard({
                         />
                     </Link>
 
-                    {/* Wishlist */}
                     <button
                         onClick={handleWishlist}
                         className="absolute top-4 right-4 rounded-full bg-white/90 p-2 shadow-lg transition cursor-pointer hover:bg-white"
@@ -116,30 +115,22 @@ export function TourCard({
                         />
                     </button>
 
-                    {/* Badge */}
-                    {(tour_type || is_refundable === 1) && (
-                        <div className="absolute top-3 left-3 flex overflow-hidden rounded-full bg-black text-white">
-                            {tour_type && (
-                                <span
-                                    className={`px-3 py-1 text-xs ${is_refundable ? "border-r border-gray-200" : ""
-                                        }`}
-                                >
-                                    {tour_type}
-                                </span>
-                            )}
-                            {is_refundable === 1 && (
-                                <span className="px-3 py-1 text-xs">
-                                    Free Cancellation
-                                </span>
-                            )}
-                        </div>
-                    )}
+                    <div className="absolute top-3 left-3 flex overflow-hidden rounded-full bg-black text-white">
+                        {tour_type && (
+                            <span className={`px-3 py-1 text-xs ${is_refundable && "border-r border-gray-200"}`}>
+                                {tour_type}
+                            </span>
+                        )}
+                        {is_refundable === 1 && (
+                            <span className="px-3 py-1 text-xs">Free Cancellation</span>
+                        )}
+                    </div>
                 </div>
 
                 {/* Content */}
                 <div className="flex flex-1 flex-col space-y-4 p-6 text-center">
-
-                    <Link href={`/tour/${slug}`}>
+                    {/* Title */}
+                    <Link target="_blank" href={`/tour/${slug}`}>
                         <h2 className="line-clamp-2 text-lg font-medium text-gray-900 md:text-xl">
                             {name}
                         </h2>
