@@ -523,10 +523,7 @@ export function BookingCart({ tour, selectedPackage, open, onOpenChange }: Props
                     </div>
 
                     {errors && (
-                        <div className="relative space-x-2 text-red-500" role="alert">
-                            <strong className="font-bold">Error!</strong>
-                            <span className="block sm:inline">{errors}</span>
-                        </div>
+                        <span className="text-red-500">{errors}</span>
                     )}
 
                     <div className="flex items-center gap-3">
