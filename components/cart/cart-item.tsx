@@ -27,19 +27,18 @@ export function CartItem({ cartData }: Props) {
 
     return (
         <div className="rounded-md border border-black bg-white overflow-hidden">
-            <div className="grid grid-cols-1 sm:grid-cols-[180px_1fr] md:grid-cols-[220px_1fr]">
-                <div className="p-2 sm:p-3">
-                    <div className="relative h-48 sm:h-full min-h-[160px] rounded-sm overflow-hidden bg-gray-200">
-                        <Image
-                            src={cartData?.cart?.tour_info?.featured_image || "/placeholder.svg"}
-                            alt={cartData?.cart?.tour_info?.tour_name || "Image"}
-                            fill
-                            className="object-cover"
-                            priority
-                        />
-                    </div>
+            <div className="grid grid-cols-1 p-6 gap-6 sm:grid-cols-[180px_1fr] md:grid-cols-[220px_1fr]">
+                <div className="relative h-48 sm:h-full min-h-[160px] rounded-sm overflow-hidden bg-gray-200">
+                    <Image
+                        src={cartData?.cart?.tour_info?.featured_image || "/placeholder.svg"}
+                        alt={cartData?.cart?.tour_info?.tour_name || "Image"}
+                        fill
+                        draggable={false}
+                        className="object-cover"
+                        priority
+                    />
                 </div>
-                <div className="p-4 flex flex-col justify-between space-y-5">
+                <div className="flex flex-col justify-between space-y-3">
                     <div className="flex items-center justify-center">
                         <h2 className="text-lg sm:text-xl font-semibold text-black">
                             {cartData?.cart?.tour_info?.tour_name}
@@ -69,7 +68,7 @@ export function CartItem({ cartData }: Props) {
                             <span>
                                 <CalendarCheck className="h-4 w-4" />
                             </span>
-                            <span>Travel date: {formatDate(cartData?.cart?.booking_date)}</span>
+                            <span className="text-sm">Travel date: {formatDate(cartData?.cart?.booking_date)}</span>
                         </div>
                     </div>
 
