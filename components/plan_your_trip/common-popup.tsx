@@ -346,7 +346,7 @@ export function CommonPlanTripModal({ open, onOpenChange }: Props) {
                         )}
 
                         {/* Navigation */}
-                        <div className="flex gap-3">
+                        <div className="flex items-center gap-3">
                             {step > 0 && !formLoader && (
                                 <button
                                     onClick={() => setStep(step - 1)}

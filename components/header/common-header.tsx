@@ -193,7 +193,7 @@ export default function CommonHeader() {
                     </nav>
 
                     {/* RIGHT ACTIONS */}
-                    <div className="flex items-center gap-5">
+                    <div className="flex items-center gap-5 md:gap-6">
                         <Link href="/wishlist" className="relative">
                             <Heart className="h-6 w-6" />
                             <span id="wishlist_count" className="absolute -top-2 -right-2 h-5 w-5 bg-yellow-400 rounded-full text-xs font-bold flex items-center justify-center">
