@@ -224,6 +224,8 @@ export function BookingCart({ tour, selectedPackage, open, onOpenChange }: Props
             setErrors("Please enter name, email and phone number.");
         } else if (!selectedDate || !selectedNationality) {
             setErrors("Please select date and nationality.");
+        } else if (!isFutureDate(selectedDate)) {
+            setErrors("Please select a future travel date.");
         } else {
             setErrors("");
             setCurrentStep(currentStep + 1);
