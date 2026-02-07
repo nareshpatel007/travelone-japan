@@ -218,8 +218,8 @@ export function BlogDetail({ blogPost, commentData }: Props) {
                             <Image
                                 src="/common/bella_pic.png"
                                 alt="TravelOne"
-                                width={96}
-                                height={96}
+                                width={200}
+                                height={200}
                                 className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-full object-cover"
                             />
                             <div className="space-y-2">
