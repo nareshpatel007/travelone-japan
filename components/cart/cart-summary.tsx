@@ -7,6 +7,9 @@ interface Props {
 }
 
 export function CartSummary({ cartData }: Props) {
+    // Define button staus
+    const show_btn_flag = cartData?.part_payment != cartData?.full_payment ? 'part_payment' : 'full_payment';
+
     return (
         <div className="space-y-4">
             <div className="rounded-sm border border-border bg-card p-6 space-y-4">
@@ -34,19 +37,19 @@ export function CartSummary({ cartData }: Props) {
                     </div>
                     <p className="text-base">✓ All taxes and fees included</p>
                     <div className="flex flex-col space-y-2">
-                        <Link href="/checkout?type=part_payment">
+                        {show_btn_flag == "part_payment" && <Link href="/checkout?type=part_payment">
                             <button
                                 type="button"
-                                className="w-full bg-black text-white text-sm py-1.5 border border-black rounded-sm hover:bg-black/90 font-medium cursor-pointer"
+                                className="w-full bg-black text-white text-sm py-1.5 border border-black rounded-sm font-medium cursor-pointer"
                             >
                                 Pay Now (${formatPrice(cartData?.part_payment, 0)}) & Reserve
                             </button>
-                        </Link>
+                        </Link>}
 
                         <Link href="/checkout?type=full_payment">
                             <button
                                 type="button"
-                                className="w-full bg-white text-black text-sm py-1.5 border border-black rounded-sm hover:bg-black/90 hover:text-white font-medium cursor-pointer"
+                                className={`w-full ${show_btn_flag == "full_payment" ? "bg-black text-white hover:bg-black/90" : "bg-white text-black hover:bg-black/90 hover:text-white"}  text-sm py-1.5 border border-black rounded-sm font-medium cursor-pointer`}
                             >
                                 Pay Full (${formatPrice(cartData?.full_payment, 0)})
                             </button>
