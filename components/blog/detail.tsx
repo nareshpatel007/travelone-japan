@@ -304,7 +304,7 @@ export function BlogDetail({ blogPost, commentData }: Props) {
                                         }
                                         required
                                         placeholder="Your Name *"
-                                        className="w-full px-4 py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-gray-900"
+                                        className="w-full px-4 py-3 text-sm sm:text-base border border-black rounded-sm focus:outline-none focus:ring-1 focus:ring-gray-900"
                                     />
                                 </div>
 
@@ -324,7 +324,7 @@ export function BlogDetail({ blogPost, commentData }: Props) {
                                         }
                                         required
                                         placeholder="Your Email *"
-                                        className="w-full px-4 py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-gray-900"
+                                        className="w-full px-4 py-3 text-sm sm:text-base border border-black rounded-sm focus:outline-none focus:ring-1 focus:ring-gray-900"
                                     />
                                 </div>
                             </div>
@@ -346,7 +346,7 @@ export function BlogDetail({ blogPost, commentData }: Props) {
                                     required
                                     rows={5}
                                     placeholder="Your Comment *"
-                                    className="w-full px-4 py-3 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-gray-900 resize-none"
+                                    className="w-full px-4 py-3 text-sm sm:text-base border border-black rounded-sm focus:outline-none focus:ring-1 focus:ring-gray-900 resize-none"
                                 />
                             </div>
 
