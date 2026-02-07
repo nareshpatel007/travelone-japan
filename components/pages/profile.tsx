@@ -5,7 +5,6 @@ import CommonHeader from "@/components/header/common-header";
 import CommonFooter from "@/components/footer/common-footer";
 import { getLoginCookie, isLoggedIn } from "@/lib/auth";
 import { User } from "lucide-react";
-import ManageProfile from "../account/profile";
 import ProfileSettings from "../account/profile";
 import PageHeading from "../common/page-heading";
 
@@ -14,10 +13,6 @@ export default function UserProfilePage() {
     const [ready, setReady] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [profileData, setProfileData] = useState<any>({});
-
-    // Get login data
-    const is_login_user = isLoggedIn();
-    const user = getLoginCookie();
 
     useEffect(() => {
         requestAnimationFrame(() => {
@@ -30,6 +25,10 @@ export default function UserProfilePage() {
         const controller = new AbortController();
         const loadInitData = async () => {
             try {
+                // Get login data
+                const is_login_user = isLoggedIn();
+                const user = getLoginCookie();
+
                 // If non login and required cart ID
                 if (!is_login_user) {
                     return;
