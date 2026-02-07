@@ -82,11 +82,10 @@ export function ManageBookings({ bookingData }: Props) {
                         return (
                             <div
                                 key={index}
-                                className={`bg-white border border-gray-200 rounded-lg overflow-hidden ${booking.status === "CANCELLED" ? "opacity-75" : ""
-                                    }`}
+                                className={`bg-white border border-gray-200 rounded-sm overflow-hidden ${booking.status === "CANCELLED" ? "opacity-75" : ""}`}
                             >
-                                <div className="!p-6">
-                                    <div className="flex flex-col md:flex-row gap-4">
+                                <div className="p-0 md:p-5">
+                                    <div className="flex flex-col md:flex-row gap-0 md:gap-4">
                                         <div className="flex-shrink-0">
                                             <Link href={`bookings/${booking.checkout_id}`}>
                                                 <Image
@@ -94,11 +93,12 @@ export function ManageBookings({ bookingData }: Props) {
                                                     alt={tourInfo?.tour_name || "Placeholder"}
                                                     width={200}
                                                     height={200}
-                                                    className="w-full h-full object-cover rounded-lg"
+                                                    draggable="false"
+                                                    className="w-full h-full object-cover rounded-sm"
                                                 />
                                             </Link>
                                         </div>
-                                        <div className="flex-1 min-w-0 space-y-2 md:space-y-4">
+                                        <div className="flex-1 min-w-0 p-4 md:p-0 space-y-2 md:space-y-4">
                                             <div className="flex flex-col md:flex-row md:items-start justify-between gap-3 mb-3">
                                                 <div className="space-y-2">
                                                     <Link href={`bookings/${booking.checkout_id}`}>
