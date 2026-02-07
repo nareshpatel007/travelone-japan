@@ -49,7 +49,7 @@ const faqs = [
 export default function FAQSection({ expandedFAQ, setExpandedFAQ }: FAQSectionProps) {
     return (
         <div className="border border-border rounded-sm overflow-hidden bg-card">
-            <div className="px-6 py-4 border-b border-black bg-secondary/30">
+            <div className="px-6 py-4 border-b border-black bg-amber-50">
                 <span className="text-xl font-semibold text-foreground">Frequently Asked Questions</span>
             </div>
             <div className="divide-y divide-border">

@@ -3,14 +3,10 @@
 import { useEffect, useState } from "react";
 import CommonHeader from "@/components/header/common-header";
 import CommonFooter from "@/components/footer/common-footer";
-import PassengerForm from "@/components/checkout/passenger-form";
-import PaymentMethod from "@/components/checkout/payment-method";
-import OrderSummary from "@/components/checkout/order-summary";
 import FAQSection from "@/components/checkout/faq-section";
 import PageHeading from "@/components/common/page-heading";
-import { getCartData, getLoginCookie, isLoggedIn } from "@/lib/auth";
-import PaymentSchedule from "@/components/checkout/payment-schedule";
-import { CheckCheck, CreditCard, ShoppingBasket } from "lucide-react";
+import { isLoggedIn } from "@/lib/auth";
+import { CheckCheck, CreditCard } from "lucide-react";
 import StripeProvider from "@/components/providers/StripeProvider";
 import { useParams } from "next/navigation";
 import { RepaymentCartItem } from "@/components/cart/repayment-item";

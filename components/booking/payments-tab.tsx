@@ -78,7 +78,7 @@ export default function PaymentsTab({ orderData, paymentHistory }: Props) {
                     {/* SUMMARY ROWS */}
                     <tr className="bg-white border border-[#d9cec1] font-medium text-sm md:text-base">
                         <td className="border border-[#d9cec1] px-4 py-2">Total To Be Paid</td>
-                        <td className="border border-[#d9cec1] px-4 py-2 text-center">
+                        <td className="border border-[#d9cec1] px-4 py-2 text-center text-green-600">
                             ${formatPrice(orderData?.payable_amount)}
                         </td>
                         {orderData?.payment_type == 'part_payment' && <>
@@ -90,7 +90,7 @@ export default function PaymentsTab({ orderData, paymentHistory }: Props) {
 
                     <tr className="bg-white border border-[#d9cec1] font-medium text-sm md:text-base">
                         <td className="border border-[#d9cec1] px-4 py-2">Total Paid Till Date</td>
-                        <td className="border border-[#d9cec1] px-4 py-2 text-center text-green-600">
+                        <td className="border border-[#d9cec1] px-4 py-2 text-center text-black">
                             ${orderData?.payment_type == 'full_payment' ? <>
                                 {orderData?.status == 'COMPLETED' ? <>
                                     ${formatPrice(orderData?.payable_amount)}

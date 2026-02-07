@@ -12,7 +12,7 @@ interface Props {
 
 export default function RepaymentOrderSummary({ orderData, paymentData, walletAmount, stripeHandlingFee }: Props) {
     return (
-        <div className="rounded-sm border border-border bg-card p-6 space-y-4">
+        <div className="rounded-sm border border-border bg-card p-4 md:p-6 space-y-4">
             <span className="block text-xl font-semibold text-foreground">Order Summary</span>
             <div className="space-y-4">
                 <div className="space-y-2 border-b border-border pb-4">
@@ -48,7 +48,7 @@ export default function RepaymentOrderSummary({ orderData, paymentData, walletAm
                     </span>
                 </div>}
 
-                <p className="text-base">✓ All taxes and fees included</p>
+                <p className="text-sm md:text-base">✓ All taxes and fees included</p>
             </div>
         </div>
     )

@@ -1,11 +1,9 @@
 "use client"
 
 import { useState } from "react";
-import { CheckCheck, Loader2, Lock } from "lucide-react";
+import { Loader2, Lock } from "lucide-react";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import { formatPrice } from "@/lib/utils";
-import { deleteCartData, getLoginCookie, isLoggedIn } from "@/lib/auth";
-import { useRouter } from "next/navigation";
 
 // Define interface
 interface Props {
@@ -17,9 +15,6 @@ interface Props {
 }
 
 export default function RepaymentPaymentMethod({ orderData, paymentData, walletAmount, stripeHandlingFee, setIsPaymentDone }: Props) {
-    // Define route
-    const router = useRouter();
-
     // Define hooks
     const stripe = useStripe();
     const elements = useElements();
@@ -33,16 +28,19 @@ export default function RepaymentPaymentMethod({ orderData, paymentData, walletA
     const handlePayment = async () => {
         // For Credit Card Payment
         if (paymentMethod === 'credit-card') {
-            if (!stripe || !elements) return;
-
-            // Update state
-            setIsLoading(true);
-            setErrors("");
-
-            // Define order amount
-            const order_amount: number = Number(paymentData?.amount) + Number(walletAmount) + Number(stripeHandlingFee);
+            if (!stripe || !elements) {
+                setErrors("Payment method not found. Please contact your admin.");
+                return;
+            }
 
             try {
+                // Update state
+                setIsLoading(true);
+                setErrors("");
+
+                // Define order amount
+                const order_amount: number = Number(paymentData?.amount) + Number(walletAmount) + Number(stripeHandlingFee);
+
                 // Create PaymentIntent
                 const res = await fetch("/api/stripe/create-payment-intent", {
                     method: "POST",
@@ -102,26 +100,26 @@ export default function RepaymentPaymentMethod({ orderData, paymentData, walletA
                         setIsPaymentDone(true);
                     } else {
                         // Set error
-                        setErrors(data.message || "Payment failed. Please try again. If money was debited from your account, it will be refunded within 5-7 business days.");
+                        setErrors(data.message || "Payment failed. If money was debited from your account, it will be refunded within 5-7 business days.");
                         return;
                     }
                 }
             } catch (err: any) {
                 // Set error
-                setErrors("Something went wrong. Please try again. If money was debited from your account, it will be refunded within 5-7 business days.");
+                setErrors("Something went wrong. If money was debited from your account, it will be refunded within 5-7 business days.");
             } finally {
                 // Update state
                 setIsLoading(false);
             }
         } else if (paymentMethod === 'bank-transfer') {
-            // Update state
-            setIsLoading(true);
-            setErrors("");
-
-            // Define order amount
-            let order_amount: number = Number(paymentData?.amount) + Number(walletAmount);
-
             try {
+                // Update state
+                setIsLoading(true);
+                setErrors("");
+
+                // Define order amount
+                let order_amount: number = Number(paymentData?.amount) + Number(walletAmount);
+
                 // Fetch the data
                 const response = await fetch("/api/checkout/repayment/bank_transfer", {
                     method: "POST",
@@ -141,15 +139,16 @@ export default function RepaymentPaymentMethod({ orderData, paymentData, walletA
 
                 // Check response
                 if (data.status) {
+                    // Update state
                     setIsPaymentDone(true);
                 } else {
                     // Set error
-                    setErrors(data.message || "Something went wrong. Please try again. If money was debited from your account, it will be refunded within 5-7 business days.");
+                    setErrors(data.message || "Something went wrong. Please try again.");
                     return;
                 }
             } catch (err: any) {
                 // Set error
-                setErrors("Something went wrong. Please try again. If money was debited from your account, it will be refunded within 5-7 business days.");
+                setErrors("Something went wrong. Please try again.");
             } finally {
                 // Update state
                 setIsLoading(false);
@@ -158,17 +157,23 @@ export default function RepaymentPaymentMethod({ orderData, paymentData, walletA
     }
 
     return (
-        <div className="border border-border rounded-sm overflow-hidden bg-card mb-4">
-            <div className="p-6 space-y-6">
+        <div className="border border-border rounded-sm overflow-hidden bg-card">
+            <div className="p-4 md:p-6 space-y-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <button
-                        onClick={() => setPaymentMethod("credit-card")}
+                        onClick={() => {
+                            setPaymentMethod("credit-card");
+                            setErrors("");
+                        }}
                         className={`py-2 px-4 border rounded-sm font-medium text-base transition-all cursor-pointer border-black ${paymentMethod === "credit-card" ? "bg-black text-white" : "bg-white text-black"}`}
                     >
                         Credit Card
                     </button>
                     <button
-                        onClick={() => setPaymentMethod("bank-transfer")}
+                        onClick={() => {
+                            setPaymentMethod("bank-transfer");
+                            setErrors("");
+                        }}
                         className={`py-2 px-4 border rounded-sm font-medium text-base transition-all cursor-pointer border-black ${paymentMethod === "bank-transfer" ? "bg-black text-white" : "bg-white text-black"}`}
                     >
                         Bank Transfer
