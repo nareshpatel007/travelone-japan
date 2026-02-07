@@ -30,9 +30,9 @@ export default function ThreeStepBanner({ onOpenChange }: Props) {
     return (
         <div className="px-5 md:px-10 py-12 space-y-12">
             <div className="space-y-2 text-center">
-                <h1 className="text-black text-3xl md:text-6xl leading-tight font-normal">
+                <h2 className="text-black text-3xl md:text-6xl leading-tight font-normal">
                     Start with Who, Not Where.
-                </h1>
+                </h2>
                 <span className="text-black text-md">
                     Initialize your travel DNA and let Agentic AI match your soul to the world.
                 </span>

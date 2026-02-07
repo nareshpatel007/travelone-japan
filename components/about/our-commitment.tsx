@@ -22,9 +22,9 @@ export default function OurCommitment() {
 
                         {/* TEXT */}
                         <div className="md:w-2/3 space-y-4">
-                            <h3 className="text-3xl md:text-6xl leading-tight font-normal">
+                            <h2 className="text-3xl md:text-6xl leading-tight font-normal">
                                 Our Commitment to You
-                            </h3>
+                            </h2>
 
                             <p className="text-black text-base sm:text-lg leading-relaxed">
                                 Whether you are a consumer discovering your next destination on travelone.io

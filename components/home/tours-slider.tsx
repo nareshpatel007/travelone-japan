@@ -27,9 +27,9 @@ export default function ToursSlider({ title, subTitle, toursList }: Props) {
     return (
         <section className="px-5 md:px-10 py-12 space-y-12 bg-[#FFF9EE]">
             <div className="text-black space-y-2 text-center">
-                <h1 className="text-3xl md:text-6xl leading-tight font-normal">
+                <h2 className="text-3xl md:text-6xl leading-tight font-normal">
                     {title || "Japan: The Precision of Tradition"}
-                </h1>
+                </h2>
                 <span className="text-md">
                     {subTitle || "Experience the beauty and culture of Japan, where tradition meets innovation."}
                 </span>
@@ -73,7 +73,9 @@ export default function ToursSlider({ title, subTitle, toursList }: Props) {
                                         />
                                     </div>
                                     <div className="py-6 space-y-3 text-center">
-                                        <span className="text-md md:text-xl font-medium text-gray-900 block">{tour.name}</span>
+                                        <h3 className="text-md md:text-xl font-medium text-gray-900 block">
+                                            {tour.name}
+                                        </h3>
                                         <div className="flex justify-center">
                                             <span className="text-xs md:text-sm font-semibold text-black bg-amber-300 px-5 py-1.5 rounded">
                                                 Start from USD ${formatPrice(tour.starting_price, 0)}

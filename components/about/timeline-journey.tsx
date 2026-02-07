@@ -27,9 +27,9 @@ export default function TravelOneJourney() {
         <div className="bg-[#FFF9EE]">
             <div className="max-w-7xl mx-auto px-5 md:px-0 py-10 md:py-16 space-y-10">
                 <div className="text-black text-center">
-                    <h3 className="text-3xl md:text-6xl leading-tight font-normal">
+                    <h2 className="text-3xl md:text-6xl leading-tight font-normal">
                         The TravelOne Evolution
-                    </h3>
+                    </h2>
                 </div>
                 <div className="relative">
                     <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-black" />

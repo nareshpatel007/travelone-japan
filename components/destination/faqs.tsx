@@ -18,9 +18,9 @@ export default function FAQsSection({ pageData }: Props) {
     return (
         <section className="max-w-7xl mx-auto px-5 md:px-0 py-12 space-y-12">
             <div className="text-center space-y-1">
-                <h3 className="text-black text-3xl md:text-6xl leading-tight font-normal">
+                <h2 className="text-black text-3xl md:text-6xl leading-tight font-normal">
                     People Also Ask
-                </h3>
+                </h2>
                 <span className="text-sm md:text-lg text-black">
                     Frequently Asked Questions
                 </span>
@@ -32,9 +32,9 @@ export default function FAQsSection({ pageData }: Props) {
                             onClick={() => setExpandedIndex(expandedIndex === index ? null : index)}
                             className="w-full p-4 flex items-center justify-between border border-gray-200 transition-colors duration-200 text-left group hover:bg-gray-100 cursor-pointer"
                         >
-                            <span className="text-sm md:text-base font-medium text-black pr-4 flex-1 group-hover:text-[#1E1E1E] block">
+                            <h3 className="text-sm md:text-base font-medium text-black pr-4 flex-1 group-hover:text-[#1E1E1E] block">
                                 {item?.question}
-                            </span>
+                            </h3>
                             <ChevronDown
                                 size={24}
                                 className={`text-black flex-shrink-0 transition-transform duration-300 ${expandedIndex === index ? "rotate-180" : ""

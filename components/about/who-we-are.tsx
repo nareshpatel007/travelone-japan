@@ -7,13 +7,9 @@ export default function WhoWeAreSection() {
                 {/* HEADING */}
                 <div className="max-w-3xl mx-auto text-center space-y-4">
                     <div className="space-y-1">
-                        <h3 className="text-3xl md:text-6xl leading-tight font-normal">
-                            Who We Are
-                        </h3>
-
-                        <h3 className="text-3xl md:text-6xl leading-tight font-normal">
-                            A Dual-Continent Powerhouse
-                        </h3>
+                        <h2 className="text-3xl md:text-6xl leading-tight font-normal">
+                            Who We Are<br />A Dual-Continent Powerhouse
+                        </h2>
                     </div>
 
                     <p className="text-black text-base sm:text-lg leading-relaxed">

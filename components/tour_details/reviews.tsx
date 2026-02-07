@@ -19,9 +19,9 @@ export default function Reviews({ reviews }: Props) {
         <div className="bg-white py-12 px-5 md:px-0 max-w-7xl mx-auto">
             {/* HEADING */}
             <div className="text-center space-y-1 mb-12">
-                <h3 className="text-black text-3xl md:text-6xl leading-tight font-normal">
+                <h2 className="text-black text-3xl md:text-6xl leading-tight font-normal">
                     Recent Reviews
-                </h3>
+                </h2>
                 <span className="text-sm md:text-lg text-black">
                     To receive our best monthly deals and travel inspiration.
                 </span>
@@ -95,9 +95,9 @@ function ReviewCard({ review }: { review: any }) {
             </div>
 
             {/* Name */}
-            <span className="text-md md:text-lg font-medium text-black mb-3">
+            <h3 className="text-md md:text-lg font-medium text-black mb-3">
                 {review.full_name}
-            </span>
+            </h3>
 
             {/* Stars */}
             <div className="flex gap-1 mb-4">

@@ -13,9 +13,9 @@ export default function OurVision() {
                 <div className="flex flex-col lg:flex-row gap-10 items-center">
                     <div className="text-center flex-1 space-y-6">
                         <div className="text-black">
-                            <h3 className="text-3xl md:text-6xl leading-tight font-normal">
+                            <h2 className="text-3xl md:text-6xl leading-tight font-normal">
                                 The Persona-First Era
-                            </h3>
+                            </h2>
                         </div>
 
                         <p className="text-base text-black leading-relaxed">

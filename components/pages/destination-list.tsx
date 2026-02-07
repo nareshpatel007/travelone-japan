@@ -112,9 +112,9 @@ export default function DestinationPage() {
                                             <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-black/30 to-transparent" />
 
                                             <div className="absolute inset-0 flex items-center justify-center">
-                                                <h3 className="text-lg md:text-2xl font-semibold text-white">
+                                                <h2 className="text-lg md:text-2xl font-semibold text-white">
                                                     {item.name}
-                                                </h3>
+                                                </h2>
                                             </div>
                                         </Link>
                                     </div>

@@ -44,7 +44,7 @@ export default function FooterCurveSection() {
                         style={{ backgroundImage: "url('https://ik.imagekit.io/288weifiq/nextjs/footer-curve-design.png')" }}
                     />
                     <div className="relative z-10 flex flex-col items-center text-center">
-                        <h2 className="text-3xl !text-black md:text-5xl font-normal leading-tight !mb-4">
+                        <h2 className="text-3xl !text-black md:text-5xl font-normal leading-tight mb-4">
                             Every Traveler’s Story<br />Deserves a Masterpiece.
                         </h2>
 

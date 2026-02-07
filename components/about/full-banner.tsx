@@ -17,9 +17,9 @@ export default function FullBannerSection() {
                 />
                 <div className="relative h-full flex items-center justify-center px-5 md:px-0">
                     <div className="text-center text-white space-y-5">
-                        <h1 className="text-3xl md:text-6xl leading-tight font-normal">
+                        <h2 className="text-3xl md:text-6xl leading-tight font-normal">
                             Travel is a Result of Your Persona.
-                        </h1>
+                        </h2>
                         <p className="text-base md:text-lg">
                             Join the world’s most discerning travelers in a world that is perfectly synchronized to you.
                         </p>

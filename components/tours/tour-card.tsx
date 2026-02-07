@@ -140,9 +140,9 @@ export function TourCard({
                 <div className="flex flex-1 flex-col space-y-4 p-6 text-center">
 
                     <Link href={`/tour/${slug}`}>
-                        <h3 className="line-clamp-2 text-lg font-medium text-gray-900 md:text-xl">
+                        <h2 className="line-clamp-2 text-lg font-medium text-gray-900 md:text-xl">
                             {name}
-                        </h3>
+                        </h2>
                     </Link>
 
                     {/* Summary */}

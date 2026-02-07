@@ -10,13 +10,9 @@ export default function TeamSection() {
                     {/* HEADER */}
                     <div className="max-w-5xl mx-auto text-center space-y-4">
                         <div className="space-y-1">
-                            <h3 className="text-3xl md:text-6xl leading-tight font-normal">
-                                The Team
-                            </h3>
-
-                            <h3 className="text-3xl md:text-6xl leading-tight font-normal">
-                                Global Intel, Human-in-the-loop
-                            </h3>
+                            <h2 className="text-3xl md:text-6xl leading-tight font-normal">
+                                The Team<br />Global Intel, Human-in-the-loop
+                            </h2>
                         </div>
 
                         <p className="text-black text-base sm:text-lg leading-relaxed">
@@ -58,19 +54,13 @@ export default function TeamSection() {
                 <div className="max-w-7xl mx-auto px-5 sm:px-0 space-y-12">
                     <div className="max-w-5xl mx-auto text-center space-y-4">
                         <div className="space-y-1">
-                            <h3 className="text-3xl md:text-6xl leading-tight font-normal">
-                                On-Ground Intelligence
-                            </h3>
-
-                            <h3 className="text-3xl md:text-6xl leading-tight font-normal">
-                                (Global Strategic Zones)
-                            </h3>
+                            <h2 className="text-3xl md:text-6xl leading-tight font-normal">
+                                On-Ground Intelligence<br />(Global Strategic Zones)
+                            </h2>
                         </div>
 
                         <p className="text-black text-base sm:text-lg leading-relaxed">
-                            We have built a dedicated support network across the globe. These aren't just partners;
-                            they are local intelligence units who feed real-world, real-time data back into our AI
-                            to ensure our "Local Soul" remains accurate.
+                            We have built a dedicated support network across the globe. These aren't just partners; they are local intelligence units who feed real-world, real-time data back into our AI to ensure our "Local Soul" remains accurate.
                         </p>
                     </div>
 
@@ -117,9 +107,9 @@ export default function TeamSection() {
                                 </div>
 
                                 <div className="p-6 space-y-2 text-center md:text-left">
-                                    <h4 className="font-medium text-black">
+                                    <h3 className="font-medium text-black">
                                         {region.title}
-                                    </h4>
+                                    </h3>
                                     <p className="text-black text-sm sm:text-base leading-relaxed">
                                         {region.text}
                                     </p>

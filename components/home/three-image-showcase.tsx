@@ -12,9 +12,9 @@ export default function ThreeImageSplitSection({ destinationList }: Props) {
     return (
         <section className="py-6 px-5 md:px-10 py-12 space-y-12 bg-[#FFF9EE]">
             <div className="space-y-2 text-center">
-                <h1 className="text-black text-3xl md:text-6xl leading-tight font-normal">
+                <h2 className="text-black text-3xl md:text-6xl leading-tight font-normal">
                     The Signature Collection
-                </h1>
+                </h2>
                 <span className="text-black text-md">
                     Hand-vetted master destinations curated for the ultra-luxury explorer.
                 </span>
@@ -33,9 +33,9 @@ export default function ThreeImageSplitSection({ destinationList }: Props) {
                                     priority
                                 />
                                 <div className="absolute bottom-5 left-5 right-5">
-                                    <p className="text-white text-md sm:text-2xl font-medium leading-snug">
+                                    <h3 className="text-white text-md sm:text-2xl font-medium leading-snug">
                                         {destinationList[0].name}
-                                    </p>
+                                    </h3>
                                 </div>
                             </Link>
                         </div>
@@ -52,9 +52,9 @@ export default function ThreeImageSplitSection({ destinationList }: Props) {
                                     className="object-cover transition-transform duration-700 group-hover:scale-105"
                                 />
                                 <div className="absolute bottom-5 left-5 right-5">
-                                    <p className="text-white text-md sm:text-2xl font-medium leading-snug">
+                                    <h3 className="text-white text-md sm:text-2xl font-medium leading-snug">
                                         {destinationList[1].name}
-                                    </p>
+                                    </h3>
                                 </div>
                             </Link>
                         </div>
@@ -71,9 +71,9 @@ export default function ThreeImageSplitSection({ destinationList }: Props) {
                                     className="object-cover transition-transform duration-700 group-hover:scale-105"
                                 />
                                 <div className="absolute bottom-5 left-5 right-5">
-                                    <p className="text-white text-md sm:text-2xl font-medium leading-snug">
+                                    <h3 className="text-white text-md sm:text-2xl font-medium leading-snug">
                                         {destinationList[2].name}
-                                    </p>
+                                    </h3>
                                 </div>
                             </Link>
                         </div>
@@ -95,9 +95,9 @@ export default function ThreeImageSplitSection({ destinationList }: Props) {
                                     className="object-cover transition-transform duration-700 group-hover:scale-105"
                                 />
                                 <div className="absolute bottom-5 left-5 right-5">
-                                    <p className="text-white text-sm sm:text-lg font-medium leading-snug">
+                                    <h3 className="text-white text-md sm:text-2xl font-medium leading-snug">
                                         {item.name}
-                                    </p>
+                                    </h3>
                                 </div>
                             </Link>
                         </div>

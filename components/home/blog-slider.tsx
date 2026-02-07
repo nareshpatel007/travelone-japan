@@ -22,9 +22,9 @@ export default function BlogSlider({ blogList }: Props) {
     return (
         <section className="px-5 md:px-10 py-12 space-y-12 bg-[#FFF9EE]">
             <div className="space-y-2 text-center">
-                <h1 className="text-black text-3xl md:text-6xl leading-tight font-normal">
+                <h2 className="text-black text-3xl md:text-6xl leading-tight font-normal">
                     Latest Blogs
-                </h1>
+                </h2>
                 <span className="text-black text-md">
                     Our latest blog posts on TravelOne
                 </span>
@@ -74,9 +74,9 @@ export default function BlogSlider({ blogList }: Props) {
                                         <span className="text-xs md:text-sm font-semibold text-gray-900 block">
                                             {formatDate(post.created_at || new Date())}
                                         </span>
-                                        <span className="text-md md:text-lg font-medium text-gray-900 block line-clamp-2">
+                                        <h3 className="text-md md:text-lg font-medium text-gray-900 block line-clamp-2">
                                             {post.post_title}
-                                        </span>
+                                        </h3>
                                     </div>
                                 </div>
                             </Link>

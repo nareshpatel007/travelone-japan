@@ -14,7 +14,6 @@ import TopCities from "@/components/destination/top-cities";
 import ThreeBoxSection from "@/components/destination/three-box-section";
 import FAQsSection from "@/components/destination/faqs";
 import PageHelpful from "@/components/common/helpful";
-import Skeleton from "react-loading-skeleton";
 
 export default function TourDetailPage() {
     // Get slug

@@ -15,9 +15,9 @@ export default function TopCities({ country, cities }: Props) {
     return (
         <div className="max-w-7xl mx-auto px-5 md:px-0 py-12 space-y-12">
             <div className="text-center space-y-1">
-                <h3 className="text-black text-3xl md:text-6xl leading-tight font-normal">
+                <h2 className="text-black text-3xl md:text-6xl leading-tight font-normal">
                     Top Cities in {country || "Unknown"}
-                </h3>
+                </h2>
                 <span className="text-sm md:text-lg text-black">
                     Find the best cities to visit in {country || "Unknown"}
                 </span>
@@ -40,9 +40,9 @@ export default function TopCities({ country, cities }: Props) {
 
                         {/* Text */}
                         <div className="absolute inset-0 flex items-center justify-center">
-                            <span className="text-white text-lg font-semibold drop-shadow-md">
+                            <h3 className="text-white text-lg font-semibold drop-shadow-md">
                                 {city.name}
-                            </span>
+                            </h3>
                         </div>
                     </div>
                 ))}

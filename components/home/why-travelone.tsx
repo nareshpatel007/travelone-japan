@@ -28,9 +28,9 @@ export default function WhyTravelOne() {
     return (
         <div className="max-w-7xl mx-auto px-5 md:px-0 py-12 space-y-12">
             <div className="text-center space-y-2">
-                <h1 className="text-black text-3xl md:text-6xl leading-tight font-normal">
+                <h2 className="text-black text-3xl md:text-6xl leading-tight font-normal">
                     Why TravelOne?
-                </h1>
+                </h2>
                 <span className="text-black text-md">
                     Why the world’s most discerning travelers choose Persona-led orchestration.
                 </span>
