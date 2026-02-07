@@ -222,12 +222,12 @@ export function BlogDetail({ blogPost, commentData }: Props) {
                                 height={96}
                                 className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-full object-cover"
                             />
-                            <div>
-                                <span className="font-semibold text-gray-900 block mb-2 text-base sm:text-lg">
+                            <div className="space-y-2">
+                                <span className="font-semibold text-black block text-base sm:text-lg">
                                     About TravelOne
                                 </span>
 
-                                <p className="text-gray-600 text-sm sm:text-md leading-relaxed">
+                                <p className="text-black text-sm md:text-base leading-relaxed">
                                     Sarah is a passionate traveler and writer with over 10 years of experience exploring hidden corners
                                     of the world. She specializes in off-the-beaten-path destinations and sustainable travel practices.
                                 </p>
@@ -371,7 +371,7 @@ export function BlogDetail({ blogPost, commentData }: Props) {
                                         !formData.comment ||
                                         isFormLoading
                                     }
-                                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-black text-white hover:bg-black/90 font-medium py-3 px-8 rounded-sm cursor-pointer transition-colors disabled:opacity-60 disabled:cursor-not-allowed disabled:opacity-50"
+                                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-black text-white hover:bg-black/90 font-medium py-2 px-8 rounded-sm cursor-pointer transition-colors disabled:opacity-60 disabled:cursor-not-allowed disabled:opacity-50"
                                 >
                                     {isFormLoading ? (
                                         <Loader2 className="h-4 w-4 animate-spin" />
