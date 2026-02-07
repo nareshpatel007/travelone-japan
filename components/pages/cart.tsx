@@ -112,7 +112,7 @@ export default function CartPage() {
                         main="Your Cart"
                         sub="Checkout your cart and start planning your trip."
                     />
-                    
+
                     {!isLoading && cartData && cartData.cart && <div className="grid gap-4 grid-cols-1 md:grid-cols-3">
                         <div className="md:col-span-2 space-y-4">
                             {/* Cart item */}
