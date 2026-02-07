@@ -79,9 +79,7 @@ export default function PaymentsTab({ orderData, paymentHistory }: Props) {
                     <tr className="bg-white border border-[#d9cec1] font-medium text-sm md:text-base">
                         <td className="border border-[#d9cec1] px-4 py-2">Total To Be Paid</td>
                         <td className="border border-[#d9cec1] px-4 py-2 text-center">
-                            ${orderData?.payment_type == 'full_payment' && orderData?.status == 'COMPLETED' ?
-                                formatPrice(orderData?.payable_amount) :
-                                formatPrice(totalAmount)}
+                            ${formatPrice(orderData?.payable_amount)}
                         </td>
                         {orderData?.payment_type == 'part_payment' && <>
                             <td className="border border-[#d9cec1] px-4 py-2 text-center"></td>
@@ -93,9 +91,15 @@ export default function PaymentsTab({ orderData, paymentHistory }: Props) {
                     <tr className="bg-white border border-[#d9cec1] font-medium text-sm md:text-base">
                         <td className="border border-[#d9cec1] px-4 py-2">Total Paid Till Date</td>
                         <td className="border border-[#d9cec1] px-4 py-2 text-center text-green-600">
-                            ${orderData?.payment_type == 'full_payment' && orderData?.status == 'COMPLETED' ?
-                                formatPrice(orderData?.payable_amount) :
-                                formatPrice(totalAmount - outstandingAmount)}
+                            {orderData?.payment_type == 'full_payment' ? <>
+                                {orderData?.status == 'COMPLETED' ? <>
+                                    ${formatPrice(orderData?.payable_amount)}
+                                </> : <>
+                                    ${formatPrice(0)}
+                                </>}
+                            </> : <>
+                                {formatPrice(orderData?.payable_amount - outstandingAmount)}
+                            </>}
                         </td>
                         {orderData?.payment_type == 'part_payment' && <>
                             <td className="border border-[#d9cec1] px-4 py-2 text-center"></td>

@@ -215,7 +215,7 @@ export default function HeroTour({ orderData, tour, cartData }: Props) {
 
                                 <Link href={`https://message.travelone.io/?token=${loginUser?.token}&booking=${orderData?.booking_ref_no}`} target="_blank">
                                     <button className="flex items-center gap-2 bg-white border-1 border-black text-black hover:bg-black hover:text-white hover:border-[#333] cursor-pointer px-4 py-2 rounded font-semibold text-sm">
-                                        <MessageCircleMore className="w-4 h-4" />
+                                        <MessageSquare className="w-4 h-4" />
                                         Chat
                                     </button>
                                 </Link>
