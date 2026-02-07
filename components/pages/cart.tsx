@@ -110,7 +110,7 @@ export default function CartPage() {
                 <div className="max-w-7xl mx-auto px-5 md:px-0 py-6">
                     <PageHeading
                         main="Your Cart"
-                        sub="Checkout your cart and start planning your next trip."
+                        sub="Checkout your cart and start planning your trip."
                     />
                     
                     {!isLoading && cartData && cartData.cart && <div className="grid gap-4 grid-cols-1 md:grid-cols-3">
