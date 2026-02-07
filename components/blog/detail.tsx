@@ -251,7 +251,7 @@ export function BlogDetail({ blogPost, commentData }: Props) {
                                     <div className="flex-shrink-0">
                                         <div className="w-16 h-16 relative rounded-full overflow-hidden bg-gray-200">
                                             <Image
-                                                src={comment.avatar || "https://ik.imagekit.io/288weifiq/nextjs/avatar.png?updatedAt=1770440081735"}
+                                                src={comment.avatar || "https://ik.imagekit.io/288weifiq/nextjs/avatar.png"}
                                                 alt={comment.name}
                                                 fill
                                                 className="object-cover"

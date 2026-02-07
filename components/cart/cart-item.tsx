@@ -73,12 +73,12 @@ export function CartItem({ cartData }: Props) {
                     </div>
 
                     <div className="overflow-x-auto">
-                        <table className="w-full border border-blue-600 text-base text-black">
+                        <table className="w-full border border-black text-base text-black">
                             <thead>
-                                <tr className="border-b border-blue-600 text-center font-medium">
-                                    <th className="px-3 py-2 text-base border-r border-blue-600"></th>
-                                    <th className="px-3 py-2 text-base border-r border-blue-600">Count</th>
-                                    <th className="px-3 py-2 text-base border-r border-blue-600">Per Person</th>
+                                <tr className="border border-black text-center font-medium">
+                                    <th className="px-3 py-2 text-base border border-black"></th>
+                                    <th className="px-3 py-2 text-base border border-black">Count</th>
+                                    <th className="px-3 py-2 text-base border border-black">Per Person</th>
                                     <th className="px-3 py-2 text-base">Total ($)</th>
                                 </tr>
                             </thead>
@@ -86,17 +86,17 @@ export function CartItem({ cartData }: Props) {
                                 {cartData?.travelers && Object.entries(cartData.travelers).filter(([_, value]: any) => value.count > 0).map(([key, value]: any) => (
                                     <tr
                                         key={key}
-                                        className="text-center border-b border-blue-600"
+                                        className="text-center border border-black"
                                     >
-                                        <td className="px-3 py-2 text-sm border-r border-blue-600 text-left font-medium">
+                                        <td className="px-3 py-2 text-sm border border-black text-left font-medium">
                                             {travelerLabels[key] ?? key}
                                         </td>
 
-                                        <td className="px-3 py-2 text-sm border-r border-blue-600">
+                                        <td className="px-3 py-2 text-sm border border-black">
                                             {value.count}
                                         </td>
 
-                                        <td className="px-3 py-2 text-sm border-r border-blue-600">
+                                        <td className="px-3 py-2 text-sm border border-black">
                                             ${value.per_price.toLocaleString()}
                                         </td>
 
@@ -109,7 +109,7 @@ export function CartItem({ cartData }: Props) {
                                 <tr>
                                     <td
                                         colSpan={3}
-                                        className="px-3 py-2 text-sm text-right font-medium border-r border-blue-600"
+                                        className="px-3 py-2 text-sm text-right font-medium border border-black"
                                     >
                                         Total Amount
                                     </td>

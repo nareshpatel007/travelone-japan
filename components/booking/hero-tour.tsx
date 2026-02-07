@@ -156,24 +156,24 @@ export default function HeroTour({ orderData, tour, cartData }: Props) {
                                 <table className="w-full border border-[#d9cec1] border-collapse text-sm sm:text-base">
                                     <thead>
                                         <tr className="border-b border-[#d9cec1]">
-                                            <th className="bg-white font-medium border-r border-[#d9cec1] px-3 py-2 text-left">Room</th>
-                                            <th className="bg-white font-medium border-r border-[#d9cec1] px-3 py-2 text-left">Bedding</th>
-                                            <th className="bg-white font-medium border-r border-[#d9cec1] px-3 py-2 text-left">Traveler Type / Count</th>
+                                            <th className="bg-white font-medium border border-[#d9cec1] px-3 py-2 text-left">Room</th>
+                                            <th className="bg-white font-medium border border-[#d9cec1] px-3 py-2 text-left">Bedding</th>
+                                            <th className="bg-white font-medium border border-[#d9cec1] px-3 py-2 text-left">Traveler Type / Count</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         {cartData?.room_data && cartData?.room_data.map((room: any, roomIndex: number) => (
-                                            <tr key={roomIndex} className="border-b border-black text-sm sm:text-base">
-                                                <td className="bg-white font-normal border-r border-black px-3 py-2">
+                                            <tr key={roomIndex} className="border border-[#d9cec1] text-sm sm:text-base">
+                                                <td className="bg-white font-normal border border-[#d9cec1] px-3 py-2">
                                                     Room {roomIndex + 1}
                                                 </td>
-                                                <td className="bg-white font-normal border-r border-black px-3 py-2">
+                                                <td className="bg-white font-normal border border-[#d9cec1] px-3 py-2">
                                                     {room?.bedding_preference == 'double' && "Double"}
                                                     {room?.bedding_preference == 'single' && "Single"}
                                                     {room?.bedding_preference == 'twin' && "Twin"}
                                                     {room?.bedding_preference == 'two_queen_bed' && "Two Queen Bed"}
                                                 </td>
-                                                <td className="bg-white font-normal border-r border-black px-3 py-2 space-y-1">
+                                                <td className="bg-white font-normal border border-[#d9cec1] px-3 py-2 space-y-1">
                                                     {room?.adults > 0 && <span className="block">Adults: {room?.adults}</span>}
                                                     {room?.child_8_12 > 0 && <span className="block">Child (8-12): {room?.child_8_12}</span>}
                                                     {room?.child_3_7 > 0 && <span className="block">Child (3-7): {room?.child_3_7}</span>}

@@ -1,26 +1,30 @@
+import { isLoggedIn } from "@/lib/auth";
 import Image from "next/image";
 import Link from "next/link";
-import NavigationMenu from "./navigation-menu";
 
 // components/Header.tsx
 export default function HomeHeader() {
+    // Get login data
+    const is_login_user = isLoggedIn();
+
     return (
         <>
             <div className="hidden md:flex lg:flex px-4 md:px-8 h-20 md:h-24 items-center space-x-10">
                 <Link href="/">
                     <Image
-                        src="https://ik.imagekit.io/288weifiq/nextjs/logo.webp"
+                        src="/common/logo.webp"
                         alt="Logo"
                         width={160}
-                        height={80}
+                        height={100}
+                        className="cursor-pointer w-32 md:w-40"
                         draggable="false"
-                        className="object-contain h-auto w-20 md:w-26"
                     />
                 </Link>
                 <nav className="hidden lg:flex items-center gap-8 font-medium text-gray-900">
                     <Link className="hover:underline underline-offset-5 cursor-pointer" href="/country">Destinations</Link>
                     <Link className="hover:underline underline-offset-5 cursor-pointer" href="/about">About</Link>
                     <Link className="hover:underline underline-offset-5 cursor-pointer" href="/contact">Contact</Link>
+                    {is_login_user && <Link className="hover:underline underline-offset-5 cursor-pointer" href="/account">My Profile</Link>}
                 </nav>
             </div>
         </>

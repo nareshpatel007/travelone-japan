@@ -33,6 +33,7 @@ export default function HomeMobileHeader() {
                             alt="Logo"
                             width={160}
                             height={100}
+                            draggable="false"
                         />
                     </Link>
                     <div className="flex items-center gap-5">

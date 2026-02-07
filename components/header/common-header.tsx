@@ -173,6 +173,7 @@ export default function CommonHeader() {
                             width={160}
                             height={100}
                             className="cursor-pointer w-32 md:w-40"
+                            draggable="false"
                         />
                     </Link>
 
