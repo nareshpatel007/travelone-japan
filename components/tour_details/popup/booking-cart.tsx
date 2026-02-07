@@ -389,7 +389,7 @@ export function BookingCart({ tour, selectedPackage, open, onOpenChange }: Props
                                                 value={selectedDate}
                                                 onChange={(e) => setSelectedDate(e.target.value)}
                                                 min={new Date().toISOString().split("T")[0]}
-                                                className="w-full max-w-full text-base px-4 py-2 border border-[#2F5D50] rounded-sm bg-white outline-none"
+                                                className="block w-full min-w-0 max-w-full appearance-none text-base px-4 py-2 border border-[#2F5D50] rounded-sm bg-white outline-none"
                                             />
                                         )}
                                     </div>
