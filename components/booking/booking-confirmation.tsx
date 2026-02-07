@@ -71,12 +71,12 @@ export function BookingConfirmation({ orderData }: Props) {
                 </h2>
             </div>}
 
-            <div className="flex flex-col lg:flex-row gap-5">
+            <div className="flex flex-col lg:flex-row gap-4">
                 <div className="flex-1">
                     <div className="bg-[#FFF9EE] border border-amber-300 rounded-sm p-4 mb-6">
                         <div className="flex gap-4">
                             <Info className="w-6 h-6 text-black flex-shrink-0 mt-0.5" />
-                            <ul className="space-y-3 text-gray-700 text-sm md:text-base">
+                            <ul className="space-y-3 text-black text-sm md:text-base">
                                 {(orderData?.order?.status === 'REJECTED' || orderData?.order?.status === 'CANCELLED') ? <li>
                                     Apologies! Your booking could not be completed due to a payment issue. If money was deducted from your account, a refund will be processed within 5-7 business days. Please revisit later to retry your booking.
                                 </li> : <>
@@ -169,12 +169,12 @@ export function BookingConfirmation({ orderData }: Props) {
                         </div>
                     </div>
                 </div>
-                <div className="lg:w-85 space-y-6">
+                <div className="lg:w-85 space-y-5">
                     <div className="bg-white border border-gray-200 rounded-sm p-4 space-y-3">
                         <span className="text-lg font-semibold block">Need help?</span>
                         <p className="text-sm text-gray-600">
                             You can find a contact form and phone number for your language on our{" "}
-                            <Link href="#" className="text-black hover:underline">
+                            <Link href="/contact" className="text-black hover:underline">
                                 help page
                             </Link>.
                         </p>
@@ -187,8 +187,8 @@ export function BookingConfirmation({ orderData }: Props) {
                                     <Image
                                         src={tour?.featured_image || "/placeholder.svg"}
                                         alt={tour?.name}
-                                        width={60}
-                                        height={60}
+                                        width={500}
+                                        height={500}
                                         className="w-14 h-14 object-cover rounded-sm flex-shrink-0"
                                     />
                                     <div className="flex-1 min-w-0 space-y-2">
