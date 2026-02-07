@@ -5,6 +5,8 @@ import Image from "next/image";
 import { ChevronLeft, ChevronRight, Download, File, Loader2, MessageCircleMore, MessageSquare, MoveRight } from "lucide-react";
 import 'react-loading-skeleton/dist/skeleton.css';
 import { formatDate } from "@/lib/utils";
+import Link from "next/link";
+import { getLoginCookie } from "@/lib/auth";
 
 // Define props
 interface Props {
@@ -19,6 +21,9 @@ export default function HeroTour({ orderData, tour, cartData }: Props) {
     const [downloadAction, setDownloadAction] = useState('itinerary');
     const [errors, setErrors] = useState<string>("");
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+    // Get user data
+    const loginUser = getLoginCookie();
 
     // Total images
     const totalImages = tour?.media_gallery?.sightseeing?.length || 0;
@@ -208,10 +213,12 @@ export default function HeroTour({ orderData, tour, cartData }: Props) {
                                     Download Invoice
                                 </button>
 
-                                {/* <button className="flex items-center gap-2 bg-white border-1 border-black text-black hover:bg-black hover:text-white hover:border-[#333] cursor-pointer px-4 py-2 rounded font-semibold text-sm">
-                                    <MessageCircleMore className="w-4 h-4" />
-                                    Chat
-                                </button> */}
+                                <Link href={`https://message.travelone.io/?token=${loginUser?.token}&booking=${orderData?.booking_ref_no}`} target="_blank">
+                                    <button className="flex items-center gap-2 bg-white border-1 border-black text-black hover:bg-black hover:text-white hover:border-[#333] cursor-pointer px-4 py-2 rounded font-semibold text-sm">
+                                        <MessageCircleMore className="w-4 h-4" />
+                                        Chat
+                                    </button>
+                                </Link>
                             </div>
                         </div>
                     </div>
