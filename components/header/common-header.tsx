@@ -172,6 +172,7 @@ export default function CommonHeader() {
                             alt="Logo"
                             width={160}
                             height={100}
+                            className="cursor-pointer w-32 md:w-40"
                         />
                     </Link>
 
