@@ -44,7 +44,7 @@ export function ItineraryTab({ itineraryLoading, itineraryData }: Props) {
                                                 <span className="text-black text-base md:text-xl font-medium block mb-4">
                                                     Activities:
                                                 </span>
-                                                <div className="grid grid-cols-2 md:grid-cols-5 gap-6 items-stretch">
+                                                <div className="grid grid-cols-1 md:grid-cols-5 gap-6 items-stretch">
                                                     {activity.attractions.map((attraction: any, idx: number) => (
                                                         <div key={idx} className="h-full">
                                                             <div className="flex flex-col h-full border border-[#d9cec1] bg-[#FFF9EE] hover:shadow-md transition-shadow duration-300">
