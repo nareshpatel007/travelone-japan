@@ -107,11 +107,15 @@ export default function PaymentsTab({ orderData, paymentHistory }: Props) {
                     <tr className="bg-white border border-[#d9cec1] font-medium text-sm md:text-base">
                         <td className="border border-[#d9cec1] px-4 py-2">Total Outstanding</td>
                         <td className="border border-[#d9cec1] px-4 py-2 text-center text-red-600">
-                            ${orderData?.payment_type == 'full_payment' && orderData?.status == 'COMPLETED' ?
-                                formatPrice(
-                                    outstandingAmount - orderData?.payable_amount > 0 ? outstandingAmount - orderData?.payable_amount : 0
-                                ) :
-                                formatPrice(outstandingAmount)}
+                            {orderData?.payment_type == 'full_payment' ? <>
+                                {orderData?.status == 'COMPLETED' ? <>
+                                    ${formatPrice(0)}
+                                </> : <>
+                                    ${formatPrice(orderData?.payable_amount)}
+                                </>}
+                            </> : <>
+                                {formatPrice(outstandingAmount)}
+                            </>}
                         </td>
                         {orderData?.payment_type == 'part_payment' && <>
                             <td className="border border-[#d9cec1] px-4 py-2 text-center"></td>
