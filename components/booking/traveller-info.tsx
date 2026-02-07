@@ -33,7 +33,10 @@ export default function TravellerInfoTab({ orderData, cartData, travellerData }:
                         >
                             <div className="text-left">
                                 <p className="font-medium text-sm">
-                                    {item.title}
+                                    {item.title}&nbsp;
+                                    {item?.fullinfo?.traveller_fname && (
+                                        <>{`(${item?.fullinfo?.traveller_fname} ${item?.fullinfo?.traveller_lname})`}</>
+                                    )}
                                 </p>
                                 <span className="text-xs text-black">
                                     {item.subtitle}

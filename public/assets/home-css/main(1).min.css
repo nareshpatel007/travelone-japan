@@ -585,7 +585,7 @@ sup {
     top: -.5em
 }
 
-table {
+/* table {
     width: 100%;
     vertical-align: middle;
     border: medium none;
@@ -615,9 +615,9 @@ table td {
 
 table td br {
     display: none
-}
+} */
 
-hr {
+/* hr {
     background-color: #bbb;
     border: 0;
     height: 1px;
@@ -627,7 +627,7 @@ hr {
 
 hr:not(.is-style-wide):not(.is-style-dots) {
     max-width: 100px
-}
+} */
 
 body:not([class*=wanderaway-core]) hr {
     clear: both
