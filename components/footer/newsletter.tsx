@@ -77,6 +77,7 @@ export default function NewsletterSubscribe() {
                                 disabled:opacity-60
                                 flex items-center justify-center gap-2
                                 whitespace-nowrap
+                                cursor-pointer
                             "
                         >
                             {isFormLoading && (

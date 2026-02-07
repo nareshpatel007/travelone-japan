@@ -8,83 +8,88 @@ import { useParams } from "next/navigation";
 import { X } from "lucide-react";
 
 export default function Page() {
-    // Get slug
     const params = useParams();
     const slug = params?.slug;
 
-    // Define state
     const [ready, setReady] = useState(false);
-    const [isLoading, setIsLoading] = useState(false);
-    const [blogData, setBlogData] = useState<any>({});
-    const [commentData, setCommentData] = useState<any>([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [blogData, setBlogData] = useState<any | null>(null);
+    const [commentData, setCommentData] = useState<any[]>([]);
+
+    useEffect(() => { requestAnimationFrame(() => { setReady(true); }); }, []);
 
     useEffect(() => {
-        requestAnimationFrame(() => {
-            setReady(true);
-        });
-    }, []);
+        if (!slug) return;
 
-    // Init data
-    useEffect(() => {
         const controller = new AbortController();
+
         const fetchInitData = async () => {
+            setIsLoading(true);
+
             try {
-                // Fetch the data
                 const response = await fetch("/api/blog/single", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
                     },
-                    body: JSON.stringify({
-                        slug
-                    }),
+                    body: JSON.stringify({ slug }),
+                    signal: controller.signal,
                 });
 
-                // Parse the JSON response
                 const data = await response.json();
 
-                // Check response
-                if (data.status) {
-                    setBlogData(data?.data?.post ?? {});
-                    setCommentData(data?.data?.comments ?? []);
+                if (data?.status && data?.data?.post) {
+                    setBlogData(data.data.post);
+                    setCommentData(data.data.comments ?? []);
+                } else {
+                    setBlogData(null); // ❌ Not found
                 }
             } catch (error: any) {
-                if (error.name == "AbortError") {
-                    console.error("Failed to fetch single blog:", error);
+                if (error.name !== "AbortError") {
+                    console.error("Failed to fetch blog:", error);
+                    setBlogData(null);
                 }
             } finally {
                 setIsLoading(false);
             }
         };
+
         fetchInitData();
         return () => controller.abort();
-    }, []);
+    }, [slug]);
 
     return (
-        <>
-            <body>
-                {ready && <>
-                    <CommonHeader />
+        <body>
+            {ready && <>
+                <CommonHeader />
 
-                    {!isLoading && blogData && <div className="max-w-7xl mx-auto px-5 md:px-0 py-6">
+                {/* LOADING STATE */}
+                {isLoading && (
+                    <div className="max-w-7xl mx-auto px-5 py-10 grid gap-4 grid-cols-1 md:grid-cols-2">
+                        {Array.from({ length: 2 }).map((_, index) => (
+                            <div
+                                key={index}
+                                className="animate-pulse bg-gray-200 rounded-lg h-48 md:h-64"
+                            />
+                        ))}
+                    </div>
+                )}
+
+                {/* SUCCESS STATE */}
+                {!isLoading && blogData && (
+                    <div className="max-w-7xl mx-auto px-5 md:px-0 py-6">
                         <BlogDetail
                             blogPost={blogData}
                             commentData={commentData}
                         />
-                    </div>}
+                    </div>
+                )}
 
-                    {isLoading && <div className="grid gap-4 grid-cols-1 md:grid-cols-2">
-                        {Array.from({ length: 2 }).map((_, index) => (
-                            <div key={index} className="animate-pulse bg-gray-200 rounded-lg h-48 md:h-64"></div>
-                        ))}
-                    </div>}
-
-                    {!isLoading && !blogData && <div className="max-w-4xl mx-auto px-4 md:px-8 py-20 text-center space-y-5">
+                {/* ERROR / NOT FOUND STATE */}
+                {!isLoading && !blogData && (
+                    <div className="max-w-4xl mx-auto px-4 md:px-8 py-20 text-center space-y-5">
                         <div className="flex items-center justify-center">
-                            <X
-                                className="text-[#ef2853] opacity-15"
-                                size={120}
-                            />
+                            <X className="text-[#ef2853] opacity-15" size={120} />
                         </div>
 
                         <h2 className="text-3xl md:text-4xl font-medium text-black">
@@ -92,13 +97,13 @@ export default function Page() {
                         </h2>
 
                         <p className="text-base md:text-lg text-black max-w-2xl mx-auto">
-                            The blog you are looking for does not exist.
+                            The blog you are looking for does not exist or was removed.
                         </p>
-                    </div>}
+                    </div>
+                )}
 
-                    <CommonFooter />
-                </>}
-            </body>
-        </>
+                <CommonFooter />
+            </>}
+        </body>
     );
 }

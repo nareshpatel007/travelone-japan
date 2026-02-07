@@ -99,7 +99,7 @@ export function BlogSidebar() {
     return (
         <aside className="w-full lg:w-80 flex-shrink-0 space-y-6">
             <span className="font-semibold text-xl text-gray-900 block mb-4">Recent Posts</span>
-            <div className="!space-y-4">
+            <div className="space-y-5">
                 {recentPosts.map((post) => (
                     <div className="group !transition-all !duration-300 !overflow-hidden">
                         <Link href={`/blog/${post.slug}`}>
@@ -108,6 +108,7 @@ export function BlogSidebar() {
                                     src={post.image || "/placeholder.svg"}
                                     alt={post.title}
                                     fill
+                                    draggable="false"
                                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                                 />
                             </div>
@@ -141,6 +142,7 @@ export function BlogSidebar() {
                     </button>
                 </div>
             </div>
+
             <div
                 ref={sliderRef}
                 onScroll={handleScroll}
@@ -153,10 +155,11 @@ export function BlogSidebar() {
                             <Image src={tour.image || "/placeholder.svg"} alt={tour.title} fill className="w-full h-full object-cover" />
                         </div>
                         <span className="font-medium text-gray-900 text-sm line-clamp-2 !block !mb-2">{tour.title}</span>
-                        <p className="font-bold !text-amber-500">{tour.price}</p>
+                        <p className="font-bold text-black">{tour.price}</p>
                     </Link>
                 ))}
             </div>
+
             <div className="flex justify-center gap-2">
                 {popularTours.map((_, index) => (
                     <button
@@ -170,7 +173,7 @@ export function BlogSidebar() {
                                 setCurrentSlide(index)
                             }
                         }}
-                        className={`w-2 h-2 rounded-full transition-colors ${currentSlide === index ? "bg-amber-500" : "bg-gray-300"
+                        className={`w-2 h-2 rounded-full transition-colors ${currentSlide === index ? "bg-black" : "bg-gray-300"
                             }`}
                         aria-label={`Go to slide ${index + 1}`}
                     />
