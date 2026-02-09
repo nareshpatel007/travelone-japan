@@ -1,7 +1,9 @@
 "use client";
+
 import { useEffect, useState } from "react";
 import QuestionHeading from "./questionHeading";
 
+// Traveler config
 const travelerConfig = [
     ["Adults", "Ages 12 or above", "adults"],
     ["Child", "Ages 8-12", "child_8_12"],
@@ -18,12 +20,16 @@ export default function StepTravelers({
     planYourTripForm,
     setPlanYourTripForm,
 }: Props) {
-    // Define state
     const [activeTab, setActiveTab] = useState<"solo" | "family" | "group">("family");
+
     const [womenOnly, setWomenOnly] = useState({
         solo: false,
         family: false,
         group: false,
+    });
+
+    const [soloCount, setSoloCount] = useState({
+        adults: 1,
     });
 
     const [familyCount, setFamilyCount] = useState({
@@ -40,60 +46,86 @@ export default function StepTravelers({
         infant: 0,
     });
 
+    // Restore state once
     useEffect(() => {
         if (planYourTripForm?.prefer_travel_type) {
             setActiveTab(planYourTripForm.prefer_travel_type);
         }
 
+        if (planYourTripForm?.solo) {
+            setSoloCount({
+                adults: planYourTripForm.solo.adults || 1,
+            });
+            setWomenOnly((p) => ({ ...p, solo: !!planYourTripForm.solo.is_women_only }));
+        }
+
         if (planYourTripForm?.family_friends) {
             setFamilyCount(planYourTripForm.family_friends);
-            setWomenOnly((p) => ({
-                ...p,
-                family: !!planYourTripForm.family_friends.is_women_only,
-            }));
+            setWomenOnly((p) => ({ ...p, family: !!planYourTripForm.family_friends.is_women_only }));
         }
 
         if (planYourTripForm?.groups) {
             setGroupCount(planYourTripForm.groups);
-            setWomenOnly((p) => ({
-                ...p,
-                group: !!planYourTripForm.groups.is_women_only,
-            }));
-        }
-
-        if (planYourTripForm?.solo) {
-            setWomenOnly((p) => ({
-                ...p,
-                solo: !!planYourTripForm.solo.is_women_only,
-            }));
+            setWomenOnly((p) => ({ ...p, group: !!planYourTripForm.groups.is_women_only }));
         }
     }, []);
 
     // Update count
     const updateCount = (
-        type: "family" | "group",
+        type: "solo" | "family" | "group",
         key: string,
         value: number
     ) => {
-        const updater = type === "family" ? setFamilyCount : setGroupCount;
+        const updater =
+            type === "solo"
+                ? setSoloCount
+                : type === "family"
+                    ? setFamilyCount
+                    : setGroupCount;
 
         updater((prev: any) => {
             const updated = {
                 ...prev,
-                [key]: Math.max(0, value),
+                [key]: Math.max(type === "solo" ? 1 : 0, value),
             };
 
-            setPlanYourTripForm((form: any) => ({
-                ...form,
-                prefer_travel_type: type === "family" ? "family" : "group",
-                [type === "family" ? "family_friends" : "groups"]: updated,
-            }));
+            setPlanYourTripForm((form: any) => {
+                if (type === "solo") {
+                    return {
+                        ...form,
+                        prefer_travel_type: "solo",
+                        solo: {
+                            ...updated,
+                            is_women_only: womenOnly.solo,
+                        },
+                    };
+                }
+
+                if (type === "family") {
+                    return {
+                        ...form,
+                        prefer_travel_type: "family",
+                        family_friends: {
+                            ...updated,
+                            is_women_only: womenOnly.family,
+                        },
+                    };
+                }
+
+                return {
+                    ...form,
+                    prefer_travel_type: "group",
+                    groups: {
+                        ...updated,
+                        is_women_only: womenOnly.group,
+                    },
+                };
+            });
 
             return updated;
         });
     };
 
-    // Handle women only
     const handleWomenOnlyChange = (checked: boolean) => {
         setWomenOnly((prev) => ({
             ...prev,
@@ -105,7 +137,10 @@ export default function StepTravelers({
                 return {
                     ...form,
                     prefer_travel_type: "solo",
-                    solo: { is_women_only: checked },
+                    solo: {
+                        ...soloCount,
+                        is_women_only: checked,
+                    },
                 };
             }
 
@@ -131,86 +166,64 @@ export default function StepTravelers({
         });
     };
 
-    // Active data
-    const activeData: any = activeTab === "family" ? familyCount : groupCount;
+    const activeData: any = activeTab === "solo" ? soloCount : activeTab === "family" ? familyCount : groupCount;
 
     return (
         <div className="space-y-5">
             <QuestionHeading title="Who's traveling and how many of you?" />
+
             <div className="max-h-[55vh] md:max-h-[60vh] overflow-y-auto space-y-3">
-                <div className="grid grid-cols-3 gap-3 mb-3 md:mb-6 items-center text-center">
-                    <Tab
-                        label="Solo"
-                        active={activeTab === "solo"}
-                        onClick={() => {
-                            setActiveTab("solo");
-                            setPlanYourTripForm((f: any) => ({
-                                ...f,
-                                prefer_travel_type: "solo",
-                            }));
-                        }}
-                    />
-                    <Tab
-                        label="Family"
-                        active={activeTab === "family"}
-                        onClick={() => {
-                            setActiveTab("family");
-                            setPlanYourTripForm((f: any) => ({
-                                ...f,
-                                prefer_travel_type: "family",
-                            }));
-                        }}
-                    />
-                    <Tab
-                        label="Small Group"
-                        active={activeTab === "group"}
-                        onClick={() => {
-                            setActiveTab("group");
-                            setPlanYourTripForm((f: any) => ({
-                                ...f,
-                                prefer_travel_type: "group",
-                            }));
-                        }}
-                    />
+                {/* Tabs */}
+                <div className="grid grid-cols-3 gap-3 mb-3 text-center">
+                    <Tab label="Solo" active={activeTab === "solo"} onClick={() => setActiveTab("solo")} />
+                    <Tab label="Family" active={activeTab === "family"} onClick={() => setActiveTab("family")} />
+                    <Tab label="Small Group" active={activeTab === "group"} onClick={() => setActiveTab("group")} />
                 </div>
 
-                {(activeTab === "family" || activeTab === "group") && (
-                    <div className="space-y-3">
-                        {travelerConfig.map(([title, subtitle, key]) => (
-                            <div key={key} className="flex justify-between items-center bg-white border border-black/30 px-5 py-2.5 rounded-sm">
-                                <div>
-                                    <p className="text-sm m-0 font-medium block">{title}</p>
-                                    <p className="text-sm m-0 text-gray-600">{subtitle}</p>
-                                </div>
-                                <div className="flex items-center gap-3">
-                                    <button
-                                        onClick={() =>
-                                            updateCount(activeTab, key, activeData[key] - 1)
-                                        }
-                                        className="w-7 h-7 bg-white border rounded-full hover:bg-black hover:text-white cursor-pointer"
-                                    >
-                                        −
-                                    </button>
-
-                                    <span className="w-4 text-center">
-                                        {activeData[key]}
-                                    </span>
-
-                                    <button
-                                        onClick={() =>
-                                            updateCount(activeTab, key, activeData[key] + 1)
-                                        }
-                                        className="w-7 h-7 bg-white border rounded-full hover:bg-black hover:text-white cursor-pointer"
-                                    >
-                                        +
-                                    </button>
-                                </div>
+                {/* Counters */}
+                <div className="space-y-3">
+                    {(activeTab === "solo"
+                        ? [["Adults", "Ages 12 or above", "adults"]]
+                        : travelerConfig
+                    ).map(([title, subtitle, key]: any) => (
+                        <div
+                            key={key}
+                            className="flex justify-between items-center bg-white border border-black/30 px-5 py-2.5 rounded-sm"
+                        >
+                            <div>
+                                <p className="text-sm font-medium">{title}</p>
+                                <p className="text-sm text-gray-600">{subtitle}</p>
                             </div>
-                        ))}
-                    </div>
-                )}
 
-                <div className="flex items-center gap-3 !mt-4">
+                            <div className="flex items-center gap-3">
+                                <button
+                                    onClick={() =>
+                                        updateCount(activeTab, key, activeData[key] - 1)
+                                    }
+                                    className="w-7 h-7 border rounded-full hover:bg-black cursor-pointer hover:text-white"
+                                >
+                                    −
+                                </button>
+
+                                <span className="w-4 text-center">
+                                    {activeData[key]}
+                                </span>
+
+                                <button
+                                    onClick={() =>
+                                        updateCount(activeTab, key, activeData[key] + 1)
+                                    }
+                                    className="w-7 h-7 border rounded-full hover:bg-black cur cursor-pointer hover:text-white"
+                                >
+                                    +
+                                </button>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+
+                {/* Women only */}
+                <div className="flex items-center gap-3 mt-4">
                     <input
                         type="checkbox"
                         checked={womenOnly[activeTab]}
@@ -227,8 +240,7 @@ function Tab({ label, active, onClick }: any) {
     return (
         <button
             onClick={onClick}
-            className={`py-2.5 text-sm md:text-md rounded-sm text-black border border-black/30 cursor-pointer transition ${active ? "bg-black text-white" : "bg-white text-black"
-                }`}
+            className={`py-2.5 rounded-sm border transition cursor-pointer ${active ? "bg-black text-white" : "bg-white text-black border-black/30"}`}
         >
             {label}
         </button>

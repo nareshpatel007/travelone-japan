@@ -36,7 +36,7 @@ export default function StepFirstVisit({
     return (
         <div className="space-y-5">
             <QuestionHeading
-                title={`Is this your first time visiting ${planYourTripForm?.country_name}?`}
+                title={`Is this your first time visiting ${planYourTripForm?.country.join(", ")}?`}
             />
             <div className="max-h-[55vh] md:max-h-[60vh] overflow-y-auto space-y-3">
                 <Option

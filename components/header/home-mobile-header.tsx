@@ -68,6 +68,7 @@ export default function HomeMobileHeader() {
                         <Link href="/tour">Tours</Link>
                         <Link href="/about">About</Link>
                         <Link href="/contact">Contact</Link>
+                        <Link href="#" onClick={() => setOpenLogin(true)}>Log In</Link>
                     </nav>
                 </div>
             )}

@@ -8,49 +8,60 @@ interface Props {
     setPlanYourTripForm: React.Dispatch<React.SetStateAction<any>>;
 }
 
-export default function StepTransfer({
+export default function ChoosePytFlow({
     planYourTripForm,
     setPlanYourTripForm,
 }: Props) {
     const [selected, setSelected] = useState<string | null>(null);
 
-    // ✅ Restore selection when coming back to this step
+    // Restore selection when coming back to this step
     useEffect(() => {
-        if (planYourTripForm?.transportation) {
-            setSelected(planYourTripForm.transportation);
+        if (planYourTripForm?.choose_flow) {
+            setSelected(planYourTripForm.choose_flow);
         }
-    }, [planYourTripForm?.transportation]);
+    }, [planYourTripForm?.choose_flow]);
 
     const handleChange = (value: string) => {
-        setSelected(value);
+        // Prevent reselect / deselect
+        if (selected === value) return;
 
+        // Update state
+        setSelected(value);
         setPlanYourTripForm((prev: any) => ({
             ...prev,
-            transportation: value,
+            choose_flow: value,
+            destination: "",
+            country: [],
+            first_time_visit: "",
+            season_name: "",
+            travel_month: "",
+            trip_design: "",
+            themes_priority_1: [],
+            themes_priority_2: [],
+            cities_options: [],
+            selected_cities: [],
+            day_option: [],
         }));
     };
 
     return (
         <div className="space-y-5">
-            <QuestionHeading title="Tell us how you’d like to travel between places" />
+            <QuestionHeading
+                title="Do you have a destination in mind, or should we recommend one?"
+            />
             <div className="max-h-[55vh] md:max-h-[60vh] overflow-y-auto space-y-3">
                 <Option
-                    text="Fully Standard Private Transportation"
-                    value="Fully Standard Private Transportation"
+                    text="I have a destination"
+                    subText="I want to see the iconic highlights."
+                    value="i_have_destination"
                     selected={selected}
                     onChange={handleChange}
                 />
 
                 <Option
-                    text="Combination of Standard Private and Public Transportation"
-                    value="Combination of Standard Private and Public Transportation"
-                    selected={selected}
-                    onChange={handleChange}
-                />
-
-                <Option
-                    text="Luxury Transportation"
-                    value="Luxury Transportation"
+                    text="Suggest a destination for me"
+                    subText="I want to discover hidden gems."
+                    value="suggest_destination"
                     selected={selected}
                     onChange={handleChange}
                 />
@@ -75,7 +86,7 @@ function Option({
         >
             <div className="grid gap-1 text-sm md:text-base text-black">
                 <span>{text}</span>
-                {subText && <span>{subText}</span>}
+                <span>{subText}</span>
             </div>
             <div className="w-6 h-6 flex items-center justify-center">
                 {isActive && <Check className="h-5 w-5 font-semibold text-black" />}

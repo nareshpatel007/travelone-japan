@@ -8,49 +8,77 @@ interface Props {
     setPlanYourTripForm: React.Dispatch<React.SetStateAction<any>>;
 }
 
-export default function StepTransfer({
+export default function StepCommunicationMethod({
     planYourTripForm,
     setPlanYourTripForm,
 }: Props) {
+    // Define state
     const [selected, setSelected] = useState<string | null>(null);
 
-    // ✅ Restore selection when coming back to this step
+    // Restore selection when coming back to this step
     useEffect(() => {
-        if (planYourTripForm?.transportation) {
-            setSelected(planYourTripForm.transportation);
+        if (planYourTripForm?.communication_method) {
+            setSelected(planYourTripForm.communication_method);
         }
-    }, [planYourTripForm?.transportation]);
+    }, [planYourTripForm?.communication_method]);
 
+    // Handle change
     const handleChange = (value: string) => {
+        // Prevent reselect / deselect
+        if (selected === value) return;
+
         setSelected(value);
 
         setPlanYourTripForm((prev: any) => ({
             ...prev,
-            transportation: value,
+            communication_method: value,
         }));
     };
 
     return (
         <div className="space-y-5">
-            <QuestionHeading title="Tell us how you’d like to travel between places" />
+            <QuestionHeading
+                title="What is your preferred method of communication?"
+            />
             <div className="max-h-[55vh] md:max-h-[60vh] overflow-y-auto space-y-3">
                 <Option
-                    text="Fully Standard Private Transportation"
-                    value="Fully Standard Private Transportation"
+                    text="Phone Call"
+                    value="Phone Call"
                     selected={selected}
                     onChange={handleChange}
                 />
 
                 <Option
-                    text="Combination of Standard Private and Public Transportation"
-                    value="Combination of Standard Private and Public Transportation"
+                    text="WhatsApp"
+                    value="WhatsApp"
                     selected={selected}
                     onChange={handleChange}
                 />
-
+                
                 <Option
-                    text="Luxury Transportation"
-                    value="Luxury Transportation"
+                    text="Email"
+                    value="Email"
+                    selected={selected}
+                    onChange={handleChange}
+                />
+                
+                <Option
+                    text="SMS / Text Message"
+                    value="SMS / Text Message"
+                    selected={selected}
+                    onChange={handleChange}
+                />
+                
+                <Option
+                    text="Video Call (Zoom / Google Meet)"
+                    value="Video Call (Zoom / Google Meet)"
+                    selected={selected}
+                    onChange={handleChange}
+                />
+                
+                <Option
+                    text="No Preference (Any is fine)"
+                    value="No Preference (Any is fine)"
                     selected={selected}
                     onChange={handleChange}
                 />

@@ -60,8 +60,8 @@ export default function PaymentsTab({ orderData, paymentHistory }: Props) {
 
                             <td className="border border-[#d9cec1] px-4 py-2 text-center">
                                 {/* {row.status === "paid" && (
-                                    <button className="bg-black text-white px-5 py-1 rounded-sm">
-                                        Invoice
+                                    <button className="bg-black text-white border border-black px-5 py-0.5 rounded-sm hover:bg-white hover:text-black cursor-pointer">
+                                        Payment Invoice
                                     </button>
                                 )} */}
                                 {row.status === "unpaid" && (

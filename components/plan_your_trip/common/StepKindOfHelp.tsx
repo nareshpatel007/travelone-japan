@@ -3,63 +3,73 @@ import { Check } from "lucide-react";
 import { useEffect, useState } from "react";
 import QuestionHeading from "./questionHeading";
 
+// Define options
+const HELP_OPTIONS = [
+    "🧭 Complete Trip Planning (End-to-End Assistance)",
+    "✈️ Itinerary Planning Only",
+    "🏨 Hotels & Accommodation Booking",
+    "🚗 Transfers & Transportation",
+    "🎟️ Activities, Sightseeing & Experiences",
+    "🧑‍💼 Tour Guide / Local Expert",
+    "📄 Visa & Travel Documentation Guidance",
+    "💬 Consultation / Travel Advice Only",
+    "🤝 I’m not sure — please guide me"
+]
+
 interface Props {
     planYourTripForm: any;
     setPlanYourTripForm: React.Dispatch<React.SetStateAction<any>>;
 }
 
-export default function StepTransfer({
+export default function StepKindOfHelp({
     planYourTripForm,
     setPlanYourTripForm,
 }: Props) {
+    // Define state
     const [selected, setSelected] = useState<string | null>(null);
 
-    // ✅ Restore selection when coming back to this step
+    // Restore selection when coming back to this step
     useEffect(() => {
-        if (planYourTripForm?.transportation) {
-            setSelected(planYourTripForm.transportation);
+        if (planYourTripForm?.kind_of_help) {
+            setSelected(planYourTripForm.kind_of_help);
         }
-    }, [planYourTripForm?.transportation]);
+    }, [planYourTripForm?.kind_of_help]);
 
+    // Handle change
     const handleChange = (value: string) => {
+        // Prevent reselect / deselect
+        if (selected === value) return;
+
         setSelected(value);
 
         setPlanYourTripForm((prev: any) => ({
             ...prev,
-            transportation: value,
+            kind_of_help: value,
         }));
     };
 
     return (
         <div className="space-y-5">
-            <QuestionHeading title="Tell us how you’d like to travel between places" />
+            <QuestionHeading
+                title="What kind of help do you need?"
+            />
             <div className="max-h-[55vh] md:max-h-[60vh] overflow-y-auto space-y-3">
-                <Option
-                    text="Fully Standard Private Transportation"
-                    value="Fully Standard Private Transportation"
-                    selected={selected}
-                    onChange={handleChange}
-                />
-
-                <Option
-                    text="Combination of Standard Private and Public Transportation"
-                    value="Combination of Standard Private and Public Transportation"
-                    selected={selected}
-                    onChange={handleChange}
-                />
-
-                <Option
-                    text="Luxury Transportation"
-                    value="Luxury Transportation"
-                    selected={selected}
-                    onChange={handleChange}
-                />
+                {HELP_OPTIONS.map((option, index) => (
+                    <Option
+                        key={index}
+                        text={option}
+                        value={option}
+                        selected={selected}
+                        onChange={handleChange}
+                    />
+                ))}
             </div>
         </div>
     );
 }
 
 function Option({
+    key,
     text,
     subText,
     value,
@@ -70,6 +80,7 @@ function Option({
 
     return (
         <label
+            key={key}
             onClick={() => onChange(value)}
             className={`flex items-center justify-between border px-5 py-4 rounded-sm cursor-pointer transition bg-white ${isActive ? "border-black" : "border-black/30"}`}
         >

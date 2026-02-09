@@ -12,12 +12,14 @@ export default function StepMeals({
     planYourTripForm,
     setPlanYourTripForm,
 }: Props) {
+    // Define meals
     const meals = [
         "Michelin & Fine Dining",
         "Local Gems & Markets",
         "Cultural & Farm-to-Table",
         "A Balanced Mix",
         "Flexible (Decide on the go)",
+        "I will manage meals on my own",
     ];
 
     const [selected, setSelected] = useState<string[]>([]);

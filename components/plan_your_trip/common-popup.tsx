@@ -19,8 +19,12 @@ import StepMeals from "./common/StepMeals";
 import StepTransfer from "./common/StepTransfer";
 import StepGuide from "./common/StepGuide";
 import StepSummary from "./common/StepSummary";
-import { CheckCircle, Loader2, MoveLeft, MoveRight, X } from "lucide-react";
+import { CheckCircle, ListCheck, Loader2, MoveLeft, MoveRight, X } from "lucide-react";
 import StepCountries from "./common/StepCountries";
+import ChoosePytFlow from "./common/ChoosePytFlow";
+import StepDestinations from "./common/StepDestinations";
+import StepKindOfHelp from "./common/StepKindOfHelp";
+import StepCommunicationMethod from "./common/StepCommunicationMethod";
 
 // Define interface
 interface Props {
@@ -30,8 +34,9 @@ interface Props {
 
 // Define form data
 const defaultFormData = {
-    country_id: "",
-    country_name: "",
+    choose_flow: "",
+    destination: "",
+    country: [],
     first_time_visit: "",
     season_name: "",
     travel_month: "",
@@ -39,6 +44,7 @@ const defaultFormData = {
     themes_priority_1: [],
     themes_priority_2: [],
     cities_options: [],
+    selected_cities: [],
     day_option: "",
     budget: "",
     prefer_travel_type: "family",
@@ -63,11 +69,14 @@ const defaultFormData = {
     meal_preferences: "",
     transportation: "",
     guide: "",
+    kind_of_help: "",
+    communication_method: "",
     full_name: "",
     email: "",
     mobile: "",
     privacy_policy_accepted: false,
     ip_address: "",
+    is_show_history_btn: false
 };
 
 export function CommonPlanTripModal({ open, onOpenChange }: Props) {
@@ -78,7 +87,7 @@ export function CommonPlanTripModal({ open, onOpenChange }: Props) {
     const [step, setStep] = useState(0);
     const [planYourTripForm, setPlanYourTripForm] = useState<any>(defaultFormData);
     const [errors, setErrors] = useState<string>("");
-    const [leadId, setLeadId] = useState<string>("");
+    const [leadId, setLeadId] = useState<string>("335");
     const [formLoader, setFormLoader] = useState(false);
 
     // Handle close
@@ -111,26 +120,41 @@ export function CommonPlanTripModal({ open, onOpenChange }: Props) {
                 }
                 break;
 
+            case "choose_flow":
+                if (!planYourTripForm.choose_flow) {
+                    newErrors = "Please select an option.";
+                }
+                break;
+
+            case "destinations":
+                if (planYourTripForm.choose_flow == "i_have_destination" && !planYourTripForm.destination) {
+                    newErrors = "Please select a destination.";
+                }
+                break;
+
             case "first_visit":
-                if (!planYourTripForm.first_time_visit) {
+                if (planYourTripForm.choose_flow == "i_have_destination" && !planYourTripForm.first_time_visit) {
                     newErrors = "Please select an option.";
                 }
                 break;
 
             case "travel_time":
-                if (!planYourTripForm.season_name) {
+                if (planYourTripForm.choose_flow == "i_have_destination" && !planYourTripForm.season_name) {
                     newErrors = "Please select an option.";
                 }
                 break;
 
             case "trip_design":
-                if (!planYourTripForm.trip_design) {
+                if (planYourTripForm.choose_flow == "i_have_destination" && !planYourTripForm.trip_design) {
                     newErrors = "Please select an option.";
                 }
                 break;
 
             case "themes_single":
-                if (!Array.isArray(planYourTripForm.themes_priority_1) || planYourTripForm.themes_priority_1.length === 0) {
+                if (
+                    planYourTripForm.choose_flow == "i_have_destination" &&
+                    !Array.isArray(planYourTripForm.themes_priority_1) || planYourTripForm.themes_priority_1.length === 0
+                ) {
                     newErrors = "Select at least one theme.";
                 }
                 break;
@@ -203,9 +227,13 @@ export function CommonPlanTripModal({ open, onOpenChange }: Props) {
 
     // Handle next step
     const handleNextStep = async () => {
-        if (!validateStep()) return;
+        // Validation
+        // if (!validateStep()) return;
 
-        // STEP 0 → CREATE LEAD
+        // Update state
+        setErrors("");
+
+        // STEP 0 → Create lead
         if (step === 0) {
             try {
                 // If already store lead id
@@ -265,6 +293,8 @@ export function CommonPlanTripModal({ open, onOpenChange }: Props) {
         if (isReturnKey) {
             return [
                 "lead_form",
+                "choose_flow",
+                "destinations",
                 "countries",
                 "first_visit",
                 "travel_time",
@@ -279,10 +309,14 @@ export function CommonPlanTripModal({ open, onOpenChange }: Props) {
                 "transfer",
                 "guide",
                 "summary",
+                "kind_help",
+                "communication",
             ];
         } else {
             return [
                 StepLeadForm,
+                ChoosePytFlow,
+                StepDestinations,
                 StepCountries,
                 StepFirstVisit,
                 StepTravelTime,
@@ -296,7 +330,9 @@ export function CommonPlanTripModal({ open, onOpenChange }: Props) {
                 StepMeals,
                 StepTransfer,
                 StepGuide,
-                StepSummary
+                StepSummary,
+                StepKindOfHelp,
+                StepCommunicationMethod,
             ];
         }
     };
@@ -342,12 +378,14 @@ export function CommonPlanTripModal({ open, onOpenChange }: Props) {
 
                         {/* Error */}
                         {errors && (
-                            <p className="text-red-600 text-sm md:text-base">{errors}</p>
+                            <div className="text-center">
+                                <p className="text-red-600 text-sm md:text-base">{errors}</p>
+                            </div>
                         )}
 
                         {/* Navigation */}
-                        <div className="flex items-center gap-3">
-                            {step > 0 && !formLoader && (
+                        <div className="flex items-center justify-center gap-3 w-full">
+                            {step > 1 && !formLoader && (
                                 <button
                                     onClick={() => setStep(step - 1)}
                                     className="flex items-center gap-2 px-8 py-2.5 bg-white text-black rounded-sm font-medium border border-black hover:bg-black transition-colors hover:text-white cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
@@ -357,22 +395,35 @@ export function CommonPlanTripModal({ open, onOpenChange }: Props) {
                                 </button>
                             )}
 
-                            {CurrentStepKey !== "summary" && (
+                            {step === 0 && (
                                 <button
                                     disabled={formLoader}
                                     onClick={handleNextStep}
                                     className="flex items-center gap-2 px-8 py-2.5 bg-black text-white rounded-sm font-medium border border-black hover:bg-white transition-colors hover:text-black cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                                 >
-                                    Next
-                                    {formLoader ? (
-                                        <Loader2 className="h-4 w-4 animate-spin" />
-                                    ) : (
-                                        <MoveRight className="h-4 w-4" />
-                                    )}
+                                    Start <MoveRight className="h-4 w-4" />
                                 </button>
                             )}
 
-                            {CurrentStepKey === "summary" && (
+                            {step > 0 && CurrentStepKey !== "communication" && <button
+                                disabled={formLoader}
+                                onClick={handleNextStep}
+                                className="flex items-center gap-2 px-8 py-2.5 bg-black text-white rounded-sm font-medium border border-black hover:bg-white transition-colors hover:text-black cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                            >
+                                Next <MoveRight className="h-4 w-4" />
+                            </button>}
+
+                            {planYourTripForm?.is_show_history_btn && CurrentStepKey !== "summary" && CurrentStepKey !== "communication" && CurrentStepKey !== "kind_help" && (
+                                <button
+                                    disabled={formLoader}
+                                    onClick={() => jumpToStep("summary")}
+                                    className="flex items-center gap-2 px-8 py-2.5 bg-black text-white rounded-sm font-medium border border-black hover:bg-white transition-colors hover:text-black cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                                >
+                                    <ListCheck className="h-4 w-4" /> View Summary
+                                </button>
+                            )}
+
+                            {CurrentStepKey === "communication" && (
                                 <button
                                     disabled={formLoader}
                                     onClick={handlSubmitPlanYourTrip}

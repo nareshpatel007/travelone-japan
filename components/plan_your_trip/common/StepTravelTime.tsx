@@ -1,7 +1,77 @@
 "use client";
+
 import { Check } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import QuestionHeading from "./questionHeading";
+
+const DEFAULT_SEASON_MONTHS: Record<string, string[]> = {
+    "Winter 2026": ["December", "January", "February"],
+    "Spring 2026": ["March", "April"],
+    "Summer 2026": ["May", "June", "July", "August"],
+    "Autumn 2026": ["September", "October", "November"],
+};
+
+const COUNTRY_SEASONS: any = {
+    Japan: {
+        "Spring (Cherry Blossoms)": ["March", "April"],
+        "Autumn (Maple Leaves)": ["May", "June", "July", "August"],
+        "Winter (Snow & Ski)": ["September", "October", "November"],
+        "Summer (Festivals)": ["December", "January", "February"],
+    },
+    "South Korea": {
+        "Spring (Cherry Blossoms)": ["March", "April"],
+        "Autumn (Fall Colors)": ["May", "June", "July", "August"],
+        "Winter (Snow & Ski)": ["September", "October", "November"],
+        "Summer (Festivals)": ["December", "January", "February"],
+    },
+    Vietnam: {
+        "Dry Season (Best Weather)": ["May", "June", "July", "August"],
+        "Wet Season (Green Landscapes)": ["December", "January", "February"],
+    },
+    Indonesia: {
+        "Dry Season (Best Beaches)": ["May", "June", "July", "August"],
+        "Wet Season (Lush Nature)": ["December", "January", "February"],
+    },
+    Thailand: {
+        "Cool Season (Best Time)": ["May", "June", "July", "August"],
+        "Hot Season": ["December", "January", "February"],
+        "Rainy Season": ["March", "April", "May"],
+    },
+    India: {
+        "Winter (Best Weather)": ["December", "January", "February"],
+        "Summer": ["May", "June", "July", "August"],
+        "Monsoon": ["March", "April", "May"],
+    },
+    Kenya: {
+        "Dry Season (Wildlife Safari)": ["May", "June", "July", "August"],
+        "Green Season (Great Migration)": ["December", "January", "February"],
+    },
+    Norway: {
+        "Summer (Midnight Sun)": ["May", "June", "July", "August"],
+        "Winter (Northern Lights)": ["December", "January", "February"],
+    },
+    Iceland: {
+        "Summer (Midnight Sun)": ["May", "June", "July", "August"],
+        "Winter (Northern Lights)": ["December", "January", "February"],
+    },
+    Switzerland: {
+        "Summer (Scenic Alps)": ["May", "June", "July", "August"],
+        "Winter (Snow & Ski)": ["December", "January", "February"],
+    },
+    Sweden: {
+        "Summer": ["May", "June", "July", "August"],
+        "Winter (Northern Lights)": ["December", "January", "February"],
+    },
+    Finland: {
+        "Summer": ["May", "June", "July", "August"],
+        "Winter (Aurora & Snow)": ["December", "January", "February"],
+    },
+    Canada: {
+        "Summer": ["May", "June", "July", "August"],
+        "Autumn (Fall Colors)": ["September", "October", "November"],
+        "Winter (Snow)": ["December", "January", "February"],
+    },
+};
 
 interface Props {
     planYourTripForm: any;
@@ -15,14 +85,26 @@ export default function StepTravelTime({
     const [selected, setSelected] = useState<string | null>(null);
     const [month, setMonth] = useState<string>("");
 
-    const options = [
-        "Spring 2026 (Cherry Blossoms)",
-        "Autumn 2026 (Maple Leaves)",
-        "Winter 2025/26 (Snow & Ski)",
-        "Summer 2026 (Festivals)",
-    ];
+    // Use first selected country (if multi-country)
+    const activeCountry =
+        Array.isArray(planYourTripForm.country)
+            ? planYourTripForm.country[0]
+            : planYourTripForm.country;
 
-    // Restore values when coming back
+    // Get options
+    const options = useMemo(() => {
+        const countrySeasons = COUNTRY_SEASONS[activeCountry];
+
+        // If country has seasons → use them
+        if (Array.isArray(countrySeasons) && countrySeasons.length > 0) {
+            return countrySeasons;
+        }
+
+        // Else → default seasons (Winter, Spring, Summer, Autumn)
+        return Object.keys(DEFAULT_SEASON_MONTHS);
+    }, [activeCountry]);
+
+    // Restore values
     useEffect(() => {
         if (planYourTripForm?.season_name) {
             setSelected(planYourTripForm.season_name);
@@ -32,12 +114,22 @@ export default function StepTravelTime({
         }
     }, [planYourTripForm]);
 
+    // Reset season if country changes
+    useEffect(() => {
+        if (!selected && options.length > 0) {
+            setSelected(options[0]);
+            setPlanYourTripForm((prev: any) => ({
+                ...prev,
+                season_name: options[0],
+            }));
+        }
+    }, [options]);
+
     const handleChange = (value: string) => {
         setSelected(value);
-
         setPlanYourTripForm((prev: any) => ({
             ...prev,
-            season_name: value, // travel season
+            season_name: value,
         }));
     };
 
@@ -45,30 +137,31 @@ export default function StepTravelTime({
         setMonth(value);
         setPlanYourTripForm((prev: any) => ({
             ...prev,
-            travel_month: value
+            travel_month: value,
         }));
     };
 
-    // Mapping options to months
     const monthMap: Record<string, string[]> = {
-        "Spring 2026 (Cherry Blossoms)": ["March", "April"],
-        "Autumn 2026 (Maple Leaves)": ["September", "October", "November"],
-        "Winter 2025/26 (Snow & Ski)": ["December", "January", "February"],
-        "Summer 2026 (Festivals)": ["May", "June", "July", "August"],
+        Spring: ["March", "April"],
+        Summer: ["May", "June", "July", "August"],
+        Autumn: ["September", "October", "November"],
+        Winter: ["December", "January", "February"],
     };
 
     const allMonths = [
-        "January", "February", "March", "April", "May", "June",
-        "July", "August", "September", "October", "November", "December",
+        "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"
     ];
 
-    const monthsToShow = selected ? monthMap[selected] || allMonths : allMonths;
+    // Get months and season
+    const seasonKey = selected?.split(" ")[0] || "";
+    const monthsToShow =
+        DEFAULT_SEASON_MONTHS[selected as keyof typeof DEFAULT_SEASON_MONTHS] ||
+        monthMap[seasonKey] ||
+        allMonths;
 
     return (
         <div className="space-y-5">
-            <QuestionHeading
-                title="When do you plan to travel?"
-            />
+            <QuestionHeading title="When do you plan to travel?" subtitle={`You have selected ${planYourTripForm.country.length > 2 ? planYourTripForm.country.join(", ") : planYourTripForm.country.join(" and ")} as your travel destination.`} />
 
             <div className="max-h-[55vh] md:max-h-[60vh] overflow-y-auto space-y-8">
                 <div className="space-y-3">
@@ -84,7 +177,9 @@ export default function StepTravelTime({
                 </div>
 
                 <div className="space-y-2">
-                    <label className="block text-md font-normal text-black">Choose your travel month (optional)</label>
+                    <label className="block text-md text-black">
+                        Choose your travel month (optional)
+                    </label>
                     <select
                         value={month}
                         onChange={(e) => handleMonthChange(e.target.value)}
@@ -103,32 +198,18 @@ export default function StepTravelTime({
     );
 }
 
-function Option({
-    text,
-    value,
-    selected,
-    onChange,
-}: any) {
+function Option({ text, value, selected, onChange }: any) {
     const isActive = selected === value;
 
     return (
         <label
             onClick={() => onChange(value)}
-            className={`flex items-center justify-between border px-5 py-3 rounded-sm cursor-pointer transition bg-white ${isActive ? "border-black" : "border-black/30"}`}
+            className={`flex items-center justify-between border px-5 py-3 rounded-sm cursor-pointer bg-white transition
+            ${isActive ? "border-black" : "border-black/30"}`}
         >
-            <div className="grid gap-1 text-sm md:text-base text-black">
-                <span>{text}</span>
-            </div>
-            <div className="w-6 h-6 flex items-center justify-center">
-                {isActive && <Check className="h-5 w-5 font-semibold text-black" />}
-            </div>
-            <input
-                type="radio"
-                name="first_visit"
-                checked={isActive}
-                onChange={() => onChange(value)}
-                className="hidden"
-            />
+            <span>{text}</span>
+            {isActive && <Check className="h-5 w-5 text-black" />}
+            <input type="radio" checked={isActive} readOnly className="hidden" />
         </label>
     );
 }

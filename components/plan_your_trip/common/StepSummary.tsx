@@ -1,13 +1,16 @@
 "use client";
 import { Check, X } from "lucide-react";
 import QuestionHeading from "./questionHeading";
+import { useEffect } from "react";
 
-interface Props {
-    planYourTripForm: any;
-    jumpToStep: (stepKey: any) => void;
-}
-
-const SUMMARY_CONFIG = [
+// Define the summary configuration
+const SUMMARY_IN_MIND_CONFIG = [
+    {
+        label: "Destination in mind",
+        stepKey: "choose_flow",
+        shouldShow: () => true,
+        isAnswered: (form: any) => !!form.choose_flow,
+    },
     {
         label: "First time visiting",
         stepKey: "first_visit",
@@ -94,14 +97,29 @@ const SUMMARY_CONFIG = [
     },
 ];
 
-export default function StepSummary({ planYourTripForm, jumpToStep }: Props) {
-    const visibleItems = SUMMARY_CONFIG.filter((item) =>
+interface Props {
+    planYourTripForm: any;
+    setPlanYourTripForm: React.Dispatch<React.SetStateAction<any>>;
+    jumpToStep: (stepKey: any) => void;
+}
+
+export default function StepSummary({ planYourTripForm, setPlanYourTripForm, jumpToStep }: Props) {
+    // Get visible items
+    const visibleItems = SUMMARY_IN_MIND_CONFIG.filter((item) =>
         item.shouldShow(planYourTripForm)
     );
 
+    // Init update flag
+    useEffect(() => {
+        setPlanYourTripForm((prev: any) => ({
+            ...prev,
+            is_show_history_btn: true
+        }));
+    }, []);
+
     return (
         <div className="space-y-5">
-            <QuestionHeading title="Question Summary" />
+            <QuestionHeading title="Your Preference Summary" />
             <div className="border border-black rounded-sm p-5 space-y-5 bg-white/60 max-h-[55vh] md:max-h-[60vh] overflow-y-auto space-y-3">
                 {visibleItems.map((item, index) => {
                     const answered = item.isAnswered(planYourTripForm);
@@ -110,10 +128,10 @@ export default function StepSummary({ planYourTripForm, jumpToStep }: Props) {
                         <div
                             key={item.label}
                             onClick={() => answered && jumpToStep(item.stepKey)}
-                            className="flex items-center justify-between border-b pb-2"
+                            className="flex items-center justify-between border-b pb-2 hover:underline cursor-pointer"
                         >
                             <span className="text-sm md:text-base text-black">
-                                Question {index + 1}: {item.label}
+                                Preference {index + 1}: {item.label}
                             </span>
                             <span className="flex items-center justify-center">
                                 {answered && <div className="flex items-center space-x-2">
