@@ -39,18 +39,9 @@ export function CartItem({ cartData }: Props) {
                     />
                 </div>
                 <div className="flex flex-col justify-between space-y-3">
-                    <div className="flex items-center justify-center">
-                        <h2 className="text-lg sm:text-xl font-semibold text-black">
-                            {cartData?.cart?.tour_info?.tour_name}
-                        </h2>
-
-                        {/* <button
-                            className="p-2 text-red-600 hover:bg-red-50 rounded-md transition cursor-pointer"
-                            aria-label="Remove item"
-                        >
-                            <Trash2 className="h-4 w-4" />
-                        </button> */}
-                    </div>
+                    <h2 className="text-lg sm:text-xl font-semibold text-black">
+                        {cartData?.cart?.tour_info?.tour_name}
+                    </h2>
 
                     <div className="space-y-2 text-sm text-black">
                         <p className="flex flex-wrap items-center gap-1">
@@ -73,7 +64,7 @@ export function CartItem({ cartData }: Props) {
                     </div>
 
                     <div className="overflow-x-auto">
-                        <table className="w-full border border-black text-base text-black">
+                        <table className="w-full border border-black rounded-sm text-base text-black">
                             <thead>
                                 <tr className="border border-black text-center font-medium">
                                     <th className="px-3 py-2 text-base border border-black"></th>
