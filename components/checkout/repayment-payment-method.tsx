@@ -228,7 +228,7 @@ export default function RepaymentPaymentMethod({ orderData, paymentData, walletA
 
                 <button
                     onClick={handlePayment}
-                    disabled={isLoading || !stripe}
+                    disabled={isLoading || (paymentMethod === "credit-card" && !stripe)}
                     className="w-full bg-black hover:bg-black/90 cursor-pointer text-white font-semibold text-base py-2.5 px-2 rounded-sm transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                     {isLoading && <Loader2 size={20} className="animate-spin" />}
