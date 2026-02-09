@@ -10,6 +10,7 @@ import {
     User,
     X,
 } from "lucide-react";
+import { isLoggedIn } from "@/lib/auth";
 
 export default function HomeMobileHeader() {
     // Define state
@@ -18,6 +19,9 @@ export default function HomeMobileHeader() {
 
     // Define cart count
     const cartCount = 0;
+
+    // Get login data
+    const is_login_user = isLoggedIn();
 
     useEffect(() => {
         document.body.style.overflow = openMobileMenu ? "hidden" : "auto";
@@ -64,11 +68,12 @@ export default function HomeMobileHeader() {
 
                     <nav className="flex flex-col gap-6 p-6 text-lg font-medium">
                         <Link href="/">Home</Link>
-                        <Link href="/country">Destination</Link>
+                        <Link href="/country">Destinations</Link>
                         <Link href="/tour">Tours</Link>
                         <Link href="/about">About</Link>
                         <Link href="/contact">Contact</Link>
-                        <Link href="#" onClick={() => setOpenLogin(true)}>Log In</Link>
+                        {is_login_user && <Link className="hover:underline underline-offset-5 cursor-pointer" href="/bookings">My Bookings</Link>}
+                        {!is_login_user && <Link onClick={() => setOpenLogin(true)} className="hover:underline underline-offset-5 cursor-pointer" href="#">Login</Link>}
                     </nav>
                 </div>
             )}

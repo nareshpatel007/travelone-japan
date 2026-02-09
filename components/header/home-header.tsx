@@ -29,10 +29,8 @@ export default function HomeHeader() {
                     <Link className="hover:underline underline-offset-5 cursor-pointer" href="/country">Destinations</Link>
                     <Link className="hover:underline underline-offset-5 cursor-pointer" href="/about">About</Link>
                     <Link className="hover:underline underline-offset-5 cursor-pointer" href="/contact">Contact</Link>
-                    {is_login_user ?
-                        <Link className="hover:underline underline-offset-5 cursor-pointer" href="/account">My Profile</Link> :
-                        <Link onClick={() => setOpenLogin(true)} className="hover:underline underline-offset-5 cursor-pointer" href="#">Login</Link>
-                    }
+                    {is_login_user && <Link className="hover:underline underline-offset-5 cursor-pointer" href="/bookings">My Bookings</Link>}
+                    {!is_login_user && <Link onClick={() => setOpenLogin(true)} className="hover:underline underline-offset-5 cursor-pointer" href="#">Login</Link>}
                 </nav>
             </div>
 

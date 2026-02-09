@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { getClientIp } from "@/lib/getClientIp";
 import StepLeadForm from "./common/StepLeadForm";
@@ -87,8 +87,14 @@ export function CommonPlanTripModal({ open, onOpenChange }: Props) {
     const [step, setStep] = useState(0);
     const [planYourTripForm, setPlanYourTripForm] = useState<any>(defaultFormData);
     const [errors, setErrors] = useState<string>("");
-    const [leadId, setLeadId] = useState<string>("335");
+    const [leadId, setLeadId] = useState<string>("");
     const [formLoader, setFormLoader] = useState(false);
+
+    useEffect(() => {
+        if (planYourTripForm.choose_flow) {
+            setStep(1);
+        }
+    }, [planYourTripForm.choose_flow]);
 
     // Handle close
     const handleClose = () => {
@@ -106,7 +112,9 @@ export function CommonPlanTripModal({ open, onOpenChange }: Props) {
         // Get current step
         const steps = getFormSteps(planYourTripForm, true);
         const activeStep = steps[step];
+        const flow = planYourTripForm.choose_flow;
 
+        // Validate step
         switch (activeStep) {
             case "lead_form":
                 if (
@@ -116,70 +124,85 @@ export function CommonPlanTripModal({ open, onOpenChange }: Props) {
                 ) {
                     newErrors = "Please fill all required fields.";
                 } else if (!planYourTripForm.privacy_policy_accepted) {
-                    newErrors = "Please accept the Terms consent to submit your form.";
+                    newErrors = "Please accept the Terms consent.";
                 }
                 break;
 
             case "choose_flow":
-                if (!planYourTripForm.choose_flow) {
+                if (!flow) {
                     newErrors = "Please select an option.";
                 }
                 break;
 
             case "destinations":
-                if (planYourTripForm.choose_flow == "i_have_destination" && !planYourTripForm.destination) {
+                if (flow === "i_have_destination" && !planYourTripForm.destination) {
                     newErrors = "Please select a destination.";
                 }
                 break;
 
+            case "countries":
+                if (
+                    flow === "i_have_destination" &&
+                    (!Array.isArray(planYourTripForm.country) ||
+                        planYourTripForm.country.length === 0)
+                ) {
+                    newErrors = "Please select at least one country.";
+                }
+                break;
+
             case "first_visit":
-                if (planYourTripForm.choose_flow == "i_have_destination" && !planYourTripForm.first_time_visit) {
+                if (
+                    flow === "i_have_destination" &&
+                    !planYourTripForm.first_time_visit
+                ) {
                     newErrors = "Please select an option.";
                 }
                 break;
 
             case "travel_time":
-                if (planYourTripForm.choose_flow == "i_have_destination" && !planYourTripForm.season_name) {
-                    newErrors = "Please select an option.";
+                if (!planYourTripForm.season_name) {
+                    newErrors = "Please select your travel season.";
                 }
                 break;
 
             case "trip_design":
-                if (planYourTripForm.choose_flow == "i_have_destination" && !planYourTripForm.trip_design) {
-                    newErrors = "Please select an option.";
+                if (!planYourTripForm.trip_design) {
+                    newErrors = "Please select a trip design.";
                 }
                 break;
 
             case "themes_single":
-                if (
-                    planYourTripForm.choose_flow == "i_have_destination" &&
-                    !Array.isArray(planYourTripForm.themes_priority_1) || planYourTripForm.themes_priority_1.length === 0
-                ) {
-                    newErrors = "Select at least one theme.";
-                }
-                break;
-
             case "themes_priority_1":
-                if (!Array.isArray(planYourTripForm.themes_priority_1) || planYourTripForm.themes_priority_1.length === 0) {
-                    newErrors = "Select at least one theme for priority 1.";
+                if (
+                    !Array.isArray(planYourTripForm.themes_priority_1) ||
+                    planYourTripForm.themes_priority_1.length === 0
+                ) {
+                    newErrors = "Please select at least one theme.";
                 }
                 break;
 
             case "themes_priority_2":
-                if (!Array.isArray(planYourTripForm.themes_priority_2) || planYourTripForm.themes_priority_2.length === 0) {
-                    newErrors = "Select at least one theme for priority 2.";
+                if (
+                    !Array.isArray(planYourTripForm.themes_priority_2) ||
+                    planYourTripForm.themes_priority_2.length === 0
+                ) {
+                    newErrors = "Please select at least one theme.";
                 }
                 break;
 
             case "regions":
-                if (!Array.isArray(planYourTripForm.cities_options) || planYourTripForm.cities_options.length === 0) {
-                    newErrors = "Please select a region.";
+                if (
+                    flow === "i_have_destination" &&
+                    !Array.isArray(planYourTripForm.selected_cities) ||
+                    planYourTripForm.selected_cities.length === 0
+                ) {
+                    newErrors = "Please select at least one city.";
                 }
                 break;
 
             case "days":
                 if (!planYourTripForm.day_option) {
-                    newErrors = "Please select number of days.";
+                    newErrors = "Please select trip duration.";
                 }
                 break;
 
@@ -188,9 +211,54 @@ export function CommonPlanTripModal({ open, onOpenChange }: Props) {
                     newErrors = "Please select a budget.";
                 }
                 break;
+
+            case "travelers":
+                if (!planYourTripForm.prefer_travel_type) {
+                    newErrors = "Please select travelers.";
+                }
+                break;
+
+            case "accommodation":
+                if (!planYourTripForm.accommodation) {
+                    newErrors = "Please select accommodation preference.";
+                }
+                break;
+
+            case "meals":
+                if (!planYourTripForm.meal_preferences) {
+                    newErrors = "Please select meal preference.";
+                }
+                break;
+
+            case "transfer":
+                if (!planYourTripForm.transportation) {
+                    newErrors = "Please select transportation preference.";
+                }
+                break;
+
+            case "guide":
+                if (!planYourTripForm.guide) {
+                    newErrors = "Please select guide preference.";
+                }
+                break;
+
+            case "kind_help":
+                if (!planYourTripForm.kind_of_help) {
+                    newErrors = "Please select how we can help you.";
+                }
+                break;
+
+            case "communication":
+                if (!planYourTripForm.communication_method) {
+                    newErrors = "Please select communication preference.";
+                }
+                break;
         }
 
+        // Set errors
         setErrors(newErrors);
+
+        // Return response
         return newErrors === "";
     };
 
@@ -225,27 +293,29 @@ export function CommonPlanTripModal({ open, onOpenChange }: Props) {
         })();
     };
 
+    // Handle prev step
+    const handlePreviousStep = () => {
+        if (step > 0) setStep(step - 1);
+    };
+
     // Handle next step
     const handleNextStep = async () => {
-        // Validation
-        // if (!validateStep()) return;
+        // Validate step
+        if (!validateStep()) return;
 
         // Update state
         setErrors("");
 
-        // STEP 0 → Create lead
+        // STEP 0 → CREATE LEAD
         if (step === 0) {
             try {
-                // If already store lead id
                 if (leadId) {
                     setStep(step + 1);
                     return;
                 }
 
-                // Update state
                 setFormLoader(true);
 
-                // Add new lead
                 const res = await fetch("/api/plan_your_trip/create_lead", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
@@ -253,88 +323,108 @@ export function CommonPlanTripModal({ open, onOpenChange }: Props) {
                         full_name: planYourTripForm.full_name,
                         email: planYourTripForm.email,
                         mobile: planYourTripForm.mobile,
-                        ip_address: await getClientIp()
+                        ip_address: await getClientIp(),
                     }),
                 });
 
-                // Get json parse
                 const data = await res.json();
-
-                // Check response
                 if (!data?.success) {
                     setErrors("Unable to process your request.");
                     return;
                 }
 
-                // Update state
-                setLeadId(data?.data?.lead_id);
+                setLeadId(data.data.lead_id);
                 setStep(step + 1);
-            } catch (err) {
-                setErrors("Something went wrong. Please try again.");
+            } catch {
+                setErrors("Something went wrong.");
                 setStep(0);
-                return;
             } finally {
                 setFormLoader(false);
             }
             return;
-        } else {
-            // Update state
-            setStep(step + 1);
-            return;
         }
+
+        // NORMAL FLOW
+        setStep(step + 1);
     };
 
+
     // Get next/prev active steps
-    const getFormSteps = (form: any, isReturnKey: boolean = false) => {
+    const getFormSteps = (form: any, isReturnKey = false) => {
         // Get trip design
         const isSimpleDesign = form?.trip_design === "The Focused Vision";
+        const isSuggestFlow = form?.choose_flow === "suggest_destination";
 
-        // If return
-        if (isReturnKey) {
-            return [
-                "lead_form",
-                "choose_flow",
-                "destinations",
-                "countries",
-                "first_visit",
-                "travel_time",
-                "trip_design",
-                ...(isSimpleDesign ? ["themes_single"] : ["themes_priority_1", "themes_priority_2"]),
-                "regions",
-                "days",
-                "budget",
-                "travelers",
-                "accommodation",
-                "meals",
-                "transfer",
-                "guide",
-                "summary",
-                "kind_help",
-                "communication",
-            ];
-        } else {
-            return [
-                StepLeadForm,
-                ChoosePytFlow,
-                StepDestinations,
-                StepCountries,
-                StepFirstVisit,
-                StepTravelTime,
-                StepTripDesign,
-                ...(isSimpleDesign ? [StepThemes] : [StepThemes1, StepThemes2]),
-                StepRegions,
-                StepDays,
-                StepBudget,
-                StepTravelers,
-                StepAccommodation,
-                StepMeals,
-                StepTransfer,
-                StepGuide,
-                StepSummary,
-                StepKindOfHelp,
-                StepCommunicationMethod,
-            ];
-        }
+        // Get step keys
+        const baseKeys = [
+            "lead_form",
+            "choose_flow",
+        ];
+
+        // For suggest destination flow
+        const destinationFlowKeys = isSuggestFlow ? [] : [
+            "destinations",
+            "countries",
+            "first_visit",
+            "regions",
+        ];
+
+        // Get remaining keys
+        const remainingKeys = [
+            "travel_time",
+            "trip_design",
+            ...(isSimpleDesign
+                ? ["themes_single"]
+                : ["themes_priority_1", "themes_priority_2"]),
+            "days",
+            "budget",
+            "travelers",
+            "accommodation",
+            "meals",
+            "transfer",
+            "guide",
+            "summary",
+            "kind_help",
+            "communication",
+        ];
+
+        // Get step keys
+        const stepKeys = [
+            ...baseKeys,
+            ...destinationFlowKeys,
+            ...remainingKeys,
+        ];
+
+        // If return key
+        if (isReturnKey) return stepKeys;
+
+        // COMPONENT MAP (order must match keys)
+        const componentMap: Record<string, any> = {
+            lead_form: StepLeadForm,
+            choose_flow: ChoosePytFlow,
+            destinations: StepDestinations,
+            countries: StepCountries,
+            first_visit: StepFirstVisit,
+            travel_time: StepTravelTime,
+            trip_design: StepTripDesign,
+            themes_single: StepThemes,
+            themes_priority_1: StepThemes1,
+            themes_priority_2: StepThemes2,
+            regions: StepRegions,
+            days: StepDays,
+            budget: StepBudget,
+            travelers: StepTravelers,
+            accommodation: StepAccommodation,
+            meals: StepMeals,
+            transfer: StepTransfer,
+            guide: StepGuide,
+            summary: StepSummary,
+            kind_help: StepKindOfHelp,
+            communication: StepCommunicationMethod,
+        };
+
+        // Return response
+        return stepKeys.map((key) => componentMap[key]);
     };
 
     // Handle jump to step
@@ -387,7 +477,8 @@ export function CommonPlanTripModal({ open, onOpenChange }: Props) {
                         <div className="flex items-center justify-center gap-3 w-full">
                             {step > 1 && !formLoader && (
                                 <button
-                                    onClick={() => setStep(step - 1)}
+                                    disabled={formLoader}
+                                    onClick={handlePreviousStep}
                                     className="flex items-center gap-2 px-8 py-2.5 bg-white text-black rounded-sm font-medium border border-black hover:bg-black transition-colors hover:text-white cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                                 >
                                     <MoveLeft className="h-4 w-4" />

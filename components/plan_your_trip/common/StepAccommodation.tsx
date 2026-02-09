@@ -47,6 +47,7 @@ export default function StepAccommodation({
     planYourTripForm,
     setPlanYourTripForm,
 }: Props) {
+    // Define state
     const [selected, setSelected] = useState<string | null>(null);
 
     // Active country (supports multi-country → first one)
@@ -56,7 +57,7 @@ export default function StepAccommodation({
 
     // 🔥 Build options dynamically
     const options = useMemo(() => {
-        const countrySpecific = COUNTRY_ACCOMMODATION_OPTIONS[activeCountry] || [];
+        const countrySpecific = planYourTripForm.choose_flow === "i_have_destination" && COUNTRY_ACCOMMODATION_OPTIONS[activeCountry] || [];
         return [
             ...COMMON_ACCOMMODATION_OPTIONS.slice(0, 3),
             ...countrySpecific,

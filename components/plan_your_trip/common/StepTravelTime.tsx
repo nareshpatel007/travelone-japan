@@ -4,6 +4,7 @@ import { Check } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import QuestionHeading from "./questionHeading";
 
+// Default seasons for countries
 const DEFAULT_SEASON_MONTHS: Record<string, string[]> = {
     "Winter 2026": ["December", "January", "February"],
     "Spring 2026": ["March", "April"],
@@ -11,6 +12,7 @@ const DEFAULT_SEASON_MONTHS: Record<string, string[]> = {
     "Autumn 2026": ["September", "October", "November"],
 };
 
+// Seasons for countries
 const COUNTRY_SEASONS: any = {
     Japan: {
         "Spring (Cherry Blossoms)": ["March", "April"],
@@ -93,15 +95,24 @@ export default function StepTravelTime({
 
     // Get options
     const options = useMemo(() => {
-        const countrySeasons = COUNTRY_SEASONS[activeCountry];
+        const choose_flow = planYourTripForm.choose_flow;
 
-        // If country has seasons → use them
-        if (Array.isArray(countrySeasons) && countrySeasons.length > 0) {
-            return countrySeasons;
+        // If destination in my mind
+        if (choose_flow === "i_have_destination") {
+            // Get country seasons
+            const countrySeasons = COUNTRY_SEASONS[activeCountry];
+
+            // If country has seasons → use them
+            if (Array.isArray(countrySeasons) && countrySeasons.length > 0) {
+                return countrySeasons;
+            }
+
+            // Else → default seasons (Winter, Spring, Summer, Autumn)
+            return Object.keys(DEFAULT_SEASON_MONTHS);
+        } else {
+            // Default seasons (Winter, Spring, Summer, Autumn)
+            return Object.keys(DEFAULT_SEASON_MONTHS);
         }
-
-        // Else → default seasons (Winter, Spring, Summer, Autumn)
-        return Object.keys(DEFAULT_SEASON_MONTHS);
     }, [activeCountry]);
 
     // Restore values

@@ -1,20 +1,32 @@
 "use client";
+
 import { Check, X } from "lucide-react";
 import QuestionHeading from "./questionHeading";
 import { useEffect } from "react";
 
-// Define the summary configuration
-const SUMMARY_IN_MIND_CONFIG = [
+const SUMMARY_CONFIG = [
     {
-        label: "Destination in mind",
+        label: "Destination flow",
         stepKey: "choose_flow",
         shouldShow: () => true,
         isAnswered: (form: any) => !!form.choose_flow,
     },
     {
+        label: "Destination",
+        stepKey: "destinations",
+        shouldShow: (form: any) => form.choose_flow === "i_have_destination",
+        isAnswered: (form: any) => !!form.destination,
+    },
+    {
+        label: "Countries",
+        stepKey: "countries",
+        shouldShow: (form: any) => form.choose_flow === "i_have_destination",
+        isAnswered: (form: any) => Array.isArray(form.country) && form.country.length > 0,
+    },
+    {
         label: "First time visiting",
         stepKey: "first_visit",
-        shouldShow: () => true,
+        shouldShow: (form: any) => form.choose_flow === "i_have_destination",
         isAnswered: (form: any) => !!form.first_time_visit,
     },
     {
@@ -30,28 +42,28 @@ const SUMMARY_IN_MIND_CONFIG = [
         isAnswered: (form: any) => !!form.trip_design,
     },
     {
-        label: "Theme options",
+        label: "Themes (Single)",
         stepKey: "themes_single",
         shouldShow: (form: any) => form.trip_design === "The Focused Vision",
         isAnswered: (form: any) => Array.isArray(form.themes_priority_1) && form.themes_priority_1.length > 0,
     },
     {
-        label: "Theme priority 1",
+        label: "Themes (Priority 1)",
         stepKey: "themes_priority_1",
         shouldShow: (form: any) => form.trip_design === "The Dual Perspective",
         isAnswered: (form: any) => Array.isArray(form.themes_priority_1) && form.themes_priority_1.length > 0,
     },
     {
-        label: "Theme priority 2",
+        label: "Themes (Priority 2)",
         stepKey: "themes_priority_2",
         shouldShow: (form: any) => form.trip_design === "The Dual Perspective",
         isAnswered: (form: any) => Array.isArray(form.themes_priority_2) && form.themes_priority_2.length > 0,
     },
     {
-        label: "Regions",
+        label: "Selected cities",
         stepKey: "regions",
-        shouldShow: () => true,
-        isAnswered: (form: any) => Array.isArray(form.cities_options) && form.cities_options.length > 0,
+        shouldShow: (form: any) => form.choose_flow === "i_have_destination",
+        isAnswered: (form: any) => Array.isArray(form.selected_cities) && form.selected_cities.length > 0,
     },
     {
         label: "Trip duration",
@@ -84,7 +96,7 @@ const SUMMARY_IN_MIND_CONFIG = [
         isAnswered: (form: any) => !!form.meal_preferences,
     },
     {
-        label: "Transfer",
+        label: "Transfers",
         stepKey: "transfer",
         shouldShow: () => true,
         isAnswered: (form: any) => !!form.transportation,
@@ -103,47 +115,51 @@ interface Props {
     jumpToStep: (stepKey: any) => void;
 }
 
-export default function StepSummary({ planYourTripForm, setPlanYourTripForm, jumpToStep }: Props) {
-    // Get visible items
-    const visibleItems = SUMMARY_IN_MIND_CONFIG.filter((item) =>
+export default function StepSummary({
+    planYourTripForm,
+    setPlanYourTripForm,
+    jumpToStep,
+}: Props) {
+    const visibleItems = SUMMARY_CONFIG.filter((item) =>
         item.shouldShow(planYourTripForm)
     );
 
-    // Init update flag
     useEffect(() => {
         setPlanYourTripForm((prev: any) => ({
             ...prev,
-            is_show_history_btn: true
+            is_show_history_btn: true,
         }));
     }, []);
 
     return (
         <div className="space-y-5">
             <QuestionHeading title="Your Preference Summary" />
-            <div className="border border-black rounded-sm p-5 space-y-5 bg-white/60 max-h-[55vh] md:max-h-[60vh] overflow-y-auto space-y-3">
+
+            <div className="border border-black rounded-sm p-5 bg-white/60 max-h-[55vh] md:max-h-[60vh] overflow-y-auto space-y-3">
                 {visibleItems.map((item, index) => {
                     const answered = item.isAnswered(planYourTripForm);
 
                     return (
                         <div
-                            key={item.label}
+                            key={item.stepKey}
                             onClick={() => answered && jumpToStep(item.stepKey)}
-                            className="flex items-center justify-between border-b pb-2 hover:underline cursor-pointer"
+                            className="flex items-center justify-between border-b pb-2 cursor-pointer hover:underline"
                         >
                             <span className="text-sm md:text-base text-black">
                                 Preference {index + 1}: {item.label}
                             </span>
-                            <span className="flex items-center justify-center">
-                                {answered && <div className="flex items-center space-x-2">
-                                    <Check className="h-5 w-5 font-semibold text-green-700" />
-                                    <span className="text-sm md:text-base text-green-700">Completed</span>
-                                </div>}
 
-                                {!answered && <div className="flex items-center space-x-2">
-                                    <X className="h-5 w-5 font-semibold text-red-500" />
-                                    <span className="text-sm md:text-base text-red-500">Not Completed</span>
-                                </div>}
-                            </span>
+                            {answered ? (
+                                <div className="flex items-center gap-2 text-green-700">
+                                    <Check className="h-5 w-5" />
+                                    <span>Completed</span>
+                                </div>
+                            ) : (
+                                <div className="flex items-center gap-2 text-red-500">
+                                    <X className="h-5 w-5" />
+                                    <span>Not Completed</span>
+                                </div>
+                            )}
                         </div>
                     );
                 })}
