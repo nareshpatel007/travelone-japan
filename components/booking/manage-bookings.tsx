@@ -82,19 +82,19 @@ export function ManageBookings({ bookingData }: Props) {
                         return (
                             <div
                                 key={index}
-                                className={`bg-white border border-gray-200 rounded-sm overflow-hidden ${booking.status === "CANCELLED" ? "opacity-75" : ""}`}
+                                className={`bg-white border border-gray-200 hover:bg-gray-50 rounded-sm overflow-hidden ${booking.status === "CANCELLED" ? "opacity-75" : ""}`}
                             >
                                 <div className="p-0 md:p-5">
                                     <div className="flex flex-col md:flex-row gap-0 md:gap-4">
-                                        <div className="flex-shrink-0">
+                                        <div className="flex-shrink-0 relative w-full h-[160px] md:w-[150px] md:h-auto">
                                             <Link href={`bookings/${booking.checkout_id}`}>
                                                 <Image
                                                     src={tourInfo?.featured_image || "/placeholder.svg"}
                                                     alt={tourInfo?.tour_name || "Placeholder"}
-                                                    width={200}
-                                                    height={200}
-                                                    draggable="false"
-                                                    className="w-full h-full object-cover rounded-sm"
+                                                    fill
+                                                    draggable={false}
+                                                    className="object-cover rounded-sm"
+                                                    sizes="(max-width: 640px) 96px, (max-width: 768px) 120px, (max-width: 1024px) 150px, 200px"
                                                 />
                                             </Link>
                                         </div>

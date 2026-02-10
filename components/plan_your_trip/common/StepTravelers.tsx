@@ -188,11 +188,11 @@ export default function StepTravelers({
                     ).map(([title, subtitle, key]: any) => (
                         <div
                             key={key}
-                            className="flex justify-between items-center bg-white border border-black/30 px-5 py-2.5 rounded-sm"
+                            className="flex justify-between items-center bg-white border border-black/30 px-4 py-2.5 rounded-sm"
                         >
                             <div>
-                                <p className="text-sm font-medium">{title}</p>
-                                <p className="text-sm text-gray-600">{subtitle}</p>
+                                <p className="text-sm md:text-base font-medium">{title}</p>
+                                <p className="text-sm md:text-base text-gray-600">{subtitle}</p>
                             </div>
 
                             <div className="flex items-center gap-3">
@@ -205,7 +205,7 @@ export default function StepTravelers({
                                     −
                                 </button>
 
-                                <span className="w-4 text-center">
+                                <span className="w-4 text-sm md:text-base text-center">
                                     {activeData[key]}
                                 </span>
 
@@ -223,13 +223,13 @@ export default function StepTravelers({
                 </div>
 
                 {/* Women only */}
-                <div className="flex items-center gap-3 mt-4">
+                <div className="flex items-center gap-2 mt-4">
                     <input
                         type="checkbox"
                         checked={womenOnly[activeTab]}
                         onChange={(e) => handleWomenOnlyChange(e.target.checked)}
                     />
-                    <span>Women only</span>
+                    <span className="text-sm md:text-base">Women only</span>
                 </div>
             </div>
         </div>
@@ -240,7 +240,7 @@ function Tab({ label, active, onClick }: any) {
     return (
         <button
             onClick={onClick}
-            className={`py-2.5 rounded-sm border transition cursor-pointer ${active ? "bg-black text-white" : "bg-white text-black border-black/30"}`}
+            className={`py-2.5 rounded-sm border transition text-sm md:text-base cursor-pointer ${active ? "bg-black text-white" : "bg-white text-black border-black/30"}`}
         >
             {label}
         </button>

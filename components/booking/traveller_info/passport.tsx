@@ -7,8 +7,8 @@ import { useState } from "react";
 type Props = {
     open: boolean;
     setOpenChange: (open: boolean) => void;
-    handleChange: (key: string, value: any) => void;
-    formData: any
+    handleChange: (key: string, value: any, autoUpdate?: boolean) => void;
+    formData: any;
 };
 
 export function PassportPreference({ open, setOpenChange, handleChange, formData }: Props) {
@@ -64,7 +64,7 @@ export function PassportPreference({ open, setOpenChange, handleChange, formData
             // Save only URL
             handleChange("passport_json", {
                 file: data.url
-            });
+            }, true);
 
             // Close modal
             handleClose();
@@ -76,19 +76,16 @@ export function PassportPreference({ open, setOpenChange, handleChange, formData
     };
 
     return (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-10">
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-3 md:p-8">
             <div className="absolute inset-0 bg-black/40" onClick={handleClose} />
             <div className="relative w-full max-w-xl bg-white rounded-md shadow-lg">
-                {/* Header */}
                 <div className="flex justify-between items-center px-6 py-4 border-b">
-                    <h3 className="text-lg font-medium">Passport Details</h3>
+                    <h3 className="text-md md:text-lg font-medium">Passport Details</h3>
                     <button className="cursor-pointer" onClick={handleClose}>
                         <X />
                     </button>
                 </div>
-
-                {/* Body */}
-                <div className="px-6 py-5 space-y-4">
+                <div className="px-5 py-5 space-y-4">
                     {normalized?.file && (
                         <div>
                             <label className="block text-sm font-medium mb-1">Your uploaded passport file is here</label>
@@ -101,32 +98,30 @@ export function PassportPreference({ open, setOpenChange, handleChange, formData
                         </div>
                     )}
 
-                    <div>
+                    <div className="space-y-3">
                         <label className="block text-sm font-medium mb-1">
-                            Passport Upload (PDF or Image File) <span className="text-red-500">*</span>
+                            Upload Passport <span className="text-red-500">*</span>
                         </label>
 
                         <input
                             type="file"
                             accept="image/*,.pdf"
                             onChange={(e) => setFile(e.target.files?.[0] || null)}
-                            className="block w-full border px-3 py-2 rounded-sm"
+                            className="block w-full border px-3 py-2 text-sm md:text-base rounded-sm"
                         />
 
                         <p className="text-xs text-gray-500 mt-1">
-                            Max file size: 4 MB
+                            Max file size: 4 MB | Supported: .png, .jpg, .jpeg, .pdf
                         </p>
                     </div>
 
                     {error && <p className="text-red-600 text-sm">{error}</p>}
                 </div>
-
-                {/* Footer */}
                 <div className="flex justify-end gap-3 px-6 py-4 border-t">
                     <button
                         onClick={handleSubmit}
                         disabled={loading}
-                        className="px-5 py-2 bg-black text-sm md:text-base text-white border border-black rounded-sm flex items-center gap-2 cursor-pointer hover:bg-black/90 disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="px-5 py-1.5 bg-black text-sm md:text-base text-white border border-black rounded-sm flex items-center gap-2 cursor-pointer hover:bg-black/90 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                         {loading ? <Loader2 className="animate-spin" size={16} /> : <CheckCircle size={16} />}
                         Submit

@@ -45,8 +45,8 @@ const defaultFormData = {
     themes_priority_2: [],
     cities_options: [],
     selected_cities: [],
-    day_option: "",
-    budget: "",
+    day_option: "7 - 10 Days (The Essential Experience)",
+    budget: "$3000 - $5000 USD (Affordable Private Experience)",
     prefer_travel_type: "family",
     family_friends: {
         adults: 2,
@@ -63,10 +63,11 @@ const defaultFormData = {
         is_women_only: false
     },
     solo: {
+        adults: 1,
         is_women_only: false
     },
-    accommodation: "",
-    meal_preferences: "",
+    accommodation: "Budgeted 4 Star",
+    meal_preferences: [],
     transportation: "",
     guide: "",
     kind_of_help: "",
@@ -224,24 +225,6 @@ export function CommonPlanTripModal({ open, onOpenChange }: Props) {
                 }
                 break;
 
-            case "meals":
-                if (!planYourTripForm.meal_preferences) {
-                    newErrors = "Please select meal preference.";
-                }
-                break;
-
-            case "transfer":
-                if (!planYourTripForm.transportation) {
-                    newErrors = "Please select transportation preference.";
-                }
-                break;
-
-            case "guide":
-                if (!planYourTripForm.guide) {
-                    newErrors = "Please select guide preference.";
-                }
-                break;
-
             case "kind_help":
                 if (!planYourTripForm.kind_of_help) {
                     newErrors = "Please select how we can help you.";
@@ -262,12 +245,34 @@ export function CommonPlanTripModal({ open, onOpenChange }: Props) {
         return newErrors === "";
     };
 
+    // Auto save questions
+    const autoSaveQuestion = () => {
+        try {
+            // Validation
+            if (leadId === "") return;
+
+            // Save lead questions
+            fetch("/api/plan_your_trip/autosave", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    lead_id: leadId,
+                    data: planYourTripForm
+                })
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     // Handle submit plan your trip
     const handlSubmitPlanYourTrip = () => {
         setFormLoader(true);
         (async () => {
             try {
-                // Add new lead
+                // Save lead questions
                 const response = await fetch("/api/plan_your_trip", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
@@ -442,6 +447,9 @@ export function CommonPlanTripModal({ open, onOpenChange }: Props) {
     const CurrentStep = stepsValue[step];
     const CurrentStepKey = stepsKey[step];
 
+    // Define button basic class
+    const btnBase = "flex items-center justify-center gap-2 w-full md:w-auto " + "px-4 md:px-8 py-2 md:py-2.5 rounded-sm font-medium border cursor-pointer transition " + "disabled:opacity-50 disabled:cursor-not-allowed";
+
     // If not open
     if (!open) return null;
 
@@ -455,7 +463,7 @@ export function CommonPlanTripModal({ open, onOpenChange }: Props) {
                 >
                     <X className="h-5 w-5" />
                 </button>
-                <div className="min-h-full flex items-start justify-center px-6 py-10 md:py-16">
+                <div className="min-h-full flex items-start justify-center px-4 py-16">
                     <div className="w-full max-w-4xl space-y-5">
                         {/* Screen Step */}
                         {CurrentStep && (
@@ -474,51 +482,77 @@ export function CommonPlanTripModal({ open, onOpenChange }: Props) {
                         )}
 
                         {/* Navigation */}
-                        <div className="flex items-center justify-center gap-3 w-full">
-                            {step > 1 && !formLoader && (
+                        <div className="flex flex-row items-stretch md:items-center justify-center gap-2 md:gap-3 w-full">
+                            {/* START */}
+                            {step === 0 && (
                                 <button
                                     disabled={formLoader}
+                                    onClick={handleNextStep}
+                                    className={`${btnBase} bg-black text-white border-black hover:bg-white hover:text-black`}
+                                >
+                                    {formLoader && <Loader2 className="w-5 h-5 animate-spin" />}
+                                    Start <MoveRight className="h-4 w-4" />
+                                </button>
+                            )}
+
+                            {/* PREVIOUS */}
+                            {step > 1 && !formLoader && (
+                                <button
                                     onClick={handlePreviousStep}
-                                    className="flex items-center gap-2 px-8 py-2.5 bg-white text-black rounded-sm font-medium border border-black hover:bg-black transition-colors hover:text-white cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                                    className={`${btnBase} bg-white text-black border-black hover:bg-black hover:text-white`}
                                 >
                                     <MoveLeft className="h-4 w-4" />
                                     Previous
                                 </button>
                             )}
 
-                            {step === 0 && (
+                            {/* NEXT */}
+                            {step > 0 && CurrentStepKey !== "communication" && (
                                 <button
                                     disabled={formLoader}
-                                    onClick={handleNextStep}
-                                    className="flex items-center gap-2 px-8 py-2.5 bg-black text-white rounded-sm font-medium border border-black hover:bg-white transition-colors hover:text-black cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                                    onClick={() => {
+                                        handleNextStep();
+                                        autoSaveQuestion();
+                                    }}
+                                    className={`${btnBase} bg-black text-white border-black hover:bg-white hover:text-black`}
                                 >
-                                    Start <MoveRight className="h-4 w-4" />
+                                    Next <MoveRight className="h-4 w-4" />
                                 </button>
                             )}
 
-                            {step > 0 && CurrentStepKey !== "communication" && <button
-                                disabled={formLoader}
-                                onClick={handleNextStep}
-                                className="flex items-center gap-2 px-8 py-2.5 bg-black text-white rounded-sm font-medium border border-black hover:bg-white transition-colors hover:text-black cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
-                            >
-                                Next <MoveRight className="h-4 w-4" />
-                            </button>}
+                            {/* SKIP */}
+                            {!formLoader &&
+                                ["meals", "transfer", "guide"].includes(CurrentStepKey) &&
+                                !["summary", "communication", "kind_help"].includes(CurrentStepKey) && (
+                                    <button
+                                        onClick={() => {
+                                            setStep(step + 1);
+                                            setErrors("");
+                                            autoSaveQuestion();
+                                        }}
+                                        className={`${btnBase} bg-white text-black border-black hover:bg-black hover:text-white`}
+                                    >
+                                        Skip <MoveRight className="h-4 w-4" />
+                                    </button>
+                                )}
 
-                            {planYourTripForm?.is_show_history_btn && CurrentStepKey !== "summary" && CurrentStepKey !== "communication" && CurrentStepKey !== "kind_help" && (
+                            {/* VIEW SUMMARY */}
+                            {planYourTripForm?.is_show_history_btn && !["summary", "communication", "kind_help"].includes(CurrentStepKey) && (
                                 <button
-                                    disabled={formLoader}
                                     onClick={() => jumpToStep("summary")}
-                                    className="flex items-center gap-2 px-8 py-2.5 bg-black text-white rounded-sm font-medium border border-black hover:bg-white transition-colors hover:text-black cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                                    className={`${btnBase} hidden md:flex bg-black text-white border-black hover:bg-white hover:text-black`}
                                 >
-                                    <ListCheck className="h-4 w-4" /> View Summary
+                                    <ListCheck className="h-4 w-4" />
+                                    View Summary
                                 </button>
                             )}
 
+                            {/* SUBMIT */}
                             {CurrentStepKey === "communication" && (
                                 <button
                                     disabled={formLoader}
                                     onClick={handlSubmitPlanYourTrip}
-                                    className="flex items-center gap-2 px-8 py-2.5 bg-black text-white rounded-sm font-medium border border-black hover:bg-white transition-colors hover:text-black cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                                    className={`${btnBase} bg-black text-white border-black hover:bg-white hover:text-black`}
                                 >
                                     {formLoader ? (
                                         <Loader2 className="h-4 w-4 animate-spin" />
@@ -526,6 +560,19 @@ export function CommonPlanTripModal({ open, onOpenChange }: Props) {
                                         <CheckCircle className="h-5 w-5" />
                                     )}
                                     Submit
+                                </button>
+                            )}
+                        </div>
+
+                        {/* VIEW SUMMARY FOR MOBILE */}
+                        <div className="flex md:hidden flex-row w-full">
+                            {planYourTripForm?.is_show_history_btn && !["summary", "communication", "kind_help"].includes(CurrentStepKey) && (
+                                <button
+                                    onClick={() => jumpToStep("summary")}
+                                    className={`${btnBase} bg-black text-white border-black hover:bg-white hover:text-black`}
+                                >
+                                    <ListCheck className="h-4 w-4" />
+                                    View Summary
                                 </button>
                             )}
                         </div>

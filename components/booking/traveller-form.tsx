@@ -57,37 +57,44 @@ export default function TravellerForm({ headerBox = true, orderData, totalRooms,
     });
 
     // Handle update value
-    const handleChange = (key: string, value: any) => {
+    const handleChange = (key: string, value: any, autoUpdate: boolean = false) => {
+        // Validation
         if (key == "" || value == "") {
             return;
         }
-        setTravellers((prev: any) => ({ ...prev, [key]: value }));
+
+        // Update value
+        const updatedData = { ...travellers, [key]: value };
+        setTravellers(updatedData);
+
+        // Auto update
+        if(autoUpdate) {
+            handleSubmitTraveller(updatedData);
+        }
     };
 
     // Handle submit traveller
-    const handleSubmitTraveller = async () => {
-
-        console.log(travellers);
-
+    const handleSubmitTraveller = async (updatedData: any = travellers) => {
         // Check validation
-        if (travellers.fname == "" || travellers.lname == "" || travellers.email == "" || travellers.phone == "" || travellers.dob == "" || travellers.mailing_address == "" || travellers.global_entry_no == "" || travellers.passport_no == "" || travellers.passport_expiry == "" || travellers.nationality == "") {
+        if (updatedData.fname == "" || updatedData.lname == "" || updatedData.email == "" || updatedData.phone == "" || updatedData.dob == "" || updatedData.mailing_address == "" || updatedData.global_entry_no == "" || updatedData.passport_no == "" || updatedData.passport_expiry == "" || updatedData.nationality == "") {
             setError("All fields are required.");
             return;
         }
 
         // If more then 1 room and if not selected room allocate
-        if (totalRooms > 1 && !travellers.room_allocate) {
+        if (totalRooms > 1 && !updatedData.room_allocate) {
             setError("Please allocate room for this traveller");
             return;
         }
 
         // If only 1 room, set room allocate to 1
         if (totalRooms == 1) {
-            travellers.room_allocate = 1;
+            updatedData.room_allocate = 1;
         }
 
         // Update state
         setIsFormLoading(true);
+        setIsUpdated(false);
         setError(null);
 
         try {
@@ -97,7 +104,7 @@ export default function TravellerForm({ headerBox = true, orderData, totalRooms,
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify(travellers),
+                body: JSON.stringify(updatedData),
             });
 
             // Get data
@@ -113,11 +120,15 @@ export default function TravellerForm({ headerBox = true, orderData, totalRooms,
             }
         } catch (error) {
             // Set error
-            setError("Updaet request failed. Please try again.");
+            console.log(error);
+            setError("Update request failed. Please try again.");
         } finally {
             // Update state
             setIsFormLoading(false);
         }
+
+        // Update state
+        setIsFormLoading(false);
     }
 
     return (
@@ -137,7 +148,7 @@ export default function TravellerForm({ headerBox = true, orderData, totalRooms,
                         <label className="text-sm">First Name</label>
                         <input
                             type="text"
-                            value={travellers.fname}
+                            defaultValue={travellers.fname}
                             onChange={(e) => handleChange("fname", e.target.value)}
                             className="bg-white border border-black px-3 py-2 rounded-sm text-sm md:text-base focus:ring-1 focus:ring-black"
                         />
@@ -148,7 +159,7 @@ export default function TravellerForm({ headerBox = true, orderData, totalRooms,
                         <label className="text-sm">Middle Name (Optional)</label>
                         <input
                             type="text"
-                            value={travellers.mname}
+                            defaultValue={travellers.mname}
                             onChange={(e) => handleChange("mname", e.target.value)}
                             className="bg-white border border-black px-3 py-2 rounded-sm text-sm md:text-base focus:ring-1 focus:ring-black"
                         />
@@ -159,7 +170,7 @@ export default function TravellerForm({ headerBox = true, orderData, totalRooms,
                         <label className="text-sm">Last Name</label>
                         <input
                             type="text"
-                            value={travellers.lname}
+                            defaultValue={travellers.lname}
                             onChange={(e) => handleChange("lname", e.target.value)}
                             className="bg-white border border-black px-3 py-2 rounded-sm text-sm md:text-base focus:ring-1 focus:ring-black"
                         />
@@ -170,7 +181,7 @@ export default function TravellerForm({ headerBox = true, orderData, totalRooms,
                         <label className="text-sm">Email</label>
                         <input
                             type="text"
-                            value={travellers.email}
+                            defaultValue={travellers.email}
                             onChange={(e) => handleChange("email", e.target.value)}
                             className="bg-white border border-black px-3 py-2 rounded-sm text-sm md:text-base focus:ring-1 focus:ring-black"
                         />
@@ -184,7 +195,7 @@ export default function TravellerForm({ headerBox = true, orderData, totalRooms,
                             value={travellers.phone}
                             onChange={(e) => handleChange("phone", e)}
                             placeholder="Enter your phone number"
-                            className="w-full rounded-sm py-0.5 px-3 text-sm md:text-md text-black font-medium bg-white border border-black"
+                            className="w-full rounded-sm py-0.5 px-3 text-sm md:text-md text-black font-normal md:font-medium bg-white border border-black"
                             inputClassName="w-full !border-0 text-sm md:text-md !border-white"
                         />
                     </div>
@@ -194,7 +205,7 @@ export default function TravellerForm({ headerBox = true, orderData, totalRooms,
                         <label className="text-sm">Date of Birth</label>
                         <input
                             type="date"
-                            value={travellers.dob}
+                            defaultValue={travellers.dob}
                             onChange={(e) => handleChange("dob", e.target.value)}
                             max={new Date().toISOString().split("T")[0]}
                             className="bg-white border border-black px-3 py-2 rounded-sm text-sm md:text-base focus:ring-1 focus:ring-black"
@@ -206,7 +217,7 @@ export default function TravellerForm({ headerBox = true, orderData, totalRooms,
                         <label className="text-sm">Mailing Address</label>
                         <input
                             type="text"
-                            value={travellers.mailing_address}
+                            defaultValue={travellers.mailing_address}
                             onChange={(e) => handleChange("mailing_address", e.target.value)}
                             className="bg-white border border-black px-3 py-2 rounded-sm text-sm md:text-base focus:ring-1 focus:ring-black"
                         />
@@ -217,7 +228,7 @@ export default function TravellerForm({ headerBox = true, orderData, totalRooms,
                         <label className="text-sm">Global Entry Number</label>
                         <input
                             type="text"
-                            value={travellers.global_entry_no}
+                            defaultValue={travellers.global_entry_no}
                             onChange={(e) => handleChange("global_entry_no", e.target.value)}
                             className="bg-white border border-black px-3 py-2 rounded-sm text-sm md:text-base focus:ring-1 focus:ring-black"
                         />
@@ -228,7 +239,7 @@ export default function TravellerForm({ headerBox = true, orderData, totalRooms,
                         <label className="text-sm">Passport Number</label>
                         <input
                             type="text"
-                            value={travellers.passport_no}
+                            defaultValue={travellers.passport_no}
                             onChange={(e) => handleChange("passport_no", e.target.value)}
                             className="bg-white border border-black px-3 py-2 rounded-sm text-sm md:text-base focus:ring-1 focus:ring-black"
                         />
@@ -239,7 +250,7 @@ export default function TravellerForm({ headerBox = true, orderData, totalRooms,
                         <label className="text-sm">Passport Expiry</label>
                         <input
                             type="date"
-                            value={travellers.passport_expiry}
+                            defaultValue={travellers.passport_expiry}
                             onChange={(e) => handleChange("passport_expiry", e.target.value)}
                             min={new Date().toISOString().split("T")[0]}
                             className="bg-white border border-black px-3 py-2 rounded-sm text-sm md:text-base focus:ring-1 focus:ring-black"
@@ -250,7 +261,7 @@ export default function TravellerForm({ headerBox = true, orderData, totalRooms,
                     <div className="flex flex-col">
                         <label className="text-sm mb-1">Nationality</label>
                         <select
-                            value={travellers.nationality}
+                            defaultValue={travellers.nationality}
                             onChange={(e) => handleChange("nationality", e.target.value)}
                             className="bg-white border border-black px-3 py-2 rounded-sm text-sm md:text-base"
                         >
@@ -265,7 +276,7 @@ export default function TravellerForm({ headerBox = true, orderData, totalRooms,
                     {totalRooms > 1 && <div className="flex flex-col">
                         <label className="text-sm mb-1">Allocate Room</label>
                         <select
-                            value={travellers.room_allocate}
+                            defaultValue={travellers.room_allocate}
                             onChange={(e) => handleChange("room_allocate", e.target.value)}
                             className="bg-white border border-black px-3 py-2 rounded-sm text-sm md:text-base"
                         >
@@ -280,25 +291,45 @@ export default function TravellerForm({ headerBox = true, orderData, totalRooms,
                 <div className="space-y-2">
                     <p className="text-sm md:text-base font-medium">Your Preferences</p>
                     <div className="flex flex-wrap gap-2">
-                        <span onClick={() => setOpenPassportModal(true)} className="px-4 py-1 text-sm md:text-base bg-[#d9eed8] text-black border border-black rounded-sm hover:bg-black hover:text-white cursor-pointer">
+                        <button
+                            disabled={travellers.fname == "" || travellers.lname == "" || travellers.email == "" || travellers.phone == "" || travellers.dob == "" || travellers.mailing_address == "" || travellers.global_entry_no == "" || travellers.passport_no == "" || travellers.passport_expiry == "" || travellers.nationality == ""}
+                            onClick={() => setOpenPassportModal(true)}
+                            className="px-4 py-1 text-sm md:text-base bg-[#d9eed8] text-black border border-black rounded-sm hover:bg-black hover:text-white cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                        >
                             Passport
-                        </span>
+                        </button>
 
-                        <span onClick={() => setOpenFlightModal(true)} className="px-4 py-1 text-sm md:text-base bg-[#d9eed8] text-black border border-black rounded-sm hover:bg-black hover:text-white cursor-pointer">
+                        <button
+                            disabled={travellers.fname == "" || travellers.lname == "" || travellers.email == "" || travellers.phone == "" || travellers.dob == "" || travellers.mailing_address == "" || travellers.global_entry_no == "" || travellers.passport_no == "" || travellers.passport_expiry == "" || travellers.nationality == ""}
+                            onClick={() => setOpenFlightModal(true)}
+                            className="px-4 py-1 text-sm md:text-base bg-[#d9eed8] text-black border border-black rounded-sm hover:bg-black hover:text-white cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                        >
                             Flight
-                        </span>
+                        </button>
 
-                        <span onClick={() => setOpenLuggageModal(true)} className="px-4 py-1 text-sm md:text-base bg-[#d9eed8] text-black border border-black rounded-sm hover:bg-black hover:text-white cursor-pointer">
+                        <button
+                            disabled={travellers.fname == "" || travellers.lname == "" || travellers.email == "" || travellers.phone == "" || travellers.dob == "" || travellers.mailing_address == "" || travellers.global_entry_no == "" || travellers.passport_no == "" || travellers.passport_expiry == "" || travellers.nationality == ""}
+                            onClick={() => setOpenLuggageModal(true)}
+                            className="px-4 py-1 text-sm md:text-base bg-[#d9eed8] text-black border border-black rounded-sm hover:bg-black hover:text-white cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                        >
                             Luggage
-                        </span>
+                        </button>
 
-                        <span onClick={() => setOpenMealModal(true)} className="px-4 py-1 text-sm md:text-base bg-[#d9eed8] text-black border border-black rounded-sm hover:bg-black hover:text-white cursor-pointer">
+                        <button
+                            disabled={travellers.fname == "" || travellers.lname == "" || travellers.email == "" || travellers.phone == "" || travellers.dob == "" || travellers.mailing_address == "" || travellers.global_entry_no == "" || travellers.passport_no == "" || travellers.passport_expiry == "" || travellers.nationality == ""}
+                            onClick={() => setOpenMealModal(true)}
+                            className="px-4 py-1 text-sm md:text-base bg-[#d9eed8] text-black border border-black rounded-sm hover:bg-black hover:text-white cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                        >
                             Meal
-                        </span>
+                        </button>
 
-                        <span onClick={() => setOpenVisaModal(true)} className="px-4 py-1 text-sm md:text-base bg-[#d9eed8] text-black border border-black rounded-sm hover:bg-black hover:text-white cursor-pointer">
+                        <button
+                            disabled={travellers.fname == "" || travellers.lname == "" || travellers.email == "" || travellers.phone == "" || travellers.dob == "" || travellers.mailing_address == "" || travellers.global_entry_no == "" || travellers.passport_no == "" || travellers.passport_expiry == "" || travellers.nationality == ""}
+                            onClick={() => setOpenVisaModal(true)}
+                            className="px-4 py-1 text-sm md:text-base bg-[#d9eed8] text-black border border-black rounded-sm hover:bg-black hover:text-white cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                        >
                             Visa
-                        </span>
+                        </button>
                     </div>
                 </div>
 
@@ -313,7 +344,7 @@ export default function TravellerForm({ headerBox = true, orderData, totalRooms,
 
                 {/* Save Button */}
                 <button
-                    onClick={handleSubmitTraveller}
+                    onClick={() => handleSubmitTraveller()}
                     disabled={isFormLoading}
                     className="w-full md:w-auto flex items-center justify-center gap-2 bg-black text-white hover:bg-black/90 text-white py-2 px-6 rounded-sm cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                 >
@@ -327,35 +358,35 @@ export default function TravellerForm({ headerBox = true, orderData, totalRooms,
             {openPassportModal && <PassportPreference
                 open={openPassportModal}
                 setOpenChange={setOpenPassportModal}
-                formData={travellers.passport_json}
+                formData={travellers.passport_json || {}}
                 handleChange={handleChange}
             />}
 
             {openFlightModal && <FlightPreference
                 open={openFlightModal}
                 setOpenChange={setOpenFlightModal}
-                formData={travellers.flight_json}
+                formData={travellers.flight_json || {}}
                 handleChange={handleChange}
             />}
 
             {openLuggageModal && <LuggagePreference
                 open={openLuggageModal}
                 setOpenChange={setOpenLuggageModal}
-                formData={travellers.luggage_json}
+                formData={travellers.luggage_json || {}}
                 handleChange={handleChange}
             />}
 
             {openMealModal && <MealPreference
                 open={openMealModal}
                 setOpenChange={setOpenMealModal}
-                formData={travellers.meal_json}
+                formData={travellers.meal_json || {}}
                 handleChange={handleChange}
             />}
 
             {openVisaModal && <VisaPreference
                 open={openVisaModal}
                 setOpenChange={setOpenVisaModal}
-                formData={travellers.visa_json}
+                formData={travellers.visa_json || {}}
                 handleChange={handleChange}
             />}
         </>

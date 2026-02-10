@@ -7,7 +7,7 @@ import { useState } from "react";
 type Props = {
     open: boolean;
     setOpenChange: (open: boolean) => void;
-    handleChange: (key: string, value: any) => void;
+    handleChange: (key: string, value: any, autoUpdate?: boolean) => void;
     formData: any;
 };
 
@@ -56,33 +56,28 @@ export function MealPreference({ open, setOpenChange, handleChange, formData }: 
         handleChange("meal_json", {
             meal_preferences: selectedMeals,
             meal_dietary_notes: notes || "none",
-        });
+        }, true);
 
         handleClose();
     };
 
     return (
-        <div className="fixed inset-0 z-[100] p-10 flex items-center justify-center">
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-3 md:p-8">
             <div className="absolute inset-0 bg-black/40" onClick={handleClose} />
 
             <div className="relative w-full max-w-xl bg-white max-h-[60vh] overflow-y-auto rounded-md shadow-lg">
-                {/* Header */}
                 <div className="flex items-center justify-between px-6 py-4 border-b sticky top-0 bg-white z-10">
-                    <h3 className="text-lg font-medium">Meal Details</h3>
+                    <h3 className="text-md md:text-lg font-medium">Meal Details</h3>
                     <button className="cursor-pointer" onClick={handleClose}>
                         <X />
                     </button>
                 </div>
-
-                {/* Body */}
-                <div className="px-6 py-6 space-y-5">
-                    {/* Meal Preferences */}
-                    <div>
-                        <p className="text-sm font-medium mb-2">
+                <div className="px-5 py-5 space-y-4">
+                    <div className="space-y-3">
+                        <p className="text-sm md:text-base font-medium">
                             Meal preferences <span className="text-red-500">*</span>
                         </p>
-
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                        <div className="grid grid-cols-2 gap-2">
                             {MEAL_OPTIONS.map((meal) => (
                                 <label key={meal} className="flex items-center gap-2 text-sm">
                                     <input
@@ -96,10 +91,8 @@ export function MealPreference({ open, setOpenChange, handleChange, formData }: 
                             ))}
                         </div>
                     </div>
-
-                    {/* Notes */}
-                    <div>
-                        <label className="block text-sm font-medium mb-1">
+                    <div className="space-y-1">
+                        <label className="block text-sm md:text-base font-medium">
                             Do you have any dietary restrictions or preferences
                         </label>
                         <textarea
@@ -107,12 +100,10 @@ export function MealPreference({ open, setOpenChange, handleChange, formData }: 
                             value={notes}
                             onChange={(e) => setNotes(e.target.value)}
                             placeholder="Please enter any dietary restrictions or preferences"
-                            className="w-full border border-black rounded-sm p-3 focus:outline-none focus:ring-1 focus:ring-black"
+                            className="w-full border border-black rounded-sm p-3 text-sm md:text-base focus:outline-none focus:ring-1 focus:ring-black"
                         />
                     </div>
-
-                    {/* Notes Text */}
-                    <div className="text-xs md:text-sm text-gray-700 space-y-3">
+                    <div className="text-xs md:text-sm text-black space-y-3">
                         <p>
                             1. Your answers help us personalize your experience, allowing our
                             hotel and restaurant partners, as well as local guides, to arrange
@@ -136,7 +127,7 @@ export function MealPreference({ open, setOpenChange, handleChange, formData }: 
                 <div className="flex items-center justify-end gap-3 px-6 py-4 border-t sticky bottom-0 bg-white">
                     <button
                         onClick={handleSubmit}
-                        className="px-5 py-2 bg-black text-sm md:text-base text-white border border-black rounded-sm flex items-center gap-2 cursor-pointer hover:bg-black/90"
+                        className="px-5 py-1.5 bg-black text-sm md:text-base text-white border border-black rounded-sm flex items-center gap-2 cursor-pointer hover:bg-black/90"
                     >
                         <CheckCircle size={16} />
                         Submit

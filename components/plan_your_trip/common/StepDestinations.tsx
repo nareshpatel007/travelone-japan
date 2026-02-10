@@ -21,7 +21,7 @@ export default function StepDestinations({
 }: Props) {
     return (
         <>
-            <div className="space-y-8">
+            <div className="space-y-3 md:space-y-5">
                 <QuestionHeading
                     title="Where do you want to go next?"
                 />
@@ -42,9 +42,8 @@ export default function StepDestinations({
                                     themes_priority_2: [],
                                     cities_options: [],
                                     selected_cities: [],
-                                    day_option: [],
                                 })}
-                                className={`flex items-center gap-3 px-4 py-3 rounded-lg text-black border-1 transition-all cursor-pointer ${planYourTripForm.destination === item ? "border-black bg-white" : "border-black/30 bg-white hover:border-black/50"}`}
+                                className={`flex items-center gap-3 px-4 py-3 rounded-sm text-black border-1 transition-all cursor-pointer ${planYourTripForm.destination === item ? "border-black bg-white" : "border-black/30 bg-white hover:border-black/50"}`}
                             >
                                 <span className={`flex items-center justify-center w-7 h-7 text-sm font-medium rounded border border-black/30 ${planYourTripForm.destination === item ? "bg-black border-black text-white" : "bg-white text-black"}`}>
                                     {index + 1}

@@ -7,7 +7,7 @@ import { useState } from "react";
 type Props = {
     open: boolean;
     setOpenChange: (open: boolean) => void;
-    handleChange: (key: string, value: any) => void;
+    handleChange: (key: string, value: any, autoUpdate?: boolean) => void;
     formData?: any;
 };
 
@@ -32,25 +32,22 @@ export function LuggagePreference({ open, setOpenChange, handleChange, formData 
             checked_bags: checkedBags,
             carry_on_bags: carryOnBags,
             laptop_bag: laptopBag,
-        });
+        }, true);
 
         handleClose();
     };
 
     return (
-        <div className="fixed inset-0 z-[100] flex p-10 items-center justify-center">
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-3 md:p-8">
             <div className="absolute inset-0 bg-black/40" onClick={handleClose} />
             <div className="relative w-full max-w-xl bg-white rounded-md shadow-lg">
-                {/* Header */}
                 <div className="flex items-center justify-between px-6 py-4 border-b">
-                    <h3 className="text-lg font-medium">Luggage Details</h3>
+                    <h3 className="text-md md:text-lg font-medium">Luggage Details</h3>
                     <button className="cursor-pointer" onClick={handleClose}>
                         <X />
                     </button>
                 </div>
-
-                {/* Body */}
-                <div className="px-6 py-6 space-y-4">
+                <div className="px-5 py-5 space-y-4">
                     <Select
                         label="Checked Bags"
                         required
@@ -80,7 +77,7 @@ export function LuggagePreference({ open, setOpenChange, handleChange, formData 
                 <div className="flex justify-end gap-3 px-6 py-4 border-t">
                     <button
                         onClick={handleSubmit}
-                        className="px-5 py-2 bg-black text-sm md:text-base text-white border border-black rounded-sm flex items-center gap-2 cursor-pointer hover:bg-black/90"
+                        className="px-5 py-1.5 bg-black text-sm md:text-base text-white border border-black rounded-sm flex items-center gap-2 cursor-pointer hover:bg-black/90"
                     >
                         <CheckCircle size={16} />
                         Submit
@@ -114,7 +111,7 @@ function Select({
             <select
                 value={value}
                 onChange={(e) => onChange(Number(e.target.value))}
-                className="w-full border border-black rounded-sm px-3 py-2 focus:outline-none focus:ring-1 focus:ring-black"
+                className="w-full border border-black rounded-sm px-3 py-1 md:py-1.5 text-sm md:text-base focus:outline-none focus:ring-1 focus:ring-black"
             >
                 {options.map((opt) => (
                     <option key={opt} value={opt}>

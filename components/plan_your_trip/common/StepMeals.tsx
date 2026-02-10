@@ -48,9 +48,12 @@ export default function StepMeals({
     };
 
     return (
-        <div className="space-y-5">
-            <QuestionHeading title="How would you like to dine?" subtitle="Select your preferences" />
-            <div className="max-h-[55vh] md:max-h-[60vh] overflow-y-auto space-y-3">
+        <div className="space-y-3 md:space-y-5">
+            <QuestionHeading
+                title="How would you like to dine?"
+                subtitle="Select your preferences"
+            />
+            <div className="max-h-[55vh] md:max-h-[60vh] overflow-y-auto space-y-1 md:space-y-3">
                 {meals.map((meal, i) => {
                     const isActive = selected.includes(meal);
 

@@ -93,7 +93,7 @@ const SUMMARY_CONFIG = [
         label: "Meals",
         stepKey: "meals",
         shouldShow: () => true,
-        isAnswered: (form: any) => !!form.meal_preferences,
+        isAnswered: (form: any) => Array.isArray(form.meal_preferences) && form.meal_preferences.length > 0,
     },
     {
         label: "Transfers",
@@ -142,7 +142,7 @@ export default function StepSummary({
                     return (
                         <div
                             key={item.stepKey}
-                            onClick={() => answered && jumpToStep(item.stepKey)}
+                            onClick={() => jumpToStep(item.stepKey)}
                             className="flex items-center justify-between border-b pb-2 cursor-pointer hover:underline"
                         >
                             <span className="text-sm md:text-base text-black">
@@ -155,9 +155,9 @@ export default function StepSummary({
                                     <span>Completed</span>
                                 </div>
                             ) : (
-                                <div className="flex items-center gap-2 text-red-500">
+                                <div className="flex items-center gap-2 text-orange-500">
                                     <X className="h-5 w-5" />
-                                    <span>Not Completed</span>
+                                    <span>Skip</span>
                                 </div>
                             )}
                         </div>

@@ -12,6 +12,7 @@ export default function StepDays({
     planYourTripForm,
     setPlanYourTripForm,
 }: Props) {
+    // Define state
     const [selected, setSelected] = useState<string | null>(null);
 
     // Restore selection when coming back to this step
@@ -23,7 +24,6 @@ export default function StepDays({
 
     const handleChange = (value: string) => {
         setSelected(value);
-
         setPlanYourTripForm((prev: any) => ({
             ...prev,
             day_option: value,
@@ -31,32 +31,32 @@ export default function StepDays({
     };
 
     return (
-        <div className="space-y-5">
+        <div className="space-y-3 md:space-y-5">
             <QuestionHeading title="How many days would you like to dedicate to this journey?" />
-            <div className="max-h-[55vh] md:max-h-[60vh] overflow-y-auto space-y-3">
+            <div className="space-y-2 md:space-y-3">
                 <Option
                     number="1"
-                    text="7 – 10 Days"
+                    text="7 - 10 Days"
                     subText="The Essential Experience"
-                    value="7 – 10 Days (The Essential Experience)"
+                    value="7 - 10 Days (The Essential Experience)"
                     selected={selected}
                     onChange={handleChange}
                 />
 
                 <Option
                     number="2"
-                    text="10 – 14 Days"
+                    text="10 - 14 Days"
                     subText="The Signature Journey"
-                    value="10 – 14 Days (The Signature Journey)"
+                    value="10 - 14 Days (The Signature Journey)"
                     selected={selected}
                     onChange={handleChange}
                 />
 
                 <Option
                     number="3"
-                    text="14 – 21 Days"
+                    text="14 - 21 Days"
                     subText="The Deep Immersion"
-                    value="14 – 21 Days (The Deep Immersion)"
+                    value="14 - 21 Days (The Deep Immersion)"
                     selected={selected}
                     onChange={handleChange}
                 />
@@ -98,14 +98,15 @@ function Option({
             className={`flex items-center justify-between border px-5 py-3 rounded-sm cursor-pointer transition bg-white ${isActive ? "border-black" : "border-black/30"}`}
         >
             <div className="grid gap-1 text-sm md:text-base text-black">
-                <span>{text}</span>
-                <span>{subText}</span>
+                <span className="text-sm md:text-base">{text}</span>
+                {subText && <span className="text-sm md:text-base">{subText}</span>}
             </div>
             <div className="w-6 h-6 flex items-center justify-center">
                 {isActive && <Check className="h-5 w-5 font-semibold text-black" />}
             </div>
             <input
-                type="checkbox"
+                type="radio"
+                name="budget"
                 checked={isActive}
                 onChange={() => onChange(value)}
                 className="hidden"

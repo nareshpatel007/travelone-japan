@@ -306,7 +306,7 @@ export function LoginModal({ open, onOpenChange }: Props) {
                             <button
                                 onClick={isSignUp ? handleSignUp : handleLogin}
                                 disabled={isFormLoading}
-                                className="w-full flex items-center justify-center bg-black text-white font-semibold mt-3 py-2.5 rounded-md hover:bg-black/90 transition-colors cursor-pointer"
+                                className="w-full flex items-center justify-center bg-black text-white font-semibold mt-3 py-2.5 rounded-md hover:bg-black/90 transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                             >
                                 {isFormLoading && <Loader2 className="h-4 w-4 mr-2 animate-spin" />}
                                 {isSignUp ? "Create account" : "Log in"}

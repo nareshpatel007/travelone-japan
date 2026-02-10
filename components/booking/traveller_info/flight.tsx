@@ -7,7 +7,7 @@ import { useState } from "react";
 type Props = {
     open: boolean;
     setOpenChange: (open: boolean) => void;
-    handleChange: (key: string, value: any) => void;
+    handleChange: (key: string, value: any, autoUpdate?: boolean) => void;
     formData: any;
 };
 
@@ -68,42 +68,37 @@ export function FlightPreference({ open, setOpenChange, handleChange, formData }
             depature_flight_arrival_date: departure.arrival_date,
             depature_flight_arrival_time: departure.arrival_time,
             depature_flight_to_airport: departure.to_airport,
-        });
+        }, true);
 
+        // Close
         handleClose();
     };
 
     return (
-        <div className="fixed inset-0 z-[100] flex p-10 items-center justify-center">
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-3 md:p-8">
             <div className="absolute inset-0 bg-black/40" onClick={handleClose} />
-
             <div className="relative w-full max-w-xl bg-white rounded-md shadow-lg max-h-[60vh] overflow-y-auto">
-                {/* Header */}
                 <div className="flex items-center justify-between px-6 py-4 border-b sticky top-0 bg-white z-10">
-                    <h3 className="text-lg font-medium">Flight Details</h3>
+                    <h3 className="text-md md:text-lg font-medium">Flight Details</h3>
                     <button className="cursor-pointer" onClick={handleClose}>
                         <X />
                     </button>
                 </div>
-
-                {/* Body */}
-                <div className="px-6 py-6 space-y-6">
-                    {/* Arrival Flight */}
+                <div className="px-5 py-5 space-y-4">
                     <FlightSection
                         title="Arrival Flight Details"
                         data={arrival}
                         onChange={setArrival}
                     />
 
-                    {/* Departure Flight */}
+                    <hr className="border-t border-gray-300" />
+
                     <FlightSection
                         title="Departure Flight Detail"
                         data={departure}
                         onChange={setDeparture}
                     />
                 </div>
-
-                {/* Footer */}
                 <div className="flex items-center justify-end gap-3 px-6 py-4 border-t sticky bottom-0 bg-white">
                     {error && (
                         <p className="text-red-600 text-sm">{error}</p>
@@ -111,7 +106,7 @@ export function FlightPreference({ open, setOpenChange, handleChange, formData }
 
                     <button
                         onClick={handleSubmit}
-                        className="px-5 py-2 bg-black text-sm md:text-base text-white border border-black rounded-sm flex items-center gap-2 cursor-pointer hover:bg-black/90"
+                        className="px-5 py-1.5 bg-black text-sm md:text-base text-white border border-black rounded-sm flex items-center gap-2 cursor-pointer hover:bg-black/90"
                     >
                         <CheckCircle size={16} />
                         Submit
@@ -139,7 +134,7 @@ function FlightSection({
 
     return (
         <div className="space-y-3">
-            <h4 className="font-medium text-sm">{title}</h4>
+            <span className="font-medium text-sm md:text-base block mb-3">{title}</span>
 
             <Input label="Flight Number" required value={data.flight_number} onChange={(v) => handleField("flight_number", v)} />
             <Input type="date" label="Departure Date" required value={data.departure_date} onChange={(v) => handleField("departure_date", v)} />
@@ -168,15 +163,15 @@ function Input({
     required?: boolean;
 }) {
     return (
-        <div>
-            <label className="block text-sm font-medium mb-1">
+        <div className="grid grid-cols-1 md:grid-cols-[180px_1fr] gap-1">
+            <label className="block text-sm font-medium">
                 {label} {required && <span className="text-red-500">*</span>}
             </label>
             <input
                 type={type}
                 value={value}
                 onChange={(e) => onChange(e.target.value)}
-                className="w-full border border-black rounded-sm px-3 py-2 focus:outline-none focus:ring-1 focus:ring-black"
+                className="w-full md:max-w-[360px] lg:max-w-[420px] border border-black rounded-sm px-3 py-1 md:py-1.5 text-sm md:text-base focus:outline-none focus:ring-1 focus:ring-black"
             />
         </div>
     );

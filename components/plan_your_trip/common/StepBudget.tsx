@@ -12,9 +12,10 @@ export default function StepBudget({
     planYourTripForm,
     setPlanYourTripForm,
 }: Props) {
+    // Define state
     const [selected, setSelected] = useState<string | null>(null);
 
-    // ✅ Restore selection when coming back to this step
+    // Restore selection when coming back to this step
     useEffect(() => {
         if (planYourTripForm?.budget) {
             setSelected(planYourTripForm.budget);
@@ -23,7 +24,6 @@ export default function StepBudget({
 
     const handleChange = (value: string) => {
         setSelected(value);
-
         setPlanYourTripForm((prev: any) => ({
             ...prev,
             budget: value,
@@ -31,9 +31,9 @@ export default function StepBudget({
     };
 
     return (
-        <div className="space-y-5">
+        <div className="space-y-3 md:space-y-5">
             <QuestionHeading title="What is your target price range per person for this journey?" subtitle="Excluding international flights" />
-            <div className="space-y-3">
+            <div className="space-y-1 md:space-y-3">
                 <Option
                     number="1"
                     text="$3000 - $5000 USD"

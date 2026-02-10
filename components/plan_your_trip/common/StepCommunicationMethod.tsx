@@ -36,11 +36,11 @@ export default function StepCommunicationMethod({
     };
 
     return (
-        <div className="space-y-5">
+        <div className="space-y-3 md:space-y-5">
             <QuestionHeading
                 title="What is your preferred method of communication?"
             />
-            <div className="max-h-[55vh] md:max-h-[60vh] overflow-y-auto space-y-3">
+            <div className="max-h-[55vh] md:max-h-[60vh] overflow-y-auto space-y-1 md:space-y-3">
                 <Option
                     text="Phone Call"
                     value="Phone Call"

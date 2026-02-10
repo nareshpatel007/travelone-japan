@@ -31,11 +31,11 @@ export default function StepTripDesign({
     };
 
     return (
-        <div className="space-y-5">
+        <div className="space-y-3 md:space-y-5">
             <QuestionHeading
                 title="How would you like to receive your trip design?"
             />
-            <div className="max-h-[55vh] md:max-h-[60vh] overflow-y-auto space-y-3">
+            <div className="max-h-[55vh] md:max-h-[60vh] overflow-y-auto space-y-2 md:space-y-3">
                 <Option
                     text="The Focused Vision:"
                     subText="One expert-led itinerary optimized for your interests."

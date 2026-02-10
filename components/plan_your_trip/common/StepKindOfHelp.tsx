@@ -49,11 +49,11 @@ export default function StepKindOfHelp({
     };
 
     return (
-        <div className="space-y-5">
+        <div className="space-y-3 md:space-y-5">
             <QuestionHeading
                 title="What kind of help do you need?"
             />
-            <div className="max-h-[55vh] md:max-h-[60vh] overflow-y-auto space-y-3">
+            <div className="max-h-[55vh] md:max-h-[60vh] overflow-y-auto space-y-1 md:space-y-3">
                 {HELP_OPTIONS.map((option, index) => (
                     <Option
                         key={index}

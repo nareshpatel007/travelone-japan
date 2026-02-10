@@ -34,11 +34,11 @@ export default function StepFirstVisit({
     };
 
     return (
-        <div className="space-y-5">
+        <div className="space-y-3 md:space-y-5">
             <QuestionHeading
                 title={`Is this your first time visiting ${planYourTripForm?.country.join(", ")}?`}
             />
-            <div className="max-h-[55vh] md:max-h-[60vh] overflow-y-auto space-y-3">
+            <div className="max-h-[55vh] md:max-h-[60vh] overflow-y-auto space-y-2 md:space-y-3">
                 <Option
                     text="Yes,"
                     subText="I want to see the iconic highlights."

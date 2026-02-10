@@ -40,16 +40,15 @@ export default function ChoosePytFlow({
             themes_priority_2: [],
             cities_options: [],
             selected_cities: [],
-            day_option: [],
         }));
     };
 
     return (
-        <div className="space-y-5">
+        <div className="space-y-3 md:space-y-5">
             <QuestionHeading
                 title="Do you have a destination in mind, or should we recommend one?"
             />
-            <div className="max-h-[55vh] md:max-h-[60vh] overflow-y-auto space-y-3">
+            <div className="max-h-[55vh] md:max-h-[60vh] overflow-y-auto space-y-2 md:space-y-3">
                 <Option
                     text="I have a destination"
                     subText="I want to see the iconic highlights."

@@ -84,33 +84,22 @@ export default function StepTravelTime({
     planYourTripForm,
     setPlanYourTripForm,
 }: Props) {
+    // Define state
     const [selected, setSelected] = useState<string | null>(null);
     const [month, setMonth] = useState<string>("");
 
     // Use first selected country (if multi-country)
-    const activeCountry =
-        Array.isArray(planYourTripForm.country)
-            ? planYourTripForm.country[0]
-            : planYourTripForm.country;
+    const activeCountry = Array.isArray(planYourTripForm.country) ? planYourTripForm.country[0] : planYourTripForm.country;
 
     // Get options
     const options = useMemo(() => {
-        const choose_flow = planYourTripForm.choose_flow;
+        // Get country seasons
+        const countrySeasons = activeCountry != "" ? COUNTRY_SEASONS[activeCountry] : [];
 
-        // If destination in my mind
-        if (choose_flow === "i_have_destination") {
-            // Get country seasons
-            const countrySeasons = COUNTRY_SEASONS[activeCountry];
-
-            // If country has seasons → use them
-            if (Array.isArray(countrySeasons) && countrySeasons.length > 0) {
-                return countrySeasons;
-            }
-
-            // Else → default seasons (Winter, Spring, Summer, Autumn)
-            return Object.keys(DEFAULT_SEASON_MONTHS);
+        // If country has seasons → use them
+        if (countrySeasons) {
+            return Object.keys(countrySeasons);
         } else {
-            // Default seasons (Winter, Spring, Summer, Autumn)
             return Object.keys(DEFAULT_SEASON_MONTHS);
         }
     }, [activeCountry]);
@@ -171,11 +160,14 @@ export default function StepTravelTime({
         allMonths;
 
     return (
-        <div className="space-y-5">
-            <QuestionHeading title="When do you plan to travel?" subtitle={`You have selected ${planYourTripForm.country.length > 2 ? planYourTripForm.country.join(", ") : planYourTripForm.country.join(" and ")} as your travel destination.`} />
+        <div className="space-y-3 md:space-y-5">
+            <QuestionHeading
+                title="When do you plan to travel?"
+                subtitle={`You have selected ${planYourTripForm.country.length > 2 ? planYourTripForm.country.join(", ") : planYourTripForm.country.join(" and ")} as your travel destination.`}
+            />
 
-            <div className="max-h-[55vh] md:max-h-[60vh] overflow-y-auto space-y-8">
-                <div className="space-y-3">
+            <div className="max-h-[55vh] md:max-h-[60vh] overflow-y-auto space-y-5 md:space-y-8">
+                <div className="space-y-2 md:space-y-3">
                     {options.map((item, i) => (
                         <Option
                             key={i}
@@ -188,13 +180,13 @@ export default function StepTravelTime({
                 </div>
 
                 <div className="space-y-2">
-                    <label className="block text-md text-black">
+                    <label className="block text-sm md:text-base text-black">
                         Choose your travel month (optional)
                     </label>
                     <select
                         value={month}
                         onChange={(e) => handleMonthChange(e.target.value)}
-                        className="w-full rounded-sm border border-black px-4 py-2 bg-white"
+                        className="w-full rounded-sm border text-sm md:text-base border-black px-4 py-2 bg-white"
                     >
                         <option value="">Select month</option>
                         {monthsToShow.map((m) => (
@@ -218,7 +210,7 @@ function Option({ text, value, selected, onChange }: any) {
             className={`flex items-center justify-between border px-5 py-3 rounded-sm cursor-pointer bg-white transition
             ${isActive ? "border-black" : "border-black/30"}`}
         >
-            <span>{text}</span>
+            <span className="text-sm md:text-base">{text}</span>
             {isActive && <Check className="h-5 w-5 text-black" />}
             <input type="radio" checked={isActive} readOnly className="hidden" />
         </label>

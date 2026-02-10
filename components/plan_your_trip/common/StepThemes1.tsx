@@ -65,31 +65,29 @@ export default function StepThemes({
     };
 
     return (
-        <div className="space-y-5">
+        <div className="space-y-3 md:space-y-5">
             <QuestionHeading title="What kind of experiences do you want to add in the first itinerary?" />
 
-            {/* ✅ Selected Themes as Tags */}
-            {selected.length > 0 && (
-                <div className="flex flex-wrap gap-2">
-                    {selected.map((theme) => (
-                        <span
-                            key={theme}
-                            className="flex items-center gap-1 px-3 py-1.5 text-sm bg-black text-white rounded-sm"
-                        >
-                            {theme}
-                            <button
-                                onClick={() => removeTheme(theme)}
-                                className="ml-1 hover:text-gray-300 cursor-pointer"
+            <div className="max-h-[55vh] md:max-h-[60vh] overflow-y-auto space-y-1 md:space-y-3">
+                {selected.length > 0 && (
+                    <div className="flex items-center gap-2 overflow-x-auto whitespace-nowrap no-scrollbar pb-1">
+                        {selected.map((theme) => (
+                            <span
+                                key={theme}
+                                className="flex items-center gap-1 px-3 py-1.5 text-sm bg-black text-white rounded-sm"
                             >
-                                <X className="h-3.5 w-3.5" />
-                            </button>
-                        </span>
-                    ))}
-                </div>
-            )}
+                                {theme}
+                                <button
+                                    onClick={() => removeTheme(theme)}
+                                    className="ml-1 hover:text-gray-300 cursor-pointer"
+                                >
+                                    <X className="h-3.5 w-3.5" />
+                                </button>
+                            </span>
+                        ))}
+                    </div>
+                )}
 
-            {/* Theme List */}
-            <div className="max-h-[55vh] md:max-h-[60vh] overflow-y-auto space-y-3">
                 {themes.map((theme, i) => (
                     <ThemeItem
                         key={theme}
@@ -113,9 +111,8 @@ function ThemeItem({
     return (
         <label
             onClick={() => onToggle(theme)}
-            className={`flex items-center justify-between border px-5 py-3 rounded-sm cursor-pointer transition bg-white ${
-                isActive ? "border-black" : "border-black/30"
-            }`}
+            className={`flex items-center justify-between border px-5 py-3 rounded-sm cursor-pointer transition bg-white ${isActive ? "border-black" : "border-black/30"
+                }`}
         >
             <div className="grid gap-1 text-sm md:text-base text-black">
                 <span>{theme}</span>

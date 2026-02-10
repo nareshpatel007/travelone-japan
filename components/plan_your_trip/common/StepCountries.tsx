@@ -44,12 +44,11 @@ export default function StepCountries({
             themes_priority_2: [],
             cities_options: [],
             selected_cities: [],
-            day_option: [],
         }));
     };
 
     return (
-        <div className="space-y-8">
+        <div className="space-y-3 md:space-y-5">
             <QuestionHeading
                 title={`Which countries in ${planYourTripForm.destination} are you interested in exploring?`}
             />
@@ -64,11 +63,8 @@ export default function StepCountries({
                                     key={index}
                                     type="button"
                                     onClick={() => toggleCountry(item)}
-                                    className={`flex items-center gap-3 px-4 py-3 rounded-lg border transition-all cursor-pointer
-                                    ${isSelected
-                                            ? "border-black bg-white"
-                                            : "border-black/30 bg-white hover:border-black/50"
-                                        }`}
+                                    className={`flex items-center gap-3 px-4 py-3 rounded-sm border transition-all cursor-pointer
+                                    ${isSelected ? "border-black bg-white" : "border-black/30 bg-white hover:border-black/50"}`}
                                 >
                                     <span
                                         className={`flex items-center justify-center w-7 h-7 text-sm font-medium rounded border

@@ -43,12 +43,12 @@ export default function StepLeadForm({
     };
 
     return (
-        <div className="space-y-5">
+        <div className="space-y-3 md:space-y-5">
             <QuestionHeading
                 title="Secure Your Custom Design"
                 subtitle="Our Lead Designer will review your profile personally"
             />
-            <div className="border border-black rounded-sm p-5 space-y-5 bg-white/60">
+            <div className="border border-black rounded-sm p-5 space-y-3 md:space-y-5 bg-white/60">
                 <div className="space-y-1">
                     <label className="block text-md text-black">Full name</label>
                     <input

@@ -422,31 +422,29 @@ export default function StepRegions({
     };
 
     return (
-        <div className="space-y-5">
+        <div className="space-y-3 md:space-y-5">
             <QuestionHeading title="Which parts would you like to explore?" />
 
-            {/* Selected City Tags */}
-            {selectedCities.length > 0 && (
-                <div className="flex flex-wrap gap-2">
-                    {selectedCities.map((city) => (
-                        <span
-                            key={city}
-                            className="flex items-center gap-1 px-3 py-1.5 text-sm bg-black text-white rounded-sm"
-                        >
-                            {city}
-                            <button
-                                onClick={() => removeCity(city)}
-                                className="ml-1 hover:text-gray-300"
+            <div className="max-h-[55vh] md:max-h-[60vh] overflow-y-auto space-y-2 md:space-y-3">
+                {selectedCities.length > 0 && (
+                    <div className="flex items-center gap-2 overflow-x-auto whitespace-nowrap no-scrollbar pb-1">
+                        {selectedCities.map((city) => (
+                            <span
+                                key={city}
+                                className="flex items-center gap-1 px-3 py-1.5 text-sm bg-black text-white rounded-sm"
                             >
-                                <X className="h-3.5 w-3.5" />
-                            </button>
-                        </span>
-                    ))}
-                </div>
-            )}
+                                {city}
+                                <button
+                                    onClick={() => removeCity(city)}
+                                    className="ml-1 hover:text-gray-300"
+                                >
+                                    <X className="h-3.5 w-3.5" />
+                                </button>
+                            </span>
+                        ))}
+                    </div>
+                )}
 
-            {/* Region list */}
-            <div className="max-h-[55vh] md:max-h-[60vh] overflow-y-auto space-y-3">
                 {regions.map((region: any) => {
                     const isActive = selectedRegions.includes(region);
                     const { title, subtitle } = formatRegion(region);
@@ -459,8 +457,8 @@ export default function StepRegions({
                                 }`}
                         >
                             <div>
-                                <span>{title}</span>
-                                {subtitle && <div>{subtitle}</div>}
+                                <span className="text-sm md:text-base">{title}</span>
+                                {subtitle && <div className="text-sm md:text-base">{subtitle}</div>}
                             </div>
                             {isActive && <Check className="h-5 w-5" />}
                         </label>
