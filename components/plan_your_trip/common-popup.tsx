@@ -272,6 +272,9 @@ export function CommonPlanTripModal({ open, onOpenChange }: Props) {
         setFormLoader(true);
         (async () => {
             try {
+                // Auto save last step
+                autoSaveQuestion();
+
                 // Save lead questions
                 const response = await fetch("/api/plan_your_trip", {
                     method: "POST",
