@@ -20,7 +20,7 @@ export default function LoginPage() {
     }, []);
 
     return (
-        <body>
+        <>
             {ready && <>
                 <CommonHeader />
 
@@ -36,6 +36,6 @@ export default function LoginPage() {
 
                 <CommonFooter />
             </>}
-        </body>
+        </>
     );
 }

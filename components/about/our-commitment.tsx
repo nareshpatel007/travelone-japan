@@ -12,7 +12,7 @@ export default function OurCommitment() {
                         <div className="md:w-1/3 flex items-center justify-center">
                             <div className="relative w-24 sm:w-28 md:w-full aspect-square">
                                 <Image
-                                    src="https://ik.imagekit.io/288weifiq/nextjs/87812.jpg"
+                                    src="https://ik.imagekit.io/288weifiq/nextjs/8781245.jpg?updatedAt=1770732335541"
                                     alt="Our Commitment"
                                     fill
                                     className="object-cover rounded-full"

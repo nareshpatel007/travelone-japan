@@ -69,7 +69,7 @@ export default function TourDetailPage() {
     }, []);
 
     return (
-        <body>
+        <>
             {ready && <>
                 <CommonHeader />
 
@@ -100,6 +100,6 @@ export default function TourDetailPage() {
 
                 <CommonFooter />
             </>}
-        </body>
+        </>
     );
 }

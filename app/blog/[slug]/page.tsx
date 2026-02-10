@@ -59,7 +59,7 @@ export default function Page() {
     }, [slug]);
 
     return (
-        <body>
+        <>
             {ready && <>
                 <CommonHeader />
 
@@ -104,6 +104,6 @@ export default function Page() {
 
                 <CommonFooter />
             </>}
-        </body>
+        </>
     );
 }

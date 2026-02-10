@@ -18,7 +18,7 @@ export default function NotFound() {
     }, []);
 
     return (
-        <body>
+        <>
             {ready && <>
                 <div className="min-h-screen bg-white">
                     <CommonHeader />
@@ -26,6 +26,6 @@ export default function NotFound() {
                     <CommonFooter />
                 </div>
             </>}
-        </body>
+        </>
     )
 }

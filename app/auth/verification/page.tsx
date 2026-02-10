@@ -61,7 +61,7 @@ export default function Page() {
     };
 
     return (
-        <body>
+        <>
             {ready && <>
                 <div className="min-h-screen bg-white">
                     <CommonHeader />
@@ -84,7 +84,7 @@ export default function Page() {
                     <CommonFooter />
                 </div>
             </>}
-        </body>
+        </>
     );
 }
 

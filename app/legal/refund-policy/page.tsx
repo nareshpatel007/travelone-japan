@@ -10,14 +10,13 @@ export default function Page() {
     const [ready, setReady] = useState(false);
 
     useEffect(() => {
-        // Wait one frame after hydration
         requestAnimationFrame(() => {
             setReady(true);
         });
     }, []);
 
     return (
-        <body>
+        <>
             {ready && <>
                 <CommonHeader />
 
@@ -130,6 +129,6 @@ export default function Page() {
 
                 <CommonFooter />
             </>}
-        </body>
+        </>
     );
 }

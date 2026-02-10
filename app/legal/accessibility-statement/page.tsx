@@ -17,7 +17,7 @@ export default function Page() {
     }, []);
 
     return (
-        <body>
+        <>
             {ready && <>
                 <CommonHeader />
 
@@ -145,6 +145,6 @@ export default function Page() {
 
                 <CommonFooter />
             </>}
-        </body>
+        </>
     );
 }

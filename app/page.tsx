@@ -86,7 +86,7 @@ export default function HomePage() {
     }, []);
 
     return (
-        <body>
+        <>
             {ready && <>
                 <HomeMobileHeader />
                 <LandingMarqueeSection setOpenPlanYourTripModel={setOpenPlanYourTripModel} />
@@ -102,6 +102,6 @@ export default function HomePage() {
                 <StickyHomeHeader />
                 <CommonPlanTripModal open={openPlanYourTripModel} onOpenChange={setOpenPlanYourTripModel} />
             </>}
-        </body>
+        </>
     );
 }
