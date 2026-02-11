@@ -17,7 +17,7 @@ export default function CareersPage() {
     }, []);
 
     return (
-        <body>
+        <>
             {ready && <>
                 <CommonHeader />
 
@@ -52,6 +52,6 @@ export default function CareersPage() {
                 <FullBannerSection />
                 <CommonFooter />
             </>}
-        </body>
+        </>
     );
 }

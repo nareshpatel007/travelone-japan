@@ -65,7 +65,7 @@ export default function UserProfilePage() {
     }, []);
 
     return (
-        <body>
+        <>
             {ready && <>
                 <CommonHeader />
 
@@ -111,6 +111,6 @@ export default function UserProfilePage() {
 
                 <CommonFooter />
             </>}
-        </body>
+        </>
     );
 }

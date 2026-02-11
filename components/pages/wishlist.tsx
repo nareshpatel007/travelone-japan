@@ -69,7 +69,7 @@ export default function WishlistPage() {
     }, [ready]);
 
     return (
-        <body>
+        <>
             {ready && (
                 <>
                     <CommonHeader />
@@ -117,6 +117,6 @@ export default function WishlistPage() {
                     <CommonFooter />
                 </>
             )}
-        </body>
+        </>
     );
 }

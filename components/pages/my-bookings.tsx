@@ -56,7 +56,7 @@ export default function MyBookingsPage() {
     }, []);
 
     return (
-        <body>
+        <>
             {ready && <>
                 <CommonHeader />
 
@@ -85,6 +85,6 @@ export default function MyBookingsPage() {
 
                 <CommonFooter />
             </>}
-        </body>
+        </>
     );
 }

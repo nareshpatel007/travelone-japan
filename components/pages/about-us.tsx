@@ -26,7 +26,7 @@ export default function AboutPage() {
     }, []);
 
     return (
-        <body>
+        <>
             {ready && <>
                 <CommonHeader />
                 <HeroSection />
@@ -41,6 +41,6 @@ export default function AboutPage() {
                 <CommonFooter isStickyShow={true} />
                 <StickyHomeHeader />
             </>}
-        </body>
+        </>
     );
 }

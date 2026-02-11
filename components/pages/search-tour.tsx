@@ -160,7 +160,7 @@ export default function SearchPage() {
     // }, [sortFilter]);
 
     return (
-        <body>
+        <>
             {ready && <>
                 <CommonHeader />
                 <div className="max-w-7xl mx-auto px-5 md:px-0 py-6">
@@ -219,7 +219,7 @@ export default function SearchPage() {
                 </div>
                 <CommonFooter />
             </>}
-        </body>
+        </>
     );
 }
 

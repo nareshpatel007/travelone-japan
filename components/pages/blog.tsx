@@ -103,7 +103,7 @@ export default function BlogPage() {
     }, [currentPage]);
 
     return (
-        <body>
+        <>
             {ready && <>
                 <CommonHeader />
 
@@ -150,6 +150,6 @@ export default function BlogPage() {
 
                 <CommonFooter />
             </>}
-        </body>
+        </>
     );
 }

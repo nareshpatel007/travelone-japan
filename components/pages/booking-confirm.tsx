@@ -59,7 +59,7 @@ export default function BookingConfirmPage() {
     }, []);
 
     return (
-        <body>
+        <>
             {ready && <>
                 <CommonHeader />
 
@@ -79,6 +79,6 @@ export default function BookingConfirmPage() {
 
                 <CommonFooter />
             </>}
-        </body>
+        </>
     );
 }

@@ -76,7 +76,7 @@ export default function ContactPage() {
     }
 
     return (
-        <body>
+        <>
             {ready && <>
                 <CommonHeader />
 
@@ -277,6 +277,6 @@ export default function ContactPage() {
                 <CommonFooter isStickyShow={true} />
                 <StickyHomeHeader />
             </>}
-        </body>
+        </>
     );
 }

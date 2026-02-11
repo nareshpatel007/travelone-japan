@@ -92,7 +92,7 @@ export default function CheckoutPage() {
     }, []);
 
     return (
-        <body>
+        <>
             {ready && <>
                 <CommonHeader />
 
@@ -153,7 +153,7 @@ export default function CheckoutPage() {
 
                 <CommonFooter />
             </>}
-        </body>
+        </>
     );
 }
 

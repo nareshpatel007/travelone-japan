@@ -103,7 +103,7 @@ export default function CartPage() {
     }, []);
 
     return (
-        <body>
+        <>
             {ready && <>
                 <CommonHeader />
 
@@ -188,6 +188,6 @@ export default function CartPage() {
 
                 <CommonFooter />
             </>}
-        </body>
+        </>
     );
 }

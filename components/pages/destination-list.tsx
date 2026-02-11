@@ -65,7 +65,7 @@ export default function DestinationPage() {
     );
 
     return (
-        <body>
+        <>
             {ready && <>
                 <CommonHeader />
 
@@ -132,7 +132,7 @@ export default function DestinationPage() {
 
                 <CommonFooter />
             </>}
-        </body>
+        </>
     );
 }
 
