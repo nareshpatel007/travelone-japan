@@ -2,8 +2,8 @@
 
 // Define benefits
 const BENEFITS = [
-    { icon: "✓", title: "Free Cancellation", desc: "Cancel up to 30 days before" },
-    { icon: "✓", title: "Reserve with a small deposit", desc: "Book your tour with a small deposit" },
+    { icon: "✓", title: "Free Cancellation", desc: "Cancel up to 60 days before" },
+    { icon: "✓", title: "Reserve with a deposit", desc: "Book your tour with a deposit" },
     { icon: "✓", title: "Lowest price guarantee", desc: "We guarantee the lowest price" },
     { icon: "✓", title: "Expert Guides", desc: "Experienced professionals with years of experience" },
 ];

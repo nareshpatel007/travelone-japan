@@ -3,7 +3,7 @@
 import CommonHeader from "@/components/header/common-header";
 import CommonFooter from "@/components/footer/common-footer";
 import { useEffect, useState } from "react";
-import { MapPin, Phone, Mail, Send } from "lucide-react";
+import { MapPin, Phone, Mail, Send, Star, ExternalLink } from "lucide-react";
 import Link from "next/link";
 import PageHeading from "@/components/common/page-heading";
 import FullBannerSection from "@/components/about/full-banner";
@@ -158,7 +158,7 @@ export default function ContactPage() {
                                                 <select
                                                     value={formData.subject}
                                                     onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                                                    className="w-full px-4 py-2 border border-gray-300 rounded-sm outline-none transition-all resize-none focus:ring-1 focus:ring-[#333] focus:ring-opacity-50"
+                                                    className="w-full px-4 py-2 border border-gray-300 rounded-sm outline-none transition-all resize-none focus:ring-1 focus:ring-[#333] focus:ring-opacity-50 placeholder:text-gray-400"
                                                 >
                                                     <option value="">Select a subject</option>
                                                     <option value="Sales">Sales</option>
@@ -219,50 +219,59 @@ export default function ContactPage() {
                             </div>
                         </div>
                         <div className="lg:w-80 space-y-4">
-                            <div className="bg-white rounded-xl p-5 border border-gray-200">
+                            <div className="bg-white rounded-xl p-5 border border-gray-200 hover:bg-gray-50">
                                 <div className="flex items-start gap-4">
                                     <div className="p-2 bg-[#FFF9EE] rounded-lg">
                                         <MapPin className="h-5 w-5 text-black" />
                                     </div>
                                     <div>
-                                        <span className="font-semibold text-gray-900 block mb-2">
-                                            Address
-                                        </span>
-                                        <p className="text-sm text-gray-600">
+                                        <span className="font-semibold text-gray-900 block mb-2">Address</span>
+                                        <p className="text-sm text-black/90">
                                             19 Grand Trunk Crescent, Toronto, ON M5J 3A3
                                         </p>
                                     </div>
                                 </div>
                             </div>
-                            <div className="bg-white rounded-xl p-5 border border-gray-200">
+                            <div className="bg-white rounded-xl p-5 border border-gray-200 hover:bg-gray-50">
                                 <div className="flex items-start gap-4">
                                     <div className="p-2 bg-[#FFF9EE] rounded-lg">
                                         <Phone className="h-5 w-5 text-black" />
                                     </div>
                                     <div>
-                                        <span className="font-semibold text-gray-900 block mb-2">
-                                            Phone
-                                        </span>
+                                        <span className="font-semibold text-gray-900 block mb-2">Phone</span>
                                         <Link href="tel:+1-437-966-9023" className="hover:underline">
-                                            <p className="text-sm text-gray-600">
+                                            <p className="text-sm text-black/90">
                                                 +1 437 966 9023
                                             </p>
                                         </Link>
                                     </div>
                                 </div>
                             </div>
-                            <div className="bg-white rounded-xl p-5 border border-gray-200">
+                            <div className="bg-white rounded-xl p-5 border border-gray-200 hover:bg-gray-50">
                                 <div className="flex items-start gap-4">
                                     <div className="p-2 bg-[#FFF9EE] rounded-lg">
                                         <Mail className="h-5 w-5 text-black" />
                                     </div>
                                     <div>
-                                        <span className="font-semibold text-gray-900 block mb-2">
-                                            Email
-                                        </span>
+                                        <span className="font-semibold text-gray-900 block mb-2">Email</span>
                                         <Link href="mailto:connect@travelone.io" className="hover:underline">
-                                            <p className="text-sm text-gray-600">
+                                            <p className="text-sm text-black/90">
                                                 connect@travelone.io
+                                            </p>
+                                        </Link>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="bg-white rounded-xl p-5 border border-gray-200 hover:bg-gray-50">
+                                <div className="flex items-start gap-4">
+                                    <div className="p-2 bg-[#FFF9EE] rounded-lg">
+                                        <Star className="h-5 w-5 text-black" />
+                                    </div>
+                                    <div>
+                                        <span className="font-semibold text-gray-900 block mb-2">Write a Review</span>
+                                        <Link href="https://g.page/r/CWZjkl8q7OwGEBM/review" target="_blank" className="hover:underline underline-offset-2">
+                                            <p className="flex items-center gap-1 text-sm text-black">
+                                                Click here <ExternalLink className="h-4 w-4" />
                                             </p>
                                         </Link>
                                     </div>

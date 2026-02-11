@@ -6,7 +6,6 @@ import HeroBannerSection from "@/components/destination/hero-banner";
 import CommonHeader from "@/components/header/common-header";
 import CommonFooter from "@/components/footer/common-footer";
 import IntroSection from "@/components/destination/intro-section";
-import RelatedTours from "@/components/tour_details/related-tours";
 import TrustedBy from "@/components/tour_details/trusted-by";
 import WhyTravelOne from "@/components/tour_details/why-travelone";
 import Reviews from "@/components/tour_details/reviews";
@@ -14,6 +13,7 @@ import TopCities from "@/components/destination/top-cities";
 import ThreeBoxSection from "@/components/destination/three-box-section";
 import FAQsSection from "@/components/destination/faqs";
 import PageHelpful from "@/components/common/helpful";
+import RelatedTours from "@/components/destination/related-tours-slider";
 
 export default function TourDetailPage() {
     // Get slug
@@ -71,12 +71,12 @@ export default function TourDetailPage() {
     return (
         <>
             {ready && <>
-                <CommonHeader />
+                <CommonHeader landingPytrip={true} />
 
                 {isLoading ? (
-                    <div className="p-5 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6">
-                        {Array.from({ length: 3 }).map((_, index) => (
-                            <div key={index} className="animate-pulse bg-gray-200 rounded-lg h-48 md:h-64"></div>
+                    <div className="p-5 grid grid-cols-1 md:grid-cols-2 gap-6">
+                        {Array.from({ length: 2 }).map((_, index) => (
+                            <div key={index} className="animate-pulse bg-gray-200 rounded-lg h-48 md:h-100"></div>
                         ))}
                     </div>
                 ) : (
@@ -85,8 +85,7 @@ export default function TourDetailPage() {
                         <IntroSection pageData={pageData} />
                         <RelatedTours
                             title={`Handcrafted ${pageData?.single?.name} Itineraries`}
-                            column={2}
-                            tours={pageData?.related_tours.slice(0, 2) || []}
+                            tours={pageData?.related_tours || []}
                         />
                         <TrustedBy />
                         <WhyTravelOne />
@@ -94,7 +93,7 @@ export default function TourDetailPage() {
                         <TopCities country={pageData?.single?.name} cities={pageData?.top_cities ?? []} />
                         <ThreeBoxSection pageData={pageData} />
                         <FAQsSection pageData={pageData} />
-                        <PageHelpful />
+                        <PageHelpful pageName={`country/${slug}`} />
                     </>
                 )}
 

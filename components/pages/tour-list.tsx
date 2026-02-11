@@ -111,7 +111,7 @@ export default function ToursPage() {
                 <div className="max-w-7xl mx-auto px-5 md:px-0 py-6">
                     <PageHeading
                         main="All Tours Listing"
-                        sub="Find the perfect tour for your next adventure."
+                        sub={`Showing ${totalCount} tours for you.`}
                     />
                     <TourFilters
                         isLoading={isLoading}

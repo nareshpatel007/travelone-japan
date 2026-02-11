@@ -4,7 +4,8 @@ import { Check, X } from "lucide-react";
 import QuestionHeading from "./questionHeading";
 import { useEffect } from "react";
 
-const SUMMARY_CONFIG = [
+// Define the summary configuration
+let SUMMARY_CONFIG = [
     {
         label: "Destination flow",
         stepKey: "choose_flow",
@@ -113,13 +114,27 @@ interface Props {
     planYourTripForm: any;
     setPlanYourTripForm: React.Dispatch<React.SetStateAction<any>>;
     jumpToStep: (stepKey: any) => void;
+    isLandingPage?: boolean;
 }
 
 export default function StepSummary({
     planYourTripForm,
     setPlanYourTripForm,
     jumpToStep,
+    isLandingPage = false,
 }: Props) {
+
+    // If landing page remove countries and destination from list, remove item key
+    if (isLandingPage) {
+        // If stepKey == "choose_flow" remove
+        SUMMARY_CONFIG = SUMMARY_CONFIG.filter((item) => item.stepKey !== "choose_flow");
+        // If stepKey == "destinations" remove
+        SUMMARY_CONFIG = SUMMARY_CONFIG.filter((item) => item.stepKey !== "destinations");
+        // If stepKey == "countries" remove
+        SUMMARY_CONFIG = SUMMARY_CONFIG.filter((item) => item.stepKey !== "countries");
+    }
+
+    // Filter out items that should not be shown
     const visibleItems = SUMMARY_CONFIG.filter((item) =>
         item.shouldShow(planYourTripForm)
     );

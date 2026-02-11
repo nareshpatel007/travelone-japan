@@ -38,10 +38,12 @@ export default function HeroBannerSection({ pageData }: Props) {
                         onClick={() => setOpenPlanYourTripModel(true)}
                         className="bg-black text-white hover:bg-white hover:text-black border border-black font-semibold px-7 py-3 rounded-sm cursor-pointer transition"
                     >
-                        Plan Your Japan Trip
+                        Plan Your {pageData?.single?.name} Trip
                     </button>
                 </div>
             </section>
+
+            {/* Plan Your Trip Modal */}
             <LandingPlanTripModal open={openPlanYourTripModel} onOpenChange={setOpenPlanYourTripModel} />
         </>
     );

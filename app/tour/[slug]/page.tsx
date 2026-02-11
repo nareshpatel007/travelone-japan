@@ -17,7 +17,7 @@ import TravelExpert from "@/components/tour_details/travel-experts";
 import PageHelpful from "@/components/common/helpful";
 import { CustomizeTrip } from "@/components/tour_details/popup/customize-trip";
 import { DownloadBrochure } from "@/components/tour_details/popup/download-brochure";
-import { EmailBrochure } from "@/components/tour_details/popup/email-brochure";
+import { QuoteBrochure } from "@/components/tour_details/popup/quote-tour";
 import { BookingCart } from "@/components/tour_details/popup/booking-cart";
 import Skeleton from "react-loading-skeleton";
 import Link from "next/link";
@@ -38,7 +38,7 @@ export default function TourDetailPage() {
     const [showStickyFooter, setShowStickyFooter] = useState(false);
     const [openCustomizeTripPopup, setOpenCustomizeTripPopup] = useState(false);
     const [openDownloadBrochurePopup, setOpenDownloadBrochurePopup] = useState(false);
-    const [openEmailBrochurePopup, setOpenEmailBrochurePopup] = useState(false);
+    const [openQuotePopup, setOpenQuotePopup] = useState(false);
     const [openBookingCartPopup, setOpenBookingCartPopup] = useState(false);
     const pageRef = useRef(null);
 
@@ -121,7 +121,7 @@ export default function TourDetailPage() {
                         setSelectedPackage={setSelectedPackage}
                         setOpenCustomizeTripPopup={setOpenCustomizeTripPopup}
                         setOpenDownloadBrochurePopup={setOpenDownloadBrochurePopup}
-                        setOpenEmailBrochurePopup={setOpenEmailBrochurePopup}
+                        setOpenQuotePopup={setOpenQuotePopup}
                         setOpenBookingCartPopup={setOpenBookingCartPopup}
                     />
 
@@ -144,6 +144,7 @@ export default function TourDetailPage() {
                         title="You may also like"
                         subTitle="We are committed to providing you with the best possible experience."
                         toursList={tourData?.related_tours}
+                        bgColor="bg-white"
                     />
                     <VideoHeroSection />
                     <TravelExpert />
@@ -178,13 +179,6 @@ export default function TourDetailPage() {
                                     <button className="bg-white text-black border border-black hover:bg-black hover:text-white px-6 py-2 rounded text-base font-medium cursor-pointer transition" onClick={() => setOpenCustomizeTripPopup(true)}>
                                         Customize Trip
                                     </button>
-
-                                    {/* <button
-                                        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-                                        className="ml-2 p-2 bg-[#1E1E1E] text-white rounded-full shadow hover:shadow-lg cursor-pointer transition"
-                                    >
-                                        <ArrowUp size={20} className="text-white" />
-                                    </button> */}
                                 </div>
                             </div>
                         </div>
@@ -200,7 +194,11 @@ export default function TourDetailPage() {
                 />
                 <CustomizeTrip tour={tourData?.tour ?? {}} open={openCustomizeTripPopup} onOpenChange={setOpenCustomizeTripPopup} />
                 <DownloadBrochure tour={tourData?.tour ?? {}} open={openDownloadBrochurePopup} onOpenChange={setOpenDownloadBrochurePopup} />
-                <EmailBrochure open={openEmailBrochurePopup} onOpenChange={setOpenEmailBrochurePopup} />
+                {/* <QuoteBrochure
+                    tour={tourData?.tour ?? {}}
+                    open={openQuotePopup}
+                    onOpenChange={setOpenQuotePopup}
+                /> */}
 
                 <CommonFooter isStickyShow={true} />
             </>}

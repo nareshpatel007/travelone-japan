@@ -72,6 +72,8 @@ const defaultFormData = {
     guide: "",
     kind_of_help: "",
     communication_method: "",
+    best_day: "",
+    best_time: "",
     full_name: "",
     email: "",
     mobile: "",
@@ -234,6 +236,8 @@ export function CommonPlanTripModal({ open, onOpenChange }: Props) {
             case "communication":
                 if (!planYourTripForm.communication_method) {
                     newErrors = "Please select communication preference.";
+                } else if (planYourTripForm.communication_method === "Call always" && (!planYourTripForm.best_day || !planYourTripForm.best_time)) {
+                    newErrors = "Please select best day and time for communication.";
                 }
                 break;
         }
@@ -268,41 +272,49 @@ export function CommonPlanTripModal({ open, onOpenChange }: Props) {
     };
 
     // Handle submit plan your trip
-    const handlSubmitPlanYourTrip = () => {
-        setFormLoader(true);
-        (async () => {
-            try {
-                // Auto save last step
-                autoSaveQuestion();
+    const handlSubmitPlanYourTrip = async () => {
+        // Validate step
+        if (!validateStep()) return;
 
-                // Save lead questions
-                const response = await fetch("/api/plan_your_trip", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                        lead_id: leadId,
-                        data: planYourTripForm
-                    })
-                });
+        try {
+            // Update state
+            setFormLoader(true);
 
-                // Get json parse
-                const json_parse = await response.json();
+            // Auto save last step
+            autoSaveQuestion();
 
-                // Check status
-                if (json_parse.status) {
-                    router.push("/thank-you");
-                } else {
-                    setFormLoader(false);
-                    setErrors(json_parse.message);
-                }
-            } catch (error) {
-                console.log(error);
+            // Save lead questions
+            const response = await fetch("/api/plan_your_trip", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    lead_id: leadId,
+                    data: planYourTripForm
+                })
+            });
+
+            // Get json parse
+            const json_parse = await response.json();
+
+            // Check status
+            if (json_parse.status) {
+                router.push("/thank-you");
+            } else {
+                setFormLoader(false);
+                setErrors(json_parse.message);
             }
-        })();
+        } catch (error) {
+            // Set error
+            setErrors("Unable to process your request. Please try again.");
+        }
     };
 
     // Handle prev step
     const handlePreviousStep = () => {
+        // Clear error
+        setErrors("");
+
+        // Update state
         if (step > 0) setStep(step - 1);
     };
 
@@ -363,9 +375,15 @@ export function CommonPlanTripModal({ open, onOpenChange }: Props) {
         const isSimpleDesign = form?.trip_design === "The Focused Vision";
         const isSuggestFlow = form?.choose_flow === "suggest_destination";
 
+        // Define keys
+        let baseKeys: string[] = [];
+
+        // If not lead exist
+        if (!leadId) baseKeys = ["lead_form"];
+
         // Get step keys
-        const baseKeys = [
-            "lead_form",
+        baseKeys = [
+            ...baseKeys,
             "choose_flow",
         ];
 

@@ -79,8 +79,8 @@ export function ForgotPasswordModal({ open, onOpenChange }: ForgotPasswordModalP
                     style={{
                         borderTopLeftRadius: "180px",
                         borderTopRightRadius: "180px",
-                        borderBottomLeftRadius: "12px",
-                        borderBottomRightRadius: "12px",
+                        borderBottomLeftRadius: "0px",
+                        borderBottomRightRadius: "0px",
                     }}
                 >
                     <div className="absolute top-16 right-10 translate-x-1/2 -translate-y-1/2 z-50 cursor-pointer">

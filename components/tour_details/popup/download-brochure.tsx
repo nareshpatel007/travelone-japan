@@ -94,8 +94,8 @@ export function DownloadBrochure({ tour, open, onOpenChange }: Props) {
                     style={{
                         borderTopLeftRadius: "180px",
                         borderTopRightRadius: "180px",
-                        borderBottomLeftRadius: "12px",
-                        borderBottomRightRadius: "12px",
+                        borderBottomLeftRadius: "0px",
+                        borderBottomRightRadius: "0px",
                     }}
                 >
                     <div className="absolute top-16 right-10 translate-x-1/2 -translate-y-1/2 z-50 cursor-pointer">
@@ -122,15 +122,15 @@ export function DownloadBrochure({ tour, open, onOpenChange }: Props) {
                             ✕
                         </button>
                     </div>
-                    <div className="p-8 md:p-10">
+                    <div className="p-8">
                         <QuestionHeading
                             title="Download Brochure"
-                            subtitle="Get detailed information about our tour in your inbox."
+                            subtitle="Get detailed information about tour."
                         />
                         {!isSubmitted ? (
-                            <div className="space-y-5">
-                                <div>
-                                    <label className="block text-md text-black">Phone Number</label>
+                            <div className="space-y-4">
+                                <div className="space-y-1">
+                                    <label className="block text-md text-sm md:text-base text-black">Phone Number</label>
                                     <PhoneInput
                                         defaultCountry="us"
                                         placeholder="Enter your phone number"
@@ -141,8 +141,8 @@ export function DownloadBrochure({ tour, open, onOpenChange }: Props) {
                                     />
                                 </div>
 
-                                <div>
-                                    <label className="block text-md text-black">Email address</label>
+                                <div className="space-y-1">
+                                    <label className="block text-md text-sm md:text-base text-black">Email address</label>
                                     <input
                                         id="email"
                                         type="email"
@@ -154,7 +154,7 @@ export function DownloadBrochure({ tour, open, onOpenChange }: Props) {
                                     />
                                 </div>
 
-                                <div className="flex items-start gap-2 pt-2">
+                                <div className="flex items-start gap-2">
                                     <input
                                         type="checkbox"
                                         id="terms"
@@ -162,17 +162,17 @@ export function DownloadBrochure({ tour, open, onOpenChange }: Props) {
                                         onChange={(e) => setAcceptTerms(e.target.checked)}
                                     />
                                     <label className="text-xs md:text-sm text-gray-700">
-                                        I agree to the <Link href="https://travelone.io/terms-conditions" target="_blank" className="underline">T&Cs</Link> and <Link href="https://travelone.io/privacy-policy" target="_blank" className="underline">Privacy Policy</Link>, and consent to receive communications from TravelOne, including follow-up call and text messages for quotes, scheduling, and call reminders, regarding my inquiry. Std msg & data rates apply. Text STOP to cancel, HELP for info.
+                                        I agree to the <Link href="/legal/terms-service" target="_blank" className="underline">T&Cs</Link> and <Link href="/legal/privacy-policy" target="_blank" className="underline">Privacy Policy</Link>, and consent to receive communications from TravelOne, including follow-up call and text messages for quotes, scheduling, and call reminders, regarding my inquiry. Std msg & data rates apply. Text STOP to cancel, HELP for info.
                                     </label>
                                 </div>
 
-                                {errors && <div className="text-sm text-red-600">{errors}</div>}
+                                {errors && <div className="text-sm md:text-base text-red-600">{errors}</div>}
 
                                 <button
                                     type="button"
                                     onClick={handleSubmit}
                                     disabled={formLoading}
-                                    className="w-full flex items-center justify-center bg-black text-white font-semibold mt-3 py-2.5 rounded-md hover:bg-black/90 transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                                    className="w-full flex items-center justify-center bg-black text-sm md:text-base text-white font-normal py-2 rounded-md hover:bg-black/90 transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                                 >
                                     {formLoading && <Loader className="w-4 h-4 mr-2 animate-spin" />}
                                     {!formLoading && <CheckCircle className="w-4 h-4 mr-2" />}

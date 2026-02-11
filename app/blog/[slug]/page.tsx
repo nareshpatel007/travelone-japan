@@ -14,6 +14,8 @@ export default function Page() {
     const [ready, setReady] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const [blogData, setBlogData] = useState<any | null>(null);
+    const [recentPosts, setRecentPosts] = useState<any[]>([]);
+    const [popularTours, setPopularTours] = useState<any[]>([]);
     const [commentData, setCommentData] = useState<any[]>([]);
 
     useEffect(() => { requestAnimationFrame(() => { setReady(true); }); }, []);
@@ -40,6 +42,8 @@ export default function Page() {
 
                 if (data?.status && data?.data?.post) {
                     setBlogData(data.data.post);
+                    setRecentPosts(data.data.recent_posts ?? []);
+                    setPopularTours(data.data.popular_tours ?? []);
                     setCommentData(data.data.comments ?? []);
                 } else {
                     setBlogData(null); // ❌ Not found
@@ -80,6 +84,8 @@ export default function Page() {
                     <div className="max-w-7xl mx-auto px-5 md:px-0 py-6">
                         <BlogDetail
                             blogPost={blogData}
+                            recentPosts={recentPosts}
+                            popularTours={popularTours}
                             commentData={commentData}
                         />
                     </div>

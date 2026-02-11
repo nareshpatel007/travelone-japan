@@ -9,6 +9,8 @@ import { formatDate } from "@/lib/utils"
 // Define interface
 interface Props {
     blogPost: any;
+    recentPosts: any;
+    popularTours: any;
     commentData: any;
 }
 
@@ -19,7 +21,7 @@ const initCommentForm = {
     comment: ""
 };
 
-export function BlogDetail({ blogPost, commentData }: Props) {
+export function BlogDetail({ blogPost, recentPosts, popularTours, commentData }: Props) {
     // Define state
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [carouselRef, setCarouselRef] = useState<HTMLDivElement | null>(null);
@@ -135,7 +137,7 @@ export function BlogDetail({ blogPost, commentData }: Props) {
 
             <div className="flex flex-col lg:flex-row gap-6">
                 <article className="flex-1 space-y-6">
-                    <div className="relative w-full h-96 md:h-[500px] bg-gray-200 overflow-hidden">
+                    <div className="relative w-full h-70 md:h-[500px] bg-gray-200 overflow-hidden">
                         <Image
                             src={blogPost.featured_image || "/placeholder.svg"}
                             alt={blogPost?.meta_title || "Blog featured"}
@@ -144,6 +146,12 @@ export function BlogDetail({ blogPost, commentData }: Props) {
                             className="object-cover"
                             priority
                         />
+
+                        <div className="absolute bottom-4 right-4 flex items-center justify-center">
+                            <span className="text-xs md:text-sm font-medium text-black bg-white px-4 py-1">
+                                Published on {formatDate(blogPost.created_at)}
+                            </span>
+                        </div>
 
                         {/* <Image
                             src={blogPost.gallery[currentImageIndex] || "/placeholder.svg"}
@@ -180,12 +188,8 @@ export function BlogDetail({ blogPost, commentData }: Props) {
                     </div>
 
                     <div className="space-y-4">
-                        <div className="flex items-center justify-center">
-                            <span className="text-xs md:text-sm font-semibold text-[#385b21] bg-[#d4e9e7] px-4 py-1 block">
-                                Published on {formatDate(blogPost.created_at)}
-                            </span>
-                        </div>
-                        <span className="text-center text-lg md:text-4xl font-semibold text-gray-900 block">{blogPost.post_title}</span>
+                        {/* <span className="text-lg md:text-4xl font-semibold text-gray-900 block">{blogPost.post_title}</span> */}
+
                         <div
                             className="single_blog_content text-sm md:text-lg font-strong text-gray-900 block"
                             dangerouslySetInnerHTML={{ __html: blogPost.post_content.replace("```html", "").replace("```", "") }}
@@ -213,8 +217,8 @@ export function BlogDetail({ blogPost, commentData }: Props) {
                         </div>
                     </div> */}
 
-                    <div className="bg-[#edf3ed] p-5 sm:p-6 md:p-10 my-6 rounded-sm">
-                        <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-6 text-center sm:text-left">
+                    <div className="bg-[#edf3ed] p-5 md:p-10 rounded-sm">
+                        <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 md:gap-6 text-center md:text-left">
                             <Image
                                 src="/common/bella_pic.png"
                                 alt="TravelOne"
@@ -222,13 +226,13 @@ export function BlogDetail({ blogPost, commentData }: Props) {
                                 height={200}
                                 className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-full object-cover"
                             />
-                            <div className="space-y-2">
+                            <div className="space-y-3">
                                 <span className="font-semibold text-black block text-base sm:text-lg">
                                     About TravelOne
                                 </span>
 
                                 <p className="text-black text-sm md:text-base leading-relaxed">
-                                    Sarah is a passionate traveler and writer with over 10 years of experience exploring hidden corners
+                                    Louise Berg is a passionate traveler and writer with over 10 years of experience exploring hidden corners
                                     of the world. She specializes in off-the-beaten-path destinations and sustainable travel practices.
                                 </p>
                             </div>
@@ -383,57 +387,13 @@ export function BlogDetail({ blogPost, commentData }: Props) {
                         </div>
                     </div>
                 </article>
-                <BlogSidebar />
-            </div>
 
-            {/* <div className="max-w-7xl mx-auto py-6">
-                <div className="relative">
-                    <button
-                        onClick={() => scrollCarousel("left")}
-                        className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-6 z-20 cursor-pointer bg-black/50 hover:bg-black text-white p-1.5 rounded-full shadow-lg transition-all"
-                        aria-label="Previous destinations"
-                    >
-                        <ChevronLeft size={24} />
-                    </button>
-                    <button
-                        onClick={() => scrollCarousel("right")}
-                        className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-6 z-20 cursor-pointer bg-black/50 hover:bg-black text-white p-1.5 rounded-full shadow-lg transition-all"
-                        aria-label="Next destinations"
-                    >
-                        <ChevronRight size={24} />
-                    </button>
-                    <div ref={setCarouselRef} className="overflow-x-auto scrollbar-none">
-                        <div className="flex gap-4 pb-4">
-                            {[
-                                { name: "Turkey", image: "https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/08/destination-category-8.jpg" },
-                                { name: "Portugal", image: "https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/08/destination-category-7.jpg" },
-                                { name: "Turkey", image: "https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/08/destination-category-8.jpg" },
-                                { name: "Portugal", image: "https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/08/destination-category-7.jpg" },
-                                { name: "Turkey", image: "https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/08/destination-category-8.jpg" },
-                                { name: "Portugal", image: "https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/08/destination-category-7.jpg" },
-                                { name: "Turkey", image: "https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/08/destination-category-8.jpg" },
-                                { name: "Portugal", image: "https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/08/destination-category-7.jpg" },
-                                { name: "Turkey", image: "https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/08/destination-category-8.jpg" },
-                                { name: "Portugal", image: "https://wanderaway.qodeinteractive.com/wp-content/uploads/2023/08/destination-category-7.jpg" },
-                            ].map((destination) => (
-                                <div className="flex-shrink-0 w-60 h-40 relative rounded-lg overflow-hidden group cursor-pointer">
-                                    <Image
-                                        src={destination.image || "/placeholder.svg"}
-                                        alt={destination.name}
-                                        width={500}
-                                        height={500}
-                                        className="w-full h-full object-cover"
-                                    />
-                                    <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-300" />
-                                    <div className="absolute bottom-0 left-0 p-4">
-                                        <h3 className="text-white font-semibold text-lg">{destination.name}</h3>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-            </div> */}
+                {/* Blog Sidebar */}
+                <BlogSidebar
+                    recentPosts={recentPosts || []}
+                    popularTours={popularTours || []}
+                />
+            </div>
         </>
     )
 }

@@ -17,7 +17,7 @@ export const metadata: Metadata = {
         "travel booking"
     ],
     icons: {
-        icon: "https://ik.imagekit.io/288weifiq/nextjs/favicon.png"
+        icon: "https://ik.imagekit.io/288weifiq/nextjs/to-favicon.png"
     },
     robots: "index, follow",
     metadataBase: new URL("https://travelone.io"),
@@ -29,13 +29,13 @@ export const metadata: Metadata = {
         siteName: "TravelOne",
         title: "TravelOne: Trusted Experts for World-Class Curated Vacations",
         description: "Book expertly-guided tour packages with the USA's trusted travel partner – TravelOne. Join thousands of happy travelers who experience our world-class vacations every year.",
-        images: ["/favicon.png"]
+        images: ["/to-favicon.png"]
     },
     twitter: {
         card: "summary_large_image",
         title: "TravelOne: Trusted Experts for World-Class Curated Vacations",
         description: "Book expertly-guided tour packages with the USA's trusted travel partner – TravelOne. Join thousands of happy travelers who experience our world-class vacations every year.",
-        images: ["/favicon.png"]
+        images: ["/to-favicon.png"]
     }
 };
 

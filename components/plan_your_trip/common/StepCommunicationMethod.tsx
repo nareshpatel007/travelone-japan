@@ -27,11 +27,13 @@ export default function StepCommunicationMethod({
         // Prevent reselect / deselect
         if (selected === value) return;
 
+        // Update state
         setSelected(value);
-
         setPlanYourTripForm((prev: any) => ({
             ...prev,
             communication_method: value,
+            best_day: (value !== "Call always") ? "" : prev.best_day,
+            best_time: (value !== "Call always") ? "" : prev.best_time,
         }));
     };
 
@@ -42,8 +44,8 @@ export default function StepCommunicationMethod({
             />
             <div className="max-h-[55vh] md:max-h-[60vh] overflow-y-auto space-y-1 md:space-y-3">
                 <Option
-                    text="Phone Call"
-                    value="Phone Call"
+                    text="Text me"
+                    value="Text me"
                     selected={selected}
                     onChange={handleChange}
                 />
@@ -54,35 +56,51 @@ export default function StepCommunicationMethod({
                     selected={selected}
                     onChange={handleChange}
                 />
-                
+
                 <Option
-                    text="Email"
-                    value="Email"
+                    text="Email is fine"
+                    value="Email is fine"
                     selected={selected}
                     onChange={handleChange}
                 />
-                
+
                 <Option
-                    text="SMS / Text Message"
-                    value="SMS / Text Message"
-                    selected={selected}
-                    onChange={handleChange}
-                />
-                
-                <Option
-                    text="Video Call (Zoom / Google Meet)"
-                    value="Video Call (Zoom / Google Meet)"
-                    selected={selected}
-                    onChange={handleChange}
-                />
-                
-                <Option
-                    text="No Preference (Any is fine)"
-                    value="No Preference (Any is fine)"
+                    text="Call always"
+                    value="Call always"
                     selected={selected}
                     onChange={handleChange}
                 />
             </div>
+
+            {planYourTripForm?.communication_method === "Call always" && (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <div className="space-y-1">
+                        <label className="block text-sm md:text-base text-black">Best Day to Call You</label>
+                        <select
+                            className="w-full rounded-sm border text-sm md:text-base border-black px-4 py-2 bg-white"
+                            onChange={(e) => setPlanYourTripForm({ ...planYourTripForm, best_day: e.target.value })}
+                        >
+                            <option>Select option</option>
+                            <option value="Weekdays">Weekdays</option>
+                            <option value="Weekends">Weekends</option>
+                            <option value="Call me now">Call me now</option>
+                        </select>
+                    </div>
+                    <div className="space-y-1">
+                        <label className="block text-sm md:text-base text-black">Best Time to Call You</label>
+                        <select
+                            className="w-full rounded-sm border text-sm md:text-base border-black px-4 py-2 bg-white"
+                            onChange={(e) => setPlanYourTripForm({ ...planYourTripForm, best_time: e.target.value })}
+                        >
+                            <option>Select option</option>
+                            <option value="Morning - 9 am to 12 pm">Morning - 9 am to 12 pm</option>
+                            <option value="Afternoon - 12 pm to 3 pm">Afternoon - 12 pm to 3 pm</option>
+                            <option value="Afternoon - 3 pm to 6 pm">Afternoon - 3 pm to 6 pm</option>
+                            <option value="Evening - 6 pm to 9 pm">Evening - 6 pm to 9 pm</option>
+                        </select>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

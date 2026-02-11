@@ -16,16 +16,17 @@ interface Props {
     title?: string;
     subTitle?: string;
     toursList: any[];
+    bgColor?: string;
 }
 
-export default function ToursSlider({ title, subTitle, toursList }: Props) {
+export default function ToursSlider({ title, subTitle, toursList, bgColor = "bg-[#FFF9EE]" }: Props) {
     // Check if toursList is empty
     if (!toursList || toursList.length === 0) {
         return null;
     }
 
     return (
-        <section className="px-5 md:px-10 py-12 space-y-12 bg-[#FFF9EE]">
+        <section className={`px-5 md:px-10 py-12 space-y-12 ${bgColor}`}>
             <div className="text-black space-y-2 text-center">
                 <h2 className="text-3xl md:text-6xl leading-tight font-normal">
                     {title || "Japan: The Precision of Tradition"}

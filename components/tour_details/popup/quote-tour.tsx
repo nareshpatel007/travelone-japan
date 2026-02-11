@@ -13,7 +13,6 @@ import "react-international-phone/style.css";
 
 interface Props {
     tour: any;
-    selectedPackage: any;
     open: boolean;
     onOpenChange: (open: boolean) => void;
 }
@@ -56,7 +55,7 @@ const ROOM_LIMITS: any = {
     infant: 1,
 };
 
-export function BookingCart({ tour, selectedPackage, open, onOpenChange }: Props) {
+export function QuoteBrochure({ tour, open, onOpenChange }: Props) {
     // Define route
     const router = useRouter();
 
@@ -220,20 +219,13 @@ export function BookingCart({ tour, selectedPackage, open, onOpenChange }: Props
 
     // Handle next step
     const handleNextStep = () => {
-        if (!is_logged_in && (!userName || !userEmail || !userPhone)) {
-            setErrors("Please enter name, email and phone number.");
-        } else if (!selectedDate || !selectedNationality) {
-            setErrors("Please select date and nationality.");
-        } else if (!isFutureDate(selectedDate)) {
-            setErrors("Please select a future travel date.");
-        } else {
-            setErrors("");
-            setCurrentStep(currentStep + 1);
-        }
+        setErrors("");
+        setCurrentStep(currentStep + 1);
     }
 
     // Handle previous step
     const handlePreviousStep = () => {
+        setErrors("");
         setCurrentStep(currentStep - 1);
     }
 
@@ -267,7 +259,6 @@ export function BookingCart({ tour, selectedPackage, open, onOpenChange }: Props
                     user_name: userName,
                     user_email: userEmail,
                     user_phone: userPhone,
-                    package_id: selectedPackage,
                     booking_date: selectedDate,
                     nationality_id: selectedNationality,
                     total_rooms: rooms.length,
@@ -313,7 +304,7 @@ export function BookingCart({ tour, selectedPackage, open, onOpenChange }: Props
                     <X className="h-5 w-5" />
                 </button>
                 <div className="absolute top-6 left-1/2 -translate-x-1/2 flex items-center gap-2">
-                    {[1, 2].map((step) => (
+                    {[1, 2, 3].map((step) => (
                         <div
                             key={step}
                             className={`w-3 h-3 rounded-full transition-colors ${step === currentStep ? "bg-black" : step < currentStep ? "bg-black" : "bg-gray-300"}`}
@@ -322,111 +313,11 @@ export function BookingCart({ tour, selectedPackage, open, onOpenChange }: Props
                 </div>
                 <div className="min-h-full flex flex-col items-center justify-center px-4 md:px-8 py-20 space-y-5">
                     <div className="w-full max-w-4xl space-y-5">
-                        <QuestionHeading
-                            title="When Would You Like to Book Your Trip?"
-                        />
+                        <QuestionHeading title="Quote to Customer for Tour" />
 
                         {/* Step 1 */}
                         {currentStep === 1 && (
-                            <div className="border border-[#2F5D50] rounded-sm p-5 space-y-4 bg-white/60">
-                                {!is_logged_in && <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-                                    <div>
-                                        <label className="block text-md font-medium text-[#333] mb-1">
-                                            Full Name <span className="text-red-500">*</span>
-                                        </label>
-                                        <input
-                                            value={userName}
-                                            onChange={(e) => setUserName(e.target.value)}
-                                            placeholder="Enter your name"
-                                            className="w-full px-4 py-2 text-base rounded-sm border border-[#2F5D50] bg-white outline-none"
-                                        />
-                                    </div>
-                                    <div>
-                                        <label className="block text-md font-medium text-[#333] mb-1">
-                                            Email <span className="text-red-500">*</span>
-                                        </label>
-                                        <input
-                                            value={userEmail}
-                                            onChange={(e) => setUserEmail(e.target.value)}
-                                            placeholder="Enter your email"
-                                            className="w-full px-4 py-2 text-base rounded-sm border border-[#2F5D50] bg-white outline-none"
-                                        />
-                                    </div>
-                                    <div>
-                                        <label className="block text-md font-medium text-[#333] mb-1">
-                                            Cellphone <span className="text-red-500">*</span>
-                                        </label>
-                                        <PhoneInput
-                                            defaultCountry="us"
-                                            placeholder="Enter your phone number"
-                                            value={userPhone}
-                                            onChange={(e) => setUserPhone(e)}
-                                            className="w-full px-4 py-1 text-base rounded-sm border border-[#2F5D50] bg-white outline-none"
-                                            inputClassName="w-full !border-0 text-sm md:text-md !border-white"
-                                        />
-                                    </div>
-                                </div>}
-
-                                <div className={`grid ${!is_logged_in ? "border-t border-dashed border-gray-300 mt-6 pt-4 grid-cols-1 md:grid-cols-2" : "grid-cols-1"} gap-4 md:gap-6`}>
-                                    <div>
-                                        <label className="block text-md font-medium text-[#333] mb-1">
-                                            Travel Date <span className="text-red-500">*</span>
-                                        </label>
-                                        {tour?.tour_type === "Group Tour" ? (
-                                            <select
-                                                value={selectedDate ?? ""}
-                                                onChange={(e) => handleChooseDate(e.target.value)}
-                                                className="w-full text-base px-4 py-2 rounded-sm border border-[#2F5D50] bg-white outline-none"
-                                            >
-                                                <option value="">Choose travel date</option>
-                                                {tour?.group_dates?.filter((d: any) => isFutureDate(d.group_date)).map((date: any, index: number) => (
-                                                    <option key={index} value={date.group_date}>
-                                                        {`${formatDate(date.group_date)} (${date.available_seat} seats)`}
-                                                    </option>
-                                                ))}
-                                            </select>
-                                        ) : (
-                                            <input
-                                                type="date"
-                                                value={selectedDate}
-                                                onChange={(e) => setSelectedDate(e.target.value)}
-                                                min={new Date().toISOString().split("T")[0]}
-                                                className="block w-full min-w-0 max-w-full appearance-none text-base px-4 py-2 border border-[#2F5D50] rounded-sm bg-white outline-none"
-                                            />
-                                        )}
-                                    </div>
-                                    <div>
-                                        <label className="block text-md font-medium text-[#333] mb-1">
-                                            Your Nationality <span className="text-red-500">*</span>
-                                        </label>
-                                        <select
-                                            value={selectedNationality ?? ""}
-                                            onChange={(e) => setSelectedNationality(e.target.value)}
-                                            className="w-full px-4 py-2 text-base rounded-sm border border-[#2F5D50] bg-white outline-none"
-                                        >
-                                            <option value="">Select nationality</option>
-                                            {nationality.map((item: string, index: number) => (
-                                                <option key={index} value={item}>{item}</option>
-                                            ))}
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        )}
-
-                        {/* Step 2 */}
-                        {currentStep === 2 && (
                             <div className="w-full max-w-4xl mx-auto space-y-6">
-                                <div className="text-center mb-3">
-                                    <p className="text-xl font-semibold text-[#0F172A]">
-                                        Choose Traveler Details
-                                    </p>
-                                    {tour?.tour_type === "Group Tour" && (
-                                        <p className="text-sm text-gray-700">
-                                            {availableSeats} Seats are available in this tour
-                                        </p>
-                                    )}
-                                </div>
                                 <div className="border border-black/50 rounded-sm p-5 space-y-4 bg-white/60">
                                     <div className="flex items-center justify-between">
                                         <p className="font-semibold">Rooms</p>
@@ -522,6 +413,101 @@ export function BookingCart({ tour, selectedPackage, open, onOpenChange }: Props
                                 </div>
                             </div>
                         )}
+
+                        {/* Step 2 */}
+                        {currentStep === 2 && (
+                            <div className="border border-black/50 rounded-sm p-5 space-y-4 bg-white/60">
+                                1111
+                            </div>
+                        )}
+
+                        {/* Step 3 */}
+                        {currentStep === 3 && (
+                            <div className="border border-black/50 rounded-sm p-5 space-y-4 bg-white/60">
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                                    <div>
+                                        <label className="block text-md font-medium text-[#333] mb-1">
+                                            Full Name <span className="text-red-500">*</span>
+                                        </label>
+                                        <input
+                                            value={userName}
+                                            onChange={(e) => setUserName(e.target.value)}
+                                            placeholder="Enter your name"
+                                            className="w-full px-4 py-2 text-base rounded-sm border border-black/50 bg-white outline-none"
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="block text-md font-medium text-[#333] mb-1">
+                                            Email <span className="text-red-500">*</span>
+                                        </label>
+                                        <input
+                                            value={userEmail}
+                                            onChange={(e) => setUserEmail(e.target.value)}
+                                            placeholder="Enter your email"
+                                            className="w-full px-4 py-2 text-base rounded-sm border border-black/50 bg-white outline-none"
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="block text-md font-medium text-[#333] mb-1">
+                                            Cellphone <span className="text-red-500">*</span>
+                                        </label>
+                                        <PhoneInput
+                                            defaultCountry="us"
+                                            placeholder="Enter your phone number"
+                                            value={userPhone}
+                                            onChange={(e) => setUserPhone(e)}
+                                            className="w-full px-4 py-1 text-base rounded-sm border border-black/50 bg-white outline-none"
+                                            inputClassName="w-full !border-0 text-sm md:text-md !border-white"
+                                        />
+                                    </div>
+                                </div>
+
+                                <div className="grid border-t border-dashed border-gray-300 mt-6 pt-4 grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                                    <div>
+                                        <label className="block text-md font-medium text-[#333] mb-1">
+                                            Travel Date <span className="text-red-500">*</span>
+                                        </label>
+                                        {tour?.tour_type === "Group Tour" ? (
+                                            <select
+                                                value={selectedDate ?? ""}
+                                                onChange={(e) => handleChooseDate(e.target.value)}
+                                                className="w-full text-base px-4 py-2 rounded-sm border border-black/50 bg-white outline-none"
+                                            >
+                                                <option value="">Choose travel date</option>
+                                                {tour?.group_dates?.filter((d: any) => isFutureDate(d.group_date)).map((date: any, index: number) => (
+                                                    <option key={index} value={date.group_date}>
+                                                        {`${formatDate(date.group_date)} (${date.available_seat} seats)`}
+                                                    </option>
+                                                ))}
+                                            </select>
+                                        ) : (
+                                            <input
+                                                type="date"
+                                                value={selectedDate}
+                                                onChange={(e) => setSelectedDate(e.target.value)}
+                                                min={new Date().toISOString().split("T")[0]}
+                                                className="block w-full min-w-0 max-w-full appearance-none text-base px-4 py-2 border border-black/50 rounded-sm bg-white outline-none"
+                                            />
+                                        )}
+                                    </div>
+                                    <div>
+                                        <label className="block text-md font-medium text-[#333] mb-1">
+                                            Your Nationality <span className="text-red-500">*</span>
+                                        </label>
+                                        <select
+                                            value={selectedNationality ?? ""}
+                                            onChange={(e) => setSelectedNationality(e.target.value)}
+                                            className="w-full px-4 py-2 text-base rounded-sm border border-black/50 bg-white outline-none"
+                                        >
+                                            <option value="">Select nationality</option>
+                                            {nationality.map((item: string, index: number) => (
+                                                <option key={index} value={item}>{item}</option>
+                                            ))}
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
                     </div>
 
                     {errors && (
@@ -529,33 +515,31 @@ export function BookingCart({ tour, selectedPackage, open, onOpenChange }: Props
                     )}
 
                     <div className="flex items-center gap-3">
-                        {currentStep === 1 ? (
+                        {currentStep > 1 && <button
+                            onClick={handlePreviousStep}
+                            className="flex items-center gap-2 px-8 py-2.5 bg-white text-black rounded-md font-medium border border-black/50 hover:bg-black hover:text-white transition-colors cursor-pointer"
+                        >
+                            <ArrowLeft className="h-5 w-5" /> Previous
+                        </button>}
+
+                        {currentStep < 3 && (
                             <button
                                 onClick={handleNextStep}
                                 className="flex items-center gap-2 px-8 py-2.5 rounded-md font-medium transition-colors border border-black/50 cursor-pointer bg-black text-white hover:text-black hover:bg-white"
                             >
                                 Next <ArrowRight className="h-5 w-5" />
                             </button>
-                        ) : (
-                            <>
-                                {!isFormLoading && <button
-                                    onClick={handlePreviousStep}
-                                    className="flex items-center gap-2 px-8 py-2.5 bg-white text-black rounded-md font-medium border border-black/50 hover:bg-black hover:text-white transition-colors cursor-pointer"
-                                >
-                                    <ArrowLeft className="h-5 w-5" /> Previous
-                                </button>}
-
-                                <button
-                                    onClick={handleSubmit}
-                                    disabled={isFormLoading}
-                                    className="flex items-center gap-2 px-8 py-2.5 rounded-md font-medium transition-colors border cursor-pointer bg-black text-white hover:text-black hover:bg-white disabled:opacity-50 disabled:cursor-not-allowed"
-                                >
-                                    {isFormLoading && <Loader2 className="animate-spin h-5 w-5" />}
-                                    {!isFormLoading && <CheckCircle className="h-5 w-5" />}
-                                    Submit
-                                </button>
-                            </>
                         )}
+
+                        {currentStep == 3 && <button
+                            onClick={handleSubmit}
+                            disabled={isFormLoading}
+                            className="flex items-center gap-2 px-8 py-2.5 rounded-md font-medium transition-colors border cursor-pointer bg-black text-white hover:text-black hover:bg-white disabled:opacity-50 disabled:cursor-not-allowed"
+                        >
+                            {isFormLoading && <Loader2 className="animate-spin h-5 w-5" />}
+                            {!isFormLoading && <CheckCircle className="h-5 w-5" />}
+                            Submit
+                        </button>}
                     </div>
                 </div>
             </div>

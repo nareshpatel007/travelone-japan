@@ -7,6 +7,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 // Define props
 interface TourFiltersProps {
     isLoading: boolean;
+    showTotalCount?: boolean;
     totalCount: string;
     sortFilter: string;
     setIsSidebarFilterOpen: (value: boolean) => void;
@@ -26,6 +27,7 @@ interface TourFiltersProps {
 
 export function TourFilters({
     isLoading,
+    showTotalCount = false,
     totalCount,
     sortFilter,
     setIsSidebarFilterOpen,
@@ -85,7 +87,10 @@ export function TourFilters({
     return (
         <div className="pb-4">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4">
-                <span className="text-sm md:text-base text-black">Showing {totalCount} tours</span>
+                {showTotalCount && <span className="text-sm md:text-base text-black">
+                    Showing {totalCount} tours
+                </span>}
+                {!showTotalCount && <span></span>}
                 <div className="flex items-center gap-3">
                     {isLoading && <Loader2 className="animate-spin h-5 w-5 text-black" />}
                     <Sheet open={isSidebarFilterOpen} onOpenChange={setIsSidebarFilterOpen}>
@@ -261,6 +266,6 @@ export function TourFilters({
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }

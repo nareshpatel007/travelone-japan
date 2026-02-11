@@ -19,6 +19,7 @@ const initialFormData = {
     name: "",
     email: "",
     phone: "",
+    communication: "",
     best_day: "",
     best_time: "",
     accept_terms: false,
@@ -48,8 +49,11 @@ export function CustomizeTrip({ tour, open, onOpenChange }: Props) {
         try {
             const submitData = async () => {
                 // Validation
-                if (!formData.name || !formData.email || !formData.phone || !formData.best_day || !formData.best_time) {
+                if (!formData.name || !formData.email || !formData.phone || !formData.communication) {
                     setErrors("Please fill in all the required fields.");
+                    return;
+                } else if (formData.communication === "Call always" && (!formData.best_day || !formData.best_time)) {
+                    setErrors("Please select a best day and time.");
                     return;
                 } else if (!formData.accept_terms) {
                     setErrors("Please accept the Terms consent to submit your request.");
@@ -158,33 +162,61 @@ export function CustomizeTrip({ tour, open, onOpenChange }: Props) {
                                         </div>
                                         <div>
                                             <label className="block text-md font-medium text-[#333] mb-1">
-                                                Best Day to Call You <span className="text-red-500">*</span>
+                                                Preferred Method of Communication <span className="text-red-500">*</span>
                                             </label>
                                             <select
                                                 className="w-full px-4 py-2 rounded-sm border border-[#2F5D50] bg-white outline-none"
-                                                onChange={(e) => setFormData({ ...formData, best_day: e.target.value })}
+                                                onChange={(e) => {
+                                                    setFormData({
+                                                        ...formData,
+                                                        communication: e.target.value,
+                                                        best_day: (e.target.value !== "Call always") ? "" : formData.best_day,
+                                                        best_time: (e.target.value !== "Call always") ? "" : formData.best_time
+                                                    });
+                                                }}
                                             >
                                                 <option>Select option</option>
-                                                <option value="Weekdays">Weekdays</option>
-                                                <option value="Weekends">Weekends</option>
-                                                <option value="Call me now">Call me now</option>
+                                                <option value="Text me">Text me</option>
+                                                <option value="WhatsApp">WhatsApp</option>
+                                                <option value="Email is fine">Email is fine</option>
+                                                <option value="Call always">Call always</option>
                                             </select>
                                         </div>
-                                        <div>
-                                            <label className="block text-md font-medium text-[#333] mb-1">
-                                                Best Time to Call You <span className="text-red-500">*</span>
-                                            </label>
-                                            <select
-                                                className="w-full px-4 py-2 rounded-sm border border-[#2F5D50] bg-white outline-none"
-                                                onChange={(e) => setFormData({ ...formData, best_time: e.target.value })}
-                                            >
-                                                <option>Select option</option>
-                                                <option value="Morning - 9 am to 12 pm">Morning - 9 am to 12 pm</option>
-                                                <option value="Afternoon - 12 pm to 3 pm">Afternoon - 12 pm to 3 pm</option>
-                                                <option value="Afternoon - 3 pm to 6 pm">Afternoon - 3 pm to 6 pm</option>
-                                                <option value="Evening - 6 pm to 9 pm">Evening - 6 pm to 9 pm</option>
-                                            </select>
-                                        </div>
+
+                                        {/* If communication method is "Call always" */}
+                                        {formData.communication === "Call always" && (
+                                            <>
+                                                <div>
+                                                    <label className="block text-md font-medium text-[#333] mb-1">
+                                                        Best Day to Call You <span className="text-red-500">*</span>
+                                                    </label>
+                                                    <select
+                                                        className="w-full px-4 py-2 rounded-sm border border-[#2F5D50] bg-white outline-none"
+                                                        onChange={(e) => setFormData({ ...formData, best_day: e.target.value })}
+                                                    >
+                                                        <option>Select option</option>
+                                                        <option value="Weekdays">Weekdays</option>
+                                                        <option value="Weekends">Weekends</option>
+                                                        <option value="Call me now">Call me now</option>
+                                                    </select>
+                                                </div>
+                                                <div>
+                                                    <label className="block text-md font-medium text-[#333] mb-1">
+                                                        Best Time to Call You <span className="text-red-500">*</span>
+                                                    </label>
+                                                    <select
+                                                        className="w-full px-4 py-2 rounded-sm border border-[#2F5D50] bg-white outline-none"
+                                                        onChange={(e) => setFormData({ ...formData, best_time: e.target.value })}
+                                                    >
+                                                        <option>Select option</option>
+                                                        <option value="Morning - 9 am to 12 pm">Morning - 9 am to 12 pm</option>
+                                                        <option value="Afternoon - 12 pm to 3 pm">Afternoon - 12 pm to 3 pm</option>
+                                                        <option value="Afternoon - 3 pm to 6 pm">Afternoon - 3 pm to 6 pm</option>
+                                                        <option value="Evening - 6 pm to 9 pm">Evening - 6 pm to 9 pm</option>
+                                                    </select>
+                                                </div>
+                                            </>
+                                        )}
                                     </div>
                                     <div className="flex items-start gap-2 pt-2">
                                         <input
@@ -194,7 +226,7 @@ export function CustomizeTrip({ tour, open, onOpenChange }: Props) {
                                             onChange={(e) => setFormData({ ...formData, accept_terms: e.target.checked })}
                                         />
                                         <label className="text-xs md:text-sm text-gray-700">
-                                            I agree to the <Link href="https://travelone.io/terms-conditions" target="_blank" className="underline">T&Cs</Link> and <Link href="https://travelone.io/privacy-policy" target="_blank" className="underline">Privacy Policy</Link>, and consent to receive communications from TravelOne, including follow-up call and text messages for quotes, scheduling, and call reminders, regarding my inquiry. Std msg & data rates apply. Text STOP to cancel, HELP for info.
+                                            I agree to the <Link href="/legal/terms-service" target="_blank" className="underline">T&Cs</Link> and <Link href="/legal/privacy-policy" target="_blank" className="underline">Privacy Policy</Link>, and consent to receive communications from TravelOne, including follow-up call and text messages for quotes, scheduling, and call reminders, regarding my inquiry. Std msg & data rates apply. Text STOP to cancel, HELP for info.
                                         </label>
                                     </div>
                                 </>
@@ -215,10 +247,7 @@ export function CustomizeTrip({ tour, open, onOpenChange }: Props) {
                     </div>
 
                     {errors && (
-                        <div className="relative space-x-2 text-red-500" role="alert">
-                            <strong className="font-bold">Error!</strong>
-                            <span className="block sm:inline">{errors}</span>
-                        </div>
+                        <span className="text-sm md:text-base text-red-500">{errors}</span>
                     )}
 
                     {!isSubmitted && <div className="flex items-center">

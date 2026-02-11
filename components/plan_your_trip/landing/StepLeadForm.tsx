@@ -100,7 +100,7 @@ export default function StepLeadForm({
                         className="mt-1 cursor-pointer"
                     />
                     <label className="text-xs md:text-sm text-gray-700">
-                        I agree to the <a href="https://travelone.io/terms-conditions" target="_blank" className="underline">T&Cs</a> and <a href="https://travelone.io/privacy-policy" target="_blank" className="underline">Privacy Policy</a>, and consent to receive communications from TravelOne, including follow-up call and text messages for quotes, scheduling, and call reminders, regarding my inquiry. Std msg & data rates apply. Text STOP to cancel, HELP for info.
+                        I agree to the <a href="/legal/terms-service" target="_blank" className="underline">T&Cs</a> and <a href="/legal/privacy-policy" target="_blank" className="underline">Privacy Policy</a>, and consent to receive communications from TravelOne, including follow-up call and text messages for quotes, scheduling, and call reminders, regarding my inquiry. Std msg & data rates apply. Text STOP to cancel, HELP for info.
                     </label>
                 </div>
             </div>

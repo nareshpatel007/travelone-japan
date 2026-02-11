@@ -1,19 +1,40 @@
 'use client'
 
-import { Heart, Menu, ShoppingCartIcon, User } from 'lucide-react';
+import { Heart, ListCheck, LogOut, Menu, ShoppingCartIcon, User, User2 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { LoginModal } from '../common/login-modal';
 import { CommonPlanTripModal } from '../plan_your_trip/common-popup';
-import { LandingPlanTripModal } from '../plan_your_trip/landing-popup';
+import { getCartData, getLoginCookie, getWishlistCount, isLoggedIn, removeLoginCookie } from '@/lib/auth';
+import { useRouter } from "next/navigation";
 
 export default function StickyHomeHeader() {
+    // Define route
+    const router = useRouter();
+
     // Define state
     const [showStickyFooter, setShowStickyFooter] = useState(false);
     const [openPlanYourTripModel, setOpenPlanYourTripModel] = useState(false);
-    const [openMobileMenu, setOpenMobileMenu] = useState(false);
     const [openLogin, setOpenLogin] = useState(false);
+    const [openProfileMenu, setOpenProfileMenu] = useState(false);
+
+    // Click outside handler
+    useEffect(() => {
+        function handleClickOutside(event: MouseEvent) {
+            if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+                setOpenProfileMenu(false);
+            }
+        }
+
+        if (openProfileMenu) {
+            document.addEventListener("mousedown", handleClickOutside);
+        }
+
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [openProfileMenu]);
 
     useEffect(() => {
         const toggleVisibility = () => {
@@ -24,6 +45,23 @@ export default function StickyHomeHeader() {
         window.addEventListener('scroll', toggleVisibility);
         return () => window.removeEventListener('scroll', toggleVisibility);
     }, []);
+
+    // Define ref
+    const menuRef = useRef<HTMLDivElement>(null);
+
+    // Get user data
+    const loginUserData = isLoggedIn() ? getLoginCookie() : null;
+
+    // Define count
+    const wishlistCount = getWishlistCount();
+    const cartCount = getCartData() ? 1 : 0;
+
+    // Handle Logout
+    const logout = async () => {
+        removeLoginCookie();
+        setOpenProfileMenu(false);
+        router.push("/");
+    };
 
     return (
         <>
@@ -41,28 +79,74 @@ export default function StickyHomeHeader() {
                             <Link href="/wishlist" className="relative">
                                 <Heart className="h-6 w-6" />
                                 <span className="absolute -top-2 -right-2 h-5 w-5 bg-yellow-400 rounded-full text-xs font-bold flex items-center justify-center">
-                                    0
+                                    {wishlistCount || 0}
                                 </span>
                             </Link>
 
                             <Link href="/cart" className="relative">
                                 <ShoppingCartIcon className="h-6 w-6" />
                                 <span className="absolute -top-2 -right-2 h-5 w-5 bg-yellow-400 rounded-full text-xs font-bold flex items-center justify-center">
-                                    0
+                                    {cartCount || 0}
                                 </span>
                             </Link>
 
-                            <User className="h-6 w-6 cursor-pointer" onClick={() => setOpenLogin(true)} />
+                            {isLoggedIn() ? (
+                                <div className="relative" ref={menuRef}>
+                                    <Image
+                                        src="/common/user-profile.webp"
+                                        alt="User"
+                                        width={26}
+                                        height={26}
+                                        className="flex items-center gap-2 cursor-pointer"
+                                        onClick={() => setOpenProfileMenu(true)}
+                                    />
+
+                                    {openProfileMenu && loginUserData && (
+                                        <div className="absolute right-0 -mt-53 w-48 bg-white border shadow-lg rounded-sm overflow-hidden z-50">
+                                            <div className="px-4 py-3 border-b bg-gray-100">
+                                                <p className="text-base font-medium">
+                                                    Hi, {`${loginUserData.first_name} ${loginUserData.last_name}`}
+                                                </p>
+                                            </div>
+
+                                            <Link
+                                                href="/account"
+                                                className="flex items-center gap-2 px-4 py-2 hover:bg-gray-100"
+                                            >
+                                                <User2 size={16} />
+                                                Profile
+                                            </Link>
+
+                                            <Link
+                                                href="/bookings"
+                                                className="flex items-center gap-2 px-4 py-2 hover:bg-gray-100"
+                                            >
+                                                <ListCheck size={16} />
+                                                My Bookings
+                                            </Link>
+
+                                            <button
+                                                onClick={logout}
+                                                className="flex items-center gap-2 px-4 py-2 w-full hover:bg-gray-100 cursor-pointer text-left"
+                                            >
+                                                <LogOut size={16} />
+                                                Logout
+                                            </button>
+                                        </div>
+                                    )}
+                                </div>
+                            ) : (
+                                <User
+                                    className="h-6 w-6 cursor-pointer"
+                                    onClick={() => setOpenLogin(true)}
+                                />
+                            )}
 
                             <button
                                 className="hidden lg:block border px-4 py-2 rounded font-semibold hover:bg-black hover:text-white cursor-pointer"
                                 onClick={() => setOpenPlanYourTripModel(true)}
                             >
                                 Plan Your Trip
-                            </button>
-
-                            <button className="lg:hidden" onClick={() => setOpenMobileMenu(true)}>
-                                <Menu />
                             </button>
                         </div>
                     </div>
@@ -71,7 +155,7 @@ export default function StickyHomeHeader() {
 
             {/* ================= MODALS ================= */}
             <LoginModal open={openLogin} onOpenChange={setOpenLogin} />
-            <LandingPlanTripModal open={openPlanYourTripModel} onOpenChange={setOpenPlanYourTripModel} />
+            <CommonPlanTripModal open={openPlanYourTripModel} onOpenChange={setOpenPlanYourTripModel} />
         </>
     );
 }

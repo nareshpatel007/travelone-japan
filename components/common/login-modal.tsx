@@ -5,7 +5,7 @@ import { useState } from "react";
 import { ForgotPasswordModal } from "./forgot-password-modal";
 import QuestionHeading from "../plan_your_trip/landing/questionHeading";
 import Link from "next/link";
-import { CheckCircle, Loader, Loader2 } from "lucide-react";
+import { CheckCircle, FacebookIcon, Instagram, Linkedin, Loader, Loader2, Youtube } from "lucide-react";
 import { setLoginCookie } from "@/lib/auth";
 import { useRouter } from "next/navigation";
 import { isValidEmail } from "@/lib/utils";
@@ -125,10 +125,10 @@ export function LoginModal({ open, onOpenChange }: Props) {
             } else if (password.length < 8) {
                 setErrors("Password must be at least 8 characters.");
                 return;
-            } else if(isValidEmail(email) === false) {
+            } else if (isValidEmail(email) === false) {
                 setErrors("Please enter a valid email address.");
                 return;
-            } else if(!acceptTerms) {
+            } else if (!acceptTerms) {
                 setErrors("Please accept the terms and conditions.");
                 return;
             }
@@ -176,8 +176,8 @@ export function LoginModal({ open, onOpenChange }: Props) {
                     style={{
                         borderTopLeftRadius: "180px",
                         borderTopRightRadius: "180px",
-                        borderBottomLeftRadius: "12px",
-                        borderBottomRightRadius: "12px",
+                        borderBottomLeftRadius: "0px",
+                        borderBottomRightRadius: "0px",
                     }}
                 >
                     <div className="!absolute !top-16 !right-10 !translate-x-1/2 !-translate-y-1/2 !z-50 cursor-pointer">
@@ -291,7 +291,7 @@ export function LoginModal({ open, onOpenChange }: Props) {
                                     onChange={(e) => setAcceptTerms(e.target.checked)}
                                 />
                                 <label className="text-xs md:text-sm text-gray-700">
-                                    By signing up, you agree to our <Link href="https://travelone.io/terms-conditions" target="_blank" className="underline">T&Cs</Link> and <Link href="https://travelone.io/privacy-policy" target="_blank" className="underline">Privacy Policy</Link>, including the use of cookies.
+                                    By signing up, you agree to our <Link href="/legal/terms-service" target="_blank" className="underline">T&Cs</Link> and <Link href="/legal/privacy-policy" target="_blank" className="underline">Privacy Policy</Link>, including the use of cookies.
                                 </label>
                             </div>}
 
@@ -348,12 +348,32 @@ export function LoginModal({ open, onOpenChange }: Props) {
                                 </button>
                             </div> */}
 
-                            <p className="text-center text-sm text-gray-600 pt-2">
+                            <p className="text-center text-sm text-gray-600">
                                 {isSignUp ? "Already have an account?" : "Don't have an account?"}{" "}
                                 <button type="button" onClick={toggleMode} className="text-black hover:text-black/80 font-medium hover:underline cursor-pointer">
                                     {isSignUp ? "Log in" : "Sign up"}
                                 </button>
                             </p>
+
+                            <div className="flex justify-center text-center gap-3 mt-5">
+                                <Link href="https://www.youtube.com/@traveloneio" target="_blank" rel="noopener noreferrer">
+                                    <button type="button" className="flex items-center justify-center bg-[#ee2852] hover:bg-[#ee2852]/90 text-white p-2 rounded-full transition-colors cursor-pointer">
+                                        <Youtube className="h-4 w-4" />
+                                    </button>
+                                </Link>
+
+                                <Link href="https://www.instagram.com/travelone.io/" target="_blank" rel="noopener noreferrer">
+                                    <button type="button" className="flex items-center justify-center bg-[#f78da7] hover:bg-[#f78da7]/90 text-white p-2 rounded-full transition-colors cursor-pointer">
+                                        <Instagram className="h-4 w-4" />
+                                    </button>
+                                </Link>
+
+                                <Link href="https://www.linkedin.com/company/travelone-technologies-inc/" target="_blank" rel="noopener noreferrer">
+                                    <button type="button" className="flex items-center justify-center bg-[#007aff] hover:bg-[#007aff]/90 text-white p-2 rounded-full transition-colors cursor-pointer">
+                                        <Linkedin className="h-4 w-4" />
+                                    </button>
+                                </Link>
+                            </div>
                         </div>}
                     </div>
                 </div>

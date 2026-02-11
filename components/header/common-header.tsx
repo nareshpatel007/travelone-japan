@@ -9,6 +9,7 @@ import { Heart, Instagram, Linkedin, ListCheck, LogOut, Menu, Search, ShoppingCa
 import { getCartData, getLoginCookie, getWishlistCount, isLoggedIn, removeLoginCookie } from "@/lib/auth";
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
+import { LandingPlanTripModal } from "../plan_your_trip/landing-popup";
 
 // Define mega menu destinations list
 const DESTINATIONS = [
@@ -34,9 +35,17 @@ const DESTINATIONS = [
     },
 ];
 
-export default function CommonHeader() {
+// Define props
+interface Props {
+    landingPytrip?: boolean;
+}
+
+export default function CommonHeader({ landingPytrip = false }: Props) {
     // Define route
     const router = useRouter();
+
+    // Get query params
+    const keyword = getQuery("keyword", "");
 
     // Define state
     const [openMobileMenu, setOpenMobileMenu] = useState(false);
@@ -100,7 +109,7 @@ export default function CommonHeader() {
     const logout = async () => {
         removeLoginCookie();
         setOpenProfileMenu(false);
-        router.refresh();
+        router.push("/");
     };
 
     // Mega Menu Show and Hide
@@ -151,6 +160,7 @@ export default function CommonHeader() {
                             <div className="ml-4 flex items-center gap-2 border-l pl-4">
                                 <input
                                     name="keyword"
+                                    defaultValue={keyword || ""}
                                     placeholder="Search tour here..."
                                     className="bg-transparent outline-none text-sm"
                                     autoComplete="off"
@@ -198,14 +208,14 @@ export default function CommonHeader() {
                         <Link href="/wishlist" className="relative">
                             <Heart className="h-6 w-6" />
                             <span id="wishlist_count" className="absolute -top-2 -right-2 h-5 w-5 bg-yellow-400 rounded-full text-xs font-bold flex items-center justify-center">
-                                {wishlistCount || 0}
+                                {wishlistCount}
                             </span>
                         </Link>
 
                         <Link href="/cart" className="relative">
                             <ShoppingCartIcon className="h-6 w-6" />
                             <span id="cart_count" className="absolute -top-2 -right-2 h-5 w-5 bg-yellow-400 rounded-full text-xs font-bold flex items-center justify-center">
-                                {cartCount || 0}
+                                {cartCount}
                             </span>
                         </Link>
 
@@ -367,9 +377,15 @@ export default function CommonHeader() {
                 </div>
             )}
 
-            {/* ================= MODALS ================= */}
+            {/* Modal Popup */}
             <LoginModal open={openLogin} onOpenChange={setOpenLogin} />
-            <CommonPlanTripModal open={openCommonPlanTrip} onOpenChange={setOpenCommonPlanTrip} />
+            {landingPytrip && <LandingPlanTripModal open={openCommonPlanTrip} onOpenChange={setOpenCommonPlanTrip} />}
+            {!landingPytrip && <CommonPlanTripModal open={openCommonPlanTrip} onOpenChange={setOpenCommonPlanTrip} />}
         </>
     );
 }
+
+export const getQuery = (key: string, fallback = "") =>
+    typeof window === "undefined"
+        ? fallback
+        : new URLSearchParams(window.location.search).get(key) ?? fallback;

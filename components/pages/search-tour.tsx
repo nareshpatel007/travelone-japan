@@ -111,67 +111,20 @@ export default function SearchPage() {
         selectedCountry,
     ]);
 
-    // Update filter options
-    // useEffect(() => {
-    //     const controller = new AbortController();
-    //     const fetchFilterData = async () => {
-    //         try {
-    //             setIsLoading(true);
-
-    //             // Fetch the data
-    //             const response = await fetch("/api/tours/filter", {
-    //                 method: "POST",
-    //                 headers: {
-    //                     "Content-Type": "application/json",
-    //                 },
-    //                 body: JSON.stringify({
-    //                     page: currentPage,
-    //                     sort: sortFilter,
-    //                     min_price: minPrice,
-    //                     max_price: maxPrice,
-    //                     search: keyword
-    //                 })
-    //             });
-
-    //             // Check response
-    //             if (response.ok) {
-    //                 // Parse the JSON response
-    //                 const data = await response.json();
-
-    //                 // Update the state
-    //                 setTourList(data?.data?.result ?? []);
-
-    //                 // Scroll to top with smooth scroll
-    //                 window.scrollTo({
-    //                     top: 0,
-    //                     behavior: "smooth",
-    //                 });
-    //             }
-    //         } catch (error: any) {
-    //             if (error.name !== "AbortError") {
-    //                 console.error("Failed to fetch tours:", error);
-    //             }
-    //         } finally {
-    //             setIsLoading(false);
-    //         }
-    //     };
-    //     fetchFilterData();
-    //     return () => controller.abort();
-    // }, [sortFilter]);
-
     return (
         <>
             {ready && <>
                 <CommonHeader />
                 <div className="max-w-7xl mx-auto px-5 md:px-0 py-6">
-                    {/* Keyword valid */}
-                    {keyword && <>
+                    {/* Keyword is valid */}
+                    {!isLoading && keyword && tourList.length > 0 && <>
                         <PageHeading
                             main={`Search for: "${keyword}"`}
                             sub="Find the perfect tour for your next adventure."
                         />
                         <TourFilters
                             isLoading={isLoading}
+                            showTotalCount={true}
                             setAppliedFilter={setAppliedFilter}
                             setResetFilter={setResetFilter}
                             setIsSidebarFilterOpen={setIsSidebarFilterOpen}
@@ -199,8 +152,15 @@ export default function SearchPage() {
                         />
                     </>}
 
+                    {/* Show loading */}
+                    {isLoading && <div className="p-5 grid grid-cols-1 md:grid-cols-2 gap-6">
+                        {Array.from({ length: 2 }).map((_, index) => (
+                            <div key={index} className="animate-pulse bg-gray-200 rounded-lg h-48 md:h-100"></div>
+                        ))}
+                    </div>}
+
                     {/* Keyword is not valid */}
-                    {!keyword && <div className="max-w-4xl mx-auto px-4 md:px-8 py-20 text-center space-y-5">
+                    {!isLoading && keyword && tourList.length === 0 && <div className="max-w-4xl mx-auto px-4 md:px-8 py-20 text-center space-y-5">
                         <div className="flex items-center justify-center">
                             <Search
                                 className="text-[#ef2853] opacity-15"
@@ -209,11 +169,11 @@ export default function SearchPage() {
                         </div>
 
                         <h2 className="text-3xl md:text-4xl font-medium text-black">
-                            Your keyword is not valid
+                            Search result "{keyword}" not found
                         </h2>
 
                         <p className="text-base md:text-lg text-black max-w-2xl mx-auto">
-                            Please try again with a valid keyword
+                            Your search did not match any tours. Please try again with a different keyword.
                         </p>
                     </div>}
                 </div>

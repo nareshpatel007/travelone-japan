@@ -17,7 +17,7 @@ interface Props {
     setSelectedPackage: (value: any) => void;
     setOpenCustomizeTripPopup: (value: any) => void;
     setOpenDownloadBrochurePopup: (value: any) => void;
-    setOpenEmailBrochurePopup: (value: any) => void;
+    setOpenQuotePopup: (value: any) => void;
     setOpenBookingCartPopup: (value: any) => void;
 }
 
@@ -29,7 +29,7 @@ export default function HeroTour({
     setSelectedPackage,
     setOpenCustomizeTripPopup,
     setOpenDownloadBrochurePopup,
-    setOpenEmailBrochurePopup,
+    setOpenQuotePopup,
     setOpenBookingCartPopup
 }: Props) {
     // Define state
@@ -59,6 +59,19 @@ export default function HeroTour({
         );
     };
 
+    // Auto change image
+    useEffect(() => {
+        if (!tour?.media_gallery?.sightseeing?.length) return;
+        const interval = setInterval(() => {
+            setCurrentImageIndex((prevIndex) =>
+                prevIndex === tour.media_gallery.sightseeing.length - 1
+                    ? 0
+                    : prevIndex + 1
+            );
+        }, 4000);
+        return () => clearInterval(interval);
+    }, [tour?.media_gallery?.sightseeing]);
+
     // Handle wishlist
     const handleWishlist = () => {
         try {
@@ -79,6 +92,10 @@ export default function HeroTour({
             console.error("Wishlist error:", error);
         }
     };
+
+    // Get login data
+    const is_logged_in = isLoggedIn();
+    const user_data = getLoginCookie();
 
     return (
         <>
@@ -143,7 +160,7 @@ export default function HeroTour({
                                         </p>
 
                                         <p className="text-sm md:text-md text-black">
-                                            {city_nights.map((item: any, index: number) => (
+                                            {city_nights && city_nights.map((item: any, index: number) => (
                                                 <span key={index} className="inline-flex items-center">
                                                     {item.name}
                                                     {item.night > 0 && (
@@ -198,15 +215,18 @@ export default function HeroTour({
                                 <button className="bg-[#ef2853] border-1 border-[#ef2853] hover:bg-white hover:text-[#ef2853] text-white px-4 py-2 rounded font-semibold text-sm cursor-pointer" onClick={() => setOpenBookingCartPopup(true)}>
                                     Book {packages.find((p: any) => p.no === selectedPackage)?.name}
                                 </button>
+
                                 <button className="bg-white border-1 border-black text-black hover:bg-black hover:text-white hover:border-[#333] cursor-pointer px-4 py-2 rounded font-semibold text-sm" onClick={() => setOpenCustomizeTripPopup(true)}>
                                     Customize Trip
                                 </button>
+
                                 <button className="bg-white border-1 border-black text-black hover:bg-black hover:text-white hover:border-[#333] cursor-pointer px-4 py-2 rounded font-semibold text-sm" onClick={() => setOpenDownloadBrochurePopup(true)}>
                                     Download Brochure
                                 </button>
-                                {/* <button className="bg-white border-1 border-black text-black hover:bg-black hover:text-white hover:border-[#333] cursor-pointer px-4 py-2 rounded font-semibold text-sm" onClick={() => setOpenEmailBrochurePopup(true)}>
-                                Email Brochure
-                            </button> */}
+
+                                {/* {is_logged_in && <button className="bg-white border-1 border-black text-black hover:bg-black hover:text-white hover:border-[#333] cursor-pointer px-4 py-2 rounded font-semibold text-sm" onClick={() => setOpenQuotePopup(true)}>
+                                    Quote
+                                </button>} */}
                             </div>
                             <p className="text-sm text-gray-900">*Rates may change if the tour is customized</p>
                         </div>
