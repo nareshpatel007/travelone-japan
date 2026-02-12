@@ -15,10 +15,12 @@ export default function BlogPage() {
     const [ready, setReady] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [isPageLoading, setIsPageLoading] = useState(false);
+    const [isSearchLoading, setIsSearchLoading] = useState(false);
     const [blogSliderList, setBlogSliderList] = useState<any[]>([]);
     const [blogList, setBlogList] = useState<any[]>([]);
     const [currentPage, setCurrentPage] = useState<any>(1);
     const [totalPages, setTotalPages] = useState<any>(0);
+    const [isPaginationApply, setIsPaginationApply] = useState<boolean>(false);
     const [searchKeyword, setSearchKeyword] = useState<string>("");
     const [searchCategory, setSearchCategory] = useState<string>("");
     const [debouncedKeyword, setDebouncedKeyword] = useState(searchKeyword);
@@ -28,6 +30,10 @@ export default function BlogPage() {
             setReady(true);
         });
     }, []);
+    
+    useEffect(() => {
+        setIsPaginationApply(true);
+    }, [setCurrentPage]);
 
     // Init data
     useEffect(() => {
@@ -72,6 +78,7 @@ export default function BlogPage() {
     // Debounce keyword
     useEffect(() => {
         const handler = setTimeout(() => {
+            setIsSearchLoading(true);
             setDebouncedKeyword(searchKeyword);
         }, 500);
 
@@ -88,6 +95,16 @@ export default function BlogPage() {
                 // Set loading
                 setIsPageLoading(true);
 
+                // Define current page
+                let currentPageNo = 1;
+
+                // If pagination apply
+                if (isPaginationApply) {
+                    currentPageNo = currentPage;
+                } else if (searchCategory || debouncedKeyword) {
+                    currentPageNo = 1;
+                }
+
                 // Fetch the data
                 const response = await fetch("/api/blog/list", {
                     method: "POST",
@@ -96,7 +113,7 @@ export default function BlogPage() {
                     },
                     signal: controller.signal,
                     body: JSON.stringify({
-                        page: currentPage,
+                        page: currentPageNo,
                         search: debouncedKeyword,
                         category: searchCategory
                     })
@@ -142,7 +159,7 @@ export default function BlogPage() {
                     ) : (
                         <>
                             <SearchFilter
-                                isPageLoading={isPageLoading}
+                                isPageLoading={isSearchLoading}
                                 searchKeyword={searchKeyword}
                                 setSearchKeyword={setSearchKeyword}
                                 searchCategory={searchCategory}

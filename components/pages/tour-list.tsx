@@ -110,8 +110,7 @@ export default function ToursPage() {
                 <CommonHeader />
                 <div className="max-w-7xl mx-auto px-5 md:px-0 py-6">
                     <PageHeading
-                        main="All Tours Listing"
-                        sub={`Showing ${totalCount} tours for you.`}
+                        main={totalCount ? `All Tours Listing (Showing ${totalCount} tours)` : "All Tours Listing"}
                     />
                     <TourFilters
                         isLoading={isLoading}
