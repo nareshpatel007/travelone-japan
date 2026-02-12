@@ -33,21 +33,24 @@ export default function RelatedTours({ title, tours = [] }: Props) {
                 </span>
             </div>
             <div className="relative">
-                <div className="hidden md:block">
-                    <button
-                        onClick={() => swiperRef.current?.slidePrev()}
-                        className="absolute -left-5 top-1/2 -translate-y-1/2 z-10 bg-white w-10 h-10 rounded-full shadow-lg flex items-center justify-center border border-black hover:bg-black hover:text-white transition-all cursor-pointer duration-300"
-                    >
-                        <ArrowLeft className="w-4 h-4" />
-                    </button>
+                {/* For Desktop */}
+                {tours.length > 3 && (
+                    <div className="hidden md:block">
+                        <button
+                            onClick={() => swiperRef.current?.slidePrev()}
+                            className="absolute -left-5 top-1/2 -translate-y-1/2 z-10 bg-white w-10 h-10 rounded-full shadow-lg flex items-center justify-center border border-black hover:bg-black hover:text-white transition-all cursor-pointer duration-300"
+                        >
+                            <ArrowLeft className="w-4 h-4" />
+                        </button>
 
-                    <button
-                        onClick={() => swiperRef.current?.slideNext()}
-                        className="absolute -right-5 top-1/2 -translate-y-1/2 z-10 bg-white w-10 h-10 rounded-full shadow-lg flex items-center justify-center border border-black hover:bg-black hover:text-white transition-all cursor-pointer duration-300"
-                    >
-                        <ArrowRight className="w-4 h-4" />
-                    </button>
-                </div>
+                        <button
+                            onClick={() => swiperRef.current?.slideNext()}
+                            className="absolute -right-5 top-1/2 -translate-y-1/2 z-10 bg-white w-10 h-10 rounded-full shadow-lg flex items-center justify-center border border-black hover:bg-black hover:text-white transition-all cursor-pointer duration-300"
+                        >
+                            <ArrowRight className="w-4 h-4" />
+                        </button>
+                    </div>
+                )}
 
                 <Swiper
                     modules={[Navigation, Autoplay]}
@@ -71,21 +74,24 @@ export default function RelatedTours({ title, tours = [] }: Props) {
                     ))}
                 </Swiper>
 
-                <div className="md:hidden flex gap-3 justify-center mt-3">
-                    <button
-                        onClick={() => swiperRef.current?.slidePrev()}
-                        className="bg-white w-8 h-8 rounded-full shadow-lg flex items-center justify-center border border-black hover:bg-black hover:text-white transition-all cursor-pointer duration-300"
-                    >
-                        <ArrowLeft className="w-4 h-4" />
-                    </button>
+                {/* For Mobile */}
+                {tours.length > 1 && (
+                    <div className="md:hidden flex gap-3 justify-center mt-3">
+                        <button
+                            onClick={() => swiperRef.current?.slidePrev()}
+                            className="bg-white w-8 h-8 rounded-full shadow-lg flex items-center justify-center border border-black hover:bg-black hover:text-white transition-all cursor-pointer duration-300"
+                        >
+                            <ArrowLeft className="w-4 h-4" />
+                        </button>
 
-                    <button
-                        onClick={() => swiperRef.current?.slideNext()}
-                        className="bg-white w-8 h-8 rounded-full shadow-lg flex items-center justify-center border border-black hover:bg-black hover:text-white transition-all cursor-pointer duration-300"
-                    >
-                        <ArrowRight className="w-4 h-4" />
-                    </button>
-                </div>
+                        <button
+                            onClick={() => swiperRef.current?.slideNext()}
+                            className="bg-white w-8 h-8 rounded-full shadow-lg flex items-center justify-center border border-black hover:bg-black hover:text-white transition-all cursor-pointer duration-300"
+                        >
+                            <ArrowRight className="w-4 h-4" />
+                        </button>
+                    </div>
+                )}
             </div>
         </div>
     )
