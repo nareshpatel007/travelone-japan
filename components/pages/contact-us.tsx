@@ -277,6 +277,13 @@ export default function ContactPage() {
                                     </div>
                                 </div>
                             </div>
+                            <div className="bg-white rounded-xl p-5 border border-gray-200 hover:bg-gray-50">
+                                <div className="flex items-start gap-4">
+                                    <p className="flex items-center gap-1 text-sm text-black">
+                                        We operate Canada based business under Century Travel Services - TICO - 2856798
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
