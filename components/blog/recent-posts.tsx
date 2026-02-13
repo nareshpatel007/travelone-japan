@@ -27,13 +27,13 @@ export default function RecentPostsSidebar({ posts }: Props) {
                 Recent Posts
             </span>
             <div className="space-y-5">
-                {posts.map((post: any) => (
-                    <div className="group !transition-all !duration-300 !overflow-hidden">
+                {posts.map((post: any, index: number) => (
+                    <div key={index} className="group !transition-all !duration-300 !overflow-hidden">
                         <Link href={`/blog/${post.slug}`} className="space-y-5">
                             <div className="relative h-50 overflow-hidden">
                                 <Image
                                     src={post.featured_image || "/placeholder.svg"}
-                                    alt={post.meta_title}
+                                    alt={post.meta_title || "Image"}
                                     fill
                                     draggable="false"
                                     className="w-full h-full rounded-sm object-cover group-hover:scale-105 transition-transform duration-300"
