@@ -168,8 +168,9 @@ export default function CommonFooter({ isStickyShow = false }: Props) {
                     </div>
 
                     {/* COPYRIGHT */}
-                    <div className={`text-center text-gray-900 text-sm md:text-base pt-5 md:pt-0 ${isStickyShow ? 'mb-0 sm:mb-10' : ''}`}>
-                        © Copyright {new Date().getFullYear()} TravelOne Technologies Inc. | All Rights Reserved.
+                    <div className={`text-center text-gray-900 text-sm md:text-base space-y-2 pt-5 md:pt-0 ${isStickyShow ? 'mb-0 sm:mb-10' : ''}`}>
+                        <p className='text-xs md:text-sm'>We operate Canada based business under Century Travel Services - TICO - 2856798</p>
+                        <p>© Copyright {new Date().getFullYear()} TravelOne Technologies Inc. | All Rights Reserved.</p>
                     </div>
                 </div>
 
