@@ -3,8 +3,6 @@
 import CommonHeader from "@/components/header/common-header";
 import CommonFooter from "@/components/footer/common-footer";
 import { useEffect, useState } from "react";
-import { MapPin, Phone, Mail, Clock, Send, MessageSquare, HelpCircle, FileText } from "lucide-react";
-import Link from "next/link";
 import Heading from "@/components/common/heading";
 
 export default function LoginPage() {
