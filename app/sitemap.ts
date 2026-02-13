@@ -1,27 +1,42 @@
 import { MetadataRoute } from "next";
 
-// Get site url
+// Ensure environment variables exist
 const SITE_URL = process.env.SITE_URL || "https://travelone.io";
+const API_URL = process.env.API_URL;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-    try {
-        // Fetch all dynamic data in parallel
-        const [countryRes, tourRes, blogRes] = await Promise.all([
-            fetch(`${process.env.API_URL}/sitemap/destination`, {
-                next: { revalidate: 3600 },
-            }),
-            fetch(`${process.env.API_URL}/sitemap/tour`, {
-                next: { revalidate: 3600 },
-            }),
-            fetch(`${process.env.API_URL}/sitemap/blog`, {
-                next: { revalidate: 3600 },
-            }),
-        ]);
+    // If API URL missing in production, prevent silent failure
+    if (!API_URL) {
+        console.error("❌ API_URL is not defined in environment variables");
+        return [
+            {
+                url: SITE_URL,
+                lastModified: new Date(),
+            },
+        ];
+    }
 
-        // Parse data
-        const countries = await countryRes.json();
-        const tours = await tourRes.json();
-        const blogs = await blogRes.json();
+    try {
+        // Fetch independently (so one failure doesn’t break everything)
+        const countryRes = await fetch(`${API_URL}sitemap/destination`, {
+            method: "GET",
+            next: { revalidate: 3600 },
+        }).catch(() => null);
+
+        const tourRes = await fetch(`${API_URL}sitemap/tour`, {
+            method: "GET",
+            next: { revalidate: 3600 },
+        }).catch(() => null);
+
+        const blogRes = await fetch(`${API_URL}sitemap/blog`, {
+            method: "GET",
+            next: { revalidate: 3600 },
+        }).catch(() => null);
+
+        // Parse responses
+        const countries = countryRes && countryRes.ok ? await countryRes.json() : { data: [] };
+        const tours = tourRes && tourRes.ok ? await tourRes.json() : { data: [] };
+        const blogs = blogRes && blogRes.ok ? await blogRes.json() : { data: [] };
 
         // Static Pages
         const staticRoutes = [
@@ -49,41 +64,40 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             priority: route === "" ? 1.0 : 0.8,
         }));
 
-        // Country Pages
+        // Country Routes
         const countryRoutes =
             countries?.data?.map((country: any) => ({
                 url: `${SITE_URL}/country/${country.slug}`,
-                lastModified: new Date(country.updated_at || Date.now()),
+                lastModified: new Date(Date.now()),
                 priority: 0.8,
             })) || [];
 
-        // Tour Pages
+        // Tour Routes
         const tourRoutes =
             tours?.data?.map((tour: any) => ({
                 url: `${SITE_URL}/tour/${tour.slug}`,
-                lastModified: new Date(tour.updated_at || Date.now()),
+                lastModified: new Date(Date.now()),
                 priority: 0.7,
             })) || [];
 
-        // Blog Pages
+        // Blog Routes (re-enabled safely)
         // const blogRoutes =
         //     blogs?.data?.map((blog: any) => ({
         //         url: `${SITE_URL}/blog/${blog.slug}`,
-        //         lastModified: new Date(blog.updated_at || Date.now()),
+        //         lastModified: new Date(Date.now()),
         //         priority: 0.7,
         //     })) || [];
 
-        // Return all routes
+        // Return sitemap
         return [
             ...staticRoutes,
             ...countryRoutes,
             ...tourRoutes,
+            // ...blogRoutes,
         ];
     } catch (error) {
-        // Catch errors
-        console.error("Sitemap generation failed:", error);
+        console.error("❌ Sitemap generation failed:", error);
 
-        // Return a default sitemap
         return [
             {
                 url: SITE_URL,
