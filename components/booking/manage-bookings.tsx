@@ -87,7 +87,7 @@ export function ManageBookings({ bookingData }: Props) {
                                 <div className="p-0 md:p-5">
                                     <div className="flex flex-col md:flex-row gap-0 md:gap-4">
                                         <div className="flex-shrink-0 relative w-full h-[160px] md:w-[150px] md:h-auto">
-                                            <Link href={`bookings/${booking.checkout_id}`}>
+                                            <Link href={`my_bookings/${booking.checkout_id}`}>
                                                 <Image
                                                     src={tourInfo?.featured_image || "/placeholder.svg"}
                                                     alt={tourInfo?.tour_name || "Placeholder"}
@@ -101,7 +101,7 @@ export function ManageBookings({ bookingData }: Props) {
                                         <div className="flex-1 min-w-0 p-4 md:p-0 space-y-2 md:space-y-4">
                                             <div className="flex flex-col md:flex-row md:items-start justify-between gap-3 mb-3">
                                                 <div className="space-y-2">
-                                                    <Link href={`bookings/${booking.checkout_id}`}>
+                                                    <Link href={`my_bookings/${booking.checkout_id}`}>
                                                         <span className="font-semibold text-black text-md md:text-lg block hover:underline">
                                                             {tourInfo?.tour_name}
                                                         </span>

@@ -5,7 +5,7 @@ export const metadata: Metadata = {
     title: "My Bookings",
     description: "View and manage your bookings here.",
     alternates: {
-        canonical: `${process.env.SITE_URL}/bookings`
+        canonical: `${process.env.SITE_URL}/my_bookings`
     },
 };
 

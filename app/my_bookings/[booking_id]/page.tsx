@@ -97,9 +97,11 @@ export default function Page() {
 
                 {/* For non login */}
                 {!isLoggedIn() && <NotFoundError
-                    heading="You are not logged in"
+                    needCode={false}
+                    heading="You need to login to access this page."
                     subHeading="Please login to view and manage your bookings."
                     needButton={false}
+                    showLogin={true}
                 />}
 
                 {/* Not Found Error Page */}

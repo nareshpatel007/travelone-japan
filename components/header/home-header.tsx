@@ -91,7 +91,7 @@ export default function HomeHeader() {
                                 </Link>
 
                                 <Link
-                                    href="/bookings"
+                                    href="/my_bookings"
                                     className="flex items-center gap-2 px-4 py-2 hover:bg-gray-100"
                                 >
                                     <ListCheck size={16} />

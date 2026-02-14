@@ -4,15 +4,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { LoginModal } from "../common/login-modal";
-import {
-    Menu,
-    ShoppingCartIcon,
-    User,
-    X,
-} from "lucide-react";
-import { isLoggedIn } from "@/lib/auth";
+import { Menu, ShoppingCartIcon, User, X } from "lucide-react";
+import { isLoggedIn, removeLoginCookie } from "@/lib/auth";
+import { useRouter } from "next/navigation";
 
 export default function HomeMobileHeader() {
+    // Define route
+    const router = useRouter();
+
     // Define state
     const [openMobileMenu, setOpenMobileMenu] = useState(false);
     const [openLogin, setOpenLogin] = useState(false);
@@ -26,6 +25,12 @@ export default function HomeMobileHeader() {
     useEffect(() => {
         document.body.style.overflow = openMobileMenu ? "hidden" : "auto";
     }, [openMobileMenu]);
+
+    // Handle Logout
+    const logout = async () => {
+        removeLoginCookie();
+        router.push("/");
+    };
 
     return (
         <>
@@ -48,7 +53,7 @@ export default function HomeMobileHeader() {
                             </span>
                         </Link>
 
-                        <User className="h-6 w-6 cursor-pointer" onClick={() => setOpenLogin(true)} />
+                        {!is_login_user && <User className="h-6 w-6 cursor-pointer" onClick={() => setOpenLogin(true)} />}
 
                         <button onClick={() => setOpenMobileMenu(true)}>
                             <Menu />
@@ -60,7 +65,9 @@ export default function HomeMobileHeader() {
             {openMobileMenu && (
                 <div className="fixed inset-0 z-[999] bg-white">
                     <div className="h-16 flex justify-between items-center px-4 border-b">
-                        <span className="text-xl font-bold">Menu</span>
+                        <span className="text-xl font-bold">
+                            Menu
+                        </span>
                         <button onClick={() => setOpenMobileMenu(false)}>
                             <X />
                         </button>
@@ -72,9 +79,22 @@ export default function HomeMobileHeader() {
                         <Link href="/tour">Tours</Link>
                         <Link href="/about">About</Link>
                         <Link href="/contact">Contact</Link>
-                        {is_login_user && <Link className="hover:underline underline-offset-5 cursor-pointer" href="/bookings">My Bookings</Link>}
                         {!is_login_user && <Link onClick={() => setOpenLogin(true)} className="hover:underline underline-offset-5 cursor-pointer" href="#">Login</Link>}
                     </nav>
+
+                    {is_login_user && <hr className="border border-gray-200" />}
+
+                    {is_login_user && <nav className="flex flex-col gap-6 p-6 text-lg font-medium">
+                        <Link className="hover:underline underline-offset-5 cursor-pointer" href="/account">Profile</Link>
+                        <Link className="hover:underline underline-offset-5 cursor-pointer" href="/my_bookings">My Bookings</Link>
+                        <Link
+                            onClick={logout}
+                            className="hover:underline underline-offset-5 cursor-pointer"
+                            href="#"
+                        >
+                            Logout
+                        </Link>
+                    </nav>}
                 </div>
             )}
 

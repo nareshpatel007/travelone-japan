@@ -247,7 +247,7 @@ export default function CommonHeader({ landingPytrip = false }: Props) {
                                         </Link>
 
                                         <Link
-                                            href="/bookings"
+                                            href="/my_bookings"
                                             className="flex items-center gap-2 px-4 py-2 hover:bg-gray-100"
                                         >
                                             <ListCheck size={16} />
@@ -367,6 +367,7 @@ export default function CommonHeader({ landingPytrip = false }: Props) {
                             <X />
                         </button>
                     </div>
+
                     <nav className="flex flex-col gap-6 p-6 text-lg font-medium">
                         <Link href="/">Home</Link>
                         <Link href="/country">Destinations</Link>
@@ -374,6 +375,20 @@ export default function CommonHeader({ landingPytrip = false }: Props) {
                         <Link href="/about">About</Link>
                         <Link href="/contact">Contact</Link>
                     </nav>
+
+                    {isLoggedIn() && <hr className="border border-gray-200" />}
+
+                    {isLoggedIn() && <nav className="flex flex-col gap-6 p-6 text-lg font-medium">
+                        <Link className="hover:underline underline-offset-5 cursor-pointer" href="/account">Profile</Link>
+                        <Link className="hover:underline underline-offset-5 cursor-pointer" href="/my_bookings">My Bookings</Link>
+                        <Link
+                            onClick={logout}
+                            className="hover:underline underline-offset-5 cursor-pointer"
+                            href="#"
+                        >
+                            Logout
+                        </Link>
+                    </nav>}
                 </div>
             )}
 
