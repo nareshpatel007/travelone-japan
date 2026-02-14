@@ -9,12 +9,13 @@ import { formatPrice } from "@/lib/utils";
 interface Props {
     orderData: any;
     paymentData: any;
-    walletAmount: number;
+    walletAmount: any;
+    finalAmount: number;
     stripeHandlingFee: number;
     setIsPaymentDone: (value: boolean) => void;
 }
 
-export default function RepaymentPaymentMethod({ orderData, paymentData, walletAmount, stripeHandlingFee, setIsPaymentDone }: Props) {
+export default function RepaymentPaymentMethod({ orderData, paymentData, walletAmount, finalAmount, stripeHandlingFee, setIsPaymentDone }: Props) {
     // Define hooks
     const stripe = useStripe();
     const elements = useElements();
@@ -39,7 +40,7 @@ export default function RepaymentPaymentMethod({ orderData, paymentData, walletA
                 setErrors("");
 
                 // Define order amount
-                const order_amount: number = Number(paymentData?.amount) + Number(walletAmount) + Number(stripeHandlingFee);
+                const orderAmount: any = Number(finalAmount) + Number(stripeHandlingFee);
 
                 // Create PaymentIntent
                 const res = await fetch("/api/stripe/create-payment-intent", {
@@ -48,7 +49,7 @@ export default function RepaymentPaymentMethod({ orderData, paymentData, walletA
                         "Content-Type": "application/json"
                     },
                     body: JSON.stringify({
-                        amount: Math.round(order_amount * 100),
+                        amount: Math.round(orderAmount * 100),
                         email: orderData?.customer_email,
                         checkout_id: orderData?.checkout_id,
                         payment_id: paymentData?.id
@@ -87,8 +88,9 @@ export default function RepaymentPaymentMethod({ orderData, paymentData, walletA
                             payment_intent_id: paymentIntentId,
                             booking_ref_no: orderData?.booking_ref_no,
                             payment_id: paymentData?.id,
-                            payable_amount: order_amount,
-                            stripe_handling_fee: stripeHandlingFee
+                            payable_amount: finalAmount,
+                            stripe_handling_fee: stripeHandlingFee,
+                            is_wallet_entry: walletAmount != "" ? true : false,
                         })
                     });
 
@@ -117,9 +119,6 @@ export default function RepaymentPaymentMethod({ orderData, paymentData, walletA
                 setIsLoading(true);
                 setErrors("");
 
-                // Define order amount
-                let order_amount: number = Number(paymentData?.amount) + Number(walletAmount);
-
                 // Fetch the data
                 const response = await fetch("/api/checkout/repayment/bank_transfer", {
                     method: "POST",
@@ -129,8 +128,8 @@ export default function RepaymentPaymentMethod({ orderData, paymentData, walletA
                     body: JSON.stringify({
                         booking_ref_no: orderData?.booking_ref_no,
                         payment_id: paymentData?.id,
-                        payable_amount: order_amount,
-                        stripe_handling_fee: stripeHandlingFee
+                        payable_amount: finalAmount,
+                        is_wallet_entry: walletAmount != "" ? true : false,
                     })
                 });
 

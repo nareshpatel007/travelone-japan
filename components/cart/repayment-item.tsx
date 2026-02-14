@@ -54,7 +54,7 @@ export function RepaymentCartItem({ bookingRefNo, cartData }: Props) {
                             <span>
                                 <HashIcon className="h-4 w-4" />
                             </span>
-                            <span>Booking Reference No: {bookingRefNo}</span>
+                            <span>Booking Reference No: #{bookingRefNo}</span>
                         </div>
                     </div>
                 </div>

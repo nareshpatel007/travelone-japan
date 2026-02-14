@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { ChevronLeft, ChevronRight, Download, File, Loader2, MessageCircleMore, MessageSquare, MoveRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, Download, File, Loader2, MessageSquare, MoveRight } from "lucide-react";
 import 'react-loading-skeleton/dist/skeleton.css';
-import { formatDate } from "@/lib/utils";
+import { formatDate, helperCovertJsonParse } from "@/lib/utils";
 import Link from "next/link";
 import { getLoginCookie } from "@/lib/auth";
 
@@ -25,8 +25,11 @@ export default function HeroTour({ orderData, tour, cartData }: Props) {
     // Get user data
     const loginUser = getLoginCookie();
 
+    // Convert into json
+    const tourImages = helperCovertJsonParse(tour?.media_gallery);
+
     // Total images
-    const totalImages = tour?.media_gallery?.sightseeing?.length || 0;
+    const totalImages = tourImages?.sightseeing?.length || 0;
 
     // Next image
     const nextImage = () => {
@@ -44,7 +47,6 @@ export default function HeroTour({ orderData, tour, cartData }: Props) {
 
     // Convert json parse
     const tourSummary = tour?.tour_sub_title ? JSON.parse(tour.tour_sub_title) : [];
-    const media_gallery = tour?.media_gallery ? JSON.parse(tour.media_gallery) : [];
 
     // Handle download itinerary
     const handleDownload = async (action: string) => {
@@ -86,12 +88,12 @@ export default function HeroTour({ orderData, tour, cartData }: Props) {
         <>
             <div className="w-full bg-white">
                 <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 items-stretch">
-                    <div className="relative overflow-hidden w-full h-[220px] md:h-full">
+                    <div className="relative overflow-hidden w-full h-[220px] md:h-[500px]">
                         <div
                             className="flex h-full transition-transform duration-700 ease-in-out"
                             style={{ transform: `translateX(-${currentImageIndex * 100}%)` }}
                         >
-                            {media_gallery?.sightseeing?.map((img: string, index: number) => (
+                            {tourImages?.sightseeing && tourImages?.sightseeing?.map((img: string, index: number) => (
                                 <div key={index} className="relative min-w-full h-full">
                                     <Image
                                         src={img || "/placeholder-500x500.svg"}
@@ -142,7 +144,7 @@ export default function HeroTour({ orderData, tour, cartData }: Props) {
                         <div className="bg-[#FFF9EE]/50 p-5 md:p-6 flex-1 border-b border-[#d9cec1] space-y-8">
                             <div className="space-y-2 text-sm md:text-base">
                                 <p className="font-medium text-black">
-                                    Booking for {`${orderData?.customer_prefix} ${orderData?.customer_fname} ${orderData?.customer_lname}`} X {cartData?.total_travelers} Traveller{`${cartData?.total_travelers > 1 ? "s" : ""}`}
+                                    Booking for {`${orderData?.customer_prefix.replace(".", "")}. ${orderData?.customer_fname} ${orderData?.customer_lname}`} X {cartData?.total_travelers} Traveller{`${cartData?.total_travelers > 1 ? "s" : ""}`}
                                 </p>
                                 <p className="text-black">
                                     Travel Date:

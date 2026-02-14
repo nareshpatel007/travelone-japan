@@ -31,3 +31,8 @@ export function isValidEmail(email: string) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
 }
+
+// Convert json to object
+export function helperCovertJsonParse(data: any) {
+    return typeof data === "string" ? JSON.parse(data) : data;
+}

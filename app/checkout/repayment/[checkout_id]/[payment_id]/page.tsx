@@ -117,19 +117,23 @@ export default function Page() {
                             />
                         </div>
 
-                        <h2 className="text-3xl md:text-4xl font-medium text-black">
-                            Payment Completed Successfully
-                        </h2>
+                        {/* ${paymentData?.order?.booking_ref_no} */}
 
-                        <p className="text-base md:text-lg text-black max-w-2xl mx-auto">
-                            {paymentData?.order?.booking_ref_no ? `You have successfully completed your payment for ${paymentData?.order?.booking_ref_no}.` : "You have successfully completed your payment."}
-                        </p>
+                        <div className="space-y-3">
+                            <h2 className="text-3xl md:text-4xl font-medium text-black">
+                                Payment Completed Successfully
+                            </h2>
+
+                            <p className="text-base md:text-lg text-black max-w-2xl mx-auto">
+                                You have successfully completed the payment for <span className="font-semibold">{paymentData?.order?.booking_ref_no}</span>. Now our team will be processing your payment and notifying you.
+                            </p>
+                        </div>
 
                         <Link href={`/bookings/${checkout_id}`}>
                             <button
-                                className="px-6 md:px-8 py-3 bg-black text-white text-sm md:text-base font-semibold tracking-wide hover:bg-black/90 transition cursor-pointer"
+                                className="px-6 md:px-8 py-3 bg-black text-white text-sm md:text-base font-medium tracking-wide hover:bg-black/90 transition cursor-pointer"
                             >
-                                Go Back to My Booking
+                                Go Back to Booking
                             </button>
                         </Link>
                     </div>}
@@ -147,6 +151,7 @@ export default function Page() {
                                     orderData={paymentData?.order}
                                     paymentData={paymentData?.payment}
                                     walletAmount={paymentData?.wallet_amount}
+                                    finalAmount={paymentData?.final_amount}
                                     stripeHandlingFee={stripeHandlingFee}
                                     setIsPaymentDone={setIsPaymentDone}
                                 />
@@ -157,6 +162,7 @@ export default function Page() {
                                 orderData={paymentData?.order}
                                 paymentData={paymentData?.payment}
                                 walletAmount={paymentData?.wallet_amount}
+                                finalAmount={paymentData?.final_amount}
                                 stripeHandlingFee={stripeHandlingFee}
                             />
 

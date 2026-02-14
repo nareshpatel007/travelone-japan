@@ -69,7 +69,7 @@ export default function Page() {
                 {!isLoading && isLoggedIn() && booking_id && <div className="bg-white">
                     <HeroTour
                         orderData={bookingData?.order}
-                        tour={bookingData?.cart_data?.tour_info}
+                        tour={bookingData?.tour_info}
                         cartData={bookingData?.cart_data}
                     />
 
