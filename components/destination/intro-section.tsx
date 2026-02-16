@@ -6,6 +6,9 @@ interface Props {
 }
 
 export default function IntroSection({ pageData }: Props) {
+    // Validation
+    if (!pageData?.single?.extra_data?.first_desc_title && !pageData?.single?.extra_data?.first_desc) return null;
+
     return (
         <section className="max-w-7xl md:max-w-5xl mx-auto px-5 md:px-0 py-12">
             <div className="text-center space-y-8">
@@ -15,9 +18,9 @@ export default function IntroSection({ pageData }: Props) {
                 </h2>
 
                 {/* Underline */}
-                <div className="flex justify-center">
+                {pageData?.single?.extra_data?.first_desc && <div className="flex justify-center">
                     <span className="w-20 h-1 bg-black" />
-                </div>
+                </div>}
 
                 {/* Description */}
                 <p className="text-base sm:text-lg text-black leading-relaxed">

@@ -15,6 +15,9 @@ type Props = {
 };
 
 export default function Reviews({ reviews }: Props) {
+    // Check if reviews exist
+    if (reviews.length === 0) return null;
+
     return (
         <div className="bg-white py-12 px-5 md:px-0 max-w-7xl mx-auto">
             {/* HEADING */}

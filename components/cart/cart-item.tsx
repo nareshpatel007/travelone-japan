@@ -27,8 +27,8 @@ export function CartItem({ cartData }: Props) {
 
     return (
         <div className="rounded-md border border-black bg-white overflow-hidden">
-            <div className="grid grid-cols-1 p-6 gap-6 sm:grid-cols-[180px_1fr] md:grid-cols-[220px_1fr]">
-                <div className="relative h-48 sm:h-full min-h-[160px] rounded-sm overflow-hidden bg-gray-200">
+            <div className="grid grid-cols-1 p-0 md:p-6 sm:grid-cols-[180px_1fr] md:grid-cols-[220px_1fr]">
+                <div className="relative h-48 md:h-full md:min-h-[160px] rounded-sm overflow-hidden bg-gray-200">
                     <Image
                         src={cartData?.cart?.tour_info?.featured_image || "/placeholder.svg"}
                         alt={cartData?.cart?.tour_info?.tour_name || "Image"}
@@ -38,11 +38,10 @@ export function CartItem({ cartData }: Props) {
                         priority
                     />
                 </div>
-                <div className="flex flex-col justify-between space-y-3">
+                <div className="flex flex-col p-5 md:p-0 justify-between space-y-3">
                     <h2 className="text-lg sm:text-xl font-semibold text-black">
                         {cartData?.cart?.tour_info?.tour_name}
                     </h2>
-
                     <div className="space-y-2 text-sm text-black">
                         <p className="flex flex-wrap items-center gap-1">
                             {tourSummary.map((item: string, index: number) => (
@@ -54,7 +53,6 @@ export function CartItem({ cartData }: Props) {
                                 </span>
                             ))}
                         </p>
-
                         <div className="flex items-center gap-2">
                             <span>
                                 <CalendarCheck className="h-4 w-4" />
@@ -62,15 +60,14 @@ export function CartItem({ cartData }: Props) {
                             <span className="text-sm">Travel date: {formatDate(cartData?.cart?.booking_date)}</span>
                         </div>
                     </div>
-
                     <div className="overflow-x-auto">
                         <table className="w-full border border-black rounded-sm text-base text-black">
                             <thead>
-                                <tr className="border border-black text-center font-medium">
-                                    <th className="px-3 py-2 text-base border border-black"></th>
-                                    <th className="px-3 py-2 text-base border border-black">Count</th>
-                                    <th className="px-3 py-2 text-base border border-black">Per Person</th>
-                                    <th className="px-3 py-2 text-base">Total ($)</th>
+                                <tr className="border border-black text-center md:font-medium">
+                                    <th className="px-3 py-2 text-sm md:text-base border border-black"></th>
+                                    <th className="px-3 py-2 text-sm md:text-base border border-black">Count</th>
+                                    <th className="px-3 py-2 text-sm md:text-base border border-black">Per Person</th>
+                                    <th className="px-3 py-2 text-sm md:text-base">Total ($)</th>
                                 </tr>
                             </thead>
                             <tbody>

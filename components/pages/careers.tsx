@@ -23,7 +23,7 @@ export default function CareersPage() {
 
                 <div className="max-w-7xl mx-auto px-5 md:px-0 py-6">
                     <PageHeading
-                        main="Careers | TravelOne"
+                        main="Careers"
                         sub="Join our team and make your travel dreams come true."
                     />
                     <div className="text-center space-y-8 text-black text-base md:text-lg">

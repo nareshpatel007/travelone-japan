@@ -118,18 +118,23 @@ export default function CartPage() {
                             {/* Cart item */}
                             <CartItem cartData={cartData} />
 
+                            {/* For Mobile - Cart summary */}
+                            <div className="block md:hidden">
+                                <CartSummary cartData={cartData} />
+                            </div>
+
                             {/* Benefits */}
-                            <div className="grid grid-cols-3 gap-3 !mb-4">
+                            <div className="grid grid-cols-3 gap-3">
                                 {BENEFITS.map((item, idx) => (
                                     <div key={idx} className="bg-[#FFF9EE] rounded-md p-8 border-1 border-dashed border-black hover:shadow-xl transition-shadow duration-300 flex flex-col items-center text-center space-y-3">
                                         <div className="text-md md:text-lg lg:text-xl text-teal-700">{item.icon}</div>
-                                        <span className="font-semibold block">{item.text}</span>
+                                        <span className="font-semibold text-sm md:text-base block">{item.text}</span>
                                     </div>
                                 ))}
                             </div>
 
                             {/* FAQs */}
-                            <div className="rounded-md border border-black bg-card p-6 space-y-5">
+                            <div className="rounded-md border border-black bg-card p-5 md:p-6 space-y-5">
                                 <span className="text-lg font-semibold block">Frequently Asked Questions</span>
                                 <div className="space-y-3">
                                     {FAQs.map((item, index) => (
@@ -149,7 +154,7 @@ export default function CartPage() {
                                             </button>
                                             {expandedIndex === index && (
                                                 <div className="p-4 border border-gray-200 animate-in fade-in slide-in-from-top-2 duration-300">
-                                                    <p className="text-black leading-relaxed text-base">{item?.answer}</p>
+                                                    <p className="text-black leading-relaxed text-sm md:text-base">{item?.answer}</p>
                                                 </div>
                                             )}
                                         </div>
@@ -157,7 +162,7 @@ export default function CartPage() {
                                 </div>
                             </div>
                         </div>
-                        <div className="lg:col-span-1">
+                        <div className="hidden md:block md:col-span-1">
                             <CartSummary cartData={cartData} />
                         </div>
                     </div>}

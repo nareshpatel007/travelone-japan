@@ -505,7 +505,7 @@ export function CommonPlanTripModal({ open, onOpenChange }: Props) {
                         {/* Navigation */}
                         <div className="flex flex-row items-stretch md:items-center justify-center gap-2 md:gap-3 w-full">
                             {/* START */}
-                            {step === 0 && (
+                            {step === 0 && !formLoader && (
                                 <button
                                     disabled={formLoader}
                                     onClick={handleNextStep}
@@ -517,10 +517,11 @@ export function CommonPlanTripModal({ open, onOpenChange }: Props) {
                             )}
 
                             {/* PREVIOUS */}
-                            {step > 1 && !formLoader && (
+                            {step > 1 && (
                                 <button
                                     onClick={handlePreviousStep}
-                                    className={`${btnBase} bg-white text-black border-black hover:bg-black hover:text-white`}
+                                    disabled={formLoader}
+                                    className={`${btnBase} bg-white text-black border-black hover:bg-black hover:text-white disabled:opacity-50 disabled:cursor-not-allowed`}
                                 >
                                     <MoveLeft className="h-4 w-4" />
                                     Previous
@@ -528,7 +529,7 @@ export function CommonPlanTripModal({ open, onOpenChange }: Props) {
                             )}
 
                             {/* NEXT */}
-                            {step > 0 && CurrentStepKey !== "communication" && (
+                            {step > 0 && !formLoader && CurrentStepKey !== "communication" && (
                                 <button
                                     disabled={formLoader}
                                     onClick={() => {
@@ -542,23 +543,21 @@ export function CommonPlanTripModal({ open, onOpenChange }: Props) {
                             )}
 
                             {/* SKIP */}
-                            {!formLoader &&
-                                ["meals", "transfer", "guide"].includes(CurrentStepKey) &&
-                                !["summary", "communication", "kind_help"].includes(CurrentStepKey) && (
-                                    <button
-                                        onClick={() => {
-                                            setStep(step + 1);
-                                            setErrors("");
-                                            autoSaveQuestion();
-                                        }}
-                                        className={`${btnBase} bg-white text-black border-black hover:bg-black hover:text-white`}
-                                    >
-                                        Skip <MoveRight className="h-4 w-4" />
-                                    </button>
-                                )}
+                            {!formLoader && ["meals", "transfer", "guide"].includes(CurrentStepKey) && !["summary", "communication", "kind_help"].includes(CurrentStepKey) && (
+                                <button
+                                    onClick={() => {
+                                        setStep(step + 1);
+                                        setErrors("");
+                                        autoSaveQuestion();
+                                    }}
+                                    className={`${btnBase} bg-white text-black border-black hover:bg-black hover:text-white`}
+                                >
+                                    Skip <MoveRight className="h-4 w-4" />
+                                </button>
+                            )}
 
                             {/* VIEW SUMMARY */}
-                            {planYourTripForm?.is_show_history_btn && !["summary", "communication", "kind_help"].includes(CurrentStepKey) && (
+                            {!formLoader && planYourTripForm?.is_show_history_btn && !["summary", "communication", "kind_help"].includes(CurrentStepKey) && (
                                 <button
                                     onClick={() => jumpToStep("summary")}
                                     className={`${btnBase} hidden md:flex bg-black text-white border-black hover:bg-white hover:text-black`}
@@ -573,7 +572,7 @@ export function CommonPlanTripModal({ open, onOpenChange }: Props) {
                                 <button
                                     disabled={formLoader}
                                     onClick={handlSubmitPlanYourTrip}
-                                    className={`${btnBase} bg-black text-white border-black hover:bg-white hover:text-black`}
+                                    className={`${btnBase} bg-black text-white border-black hover:bg-white hover:text-black disabled:opacity-50 disabled:cursor-not-allowed`}
                                 >
                                     {formLoader ? (
                                         <Loader2 className="h-4 w-4 animate-spin" />
@@ -586,7 +585,7 @@ export function CommonPlanTripModal({ open, onOpenChange }: Props) {
                         </div>
 
                         {/* VIEW SUMMARY FOR MOBILE */}
-                        <div className="flex md:hidden flex-row w-full">
+                        {!formLoader && <div className="flex md:hidden flex-row w-full">
                             {planYourTripForm?.is_show_history_btn && !["summary", "communication", "kind_help"].includes(CurrentStepKey) && (
                                 <button
                                     onClick={() => jumpToStep("summary")}
@@ -596,7 +595,7 @@ export function CommonPlanTripModal({ open, onOpenChange }: Props) {
                                     View Summary
                                 </button>
                             )}
-                        </div>
+                        </div>}
                     </div>
                 </div>
             </div>

@@ -73,9 +73,9 @@ export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Prop
                     <HomeHeader />
                     <div className="flex flex-1 items-center justify-center px-6 sm:px-8 lg:px-12">
                         <div className="max-w-xl space-y-6 text-center md:text-left">
-                            <h1 className="text-black text-3xl leading-tight font-normal">
+                            <p className="text-black text-3xl leading-tight font-normal">
                                 We Record Your Traveler Persona to Create Personalized Travel Plans.
-                            </h1>
+                            </p>
 
                             <p className="text-black text-base sm:text-lg leading-relaxed max-w-md mx-auto md:mx-0">
                                 Our platform delivers 100% personalized journeys by synchronizing your unique persona with real-time global orchestration.

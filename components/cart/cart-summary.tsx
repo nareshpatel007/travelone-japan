@@ -12,7 +12,7 @@ export function CartSummary({ cartData }: Props) {
 
     return (
         <div className="space-y-4">
-            <div className="rounded-sm border border-border bg-card p-6 space-y-4">
+            <div className="rounded-sm border border-border bg-card p-5 md:p-6 space-y-4">
                 <span className="block text-xl font-semibold text-foreground">Order Summary</span>
                 <div className="space-y-4">
                     <div className="space-y-2 border-b border-border pb-4">
@@ -67,7 +67,7 @@ export function CartSummary({ cartData }: Props) {
                 </div>
             </div>
 
-            {cartData?.upcoming_payments && <div className="rounded-sm border border-border bg-card p-6 space-y-4">
+            {cartData?.upcoming_payments && <div className="rounded-sm border border-border bg-card p-5 md:p-6 space-y-4">
                 <span className="text-lg font-semibold block">Next Payment Schedule</span>
 
                 <div className="space-y-2">

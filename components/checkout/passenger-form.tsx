@@ -11,12 +11,12 @@ interface Props {
 
 export default function PassengerForm({ formData, setFormData }: Props) {
     return (
-        <div className="border border-border rounded-sm p-6 bg-card mb-4">
+        <div className="border border-border rounded-sm p-5 md:p-6 bg-card mb-4">
             <span className="text-xl font-semibold text-foreground mb-6 text-black mb-4 block">Lead Passenger Details</span>
             <div className="space-y-4">
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                     <div className="space-y-2">
-                        <label className="block text-base font-medium text-muted-foreground">Title</label>
+                        <label className="block text-sm md:text-base font-medium text-muted-foreground">Title</label>
                         <select
                             value={formData.title}
                             onChange={(e) => setFormData({ ...formData, title: e.target.value })}
@@ -30,7 +30,7 @@ export default function PassengerForm({ formData, setFormData }: Props) {
                         </select>
                     </div>
                     <div className="space-y-2">
-                        <label className="block text-base font-medium text-muted-foreground mb-2">First Name</label>
+                        <label className="block text-sm md:text-base font-medium text-muted-foreground mb-2">First Name</label>
                         <input
                             type="text"
                             value={formData.first_name}
@@ -40,7 +40,7 @@ export default function PassengerForm({ formData, setFormData }: Props) {
                         />
                     </div>
                     <div className="space-y-2">
-                        <label className="block text-base font-medium text-muted-foreground mb-2">Last Name</label>
+                        <label className="block text-sm md:text-base font-medium text-muted-foreground mb-2">Last Name</label>
                         <input
                             type="text"
                             value={formData.last_name}
@@ -52,7 +52,7 @@ export default function PassengerForm({ formData, setFormData }: Props) {
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="space-y-2">
-                        <label className="block text-base font-medium text-muted-foreground mb-2">Email Address</label>
+                        <label className="block text-sm md:text-base font-medium text-muted-foreground mb-2">Email Address</label>
                         <input
                             type="email"
                             value={formData.email}
@@ -62,7 +62,7 @@ export default function PassengerForm({ formData, setFormData }: Props) {
                         />
                     </div>
                     <div className="space-y-2">
-                        <label className="block text-base font-medium text-muted-foreground mb-2">Mobile Number</label>
+                        <label className="block text-sm md:text-base font-medium text-muted-foreground mb-2">Mobile Number</label>
                         <PhoneInput
                             defaultCountry="us"
                             value={formData.phone}
@@ -74,7 +74,7 @@ export default function PassengerForm({ formData, setFormData }: Props) {
                     </div>
                 </div>
                 <div>
-                    <label className="block text-base font-medium text-muted-foreground mb-2">Special Requirements</label>
+                    <label className="block text-sm md:text-base font-medium text-muted-foreground mb-2">Special Requirements</label>
                     <textarea
                         placeholder="Any special requests or requirements?"
                         value={formData.special_request}
