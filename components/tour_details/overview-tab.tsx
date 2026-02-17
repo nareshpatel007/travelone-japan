@@ -251,7 +251,7 @@ export function OverviewTabContent({ activeTab, tour, city_nights, tour_packages
                                         {item.days} days{" "}
                                         {item.days.includes("+") ? "prior to departure" : "before departure"}
                                         :{" "}
-                                        {index === 0 ? "USD 500 per person." : `${item.percentage}% of the total price.`}
+                                        {index === 0 ? "USD 500 per person." : `${item.percentage === 0 ? 100 : item.percentage}% of the total price.`}
                                     </span>
                                 </li>
                             ))}

@@ -27,7 +27,7 @@ export function CartItem({ cartData }: Props) {
 
     return (
         <div className="rounded-md border border-black bg-white overflow-hidden">
-            <div className="grid grid-cols-1 p-0 md:p-6 sm:grid-cols-[180px_1fr] md:grid-cols-[220px_1fr]">
+            <div className="grid grid-cols-1 md:gap-5 p-0 md:p-6 sm:grid-cols-[180px_1fr] md:grid-cols-[220px_1fr]">
                 <div className="relative h-48 md:h-full md:min-h-[160px] rounded-sm overflow-hidden bg-gray-200">
                     <Image
                         src={cartData?.cart?.tour_info?.featured_image || "/placeholder.svg"}

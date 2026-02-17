@@ -207,7 +207,7 @@ export default function HeroTour({
                                             <p className="text-xs text-gray-600">Per Person</p>
                                         </div>
 
-                                        {pkg.no !== "1" && <p className="text-xs text-gray-600 font-normal">Double Sharing</p>}
+                                        {pkg.no != 1 && <p className="text-xs text-gray-600 font-normal">Double Sharing</p>}
                                     </div>
                                 ))}
                             </div>

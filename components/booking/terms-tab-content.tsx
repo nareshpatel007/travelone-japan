@@ -123,7 +123,7 @@ export function TermsTabContent({
                                         {item.before_days} days{" "}
                                         {item.before_days.includes("+") ? "prior to departure" : "before departure"}
                                         :{" "}
-                                        {index === 0 ? "USD 500 per person." : `${item.percentage}% of the total price.`}
+                                        {index === 0 ? "USD 500 per person." : `${item?.percentage === 0 ? 100 : item?.percentage}% of the total price.`}
                                     </span>
                                 </li>
                             ))}

@@ -144,7 +144,10 @@ export default function SingleTourPage({ slug }: Props) {
                         toursList={tourData?.related_tours}
                         bgColor="bg-white"
                     />
-                    <VideoHeroSection />
+                    <VideoHeroSection
+                        tour={tourData?.tour ?? {}}
+                        videos={tourData?.tour_videos ?? []}
+                    />
                     <TravelExpert />
                     <PageHelpful
                         pageName={`tour/${tourData?.tour?.slug}`}

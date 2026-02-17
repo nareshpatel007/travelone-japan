@@ -4,17 +4,33 @@ import { useState } from "react";
 import Image from "next/image";
 import { Play, X } from "lucide-react";
 
-export default function VideoHeroSection() {
+// Define Props
+interface Props {
+    tour: any;
+    videos: any;
+}
+
+export default function VideoHeroSection({ tour, videos }: Props) {
+    // Validation
+    if (!tour?.featured_image || !videos || !Array.isArray(videos) || videos.length === 0) return null;
+
     // Define state
     const [open, setOpen] = useState(false);
+
+    // Filter valid YouTube video IDs
+    const fetchVideoId = (url: string) => {
+        const regex = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/i;
+        const match = url.match(regex);
+        return match ? match[1] : null;
+    }
 
     return (
         <>
             {/* HERO SECTION */}
-            <section className="relative w-full h-[30vh] md:h-[80vh] overflow-hidden">
+            <section className="relative w-full h-[30vh] md:h-[60vh] overflow-hidden">
                 {/* Background Image */}
                 <Image
-                    src="https://ik.imagekit.io/288weifiq/nextjs/japan/cherry-blossoms-sensoji-temple-asakusa-tokyo-japan_335224-203.avif"
+                    src={tour?.featured_image}
                     alt="Travel experience"
                     fill
                     priority
@@ -51,7 +67,7 @@ export default function VideoHeroSection() {
                         {/* Video */}
                         <iframe
                             className="w-full h-full"
-                            src="https://www.youtube.com/embed/XsnyNCzCJuE?autoplay=1"
+                            src={`https://www.youtube.com/embed/${fetchVideoId(videos[0])}?autoplay=1`}
                             title="Travel Video"
                             allow="autoplay; fullscreen"
                             allowFullScreen
