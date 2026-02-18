@@ -1,4 +1,3 @@
-import { v4 as uuidv4 } from "uuid";
 import { event } from "@/lib/metaPixel";
 
 // Define Proms
@@ -10,8 +9,8 @@ interface Props {
 
 export function sendFbEvent({ eventName, email = "", amount = 0 }: Props) {
     try {
-        // Send facebook pixel event
-        const eventID = uuidv4();
+        // Generate a unique event ID for deduplication
+        const eventID = generateEventId();
 
         // Send event
         event(eventName, {
@@ -34,4 +33,9 @@ export function sendFbEvent({ eventName, email = "", amount = 0 }: Props) {
     } catch (error) {
         console.error("Failed to send FB event:", error);
     }
+}
+
+// Helper function to generate a unique event ID
+function generateEventId() {
+    return `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
 }
