@@ -7,6 +7,7 @@ import 'react-loading-skeleton/dist/skeleton.css';
 import { formatPrice } from "@/lib/utils";
 import { findTourInWishlist, getLoginCookie, isLoggedIn, updateHeaderWishlistCount } from "@/lib/auth";
 import { LoginModal } from "../common/login-modal";
+import { sendFbEvent } from "@/lib/sendFbEvent";
 
 // Define props
 interface Props {
@@ -88,14 +89,15 @@ export default function HeroTour({
             // Update state
             setIsWishlisted((prev) => !prev);
             updateHeaderWishlistCount();
+
+            // Send FB event
+            sendFbEvent({
+                eventName: "AddToWishlist"
+            });
         } catch (error) {
             console.error("Wishlist error:", error);
         }
     };
-
-    // Get login data
-    const is_logged_in = isLoggedIn();
-    const user_data = getLoginCookie();
 
     return (
         <>

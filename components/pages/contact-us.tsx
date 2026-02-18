@@ -11,6 +11,7 @@ import StartWithWho from "@/components/about/start-with-who";
 import StickyHomeHeader from "@/components/header/sticky-home-header";
 import { PhoneInput } from "react-international-phone";
 import "react-international-phone/style.css";
+import { sendFbEvent } from "@/lib/sendFbEvent";
 
 export default function ContactPage() {
     // Define state
@@ -60,6 +61,12 @@ export default function ContactPage() {
 
             // Handle response
             if (data.status) {
+                // Send FB event
+                sendFbEvent({
+                    eventName: "Inquiry",
+                    email: formData?.email
+                });
+
                 // Update state
                 setIsSubmitted(true);
             } else {

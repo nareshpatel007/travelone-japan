@@ -22,6 +22,7 @@ import StepSummary from "./common/StepSummary";
 import { CheckCircle, ListCheck, Loader2, MoveLeft, MoveRight, X } from "lucide-react";
 import StepKindOfHelp from "./common/StepKindOfHelp";
 import StepCommunicationMethod from "./common/StepCommunicationMethod";
+import { sendFbEvent } from "@/lib/sendFbEvent";
 
 // Define interface
 interface Props {
@@ -271,6 +272,12 @@ export function LandingPlanTripModal({ open, onOpenChange }: Props) {
 
             // Check status
             if (json_parse.status) {
+                // Send FB event
+                sendFbEvent({
+                    eventName: "Lead",
+                    email: planYourTripForm.email
+                });
+
                 // Update state
                 setLeadId("");
 
@@ -311,8 +318,10 @@ export function LandingPlanTripModal({ open, onOpenChange }: Props) {
                     return;
                 }
 
+                // Form loader
                 setFormLoader(true);
 
+                // Create lead
                 const res = await fetch("/api/plan_your_trip/create_lead", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
@@ -344,7 +353,6 @@ export function LandingPlanTripModal({ open, onOpenChange }: Props) {
         // NORMAL FLOW
         setStep(step + 1);
     };
-
 
     // Get next/prev active steps
     const getFormSteps = (form: any, isReturnKey = false) => {

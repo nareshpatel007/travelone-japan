@@ -10,6 +10,7 @@ import { getClientIp } from "@/lib/getClientIp";
 import nationalityList from "@/lib/nationality";
 import { PhoneInput } from "react-international-phone";
 import "react-international-phone/style.css";
+import { sendFbEvent } from "@/lib/sendFbEvent";
 
 interface Props {
     tour: any;
@@ -281,6 +282,12 @@ export function BookingCart({ tour, selectedPackage, open, onOpenChange }: Props
 
             // Check response
             if (data.status) {
+                // Send FB event
+                sendFbEvent({
+                    eventName: "AddToCart",
+                    email: userEmail || login_user?.email,
+                });
+
                 // Set cookie value
                 addCartData(data?.data?.cart_id);
 

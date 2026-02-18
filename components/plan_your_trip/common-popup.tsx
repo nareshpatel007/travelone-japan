@@ -25,6 +25,7 @@ import ChoosePytFlow from "./common/ChoosePytFlow";
 import StepDestinations from "./common/StepDestinations";
 import StepKindOfHelp from "./common/StepKindOfHelp";
 import StepCommunicationMethod from "./common/StepCommunicationMethod";
+import { sendFbEvent } from "@/lib/sendFbEvent";
 
 // Define interface
 interface Props {
@@ -298,6 +299,13 @@ export function CommonPlanTripModal({ open, onOpenChange }: Props) {
 
             // Check status
             if (json_parse.status) {
+                // Send FB event
+                sendFbEvent({
+                    eventName: "Lead",
+                    email: planYourTripForm.email
+                });
+
+                // Redirect to thank you page
                 router.push("/thank-you");
             } else {
                 setFormLoader(false);

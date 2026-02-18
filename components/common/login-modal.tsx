@@ -9,6 +9,7 @@ import { CheckCircle, FacebookIcon, Instagram, Linkedin, Loader, Loader2, Youtub
 import { setLoginCookie } from "@/lib/auth";
 import { useRouter } from "next/navigation";
 import { isValidEmail } from "@/lib/utils";
+import { sendFbEvent } from "@/lib/sendFbEvent";
 
 // Define props
 interface Props {
@@ -152,6 +153,12 @@ export function LoginModal({ open, onOpenChange }: Props) {
 
             // Check response
             if (data.status) {
+                // Send FB Event
+                sendFbEvent({
+                    eventName: "CompleteRegistration",
+                    email: email,
+                });
+
                 // Update state
                 setIsRegistered(true);
             } else {

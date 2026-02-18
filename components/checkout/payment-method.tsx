@@ -6,6 +6,7 @@ import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import { formatPrice } from "@/lib/utils";
 import { deleteCartData, getLoginCookie, isLoggedIn } from "@/lib/auth";
 import { useRouter } from "next/navigation";
+import { sendFbEvent } from "@/lib/sendFbEvent";
 
 // Define interface
 interface Props {
@@ -133,6 +134,13 @@ export default function PaymentMethod({ paymentType, cartData, stripeHandlingFee
 
                     // Check response
                     if (data.status) {
+                        // Send FB Event
+                        sendFbEvent({
+                            eventName: "Purchase",
+                            email: formData?.email,
+                            amount: order_amount,
+                        });
+
                         // Delete cart data
                         deleteCartData();
 

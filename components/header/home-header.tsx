@@ -61,6 +61,7 @@ export default function HomeHeader() {
                 </Link>
                 <nav className="hidden lg:flex items-center gap-8 font-medium text-gray-900">
                     <Link className="hover:underline underline-offset-5 cursor-pointer" href="/country">Destinations</Link>
+                    <Link className="hover:underline underline-offset-5 cursor-pointer" href="/tour">Tours</Link>
                     <Link className="hover:underline underline-offset-5 cursor-pointer" href="/about">About</Link>
                     <Link className="hover:underline underline-offset-5 cursor-pointer" href="/contact">Contact</Link>
                     {!is_login_user && <Link onClick={() => setOpenLogin(true)} className="hover:underline underline-offset-5 cursor-pointer" href="#">Login</Link>}

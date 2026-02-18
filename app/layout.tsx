@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 
+// Define environment variables
+const META_PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID;
+
 // Define the metadata object
 export const metadata: Metadata = {
     title: {
@@ -136,6 +139,25 @@ export default function RootLayout({
                         y=l.getElementsByTagName(r)[0];
                         y.parentNode.insertBefore(t,y);
                         })(window, document, "clarity", "script", "hykkcvtyw6");
+                    `}
+                </Script>
+
+                {/* Facebook Pixel */}
+                <Script strategy="afterInteractive" src={`https://connect.facebook.net/en_US/fbevents.js`} />
+                <Script id="meta-pixel" strategy="afterInteractive">
+                    {`
+                        window.fbq = window.fbq || function() {
+                        window.fbq.callMethod ?
+                        window.fbq.callMethod.apply(window.fbq, arguments) :
+                        window.fbq.queue.push(arguments)
+                        };
+                        if (!window._fbq) window._fbq = window.fbq;
+                        window.fbq.push = window.fbq;
+                        window.fbq.loaded = true;
+                        window.fbq.version = '2.0';
+                        window.fbq.queue = [];
+                        fbq('init', '${META_PIXEL_ID}');
+                        fbq('track', 'PageView');
                     `}
                 </Script>
             </head>
