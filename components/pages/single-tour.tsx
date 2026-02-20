@@ -21,6 +21,7 @@ import Link from "next/link";
 import { getLoginCookie } from "@/lib/auth";
 import ToursSlider from "@/components/home/tours-slider";
 import VideoHeroSection from "@/components/tour_details/video-hero";
+import { EyeClosed, SearchAlert } from "lucide-react";
 
 // Define Props
 interface Props {
@@ -75,11 +76,11 @@ export default function SingleTourPage({ slug }: Props) {
                     }),
                 });
 
-                // Check response
-                if (response.ok) {
-                    // Parse the JSON response
-                    const data = await response.json();
+                // Parse the JSON response
+                const data = await response.json();
 
+                // Check response
+                if (data.status) {
                     // Fetch packages
                     if (data?.data?.tour_packages?.length > 0) {
                         setSelectedPackage(data?.data?.tour_packages[0]?.no ?? 1);
@@ -105,86 +106,105 @@ export default function SingleTourPage({ slug }: Props) {
             {ready && <>
                 <CommonHeader />
 
-                {isLoading ? (
+                {isLoading && (
                     <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
                         <Skeleton height={500} />
                         <Skeleton height={500} />
                     </div>
-                ) : <div ref={pageRef} className="min-h-screen bg-white">
-                    <HeroTour
-                        tour={tourData?.tour ?? {}}
-                        city_nights={tourData?.city_nights ?? {}}
-                        packages={tourData?.tour_packages ?? []}
-                        selectedPackage={selectedPackage}
-                        setSelectedPackage={setSelectedPackage}
-                        setOpenCustomizeTripPopup={setOpenCustomizeTripPopup}
-                        setOpenDownloadBrochurePopup={setOpenDownloadBrochurePopup}
-                        setOpenQuotePopup={setOpenQuotePopup}
-                        setOpenBookingCartPopup={setOpenBookingCartPopup}
-                    />
+                )}
 
-                    <TabContent
-                        tour={tourData?.tour ?? {}}
-                        city_nights={tourData?.city_nights ?? {}}
-                        tour_packages={tourData?.tour_packages ?? []}
-                        tour_terms={tourData?.tour_terms ?? {}}
-                        attractions={tourData?.attractions || {}}
-                        payment_schedule={tourData?.payment_schedule ?? []}
-                        cancellation_payment={tourData?.cancellation_payment ?? []}
-                    />
+                {!isLoading && tourData?.tour && (
+                    <div ref={pageRef} className="min-h-screen bg-white">
+                        <HeroTour
+                            tour={tourData?.tour ?? {}}
+                            city_nights={tourData?.city_nights ?? {}}
+                            packages={tourData?.tour_packages ?? []}
+                            selectedPackage={selectedPackage}
+                            setSelectedPackage={setSelectedPackage}
+                            setOpenCustomizeTripPopup={setOpenCustomizeTripPopup}
+                            setOpenDownloadBrochurePopup={setOpenDownloadBrochurePopup}
+                            setOpenQuotePopup={setOpenQuotePopup}
+                            setOpenBookingCartPopup={setOpenBookingCartPopup}
+                        />
 
-                    <BestValueGuarantee />
-                    <Reviews reviews={tourData?.tour_reviews ?? []} />
-                    <WhyTravelOne />
-                    <TrustedBy />
-                    <FAQsList data={tourData?.tour_terms ?? []} />
-                    <ToursSlider
-                        title="You may also like"
-                        subTitle="We are committed to providing you with the best possible experience."
-                        toursList={tourData?.related_tours}
-                        bgColor="bg-white"
-                    />
-                    <VideoHeroSection
-                        tour={tourData?.tour ?? {}}
-                        videos={tourData?.tour_videos ?? []}
-                    />
-                    <TravelExpert />
-                    <PageHelpful
-                        pageName={`tour/${tourData?.tour?.slug}`}
-                    />
+                        <TabContent
+                            tour={tourData?.tour ?? {}}
+                            city_nights={tourData?.city_nights ?? {}}
+                            tour_packages={tourData?.tour_packages ?? []}
+                            tour_terms={tourData?.tour_terms ?? {}}
+                            attractions={tourData?.attractions || {}}
+                            payment_schedule={tourData?.payment_schedule ?? []}
+                            cancellation_payment={tourData?.cancellation_payment ?? []}
+                        />
 
-                    {showStickyFooter && (
-                        <div className="hidden md:block fixed bottom-0 left-0 right-0 bg-gray-100 shadow-lg border-t border-gray-300 z-50">
-                            <div className="max-w-7xl mx-auto py-3 flex items-center justify-between">
-                                <div className="flex items-center gap-4">
-                                    <Image
-                                        src={tourData?.tour?.featured_image || "/placeholder-500x500.svg"}
-                                        alt={tourData?.tour?.name}
-                                        width={70}
-                                        height={50}
-                                        className="object-cover rounded"
-                                    />
-                                    <span className="text-black text-base font-normal">
-                                        Call us now on <Link href="tel:+1-437-966-9023" className="hover:underline cursor-pointer">+1 437 966 9023</Link>
-                                    </span>
-                                </div>
+                        <BestValueGuarantee />
+                        <Reviews reviews={tourData?.tour_reviews ?? []} />
+                        <WhyTravelOne />
+                        <TrustedBy />
+                        <FAQsList data={tourData?.tour_terms ?? []} />
+                        <ToursSlider
+                            title="You may also like"
+                            subTitle="We are committed to providing you with the best possible experience."
+                            toursList={tourData?.related_tours}
+                            bgColor="bg-white"
+                        />
+                        <VideoHeroSection
+                            tour={tourData?.tour ?? {}}
+                            videos={tourData?.tour_videos ?? []}
+                        />
+                        <TravelExpert />
+                        <PageHelpful
+                            pageName={`tour/${tourData?.tour?.slug}`}
+                        />
 
-                                <div className="flex items-center gap-3">
-                                    <button
-                                        onClick={() => setOpenBookingCartPopup(true)}
-                                        className="bg-[#ef2853] hover:bg-white text-white hover:text-[#ef2853] border border-[#ef2853] px-6 py-2 rounded text-base font-medium cursor-pointer transition"
-                                    >
-                                        Book {tourData?.tour_packages && tourData?.tour_packages.find((p: any) => p.no === selectedPackage)?.name}
-                                    </button>
+                        {showStickyFooter && (
+                            <div className="hidden md:block fixed bottom-0 left-0 right-0 bg-gray-100 shadow-lg border-t border-gray-300 z-50">
+                                <div className="max-w-7xl mx-auto py-3 flex items-center justify-between">
+                                    <div className="flex items-center gap-4">
+                                        <Image
+                                            src={tourData?.tour?.featured_image || "/placeholder-500x500.svg"}
+                                            alt={tourData?.tour?.name}
+                                            width={70}
+                                            height={50}
+                                            className="object-cover rounded"
+                                        />
+                                        <span className="text-black text-base font-normal">
+                                            Call us now on <Link href="tel:+1-437-966-9023" className="hover:underline cursor-pointer">+1 437 966 9023</Link>
+                                        </span>
+                                    </div>
 
-                                    <button className="bg-white text-black border border-black hover:bg-black hover:text-white px-6 py-2 rounded text-base font-medium cursor-pointer transition" onClick={() => setOpenCustomizeTripPopup(true)}>
-                                        Customize Trip
-                                    </button>
+                                    <div className="flex items-center gap-3">
+                                        <button
+                                            onClick={() => setOpenBookingCartPopup(true)}
+                                            className="bg-[#ef2853] hover:bg-white text-white hover:text-[#ef2853] border border-[#ef2853] px-6 py-2 rounded text-base font-medium cursor-pointer transition"
+                                        >
+                                            Book {tourData?.tour_packages && tourData?.tour_packages.find((p: any) => p.no === selectedPackage)?.name}
+                                        </button>
+
+                                        <button className="bg-white text-black border border-black hover:bg-black hover:text-white px-6 py-2 rounded text-base font-medium cursor-pointer transition" onClick={() => setOpenCustomizeTripPopup(true)}>
+                                            Customize Trip
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    )}
-                </div>}
+                        )}
+                    </div>
+                )}
+
+                {!isLoading && !tourData?.tour && (
+                    <div className="mx-auto max-w-4xl py-20 text-center space-y-5">
+                        <SearchAlert
+                            size={120}
+                            className="mx-auto text-[#ef2853] opacity-15"
+                        />
+                        <h2 className="text-3xl font-medium text-black">
+                            Tour not found
+                        </h2>
+                        <p className="text-base text-black max-w-2xl mx-auto">
+                            The tour you are looking for does not exist. It might have been removed or the URL might be incorrect. Please check the URL or explore our other tours.
+                        </p>
+                    </div>
+                )}
 
                 {/* Popup modals */}
                 <BookingCart

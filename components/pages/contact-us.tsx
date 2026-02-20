@@ -232,7 +232,20 @@ export default function ContactPage() {
                                         <MapPin className="h-5 w-5 text-black" />
                                     </div>
                                     <div>
-                                        <span className="font-semibold text-gray-900 block mb-2">Address</span>
+                                        <span className="font-semibold text-gray-900 block mb-2">USA</span>
+                                        <p className="text-sm text-black/90">
+                                            418 Broadway #11017, Albany, NY, 12207, USA
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="bg-white rounded-xl p-5 border border-gray-200 hover:bg-gray-50">
+                                <div className="flex items-start gap-4">
+                                    <div className="p-2 bg-[#FFF9EE] rounded-lg">
+                                        <MapPin className="h-5 w-5 text-black" />
+                                    </div>
+                                    <div>
+                                        <span className="font-semibold text-gray-900 block mb-2">Canada</span>
                                         <p className="text-sm text-black/90">
                                             19 Grand Trunk Crescent, Toronto, ON M5J 3A3
                                         </p>
@@ -287,7 +300,7 @@ export default function ContactPage() {
                             <div className="bg-white rounded-xl p-5 border border-gray-200 hover:bg-gray-50">
                                 <div className="flex items-start gap-4">
                                     <p className="flex items-center gap-1 text-sm text-black">
-                                        We operate Canada based business under Century Travel Services - TICO - 2856798
+                                        We operate Canada based business under host agency Century Travel Services - TICO - 2856798
                                     </p>
                                 </div>
                             </div>

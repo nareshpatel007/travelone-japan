@@ -89,7 +89,7 @@ export default function CommonFooter({ isStickyShow = false }: Props) {
                                     <Link href="/contact" className="hover:underline underline-offset-4">Contact</Link>
                                 </li>
                                 <li>
-                                    <Link href="/country" className="hover:underline underline-offset-4">Global Destinations</Link>
+                                    <Link href="/trust-center" className="hover:underline underline-offset-4">Trust Center</Link>
                                 </li>
                                 <li>
                                     <Link href="/blog" className="hover:underline underline-offset-4">Blog</Link>
@@ -169,7 +169,7 @@ export default function CommonFooter({ isStickyShow = false }: Props) {
 
                     {/* COPYRIGHT */}
                     <div className={`text-center text-gray-900 text-sm md:text-base space-y-2 pt-5 md:pt-0 ${isStickyShow ? 'mb-0 sm:mb-10' : ''}`}>
-                        <p className='text-xs md:text-sm'>We operate Canada based business under Century Travel Services - TICO - 2856798</p>
+                        <p className='text-xs md:text-sm'>We operate Canada based business under host agency Century Travel Services - TICO - 2856798</p>
                         <p>© Copyright {new Date().getFullYear()} TravelOne Technologies Inc. | All Rights Reserved.</p>
                     </div>
                 </div>
