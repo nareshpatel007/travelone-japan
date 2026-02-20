@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react';
-import { ChevronUp } from 'lucide-react';
+import { ChevronUp, Instagram, Linkedin, Youtube } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import FooterCurveSection from '../home/footer-curve-section';
@@ -167,8 +167,29 @@ export default function CommonFooter({ isStickyShow = false }: Props) {
                         </div>
                     </div>
 
+                    {/* SOCIAL MEDIA */}
+                    <div className="flex justify-center text-center gap-3">
+                        <Link href="https://www.youtube.com/@traveloneio" target="_blank" rel="noopener noreferrer">
+                            <button type="button" className="flex items-center justify-center bg-[#ee2852] hover:bg-[#ee2852]/90 text-white p-2 rounded-full transition-colors cursor-pointer">
+                                <Youtube className="h-4 w-4" />
+                            </button>
+                        </Link>
+
+                        <Link href="https://www.instagram.com/travelone.io/" target="_blank" rel="noopener noreferrer">
+                            <button type="button" className="flex items-center justify-center bg-[#f78da7] hover:bg-[#f78da7]/90 text-white p-2 rounded-full transition-colors cursor-pointer">
+                                <Instagram className="h-4 w-4" />
+                            </button>
+                        </Link>
+
+                        <Link href="https://www.linkedin.com/company/travelone-technologies-inc/" target="_blank" rel="noopener noreferrer">
+                            <button type="button" className="flex items-center justify-center bg-[#007aff] hover:bg-[#007aff]/90 text-white p-2 rounded-full transition-colors cursor-pointer">
+                                <Linkedin className="h-4 w-4" />
+                            </button>
+                        </Link>
+                    </div>
+
                     {/* COPYRIGHT */}
-                    <div className={`text-center text-gray-900 text-sm md:text-base space-y-2 pt-5 md:pt-0 ${isStickyShow ? 'mb-0 sm:mb-10' : ''}`}>
+                    <div className={`text-center text-gray-900 text-sm md:text-base space-y-2 md:pt-0 ${isStickyShow ? 'mb-0 sm:mb-10' : ''}`}>
                         <p className='text-xs md:text-sm'>We operate Canada based business under host agency Century Travel Services - TICO - 2856798</p>
                         <p>© Copyright {new Date().getFullYear()} TravelOne Technologies Inc. | All Rights Reserved.</p>
                     </div>
