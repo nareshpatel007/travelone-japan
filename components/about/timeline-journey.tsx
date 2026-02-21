@@ -1,24 +1,24 @@
 // Define array
 const milestones = [
     {
-        year: "2010 – 2022",
-        description: "The Foundation Founder Bhavin Vora leads digital transformation for global giants Flamingo Transworld, Riya Travel, mastering large-scale data and retail logistics.",
+        year: "2010-2022 | The Foundation",
+        description: "Founder Bhavin Vora leads digital transformation for global giants, mastering large-scale data and retail logistics.",
     },
     {
-        year: "2023",
-        description: 'The Blueprint Initial research into the "Complexity Crisis" in travel. Conceptualization of a unified orchestration layer to replace fragmented booking systems.'
+        year: "2023 | The Blueprint",
+        description: 'Initial research into the "Complexity Crisis." Conceptualization of a unified orchestration layer to replace fragmented booking.'
     },
     {
-        year: "2024",
-        description: "Intelligence Hub Establishment of TravelOne Canada. Launch of our Toronto R&D center focused on architecting our proprietary Agentic AI.",
+        year: "2024 | Intelligence Hub",
+        description: "Establishment of TravelOne Technologies Inc. (Canada). Launch of the Toronto R&D center focused on architecting Persona-Led Intelligence.",
     },
     {
-        year: "2025",
-        description: "Market Launch Establishment of TravelOne USA. Secured licensure as a Merchant of Record (MoR) to provide bank-grade security and full transaction accountability.",
+        year: "2025 | Market Launch",
+        description: "Establishment of TravelOne Global Travel Services LLC (USA). Secured licensure as Merchant of Record (MoR) to provide bank-grade security.",
     },
     {
-        year: "2026",
-        description: "Global Scale Activation of our Global Intelligence Network across 20+ countries and launch of the Persona Engine to automate deep travel personalization",
+        year: "2026 | Global Scale",
+        description: "Activation of Global Intelligence Zones across 20+ countries and launch of the 30-Marker Persona Engine.",
     }
 ];
 

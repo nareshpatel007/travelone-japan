@@ -43,14 +43,11 @@ export default function StepLeadForm({
     };
 
     return (
-        <div className="space-y-3 md:space-y-5">
-            <QuestionHeading
-                title="Find Your Persona Now"
-                subtitle="Let us know a bit about you so we can find the right personas for you."
-            />
-            <div className="border border-black rounded-sm p-5 space-y-3 md:space-y-5 bg-white/60">
-                <div className="space-y-1">
-                    <label className="block text-md text-black">Full name</label>
+        <>
+            <QuestionHeading title="Secure Your Custom Design" />
+            <div className="space-y-4">
+                <div>
+                    <label className="!block !text-md !text-black !mb-0">Full name</label>
                     <input
                         type="text"
                         value={fullName}
@@ -62,8 +59,8 @@ export default function StepLeadForm({
                         className="w-full rounded-sm px-4 py-2 bg-white border border-gray-900"
                     />
                 </div>
-                <div className="space-y-1">
-                    <label className="block text-md text-black">Email address</label>
+                <div>
+                    <label className="!block !text-md !text-black !mb-0">Email address</label>
                     <input
                         type="email"
                         value={email}
@@ -75,8 +72,8 @@ export default function StepLeadForm({
                         className="w-full rounded-sm px-4 py-2 bg-white border border-gray-900"
                     />
                 </div>
-                <div className="space-y-1">
-                    <label className="block text-md text-black">Mobile number</label>
+                <div>
+                    <label className="block text-md text-black mb-0">Mobile number</label>
                     <PhoneInput
                         defaultCountry="us"
                         value={mobile}
@@ -85,7 +82,7 @@ export default function StepLeadForm({
                             updateForm("mobile", e);
                         }}
                         placeholder="Enter your phone number"
-                        className="w-full rounded-sm py-1 px-3 text-sm md:text-md text-black font-medium bg-white border border-black"
+                        className="w-full rounded-sm py-0.5 px-3 text-sm md:text-md text-black font-medium bg-white border border-gray-900"
                         inputClassName="w-full !border-0 text-sm md:text-md !border-white"
                     />
                 </div>
@@ -102,11 +99,11 @@ export default function StepLeadForm({
                         }}
                         className="mt-1 cursor-pointer"
                     />
-                    <label className="text-xs md:text-sm text-black">
+                    <label className="text-xs md:text-sm text-gray-700">
                         I agree to the <a href="/legal/terms-service" target="_blank" className="underline">T&Cs</a> and <a href="/legal/privacy-policy" target="_blank" className="underline">Privacy Policy</a>, and consent to receive communications from TravelOne, including follow-up call and text messages for quotes, scheduling, and call reminders, regarding my inquiry. Std msg & data rates apply. Text STOP to cancel, HELP for info.
                     </label>
                 </div>
             </div>
-        </div>
+        </>
     );
 }

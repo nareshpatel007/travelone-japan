@@ -18,7 +18,7 @@ export default function HeroSection() {
                         The Global Standard for Persona-Led Travel Orchestration.
                     </h1>
                     <span className="text-md flex max-w-2xl mx-auto">
-                        We are a technology-driven travel platform that records traveler personas to deliver 100% personalized global journeys.
+                        We are a technology-driven travel ecosystem that records Traveler DNA to deliver 100% synchronized global journeys.
                     </span>
                 </div>
             </div>

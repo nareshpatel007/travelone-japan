@@ -264,6 +264,7 @@ export function CommonPlanTripModal({ open, onOpenChange }: Props) {
                 },
                 body: JSON.stringify({
                     lead_id: leadId,
+                    action: "plan_your_trip",
                     data: planYourTripForm
                 })
             });
@@ -290,6 +291,7 @@ export function CommonPlanTripModal({ open, onOpenChange }: Props) {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     lead_id: leadId,
+                    action: "plan_your_trip",
                     data: planYourTripForm
                 })
             });

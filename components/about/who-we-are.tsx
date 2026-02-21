@@ -8,13 +8,12 @@ export default function WhoWeAreSection() {
                 <div className="max-w-3xl mx-auto text-center space-y-4">
                     <div className="space-y-1">
                         <h2 className="text-3xl md:text-6xl leading-tight font-normal">
-                            Who We Are<br />A Dual-Continent Powerhouse
+                            Who We Are:<br />A Dual-Continent Powerhouse
                         </h2>
                     </div>
 
                     <p className="text-black text-base sm:text-lg leading-relaxed">
-                        TravelOne operates as a sophisticated synergy between technology and service,
-                        led by our Founder and CEO, <b>Bhavin Vora</b>.
+                        TravelOne operates as a sophisticated synergy between intelligence and execution, led by our Founder and CEO, Bhavin Vora.
                     </p>
                 </div>
 
@@ -27,9 +26,7 @@ export default function WhoWeAreSection() {
                         </h3>
 
                         <p className="text-black text-base leading-relaxed">
-                            Based in our R&D hub in Toronto, our technology team architects the proprietary
-                            Agentic AI and data models that power the entire ecosystem. This is where the
-                            <b> “brain” of TravelOne</b> lives.
+                            Based in our R&D hub in Toronto, our technology team architects the proprietary data models and orchestration logic that power the entire ecosystem. This is the "Brain" of TravelOne.
                         </p>
                     </div>
 
@@ -40,10 +37,7 @@ export default function WhoWeAreSection() {
                         </h3>
 
                         <p className="text-black text-base leading-relaxed">
-                            Headquartered in the United States, our service arm acts as the
-                            <b> Merchant of Record (MoR)</b>. We take full financial and operational
-                            liability for your journey, providing a single point of accountability
-                            that the modern traveler deserves.
+                            Headquartered in the United States, our service arm acts as the Merchant of Record (MoR). We assume full financial and operational liability for your journey, providing the single point of accountability the modern traveler deserves.
                         </p>
                     </div>
                 </div>

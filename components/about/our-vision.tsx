@@ -19,7 +19,11 @@ export default function OurVision() {
                         </div>
 
                         <p className="text-base text-black leading-relaxed">
-                            The era of generic travel search is over. TravelOne is pioneering the <b>Traveler Persona Asset</b>. We don't just book trips; we record and refine your travel DNA—your preferences, your "vibes," and your non-negotiables. By building this proprietary data asset, we ensure that every subsequent trip we curate for you is more accurate, more effortless, and more personal than the last.
+                            The era of generic travel search is over. TravelOne is pioneering the Traveler Persona Asset.
+                        </p>
+
+                        <p className="text-base text-black leading-relaxed">
+                            We don’t just book trips; we record and refine your travel DNA—your values, your pace, and your non-negotiables. By building this proprietary data asset, we ensure every subsequent trip is more accurate, more effortless, and more personal than the last.
                         </p>
 
                         <button

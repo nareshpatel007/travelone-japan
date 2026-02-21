@@ -15,10 +15,6 @@ export default function LocalExpertise() {
                     </div>
 
                     <p className="text-black text-base sm:text-lg">
-                        We operate through Strategic Intelligence Zones to ensure ground-level precision.
-                    </p>
-
-                    <p className="text-black text-base sm:text-lg">
                         <b>Intelligence:</b> We don't just book; we orchestrate using local masters in our vetted destinations.
                     </p>
 

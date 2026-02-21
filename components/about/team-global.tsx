@@ -16,9 +16,11 @@ export default function TeamSection() {
                         </div>
 
                         <p className="text-black text-base sm:text-lg leading-relaxed">
-                            Technology provides the speed, but people provide the judgment. Our team is a curated
-                            network of technical architects and on-ground specialists who ensure that the TravelOne
-                            platform operates with precision and local nuance.
+                            Technology provides the speed, but people provide the judgment.
+                        </p>
+
+                        <p className="text-black text-base sm:text-lg leading-relaxed">
+                            Leadership & R&D (North America) Our core team consists of Data Scientists, Systems Architects, and Travel Operations veterans based across Toronto, the USA, and India. This group focuses on the integrity of our Persona-Led Intelligence and the security of our Merchant of Record framework—ensuring every transaction is seamless, secure, and legally sound.
                         </p>
                     </div>
 
@@ -31,10 +33,7 @@ export default function TeamSection() {
                             </h3>
 
                             <p className="text-black text-base sm:text-lg leading-relaxed">
-                                Our core team consists of Data Scientists, AI Architects, and Travel Operations veterans
-                                based in Toronto, the USA and India. This group focuses on the integrity of the Agentic AI
-                                and the security of our Merchant of Record framework, ensuring that every transaction is
-                                seamless and legally sound.
+                                Our core team consists of Data Scientists, AI Architects, and Travel Operations veterans based in Toronto, the USA and India. This group focuses on the integrity of the Agentic AI and the security of our Merchant of Record framework, ensuring that every transaction is seamless and legally sound.
                             </p>
                         </div>
 

@@ -1,28 +1,21 @@
 "use client"
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { getClientIp } from "@/lib/getClientIp";
 import StepLeadForm from "./common/StepLeadForm";
-import StepFirstVisit from "./common/StepFirstVisit";
-import StepTravelTime from "./common/StepTravelTime";
-import StepTripDesign from "./common/StepTripDesign";
-import StepThemes from "./common/StepThemes";
-import StepThemes1 from "./common/StepThemes1";
-import StepThemes2 from "./common/StepThemes2";
-import StepRegions from "./common/StepRegions";
-import StepDays from "./common/StepDays";
-import StepBudget from "./common/StepBudget";
-import StepTravelers from "./common/StepTravelers";
-import StepAccommodation from "./common/StepAccommodation";
-import StepMeals from "./common/StepMeals";
-import StepTransfer from "./common/StepTransfer";
-import StepGuide from "./common/StepGuide";
-import StepSummary from "./common/StepSummary";
-import { CheckCircle, ListCheck, Loader2, MoveLeft, MoveRight, X } from "lucide-react";
-import StepKindOfHelp from "./common/StepKindOfHelp";
-import StepCommunicationMethod from "./common/StepCommunicationMethod";
+import { CheckCircle, Loader2, MoveLeft, MoveRight, X } from "lucide-react";
 import { sendFbEvent } from "@/lib/sendFbEvent";
+import Question1 from "./personas/Question1";
+import Question2 from "./personas/Question2";
+import Question3 from "./personas/Question3";
+import Question4 from "./personas/Question4";
+import Question5 from "./personas/Question5";
+import Question6 from "./personas/Question6";
+import Question7 from "./personas/Question7";
+import Question8 from "./personas/Question8";
+import Question9 from "./personas/Question9";
+import Question10 from "./personas/Question10";
 
 // Define interface
 interface Props {
@@ -57,7 +50,7 @@ export function InitializePersonaModal({ open, onOpenChange }: Props) {
     const [step, setStep] = useState(0);
     const [planYourTripForm, setPlanYourTripForm] = useState<any>(defaultFormData);
     const [errors, setErrors] = useState<string>("");
-    const [leadId, setLeadId] = useState<string>("500");
+    const [leadId, setLeadId] = useState<string>("");
     const [formLoader, setFormLoader] = useState(false);
 
     // Handle close
@@ -66,6 +59,7 @@ export function InitializePersonaModal({ open, onOpenChange }: Props) {
         setErrors("");
         setPlanYourTripForm(defaultFormData);
         onOpenChange(false);
+        setFormLoader(false);
     }
 
     // Validate step
@@ -89,84 +83,63 @@ export function InitializePersonaModal({ open, onOpenChange }: Props) {
                 }
                 break;
 
-            case "first_visit":
-                if (!planYourTripForm.first_time_visit) {
+            case "question_1":
+                if (!planYourTripForm.question_1) {
+                    newErrors = "Please select an option.";
+                }
+                break;
+            
+            case "question_2":
+                if (!planYourTripForm.question_2) {
                     newErrors = "Please select an option.";
                 }
                 break;
 
-            case "travel_time":
-                if (!planYourTripForm.season_name) {
-                    newErrors = "Please select your travel season.";
+            case "question_3":
+                if (!planYourTripForm.question_3) {
+                    newErrors = "Please select an option.";
                 }
                 break;
 
-            case "trip_design":
-                if (!planYourTripForm.trip_design) {
-                    newErrors = "Please select a trip design.";
+            case "question_4":
+                if (!planYourTripForm.question_4) {
+                    newErrors = "Please select an option.";
                 }
                 break;
 
-            case "themes_single":
-            case "themes_priority_1":
-                if (
-                    !Array.isArray(planYourTripForm.themes_priority_1) ||
-                    planYourTripForm.themes_priority_1.length === 0
-                ) {
-                    newErrors = "Please select at least one theme.";
+            case "question_5":
+                if (!planYourTripForm.question_5) {
+                    newErrors = "Please select an option.";
                 }
                 break;
 
-            case "themes_priority_2":
-                if (
-                    !Array.isArray(planYourTripForm.themes_priority_2) ||
-                    planYourTripForm.themes_priority_2.length === 0
-                ) {
-                    newErrors = "Please select at least one theme.";
+            case "question_6":
+                if (!planYourTripForm.question_6) {
+                    newErrors = "Please select an option.";
                 }
                 break;
 
-            case "regions":
-                if (!Array.isArray(planYourTripForm.selected_cities) || planYourTripForm.selected_cities.length === 0) {
-                    newErrors = "Please select at least one city.";
+            case "question_7":
+                if (!planYourTripForm.question_7) {
+                    newErrors = "Please select an option.";
                 }
                 break;
 
-            case "days":
-                if (!planYourTripForm.day_option) {
-                    newErrors = "Please select trip duration.";
+            case "question_8":
+                if (!planYourTripForm.question_8) {
+                    newErrors = "Please select an option.";
                 }
                 break;
 
-            case "budget":
-                if (!planYourTripForm.budget) {
-                    newErrors = "Please select a budget.";
+            case "question_9":
+                if (!planYourTripForm.question_9) {
+                    newErrors = "Please select an option.";
                 }
                 break;
 
-            case "travelers":
-                if (!planYourTripForm.prefer_travel_type) {
-                    newErrors = "Please select travelers.";
-                }
-                break;
-
-            case "accommodation":
-                if (!planYourTripForm.accommodation) {
-                    newErrors = "Please select accommodation preference.";
-                }
-                break;
-
-            case "kind_help":
-                if (!planYourTripForm.kind_of_help) {
-                    newErrors = "Please select how we can help you.";
-                }
-                break;
-
-            case "communication":
-                if (!planYourTripForm.communication_method) {
-                    newErrors = "Please select communication preference.";
-                } else if (planYourTripForm.communication_method === "Call always" && (!planYourTripForm.best_day || !planYourTripForm.best_time)) {
-                    newErrors = "Please select best day and time for communication.";
+            case "question_10":
+                if (!planYourTripForm.question_10) {
+                    newErrors = "Please select an option.";
                 }
                 break;
         }
@@ -185,13 +158,14 @@ export function InitializePersonaModal({ open, onOpenChange }: Props) {
             if (leadId === "") return;
 
             // Save lead questions
-            fetch("/api/initialize-persona/autosave", {
+            fetch("/api/plan_your_trip/autosave", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
                     lead_id: leadId,
+                    action: "personas-form",
                     data: planYourTripForm
                 })
             });
@@ -203,49 +177,50 @@ export function InitializePersonaModal({ open, onOpenChange }: Props) {
     // Handle submit plan your trip
     const handlSubmitPlanYourTrip = async () => {
         // Validate step
-        // if (!validateStep()) return;
+        if (!validateStep()) return;
 
         try {
             // Update state
             setFormLoader(true);
 
             // Auto save last step
-            // autoSaveQuestion();
+            autoSaveQuestion();
 
             // Save lead questions
-            const response = await fetch("/api/initialize-persona", {
+            const response = await fetch("/api/plan_your_trip", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     lead_id: leadId,
+                    action: "personas-form",
                     data: planYourTripForm
                 })
             });
 
             // Get json parse
-            const json_parse = await response.json();
+            const data = await response.json();
 
             // Check status
-            if (json_parse.status) {
+            if (data?.status && data?.data?.token) {
                 // Send FB event
                 sendFbEvent({
                     eventName: "Lead",
                     email: planYourTripForm.email
                 });
 
-                // Update state
-                setLeadId("");
-
                 // Redirect to page
-                router.push("/persona-result");
+                router.push(`/persona-result/?token=${data?.data?.token}`);
             } else {
                 // Update state
                 setFormLoader(false);
-                setErrors(json_parse.message);
+                setErrors(data.message || "Unable to process your request. Please try again.");
             }
         } catch (error) {
             // Set error
             setErrors("Unable to process your request. Please try again.");
+        } finally {
+            // Update state
+            setFormLoader(false);
         }
     };
 
@@ -273,7 +248,7 @@ export function InitializePersonaModal({ open, onOpenChange }: Props) {
                 setFormLoader(true);
 
                 // Create lead
-                const res = await fetch("/api/initialize-persona/create_lead", {
+                const res = await fetch("/api/plan_your_trip/create_lead", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
@@ -314,14 +289,8 @@ export function InitializePersonaModal({ open, onOpenChange }: Props) {
     // Get next/prev active steps
     const getFormSteps = (isReturnKey = false) => {
         // Define keys
-        let stepKeys: string[] = [];
-
-        // If not lead exist
-        if (!leadId) stepKeys = ["lead_form"];
-
-        // Get step keys
-        stepKeys = [
-            ...stepKeys,
+        const stepKeys = [
+            "lead_form",
             "question_1",
             "question_2",
             "question_3",

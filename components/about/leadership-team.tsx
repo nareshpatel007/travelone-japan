@@ -8,34 +8,35 @@ import { Linkedin } from "lucide-react";
 const leadership = [
     {
         name: "Vipul Shah",
-        role: "CTO",
+        role: "Chief Technology Officer (CTO)",
         image: "/about/img_team_63e33ba779f7f6-39405930-32732924.webp"
     },
     {
         name: "Pranav Amin",
-        role: "Sales Manager - USA",
+        role: "Regional Director of Growth – USA",
         image: "/about/img_team_63e33bb2382cf1-81493713-48358927.webp"
     },
     {
-        name: "Louise Berg",
-        role: "Social Media & Destination Expert",
-        image: "/about/img_team_63e33bbf427638-77996729-78363986.webp"
-    },
-    {
         name: "Michael Bronfman",
-        role: "Sales Manager - Canada",
+        role: "Regional Director of Growth – Canada",
         image: "/about/img_team_63e33bceb55f81-24897182-80425447.webp"
     },
     {
-        name: "Himani Bhatt ",
-        role: "Destination Expert",
-        image: "/about/img_team_674b22f265e656-43103817-78894512.webp"
-    },
-    {
         name: "Naresh Patel",
-        role: "Tech Lead - India",
+        role: " Lead Systems Architect – India",
         image: "/about/img_team_674b22f265e656-43103817-78454512.webp"
     },
+    {
+        name: "Louise Berg",
+        role: "Head of Destination Strategy & Social",
+        image: "/about/img_team_63e33bbf427638-77996729-78363986.webp"
+    },
+    {
+        name: "Himani Bhatt",
+        role: "Senior Intelligence Specialist",
+        image: "/about/img_team_674b22f265e656-43103817-78894512.webp"
+    },
+    
 ];
 
 export default function LeadershipTeam() {
@@ -44,34 +45,39 @@ export default function LeadershipTeam() {
             <div className="max-w-7xl mx-auto px-5 md:px-0 space-y-15">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                     {/* IMAGE */}
-                    <div className="flex justify-center">
-                        <div className="relative w-full max-w-md aspect-square rounded-xl overflow-hidden">
+                    <div className="flex justify-center items-center">
+                        <div className="relative h-[280px] md:h-[380px] aspect-square rounded-xl overflow-hidden">
                             <Image
                                 src="/about/img_team_674b22f265e656-43103817-70883790.webp"
-                                alt="Bhavin Vora"
+                                alt="About TravelOne"
                                 fill
                                 className="object-cover"
                                 priority
+                                sizes="(max-width: 768px) 280px, 380px"
                             />
                         </div>
                     </div>
 
                     {/* CONTENT */}
-                    <div className="space-y-6 text-center lg:text-left">
+                    <div className="space-y-4 text-center lg:text-left">
                         <h2 className="text-3xl md:text-6xl leading-tight font-normal">
-                            The Leadership
+                            A Vision for the $9T Industry
                         </h2>
 
                         <h3 className="text-lg font-medium text-black">
-                            Bhavin Vora <span className="text-gray-600">| Founder & CEO</span>
+                            Hi, I’m Bhavin Vora. Founder & CEO.
                         </h3>
 
-                        <p className="text-base md:text-lg text-gray-700 leading-relaxed max-w-xl">
-                            With nearly two decades of experience leading digital transformation for
-                            global retail icons, Bhavin Vora brings “Big Data” precision to the world
-                            of travel. An expert in AI orchestration and consumer behavior, he founded
-                            TravelOne to solve the “Complexity Crisis” in travel and bring
-                            high-scale personalization to North America.
+                        <p className="text-base md:text-lg text-black leading-relaxed max-w-xl">
+                            After two decades architecting digital transformations for global institutional leaders, I realized that travel technology had lost its soul. The industry became obsessed with "search results" but forgot the traveler.
+                        </p>
+
+                        <p className="text-base md:text-lg text-black leading-relaxed max-w-xl">
+                            I created TravelOne to bridge that gap. We use architectural precision to orchestrate the world, but we use your 30-Marker Persona to make it feel like home.
+                        </p>
+
+                        <p className="text-base md:text-lg text-black leading-relaxed max-w-xl">
+                            Welcome to the future of travel. Welcome to TravelOne.
                         </p>
 
                         <div className="flex justify-center lg:justify-start">
