@@ -7,6 +7,7 @@ import Link from "next/link";
 
 interface Props {
     setOpenPlanYourTripModel: React.Dispatch<React.SetStateAction<boolean>>;
+    setOpenInitializePersonaModel: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const images1 = [
@@ -24,7 +25,7 @@ const images3 = [
     "/home/Landing-marquee-img-4.png",
 ];
 
-export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Props) {
+export default function LandingMarqueeSection({ setOpenPlanYourTripModel, setOpenInitializePersonaModel }: Props) {
     return (
         <>
             {/* For Desktop */}
@@ -34,27 +35,34 @@ export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Prop
                     <div className="flex flex-1 items-center px-18">
                         <div className="max-w-xl space-y-6 text-center md:text-left">
                             <h1 className="text-black text-3xl md:text-6xl leading-tight font-normal">
-                                We Record Your Traveler Persona to Create Personalized Travel Plans.
+                                We Record Your 30-Marker Persona to Create Personalized Travel Plans.
                             </h1>
 
                             <p className="text-black text-base sm:text-lg leading-relaxed">
-                                Our platform delivers 100% personalized journeys by synchronizing your unique persona with real-time global orchestration.
+                                We don’t just book trips; we architect them. By mapping your unique 30-Marker Traveler Persona, we eliminate the guesswork of search bars to deliver a journey perfectly synchronized with who you are.
                             </p>
 
-                            <button
-                                onClick={() => setOpenPlanYourTripModel(true)}
-                                className="bg-black text-white px-4 py-2.5 text-sm uppercase border border-black tracking-wide font-semibold hover:bg-transparent hover:text-black transition cursor-pointer mr-5"
-                            >
-                                Begin Your Persona Mapping
-                            </button>
-
-                            <Link href="/country">
+                            <div className="space-y-3">
                                 <button
+                                    onClick={() => setOpenInitializePersonaModel(true)}
+                                    className="bg-black text-white px-4 py-2.5 text-sm uppercase border border-black tracking-wide font-semibold hover:bg-transparent hover:text-black transition cursor-pointer mr-5"
+                                >
+                                    Initialize Persona
+                                </button>
+
+                                <button
+                                    onClick={() => setOpenPlanYourTripModel(true)}
                                     className="border border-black text-black px-4 py-2.5 text-sm uppercase tracking-wide font-semibold hover:bg-black hover:text-white transition cursor-pointer"
                                 >
-                                    Explore Signature Collections
+                                    Start a Journey
                                 </button>
-                            </Link>
+
+                                <div className="flex items-center text-center">
+                                    <Link href="/intelligence" className="text-sm font-medium text-black underline underline-offset-4">
+                                        Science of Persona-Led Travel
+                                    </Link>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -74,26 +82,30 @@ export default function LandingMarqueeSection({ setOpenPlanYourTripModel }: Prop
                     <div className="flex flex-1 items-center justify-center px-6 sm:px-8 lg:px-12">
                         <div className="max-w-xl space-y-6 text-center md:text-left">
                             <p className="text-black text-3xl leading-tight font-normal">
-                                We Record Your Traveler Persona to Create Personalized Travel Plans.
+                                We Record Your 30-Marker Persona to Create Personalized Travel Plans.
                             </p>
 
                             <p className="text-black text-base sm:text-lg leading-relaxed max-w-md mx-auto md:mx-0">
-                                Our platform delivers 100% personalized journeys by synchronizing your unique persona with real-time global orchestration.
+                                We don’t just book trips; we architect them. By mapping your unique 30-Marker Traveler Persona, we eliminate the guesswork of search bars to deliver a journey perfectly synchronized with who you are.
                             </p>
 
                             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
                                 <button
-                                    onClick={() => setOpenPlanYourTripModel(true)}
-                                    className="bg-black text-white px-4 py-3 text-sm uppercase border border-black tracking-wide font-semibold hover:bg-transparent hover:text-black transition cursor-pointer"
+                                    className="bg-black text-white px-4 py-2.5 text-sm uppercase border border-black tracking-wide font-semibold hover:bg-transparent hover:text-black transition cursor-pointer"
                                 >
-                                    Begin Your Persona Mapping
+                                    Initialize Persona
                                 </button>
 
                                 <button
+                                    onClick={() => setOpenPlanYourTripModel(true)}
                                     className="border border-black text-black px-4 py-2.5 text-sm uppercase tracking-wide font-semibold hover:bg-black hover:text-white transition cursor-pointer"
                                 >
-                                    Explore Signature Collections
+                                    Start a Journey
                                 </button>
+
+                                <Link href="/intelligence" className="text-sm font-medium text-black underline underline-offset-4">
+                                    Science of Persona-Led Travel
+                                </Link>
                             </div>
                         </div>
                     </div>
