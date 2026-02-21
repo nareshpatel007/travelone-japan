@@ -4,6 +4,7 @@ import Image from "next/image";
 
 interface Props {
     onOpenChange: (open: boolean) => void;
+    setOpenInitializePersonaModel: (open: boolean) => void;
 }
 
 interface DestinationCard {
@@ -13,20 +14,20 @@ interface DestinationCard {
 
 const sections: DestinationCard[] = [
     {
-        heading: "Step 01: Record Your Persona",
-        text: 'Complete our digital mapping to record your specific values, pace, and travel non-negotiables.',
+        heading: "Step 01: Record Your 30-Marker Persona",
+        text: 'Complete our digital mapping to record your specific values, pace, and travel non-negotiables into a permanent data asset.',
     },
     {
-        heading: "Step 02: Generate Personalized Plans",
-        text: "Our platform analyzes your recorded persona to create 100% personalized itineraries in our strategic zones.",
+        heading: "Step 02: Generate Personalized Architectures",
+        text: "Our platform analyzes your Traveler DNA to create 100% personalized itineraries synchronized with our global supply network.",
     },
     {
-        heading: "Step 03: Real-Time Orchestration",
-        text: "We manage every logistical detail and payment as your Merchant of Record with real-time support."
+        heading: "Step 03: Institutional-Grade Orchestration",
+        text: "We manage every logistical detail and payment as your Merchant of Record, providing real-time support and enterprise-level security."
     },
 ];
 
-export default function ThreeStepBanner({ onOpenChange }: Props) {
+export default function ThreeStepBanner({ onOpenChange, setOpenInitializePersonaModel }: Props) {
     return (
         <div className="px-5 md:px-10 py-12 space-y-12">
             <div className="space-y-2 text-center">
@@ -34,7 +35,7 @@ export default function ThreeStepBanner({ onOpenChange }: Props) {
                     Start with Who, Not Where.
                 </h2>
                 <span className="text-black text-md">
-                    Initialize your travel DNA and let Agentic AI match your soul to the world.
+                    Initialize your Traveler DNA and let our intelligence engine match your soul to the world.
                 </span>
             </div>
             <div className="mt-10 grid grid-cols-1 lg:grid-cols-10 gap-4">
@@ -49,12 +50,19 @@ export default function ThreeStepBanner({ onOpenChange }: Props) {
 
                     <div className="absolute inset-0 bg-black/5 hover:bg-black/30 transition-colors" />
 
-                    <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="absolute inset-0 flex flex-col sm:flex-row items-center justify-center gap-4 px-6">
+                        <button
+                            onClick={() => setOpenInitializePersonaModel(true)}
+                            className="w-full max-w-xs sm:w-auto bg-black text-white px-6 py-3 text-sm uppercase border border-black tracking-wide font-semibold hover:bg-white hover:text-black transition cursor-pointer text-center"
+                        >
+                            Initialize Persona
+                        </button>
+
                         <button
                             onClick={() => onOpenChange(true)}
-                            className="px-5 py-2 bg-white text-md text-black cursor-pointer hover:bg-black hover:text-white transition"
+                            className="w-full max-w-xs sm:w-auto border border-black bg-white text-black px-6 py-3 text-sm uppercase tracking-wide font-semibold hover:bg-black hover:text-white transition cursor-pointer text-center"
                         >
-                            Initialize Your Persona Now
+                            Start a Journey
                         </button>
                     </div>
                 </div>

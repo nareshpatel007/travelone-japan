@@ -60,25 +60,11 @@ export default function CommonFooter({ isStickyShow = false }: Props) {
 
             <footer className="bg-[#FFF9EE] text-black">
                 <div className={`max-w-7xl mx-auto px-6 space-y-12 ${isStickyShow ? 'pb-12' : 'pb-5'}`}>
-                    {/* Logo */}
-                    <div className="order-2 flex flex-col items-center text-center">
-                        <div>
-                            <Image
-                                alt="Logo"
-                                width={220}
-                                height={100}
-                                draggable={false}
-                                src="/common/logo.webp"
-                            />
-                        </div>
-                    </div>
-
                     {/* Newsletter */}
                     <NewsletterSubscribe />
 
                     {/* Footer Menus */}
-                    <div className="grid grid-cols-2 md:grid-cols-4 mb-0 md:mb-12 space-y-12 md:space-y-0">
-                        {/* MENU 1 */}
+                    <div className="grid grid-cols-2 md:grid-cols-5 mb-0 md:mb-12 space-y-12 md:space-y-0">
                         <div className='space-y-6'>
                             <h3 className="font-semibold text-lg">Company</h3>
                             <ul className="space-y-3 text-base">
@@ -99,8 +85,28 @@ export default function CommonFooter({ isStickyShow = false }: Props) {
                                 </li>
                             </ul>
                         </div>
+                        
+                        <div className='space-y-6'>
+                            <h3 className="font-semibold text-lg">Collections</h3>
+                            <ul className="space-y-3 text-base">
+                                <li>
+                                    <Link href="/country/japan" className="hover:underline underline-offset-4">Japan</Link>
+                                </li>
+                                <li>
+                                    <Link href="/country/south-korea" className="hover:underline underline-offset-4">South Korea</Link>
+                                </li>
+                                <li>
+                                    <Link href="/country/indonesia" className="hover:underline underline-offset-4">Indonesia</Link>
+                                </li>
+                                <li>
+                                    <Link href="/country/vietnam" className="hover:underline underline-offset-4">Vietnam</Link>
+                                </li>
+                                <li>
+                                    <Link href="/country/thailand" className="hover:underline underline-offset-4">Thailand</Link>
+                                </li>
+                            </ul>
+                        </div>
 
-                        {/* MENU 2 */}
                         <div className='space-y-6'>
                             <h3 className="font-semibold text-lg">The Ecosystem</h3>
                             <ul className="space-y-3 text-base">
@@ -122,7 +128,6 @@ export default function CommonFooter({ isStickyShow = false }: Props) {
                             </ul>
                         </div>
 
-                        {/* MENU 3 */}
                         <div className='space-y-6'>
                             <h3 className="font-semibold text-lg">Support</h3>
                             <ul className="space-y-3 text-base">
@@ -144,7 +149,6 @@ export default function CommonFooter({ isStickyShow = false }: Props) {
                             </ul>
                         </div>
 
-                        {/* MENU 4 */}
                         <div className='space-y-6'>
                             <h3 className="font-semibold text-lg">Legal & Compliance</h3>
                             <ul className="space-y-3 text-base">
@@ -189,9 +193,21 @@ export default function CommonFooter({ isStickyShow = false }: Props) {
                     </div>
 
                     {/* COPYRIGHT */}
-                    <div className={`text-center text-gray-900 text-sm md:text-base space-y-2 md:pt-0 ${isStickyShow ? 'mb-0 sm:mb-10' : ''}`}>
-                        <p className='text-xs md:text-sm'>We operate Canada based business under host agency Century Travel Services - TICO - 2856798</p>
-                        <p>© Copyright {new Date().getFullYear()} TravelOne Technologies Inc. | All Rights Reserved.</p>
+                    <div className={`text-center text-gray-900 text-sm md:text-base space-y-4 ${isStickyShow ? 'mb-0 sm:mb-10' : ''}`}>
+                        <div className='w-full md:max-w-[1000px] mx-auto space-y-2'>
+                            <p className='text-xs md:text-sm'>
+                                Regulatory & Corporate Structure
+                            </p>
+                            <p className='text-xs md:text-sm'>
+                                TravelOne is a global orchestration platform. Technology and IP development are managed by TravelOne Technologies Inc. (Canada).
+                            </p>
+                            <p className='text-xs md:text-sm'>
+                                All travel services and financial transactions are executed by TravelOne Global Travel Services LLC (USA). For residents of Ontario, travel services are coordinated through Bhavin Vora (TICO #T1515202), a registered advisor hosted by Century Travel Services (TICO #2856798).
+                            </p>
+                        </div>
+                        <p>
+                            © {new Date().getFullYear()} TravelOne Technologies Inc. | All Rights Reserved.
+                        </p>
                     </div>
                 </div>
 

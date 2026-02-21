@@ -75,8 +75,8 @@ export default function HomeMobileHeader() {
 
                     <nav className="flex flex-col gap-6 p-6 text-lg font-medium">
                         <Link href="/">Home</Link>
-                        <Link href="/country">Destinations</Link>
-                        <Link href="/tour">Tours</Link>
+                        <Link href="/country">Collections</Link>
+                        <Link href="/tour">Experiences</Link>
                         <Link href="/about">About</Link>
                         <Link href="/contact">Contact</Link>
                         {!is_login_user && <Link onClick={() => setOpenLogin(true)} className="hover:underline underline-offset-5 cursor-pointer" href="#">Login</Link>}

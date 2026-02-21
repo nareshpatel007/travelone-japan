@@ -48,7 +48,7 @@ export default function HomeHeader() {
 
     return (
         <>
-            <div className="hidden md:flex lg:flex px-4 md:px-8 h-20 md:h-24 items-center space-x-10">
+            <div className="hidden md:flex lg:flex px-4 md:px-8 h-20 md:h-24 items-center space-x-7">
                 <Link href="/">
                     <Image
                         src="/common/logo.webp"
@@ -59,9 +59,9 @@ export default function HomeHeader() {
                         draggable="false"
                     />
                 </Link>
-                <nav className="hidden lg:flex items-center gap-8 font-medium text-gray-900">
-                    <Link className="hover:underline underline-offset-5 cursor-pointer" href="/country">Destinations</Link>
-                    <Link className="hover:underline underline-offset-5 cursor-pointer" href="/tour">Tours</Link>
+                <nav className="hidden lg:flex items-center gap-5 font-medium text-gray-900">
+                    <Link className="hover:underline underline-offset-5 cursor-pointer" href="/country">Collections</Link>
+                    <Link className="hover:underline underline-offset-5 cursor-pointer" href="/tour">Experiences</Link>
                     <Link className="hover:underline underline-offset-5 cursor-pointer" href="/about">About</Link>
                     <Link className="hover:underline underline-offset-5 cursor-pointer" href="/contact">Contact</Link>
                     {!is_login_user && <Link onClick={() => setOpenLogin(true)} className="hover:underline underline-offset-5 cursor-pointer" href="#">Login</Link>}

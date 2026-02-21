@@ -9,17 +9,26 @@ export default function GlobalFinancialSection() {
             <div className="flex items-center p-12 bg-[#FFF9EE]">
                 <div className="max-w-2xl space-y-6 text-center lg:text-left">
                     <h2 className="text-black text-3xl sm:text-4xl lg:text-6xl leading-tight font-normal">
-                        Your Global Financial Safeguard.
+                        Your Global Financial Safeguard
                     </h2>
 
                     <p className="text-black text-base sm:text-lg">
-                        Travel with the confidence of North American financial protection and MoR.
+                        Travel with the confidence of North American financial protection and Merchant of Record safety.
                     </p>
 
                     <p className="text-black text-base sm:text-lg">
-                        TravelOne USA acts as your Merchant of Record. We assume the liability,
-                        manage global taxes, and guarantee your refunds. You simply explore.
+                        TravelOne Services (USA) acts as your official Merchant of Record (MoR). We assume all transaction liability, manage global taxes, and guarantee your refunds—leaving you free to simply explore.
                     </p>
+
+                    <div className="space-y-2">
+                        <p className="text-black text-base sm:text-lg">
+                            Regulated Excellence
+                        </p>
+
+                        <p className="text-black text-base sm:text-lg">
+                            Our operations are led by TICO-Certified advisors and ACTA-Registered industry professionals. We maintain the highest standards of consumer protection and financial integrity in North America.
+                        </p>
+                    </div>
 
                     <div className="flex flex-wrap items-center justify-center lg:justify-start gap-6 pt-4">
                         <Link href="/partnership/ACTA-License.jpeg" target="_blank">
@@ -44,16 +53,12 @@ export default function GlobalFinancialSection() {
                             />
                         </Link>
                     </div>
-
-                    <p className="text-black text-base sm:text-lg pt-2">
-                        Global operations managed by TICO-certified advisors and ACTA-registered industry professionals.
-                    </p>
                 </div>
             </div>
 
             {/* RIGHT IMAGE */}
             <div className="flex items-center justify-center">
-                <div className="relative w-full aspect-square overflow-hidden">
+                <div className="relative w-full h-full aspect-square overflow-hidden">
                     <Image
                         src="https://ik.imagekit.io/288weifiq/nextjs/canada-day-celebration-with-maple-leaf-symbol_23-2151440473.jpg"
                         alt="Canada USA Flag"

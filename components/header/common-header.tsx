@@ -195,10 +195,10 @@ export default function CommonHeader({ landingPytrip = false }: Props) {
                                 className="hover:underline underline-offset-5 cursor-pointer"
                                 onMouseEnter={openMegaMenu}
                             >
-                                Destinations
+                                Collections
                             </button>
                         </Link>
-                        <Link className="hover:underline underline-offset-5 cursor-pointer" onMouseEnter={closeMegaMenu} href="/tour">Tours</Link>
+                        <Link className="hover:underline underline-offset-5 cursor-pointer" onMouseEnter={closeMegaMenu} href="/tour">Experiences</Link>
                         <Link className="hover:underline underline-offset-5 cursor-pointer" onMouseEnter={closeMegaMenu} href="/about">About</Link>
                         <Link className="hover:underline underline-offset-5 cursor-pointer" onMouseEnter={closeMegaMenu} href="/contact">Contact</Link>
                     </nav>
@@ -370,8 +370,8 @@ export default function CommonHeader({ landingPytrip = false }: Props) {
 
                     <nav className="flex flex-col gap-6 p-6 text-lg font-medium">
                         <Link href="/">Home</Link>
-                        <Link href="/country">Destinations</Link>
-                        <Link href="/tour">Tours</Link>
+                        <Link href="/country">Collections</Link>
+                        <Link href="/tour">Experiences</Link>
                         <Link href="/about">About</Link>
                         <Link href="/contact">Contact</Link>
                     </nav>

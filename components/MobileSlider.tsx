@@ -60,22 +60,6 @@ export default function MobileSlider() {
                     </SwiperSlide>
                 ))}
             </Swiper>
-            {/* <div className="simple-image-slider">
-                {[...images, ...images].map((src, index) => (
-                    <div
-                        key={index}
-                        className="flex-shrink-0 px-3"
-                    >
-                        <Image
-                            src={src}
-                            alt=""
-                            width={800}
-                            height={800}
-                            className="object-cover"
-                        />
-                    </div>
-                ))}
-            </div> */}
         </div>
     );
 }

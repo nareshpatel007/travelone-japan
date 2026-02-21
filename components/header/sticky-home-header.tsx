@@ -8,6 +8,7 @@ import { LoginModal } from '../common/login-modal';
 import { CommonPlanTripModal } from '../plan_your_trip/common-popup';
 import { getCartData, getLoginCookie, getWishlistCount, isLoggedIn, removeLoginCookie } from '@/lib/auth';
 import { useRouter } from "next/navigation";
+import { InitializePersonaModal } from '../plan_your_trip/initialize-persona';
 
 export default function StickyHomeHeader() {
     // Define route
@@ -16,6 +17,7 @@ export default function StickyHomeHeader() {
     // Define state
     const [showStickyFooter, setShowStickyFooter] = useState(false);
     const [openPlanYourTripModel, setOpenPlanYourTripModel] = useState(false);
+    const [openInitializePersonaModel, setOpenInitializePersonaModel] = useState(false);
     const [openLogin, setOpenLogin] = useState(false);
     const [openProfileMenu, setOpenProfileMenu] = useState(false);
 
@@ -142,12 +144,21 @@ export default function StickyHomeHeader() {
                                 />
                             )}
 
-                            <button
-                                className="hidden lg:block border px-4 py-2 rounded font-semibold hover:bg-black hover:text-white cursor-pointer"
-                                onClick={() => setOpenPlanYourTripModel(true)}
-                            >
-                                Plan Your Trip
-                            </button>
+                            <div className="flex gap-3">
+                                <button
+                                    onClick={() => setOpenInitializePersonaModel(true)}
+                                    className="bg-black text-white px-4 py-2 text-base border border-black tracking-wide font-medium hover:bg-transparent hover:text-black transition cursor-pointer"
+                                >
+                                    Initialize Persona
+                                </button>
+
+                                <button
+                                    onClick={() => setOpenPlanYourTripModel(true)}
+                                    className="border border-black text-black px-4 py-2 text-base tracking-wide font-medium hover:bg-black hover:text-white transition cursor-pointer"
+                                >
+                                    Start a Journey
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -156,6 +167,7 @@ export default function StickyHomeHeader() {
             {/* ================= MODALS ================= */}
             <LoginModal open={openLogin} onOpenChange={setOpenLogin} />
             <CommonPlanTripModal open={openPlanYourTripModel} onOpenChange={setOpenPlanYourTripModel} />
+            <InitializePersonaModal open={openInitializePersonaModel} onOpenChange={setOpenInitializePersonaModel} />
         </>
     );
 }

@@ -1,26 +1,26 @@
-import { CheckCircle, Clock10, Flag, MapPin } from "lucide-react";
+import { CheckCircle, Clock10, Flag, Lock, MapPin } from "lucide-react";
 
 // Feature data
 const features = [
     {
         icon: MapPin,
-        heading: "Recorded Personas",
-        text: "Your unique travel DNA is recorded to automate perfect planning.",
+        heading: "The 30-Marker Data Asset",
+        text: "Your unique Traveler DNA is recorded once to automate perfect planning for a lifetime of journeys.",
     },
     {
         icon: Clock10,
-        heading: "100% Personalized",
-        text: "Every itinerary is built from scratch based on your recorded data.",
+        heading: "Architectural Precision",
+        text: "We don’t use templates. Every itinerary is built from scratch, synchronized 100% with your recorded persona data.",
     },
     {
-        icon: Flag,
-        heading: "Unified Payments",
-        text: "One secure transaction managed by us as your Merchant of Record.",
+        icon: Lock,
+        heading: "Unified Institutional Security",
+        text: "One secure transaction managed by TravelOne Services (USA) as your official Merchant of Record.",
     },
     {
         icon: CheckCircle,
         heading: "Total Accountability",
-        text: "We manage every detail of your journey from departure to return.",
+        text: "We own the end-to-end experience, managing every logistical detail of your journey from departure to return.",
     },
 ];
 

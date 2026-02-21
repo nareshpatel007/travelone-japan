@@ -2,10 +2,12 @@
 
 import { useState } from "react";
 import { CommonPlanTripModal } from "../plan_your_trip/common-popup";
+import { InitializePersonaModal } from "../plan_your_trip/initialize-persona";
 
 export default function FooterCurveSection() {
     // Define state
     const [openPlanYourTripModel, setOpenPlanYourTripModel] = useState(false);
+    const [openInitializePersonaModel, setOpenInitializePersonaModel] = useState(false);
 
     return (
         <>
@@ -50,18 +52,28 @@ export default function FooterCurveSection() {
 
                         <p className="max-w-xl !text-black !mb-8">Create the journey your unique persona truly deserves with TravelOne, a modern orchestration platform designed to harmonize global exploration with your individual soul.</p>
 
-                        <button
-                            onClick={() => setOpenPlanYourTripModel(true)}
-                            className="bg-black text-white px-6 py-3 text-sm border border-black tracking-wide font-medium uppercase hover:bg-black/90 transition cursor-pointer"
-                        >
-                            Begin Your Persona Mapping
-                        </button>
+                        <div className="flex justify-center gap-4">
+                            <button
+                                onClick={() => setOpenInitializePersonaModel(true)}
+                                className="bg-black text-white px-6 py-3 text-sm uppercase border border-black tracking-wide font-semibold hover:bg-transparent hover:text-black transition cursor-pointer"
+                            >
+                                Initialize Persona
+                            </button>
+
+                            <button
+                                onClick={() => setOpenPlanYourTripModel(true)}
+                                className="border border-black text-black px-6 py-3 text-sm uppercase tracking-wide font-semibold hover:bg-black hover:text-white transition cursor-pointer"
+                            >
+                                Start a Journey
+                            </button>
+                        </div>
                     </div>
                 </section>
             </div>
 
             {/* MODAL */}
             <CommonPlanTripModal open={openPlanYourTripModel} onOpenChange={setOpenPlanYourTripModel} />
+            <InitializePersonaModal open={openInitializePersonaModel} onOpenChange={setOpenInitializePersonaModel} />
         </>
     );
 }
