@@ -1,32 +1,35 @@
 import Image from "next/image";
 
-// Define props
 interface Props {
     onOpenChange: (open: boolean) => void;
 }
 
 export default function FullBannerSection({ onOpenChange }: Props) {
     return (
-        <div className="relative w-full h-100 md:h-150 overflow-hidden">
+        <section className="relative w-full min-h-[60vh] overflow-hidden">
             <Image
                 src="https://ik.imagekit.io/288weifiq/nextjs/attractive-girl-sunglasses-hat-lies-warm-sand_231208-4782.jpg"
-                alt=""
+                alt="Travel Banner"
                 fill
-                className="absolute inset-0 w-full h-full object-cover object-center opacity-100"
+                priority
+                sizes="100vw"
+                className="object-cover object-center"
             />
-            <div className="relative h-full flex items-center justify-center px-8">
-                <div className="text-center max-w-2xl space-y-6">
-                    <h2 className="text-5xl md:text-6xl font-normal text-white leading-tight">
+
+            <div className="relative z-10 flex items-center justify-center min-h-[60vh] px-8 text-center">
+                <div className="max-w-2xl space-y-6">
+                    <h2 className="text-4xl md:text-6xl font-normal text-white leading-tight">
                         Journeys Tailored to Your Persona.
                     </h2>
+
                     <button
                         onClick={() => onOpenChange(true)}
-                        className="px-5 py-2 bg-white text-md text-black cursor-pointer hover:bg-black hover:text-white transition"
+                        className="px-6 py-3 bg-white text-black hover:bg-black hover:text-white cursor-pointer transition"
                     >
                         Launch Your Journey
                     </button>
                 </div>
             </div>
-        </div>
+        </section>
     );
 }
