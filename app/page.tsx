@@ -14,6 +14,7 @@ import BlogSlider from "@/components/home/blog-slider";
 import StickyHomeHeader from "@/components/header/sticky-home-header";
 import WhyTravelOne from "@/components/home/why-travelone";
 import { CommonPlanTripModal } from "@/components/plan_your_trip/common-popup";
+import { InitializePersonaModal } from "@/components/plan_your_trip/initialize-persona";
 
 export default function HomePage() {
     // Define state
@@ -22,6 +23,7 @@ export default function HomePage() {
     const [toursList, setToursList] = useState<any[]>([]);
     const [blogList, setBlogList] = useState<any[]>([]);
     const [openPlanYourTripModel, setOpenPlanYourTripModel] = useState<boolean>(false);
+    const [openInitializePersonaModel, setOpenInitializePersonaModel] = useState<boolean>(false);
 
     useEffect(() => {
         // Wait one frame after hydration
@@ -89,18 +91,28 @@ export default function HomePage() {
         <>
             {ready && <>
                 <HomeMobileHeader />
-                <LandingMarqueeSection setOpenPlanYourTripModel={setOpenPlanYourTripModel} />
-                <ThreeStepBanner onOpenChange={setOpenPlanYourTripModel} />
+                <LandingMarqueeSection
+                    setOpenPlanYourTripModel={setOpenPlanYourTripModel}
+                    setOpenInitializePersonaModel={setOpenInitializePersonaModel}
+                />
+                <ThreeStepBanner
+                    onOpenChange={setOpenPlanYourTripModel}
+                    setOpenInitializePersonaModel={setOpenInitializePersonaModel}
+                />
                 <ThreeImageShowcase destinationList={destinationList} />
                 <WhyTravelOne />
                 <ToursSlider toursList={toursList} />
                 <GlobalFinancialSection />
                 <AboutTravelone />
-                <FullBannerSection onOpenChange={setOpenPlanYourTripModel} />
+                <FullBannerSection
+                    onOpenChange={setOpenPlanYourTripModel}
+                    setOpenInitializePersonaModel={setOpenInitializePersonaModel}
+                />
                 <BlogSlider blogList={blogList} />
                 <CommonFooter isStickyShow={true} />
                 <StickyHomeHeader />
                 <CommonPlanTripModal open={openPlanYourTripModel} onOpenChange={setOpenPlanYourTripModel} />
+                <InitializePersonaModal open={openInitializePersonaModel} onOpenChange={setOpenInitializePersonaModel} />
             </>}
         </>
     );
