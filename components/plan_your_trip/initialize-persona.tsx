@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { getClientIp } from "@/lib/getClientIp";
-import StepLeadForm from "./common/StepLeadForm";
 import { CheckCircle, Loader2, MoveLeft, MoveRight, X } from "lucide-react";
 import { sendFbEvent } from "@/lib/sendFbEvent";
 import Question1 from "./personas/Question1";
@@ -16,6 +15,7 @@ import Question7 from "./personas/Question7";
 import Question8 from "./personas/Question8";
 import Question9 from "./personas/Question9";
 import Question10 from "./personas/Question10";
+import StepLeadForm from "./personas/StepLeadForm";
 
 // Define interface
 interface Props {

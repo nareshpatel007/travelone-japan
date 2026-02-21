@@ -45,8 +45,8 @@ export default function StepLeadForm({
     return (
         <div className="space-y-3 md:space-y-5">
             <QuestionHeading
-                title="Find Your Persona Now"
-                subtitle="Let us know a bit about you so we can find the right personas for you."
+                title="Secure Your Custom Design"
+                subtitle="Our Lead Designer will review your profile personally"
             />
             <div className="border border-black rounded-sm p-5 space-y-3 md:space-y-5 bg-white/60">
                 <div className="space-y-1">

@@ -2,17 +2,17 @@
 
 interface Props {
     title: string;
+    subtitle?: string;
 }
 
-export default function QuestionHeading({ title }: Props) {
+export default function QuestionHeading({ title, subtitle }: Props) {
     // If empty, return null
     if (!title) return null;
 
     return (
-        <div className="text-center py-5">
-            <h2 className="text-[30px] px-2 pt-15 font-[500] leading-tight">
-                {title}
-            </h2>
+        <div className="text-center space-y-0 md:space-y-2">
+            <h2 className="text-xl md:text-3xl font-medium">{title}</h2>
+            {subtitle && <span className="text-sm md:text-base">{subtitle}</span>}
         </div>
     );
 }
