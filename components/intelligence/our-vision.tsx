@@ -30,13 +30,13 @@ export default function OurVision() {
                             Initialize Your Persona
                         </button>
 
-                        <Link href="#">
+                        {/* <Link href="#">
                             <button
                                 className="border border-black text-black w-full py-2 md:w-auto md:px-4 md:py-2.5 text-sm uppercase tracking-wide font-semibold hover:bg-black hover:text-white transition cursor-pointer"
                             >
                                 View Case Studies
                             </button>
-                        </Link>
+                        </Link> */}
                     </div>
                     <div className="w-full max-w-[500px] mx-auto lg:mx-0">
                         <Image

@@ -15,7 +15,7 @@ export default function TeamSection() {
                         </p>
 
                         <p className="text-black text-base sm:text-lg leading-relaxed">
-                            Your Traveler DNA™ is protected by bank-grade encryption and a strict Data Asset Policy. We believe in Ethical AI: your persona is used exclusively to enhance your experience, never to be commoditized.
+                            Your Traveler DNA is protected by bank-grade encryption and a strict Data Asset Policy. We believe in Ethical AI: your persona is used exclusively to enhance your experience, never to be commoditized.
                         </p>
                     </div>
                 </div>

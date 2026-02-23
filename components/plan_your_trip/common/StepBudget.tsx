@@ -32,7 +32,10 @@ export default function StepBudget({
 
     return (
         <div className="space-y-3 md:space-y-5">
-            <QuestionHeading title="What is your target price range per person for this journey?" subtitle="Excluding international flights" />
+            <QuestionHeading
+                title="What is your target price range per person for this journey?"
+                subtitle="Excluding international flights"
+            />
             <div className="space-y-1 md:space-y-3">
                 <Option
                     number="1"

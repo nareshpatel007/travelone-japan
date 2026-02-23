@@ -8,12 +8,12 @@ export default function WhoWeAreSection() {
                 <div className="max-w-3xl mx-auto text-center space-y-4">
                     <div className="space-y-1">
                         <h2 className="text-3xl md:text-6xl leading-tight font-normal">
-                            The Methodology:<br />The 30-Marker Persona™
+                            The Methodology:<br />The 30-Marker Persona
                         </h2>
                     </div>
 
                     <p className="text-black text-base sm:text-lg leading-relaxed">
-                        At the heart of our platform is the 30-Marker Persona™, a proprietary data framework that maps your travel DNA across three distinct dimensions:
+                        At the heart of our platform is the 30-Marker Persona, a proprietary data framework that maps your travel DNA across three distinct dimensions:
                     </p>
                 </div>
 
@@ -21,7 +21,7 @@ export default function WhoWeAreSection() {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
                     <div className="bg-white border border-black p-8 md:p-10 text-center md:text-left space-y-4">
                         <h3 className="text-black text-md md:text-xl font-medium">
-                            A. Core Identity (The "Who")
+                            Core Identity (The "Who")
                         </h3>
 
                         <p className="text-black text-base leading-relaxed">
@@ -39,7 +39,7 @@ export default function WhoWeAreSection() {
                     
                     <div className="bg-white border border-black p-8 md:p-10 text-center md:text-left space-y-4">
                         <h3 className="text-black text-md md:text-xl font-medium">
-                            B. Sensory & Aesthetic (The "Vibe")
+                            Sensory & Aesthetic (The "Vibe")
                         </h3>
 
                         <p className="text-black text-base leading-relaxed">
@@ -53,7 +53,7 @@ export default function WhoWeAreSection() {
                     
                     <div className="bg-white border border-black p-8 md:p-10 text-center md:text-left space-y-4">
                         <h3 className="text-black text-md md:text-xl font-medium">
-                            C. Logistics & Security (The "How")
+                            Logistics & Security (The "How")
                         </h3>
 
                         <p className="text-black text-base leading-relaxed">

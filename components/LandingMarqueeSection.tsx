@@ -91,6 +91,7 @@ export default function LandingMarqueeSection({ setOpenPlanYourTripModel, setOpe
 
                             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
                                 <button
+                                    onClick={() => setOpenInitializePersonaModel(true)}
                                     className="bg-black text-white px-4 py-2.5 text-sm uppercase border border-black tracking-wide font-semibold hover:bg-transparent hover:text-black transition cursor-pointer"
                                 >
                                     Initialize Persona
