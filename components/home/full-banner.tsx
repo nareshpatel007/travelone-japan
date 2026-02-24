@@ -7,17 +7,18 @@ interface Props {
 
 export default function FullBannerSection({ onOpenChange, setOpenInitializePersonaModel }: Props) {
     return (
-        <section className="relative w-full min-h-[40vh] md:min-h-[70vh] overflow-hidden">
-            <Image
-                src="https://ik.imagekit.io/288weifiq/nextjs/attractive-girl-sunglasses-hat-lies-warm-sand_231208-4782.jpg"
-                alt="Travel Banner"
-                fill
-                priority
-                sizes="100vw"
-                className="object-cover object-center"
-            />
-
-            <div className="relative z-10 flex items-center justify-center min-h-[40vh] md:min-h-[70vh] px-8 text-center">
+        <section className="relative w-full h-[50vh] md:h-[70vh] overflow-hidden">
+            <div className="absolute inset-0">
+                <Image
+                    src="https://ik.imagekit.io/288weifiq/nextjs/attractive-girl-sunglasses-hat-lies-warm-sand_231208-4782.jpg"
+                    alt="Travel Banner"
+                    fill
+                    priority
+                    sizes="100vw"
+                    className="object-cover object-center"
+                />
+            </div>
+            <div className="relative z-10 flex items-center justify-center h-full px-8 text-center">
                 <div className="max-w-2xl space-y-6">
                     <h2 className="text-white text-3xl sm:text-4xl lg:text-6xl leading-tight font-normal">
                         Journeys Tailored to Your Persona.

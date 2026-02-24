@@ -2,7 +2,7 @@
 
 import CommonFooter from "@/components/footer/common-footer";
 import HomeMobileHeader from "@/components/header/home-mobile-header";
-import LandingMarqueeSection from "@/components/LandingMarqueeSection";
+import LandingMarqueeSection from "@/components/home/hero-section";
 import { useEffect, useState } from "react";
 import ThreeImageShowcase from "@/components/home/three-image-showcase";
 import GlobalFinancialSection from "@/components/home/global-financial";

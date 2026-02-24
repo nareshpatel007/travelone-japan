@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { CommonPlanTripModal } from "../plan_your_trip/common-popup";
 import { LoginModal } from "../common/login-modal";
-import { Heart, Instagram, Linkedin, ListCheck, LogOut, Menu, Search, ShoppingCartIcon, User, User2, X, Youtube } from "lucide-react";
+import { Facebook, Heart, Instagram, Linkedin, ListCheck, LogOut, Menu, Search, ShoppingCartIcon, User, User2, X, Youtube } from "lucide-react";
 import { getCartData, getLoginCookie, getWishlistCount, isLoggedIn, removeLoginCookie } from "@/lib/auth";
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
@@ -137,6 +137,15 @@ export default function CommonHeader({ landingPytrip = false }: Props) {
                             </Link>
 
                             <Link
+                                href="https://www.facebook.com/travelone.technologies.inc/"
+                                target="_blank"
+                                className="flex items-center gap-1.5 hover:underline underline-offset-4"
+                            >
+                                <Facebook className="w-3.5 h-3.5 text-blue-600" />
+                                Facebook
+                            </Link>
+
+                            <Link
                                 href="https://www.instagram.com/travelone.io/"
                                 target="_blank"
                                 className="flex items-center gap-1.5 hover:underline underline-offset-4"
@@ -240,7 +249,7 @@ export default function CommonHeader({ landingPytrip = false }: Props) {
 
                                         <Link
                                             href="/account"
-                                            className="flex items-center gap-2 px-4 py-2 hover:bg-gray-100"
+                                            className="text-base flex items-center gap-2 px-4 py-2 hover:bg-gray-100"
                                         >
                                             <User2 size={16} />
                                             Profile
@@ -248,7 +257,7 @@ export default function CommonHeader({ landingPytrip = false }: Props) {
 
                                         <Link
                                             href="/my_bookings"
-                                            className="flex items-center gap-2 px-4 py-2 hover:bg-gray-100"
+                                            className="text-base flex items-center gap-2 px-4 py-2 hover:bg-gray-100"
                                         >
                                             <ListCheck size={16} />
                                             My Bookings
@@ -256,7 +265,7 @@ export default function CommonHeader({ landingPytrip = false }: Props) {
 
                                         <button
                                             onClick={logout}
-                                            className="flex items-center gap-2 px-4 py-2 w-full hover:bg-gray-100 cursor-pointer text-left"
+                                            className="text-base flex items-center gap-2 px-4 py-2 w-full hover:bg-gray-100 cursor-pointer text-left"
                                         >
                                             <LogOut size={16} />
                                             Logout

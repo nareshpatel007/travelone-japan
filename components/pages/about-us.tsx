@@ -33,11 +33,11 @@ export default function AboutPage() {
                 <ArchitectureModern />
                 <WhoWeAreSection />
                 <OurVision />
-                <OurCommitment />
-                <TeamGlobalIntelSection />
                 <TravelOneJourney />
                 <LeadershipTeam />
                 <LocalExpertise />
+                <OurCommitment />
+                <TeamGlobalIntelSection />
                 <CommonFooter isStickyShow={true} />
                 <StickyHomeHeader />
             </>}

@@ -65,7 +65,7 @@ const defaultFormData = {
     is_show_history_btn: false,
 };
 
-export function LandingPlanTripModal({
+export function archetypePopupModal({
     open,
     onOpenChange,
     selectedCountry,

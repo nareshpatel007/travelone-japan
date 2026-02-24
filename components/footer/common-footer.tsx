@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react';
-import { ChevronUp, Instagram, Linkedin, Youtube } from 'lucide-react';
+import { ChevronUp, Facebook, Instagram, Linkedin, Youtube } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import FooterCurveSection from '../home/footer-curve-section';
@@ -176,6 +176,12 @@ export default function CommonFooter({ isStickyShow = false }: Props) {
                         <Link href="https://www.youtube.com/@traveloneio" target="_blank" rel="noopener noreferrer">
                             <button type="button" className="flex items-center justify-center bg-[#ee2852] hover:bg-[#ee2852]/90 text-white p-2 rounded-full transition-colors cursor-pointer">
                                 <Youtube className="h-4 w-4" />
+                            </button>
+                        </Link>
+                        
+                        <Link href="https://www.facebook.com/travelone.technologies.inc/" target="_blank" rel="noopener noreferrer">
+                            <button type="button" className="flex items-center justify-center bg-[#0165E1] hover:bg-[#0165E1]/90 text-white p-2 rounded-full transition-colors cursor-pointer">
+                                <Facebook className="h-4 w-4" />
                             </button>
                         </Link>
 

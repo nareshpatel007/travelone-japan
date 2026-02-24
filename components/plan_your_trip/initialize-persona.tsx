@@ -16,6 +16,7 @@ import Question8 from "./personas/Question8";
 import Question9 from "./personas/Question9";
 import Question10 from "./personas/Question10";
 import StepLeadForm from "./personas/StepLeadForm";
+import { getLoginCookie, isLoggedIn } from "@/lib/auth";
 
 // Define interface
 interface Props {
@@ -35,6 +36,7 @@ const defaultFormData = {
     question_8: "",
     question_9: "",
     question_10: "",
+    user_id: "",
     full_name: "",
     email: "",
     mobile: "",
@@ -52,6 +54,10 @@ export function InitializePersonaModal({ open, onOpenChange }: Props) {
     const [errors, setErrors] = useState<string>("");
     const [leadId, setLeadId] = useState<string>("");
     const [formLoader, setFormLoader] = useState(false);
+
+    // Get login data
+    const isAuthLogin = isLoggedIn();
+    const loginData = getLoginCookie();
 
     // Handle close
     const handleClose = () => {
@@ -74,7 +80,9 @@ export function InitializePersonaModal({ open, onOpenChange }: Props) {
         // Validate step
         switch (activeStep) {
             case "lead_form":
-                if (!leadId &&
+                if (
+                    !isAuthLogin &&
+                    !leadId &&
                     (!planYourTripForm.full_name || !planYourTripForm.email || !planYourTripForm.mobile)
                 ) {
                     newErrors = "Please fill all required fields.";
@@ -88,7 +96,7 @@ export function InitializePersonaModal({ open, onOpenChange }: Props) {
                     newErrors = "Please select an option.";
                 }
                 break;
-            
+
             case "question_2":
                 if (!planYourTripForm.question_2) {
                     newErrors = "Please select an option.";
@@ -179,6 +187,19 @@ export function InitializePersonaModal({ open, onOpenChange }: Props) {
         // Validate step
         if (!validateStep()) return;
 
+        // Define value
+        let updatedFormData = planYourTripForm;
+
+        // If login user
+        if (isAuthLogin) {
+            updatedFormData = {
+                ...planYourTripForm,
+                user_id: loginData?.user_id,
+                email: loginData?.email,
+                name: `${loginData?.first_name} ${loginData?.last_name}`
+            }
+        }
+
         try {
             // Update state
             setFormLoader(true);
@@ -189,11 +210,13 @@ export function InitializePersonaModal({ open, onOpenChange }: Props) {
             // Save lead questions
             const response = await fetch("/api/plan_your_trip", {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
+                headers: {
+                    "Content-Type": "application/json"
+                },
                 body: JSON.stringify({
                     lead_id: leadId,
                     action: "personas-form",
-                    data: planYourTripForm
+                    data: updatedFormData
                 })
             });
 
@@ -241,7 +264,7 @@ export function InitializePersonaModal({ open, onOpenChange }: Props) {
         // Update state
         setErrors("");
 
-        // STEP 0 → CREATE LEAD
+        // If first step, Create lead
         if (step === 0 && !leadId) {
             try {
                 // Form loader
@@ -288,8 +311,8 @@ export function InitializePersonaModal({ open, onOpenChange }: Props) {
 
     // Get next/prev active steps
     const getFormSteps = (isReturnKey = false) => {
-        // Define keys
-        const stepKeys = [
+        // Define step keys
+        let stepKeys: string[] = [
             "lead_form",
             "question_1",
             "question_2",
@@ -303,10 +326,15 @@ export function InitializePersonaModal({ open, onOpenChange }: Props) {
             "question_10",
         ];
 
+        // If already login, remove lead form
+        if (isAuthLogin) {
+            stepKeys = stepKeys.filter((key) => key !== "lead_form");
+        };
+
         // If return key
         if (isReturnKey) return stepKeys;
 
-        // COMPONENT MAP (order must match keys)
+        // Component map (order must match keys)
         const componentMap: Record<string, any> = {
             lead_form: StepLeadForm,
             question_1: Question1,
@@ -356,7 +384,16 @@ export function InitializePersonaModal({ open, onOpenChange }: Props) {
                 >
                     <X className="h-5 w-5" />
                 </button>
-                <div className="min-h-full flex items-start justify-center px-4 py-16">
+                {stepsKey.length > 0 && <div className="absolute top-6 left-1/2 -translate-x-1/2 flex items-center gap-2">
+                    {Array.from({ length: stepsKey.length }).map((_, index: number) => (
+                        <div
+                            key={index}
+                            className={`w-3 h-3 rounded-full transition-colors ${index === step ? "bg-amber-400" : index < step ? "bg-black/60" : "bg-gray-300"
+                                }`}
+                        />
+                    ))}
+                </div>}
+                <div className="min-h-full flex items-start justify-center px-4 py-16 md:py-22">
                     <div className="w-full max-w-4xl space-y-5">
                         {/* Screen Step */}
                         {CurrentStep && (
@@ -378,7 +415,7 @@ export function InitializePersonaModal({ open, onOpenChange }: Props) {
                         {/* Navigation */}
                         <div className="flex flex-row items-stretch md:items-center justify-center gap-2 md:gap-3 w-full">
                             {/* START */}
-                            {step === 0 && (
+                            {step === 0 && !isAuthLogin && (
                                 <button
                                     disabled={formLoader}
                                     onClick={handleNextStep}
@@ -390,7 +427,7 @@ export function InitializePersonaModal({ open, onOpenChange }: Props) {
                             )}
 
                             {/* PREVIOUS */}
-                            {step > 1 && !formLoader && (
+                            {step > (isAuthLogin ? 0 : 1) && !formLoader && (
                                 <button
                                     onClick={handlePreviousStep}
                                     className={`${btnBase} bg-white text-black border-black hover:bg-black hover:text-white`}
@@ -401,7 +438,7 @@ export function InitializePersonaModal({ open, onOpenChange }: Props) {
                             )}
 
                             {/* NEXT */}
-                            {step > 0 && CurrentStepKey !== "question_10" && (
+                            {(step > 0 || isAuthLogin) && CurrentStepKey !== "question_10" && (
                                 <button
                                     disabled={formLoader}
                                     onClick={() => {

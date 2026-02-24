@@ -1,9 +1,7 @@
-"use client";
-
-import VerticalSlider from "./VerticalMarquee";
-import MobileSlider from "./MobileSlider";
-import HomeHeader from "./header/home-header";
+import HomeHeader from "../header/home-header";
 import Link from "next/link";
+import VerticalSlider from "./vertical-marquee";
+import MobileSlider from "./mobile-slider";
 
 interface Props {
     setOpenPlanYourTripModel: React.Dispatch<React.SetStateAction<boolean>>;

@@ -11,7 +11,7 @@ export default function AboutTravelone() {
                 <div className="flex justify-center items-center">
                     <div className="relative h-[280px] md:h-[380px] aspect-square rounded-xl overflow-hidden">
                         <Image
-                            src="/about/img_team_674b22f265e656-43103817-70883790.webp"
+                            src="https://ik.imagekit.io/288weifiq/nextjs/bhavin-vora.jpeg"
                             alt="About TravelOne"
                             fill
                             className="object-cover"

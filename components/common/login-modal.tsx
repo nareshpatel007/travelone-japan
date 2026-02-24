@@ -5,7 +5,7 @@ import { useState } from "react";
 import { ForgotPasswordModal } from "./forgot-password-modal";
 import QuestionHeading from "../plan_your_trip/landing/questionHeading";
 import Link from "next/link";
-import { CheckCircle, FacebookIcon, Instagram, Linkedin, Loader, Loader2, Youtube } from "lucide-react";
+import { CheckCircle, Facebook, FacebookIcon, Instagram, Linkedin, Loader, Loader2, Youtube } from "lucide-react";
 import { setLoginCookie } from "@/lib/auth";
 import { useRouter } from "next/navigation";
 import { isValidEmail } from "@/lib/utils";
@@ -366,6 +366,12 @@ export function LoginModal({ open, onOpenChange }: Props) {
                                 <Link href="https://www.youtube.com/@traveloneio" target="_blank" rel="noopener noreferrer">
                                     <button type="button" className="flex items-center justify-center bg-[#ee2852] hover:bg-[#ee2852]/90 text-white p-2 rounded-full transition-colors cursor-pointer">
                                         <Youtube className="h-4 w-4" />
+                                    </button>
+                                </Link>
+
+                                <Link href="https://www.facebook.com/travelone.technologies.inc/" target="_blank" rel="noopener noreferrer">
+                                    <button type="button" className="flex items-center justify-center bg-[#0165E1] hover:bg-[#0165E1]/90 text-white p-2 rounded-full transition-colors cursor-pointer">
+                                        <Facebook className="h-4 w-4" />
                                     </button>
                                 </Link>
 

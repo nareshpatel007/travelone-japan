@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { LoginModal } from "../common/login-modal";
 import { useEffect, useRef, useState } from "react";
-import { ListCheck, LogOut, User2 } from "lucide-react";
+import { ListCheck, LogOut, User, User2, UserCircle, UserCircle2Icon } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 // components/Header.tsx
@@ -72,7 +72,7 @@ export default function HomeHeader() {
                             href="#"
                             onClick={() => setOpenProfileMenu(true)}
                         >
-                            Hi! {loginUserData.first_name} {loginUserData.last_name}
+                            <UserCircle2Icon className="w-6 h-6" />
                         </Link>
 
                         {openProfileMenu && loginUserData && (
@@ -85,7 +85,7 @@ export default function HomeHeader() {
 
                                 <Link
                                     href="/account"
-                                    className="flex items-center gap-2 px-4 py-2 hover:bg-gray-100"
+                                    className="text-base flex items-center gap-2 px-4 py-2 hover:bg-gray-100"
                                 >
                                     <User2 size={16} />
                                     Profile
@@ -93,7 +93,7 @@ export default function HomeHeader() {
 
                                 <Link
                                     href="/my_bookings"
-                                    className="flex items-center gap-2 px-4 py-2 hover:bg-gray-100"
+                                    className="text-base flex items-center gap-2 px-4 py-2 hover:bg-gray-100"
                                 >
                                     <ListCheck size={16} />
                                     My Bookings
@@ -101,7 +101,7 @@ export default function HomeHeader() {
 
                                 <button
                                     onClick={logout}
-                                    className="flex items-center gap-2 px-4 py-2 w-full hover:bg-gray-100 cursor-pointer text-left"
+                                    className="text-base flex items-center gap-2 px-4 py-2 w-full hover:bg-gray-100 cursor-pointer text-left"
                                 >
                                     <LogOut size={16} />
                                     Logout
