@@ -45,8 +45,20 @@ export function formatPrice(price: any, decimal = 2) {
 
 // Email validator
 export function isValidEmail(email: string) {
+    // Check format
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    // Check include "text", "demo", "mailinator.com", "dummy" word
+    const emailRegex2 = /text|demo|mailinator|dummy/;
+    if (emailRegex2.test(email)) return false;
+
     return emailRegex.test(email);
+}
+
+// Phone validator
+export function isValidPhone(phone: string) {
+    const phoneRegex = /^\d{10}$/;
+    return phoneRegex.test(phone);
 }
 
 // Convert json to object

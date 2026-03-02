@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ItineraryTab } from "./itinerary-tab";
 import { WalletNotesTab } from "./wallet-notes";
 import { TermsTab } from "./terms-tab";
@@ -9,6 +9,7 @@ import PaymentsTab from "./payments-tab";
 
 // Define props
 interface Props {
+    activeTab?: string;
     orderData: any;
     cartData: any;
     itineraryData: any;
@@ -21,6 +22,7 @@ interface Props {
 }
 
 export default function TabContent({
+    activeTab = "itinerary",
     orderData,
     cartData,
     itineraryData,
@@ -33,6 +35,21 @@ export default function TabContent({
 }: Props) {
     // Define state
     const [activeMainTab, setActiveMainTab] = useState("itinerary");
+
+    // Default active tab
+    useEffect(() => {
+        if(activeTab === "travellers_info") {
+            setActiveMainTab("travellers_info");
+        } else if(activeTab === "payments") {
+            setActiveMainTab("payments");
+        } else if(activeTab === "wallet_notes") {
+            setActiveMainTab("wallet_notes");
+        } else if(activeTab === "terms") {
+            setActiveMainTab("terms");
+        } else {
+            setActiveMainTab("itinerary");
+        }
+    }, [activeTab]);
 
     // Define tabs
     const tabs = [

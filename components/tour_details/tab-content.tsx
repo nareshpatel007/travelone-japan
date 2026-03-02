@@ -16,6 +16,7 @@ const tabs = [
 // Define props
 interface Props {
     tour: any;
+    metaData: any;
     city_nights: any;
     tour_packages: any;
     attractions: any;
@@ -24,7 +25,7 @@ interface Props {
     cancellation_payment: any;
 }
 
-export default function TabContent({ tour, city_nights, tour_packages, attractions, tour_terms, payment_schedule, cancellation_payment }: Props) {
+export default function TabContent({ tour, metaData, city_nights, tour_packages, attractions, tour_terms, payment_schedule, cancellation_payment }: Props) {
     // Define state
     const [itineraryLoading, setItineraryLoading] = useState<boolean>(false);
     const [activeMainTab, setActiveMainTab] = useState("package_details");
@@ -114,6 +115,7 @@ export default function TabContent({ tour, city_nights, tour_packages, attractio
                             <OverviewTabContent
                                 activeTab={activeTab}
                                 tour={tour}
+                                metaData={metaData}
                                 city_nights={city_nights}
                                 tour_packages={tour_packages}
                                 attractions={attractions}
@@ -141,6 +143,7 @@ export default function TabContent({ tour, city_nights, tour_packages, attractio
                             <OverviewTabContent
                                 activeTab={activeTab}
                                 tour={tour}
+                                metaData={metaData}
                                 city_nights={city_nights}
                                 tour_packages={tour_packages}
                                 attractions={attractions}

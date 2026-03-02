@@ -2,6 +2,8 @@ import HomeHeader from "../header/home-header";
 import Link from "next/link";
 import VerticalSlider from "./vertical-marquee";
 import MobileSlider from "./mobile-slider";
+import { CustomizeTrip } from "../tour_details/popup/customize-trip";
+import { useState } from "react";
 
 interface Props {
     setOpenPlanYourTripModel: React.Dispatch<React.SetStateAction<boolean>>;
@@ -41,19 +43,21 @@ export default function LandingMarqueeSection({ setOpenPlanYourTripModel, setOpe
                             </p>
 
                             <div className="space-y-3">
-                                <button
-                                    onClick={() => setOpenInitializePersonaModel(true)}
-                                    className="bg-black text-white px-4 py-2.5 text-sm uppercase border border-black tracking-wide font-semibold hover:bg-transparent hover:text-black transition cursor-pointer mr-5"
-                                >
-                                    Initialize Persona
-                                </button>
+                                <div className="flex items-center gap-2">
+                                    <button
+                                        onClick={() => setOpenInitializePersonaModel(true)}
+                                        className="bg-black text-white px-4 py-2.5 text-sm uppercase border border-black tracking-wide font-semibold hover:bg-transparent hover:text-black transition cursor-pointer"
+                                    >
+                                        Initialize Persona
+                                    </button>
 
-                                <button
-                                    onClick={() => setOpenPlanYourTripModel(true)}
-                                    className="border border-black text-black px-4 py-2.5 text-sm uppercase tracking-wide font-semibold hover:bg-black hover:text-white transition cursor-pointer"
-                                >
-                                    Start a Journey
-                                </button>
+                                    <button
+                                        onClick={() => setOpenPlanYourTripModel(true)}
+                                        className="border border-black text-black px-4 py-2.5 text-sm uppercase tracking-wide font-semibold hover:bg-black hover:text-white transition cursor-pointer"
+                                    >
+                                        Start a Journey
+                                    </button>
+                                </div>
 
                                 <div className="flex items-center text-center">
                                     <Link href="/intelligence" className="text-sm font-medium text-black underline underline-offset-4">

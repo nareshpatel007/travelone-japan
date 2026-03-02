@@ -1,10 +1,15 @@
 "use client";
 
 import { useState } from "react";
-import { CommonPlanTripModal } from "../plan_your_trip/common-popup";
 import { InitializePersonaModal } from "../plan_your_trip/initialize-persona";
+import { StartJourneyModal } from "../plan_your_trip/journey-popup";
 
-export default function FooterCurveSection() {
+// Define props
+interface Props {
+    isAdsLanding?: boolean;
+}
+
+export default function FooterCurveSection({ isAdsLanding = false }: Props) {
     // Define state
     const [openPlanYourTripModel, setOpenPlanYourTripModel] = useState(false);
     const [openInitializePersonaModel, setOpenInitializePersonaModel] = useState(false);
@@ -45,14 +50,14 @@ export default function FooterCurveSection() {
                         className="absolute inset-0 bg-no-repeat bg-top bg-cover"
                         style={{ backgroundImage: "url('https://ik.imagekit.io/288weifiq/nextjs/footer-curve-design.png')" }}
                     />
-                    <div className="relative z-10 flex flex-col items-center text-center">
-                        <h2 className="text-3xl !text-black md:text-5xl font-normal leading-tight mb-4">
+                    <div className="relative z-10 flex flex-col items-center text-center space-y-6">
+                        <h2 className="text-3xl !text-black md:text-5xl font-normal leading-tight">
                             Every Traveler’s Story<br />Deserves a Masterpiece.
                         </h2>
 
-                        <p className="max-w-xl !text-black !mb-8">Create the journey your unique persona truly deserves with TravelOne, a modern orchestration platform designed to harmonize global exploration with your individual soul.</p>
+                        <p className="max-w-xl text-black">Create the journey your unique persona truly deserves with TravelOne, a modern orchestration platform designed to harmonize global exploration with your individual soul.</p>
 
-                        <div className="flex justify-center gap-4">
+                        {!isAdsLanding && <div className="flex justify-center gap-4">
                             <button
                                 onClick={() => setOpenInitializePersonaModel(true)}
                                 className="bg-black text-white px-6 py-3 text-sm uppercase border border-black tracking-wide font-semibold hover:bg-transparent hover:text-black transition cursor-pointer"
@@ -66,13 +71,13 @@ export default function FooterCurveSection() {
                             >
                                 Start a Journey
                             </button>
-                        </div>
+                        </div>}
                     </div>
                 </section>
             </div>
 
-            {/* MODAL */}
-            <CommonPlanTripModal open={openPlanYourTripModel} onOpenChange={setOpenPlanYourTripModel} />
+            {/* Popup Modal */}
+            <StartJourneyModal open={openPlanYourTripModel} onOpenChange={setOpenPlanYourTripModel} />
             <InitializePersonaModal open={openInitializePersonaModel} onOpenChange={setOpenInitializePersonaModel} />
         </>
     );

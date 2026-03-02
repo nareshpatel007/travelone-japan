@@ -120,6 +120,7 @@ export function BookingCart({ tour, selectedPackage, open, onOpenChange }: Props
         setAvailableSeats(dateObject?.available_seat || 0);
     }
 
+    // Get total travellers
     const getTotalTravellers = (rooms: Room[]) => {
         return rooms.reduce(
             (sum, room) =>
@@ -127,7 +128,8 @@ export function BookingCart({ tour, selectedPackage, open, onOpenChange }: Props
                 room.adults +
                 room.child_8_12 +
                 room.child_3_7 +
-                room.infant,
+                room.infant +
+                (room.extra_adult ? 1 : 0),
             0
         );
     };
@@ -157,6 +159,7 @@ export function BookingCart({ tour, selectedPackage, open, onOpenChange }: Props
         setActiveRoomIndex(rooms.length);
     };
 
+    // Remove room
     const removeRoom = (index: number) => {
         if (index === 0) return; // Do not allow removing Room 1
 
@@ -171,6 +174,7 @@ export function BookingCart({ tour, selectedPackage, open, onOpenChange }: Props
         );
     };
 
+    // Update room
     const updateRoom = (index: number, field: keyof Room, value: any) => {
         setRooms((prev) =>
             prev.map((room, i) =>
@@ -195,12 +199,13 @@ export function BookingCart({ tour, selectedPackage, open, onOpenChange }: Props
         // If group tour then do not allow adding more than available seats
         if (tour?.tour_type === "Group Tour" && totalTravellers >= availableSeats) return;
 
-        // Update room
-        updateRoom(
-            activeRoomIndex,
-            field,
-            roomFieldValue + 1
-        );
+        // If 3 adults, selected then add edtra adult
+        if (field === "adults" && roomFieldValue > 1) {
+            updateRoom(activeRoomIndex, "adults", 2);
+            updateRoom(activeRoomIndex, "extra_adult", true);
+        } else {
+            updateRoom(activeRoomIndex, field, roomFieldValue + 1);
+        }
     }
 
     // Decrement pax count
@@ -212,11 +217,7 @@ export function BookingCart({ tour, selectedPackage, open, onOpenChange }: Props
         if (roomFieldValue <= 0) return;
 
         // Update room
-        updateRoom(
-            activeRoomIndex,
-            field,
-            roomFieldValue - 1
-        );
+        updateRoom(activeRoomIndex, field, roomFieldValue - 1);
     }
 
     // Handle next step

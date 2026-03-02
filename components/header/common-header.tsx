@@ -3,35 +3,24 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { CommonPlanTripModal } from "../plan_your_trip/common-popup";
 import { LoginModal } from "../common/login-modal";
 import { Facebook, Heart, Instagram, Linkedin, ListCheck, LogOut, Menu, Search, ShoppingCartIcon, User, User2, X, Youtube } from "lucide-react";
 import { getCartData, getLoginCookie, getWishlistCount, isLoggedIn, removeLoginCookie } from "@/lib/auth";
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
-import { LandingPlanTripModal } from "../plan_your_trip/landing-popup";
+import { StartJourneyModal } from "../plan_your_trip/journey-popup";
 
 // Define mega menu destinations list
 const DESTINATIONS = [
     {
-        title: "Switzerland",
-        image: "/common/switzerland.jpg",
-        link: "/country/switzerland",
+        title: "Japan",
+        image: "https://ik.imagekit.io/288weifiq/countries/countries-1772036962434_9ui5yU3nI.jpg",
+        link: "/country/japan",
     },
     {
-        title: "Spain",
-        image: "/common/spain.jpg",
-        link: "/country/spain",
-    },
-    {
-        title: "France",
-        image: "/common/france.jpg",
-        link: "/country/france",
-    },
-    {
-        title: "Canada",
-        image: "/common/canada.jpg",
-        link: "/country/canada",
+        title: "South Korea",
+        image: "https://ik.imagekit.io/288weifiq/nextjs/south-korea/gyeongbokgung-palace-night-seoul-korea_335224-351.jpg",
+        link: "/country/south-korea",
     },
 ];
 
@@ -50,7 +39,7 @@ export default function CommonHeader({ landingPytrip = false }: Props) {
     // Define state
     const [openMobileMenu, setOpenMobileMenu] = useState(false);
     const [showMegaMenu, setShowMegaMenu] = useState(false);
-    const [openCommonPlanTrip, setOpenCommonPlanTrip] = useState(false);
+    const [openStartJourney, setOpenStartJourney] = useState(false);
     const [openLogin, setOpenLogin] = useState(false);
     const [openProfileMenu, setOpenProfileMenu] = useState(false);
 
@@ -281,10 +270,10 @@ export default function CommonHeader({ landingPytrip = false }: Props) {
                         )}
 
                         <button
-                            className="hidden lg:block border border-black px-4 py-2 rounded-sm font-medium hover:bg-black hover:text-white cursor-pointer"
-                            onClick={() => setOpenCommonPlanTrip(true)}
+                            className="hidden lg:block border border-black px-4 py-2 rounded font-medium hover:bg-black hover:text-white cursor-pointer"
+                            onClick={() => setOpenStartJourney(true)}
                         >
-                            Plan Your Trip
+                            Start a Journey
                         </button>
 
                         <button className="lg:hidden" onClick={() => setOpenMobileMenu(true)}>
@@ -319,7 +308,7 @@ export default function CommonHeader({ landingPytrip = false }: Props) {
                                         South Korea
                                     </Link>
                                 </li>
-                                <li>
+                                {/* <li>
                                     <Link href="/country/indonesia" className="hover:underline">
                                         Indonesia
                                     </Link>
@@ -333,7 +322,7 @@ export default function CommonHeader({ landingPytrip = false }: Props) {
                                     <Link href="/country/thailand" className="hover:underline">
                                         Thailand
                                     </Link>
-                                </li>
+                                </li> */}
                             </ul>
                             <Link href="/country" className="hover:underline">
                                 <button className="bg-black text-white rounded-sm uppercase font-medium border border-black tracking-wide hover:bg-transparent hover:text-black transition cursor-pointer px-4 py-2.5 text-xs">
@@ -341,7 +330,7 @@ export default function CommonHeader({ landingPytrip = false }: Props) {
                                 </button>
                             </Link>
                         </div>
-                        <div className="col-span-9 grid grid-cols-4 gap-6">
+                        <div className="col-span-9 grid grid-cols-2 gap-6">
                             {DESTINATIONS.map((place) => (
                                 <Link
                                     key={place.title}
@@ -352,7 +341,7 @@ export default function CommonHeader({ landingPytrip = false }: Props) {
                                         src={place.image || "/placeholder.svg"}
                                         alt={place.title}
                                         fill
-                                        className="h-44 w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                                        className="h-100 w-full object-cover transition-transform duration-300 group-hover:scale-105"
                                     />
                                     <div className="absolute inset-0 bg-black/10 flex flex-col justify-end p-4">
                                         <span className="text-white font-semibold">
@@ -403,12 +392,12 @@ export default function CommonHeader({ landingPytrip = false }: Props) {
 
             {/* Modal Popup */}
             <LoginModal open={openLogin} onOpenChange={setOpenLogin} />
-            {landingPytrip && <LandingPlanTripModal open={openCommonPlanTrip} onOpenChange={setOpenCommonPlanTrip} />}
-            {!landingPytrip && <CommonPlanTripModal open={openCommonPlanTrip} onOpenChange={setOpenCommonPlanTrip} />}
+            <StartJourneyModal open={openStartJourney} onOpenChange={setOpenStartJourney} />
         </>
     );
 }
 
+// Get query data
 export const getQuery = (key: string, fallback = "") =>
     typeof window === "undefined"
         ? fallback

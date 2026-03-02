@@ -20,10 +20,10 @@ export default function BestValueGuarantee() {
                         Your satisfaction is our priority
                     </span>
                 </div>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-3 md:gap-6">
                     {BENEFITS.map((item, idx) => (
-                        <div key={idx} className="bg-white rounded-2xl p-8 border-2 border-dashed border-black hover:shadow-xl transition-shadow duration-300 flex flex-col items-center text-center">
-                            <div className="text-md md:text-lg lg:text-xl mb-3 text-teal-700">{item.icon}</div>
+                        <div key={idx} className="bg-white rounded-2xl p-4 md:p-8 border-2 border-dashed border-black hover:shadow-xl transition-shadow duration-300 flex flex-col items-center text-center">
+                            <div className="hidden md:block text-md md:text-lg lg:text-xl mb-3 text-teal-700">{item.icon}</div>
                             <span className="font-semibold block mb-2">{item.title}</span>
                             <p className="text-sm md:text-base text-gray-600">{item.desc}</p>
                         </div>

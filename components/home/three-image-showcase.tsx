@@ -20,8 +20,29 @@ export default function ThreeImageSplitSection({ destinationList }: Props) {
                 </span>
             </div>
             <div className="space-y-4">
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-4 h-[420px] sm:h-[480px] lg:h-[520px]">
-                    {/* 50% IMAGE */}
+                <div className="grid grid-cols-2 gap-4 h-[300px] sm:h-[340px] lg:h-[380px]">
+                    {destinationList.map((item, index) => (
+                        <div
+                            key={index}
+                            className="relative overflow-hidden group cursor-pointer"
+                        >
+                            <Link target="_blank" href={`/country/${item.slug}`}>
+                                <Image
+                                    src={item.featured_image || "/placeholder.svg"}
+                                    alt={item.name}
+                                    fill
+                                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                                />
+                                <div className="absolute bottom-5 left-5 right-5">
+                                    <h3 className="text-white text-md sm:text-2xl font-medium leading-snug">
+                                        {item.name}
+                                    </h3>
+                                </div>
+                            </Link>
+                        </div>
+                    ))}
+                </div>
+                {/* <div className="grid grid-cols-1 md:grid-cols-4 gap-4 h-[420px] sm:h-[480px] lg:h-[520px]">
                     {destinationList?.[0] && (
                         <div className="relative md:col-span-2 overflow-hidden group cursor-pointer">
                             <Link target="_blank" href={`/country/${destinationList[0].slug}`}>
@@ -41,7 +62,6 @@ export default function ThreeImageSplitSection({ destinationList }: Props) {
                         </div>
                     )}
 
-                    {/* 25% IMAGE */}
                     {destinationList?.[1] && (
                         <div className="relative overflow-hidden group cursor-pointer">
                             <Link target="_blank" href={`/country/${destinationList[1].slug}`}>
@@ -60,7 +80,6 @@ export default function ThreeImageSplitSection({ destinationList }: Props) {
                         </div>
                     )}
 
-                    {/* 25% IMAGE */}
                     {destinationList?.[2] && (
                         <div className="relative overflow-hidden group cursor-pointer">
                             <Link target="_blank" href={`/country/${destinationList[2].slug}`}>
@@ -79,8 +98,6 @@ export default function ThreeImageSplitSection({ destinationList }: Props) {
                         </div>
                     )}
                 </div>
-
-                {/* ROW 2 — 4 IMAGE GRID */}
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 h-[300px] sm:h-[340px] lg:h-[380px]">
                     {destinationList.slice(3, 7).map((item, index) => (
                         <div
@@ -102,7 +119,7 @@ export default function ThreeImageSplitSection({ destinationList }: Props) {
                             </Link>
                         </div>
                     ))}
-                </div>
+                </div> */}
             </div>
         </section>
     );

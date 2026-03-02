@@ -12,7 +12,7 @@ import {
     X,
 } from "lucide-react";
 import { sendFbEvent } from "@/lib/sendFbEvent";
-import { getLoginCookie, isLoggedIn } from "@/lib/auth";
+import { getCookieData, getLoginCookie, isLoggedIn, removeCookieData } from "@/lib/auth";
 
 /* ---- Import Steps ---- */
 import StepLeadForm from "./form_questions/lead-form";
@@ -30,7 +30,6 @@ import StepAccommodation from "./form_questions/accommodation";
 import StepGuide from "./form_questions/guide";
 import StepMeals from "./form_questions/meals";
 import StepKindOfHelp from "./form_questions/help";
-import StepCommunicationMethod from "./form_questions/communication";
 import StepSummary from "./form_questions/summary";
 
 // Define Props
@@ -57,15 +56,15 @@ const defaultFormData = {
     guide: "",
     meals: "",
     assistance: "",
-    communication: "",
     full_name: "",
     email: "",
     mobile: "",
+    communication: "",
     privacy_policy_accepted: false,
     is_show_history_btn: false,
 };
 
-export function LandingPlanTripModal({
+export function StartJourneyModal({
     open,
     onOpenChange,
     selectedCountry,
@@ -82,6 +81,16 @@ export function LandingPlanTripModal({
     const [leadId, setLeadId] = useState("");
     const [errors, setErrors] = useState("");
     const [formLoader, setFormLoader] = useState(false);
+
+    // Get cookie value
+    const cookieLeadId = getCookieData("lead_id");
+
+    // Set lead id
+    useEffect(() => {
+        if (cookieLeadId) {
+            setLeadId(cookieLeadId);
+        }
+    }, [cookieLeadId]);
 
     // Stable Form Steps
     const getFormSteps = (form: any) => {
@@ -104,12 +113,11 @@ export function LandingPlanTripModal({
             "guide",
             "meals",
             "kind_help",
-            "communication",
             "summary",
         ];
 
         // If login user
-        if (isAuthLogin) {
+        if (isAuthLogin || leadId) {
             stepKeys = stepKeys.filter((key) => key !== "lead_form");
         }
 
@@ -167,7 +175,6 @@ export function LandingPlanTripModal({
         guide: StepGuide,
         meals: StepMeals,
         kind_help: StepKindOfHelp,
-        communication: StepCommunicationMethod,
         summary: StepSummary,
     };
 
@@ -186,7 +193,8 @@ export function LandingPlanTripModal({
                 if (!leadId && !isAuthLogin) {
                     if (!planYourTripForm.full_name ||
                         !planYourTripForm.email ||
-                        !planYourTripForm.mobile) {
+                        !planYourTripForm.mobile ||
+                        !planYourTripForm.communication) {
                         error = "Please fill all required fields.";
                     }
                     else if (!planYourTripForm.privacy_policy_accepted) {
@@ -242,9 +250,24 @@ export function LandingPlanTripModal({
                     error = "Please select budget.";
                 break;
 
-            case "communication":
-                if (!planYourTripForm.communication)
-                    error = "Please select communication method.";
+            case "accommodation":
+                if (!planYourTripForm.accommodation)
+                    error = "Please select accommodation.";
+                break;
+
+            case "guide":
+                if (!planYourTripForm.guide)
+                    error = "Please select guide.";
+                break;
+
+            case "meals":
+                if (!planYourTripForm.meals)
+                    error = "Please select meals.";
+                break;
+
+            case "kind_help":
+                if (!planYourTripForm.assistance)
+                    error = "Please select kind of help.";
                 break;
         }
 
@@ -265,6 +288,7 @@ export function LandingPlanTripModal({
             try {
                 setFormLoader(true);
 
+                // Create lead
                 const res = await fetch("/api/plan_your_trip/create_lead", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
@@ -272,20 +296,24 @@ export function LandingPlanTripModal({
                         full_name: planYourTripForm.full_name,
                         email: planYourTripForm.email,
                         mobile: planYourTripForm.mobile,
+                        assistance: planYourTripForm.assistance,
+                        communication: planYourTripForm.communication,
                         ip_address: await getClientIp(),
                     }),
                 });
 
+                // Convert json
                 const data = await res.json();
 
+                // Check success
                 if (!data?.success) {
                     setErrors("Unable to process your request.");
                     return;
                 }
 
+                // Update state
                 setLeadId(data.data.lead_id);
                 setStep(step + 1);
-
             } catch {
                 setErrors("Something went wrong.");
             } finally {

@@ -153,10 +153,10 @@ export function BookingConfirmation({ orderData }: Props) {
                                 Download Invoice
                             </button>
 
-                            <Link href={`/my_bookings/${orderData?.order?.checkout_id}`}>
+                            <Link href={`/my_bookings/${orderData?.order?.checkout_id}?tab=travellers_info`}>
                                 <button className="flex items-center gap-2 px-4 py-2 text-base bg-black text-white rounded-sm font-medium border border-black hover:bg-white hover:text-black hover:border-black cursor-pointer transition-colors">
                                     <CalendarCheck className="w-4 h-4" />
-                                    Booking Details
+                                    Traveller Info
                                 </button>
                             </Link>
 

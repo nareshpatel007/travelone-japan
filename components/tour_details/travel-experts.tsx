@@ -3,11 +3,16 @@
 import Image from "next/image"
 import Link from "next/link"
 import { useState } from "react";
-import { CommonPlanTripModal } from "../plan_your_trip/common-popup";
+import { CustomizeTrip } from "./popup/customize-trip";
 
-export default function TravelExpert() {
+// Define Props
+interface Props {
+    isAdsLanding?: boolean;
+}
+
+export default function TravelExpert({ isAdsLanding }: Props) {
     // Define state
-    const [openPlanYourTripModel, setOpenPlanYourTripModel] = useState(false);
+    const [openCustomizeTrip, setOpenCustomizeTrip] = useState<boolean>(false);
 
     return (
         <>
@@ -27,14 +32,14 @@ export default function TravelExpert() {
                             </div>
                             <div className="md:w-2/3 space-y-4">
                                 <p className="text-sm md:text-lg text-black font-medium text-center md:text-left">
-                                    Travel Experts
+                                    Louise Berg
                                 </p>
 
                                 <h3 className="text-black text-3xl md:text-5xl leading-tight font-normal text-center md:text-left">
                                     Not sure where to start? Speak to a Travel Expert
                                 </h3>
 
-                                <p className="text-black text-lg leading-relaxed text-center md:text-left">
+                                <p className="text-black text-base md:text-lg leading-relaxed text-center md:text-left">
                                     Our dedicated Travel Expert will take the time to understand your personal preferences and curate a
                                     custom travel itinerary that's perfectly suited to you.
                                 </p>
@@ -42,10 +47,10 @@ export default function TravelExpert() {
                                 <div>
                                     <div className="hidden md:flex items-center gap-4">
                                         <button
-                                            onClick={() => setOpenPlanYourTripModel(true)}
+                                            onClick={() => setOpenCustomizeTrip(true)}
                                             className="px-6 md:px-8 py-3 bg-black text-white text-sm font-medium tracking-wide hover:bg-black/90 transition uppercase cursor-pointer"
                                         >
-                                            Customize Your Trip
+                                            {isAdsLanding ? 'Inquire Now' : 'Customize Your Trip'}
                                         </button>
                                         <span className="text-black font-normal text-base">
                                             OR CALL <Link href="tel:1-437-966-9023" className="hover:underline">+1 437 966 9023</Link>
@@ -54,10 +59,10 @@ export default function TravelExpert() {
 
                                     <div className="block md:hidden space-y-5 text-center">
                                         <button
-                                            onClick={() => setOpenPlanYourTripModel(true)}
+                                            onClick={() => setOpenCustomizeTrip(true)}
                                             className="px-6 md:px-8 py-3 bg-black text-white text-sm font-medium tracking-wide hover:bg-black/90 transition uppercase cursor-pointer"
                                         >
-                                            Customize Your Trip
+                                            {isAdsLanding ? 'Inquire Now' : 'Customize Your Trip'}
                                         </button>
                                         <span className="text-black font-normal text-base block">
                                             OR CALL <Link href="tel:1-437-966-9023" className="hover:underline">+1 437 966 9023</Link>
@@ -71,7 +76,11 @@ export default function TravelExpert() {
             </div>
 
             {/* MODAL */}
-            <CommonPlanTripModal open={openPlanYourTripModel} onOpenChange={setOpenPlanYourTripModel} />
+            <CustomizeTrip
+                open={openCustomizeTrip}
+                onOpenChange={setOpenCustomizeTrip}
+                mainTitle="Register Your Interest"
+            />
         </>
     )
 }

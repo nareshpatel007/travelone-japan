@@ -5,11 +5,12 @@ import Image from "next/image";
 
 // Define props
 type Props = {
+    isAdsLanding?: boolean;
     itineraryLoading?: boolean;
     itineraryData: any;
 }
 
-export function ItineraryTab({ itineraryLoading, itineraryData }: Props) {
+export function ItineraryTab({ isAdsLanding, itineraryLoading, itineraryData }: Props) {
     // If loading
     if (itineraryLoading) {
         return (
@@ -23,19 +24,20 @@ export function ItineraryTab({ itineraryLoading, itineraryData }: Props) {
     }
 
     return (
-        <div className="py-7">
+        <div className="py-0 md:py-7">
             <div className="relative">
-                <div className="absolute left-4.5 top-5 bottom-0 w-1 bg-[#d9cec1]"></div>
+                {!isAdsLanding && <div className="absolute left-4.5 top-5 bottom-0 w-1 bg-[#d9cec1]"></div>}
                 <div className="space-y-6">
                     {itineraryData.map((dayData: any) => (
                         <div className="flex gap-3 md:gap-6">
-                            <div className="flex-shrink-0 relative">
+                            {!isAdsLanding && <div className="flex-shrink-0 relative">
                                 <div className="w-10 h-10 rounded-full bg-black text-white flex items-center justify-center font-bold text-md">
                                     {dayData.day_no}
                                 </div>
-                            </div>
+                            </div>}
+
                             <div className="flex-1 bg-white border-1 border-[#d9cec1] rounded-md p-5 md:p-6 space-y-4 hover:shadow-md transition-shadow duration-300">
-                                <span className="text-md md:text-2xl font-medium text-black block">{dayData.title}</span>
+                                <span className="text-lg md:text-2xl font-medium text-black block">{dayData.title}</span>
 
                                 {dayData.itinerary && dayData.itinerary.map((activity: any, actIdx: number) => (
                                     <div key={actIdx}>
@@ -62,7 +64,7 @@ export function ItineraryTab({ itineraryLoading, itineraryData }: Props) {
                                                                         {attraction.attraction_name}
                                                                     </span>
 
-                                                                    <p className="text-black text-sm md:text-base leading-relaxed flex-1">
+                                                                    <p className="text-black text-base leading-relaxed flex-1">
                                                                         {attraction.description}
                                                                     </p>
                                                                 </div>
@@ -72,9 +74,9 @@ export function ItineraryTab({ itineraryLoading, itineraryData }: Props) {
                                                 </div>
                                             </div>
                                         ) : (
-                                            <p className={`flex inline-block text-black text-sm md:text-base whitespace-pre-line`}>
+                                            <p className={`flex inline-block text-black text-base whitespace-pre-line`}>
                                                 <Circle className="w-4 h-4 mr-2 fill-[#a6c5a9] text-[#a6c5a9] inline-block" />
-                                                {activity.title}
+                                                {activity.title.replace("&amp;", "&")}
                                             </p>
                                         )}
                                     </div>

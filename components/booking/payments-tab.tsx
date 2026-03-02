@@ -93,9 +93,9 @@ export default function PaymentsTab({ orderData, paymentHistory }: Props) {
                         <td className="border border-[#d9cec1] px-4 py-2 text-center text-black">
                             ${orderData?.payment_type == 'full_payment' ? <>
                                 {orderData?.status == 'COMPLETED' ? <>
-                                    ${formatPrice(orderData?.payable_amount)}
+                                    {formatPrice(orderData?.payable_amount)}
                                 </> : <>
-                                    ${formatPrice(0)}
+                                    {formatPrice(0)}
                                 </>}
                             </> : <>
                                 {formatPrice(orderData?.payable_amount - outstandingAmount)}
@@ -113,9 +113,9 @@ export default function PaymentsTab({ orderData, paymentHistory }: Props) {
                         <td className="border border-[#d9cec1] px-4 py-2 text-center text-red-600">
                             ${orderData?.payment_type == 'full_payment' ? <>
                                 {orderData?.status == 'COMPLETED' ? <>
-                                    ${formatPrice(0)}
+                                    {formatPrice(0)}
                                 </> : <>
-                                    ${formatPrice(orderData?.payable_amount)}
+                                    {formatPrice(orderData?.payable_amount)}
                                 </>}
                             </> : <>
                                 {formatPrice(outstandingAmount)}

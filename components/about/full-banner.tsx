@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { useState } from "react";
-import { CommonPlanTripModal } from "../plan_your_trip/common-popup";
+import { StartJourneyModal } from "../plan_your_trip/journey-popup";
 
 export default function FullBannerSection() {
     // Define state
@@ -34,7 +34,7 @@ export default function FullBannerSection() {
             </div>
 
             {/* Plan Your Trip Modal */}
-            <CommonPlanTripModal open={openPlanYourTripModel} onOpenChange={setOpenPlanYourTripModel} />
+            <StartJourneyModal open={openPlanYourTripModel} onOpenChange={setOpenPlanYourTripModel} />
         </>
     );
 }

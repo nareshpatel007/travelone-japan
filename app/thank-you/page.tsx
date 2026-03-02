@@ -20,7 +20,7 @@ export default function Page() {
             {ready && <>
                 <CommonHeader />
 
-                <div className="max-w-7xl mx-auto px-5 md:px-0 py-6">
+                <div className="max-w-7xl mx-auto px-5 md:px-0 py-12 md:py-18">
                     <PageHeading
                         main="Your Private Journey is Now in Design"
                     />

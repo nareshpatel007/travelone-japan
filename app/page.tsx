@@ -13,8 +13,8 @@ import FullBannerSection from "@/components/home/full-banner";
 import BlogSlider from "@/components/home/blog-slider";
 import StickyHomeHeader from "@/components/header/sticky-home-header";
 import WhyTravelOne from "@/components/home/why-travelone";
-import { CommonPlanTripModal } from "@/components/plan_your_trip/common-popup";
 import { InitializePersonaModal } from "@/components/plan_your_trip/initialize-persona";
+import { StartJourneyModal } from "@/components/plan_your_trip/journey-popup";
 
 export default function HomePage() {
     // Define state
@@ -26,10 +26,7 @@ export default function HomePage() {
     const [openInitializePersonaModel, setOpenInitializePersonaModel] = useState<boolean>(false);
 
     useEffect(() => {
-        // Wait one frame after hydration
-        requestAnimationFrame(() => {
-            setReady(true);
-        });
+        requestAnimationFrame(() => { setReady(true); });
     }, []);
 
     useEffect(() => {
@@ -43,6 +40,9 @@ export default function HomePage() {
                         headers: {
                             "Content-Type": "application/json",
                         },
+                        body: JSON.stringify({
+                            for_home: true
+                        }),
                         signal: controller.signal,
                     }),
                     fetch("/api/tours/list", {
@@ -111,7 +111,7 @@ export default function HomePage() {
                 <BlogSlider blogList={blogList} />
                 <CommonFooter isStickyShow={true} />
                 <StickyHomeHeader />
-                <CommonPlanTripModal open={openPlanYourTripModel} onOpenChange={setOpenPlanYourTripModel} />
+                <StartJourneyModal open={openPlanYourTripModel} onOpenChange={setOpenPlanYourTripModel} />
                 <InitializePersonaModal open={openInitializePersonaModel} onOpenChange={setOpenInitializePersonaModel} />
             </>}
         </>

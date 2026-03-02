@@ -5,7 +5,7 @@ import { useState } from "react";
 import { CheckCircle, Download, Loader } from "lucide-react";
 import QuestionHeading from "@/components/plan_your_trip/landing/questionHeading";
 import Link from "next/link";
-import { getClientIp } from "@/lib/getClientIp";
+import { getClientIp, getUserIp } from "@/lib/getClientIp";
 import { PhoneInput } from "react-international-phone";
 import "react-international-phone/style.css";
 import { set } from "date-fns";
@@ -41,6 +41,9 @@ export function DownloadBrochure({ tour, open, onOpenChange }: Props) {
                 return;
             }
 
+            // Get ip address
+            const ipAddress = await getUserIp();
+
             // Update state
             setErrors("");
             setDownloadUrl("");
@@ -56,7 +59,7 @@ export function DownloadBrochure({ tour, open, onOpenChange }: Props) {
                     tour_id: tour?.id,
                     email,
                     phone,
-                    ip_address: getClientIp(),
+                    ip_address: ipAddress
                 }),
             });
 

@@ -1,17 +1,15 @@
 "use server";
 
 import { headers } from "next/headers";
+import { cookies } from "next/headers";
 
-export async function getClientIp(): Promise<string> {
-    const h = await headers();
+export async function getClientIp(): Promise<string | null> {
+    const cookieStore = await cookies();
+    const ip = cookieStore.get("user_ip")?.value;
+    return ip || null;
+}
 
-    const forwardedFor = h.get("x-forwarded-for");
-    const realIp = h.get("x-real-ip");
-
-    if (forwardedFor) {
-        return forwardedFor.split(",")[0].trim();
-    }
-
-    // If no forwardedFor, use realIp
-    return realIp ?? "unknown";
+export async function getUserIp(): Promise<string | null> {
+    const cookieStore = await cookies();
+    return cookieStore.get("user_ip")?.value ?? null;
 }

@@ -5,10 +5,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState, useEffect, useRef } from 'react';
 import { LoginModal } from '../common/login-modal';
-import { CommonPlanTripModal } from '../plan_your_trip/common-popup';
 import { getCartData, getLoginCookie, getWishlistCount, isLoggedIn, removeLoginCookie } from '@/lib/auth';
 import { useRouter } from "next/navigation";
 import { InitializePersonaModal } from '../plan_your_trip/initialize-persona';
+import { CustomizeTrip } from '../tour_details/popup/customize-trip';
+import { StartJourneyModal } from '../plan_your_trip/journey-popup';
 
 export default function StickyHomeHeader() {
     // Define route
@@ -20,6 +21,7 @@ export default function StickyHomeHeader() {
     const [openInitializePersonaModel, setOpenInitializePersonaModel] = useState(false);
     const [openLogin, setOpenLogin] = useState(false);
     const [openProfileMenu, setOpenProfileMenu] = useState(false);
+    const [openCustomizeTripPopup, setOpenCustomizeTripPopup] = useState(false);
 
     // Click outside handler
     useEffect(() => {
@@ -158,6 +160,13 @@ export default function StickyHomeHeader() {
                                 >
                                     Start a Journey
                                 </button>
+
+                                <button
+                                    onClick={() => setOpenCustomizeTripPopup(true)}
+                                    className="border border-black text-black px-4 py-2 text-base tracking-wide font-medium hover:bg-black hover:text-white transition cursor-pointer"
+                                >
+                                    Request a Quote
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -166,8 +175,15 @@ export default function StickyHomeHeader() {
 
             {/* ================= MODALS ================= */}
             <LoginModal open={openLogin} onOpenChange={setOpenLogin} />
-            <CommonPlanTripModal open={openPlanYourTripModel} onOpenChange={setOpenPlanYourTripModel} />
+            <StartJourneyModal open={openPlanYourTripModel} onOpenChange={setOpenPlanYourTripModel} />
             <InitializePersonaModal open={openInitializePersonaModel} onOpenChange={setOpenInitializePersonaModel} />
+            <CustomizeTrip
+                open={openCustomizeTripPopup}
+                onOpenChange={setOpenCustomizeTripPopup}
+                mainTitle="Request a Quote"
+                subTitle="We can help you find the right trip for your needs."
+                pageName="Homepage"
+            />
         </>
     );
 }

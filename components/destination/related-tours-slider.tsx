@@ -69,7 +69,7 @@ export default function RelatedTours({ title, tours = [] }: Props) {
                 >
                     {tours.map((tour) => (
                         <SwiperSlide key={tour.id}>
-                            <TourCard {...tour} />
+                            <TourCard {...tour} needBtn={true} />
                         </SwiperSlide>
                     ))}
                 </Swiper>

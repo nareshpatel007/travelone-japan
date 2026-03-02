@@ -16,7 +16,7 @@ import Question8 from "./personas/Question8";
 import Question9 from "./personas/Question9";
 import Question10 from "./personas/Question10";
 import StepLeadForm from "./personas/StepLeadForm";
-import { getLoginCookie, isLoggedIn } from "@/lib/auth";
+import { getLoginCookie, isLoggedIn, setCookieData } from "@/lib/auth";
 
 // Define interface
 interface Props {
@@ -290,6 +290,9 @@ export function InitializePersonaModal({ open, onOpenChange }: Props) {
                     setErrors("Unable to process your request.");
                     return;
                 }
+
+                // Set cookie data
+                setCookieData("lead_id", data.data.lead_id);
 
                 // Update state
                 setLeadId(data.data.lead_id);

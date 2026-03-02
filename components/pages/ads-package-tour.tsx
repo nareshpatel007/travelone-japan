@@ -2,8 +2,6 @@
 
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
-import CommonHeader from "@/components/header/common-header";
-import CommonFooter from "@/components/footer/common-footer";
 import FAQsList from "@/components/tour_details/faqs";
 import HeroTour from "@/components/tour_details/hero-tour";
 import TabContent from "@/components/tour_details/tab-content";
@@ -14,21 +12,21 @@ import TrustedBy from "@/components/tour_details/trusted-by";
 import TravelExpert from "@/components/tour_details/travel-experts";
 import PageHelpful from "@/components/common/helpful";
 import { CustomizeTrip } from "@/components/tour_details/popup/customize-trip";
-import { DownloadBrochure } from "@/components/tour_details/popup/download-brochure";
-import { BookingCart } from "@/components/tour_details/popup/booking-cart";
 import Skeleton from "react-loading-skeleton";
 import Link from "next/link";
 import { getLoginCookie } from "@/lib/auth";
-import ToursSlider from "@/components/home/tours-slider";
 import VideoHeroSection from "@/components/tour_details/video-hero";
-import { EyeClosed, SearchAlert } from "lucide-react";
+import { SearchAlert } from "lucide-react";
+import AdsLandingHeader from "../header/ads-header";
+import AdsLandingFooter from "../footer/ads-footer";
+import MobileTabContent from "../tour_details/mobile-tab-content";
 
 // Define Props
 interface Props {
-    slug: string
+    slug: string;
 }
 
-export default function SingleTourPage({ slug }: Props) {
+export default function AdsSingleTourPage({ slug }: Props) {
     // Define state
     const [ready, setReady] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
@@ -104,7 +102,7 @@ export default function SingleTourPage({ slug }: Props) {
     return (
         <>
             {ready && <>
-                <CommonHeader />
+                <AdsLandingHeader />
 
                 {isLoading && (
                     <>
@@ -124,6 +122,7 @@ export default function SingleTourPage({ slug }: Props) {
                 {!isLoading && tourData?.tour && (
                     <div ref={pageRef} className="min-h-screen bg-white">
                         <HeroTour
+                            isAdsLanding={true}
                             tour={tourData?.tour ?? {}}
                             metaData={tourData?.meta_data ?? {}}
                             city_nights={tourData?.city_nights ?? {}}
@@ -136,40 +135,62 @@ export default function SingleTourPage({ slug }: Props) {
                             setOpenBookingCartPopup={setOpenBookingCartPopup}
                         />
 
-                        <TabContent
-                            tour={tourData?.tour ?? {}}
-                            metaData={tourData?.meta_data ?? {}}
-                            city_nights={tourData?.city_nights ?? {}}
-                            tour_packages={tourData?.tour_packages ?? []}
-                            tour_terms={tourData?.tour_terms ?? {}}
-                            attractions={tourData?.attractions || {}}
-                            payment_schedule={tourData?.payment_schedule ?? []}
-                            cancellation_payment={tourData?.cancellation_payment ?? []}
-                        />
+                        <div className="md:hidden text-center bg-amber-200 space-y-2 border-b-2 border-[#d9cec1] p-3 shadow-md">
+                            <p className="text-black font-semibold text-xl">Best Price Guaranteed</p>
+                            <p className="text-black font-normal text-sm">
+                                4 Star Stays | All Private Transportations | All Meals | Fully Guided
+                            </p>
+                        </div>
+
+                        <div className="block md:hidden">
+                            <TrustedBy isAdsLanding={true} />
+                        </div>
+
+                        <div className="hidden md:block">
+                            <TabContent
+                                tour={tourData?.tour ?? {}}
+                                metaData={tourData?.meta_data ?? {}}
+                                city_nights={tourData?.city_nights ?? {}}
+                                tour_packages={tourData?.tour_packages ?? []}
+                                tour_terms={tourData?.tour_terms ?? {}}
+                                attractions={tourData?.attractions || {}}
+                                payment_schedule={tourData?.payment_schedule ?? []}
+                                cancellation_payment={tourData?.cancellation_payment ?? []}
+                            />
+                        </div>
+                        <div className="block md:hidden">
+                            <MobileTabContent
+                                tour={tourData?.tour ?? {}}
+                                city_nights={tourData?.city_nights ?? {}}
+                                tour_packages={tourData?.tour_packages ?? []}
+                                tour_terms={tourData?.tour_terms ?? {}}
+                                attractions={tourData?.attractions || {}}
+                                payment_schedule={tourData?.payment_schedule ?? []}
+                                cancellation_payment={tourData?.cancellation_payment ?? []}
+                            />
+                        </div>
+
+                        <div className="hidden md:block">
+                            <TrustedBy isAdsLanding={true} />
+                        </div>
 
                         <BestValueGuarantee />
                         <Reviews reviews={tourData?.tour_reviews ?? []} />
                         <WhyTravelOne />
-                        <TrustedBy />
                         <FAQsList data={tourData?.tour_terms ?? []} />
-                        <ToursSlider
-                            title="You may also like"
-                            subTitle="We are committed to providing you with the best possible experience."
-                            toursList={tourData?.related_tours}
-                            bgColor="bg-white"
-                        />
                         <VideoHeroSection
                             tour={tourData?.tour ?? {}}
                             videos={tourData?.tour_videos ?? []}
                         />
-                        <TravelExpert />
+                        <TravelExpert isAdsLanding={true} />
                         <PageHelpful
-                            pageName={`tour/${tourData?.tour?.slug}`}
+                            pageName={`package/${tourData?.tour?.slug}`}
                         />
 
-                        {showStickyFooter && (
+                        {/* Sticky Call to Action */}
+                        {showStickyFooter && <>
                             <div className="hidden md:block fixed bottom-0 left-0 right-0 bg-gray-100 shadow-lg border-t border-gray-300 z-50">
-                                <div className="max-w-7xl mx-auto py-3 flex items-center justify-between">
+                                <div className="max-w-7xl mx-auto py-2.5 flex items-center justify-between">
                                     <div className="flex items-center gap-4">
                                         <Image
                                             src={tourData?.tour?.featured_image || "/placeholder-500x500.svg"}
@@ -179,25 +200,41 @@ export default function SingleTourPage({ slug }: Props) {
                                             className="object-cover rounded"
                                         />
                                         <span className="text-black text-base font-normal">
-                                            Call us now on <Link href="tel:+1-437-966-9023" className="hover:underline cursor-pointer">+1 437 966 9023</Link>
+                                            Call <Link href="tel:+1-437-966-9023" className="hover:underline cursor-pointer">+1 437 966 9023</Link> | <Link href="mailto:connect@travelone.io" className="hover:underline cursor-pointer">connect@travelone.io</Link>
                                         </span>
                                     </div>
 
                                     <div className="flex items-center gap-3">
                                         <button
-                                            onClick={() => setOpenBookingCartPopup(true)}
-                                            className="bg-[#ef2853] hover:bg-white text-white hover:text-[#ef2853] border border-[#ef2853] px-6 py-2 rounded text-base font-medium cursor-pointer transition"
+                                            onClick={() => setOpenCustomizeTripPopup(true)}
+                                            className="bg-[#ef2853] border-1 border-[#ef2853] hover:bg-white hover:text-[#ef2853] text-white px-4 py-2 rounded font-semibold text-sm cursor-pointer"
                                         >
-                                            Book {tourData?.tour_packages && tourData?.tour_packages.find((p: any) => p.no === selectedPackage)?.name}
-                                        </button>
-
-                                        <button className="bg-white text-black border border-black hover:bg-black hover:text-white px-6 py-2 rounded text-base font-medium cursor-pointer transition" onClick={() => setOpenCustomizeTripPopup(true)}>
-                                            Customize Trip
+                                            Inquire Now
                                         </button>
                                     </div>
                                 </div>
                             </div>
-                        )}
+                            <div className="block md:hidden fixed bottom-0 left-0 right-0 bg-[#FFF9EE] shadow-lg border-t border-gray-300 z-50">
+                                <div className="w-full px-3 py-2 flex flex-col items-center justify-center text-center gap-1">
+                                    <span className="text-black text-sm md:text-base font-normal">
+                                        Call {" "}
+                                        <Link
+                                            href="tel:+1-437-966-9023"
+                                            className="hover:underline cursor-pointer"
+                                        >
+                                            +1 437 966 9023
+                                        </Link>
+                                    </span>
+
+                                    <button
+                                        onClick={() => setOpenCustomizeTripPopup(true)}
+                                        className="bg-[#ef2853] border-1 border-[#ef2853] hover:bg-white hover:text-[#ef2853] text-white px-4 py-2 rounded font-semibold text-sm cursor-pointer"
+                                    >
+                                        Inquire Now
+                                    </button>
+                                </div>
+                            </div>
+                        </>}
                     </div>
                 )}
 
@@ -216,22 +253,14 @@ export default function SingleTourPage({ slug }: Props) {
                     </div>
                 )}
 
-                {/* Popup modals */}
-                <BookingCart
+                <CustomizeTrip
                     tour={tourData?.tour ?? {}}
-                    selectedPackage={selectedPackage}
-                    open={openBookingCartPopup}
-                    onOpenChange={setOpenBookingCartPopup}
+                    open={openCustomizeTripPopup}
+                    onOpenChange={setOpenCustomizeTripPopup}
+                    mainTitle="Register Your Interest"
                 />
-                <CustomizeTrip tour={tourData?.tour ?? {}} open={openCustomizeTripPopup} onOpenChange={setOpenCustomizeTripPopup} />
-                <DownloadBrochure tour={tourData?.tour ?? {}} open={openDownloadBrochurePopup} onOpenChange={setOpenDownloadBrochurePopup} />
-                {/* <QuoteBrochure
-                    tour={tourData?.tour ?? {}}
-                    open={openQuotePopup}
-                    onOpenChange={setOpenQuotePopup}
-                /> */}
 
-                <CommonFooter isStickyShow={true} />
+                <AdsLandingFooter />
             </>}
         </>
     );

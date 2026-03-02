@@ -3,6 +3,21 @@ export function setLoginCookie(data: any) {
     localStorage.setItem('user', JSON.stringify(data));
 }
 
+// Set cookie data
+export function setCookieData(key: string, data: any) {
+    localStorage.setItem(key, JSON.stringify(data));
+}
+
+// Get cookie data
+export function getCookieData(key: string) {
+    return localStorage.getItem(key);
+}
+
+// Remove cookie data
+export function removeCookieData(key: string) {
+    localStorage.removeItem(key);
+}
+
 // Get login cookie
 export function getLoginCookie() {
     const user = localStorage.getItem('user');

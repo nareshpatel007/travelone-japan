@@ -5,8 +5,7 @@ import CommonHeader from "@/components/header/common-header";
 import CommonFooter from "@/components/footer/common-footer";
 import { MapPin, Landmark, Activity, Utensils, BedDouble, SearchAlertIcon } from "lucide-react";
 import Image from "next/image";
-import PageHeading from "../common/page-heading";
-import { LandingPlanTripModal } from "../plan_your_trip/landing-popup";
+import { StartJourneyModal } from "../plan_your_trip/journey-popup";
 import { capitalize } from "@/lib/utils";
 
 // Define Props
@@ -138,9 +137,10 @@ export default function ArchetypeLanding({ type, country }: Props) {
                     )}
 
                     {/* Result */}
-                    {!isLoading && countryData && (
+                    {!isLoading && (countryData || otherData) && (
                         <div className="max-w-7xl mx-auto px-5 md:px-0 py-6 md:py-16 space-y-12">
-                            <div className="space-y-10">
+                            {/* Country */}
+                            {countryData && <div className="space-y-10">
                                 {/* HERO SECTION */}
                                 <div className="text-center space-y-6">
                                     <p className="uppercase tracking-widest text-sm text-gray-500">
@@ -181,7 +181,7 @@ export default function ArchetypeLanding({ type, country }: Props) {
                                     <BedDouble className="w-6 h-6 text-amber-500" />,
                                     countryData?.stay
                                 )}
-                            </div>
+                            </div>}
 
                             {/* Button */}
                             <div className="text-center">
@@ -260,7 +260,7 @@ export default function ArchetypeLanding({ type, country }: Props) {
                     )}
 
                     {/* Not Found */}
-                    {!isLoading && !countryData && (
+                    {!isLoading && (!countryData && !otherData) && (
                         <div className="mx-auto max-w-4xl py-24 text-center space-y-6">
                             <SearchAlertIcon
                                 size={120}
@@ -275,7 +275,7 @@ export default function ArchetypeLanding({ type, country }: Props) {
                         </div>
                     )}
 
-                    <LandingPlanTripModal
+                    <StartJourneyModal
                         open={openCommonPlanTrip}
                         onOpenChange={setOpenCommonPlanTrip}
                         selectedCountry={selectedCountry}

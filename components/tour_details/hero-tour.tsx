@@ -1,17 +1,19 @@
 "use client"
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
-import { Check, ChevronLeft, ChevronRight, Heart, Loader2, MoveRight } from "lucide-react";
+import { Check, MoveRight } from "lucide-react";
 import 'react-loading-skeleton/dist/skeleton.css';
 import { formatPrice } from "@/lib/utils";
-import { findTourInWishlist, getLoginCookie, isLoggedIn, updateHeaderWishlistCount } from "@/lib/auth";
+import { findTourInWishlist, updateHeaderWishlistCount } from "@/lib/auth";
 import { LoginModal } from "../common/login-modal";
 import { sendFbEvent } from "@/lib/sendFbEvent";
+import GallerySlider from "./gallery-slider";
 
 // Define props
 interface Props {
+    isAdsLanding?: boolean;
     tour: any;
+    metaData: any;
     packages: any;
     city_nights: any;
     selectedPackage: any;
@@ -23,7 +25,9 @@ interface Props {
 }
 
 export default function HeroTour({
+    isAdsLanding,
     tour,
+    metaData,
     packages,
     city_nights,
     selectedPackage,
@@ -35,43 +39,12 @@ export default function HeroTour({
 }: Props) {
     // Define state
     const [openLogin, setOpenLogin] = useState<boolean>(false);
-    const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [isWishlisted, setIsWishlisted] = useState(false);
 
     // Check if tour is wishlisted
     useEffect(() => {
         setIsWishlisted(findTourInWishlist(tour?.id));
     }, [tour]);
-
-    // Total images
-    const totalImages = tour?.media_gallery?.sightseeing?.length || 0;
-
-    // Next image
-    const nextImage = () => {
-        setCurrentImageIndex((prev) =>
-            prev === totalImages - 1 ? 0 : prev + 1
-        );
-    };
-
-    // Previous image
-    const prevImage = () => {
-        setCurrentImageIndex((prev) =>
-            prev === 0 ? totalImages - 1 : prev - 1
-        );
-    };
-
-    // Auto change image
-    useEffect(() => {
-        if (!tour?.media_gallery?.sightseeing?.length) return;
-        const interval = setInterval(() => {
-            setCurrentImageIndex((prevIndex) =>
-                prevIndex === tour.media_gallery.sightseeing.length - 1
-                    ? 0
-                    : prevIndex + 1
-            );
-        }, 4000);
-        return () => clearInterval(interval);
-    }, [tour?.media_gallery?.sightseeing]);
 
     // Handle wishlist
     const handleWishlist = () => {
@@ -99,50 +72,20 @@ export default function HeroTour({
         }
     };
 
+    // Gallery images
+    const galleryImages = tour?.media_gallery?.sightseeing && tour.media_gallery.sightseeing.length > 0 ? tour.media_gallery.sightseeing : ["/placeholder.svg"];
+
     return (
         <>
             <div className="w-full">
                 <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 items-stretch">
-                    <div className="relative overflow-hidden w-full h-[220px] sm:h-[300px] md:h-full lg:h-full">
-                        <div
-                            className="flex h-full transition-transform duration-700 ease-in-out"
-                            style={{ transform: `translateX(-${currentImageIndex * 100}%)` }}
-                        >
-                            {tour?.media_gallery?.sightseeing?.map((img: string, index: number) => (
-                                <div key={index} className="relative min-w-full h-full">
-                                    <Image
-                                        src={img || "/placeholder-500x500.svg"}
-                                        alt={`Tour Image ${index + 1}`}
-                                        fill
-                                        priority={index === 0}
-                                        sizes="(min-width: 1024px) 50vw, 100vw"
-                                        className="object-cover object-center"
-                                    />
-                                </div>
-                            ))}
-                        </div>
-                        <button
-                            onClick={handleWishlist}
-                            className="absolute top-4 right-4 bg-white/90 hover:bg-white p-2 rounded-full shadow-lg cursor-pointer transition"
-                        >
-                            <Heart
-                                size={24}
-                                className={`${isWishlisted ? "fill-[#ef2853] text-[#ef2853]" : "text-gray-600 hover:fill-[#ef2853] hover:text-[#ef2853]"}`}
-                            />
-                        </button>
-                        <button
-                            onClick={prevImage}
-                            className="absolute left-3 md:left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 cursor-pointer rounded-full"
-                        >
-                            <ChevronLeft size={24} />
-                        </button>
-                        <button
-                            onClick={nextImage}
-                            className="absolute right-3 md:right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 cursor-pointer rounded-full"
-                        >
-                            <ChevronRight size={24} />
-                        </button>
-                    </div>
+                    <GallerySlider
+                        galleryImages={galleryImages}
+                        isAdsLanding={isAdsLanding}
+                        isWishlisted={isWishlisted}
+                        handleWishlist={handleWishlist}
+                    />
+
                     <div className="flex flex-col h-full">
                         <div className="bg-[#FFF9EE] text-white p-5 md:p-6 border-b border-[#d9cec1]">
                             <div className="max-w-7xl mx-auto">
@@ -152,9 +95,24 @@ export default function HeroTour({
                                             <span className="text-black text-xl md:text-2xl leading-tight font-medium">
                                                 {tour?.name}
                                             </span>
-                                            <span className="inline-block bg-[#ef2853] px-3 py-0.5 md:py-1 rounded text-sm font-semibold text-white">
+
+                                            {/* For Normal Landing */}
+                                            {!isAdsLanding && <span className="inline-block bg-[#ef2853] px-3 py-0.5 md:py-1 rounded text-sm font-semibold text-white">
                                                 {tour?.tour_type}
-                                            </span>
+                                            </span>}
+
+                                            {/* For Ads Landing */}
+                                            {isAdsLanding && <>
+                                                <span className="inline-block bg-amber-200 px-3 py-0.5 md:py-1 rounded text-sm font-semibold text-black border border-amber-300">
+                                                    {tour?.tour_type} of 16
+                                                </span>
+                                                <span className="inline-block bg-amber-200 px-3 py-0.5 md:py-1 rounded text-sm font-semibold text-black border border-amber-300">
+                                                    Start Date: 17 Oct '26
+                                                </span>
+                                                <span className="inline-block bg-amber-200 px-3 py-0.5 md:py-1 rounded text-sm font-semibold text-black border border-amber-300">
+                                                    Only 8 Seats Left
+                                                </span>
+                                            </>}
                                         </div>
 
                                         <p className="text-sm md:text-base text-black">
@@ -179,9 +137,57 @@ export default function HeroTour({
                                 </div>
                             </div>
                         </div>
-                        <div className="bg-[#FFF9EE]/50 p-5 md:p-6 flex-1 border-b border-[#d9cec1]">
-                            <span className="text-md md:text-lg font-medium text-gray-900 mb-3 block">Select Your Package</span>
-                            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+                        <div className="bg-[#FFF9EE]/50 p-5 md:p-6 flex-1 border-b border-[#d9cec1] space-y-5">
+                            {packages.length > 1 && <span className="text-md md:text-lg font-medium text-gray-900 mb-3 block">
+                                Select Your Package
+                            </span>}
+
+                            {/* For Ads Landing */}
+                            {isAdsLanding && <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                                {packages.map((pkg: any) => (
+                                    <div
+                                        key={pkg.no}
+                                        onClick={() => setSelectedPackage(pkg.no)}
+                                        className={`border-1 rounded-sm p-3 space-y-2 cursor-pointer transition-all text-center ${selectedPackage === pkg.no
+                                            ? "border-[#2F5D50] bg-white shadow-lg"
+                                            : "border-gray-300 bg-white/50 hover:border-[#2F5D50]"
+                                            }`}
+                                    >
+                                        {packages.length > 1 && <div className="flex justify-center">
+                                            {selectedPackage === pkg.no ? (
+                                                <div className="w-6 h-6 bg-[#ef2853] rounded-full flex items-center justify-center text-white font-bold">
+                                                    <Check className="h-4 w-4" />
+                                                </div>
+                                            ) : (
+                                                <div className="w-6 h-6 border-2 border-gray-300 rounded-full"></div>
+                                            )}
+                                        </div>}
+
+                                        {/* For Desktop */}
+                                        <div className="hidden md:block">
+                                            <span className="font-medium text-gray-900 block">{pkg.name}</span>
+                                            <div className="space-y-1">
+                                                <p className="text-xs text-gray-600 line-through">${formatPrice(Number(pkg.price) + 500, 0)}</p>
+                                                <p className="text-xl md:text-lg font-semibold text-black">${formatPrice(pkg.price, 0)}</p>
+                                                <p className="text-xs text-gray-600">Per Person</p>
+                                            </div>
+                                            {pkg.no != 1 && <p className="text-xs text-gray-600 font-normal">Double Sharing</p>}
+                                        </div>
+
+                                        {/* For Mobile */}
+                                        <div className="block md:hidden">
+                                            <span className="font-semibold text-md text-gray-900">
+                                                {pkg.name} - US$ {formatPrice(pkg.price, 0)}
+                                            </span>
+                                            {pkg.no == 1 && <p className="text-xs text-gray-600 font-normal">Per Person</p>}
+                                            {pkg.no != 1 && <p className="text-xs text-gray-600 font-normal">Per Person Double Sharing</p>}
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>}
+
+                            {/* Non Ads Landing */}
+                            {!isAdsLanding && <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4">
                                 {packages.map((pkg: any) => (
                                     <div
                                         key={pkg.no}
@@ -212,8 +218,17 @@ export default function HeroTour({
                                         {pkg.no != 1 && <p className="text-xs text-gray-600 font-normal">Double Sharing</p>}
                                     </div>
                                 ))}
-                            </div>
-                            <div className="flex gap-3 flex-wrap mb-3">
+                            </div>}
+
+                            {/* For Ads */}
+                            {isAdsLanding && <div className="flex justify-center md:justify-start text-center md:text-left flex-wrap mb-3">
+                                <button className="bg-[#ef2853] border-1 border-[#ef2853] hover:bg-white hover:text-[#ef2853] text-white px-4 py-2 rounded font-semibold text-sm cursor-pointer" onClick={() => setOpenCustomizeTripPopup(true)}>
+                                    Inquire Now
+                                </button>
+                            </div>}
+
+                            {/* For Non-Ads */}
+                            {!isAdsLanding && <div className="flex gap-3 flex-wrap mb-3">
                                 <button className="bg-[#ef2853] border-1 border-[#ef2853] hover:bg-white hover:text-[#ef2853] text-white px-4 py-2 rounded font-semibold text-sm cursor-pointer" onClick={() => setOpenBookingCartPopup(true)}>
                                     Book {packages.find((p: any) => p.no === selectedPackage)?.name}
                                 </button>
@@ -225,12 +240,13 @@ export default function HeroTour({
                                 <button className="bg-white border-1 border-black text-black hover:bg-black hover:text-white hover:border-[#333] cursor-pointer px-4 py-2 rounded font-semibold text-sm" onClick={() => setOpenDownloadBrochurePopup(true)}>
                                     Download Brochure
                                 </button>
+                            </div>}
 
-                                {/* {is_logged_in && <button className="bg-white border-1 border-black text-black hover:bg-black hover:text-white hover:border-[#333] cursor-pointer px-4 py-2 rounded font-semibold text-sm" onClick={() => setOpenQuotePopup(true)}>
-                                    Quote
-                                </button>} */}
-                            </div>
-                            <p className="text-sm text-gray-900">*Rates may change if the tour is customized</p>
+                            {/* For Non-Ads */}
+                            {!isAdsLanding && <div className="space-y-2">
+                                {metaData?.package_line && <p className="text-sm text-gray-900">{metaData?.package_line}</p>}
+                                <p className="text-sm text-gray-900">*Rates may change if the tour is customized</p>
+                            </div>}
                         </div>
                     </div>
                 </div>

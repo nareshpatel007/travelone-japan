@@ -8,6 +8,7 @@ import { useState } from "react";
 type Props = {
     activeTab: string;
     tour: any;
+    metaData: any;
     city_nights: any;
     tour_packages: any;
     attractions: any;
@@ -16,7 +17,7 @@ type Props = {
     cancellation_payment: any;
 }
 
-export function OverviewTabContent({ activeTab, tour, city_nights, tour_packages, attractions, tour_terms, payment_schedule, cancellation_payment }: Props) {
+export function OverviewTabContent({ activeTab, tour, metaData, city_nights, tour_packages, attractions, tour_terms, payment_schedule, cancellation_payment }: Props) {
     // Define cities
     const cities = Object.keys(attractions);
 
@@ -73,8 +74,15 @@ export function OverviewTabContent({ activeTab, tour, city_nights, tour_packages
                                                     <ArrowRight className="w-4 h-4 text-black inline-block" />
                                                 </span>
                                                 <div>
-                                                    <span className="font-semibold text-black">{city}:</span>
-                                                    {" "}{hotels.join(", ")} or similar
+                                                    {metaData?.is_remove_similar_in_hotel == "true" ? (
+                                                        <>
+                                                            <span className="font-semibold text-black">{city}:</span> {" "}{hotels.join(", ")}
+                                                        </>
+                                                    ) : (
+                                                        <>
+                                                            <span className="font-semibold text-black">{city}:</span> {" "}{hotels.join(", ")} or similar
+                                                        </>
+                                                    )}
                                                 </div>
                                             </li>
                                         )
@@ -100,8 +108,8 @@ export function OverviewTabContent({ activeTab, tour, city_nights, tour_packages
                                 key={city}
                                 onClick={() => setActiveCity(city)}
                                 className={`whitespace-nowrap px-5 py-2 rounded-full text-sm md:text-base border transition cursor-pointer ${activeCity === city
-                                        ? "bg-black text-white border-black"
-                                        : "bg-white text-black border-gray-300 hover:border-black"
+                                    ? "bg-black text-white border-black"
+                                    : "bg-white text-black border-gray-300 hover:border-black"
                                     }`}
                             >
                                 {city}

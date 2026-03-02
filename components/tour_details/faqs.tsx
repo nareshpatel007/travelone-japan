@@ -12,7 +12,7 @@ export default function FAQsList({ data }: Props) {
     const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
 
     return (
-        <div className="bg-[#FFF9EE] py-12 px-5 md:px-0">
+        <div id="FAQ" className="bg-[#FFF9EE] py-12 px-5 md:px-0">
             <div className="max-w-7xl mx-auto space-y-12">
                 <div className="text-center space-y-1">
                     <h3 className="text-black text-3xl md:text-6xl leading-tight font-normal">
@@ -39,7 +39,7 @@ export default function FAQsList({ data }: Props) {
                                 />
                             </button>
                             {expandedIndex === index && (
-                                <div className="py-6 border-b border-gray-300 animate-in fade-in slide-in-from-top-2 duration-300">
+                                <div className="p-4 border-b bg-white border-gray-300 animate-in fade-in slide-in-from-top-2 duration-300">
                                     <p className="text-black leading-relaxed text-base">{item[1]}</p>
                                 </div>
                             )}

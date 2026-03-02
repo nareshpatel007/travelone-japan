@@ -34,6 +34,7 @@ export default function DestinationPage() {
                     },
                     body: JSON.stringify({
                         order_by: "name",
+                        as_per_tour: true,
                     }),
                 });
 

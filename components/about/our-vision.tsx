@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { CommonPlanTripModal } from "../plan_your_trip/common-popup";
+import { StartJourneyModal } from "../plan_your_trip/journey-popup";
 
 export default function OurVision() {
     // Define state
@@ -55,7 +55,7 @@ export default function OurVision() {
             </div>
 
             {/* Plan Your Trip Modal */}
-            <CommonPlanTripModal open={openPlanYourTripModel} onOpenChange={setOpenPlanYourTripModel} />
+            <StartJourneyModal open={openPlanYourTripModel} onOpenChange={setOpenPlanYourTripModel} />
         </>
     );
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { LandingPlanTripModal } from "../plan_your_trip/landing-popup";
+import { StartJourneyModal } from "../plan_your_trip/journey-popup";
 import { useState } from "react";
 
 // Define props
@@ -44,7 +44,11 @@ export default function HeroBannerSection({ pageData }: Props) {
             </section>
 
             {/* Plan Your Trip Modal */}
-            <LandingPlanTripModal open={openPlanYourTripModel} onOpenChange={setOpenPlanYourTripModel} />
+            <StartJourneyModal
+                open={openPlanYourTripModel}
+                onOpenChange={setOpenPlanYourTripModel}
+                selectedCountry={pageData?.single?.name}
+            />
         </>
     );
 }

@@ -26,9 +26,7 @@ export default function VideoHeroSection({ tour, videos }: Props) {
 
     return (
         <>
-            {/* HERO SECTION */}
-            <section className="relative w-full h-[30vh] md:h-[60vh] overflow-hidden">
-                {/* Background Image */}
+            <section id="Video" className="relative w-full h-[30vh] md:h-[60vh] overflow-hidden">
                 <Image
                     src={tour?.featured_image}
                     alt="Travel experience"
@@ -37,10 +35,8 @@ export default function VideoHeroSection({ tour, videos }: Props) {
                     className="object-cover"
                 />
 
-                {/* Overlay */}
                 <div className="absolute inset-0 bg-black/40" />
 
-                {/* Play Button */}
                 <button
                     onClick={() => setOpen(true)}
                     className="absolute inset-0 flex items-center justify-center cursor-pointer"
@@ -52,11 +48,9 @@ export default function VideoHeroSection({ tour, videos }: Props) {
                 </button>
             </section>
 
-            {/* VIDEO MODAL */}
             {open && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4">
                     <div className="relative w-full max-w-4xl aspect-video bg-black rounded-lg overflow-hidden">
-                        {/* Close Button */}
                         <button
                             onClick={() => setOpen(false)}
                             className="absolute top-3 right-3 z-10 bg-red-500 text-white rounded-full p-2 hover:scale-110 transition cursor-pointer"
@@ -64,7 +58,6 @@ export default function VideoHeroSection({ tour, videos }: Props) {
                             <X size={18} />
                         </button>
 
-                        {/* Video */}
                         <iframe
                             className="w-full h-full"
                             src={`https://www.youtube.com/embed/${fetchVideoId(videos[0])}?autoplay=1`}

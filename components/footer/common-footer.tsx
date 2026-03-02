@@ -6,6 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import FooterCurveSection from '../home/footer-curve-section';
 import NewsletterSubscribe from './newsletter';
+import CookieConsent from './cookie-consent';
 
 // Define props
 type Props = {
@@ -178,7 +179,7 @@ export default function CommonFooter({ isStickyShow = false }: Props) {
                                 <Youtube className="h-4 w-4" />
                             </button>
                         </Link>
-                        
+
                         <Link href="https://www.facebook.com/travelone.technologies.inc/" target="_blank" rel="noopener noreferrer">
                             <button type="button" className="flex items-center justify-center bg-[#0165E1] hover:bg-[#0165E1]/90 text-white p-2 rounded-full transition-colors cursor-pointer">
                                 <Facebook className="h-4 w-4" />
@@ -227,6 +228,9 @@ export default function CommonFooter({ isStickyShow = false }: Props) {
                         <ChevronUp size={24} />
                     </button>
                 )}
+
+                {/* Cookie Popup */}
+                <CookieConsent isStickyShow={isStickyShow} />
             </footer>
         </>
     );

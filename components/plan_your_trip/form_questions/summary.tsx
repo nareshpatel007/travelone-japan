@@ -120,12 +120,6 @@ export default function StepSummary({
                 shouldShow: () => true,
                 isAnswered: (form: any) => !!form.assistance,
             },
-            {
-                label: "Communication Method",
-                stepKey: "communication",
-                shouldShow: () => true,
-                isAnswered: (form: any) => !!form.communication,
-            },
         ];
 
         // Landing page adjustments

@@ -13,6 +13,7 @@ export default function Page() {
     // Get slug
     const params = useParams();
     const booking_id = params?.booking_id;
+    const activeTab = getQuery("tab", "itinerary");
 
     // Define state
     const [ready, setReady] = useState(false);
@@ -20,11 +21,9 @@ export default function Page() {
     const [bookingData, setBookingData] = useState<any>({});
 
     useEffect(() => {
-        requestAnimationFrame(() => {
-            setReady(true);
-        });
+        requestAnimationFrame(() => { setReady(true); });
     }, []);
-
+    
     // Init data
     useEffect(() => {
         const controller = new AbortController();
@@ -74,6 +73,7 @@ export default function Page() {
                     />
 
                     <TabContent
+                        activeTab={activeTab}
                         orderData={bookingData?.order}
                         cartData={bookingData?.cart_data}
                         itineraryData={bookingData?.tour_itinerary || []}
@@ -112,3 +112,9 @@ export default function Page() {
         </>
     );
 }
+
+// Get query
+export const getQuery = (key: string, fallback = "") =>
+    typeof window === "undefined"
+        ? fallback
+        : new URLSearchParams(window.location.search).get(key) ?? fallback;
