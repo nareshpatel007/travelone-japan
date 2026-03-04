@@ -3,18 +3,21 @@
 import CommonHeader from "@/components/header/common-header";
 import CommonFooter from "@/components/footer/common-footer";
 import { useEffect, useState } from "react";
-import { CheckCircle, Key } from "lucide-react";
+import { CheckCircle, FileVideoCamera, Key, Video } from "lucide-react";
 import Image from "next/image";
 import TravelExpert from "@/components/tour_details/travel-experts";
 import PageHelpful from "@/components/common/helpful";
 import Link from "next/link";
+import FeedbackForm from "@/components/personas/feedback-rating";
+import { ConnectTravelone } from "@/components/common/connect-travelone";
 
 export default function Page() {
     // Get query parms
     const token = getQuery("token", "");
 
     // Define state
-    const [ready, setReady] = useState(false);
+    const [ready, setReady] = useState<boolean>(false);
+    const [openConnectTravelone, setOpenConnectTravelone] = useState<boolean>(false);
     const [resultData, rowResultData] = useState<any>(null);
     const [selectedDestination, setSelectedDestination] = useState<string>("all");
     const [isLoading, setIsLoading] = useState(true);
@@ -131,27 +134,6 @@ export default function Page() {
                                     </div>
                                 </div>}
 
-                                {/* Static Section */}
-                                <div className="max-w-5xl mx-auto px-5 md:px-0 py-12 space-y-12">
-                                    <div className="text-center space-y-8">
-                                        <h2 className="text-3xl md:text-6xl md:max-w-4xl md:mx-auto leading-tight font-normal">
-                                            Behind the Blueprint: The Science of Your Selection
-                                        </h2>
-
-                                        <div className="flex justify-center">
-                                            <span className="w-20 h-1 bg-black" />
-                                        </div>
-
-                                        <p className="text-base sm:text-lg text-black leading-relaxed">
-                                            To derive your Signature Results, our engine moves beyond traditional destination filtering and enters the realm of Agentic Reasoning. We cross-referenced your 30 Marker Points—a high-fidelity diagnostic of your Cognitive Travel Architecture. This includes an algorithmic analysis of your Environmental Resonance (climate-resilience and sensory-density scores) and your Service-Friction Index (the precise balance between 'Invisible Tech' and 'Curated Human Intervention').
-                                        </p>
-
-                                        <p className="text-base sm:text-lg text-black leading-relaxed">
-                                            Our proprietary engine then performed a Multi-Layered Asset Match, scanning global infrastructure data to identify the exact coordinates where the local landscape, hotel architecture, and transit velocity align with your psychological needs. These are not merely vacations; they are Adaptive Ecosystems built to respond to the unique frequency of your Travel DNA.
-                                        </p>
-                                    </div>
-                                </div>
-
                                 {/* EXPERIENCE HIGHLIGHTS */}
                                 <div className="space-y-8">
                                     <div className="max-w-5xl mx-auto space-y-2 text-center">
@@ -227,11 +209,44 @@ export default function Page() {
                                         </div>
                                     </div>
                                 </div>
+
+                                {/* Feedback Rating */}
+                                <FeedbackForm token={token} />
+
+                                {/* Calendly Integration */}
+                                <div className="flex justify-center">
+                                    <button
+                                        onClick={() => setOpenConnectTravelone(true)}
+                                        className="flex items-center justify-center gap-2 px-6 py-2 bg-yellow-400 text-black rounded hover:bg-black hover:text-white cursor-pointer"
+                                    >
+                                        <Video className="w-5 h-5" /> Connect with TravelOne
+                                    </button>
+                                </div>
+
+                                {/* Static Section */}
+                                <div className="max-w-5xl mx-auto px-5 md:px-0 py-12 space-y-12">
+                                    <div className="text-center space-y-8">
+                                        <h2 className="text-3xl md:text-6xl md:max-w-4xl md:mx-auto leading-tight font-normal">
+                                            Behind the Blueprint: The Science of Your Selection
+                                        </h2>
+
+                                        <div className="flex justify-center">
+                                            <span className="w-20 h-1 bg-black" />
+                                        </div>
+
+                                        <p className="text-base sm:text-lg text-black leading-relaxed">
+                                            To derive your Signature Results, our engine moves beyond traditional destination filtering and enters the realm of Agentic Reasoning. We cross-referenced your 30 Marker Points—a high-fidelity diagnostic of your Cognitive Travel Architecture. This includes an algorithmic analysis of your Environmental Resonance (climate-resilience and sensory-density scores) and your Service-Friction Index (the precise balance between 'Invisible Tech' and 'Curated Human Intervention').
+                                        </p>
+
+                                        <p className="text-base sm:text-lg text-black leading-relaxed">
+                                            Our proprietary engine then performed a Multi-Layered Asset Match, scanning global infrastructure data to identify the exact coordinates where the local landscape, hotel architecture, and transit velocity align with your psychological needs. These are not merely vacations; they are Adaptive Ecosystems built to respond to the unique frequency of your Travel DNA.
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
 
                             <div>
                                 <TravelExpert />
-
                                 <PageHelpful
                                     text="Was this TravelDNA report helpful?"
                                     pageName={`persona-result?token=/${token}`}
@@ -256,6 +271,11 @@ export default function Page() {
 
                     <CommonFooter />
                 </div>
+
+                <ConnectTravelone
+                    open={openConnectTravelone}
+                    onOpenChange={setOpenConnectTravelone}
+                />
             </>}
         </>
     );

@@ -16,11 +16,11 @@ const leadership = [
         role: "Regional Director of Growth – USA",
         image: "/about/img_team_63e33bb2382cf1-81493713-48358927.webp"
     },
-    {
-        name: "Michael Bronfman",
-        role: "Regional Director of Growth – Canada",
-        image: "/about/img_team_63e33bceb55f81-24897182-80425447.webp"
-    },
+    // {
+    //     name: "Michael Bronfman",
+    //     role: "Regional Director of Growth – Canada",
+    //     image: "/about/img_team_63e33bceb55f81-24897182-80425447.webp"
+    // },
     {
         name: "Naresh Patel",
         role: " Lead Systems Architect – India",
@@ -83,6 +83,7 @@ export default function LeadershipTeam() {
                         <div className="flex justify-center lg:justify-start">
                             <Link
                                 href="https://www.linkedin.com/in/bhavinofficial/"
+                                rel="nofollow"
                                 target="_blank"
                                 className="inline-flex items-center gap-2 border border-black rounded-full p-3 hover:bg-black hover:text-white transition"
                             >
@@ -91,7 +92,7 @@ export default function LeadershipTeam() {
                         </div>
                     </div>
                 </div>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
                     {leadership.map((member, index) => (
                         <div key={index} className="text-center space-y-6">
                             <div className="relative flex justify-center">

@@ -119,6 +119,7 @@ export default function CommonHeader({ landingPytrip = false }: Props) {
                             <Link
                                 href="https://www.youtube.com/@traveloneio"
                                 target="_blank"
+                                rel="nofollow"
                                 className="flex items-center gap-1.5 hover:underline underline-offset-4"
                             >
                                 <Youtube className="w-4 h-4 text-red-600" />
@@ -128,6 +129,7 @@ export default function CommonHeader({ landingPytrip = false }: Props) {
                             <Link
                                 href="https://www.facebook.com/travelone.technologies.inc/"
                                 target="_blank"
+                                rel="nofollow"
                                 className="flex items-center gap-1.5 hover:underline underline-offset-4"
                             >
                                 <Facebook className="w-3.5 h-3.5 text-blue-600" />
@@ -137,6 +139,7 @@ export default function CommonHeader({ landingPytrip = false }: Props) {
                             <Link
                                 href="https://www.instagram.com/travelone.io/"
                                 target="_blank"
+                                rel="nofollow"
                                 className="flex items-center gap-1.5 hover:underline underline-offset-4"
                             >
                                 <Instagram className="w-3.5 h-3.5 text-pink-500" />
@@ -146,6 +149,7 @@ export default function CommonHeader({ landingPytrip = false }: Props) {
                             <Link
                                 href="https://www.linkedin.com/company/travelone-technologies-inc/"
                                 target="_blank"
+                                rel="nofollow"
                                 className="flex items-center gap-1.5 hover:underline underline-offset-4"
                             >
                                 <Linkedin className="w-3.5 h-3.5 text-blue-500" />

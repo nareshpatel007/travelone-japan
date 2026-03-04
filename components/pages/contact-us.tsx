@@ -6,12 +6,12 @@ import { useEffect, useState } from "react";
 import { MapPin, Phone, Mail, Send, Star, ExternalLink } from "lucide-react";
 import Link from "next/link";
 import PageHeading from "@/components/common/page-heading";
-import FullBannerSection from "@/components/about/full-banner";
-import StartWithWho from "@/components/about/start-with-who";
 import StickyHomeHeader from "@/components/header/sticky-home-header";
 import { PhoneInput } from "react-international-phone";
 import "react-international-phone/style.css";
 import { sendFbEvent } from "@/lib/sendFbEvent";
+import StartWithWho from "../contact/start-with-who";
+import EconomicTimesSection from "../contact/economic-times";
 
 export default function ContactPage() {
     // Define state
@@ -225,14 +225,16 @@ export default function ContactPage() {
                                 )}
                             </div>
                         </div>
-                        <div className="lg:w-80 space-y-4">
+                        <div className="lg:w-90 space-y-4">
                             <div className="bg-white rounded-xl p-5 border border-gray-200 hover:bg-gray-50">
                                 <div className="flex items-start gap-4">
                                     <div className="p-2 bg-[#FFF9EE] rounded-lg">
                                         <MapPin className="h-5 w-5 text-black" />
                                     </div>
                                     <div>
-                                        <span className="font-semibold text-gray-900 block mb-2">USA</span>
+                                        <span className="font-semibold text-gray-900 block mb-2">
+                                            USA (Travel Services)
+                                        </span>
                                         <p className="text-sm text-black/90">
                                             418 Broadway #11017, Albany, NY, 12207, USA
                                         </p>
@@ -245,7 +247,9 @@ export default function ContactPage() {
                                         <MapPin className="h-5 w-5 text-black" />
                                     </div>
                                     <div>
-                                        <span className="font-semibold text-gray-900 block mb-2">Canada</span>
+                                        <span className="font-semibold text-gray-900 block mb-2">
+                                            Canada (Technology Services)
+                                        </span>
                                         <p className="text-sm text-black/90">
                                             19 Grand Trunk Crescent, Toronto, ON M5J 3A3
                                         </p>
@@ -297,19 +301,19 @@ export default function ContactPage() {
                                     </div>
                                 </div>
                             </div>
-                            <div className="bg-white rounded-xl p-5 border border-gray-200 hover:bg-gray-50">
+                            {/* <div className="bg-white rounded-xl p-5 border border-gray-200 hover:bg-gray-50">
                                 <div className="flex items-start gap-4">
                                     <p className="flex items-center gap-1 text-sm text-black">
                                         We operate Canada based business under host agency Century Travel Services - TICO - 2856798
                                     </p>
                                 </div>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 </div>
 
+                <EconomicTimesSection />
                 <StartWithWho />
-                <FullBannerSection />
                 <CommonFooter isStickyShow={true} />
                 <StickyHomeHeader />
             </>}

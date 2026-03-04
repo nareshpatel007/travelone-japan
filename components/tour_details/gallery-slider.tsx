@@ -34,15 +34,21 @@ export default function GallerySlider({ galleryImages, isAdsLanding, isWishliste
                     disableOnInteraction: false,
                     pauseOnMouseEnter: true,
                 }}
-                navigation={{
-                    prevEl: prevRef.current,
-                    nextEl: nextRef.current,
+                onSwiper={(swiper: any) => {
+                    setTimeout(() => {
+                        if (!swiper.destroyed) {
+                            swiper.params.navigation.prevEl = prevRef.current;
+                            swiper.params.navigation.nextEl = nextRef.current;
+                            swiper.navigation.init();
+                            swiper.navigation.update();
+                        }
+                    });
                 }}
-                onInit={(swiper: any) => {
-                    swiper.params.navigation.prevEl = prevRef.current;
-                    swiper.params.navigation.nextEl = nextRef.current;
-                    swiper.navigation.init();
-                    swiper.navigation.update();
+                onBeforeInit={(swiper) => {
+                    if (typeof swiper.params.navigation !== "boolean") {
+                        swiper.params.navigation!.prevEl = prevRef.current;
+                        swiper.params.navigation!.nextEl = nextRef.current;
+                    }
                 }}
                 className="h-full"
             >

@@ -7,14 +7,14 @@ import { useEffect, useState } from "react";
 import ThreeImageShowcase from "@/components/home/three-image-showcase";
 import GlobalFinancialSection from "@/components/home/global-financial";
 import AboutTravelone from "@/components/home/about-travelone";
-import ThreeStepBanner from "@/components/home/tree-step-banner";
 import ToursSlider from "@/components/home/tours-slider";
-import FullBannerSection from "@/components/home/full-banner";
 import BlogSlider from "@/components/home/blog-slider";
 import StickyHomeHeader from "@/components/header/sticky-home-header";
 import WhyTravelOne from "@/components/home/why-travelone";
 import { InitializePersonaModal } from "@/components/plan_your_trip/initialize-persona";
 import { StartJourneyModal } from "@/components/plan_your_trip/journey-popup";
+import EconomicTimesSection from "@/components/contact/economic-times";
+import TheRealityCheck from "@/components/home/the-reality-check";
 
 export default function HomePage() {
     // Define state
@@ -95,19 +95,13 @@ export default function HomePage() {
                     setOpenPlanYourTripModel={setOpenPlanYourTripModel}
                     setOpenInitializePersonaModel={setOpenInitializePersonaModel}
                 />
-                <ThreeStepBanner
-                    onOpenChange={setOpenPlanYourTripModel}
-                    setOpenInitializePersonaModel={setOpenInitializePersonaModel}
-                />
-                <ThreeImageShowcase destinationList={destinationList} />
+                <EconomicTimesSection bgColor={"bg-white"} />
+                <TheRealityCheck />
                 <WhyTravelOne />
-                <ToursSlider toursList={toursList} />
                 <GlobalFinancialSection />
                 <AboutTravelone />
-                <FullBannerSection
-                    onOpenChange={setOpenPlanYourTripModel}
-                    setOpenInitializePersonaModel={setOpenInitializePersonaModel}
-                />
+                <ThreeImageShowcase destinationList={destinationList} />
+                <ToursSlider toursList={toursList} />
                 <BlogSlider blogList={blogList} />
                 <CommonFooter isStickyShow={true} />
                 <StickyHomeHeader />

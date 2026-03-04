@@ -363,25 +363,25 @@ export function LoginModal({ open, onOpenChange }: Props) {
                             </p>
 
                             <div className="flex justify-center text-center gap-3 mt-5">
-                                <Link href="https://www.youtube.com/@traveloneio" target="_blank" rel="noopener noreferrer">
+                                <Link href="https://www.youtube.com/@traveloneio" target="_blank" rel="nofollow">
                                     <button type="button" className="flex items-center justify-center bg-[#ee2852] hover:bg-[#ee2852]/90 text-white p-2 rounded-full transition-colors cursor-pointer">
                                         <Youtube className="h-4 w-4" />
                                     </button>
                                 </Link>
 
-                                <Link href="https://www.facebook.com/travelone.technologies.inc/" target="_blank" rel="noopener noreferrer">
+                                <Link href="https://www.facebook.com/travelone.technologies.inc/" target="_blank" rel="nofollow">
                                     <button type="button" className="flex items-center justify-center bg-[#0165E1] hover:bg-[#0165E1]/90 text-white p-2 rounded-full transition-colors cursor-pointer">
                                         <Facebook className="h-4 w-4" />
                                     </button>
                                 </Link>
 
-                                <Link href="https://www.instagram.com/travelone.io/" target="_blank" rel="noopener noreferrer">
+                                <Link href="https://www.instagram.com/travelone.io/" target="_blank" rel="nofollow">
                                     <button type="button" className="flex items-center justify-center bg-[#f78da7] hover:bg-[#f78da7]/90 text-white p-2 rounded-full transition-colors cursor-pointer">
                                         <Instagram className="h-4 w-4" />
                                     </button>
                                 </Link>
 
-                                <Link href="https://www.linkedin.com/company/travelone-technologies-inc/" target="_blank" rel="noopener noreferrer">
+                                <Link href="https://www.linkedin.com/company/travelone-technologies-inc/" target="_blank" rel="nofollow">
                                     <button type="button" className="flex items-center justify-center bg-[#007aff] hover:bg-[#007aff]/90 text-white p-2 rounded-full transition-colors cursor-pointer">
                                         <Linkedin className="h-4 w-4" />
                                     </button>

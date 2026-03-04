@@ -13,50 +13,10 @@ export default function AdsLandingHeader() {
     return (
         <>
             <div className="hidden md:block bg-[#FBF2E3] text-sm">
-                <div className="px-4 h-10 flex items-center justify-between">
+                <div className="px-4 h-10 flex items-center justify-center">
                     <span className="font-medium text-gray-800">
                         TravelOne — A Global Platform Synchronizing Your Journey to Your Persona.
                     </span>
-
-                    <div className="flex items-center">
-                        <div className="flex items-center gap-5 text-xs font-semibold tracking-wide uppercase text-black">
-                            <Link
-                                href="https://www.youtube.com/@traveloneio"
-                                target="_blank"
-                                className="flex items-center gap-1.5 hover:underline underline-offset-4"
-                            >
-                                <Youtube className="w-4 h-4 text-red-600" />
-                                Youtube
-                            </Link>
-
-                            <Link
-                                href="https://www.facebook.com/travelone.technologies.inc/"
-                                target="_blank"
-                                className="flex items-center gap-1.5 hover:underline underline-offset-4"
-                            >
-                                <Facebook className="w-3.5 h-3.5 text-blue-600" />
-                                Facebook
-                            </Link>
-
-                            <Link
-                                href="https://www.instagram.com/travelone.io/"
-                                target="_blank"
-                                className="flex items-center gap-1.5 hover:underline underline-offset-4"
-                            >
-                                <Instagram className="w-3.5 h-3.5 text-pink-500" />
-                                Instagram
-                            </Link>
-
-                            <Link
-                                href="https://www.linkedin.com/company/travelone-technologies-inc/"
-                                target="_blank"
-                                className="flex items-center gap-1.5 hover:underline underline-offset-4"
-                            >
-                                <Linkedin className="w-3.5 h-3.5 text-blue-500" />
-                                LinkedIn
-                            </Link>
-                        </div>
-                    </div>
                 </div>
             </div>
             <header className="top-0 z-50 bg-white border-b border-[#d9cec1]">

@@ -26,10 +26,10 @@ export default function Reviews({ reviews }: Props) {
             {/* HEADING */}
             <div className="text-center space-y-1 mb-12">
                 <h2 className="text-black text-3xl md:text-6xl leading-tight font-normal">
-                    Recent Reviews
+                    What Our Travelers Say
                 </h2>
                 <span className="text-sm md:text-lg text-black">
-                    To receive our best monthly deals and travel inspiration.
+                    Join the 100+ Gujarati families from North America who have explored the world with TravelOne’s expert care.
                 </span>
             </div>
 

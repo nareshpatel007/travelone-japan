@@ -13,16 +13,14 @@ import OurCommitment from "@/components/about/our-commitment";
 import WhoWeAreSection from "@/components/about/who-we-are";
 import TeamGlobalIntelSection from "@/components/about/team-global";
 import StickyHomeHeader from "@/components/header/sticky-home-header";
+import EconomicTimesSection from "../contact/economic-times";
 
 export default function AboutPage() {
     // Define state
     const [ready, setReady] = useState(false);
 
     useEffect(() => {
-        // Wait one frame after hydration
-        requestAnimationFrame(() => {
-            setReady(true);
-        });
+        requestAnimationFrame(() => { setReady(true); });
     }, []);
 
     return (
@@ -32,12 +30,13 @@ export default function AboutPage() {
                 <HeroSection />
                 <ArchitectureModern />
                 <WhoWeAreSection />
-                <OurVision />
+                {/* <OurVision /> */}
+                <EconomicTimesSection bgColor={"bg-white"} />
                 <TravelOneJourney />
                 <LeadershipTeam />
                 <LocalExpertise />
-                <OurCommitment />
-                <TeamGlobalIntelSection />
+                {/* <OurCommitment /> */}
+                {/* <TeamGlobalIntelSection /> */}
                 <CommonFooter isStickyShow={true} />
                 <StickyHomeHeader />
             </>}

@@ -26,15 +26,15 @@ export default function GlobalFinancialSection() {
                         </p>
 
                         <p className="text-black text-base sm:text-lg">
-                            Our operations are led by TICO-Certified advisors and ACTA-Registered industry professionals. We maintain the highest standards of consumer protection and financial integrity in North America.
+                            Our operations are led by ASTA and ACTA-Registered industry professionals. We maintain the highest standards of consumer protection and financial integrity in North America.
                         </p>
                     </div>
 
-                    <div className="flex flex-wrap items-center justify-center lg:justify-start gap-6 pt-4">
-                        <Link href="/partnership/ACTA-License.jpeg" target="_blank">
+                    <div className="flex flex-wrap items-center justify-center lg:justify-start gap-10 pt-4">
+                        <Link href="/partnership/ASTA.pdf" target="_blank">
                             <Image
-                                src="/common/acta-logo.webp"
-                                alt="ACTA"
+                                src="/common/ASTA.png"
+                                alt="TICO"
                                 width={160}
                                 height={80}
                                 draggable="false"
@@ -42,14 +42,14 @@ export default function GlobalFinancialSection() {
                             />
                         </Link>
 
-                        <Link href="/partnership/TICO-Bhavin-Vora.pdf" target="_blank">
+                        <Link href="/partnership/ACTA-License.jpeg" target="_blank">
                             <Image
-                                src="/common/tico-logo.webp"
-                                alt="TICO"
+                                src="/common/acta-logo.webp"
+                                alt="ACTA"
                                 width={160}
                                 height={80}
                                 draggable="false"
-                                className="object-contain h-auto w-20 md:w-26"
+                                className="object-contain h-auto w-20 md:w-44"
                             />
                         </Link>
                     </div>
@@ -60,8 +60,8 @@ export default function GlobalFinancialSection() {
             <div className="flex items-center justify-center">
                 <div className="relative w-full h-full aspect-square overflow-hidden">
                     <Image
-                        src="https://ik.imagekit.io/288weifiq/nextjs/canada-day-celebration-with-maple-leaf-symbol_23-2151440473.jpg"
-                        alt="Canada USA Flag"
+                        src="/common/2151306044.jpg"
+                        alt="TravelOne"
                         fill
                         priority
                         className="object-cover transition-transform duration-700 hover:scale-105"

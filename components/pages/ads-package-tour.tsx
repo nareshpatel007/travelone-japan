@@ -174,8 +174,8 @@ export default function AdsSingleTourPage({ slug }: Props) {
                             <TrustedBy isAdsLanding={true} />
                         </div>
 
-                        <BestValueGuarantee />
                         <Reviews reviews={tourData?.tour_reviews ?? []} />
+                        <BestValueGuarantee />
                         <WhyTravelOne />
                         <FAQsList data={tourData?.tour_terms ?? []} />
                         <VideoHeroSection

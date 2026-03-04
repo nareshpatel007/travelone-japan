@@ -7,7 +7,6 @@ export default function TeamSection() {
         <>
             <section className="bg-white py-12 space-y-12">
                 <div className="max-w-7xl mx-auto px-5 sm:px-0 space-y-12">
-                    {/* HEADER */}
                     <div className="max-w-5xl mx-auto text-center space-y-4">
                         <div className="space-y-1">
                             <h2 className="text-3xl md:text-6xl leading-tight font-normal">
@@ -23,10 +22,7 @@ export default function TeamSection() {
                             Leadership & R&D (North America) Our core team consists of Data Scientists, Systems Architects, and Travel Operations veterans based across Toronto, the USA, and India. This group focuses on the integrity of our Persona-Led Intelligence and the security of our Merchant of Record framework—ensuring every transaction is seamless, secure, and legally sound.
                         </p>
                     </div>
-
-                    {/* LEADERSHIP + IMAGE (SINGLE SECTION) */}
                     <div className="bg-[#FFF9EE] grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-                        {/* TEXT */}
                         <div className="p-8 md:p-10 space-y-5 text-center md:text-left">
                             <h3 className="text-black text-xl md:text-2xl font-medium">
                                 Leadership & R&D (North America)
@@ -36,8 +32,6 @@ export default function TeamSection() {
                                 Our core team consists of Data Scientists, AI Architects, and Travel Operations veterans based in Toronto, the USA and India. This group focuses on the integrity of the Agentic AI and the security of our Merchant of Record framework, ensuring that every transaction is seamless and legally sound.
                             </p>
                         </div>
-
-                        {/* IMAGE */}
                         <div className="relative aspect-[4/3] overflow-hidden">
                             <Image
                                 src="https://ik.imagekit.io/288weifiq/nextjs/canada-day-celebration-with-maple-leaf-symbol_23-2151440520.jpg"

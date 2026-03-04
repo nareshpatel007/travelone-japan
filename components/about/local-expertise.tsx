@@ -27,21 +27,10 @@ export default function LocalExpertise() {
                     </p>
 
                     {/* LOGOS */}
-                    <div className="flex flex-wrap items-center justify-center lg:justify-start gap-6 pt-4">
-                        <Link href="/partnership/ACTA-License.jpeg" target="_blank">
+                    <div className="flex flex-wrap items-center justify-center lg:justify-start gap-10 pt-4">
+                        <Link href="/partnership/ASTA.pdf" target="_blank">
                             <Image
-                                src="/common/acta-logo.webp"
-                                alt="ACTA"
-                                width={160}
-                                height={80}
-                                draggable="false"
-                                className="object-contain h-auto w-20 md:w-26"
-                            />
-                        </Link>
-
-                        <Link href="/partnership/TICO-Bhavin-Vora.pdf" target="_blank">
-                            <Image
-                                src="/common/tico-logo.webp"
+                                src="/common/ASTA.png"
                                 alt="TICO"
                                 width={160}
                                 height={80}
@@ -49,10 +38,21 @@ export default function LocalExpertise() {
                                 className="object-contain h-auto w-20 md:w-26"
                             />
                         </Link>
+
+                        <Link href="/partnership/ACTA-License.jpeg" target="_blank">
+                            <Image
+                                src="/common/acta-logo.webp"
+                                alt="ACTA"
+                                width={160}
+                                height={80}
+                                draggable="false"
+                                className="object-contain h-auto w-20 md:w-44"
+                            />
+                        </Link>
                     </div>
 
                     <p className="text-black text-base sm:text-lg pt-2">
-                        Global operations managed by TICO-certified advisors and ACTA-registered industry professionals.
+                        Global operations managed by ASTA and ACTA-registered industry professionals.
                     </p>
                 </div>
             </div>

@@ -24,7 +24,7 @@ export default function FollowSection() {
                             key={index}
                             className="bg-[#dfe5df] hover:bg-[#cfd8cf] transition-all duration-300 p-5 cursor-pointer"
                         >
-                            <Link target="_blank" className="flex flex-col items-center justify-center" href={social.link}>
+                            <Link target="_blank" className="flex flex-col items-center justify-center" rel="nofollow" href={social.link}>
                                 <Icon className="text-[#3d5a2b] text-xl mb-3" />
                                 <span className="text-[11px] tracking-widest uppercase text-[#3d5a2b] font-medium">
                                     {social.name}

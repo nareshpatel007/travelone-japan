@@ -11,7 +11,7 @@ export default function FullBannerSection() {
             <div className="relative w-full h-100 md:h-150 overflow-hidden">
                 <Image
                     src="https://ik.imagekit.io/288weifiq/nextjs/vietnam/sailboat-sea-evening-sunlight-beautiful-big-mountains-luxury-summer-adventure-active-vacation-mediterranean-sea-turkey_158595-6875.jpg"
-                    alt=""
+                    alt="TravelOne"
                     fill
                     className="absolute inset-0 w-full h-full object-cover object-center opacity-100"
                 />

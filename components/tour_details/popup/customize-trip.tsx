@@ -131,19 +131,20 @@ export function CustomizeTrip({ tour = {}, open, onOpenChange, mainTitle, subTit
                 >
                     <X className="h-5 w-5" />
                 </button>
-                <div className="min-h-full flex flex-col items-center justify-center px-4 md:px-8 py-20 space-y-5">
-                    <div className="w-full max-w-4xl space-y-5">
+                <div className="min-h-full flex flex-col items-center md:justify-center px-4 md:px-8 py-10 md:py-20 space-y-2 md:space-y-5">
+                    <div className="w-full max-w-4xl space-y-1 md:space-y-5">
                         <QuestionHeading
-                            title={`${mainTitle || "Register Your Interest"}`}
+                            title={`${isSubmitted ? "Thank you for your inquiry!" : (mainTitle || "Register Your Interest")}`}
                             subtitle={subTitle}
+                            className="mb-3 md:mb-6"
                         />
 
                         {/* Tabs */}
                         {!isSubmitted && (
-                            <div className="flex border-b border-black mb-6">
+                            <div className="flex border-b border-black">
                                 <button
                                     onClick={() => setActiveTab("inquiry")}
-                                    className={`flex-1 py-3 text-sm md:text-base font-medium transition cursor-pointer ${activeTab === "inquiry"
+                                    className={`flex-1 py-2 md:py-3 text-sm md:text-base font-medium transition cursor-pointer ${activeTab === "inquiry"
                                         ? "bg-black text-white"
                                         : "bg-white text-black hover:bg-black/10"
                                         }`}
@@ -152,7 +153,7 @@ export function CustomizeTrip({ tour = {}, open, onOpenChange, mainTitle, subTit
                                 </button>
                                 <button
                                     onClick={() => setActiveTab("meeting")}
-                                    className={`flex-1 py-3 text-sm md:text-base font-medium transition cursor-pointer ${activeTab === "meeting"
+                                    className={`flex-1 py-2 md:py-3 text-sm md:text-base font-medium transition cursor-pointer ${activeTab === "meeting"
                                         ? "bg-black text-white"
                                         : "bg-white text-black hover:bg-black/10"
                                         }`}
@@ -308,7 +309,7 @@ export function CustomizeTrip({ tour = {}, open, onOpenChange, mainTitle, subTit
                             type="button"
                             onClick={handleSubmit}
                             disabled={formLoading}
-                            className="flex items-center justify-center gap-2 px-7 py-2 rounded font-medium transition-colors border border-black cursor-pointer bg-black text-white hover:text-black hover:bg-white disabled:opacity-50 disabled:cursor-not-allowed"
+                            className="flex items-center justify-center gap-2 px-7 py-1.5 md:py-2 rounded font-medium transition-colors border border-black cursor-pointer bg-black text-white text-base hover:text-black hover:bg-white disabled:opacity-50 disabled:cursor-not-allowed"
                         >
                             {formLoading && <Loader2 className="w-4 h-4 animate-spin" />}
                             {!formLoading && <CheckCircle className="w-4 h-4" />}
@@ -320,7 +321,7 @@ export function CustomizeTrip({ tour = {}, open, onOpenChange, mainTitle, subTit
                         <button
                             type="button"
                             onClick={handleClose}
-                            className="flex items-center justify-center gap-2 px-7 py-1.5 rounded font-medium transition-colors border border-black cursor-pointer bg-black text-white hover:text-black hover:bg-white disabled:opacity-50 disabled:cursor-not-allowed"
+                            className="flex items-center justify-center gap-2 px-7 py-1.5 rounded font-medium transition-colors border border-black cursor-pointer bg-black text-white text-base hover:text-black hover:bg-white disabled:opacity-50 disabled:cursor-not-allowed"
                         >
                             <MoveLeft className="w-4 h-4" /> Back to Itinerary
                         </button>

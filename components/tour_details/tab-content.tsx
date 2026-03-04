@@ -71,7 +71,7 @@ export default function TabContent({ tour, metaData, city_nights, tour_packages,
     }, [activeMainTab]);
 
     return (
-        <div className="bg-[#FFF9EE] p-5 md:px-10 md:py-8">
+        <div id="packageDetails" className="bg-[#FFF9EE] p-5 md:px-10 md:py-8">
             <div className="border-b border-[#d9cec1]">
                 <div className="flex gap-8">
                     <button
