@@ -279,7 +279,7 @@ export function CustomizeTrip({ tour = {}, open, onOpenChange, mainTitle, subTit
                                                 onChange={(e) => setFormData({ ...formData, accept_terms: e.target.checked })}
                                             />
                                             <label className="text-xs md:text-sm text-gray-700">
-                                                I agree to the <Link href="/legal/terms-service" target="_blank" className="underline">T&Cs</Link> and <Link href="/legal/privacy-policy" target="_blank" className="underline">Privacy Policy</Link>, and consent to receive communications from TravelOne, including follow-up call and text messages for quotes, scheduling, and call reminders, regarding my inquiry. Std msg & data rates apply. Text STOP to cancel, HELP for info.
+                                                I agree to the <Link href="/legal/terms-service" target="_blank" className="underline">T&Cs</Link> and <Link href="/legal/privacy-policy" target="_blank" className="underline">Privacy Policy</Link>, and consent to receive communications from TravelOne USA, including follow-up call and text messages for quotes, scheduling, and call reminders, regarding my inquiry. Std msg & data rates apply. Text STOP to cancel, HELP for info.
                                             </label>
                                         </div>
                                     </>

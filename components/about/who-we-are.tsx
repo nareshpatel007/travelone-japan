@@ -22,8 +22,10 @@ export default function WhoWeAreSection() {
                     {/* CANADA */}
                     <div className="bg-white border border-black p-8 md:p-10 text-center md:text-left space-y-4">
                         <h3 className="text-black text-md md:text-xl font-medium">
-                            The Intelligence (TravelOne Canada)
+                            The Intelligence
                         </h3>
+
+                        <p className="text-black text-base font-semibold">TravelOne Technologies Inc. - Canada</p>
 
                         <p className="text-black text-base leading-relaxed">
                             Based in our R&D hub in Toronto, our technology team architects the proprietary data models and orchestration logic that power the entire ecosystem. This is the "Brain" of TravelOne.
@@ -33,8 +35,10 @@ export default function WhoWeAreSection() {
                     {/* USA */}
                     <div className="bg-white border border-black p-8 md:p-10 text-center md:text-left space-y-4">
                         <h3 className="text-black text-md md:text-xl font-medium">
-                            The Service (TravelOne USA)
+                            The Service
                         </h3>
+
+                        <p className="text-black text-base font-semibold">TravelOne Global Travel Services LLC. - USA</p>
 
                         <p className="text-black text-base leading-relaxed">
                             Headquartered in the United States, our service arm acts as the Merchant of Record (MoR). We assume full financial and operational liability for your journey, providing the single point of accountability the modern traveler deserves.

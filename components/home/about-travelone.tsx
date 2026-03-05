@@ -26,7 +26,7 @@ export default function AboutTravelone() {
                     </h2>
 
                     <p className="text-black text-base sm:text-lg leading-relaxed">
-                        Hi, I’m Bhavin Vora. Founder & CEO.
+                        Hi, I’m Bhavin Vora. Founder & CEO - TravelOne Technologies Inc. (Canada)
                     </p>
 
                     <p className="text-black text-base sm:text-lg leading-relaxed">

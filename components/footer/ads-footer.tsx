@@ -37,14 +37,14 @@ export default function AdsLandingFooter() {
                     className="object-contain h-auto w-20 md:w-26"
                 />
 
-                <Image
+                {/* <Image
                     src="/common/acta-logo.webp"
                     alt="ACTA"
                     width={160}
                     height={80}
                     draggable="false"
                     className="object-contain h-auto w-20 md:w-44"
-                />
+                /> */}
             </div>
             <footer className="bg-[#FFF9EE] text-black">
                 <div className="max-w-7xl mx-auto px-6 space-y-12 pb-23">
@@ -59,10 +59,16 @@ export default function AdsLandingFooter() {
                             <p className='text-xs md:text-sm'>
                                 All travel services and financial transactions are executed by TravelOne Global Travel Services LLC (USA).
                             </p>
+                            <p className='text-xs md:text-sm'>
+                                © {new Date().getFullYear()} TravelOne Travel Services LLC. | All Rights Reserved.
+                            </p>
+                            <p className='text-xs md:text-sm'>
+                                Platform and Technology Powered By TravelOne Technologies Inc.
+                            </p>
+                            <p className='text-xs md:text-sm'>
+                                Website Hosted by AWS - Data Centre - USA - Northern Virginia
+                            </p>
                         </div>
-                        <p>
-                            © {new Date().getFullYear()} TravelOne Technologies Inc. | All Rights Reserved.
-                        </p>
                     </div>
                 </div>
 

@@ -52,7 +52,7 @@ export default function TrustCenterPage() {
                                 3. Regulatory Excellence
                             </h2>
                             <p className="text-base font-normal text-black">
-                                Our leadership maintains active TICO certification and ACTA membership. These credentials signify our commitment to the highest standards of consumer protection and ethical conduct in the North American travel industry.
+                                Our leadership maintains active ASTA membership. These credentials signify our commitment to the highest standards of consumer protection and ethical conduct.
                             </p>
                         </section>
                         <section className="space-y-4">

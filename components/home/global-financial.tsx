@@ -26,7 +26,7 @@ export default function GlobalFinancialSection() {
                         </p>
 
                         <p className="text-black text-base sm:text-lg">
-                            Our operations are led by ASTA and ACTA-Registered industry professionals. We maintain the highest standards of consumer protection and financial integrity in North America.
+                            Our operations are led by ASTA Registered industry professionals. We maintain the highest standards of consumer protection and financial integrity.
                         </p>
                     </div>
 
@@ -42,7 +42,7 @@ export default function GlobalFinancialSection() {
                             />
                         </Link>
 
-                        <Link href="/partnership/ACTA-License.jpeg" target="_blank">
+                        {/* <Link href="/partnership/ACTA-License.jpeg" target="_blank">
                             <Image
                                 src="/common/acta-logo.webp"
                                 alt="ACTA"
@@ -51,7 +51,7 @@ export default function GlobalFinancialSection() {
                                 draggable="false"
                                 className="object-contain h-auto w-20 md:w-44"
                             />
-                        </Link>
+                        </Link> */}
                     </div>
                 </div>
             </div>

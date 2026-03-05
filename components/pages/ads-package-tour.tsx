@@ -20,6 +20,7 @@ import { SearchAlert } from "lucide-react";
 import AdsLandingHeader from "../header/ads-header";
 import AdsLandingFooter from "../footer/ads-footer";
 import MobileTabContent from "../tour_details/mobile-tab-content";
+import EconomicTimesSection from "../contact/economic-times";
 
 // Define Props
 interface Props {
@@ -174,6 +175,7 @@ export default function AdsSingleTourPage({ slug }: Props) {
                             <TrustedBy isAdsLanding={true} />
                         </div>
 
+                        <EconomicTimesSection />
                         <Reviews reviews={tourData?.tour_reviews ?? []} />
                         <BestValueGuarantee />
                         <WhyTravelOne />
@@ -200,7 +202,7 @@ export default function AdsSingleTourPage({ slug }: Props) {
                                             className="object-cover rounded"
                                         />
                                         <span className="text-black text-base font-normal">
-                                            Call <Link href="tel:+1-437-966-9023" className="hover:underline cursor-pointer">+1 437 966 9023</Link> | <Link href="mailto:connect@travelone.io" className="hover:underline cursor-pointer">connect@travelone.io</Link>
+                                            Call <Link href="tel:+1-631-292-8833" className="hover:underline cursor-pointer">+1 631 292 8833</Link> | <Link href="mailto:connect@travelone.io" className="hover:underline cursor-pointer">connect@travelone.io</Link>
                                         </span>
                                     </div>
 
@@ -219,10 +221,10 @@ export default function AdsSingleTourPage({ slug }: Props) {
                                     <span className="text-black text-sm md:text-base font-normal">
                                         Call {" "}
                                         <Link
-                                            href="tel:+1-437-966-9023"
+                                            href="tel:+1-631-292-8833"
                                             className="hover:underline cursor-pointer"
                                         >
-                                            +1 437 966 9023
+                                            +1 631 292 8833
                                         </Link>
                                     </span>
 

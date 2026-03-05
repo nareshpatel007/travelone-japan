@@ -8,22 +8,22 @@ import { Linkedin } from "lucide-react";
 const leadership = [
     {
         name: "Vipul Shah",
-        role: "Chief Technology Officer (CTO)",
+        role: "Chief Technology Officer (CTO) - TravelOne Technologies Inc. (Canada)",
         image: "/about/img_team_63e33ba779f7f6-39405930-32732924.webp"
     },
     {
         name: "Pranav Amin",
-        role: "Regional Director of Growth – USA",
+        role: "CEO - TravelOne Global LLC. (USA)",
         image: "/about/img_team_63e33bb2382cf1-81493713-48358927.webp"
     },
     // {
     //     name: "Michael Bronfman",
-    //     role: "Regional Director of Growth – Canada",
+    //     role: "Regional Director of Growth - Canada",
     //     image: "/about/img_team_63e33bceb55f81-24897182-80425447.webp"
     // },
     {
         name: "Naresh Patel",
-        role: " Lead Systems Architect – India",
+        role: " Lead Systems Architect - India",
         image: "/about/img_team_674b22f265e656-43103817-78454512.webp"
     },
     {
@@ -65,7 +65,7 @@ export default function LeadershipTeam() {
                         </h2>
 
                         <h3 className="text-lg font-medium text-black">
-                            Hi, I’m Bhavin Vora. Founder & CEO.
+                            Hi, I’m Bhavin Vora. Founder & CEO - TravelOne Technologies Inc. (Canada)
                         </h3>
 
                         <p className="text-base md:text-lg text-black leading-relaxed max-w-xl">

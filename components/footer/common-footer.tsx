@@ -47,7 +47,7 @@ export default function CommonFooter({ isStickyShow = false }: Props) {
                     />
                 </Link>
 
-                <Link href="/partnership/ACTA-License.jpeg" target="_blank">
+                {/* <Link href="/partnership/ACTA-License.jpeg" target="_blank">
                     <Image
                         src="/common/acta-logo.webp"
                         alt="ACTA"
@@ -56,7 +56,7 @@ export default function CommonFooter({ isStickyShow = false }: Props) {
                         draggable="false"
                         className="object-contain h-auto w-20 md:w-44"
                     />
-                </Link>
+                </Link> */}
             </div>
 
             <footer className="bg-[#FFF9EE] text-black">
@@ -118,7 +118,7 @@ export default function CommonFooter({ isStickyShow = false }: Props) {
                                     <Link href="https://tech.travelone.io" target="_blank" className="hover:underline underline-offset-4">Tech Hub</Link>
                                 </li>
                                 <li>
-                                    <Link href="https://agent.travelone.io" target="_blank" className="hover:underline underline-offset-4">Travel Agent</Link>
+                                    <Link href="https://agent.travelone.io/login" target="_blank" className="hover:underline underline-offset-4">Travel Agent</Link>
                                 </li>
                                 <li>
                                     <Link href="/legal/manage-my-persona" className="hover:underline underline-offset-4">Manage My Persona</Link>
@@ -211,10 +211,16 @@ export default function CommonFooter({ isStickyShow = false }: Props) {
                             <p className='text-xs md:text-sm'>
                                 All travel services and financial transactions are executed by TravelOne Global Travel Services LLC (USA).
                             </p>
+                            <p className='text-xs md:text-sm'>
+                                © {new Date().getFullYear()} TravelOne Travel Services LLC. | All Rights Reserved.
+                            </p>
+                            <p className='text-xs md:text-sm'>
+                                Platform and Technology Powered By TravelOne Technologies Inc.
+                            </p>
+                            <p className='text-xs md:text-sm'>
+                                Website Hosted by AWS - Data Centre - USA - Northern Virginia
+                            </p>
                         </div>
-                        <p>
-                            © {new Date().getFullYear()} TravelOne Technologies Inc. | All Rights Reserved.
-                        </p>
                     </div>
                 </div>
 

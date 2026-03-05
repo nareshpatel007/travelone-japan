@@ -9,7 +9,7 @@ export default function StartWithWho() {
             <div className="bg-[#FFF9EE] flex items-center px-6 py-10 md:py-0">
                 <div className="text-center space-y-10">
                     <p className="text-black text-base md:text-xl">
-                        Global operations managed by ASTA and ACTA-registered industry professionals.We maintain the highest standards of consumer protection and financial integrity in North America.
+                        Global operations managed by ASTA registered industry professionals. We maintain the highest standards of consumer protection and financial integrity.
                     </p>
                     <div className="flex flex-wrap justify-center items-center text-center gap-10 md:gap-20">
                         <Link href="/partnership/ASTA.pdf" target="_blank">
@@ -23,7 +23,7 @@ export default function StartWithWho() {
                             />
                         </Link>
 
-                        <Link href="/partnership/ACTA-License.jpeg" target="_blank">
+                        {/* <Link href="/partnership/ACTA-License.jpeg" target="_blank">
                             <Image
                                 src="/common/acta-logo.webp"
                                 alt="ACTA"
@@ -32,7 +32,7 @@ export default function StartWithWho() {
                                 draggable="false"
                                 className="object-contain h-auto w-40 md:w-80"
                             />
-                        </Link>
+                        </Link> */}
                     </div>
                 </div>
             </div>

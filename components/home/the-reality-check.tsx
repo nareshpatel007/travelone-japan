@@ -8,7 +8,7 @@ const checkList: any = [
     {
         title: "The 'Vibe'",
         chatgpt: "Guesses based on generic popularity.",
-        travelone: "Matches your specific Archetype (Soul/Logic).",
+        travelone: "Matches your specific Soul Mind.",
     },
     {
         title: "Integrity",
@@ -17,7 +17,7 @@ const checkList: any = [
     },
     {
         title: "The Result",
-        chatgpt: "Static, unverified text blocks.",
+        chatgpt: "Static, unverified text blocks based on the internet info.",
         travelone: "A Dynamic Portfolio vetted for your persona.",
     }
 ];
@@ -30,7 +30,7 @@ export default function TheRealityCheck() {
                     <h2 className="text-black text-3xl md:text-6xl leading-tight font-normal">
                         Prompting is fun. Precision is better.
                     </h2>
-                    <span className="text-black text-md">
+                    <span className="flex max-w-3xl mx-auto text-black text-md">
                         ChatGPT and Gemini are great for "Day 1, Day 2" text blocks. TravelOne is the engine that actually understands why you travel.
                     </span>
                 </div>
@@ -58,8 +58,8 @@ export default function TheRealityCheck() {
                     ))}
                 </div>
                 <div className="text-center">
-                    <span className="text-black text-base md:text-xl">
-                        Stop settling for a "hallucinated" itinerary. Get a travel experience that mirrors your soul.
+                    <span className="flex max-w-3xl mx-auto text-black text-base md:text-2xl">
+                        The Takeaway: Stop settling for a "hallucinated" itinerary. Get a travel experience that mirrors your soul.
                     </span>
                 </div>
             </div>

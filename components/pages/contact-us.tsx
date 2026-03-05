@@ -233,7 +233,7 @@ export default function ContactPage() {
                                     </div>
                                     <div>
                                         <span className="font-semibold text-gray-900 block mb-2">
-                                            USA (Travel Services)
+                                            Travel Services Headquarter
                                         </span>
                                         <p className="text-sm text-black/90">
                                             418 Broadway #11017, Albany, NY, 12207, USA
@@ -248,10 +248,10 @@ export default function ContactPage() {
                                     </div>
                                     <div>
                                         <span className="font-semibold text-gray-900 block mb-2">
-                                            Canada (Technology Services)
+                                            Tech Centre
                                         </span>
                                         <p className="text-sm text-black/90">
-                                            19 Grand Trunk Crescent, Toronto, ON M5J 3A3
+                                            19 Grand Trunk Crescent, Toronto, ON M5J 3A3, Canada
                                         </p>
                                     </div>
                                 </div>
@@ -263,11 +263,14 @@ export default function ContactPage() {
                                     </div>
                                     <div>
                                         <span className="font-semibold text-gray-900 block mb-2">Phone</span>
-                                        <Link href="tel:+1-437-966-9023" className="hover:underline">
+                                        <div className="space-y-2">
                                             <p className="text-sm text-black/90">
-                                                +1 437 966 9023
+                                                Travel Services Support: <Link href="tel:+1-631-292-8833" className="hover:underline">+1 631 292 8833</Link>
                                             </p>
-                                        </Link>
+                                            <p className="text-sm text-black/90">
+                                                Tech Support: <Link href="tel:+1-437-966-9023" className="hover:underline">+1 437 966 9023</Link>
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -278,15 +281,18 @@ export default function ContactPage() {
                                     </div>
                                     <div>
                                         <span className="font-semibold text-gray-900 block mb-2">Email</span>
-                                        <Link href="mailto:connect@travelone.io" className="hover:underline">
+                                        <div className="space-y-2">
                                             <p className="text-sm text-black/90">
-                                                connect@travelone.io
+                                                Travel Services Support: <Link href="mailto:connect@travelone.io" className="hover:underline">connect@travelone.io</Link>
                                             </p>
-                                        </Link>
+                                            <p className="text-sm text-black/90">
+                                                Tech Support: <Link href="mailto:vipul@travelone.io" className="hover:underline">vipul@travelone.io</Link>
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div className="bg-white rounded-xl p-5 border border-gray-200 hover:bg-gray-50">
+                            {/* <div className="bg-white rounded-xl p-5 border border-gray-200 hover:bg-gray-50">
                                 <div className="flex items-start gap-4">
                                     <div className="p-2 bg-[#FFF9EE] rounded-lg">
                                         <Star className="h-5 w-5 text-black" />
@@ -300,7 +306,7 @@ export default function ContactPage() {
                                         </Link>
                                     </div>
                                 </div>
-                            </div>
+                            </div> */}
                             {/* <div className="bg-white rounded-xl p-5 border border-gray-200 hover:bg-gray-50">
                                 <div className="flex items-start gap-4">
                                     <p className="flex items-center gap-1 text-sm text-black">

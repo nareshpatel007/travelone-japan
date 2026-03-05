@@ -39,7 +39,7 @@ export default function LocalExpertise() {
                             />
                         </Link>
 
-                        <Link href="/partnership/ACTA-License.jpeg" target="_blank">
+                        {/* <Link href="/partnership/ACTA-License.jpeg" target="_blank">
                             <Image
                                 src="/common/acta-logo.webp"
                                 alt="ACTA"
@@ -48,11 +48,11 @@ export default function LocalExpertise() {
                                 draggable="false"
                                 className="object-contain h-auto w-20 md:w-44"
                             />
-                        </Link>
+                        </Link> */}
                     </div>
 
                     <p className="text-black text-base sm:text-lg pt-2">
-                        Global operations managed by ASTA and ACTA-registered industry professionals.
+                        Global operations managed by ASTA registered industry professionals.
                     </p>
                 </div>
             </div>
