@@ -466,7 +466,7 @@ export function InitializePersonaModal({ open, onOpenChange }: Props) {
                                     ) : (
                                         <CheckCircle className="h-5 w-5" />
                                     )}
-                                    Submit
+                                    Reveal The Truth
                                 </button>
                             )}
                         </div>

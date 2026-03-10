@@ -100,8 +100,8 @@ export default function HomePage() {
                 <WhyTravelOne />
                 <GlobalFinancialSection />
                 <AboutTravelone />
-                <ThreeImageShowcase destinationList={destinationList} />
-                <ToursSlider toursList={toursList} />
+                {/* <ThreeImageShowcase destinationList={destinationList} /> */}
+                {/* <ToursSlider toursList={toursList} /> */}
                 <BlogSlider blogList={blogList} />
                 <CommonFooter isStickyShow={true} />
                 <StickyHomeHeader />

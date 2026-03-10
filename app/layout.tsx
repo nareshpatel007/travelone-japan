@@ -48,7 +48,7 @@ export default function RootLayout({
     children: React.ReactNode;
 }) {
     return (
-        <>
+        <html lang="en-US" className="no-touchevents">
             <head>
                 <meta httpEquiv="Content-Type" content="text/html; charset=UTF-8" />
 
@@ -99,8 +99,8 @@ export default function RootLayout({
                     `}
                 </Script>
 
-                {/* Meta Pixel */}
-                <Script id="fb-pixel" strategy="afterInteractive">
+                {/* Facebook Meta Pixel */}
+                <Script id="meta-pixel" strategy="afterInteractive">
                     {`
                         !function(f,b,e,v,n,t,s){
                         if(f.fbq)return;n=f.fbq=function(){
@@ -109,9 +109,8 @@ export default function RootLayout({
                         n.queue=[];t=b.createElement(e);t.async=!0;
                         t.src=v;s=b.getElementsByTagName(e)[0];
                         s.parentNode.insertBefore(t,s)
-                        }(window, document,'script',
-                        'https://connect.facebook.net/en_US/fbevents.js');
-                        fbq('init', '1099480798256642');
+                        }(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
+                        fbq('init', '${META_PIXEL_ID}');
                         fbq('track', 'PageView');
                     `}
                 </Script>
@@ -125,33 +124,7 @@ export default function RootLayout({
                         t.src="https://www.clarity.ms/tag/"+i;
                         y=l.getElementsByTagName(r)[0];
                         y.parentNode.insertBefore(t,y);
-                        })(window, document, "clarity", "script", "su52f1wgx1");
-                    `}
-                </Script>
-
-                {/* Microsoft Clarity */}
-                <Script id="clarity-init" strategy="afterInteractive">
-                    {`
-                        (function(c,l,a,r,i,t,y){
-                        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-                        t=l.createElement(r);t.async=1;
-                        t.src="https://www.clarity.ms/tag/"+i;
-                        y=l.getElementsByTagName(r)[0];
-                        y.parentNode.insertBefore(t,y);
                         })(window, document, "clarity", "script", "vplb3tel2y");
-                    `}
-                </Script>
-
-                {/* Microsoft Clarity */}
-                <Script id="clarity-init" strategy="afterInteractive">
-                    {`
-                        (function(c,l,a,r,i,t,y){
-                        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-                        t=l.createElement(r);t.async=1;
-                        t.src="https://www.clarity.ms/tag/"+i;
-                        y=l.getElementsByTagName(r)[0];
-                        y.parentNode.insertBefore(t,y);
-                        })(window, document, "clarity", "script", "hykkcvtyw6");
                     `}
                 </Script>
 
@@ -174,31 +147,29 @@ export default function RootLayout({
                     `}
                 </Script>
             </head>
-            <html lang="en-US" className="no-touchevents">
-                <body>
-                    {/* GTM NoScript */}
-                    <noscript>
-                        <iframe
-                            src="https://www.googletagmanager.com/ns.html?id=GTM-P779H4SK"
-                            height="0"
-                            width="0"
-                            style={{ display: "none", visibility: "hidden" }}
-                        />
-                    </noscript>
+            <body>
+                {/* GTM NoScript */}
+                <noscript>
+                    <iframe
+                        src="https://www.googletagmanager.com/ns.html?id=GTM-P779H4SK"
+                        height="0"
+                        width="0"
+                        style={{ display: "none", visibility: "hidden" }}
+                    />
+                </noscript>
 
-                    {/* Facebook NoScript */}
-                    <noscript>
-                        <img
-                            height="1"
-                            width="1"
-                            style={{ display: "none" }}
-                            src="https://www.facebook.com/tr?id=1099480798256642&ev=PageView&noscript=1"
-                        />
-                    </noscript>
+                {/* Facebook NoScript */}
+                <noscript>
+                    <img
+                        height="1"
+                        width="1"
+                        style={{ display: "none" }}
+                        src="https://www.facebook.com/tr?id=1099480798256642&ev=PageView&noscript=1"
+                    />
+                </noscript>
 
-                    {children}
-                </body>
-            </html>
-        </>
+                {children}
+            </body>
+        </html>
     );
 }

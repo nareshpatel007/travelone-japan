@@ -29,7 +29,7 @@ export default function AdsLandingFooter() {
             {/* LOGOS */}
             <div className="flex flex-wrap items-center justify-center gap-10 bg-[#FFF9EE] py-10">
                 <Image
-                    src="/common/ASTA.png"
+                    src="/common/ASTA-Logo.png"
                     alt="TICO"
                     width={160}
                     height={80}
@@ -53,20 +53,20 @@ export default function AdsLandingFooter() {
                             <p className='text-xs md:text-sm'>
                                 Regulatory & Corporate Structure
                             </p>
-                            <p className='text-xs md:text-sm'>
+                            {/* <p className='text-xs md:text-sm'>
                                 TravelOne is a global orchestration platform. Technology and IP development are managed by TravelOne Technologies Inc. (Canada).
                             </p>
                             <p className='text-xs md:text-sm'>
                                 All travel services and financial transactions are executed by TravelOne Global Travel Services LLC (USA).
+                            </p> */}
+                            <p className='text-xs md:text-sm'>
+                                © {new Date().getFullYear()} Technology and IP owned by TravelOne Technologies, Inc. (Canada). | All Rights Reserved.
                             </p>
                             <p className='text-xs md:text-sm'>
-                                © {new Date().getFullYear()} TravelOne Travel Services LLC. | All Rights Reserved.
+                                Travel consultation, services, products and financial transactions executed by TravelOne Global Travel Services, LLC (USA).
                             </p>
                             <p className='text-xs md:text-sm'>
-                                Platform and Technology Powered By TravelOne Technologies Inc.
-                            </p>
-                            <p className='text-xs md:text-sm'>
-                                Website Hosted by AWS - Data Centre - USA - Northern Virginia
+                                Hosted by Amazon Web Services, Inc. - Data Centre - USA - Northern Virginia
                             </p>
                         </div>
                     </div>

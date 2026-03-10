@@ -19,7 +19,7 @@ export default function LocalExpertise() {
                     </p>
 
                     <p className="text-black text-base sm:text-lg">
-                        <b>Security:</b> Headquartered in North America, providing a secure legal and financial framework.
+                        <b>Security:</b> Headquartered in USA, providing a secure legal and financial framework.
                     </p>
 
                     <p className="text-black text-base sm:text-lg">
@@ -30,7 +30,7 @@ export default function LocalExpertise() {
                     <div className="flex flex-wrap items-center justify-center lg:justify-start gap-10 pt-4">
                         <Link href="/partnership/ASTA.pdf" target="_blank">
                             <Image
-                                src="/common/ASTA.png"
+                                src="/common/ASTA-Logo.png"
                                 alt="TICO"
                                 width={160}
                                 height={80}
@@ -52,7 +52,7 @@ export default function LocalExpertise() {
                     </div>
 
                     <p className="text-black text-base sm:text-lg pt-2">
-                        Global operations managed by ASTA registered industry professionals.
+                        Global operations managed by ASTA registered industry professionals from our TravelOne USA.
                     </p>
                 </div>
             </div>

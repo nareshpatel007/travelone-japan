@@ -81,8 +81,7 @@ export default function PersonasCountryLanding({ country }: Props) {
                         <div className="space-y-8">
                             {/* Sovereign Alignment */}
                             <div className="w-full grid grid-cols-1 md:grid-cols-[60%_40%]">
-                                <div className="relative h-[60vh] md:h-auto min-h-[200px]">
-                                    {/* Background Image */}
+                                <div className="relative h-[60vh]">
                                     <Image
                                         src={resultData?.country?.featured_image || "/placeholder.svg"}
                                         alt={resultData?.country?.name || "Image"}
@@ -129,7 +128,7 @@ export default function PersonasCountryLanding({ country }: Props) {
                                             {resultData?.cities?.map((city: any, index: number) => (
                                                 <div key={index} className="group h-full">
                                                     <div className="flex h-full flex-col border border-gray-200 transition-all hover:shadow-md">
-                                                        <div className="relative h-52 md:h-80 overflow-hidden">
+                                                        {/* <div className="relative h-52 md:h-80 overflow-hidden">
                                                             <Image
                                                                 src={city?.featured_image || "/placeholder.svg"}
                                                                 alt={city?.name}
@@ -145,7 +144,7 @@ export default function PersonasCountryLanding({ country }: Props) {
                                                                     </span>
                                                                 </div>
                                                             )}
-                                                        </div>
+                                                        </div> */}
                                                         <div className="flex flex-1 flex-col space-y-4 p-6 text-center">
                                                             <h2 className="line-clamp-2 text-md md:text-xl font-medium text-gray-900 md:text-xl">
                                                                 {city?.name}

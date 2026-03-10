@@ -2,8 +2,6 @@ import HomeHeader from "../header/home-header";
 import Link from "next/link";
 import VerticalSlider from "./vertical-marquee";
 import MobileSlider from "./mobile-slider";
-import { CustomizeTrip } from "../tour_details/popup/customize-trip";
-import { useState } from "react";
 
 interface Props {
     setOpenPlanYourTripModel: React.Dispatch<React.SetStateAction<boolean>>;
@@ -11,18 +9,18 @@ interface Props {
 }
 
 const images1 = [
-    "/home/Landing-marquee-img-01.png",
-    "/home/Landing-marquee-img-01.png",
+    "/home/main-slider-1.png",
+    "/home/main-slider-1.png",
 ];
 
 const images2 = [
-    "/home/Landing-marquee-img-2.png",
-    "/home/Landing-marquee-img-2.png",
+    "/home/main-slider-2.png",
+    "/home/main-slider-2.png",
 ];
 
 const images3 = [
-    "/home/Landing-marquee-img-4.png",
-    "/home/Landing-marquee-img-4.png",
+    "/home/main-slider-3.png",
+    "/home/main-slider-3.png",
 ];
 
 export default function LandingMarqueeSection({ setOpenPlanYourTripModel, setOpenInitializePersonaModel }: Props) {
@@ -48,7 +46,7 @@ export default function LandingMarqueeSection({ setOpenPlanYourTripModel, setOpe
                                         onClick={() => setOpenInitializePersonaModel(true)}
                                         className="bg-black text-white px-4 py-2.5 text-sm uppercase border border-black tracking-wide font-semibold hover:bg-transparent hover:text-black transition cursor-pointer"
                                     >
-                                        Initialize Persona
+                                        Decode Your DNA
                                     </button>
 
                                     <button
@@ -96,7 +94,7 @@ export default function LandingMarqueeSection({ setOpenPlanYourTripModel, setOpe
                                     onClick={() => setOpenInitializePersonaModel(true)}
                                     className="bg-black text-white px-4 py-2.5 text-sm uppercase border border-black tracking-wide font-semibold hover:bg-transparent hover:text-black transition cursor-pointer"
                                 >
-                                    Initialize Persona
+                                    Decode Your DNA
                                 </button>
 
                                 <button

@@ -62,7 +62,7 @@ export default function FooterCurveSection({ isAdsLanding = false }: Props) {
                                 onClick={() => setOpenInitializePersonaModel(true)}
                                 className="bg-black text-white px-6 py-3 text-sm uppercase border border-black tracking-wide font-semibold hover:bg-transparent hover:text-black transition cursor-pointer"
                             >
-                                Initialize Persona
+                                Decode Your DNA
                             </button>
 
                             <button

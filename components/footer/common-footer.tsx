@@ -38,7 +38,7 @@ export default function CommonFooter({ isStickyShow = false }: Props) {
             <div className="flex flex-wrap items-center justify-center gap-10 bg-[#FFF9EE] py-10">
                 <Link href="/partnership/ASTA.pdf" target="_blank">
                     <Image
-                        src="/common/ASTA.png"
+                        src="/common/ASTA-Logo.png"
                         alt="TICO"
                         width={160}
                         height={80}
@@ -65,7 +65,7 @@ export default function CommonFooter({ isStickyShow = false }: Props) {
                     <NewsletterSubscribe />
 
                     {/* Footer Menus */}
-                    <div className="grid grid-cols-2 md:grid-cols-5 mb-0 md:mb-12 space-y-12 md:space-y-0">
+                    <div className="grid grid-cols-2 md:grid-cols-4 mb-0 md:mb-12 space-y-12 md:space-y-0">
                         <div className='space-y-6'>
                             <h3 className="font-semibold text-lg">Company</h3>
                             <ul className="space-y-3 text-base">
@@ -87,7 +87,7 @@ export default function CommonFooter({ isStickyShow = false }: Props) {
                             </ul>
                         </div>
                         
-                        <div className='space-y-6'>
+                        {/* <div className='space-y-6'>
                             <h3 className="font-semibold text-lg">Collections</h3>
                             <ul className="space-y-3 text-base">
                                 <li>
@@ -106,7 +106,7 @@ export default function CommonFooter({ isStickyShow = false }: Props) {
                                     <Link href="/country/thailand" className="hover:underline underline-offset-4">Thailand</Link>
                                 </li>
                             </ul>
-                        </div>
+                        </div> */}
 
                         <div className='space-y-6'>
                             <h3 className="font-semibold text-lg">The Ecosystem</h3>
@@ -180,7 +180,7 @@ export default function CommonFooter({ isStickyShow = false }: Props) {
                             </button>
                         </Link>
 
-                        <Link href="https://www.facebook.com/travelone.technologies.inc/" target="_blank" rel="nofollow">
+                        <Link href="https://www.facebook.com/travelone.global.travel.services/" target="_blank" rel="nofollow">
                             <button type="button" className="flex items-center justify-center bg-[#0165E1] hover:bg-[#0165E1]/90 text-white p-2 rounded-full transition-colors cursor-pointer">
                                 <Facebook className="h-4 w-4" />
                             </button>
@@ -192,7 +192,7 @@ export default function CommonFooter({ isStickyShow = false }: Props) {
                             </button>
                         </Link>
 
-                        <Link href="https://www.linkedin.com/company/travelone-technologies-inc/" target="_blank" rel="nofollow">
+                        <Link href="https://www.linkedin.com/company/traveloneio/" target="_blank" rel="nofollow">
                             <button type="button" className="flex items-center justify-center bg-[#007aff] hover:bg-[#007aff]/90 text-white p-2 rounded-full transition-colors cursor-pointer">
                                 <Linkedin className="h-4 w-4" />
                             </button>
@@ -205,20 +205,20 @@ export default function CommonFooter({ isStickyShow = false }: Props) {
                             <p className='text-xs md:text-sm'>
                                 Regulatory & Corporate Structure
                             </p>
-                            <p className='text-xs md:text-sm'>
+                            {/* <p className='text-xs md:text-sm'>
                                 TravelOne is a global orchestration platform. Technology and IP development are managed by TravelOne Technologies Inc. (Canada).
                             </p>
                             <p className='text-xs md:text-sm'>
                                 All travel services and financial transactions are executed by TravelOne Global Travel Services LLC (USA).
+                            </p> */}
+                            <p className='text-xs md:text-sm'>
+                                © {new Date().getFullYear()} Technology and IP owned by TravelOne Technologies, Inc. (Canada). | All Rights Reserved.
                             </p>
                             <p className='text-xs md:text-sm'>
-                                © {new Date().getFullYear()} TravelOne Travel Services LLC. | All Rights Reserved.
+                                Travel consultation, services, products and financial transactions executed by TravelOne Global Travel Services, LLC (USA).
                             </p>
                             <p className='text-xs md:text-sm'>
-                                Platform and Technology Powered By TravelOne Technologies Inc.
-                            </p>
-                            <p className='text-xs md:text-sm'>
-                                Website Hosted by AWS - Data Centre - USA - Northern Virginia
+                                Hosted by Amazon Web Services, Inc. - Data Centre - USA - Northern Virginia
                             </p>
                         </div>
                     </div>

@@ -55,7 +55,7 @@ export default function ThreeStepBanner({ onOpenChange, setOpenInitializePersona
                             onClick={() => setOpenInitializePersonaModel(true)}
                             className="w-full max-w-xs sm:w-auto bg-black text-white px-6 py-3 text-sm uppercase border border-black tracking-wide font-semibold hover:bg-white hover:text-black transition cursor-pointer text-center"
                         >
-                            Initialize Persona
+                            Decode Your DNA
                         </button>
 
                         <button

@@ -80,19 +80,19 @@ export default function StickyHomeHeader() {
 
                         {/* RIGHT SIDE */}
                         <div className="flex items-center gap-6">
-                            <Link href="/wishlist" className="relative">
+                            {/* <Link href="/wishlist" className="relative">
                                 <Heart className="h-6 w-6" />
                                 <span className="absolute -top-2 -right-2 h-5 w-5 bg-yellow-400 rounded-full text-xs font-bold flex items-center justify-center">
                                     {wishlistCount || 0}
                                 </span>
-                            </Link>
+                            </Link> */}
 
-                            <Link href="/cart" className="relative">
+                            {/* <Link href="/cart" className="relative">
                                 <ShoppingCartIcon className="h-6 w-6" />
                                 <span className="absolute -top-2 -right-2 h-5 w-5 bg-yellow-400 rounded-full text-xs font-bold flex items-center justify-center">
                                     {cartCount || 0}
                                 </span>
-                            </Link>
+                            </Link> */}
 
                             {isLoggedIn() ? (
                                 <div className="relative" ref={menuRef}>
@@ -151,7 +151,7 @@ export default function StickyHomeHeader() {
                                     onClick={() => setOpenInitializePersonaModel(true)}
                                     className="bg-black text-white px-4 py-2 text-base border border-black tracking-wide font-medium hover:bg-transparent hover:text-black transition cursor-pointer"
                                 >
-                                    Initialize Persona
+                                    Decode Your DNA
                                 </button>
 
                                 <button
@@ -161,12 +161,12 @@ export default function StickyHomeHeader() {
                                     Start a Journey
                                 </button>
 
-                                <button
+                                {/* <button
                                     onClick={() => setOpenCustomizeTripPopup(true)}
                                     className="border border-black text-black px-4 py-2 text-base tracking-wide font-medium hover:bg-black hover:text-white transition cursor-pointer"
                                 >
                                     Request a Quote
-                                </button>
+                                </button> */}
                             </div>
                         </div>
                     </div>

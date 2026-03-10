@@ -1,8 +1,6 @@
 "use client";
 
 import { Loader2, Search } from "lucide-react";
-import Image from "next/image";
-import { useState } from "react";
 
 interface Post {
     id: number;
@@ -18,7 +16,7 @@ interface Props {
     setSearchCategory: (category: string) => void;
 }
 
-export default function SearchFilter({ isPageLoading, searchKeyword, setSearchKeyword, searchCategory, setSearchCategory }: Props) {
+export default function SearchFilter({ isPageLoading = false, searchKeyword, setSearchKeyword, searchCategory, setSearchCategory }: Props) {
     return (
         <div className="w-full flex flex-row items-center gap-4">
             <div className="flex items-center gap-2 border border-black px-3 py-2 rounded-sm w-full">

@@ -3,13 +3,16 @@
 import CommonHeader from "@/components/header/common-header";
 import CommonFooter from "@/components/footer/common-footer";
 import { useEffect, useState } from "react";
-import { CheckCircle, FileVideoCamera, Key, Video } from "lucide-react";
+import { CheckCircle, Key, Video } from "lucide-react";
 import Image from "next/image";
 import TravelExpert from "@/components/tour_details/travel-experts";
 import PageHelpful from "@/components/common/helpful";
 import Link from "next/link";
 import FeedbackForm from "@/components/personas/feedback-rating";
 import { ConnectTravelone } from "@/components/common/connect-travelone";
+import FeaturedSection from "@/components/personas/featured-section";
+import SliderSection from "@/components/personas/slider";
+import EthosSection from "@/components/personas/ethos";
 
 export default function Page() {
     // Get query parms
@@ -69,7 +72,7 @@ export default function Page() {
 
     // Filter countries
     const filteredCountries = selectedDestination === "all" ? countriesList : countriesList.filter(
-        (country) => country.destination_name === selectedDestination
+        (country) => country?.destination_name === selectedDestination
     );
 
     return (
@@ -89,104 +92,72 @@ export default function Page() {
 
                     {/* Result */}
                     {!isLoading && resultData && (
-                        <div className="space-y-8">
-                            <div className="max-w-7xl mx-auto px-5 md:px-0 py-6 space-y-12">
-                                <div className="relative overflow-hidden rounded-3xl bg-[#FFF9EE] text-white p-10 md:p-16">
-                                    <div className="relative z-10 text-center space-y-6">
-                                        <div className="inline-flex items-center gap-3 bg-black/80 px-6 py-2 rounded-full text-sm tracking-wide uppercase">
-                                            <CheckCircle className="text-white" size={18} />
-                                            Your Travel DNA
-                                        </div>
+                        <>
+                            {/* Featured */}
+                            <FeaturedSection
+                                headline={resultData?.data?.headline}
+                                paragraph={resultData?.data?.paragraph}
+                                climateFilter={resultData?.data?.climate_filter}
+                                serviceStyle={resultData?.data?.service_style}
+                            />
 
-                                        <h1 className="text-black text-3xl md:text-6xl leading-tight font-normal">
-                                            {resultData?.data?.headline}
-                                        </h1>
+                            {/* Ethos */}
+                            <div className="max-w-7xl mx-auto px-5 md:px-0 py-0 md:py-6 space-y-12">
+                                <EthosSection text={resultData?.data?.ethos} />
+                            </div>
 
-                                        <p className="max-w-3xl mx-auto text-sm md:text-lg text-black leading-relaxed">
-                                            {resultData?.data?.paragraph}
+                            {/* EXPERIENCE HIGHLIGHTS */}
+                            <div className="p-5 md:p-8 space-y-8">
+                                <div className="max-w-5xl mx-auto space-y-2 text-center">
+                                    <h2 className="text-black text-3xl md:text-6xl leading-tight font-normal md:max-w-4xl md:mx-auto">
+                                        Territory Alignment: Your Global Destinations
+                                    </h2>
+                                    <div className="space-y-3">
+                                        <p className="text-black text-md md:max-w-4xl md:mx-auto">
+                                            The optimal geographic environments selected to host your unique Travel DNA.
                                         </p>
-
-                                        <div className="flex flex-wrap justify-center gap-4 pt-4">
-                                            <span className="px-5 py-2 rounded-full bg-black/10 text-black font-medium text-sm">
-                                                Climate: {resultData?.data?.climate_filter}
-                                            </span>
-                                            <span className="px-5 py-2 rounded-full bg-black/10 text-black font-medium text-sm">
-                                                Service Style: {resultData?.data?.service_style}
-                                            </span>
-                                        </div>
+                                        <p className="text-black text-md">
+                                            We have identified these countries because their local infrastructure offers the most seamless alignment with your profile. By selecting a territory from this list, you are choosing a destination that is naturally 'pre-synced' to your expectations of pulse, grit, and service.
+                                        </p>
                                     </div>
                                 </div>
-
-                                {/* ETHOS */}
-                                {resultData?.data?.ethos && <div className="max-w-5xl mx-auto px-5 md:px-0 space-y-12">
-                                    <div className="text-center space-y-8">
-                                        <h2 className="text-3xl md:text-6xl md:max-w-4xl md:mx-auto leading-tight font-normal">
-                                            The Core Ethos: Your Travel Psychography
-                                        </h2>
-
-                                        <p className="text-black text-md">
-                                            A multi-layered analysis of the traits, drivers, and desires that define your global footprint.
-                                        </p>
-
-                                        <p className="text-base sm:text-lg text-black leading-relaxed">
-                                            {resultData?.data?.ethos}
-                                        </p>
-                                    </div>
-                                </div>}
-
-                                {/* EXPERIENCE HIGHLIGHTS */}
                                 <div className="space-y-8">
-                                    <div className="max-w-5xl mx-auto space-y-2 text-center">
-                                        <h2 className="text-black text-3xl md:text-6xl leading-tight font-normal md:max-w-4xl md:mx-auto">
-                                            Territory Alignment: Your Global Destinations
-                                        </h2>
-                                        <div className="space-y-3">
-                                            <p className="text-black text-md md:max-w-4xl md:mx-auto">
-                                                The optimal geographic environments selected to host your unique Travel DNA.
-                                            </p>
-                                            <p className="text-black text-md">
-                                                While your persona is universal, certain landscapes are better equipped to respond to your specific needs. We have identified these countries because their local infrastructure—from high-speed transit networks to secluded sanctuary stays—offers the most seamless alignment with your profile. By selecting a territory from this list, you are choosing a destination that is naturally 'pre-synced' to your expectations of pulse, grit, and service.
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div className="space-y-8">
-                                        <div className="flex gap-3 items-center overflow-x-auto pb-2 md:flex-wrap md:justify-center scrollbar-hide">
+                                    <div className="flex gap-3 items-center overflow-x-auto pb-2 md:flex-wrap md:justify-center scrollbar-hide">
+                                        <FilterButton
+                                            active={selectedDestination === "all"}
+                                            label="All Destinations"
+                                            onClick={() => setSelectedDestination("all")}
+                                        />
+
+                                        {destinationList && destinationList.map((destination, index) => (
                                             <FilterButton
-                                                active={selectedDestination === "all"}
-                                                label="All Destinations"
-                                                onClick={() => setSelectedDestination("all")}
+                                                key={index}
+                                                label={destination}
+                                                active={selectedDestination === destination}
+                                                onClick={() =>
+                                                    setSelectedDestination(destination)
+                                                }
                                             />
+                                        ))}
+                                    </div>
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        {filteredCountries.length > 0 && filteredCountries.map((item: any, index: number) => (
+                                            <div key={index} className="relative w-full">
+                                                <div className="relative w-full pb-[60%] overflow-hidden group cursor-pointer rounded-lg">
+                                                    <Link
+                                                        href={`/persona-landing/${item?.slug}?token=${token}`}
+                                                        target="_blank"
+                                                        className="absolute inset-0 block"
+                                                    >
+                                                        <Image
+                                                            src={item?.featured_image || "/placeholder.svg"}
+                                                            alt={item?.name || "placeholder"}
+                                                            fill
+                                                            className="object-cover transition-transform duration-700 group-hover:scale-105 will-change-transform"
+                                                        />
 
-                                            {destinationList && destinationList.map((destination, index) => (
-                                                <FilterButton
-                                                    key={index}
-                                                    label={destination}
-                                                    active={selectedDestination === destination}
-                                                    onClick={() =>
-                                                        setSelectedDestination(destination)
-                                                    }
-                                                />
-                                            ))}
-                                        </div>
-                                        <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-                                            {filteredCountries.length > 0 && filteredCountries.map((item: any, index: number) => (
-                                                <div key={index} className="relative w-full">
-                                                    <div className="relative w-full pb-[100%] overflow-hidden group cursor-pointer">
-                                                        <Link
-                                                            href={`/persona-landing/${item?.slug}?token=${token}`}
-                                                            target="_blank"
-                                                            className="absolute inset-0 block"
-                                                        >
-                                                            <Image
-                                                                src={item?.featured_image || "/placeholder.svg"}
-                                                                alt={item?.name || "placeholder"}
-                                                                fill
-                                                                className="object-cover transition-transform duration-700 group-hover:scale-105 will-change-transform"
-                                                            />
-
-                                                            <div className="absolute inset-0 bg-black/30" />
-
-                                                            {resultData?.data?.match_perfect && resultData?.data?.match_perfect?.includes(item?.id) && (
+                                                        {resultData?.data?.match_perfect &&
+                                                            resultData?.data?.match_perfect?.includes(item?.id) && (
                                                                 <div className="absolute top-3 left-3">
                                                                     <span className="inline-flex items-center px-2 py-1 text-xs font-medium bg-yellow-400 text-black rounded-full">
                                                                         ★ Perfect Match
@@ -194,24 +165,26 @@ export default function Page() {
                                                                 </div>
                                                             )}
 
-                                                            <div className="absolute bottom-4 left-4 right-4">
-                                                                <h3 className="text-white text-sm sm:text-xl font-medium leading-snug">
-                                                                    {item.name}
-                                                                </h3>
-                                                                <span className="text-xs sm:text-sm text-white">
-                                                                    {item?.archetype_heading}
-                                                                </span>
-                                                            </div>
-                                                        </Link>
-                                                    </div>
+                                                        <div className="absolute bottom-4 left-4 right-4">
+                                                            <h3 className="text-white text-lg md:text-3xl font-medium leading-snug">
+                                                                {item.name}
+                                                            </h3>
+
+                                                            <span className="text-sm md:text-lg text-white/90">
+                                                                {item?.archetype_heading}
+                                                            </span>
+                                                        </div>
+                                                    </Link>
                                                 </div>
-                                            ))}
-                                        </div>
+                                            </div>
+                                        ))}
                                     </div>
                                 </div>
+                            </div>
 
-                                {/* Feedback Rating */}
-                                <FeedbackForm token={token} />
+                            <div className="max-w-7xl mx-auto px-5 md:px-0 py-6 space-y-12">
+                                {/* Feedback */}
+                                <FeedbackForm faqs={resultData?.data?.faqs} token={token} />
 
                                 {/* Calendly Integration */}
                                 <div className="flex justify-center">
@@ -252,7 +225,7 @@ export default function Page() {
                                     pageName={`persona-result?token=/${token}`}
                                 />
                             </div>
-                        </div>
+                        </>
                     )}
 
                     {/* Result not found */}

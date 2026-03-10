@@ -14,7 +14,7 @@ export default function StartWithWho() {
                     <div className="flex flex-wrap justify-center items-center text-center gap-10 md:gap-20">
                         <Link href="/partnership/ASTA.pdf" target="_blank">
                             <Image
-                                src="/common/ASTA.png"
+                                src="/common/ASTA-Logo.png"
                                 alt="TICO"
                                 width={160}
                                 height={80}

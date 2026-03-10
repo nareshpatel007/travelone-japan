@@ -24,7 +24,7 @@ export default function TrustedBy({ isAdsLanding }: Props) {
             {!isAdsLanding && <div className="grid grid-cols-2 gap-6 items-center justify-center place-items-center">
                 <Link href="/partnership/ASTA.pdf" target="_blank">
                     <Image
-                        src="/common/ASTA.png"
+                        src="/common/ASTA-Logo.png"
                         alt="TICO"
                         width={160}
                         height={80}
@@ -58,7 +58,7 @@ export default function TrustedBy({ isAdsLanding }: Props) {
             {isAdsLanding && <>
                 <div className="md:hidden grid grid-cols-1 gap-10 items-center justify-center place-items-center">
                     <Image
-                        src="/common/ASTA.png"
+                        src="/common/ASTA-Logo.png"
                         alt="TICO"
                         width={160}
                         height={80}
@@ -77,7 +77,7 @@ export default function TrustedBy({ isAdsLanding }: Props) {
                 </div>
                 <div className="hidden md:grid grid-cols-2 gap-10 items-center justify-center place-items-center">
                     <Image
-                        src="/common/ASTA.png"
+                        src="/common/ASTA-Logo.png"
                         alt="TICO"
                         width={160}
                         height={80}

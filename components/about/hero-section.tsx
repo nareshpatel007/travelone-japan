@@ -4,7 +4,7 @@ export default function HeroSection() {
     return (
         <div className="relative h-[300px] md:h-[450px] overflow-hidden">
             <Image
-                src="/about/usa-hero.jpg"
+                src="/about/USA-Banner.jpg"
                 alt="TravelOne USA"
                 fill
                 className="object-cover"

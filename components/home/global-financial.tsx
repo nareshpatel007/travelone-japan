@@ -33,7 +33,7 @@ export default function GlobalFinancialSection() {
                     <div className="flex flex-wrap items-center justify-center lg:justify-start gap-10 pt-4">
                         <Link href="/partnership/ASTA.pdf" target="_blank">
                             <Image
-                                src="/common/ASTA.png"
+                                src="/common/ASTA-Logo.png"
                                 alt="TICO"
                                 width={160}
                                 height={80}

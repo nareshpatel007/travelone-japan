@@ -60,10 +60,21 @@ export default function HomeHeader() {
                     />
                 </Link>
                 <nav className="hidden lg:flex items-center gap-5 font-medium text-gray-900">
-                    <Link className="hover:underline underline-offset-5 cursor-pointer" href="/country">Collections</Link>
-                    <Link className="hover:underline underline-offset-5 cursor-pointer" href="/tour">Experiences</Link>
-                    <Link className="hover:underline underline-offset-5 cursor-pointer" href="/about">About</Link>
-                    <Link className="hover:underline underline-offset-5 cursor-pointer" href="/contact">Contact</Link>
+                    {/* <Link className="hover:underline underline-offset-5 cursor-pointer" href="/country">Collections</Link> */}
+                    {/* <Link className="hover:underline underline-offset-5 cursor-pointer" href="/tour">Experiences</Link> */}
+                    <Link className="hover:underline underline-offset-5 cursor-pointer" href="/intelligence">
+                        Persona-Led Travel
+                    </Link>
+                    <Link className="hover:underline underline-offset-5 cursor-pointer" href="/press">
+                        Press
+                    </Link>
+                    <Link className="hover:underline underline-offset-5 cursor-pointer" href="/about">
+                        About
+                    </Link>
+                    <Link className="hover:underline underline-offset-5 cursor-pointer" href="/contact">
+                        Contact
+                    </Link>
+
                     {!is_login_user && <Link onClick={() => setOpenLogin(true)} className="hover:underline underline-offset-5 cursor-pointer" href="#">Login</Link>}
 
                     {is_login_user && <div className="relative" ref={menuRef}>

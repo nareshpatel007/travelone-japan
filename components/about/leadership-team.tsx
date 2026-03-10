@@ -13,7 +13,7 @@ const leadership = [
     },
     {
         name: "Pranav Amin",
-        role: "CEO - TravelOne Global LLC. (USA)",
+        role: "CEO - TravelOne Global Travel Services, LLC. (USA)",
         image: "/about/img_team_63e33bb2382cf1-81493713-48358927.webp"
     },
     // {
@@ -28,15 +28,14 @@ const leadership = [
     },
     {
         name: "Louise Berg",
-        role: "Head of Destination Strategy & Social",
+        role: "Head of Destination Strategy & Social - Germany",
         image: "/about/img_team_63e33bbf427638-77996729-78363986.webp"
     },
     {
         name: "Himani Bhatt",
-        role: "Senior Intelligence Specialist",
+        role: "Senior Intelligence Specialist - India",
         image: "/about/img_team_674b22f265e656-43103817-78894512.webp"
     },
-    
 ];
 
 export default function LeadershipTeam() {

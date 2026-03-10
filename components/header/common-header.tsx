@@ -127,7 +127,7 @@ export default function CommonHeader({ landingPytrip = false }: Props) {
                             </Link>
 
                             <Link
-                                href="https://www.facebook.com/travelone.technologies.inc/"
+                                href="https://www.facebook.com/travelone.global.travel.services/"
                                 target="_blank"
                                 rel="nofollow"
                                 className="flex items-center gap-1.5 hover:underline underline-offset-4"
@@ -147,7 +147,7 @@ export default function CommonHeader({ landingPytrip = false }: Props) {
                             </Link>
 
                             <Link
-                                href="https://www.linkedin.com/company/travelone-technologies-inc/"
+                                href="https://www.linkedin.com/company/traveloneio/"
                                 target="_blank"
                                 rel="nofollow"
                                 className="flex items-center gap-1.5 hover:underline underline-offset-4"
@@ -158,7 +158,7 @@ export default function CommonHeader({ landingPytrip = false }: Props) {
                         </div>
 
                         {/* Search form */}
-                        <form action="/search" method="get">
+                        {/* <form action="/search" method="get">
                             <div className="ml-4 flex items-center gap-2 border-l pl-4">
                                 <input
                                     name="keyword"
@@ -169,7 +169,7 @@ export default function CommonHeader({ landingPytrip = false }: Props) {
                                 />
                                 <Search className="h-4 w-4" />
                             </div>
-                        </form>
+                        </form> */}
                     </div>
                 </div>
             </div>
@@ -192,34 +192,36 @@ export default function CommonHeader({ landingPytrip = false }: Props) {
                     {/* DESKTOP NAV (UNCHANGED) */}
                     <nav className="hidden lg:flex items-center gap-8 font-medium text-gray-900">
                         <Link className="hover:underline underline-offset-5 cursor-pointer" onMouseEnter={closeMegaMenu} href="/">Home</Link>
-                        <Link href="/country">
+                        {/* <Link href="/country">
                             <button
                                 className="hover:underline underline-offset-5 cursor-pointer"
                                 onMouseEnter={openMegaMenu}
                             >
                                 Collections
                             </button>
-                        </Link>
-                        <Link className="hover:underline underline-offset-5 cursor-pointer" onMouseEnter={closeMegaMenu} href="/tour">Experiences</Link>
+                        </Link> */}
+                        {/* <Link className="hover:underline underline-offset-5 cursor-pointer" onMouseEnter={closeMegaMenu} href="/tour">Experiences</Link> */}
+                        <Link className="hover:underline underline-offset-5 cursor-pointer" onMouseEnter={closeMegaMenu} href="/intelligence">Persona-Led Travel</Link>
+                        <Link className="hover:underline underline-offset-5 cursor-pointer" onMouseEnter={closeMegaMenu} href="/press">Press</Link>
                         <Link className="hover:underline underline-offset-5 cursor-pointer" onMouseEnter={closeMegaMenu} href="/about">About</Link>
                         <Link className="hover:underline underline-offset-5 cursor-pointer" onMouseEnter={closeMegaMenu} href="/contact">Contact</Link>
                     </nav>
 
                     {/* RIGHT ACTIONS */}
                     <div className="flex items-center gap-5 md:gap-6">
-                        <Link href="/wishlist" className="relative">
+                        {/* <Link href="/wishlist" className="relative">
                             <Heart className="h-6 w-6" />
                             <span id="wishlist_count" className="absolute -top-2 -right-2 h-5 w-5 bg-yellow-400 rounded-full text-xs font-bold flex items-center justify-center">
                                 {wishlistCount}
                             </span>
-                        </Link>
+                        </Link> */}
 
-                        <Link href="/cart" className="relative">
+                        {/* <Link href="/cart" className="relative">
                             <ShoppingCartIcon className="h-6 w-6" />
                             <span id="cart_count" className="absolute -top-2 -right-2 h-5 w-5 bg-yellow-400 rounded-full text-xs font-bold flex items-center justify-center">
                                 {cartCount}
                             </span>
-                        </Link>
+                        </Link> */}
 
                         {isLoggedIn() ? (
                             <div className="relative" ref={menuRef}>
@@ -372,8 +374,10 @@ export default function CommonHeader({ landingPytrip = false }: Props) {
 
                     <nav className="flex flex-col gap-6 p-6 text-lg font-medium">
                         <Link href="/">Home</Link>
-                        <Link href="/country">Collections</Link>
-                        <Link href="/tour">Experiences</Link>
+                        {/* <Link href="/country">Collections</Link> */}
+                        {/* <Link href="/tour">Experiences</Link> */}
+                        <Link href="/intelligence">Persona-Led Travel</Link>
+                        <Link href="/press">Press</Link>
                         <Link href="/about">About</Link>
                         <Link href="/contact">Contact</Link>
                     </nav>

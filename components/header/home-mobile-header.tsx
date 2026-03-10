@@ -46,12 +46,12 @@ export default function HomeMobileHeader() {
                         />
                     </Link>
                     <div className="flex items-center gap-5">
-                        <Link href="/cart" className="relative">
+                        {/* <Link href="/cart" className="relative">
                             <ShoppingCartIcon className="h-6 w-6" />
                             <span className="absolute -top-2 -right-2 h-5 w-5 bg-yellow-400 rounded-full text-xs font-bold flex items-center justify-center">
                                 {cartCount}
                             </span>
-                        </Link>
+                        </Link> */}
 
                         {!is_login_user && <User className="h-6 w-6 cursor-pointer" onClick={() => setOpenLogin(true)} />}
 
@@ -75,8 +75,9 @@ export default function HomeMobileHeader() {
 
                     <nav className="flex flex-col gap-6 p-6 text-lg font-medium">
                         <Link href="/">Home</Link>
-                        <Link href="/country">Collections</Link>
-                        <Link href="/tour">Experiences</Link>
+                        {/* <Link href="/country">Collections</Link> */}
+                        {/* <Link href="/tour">Experiences</Link> */}
+                        <Link href="/intelligence">Science of Persona-Led Travel</Link>
                         <Link href="/about">About</Link>
                         <Link href="/contact">Contact</Link>
                         {!is_login_user && <Link onClick={() => setOpenLogin(true)} className="hover:underline underline-offset-5 cursor-pointer" href="#">Login</Link>}

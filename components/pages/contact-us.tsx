@@ -225,7 +225,7 @@ export default function ContactPage() {
                                 )}
                             </div>
                         </div>
-                        <div className="lg:w-90 space-y-4">
+                        <div className="lg:w-120 space-y-4">
                             <div className="bg-white rounded-xl p-5 border border-gray-200 hover:bg-gray-50">
                                 <div className="flex items-start gap-4">
                                     <div className="p-2 bg-[#FFF9EE] rounded-lg">
@@ -235,6 +235,9 @@ export default function ContactPage() {
                                         <span className="font-semibold text-gray-900 block mb-2">
                                             Travel Services Headquarter
                                         </span>
+                                        <p className="text-sm text-black/90">
+                                            TravelOne Global Travel Services, LLC.
+                                        </p>
                                         <p className="text-sm text-black/90">
                                             418 Broadway #11017, Albany, NY, 12207, USA
                                         </p>
@@ -248,10 +251,13 @@ export default function ContactPage() {
                                     </div>
                                     <div>
                                         <span className="font-semibold text-gray-900 block mb-2">
-                                            Tech Centre
+                                            Technology Centre
                                         </span>
                                         <p className="text-sm text-black/90">
-                                            19 Grand Trunk Crescent, Toronto, ON M5J 3A3, Canada
+                                            TravelOne Technologies, Inc.
+                                        </p>
+                                        <p className="text-sm text-black/90">
+                                            19 Grand Trunk Crescent, Suite 1109, Toronto, ON M5J 3A3, Canada
                                         </p>
                                     </div>
                                 </div>

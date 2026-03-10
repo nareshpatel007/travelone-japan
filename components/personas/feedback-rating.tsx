@@ -1,77 +1,48 @@
 'use client'
 
 import { useState } from "react";
-import { Check, CheckCircle, Loader2, Star, StarHalf } from "lucide-react";
 
-// Define question
-const questions = [
-    "How satisfied are you with the overall travel experience?",
-    "How accurate was the itinerary recommendation?",
-    "How useful was the TravelOne DNA matching?",
-    "How easy was the platform to use?",
-    "How likely are you to recommend TravelOne?"
-];
-
-// Define Props
 interface Props {
+    faqs: any[];
     token: string;
 }
 
-export default function FeedbackForm({ token }: Props) {
+export default function FeedbackForm({ faqs, token }: Props) {
     // Define state
-    const [ratings, setRatings] = useState<any>({});
-    const [formLoader, setFormLoader] = useState<boolean>(false);
-    const [isFeedbackSent, setIsFeedbackSent] = useState<boolean>(false);
+    const [current, setCurrent] = useState(0);
+    const [answers, setAnswers] = useState<Record<number, { question: string; answer: string }>>({});
+    const [loading, setLoading] = useState(false);
+    const [submitted, setSubmitted] = useState(false);
 
-    // Handle rating
-    const handleRating = (qIndex: number, value: number) => {
-        setRatings({
-            ...ratings,
-            [qIndex]: value
+    // Define total questions
+    const total = faqs.length;
+
+    // Handle select
+    const handleSelect = (answer: string) => {
+        const question = faqs[current].question;
+
+        setAnswers({
+            ...answers,
+            [current]: {
+                question,
+                answer
+            }
         });
     };
 
-    // Render stars
-    const renderStars = (qIndex: number) => {
-        const rating = ratings[qIndex] || 0;
-        return (
-            <div className="flex items-center">
-                {[1, 2, 3, 4, 5].map((star) => {
-                    const full = rating >= star;
-                    const half = rating >= star - 0.5 && rating < star;
-                    return (
-                        <div key={star} className="relative flex">
-                            {/* Half Star Click */}
-                            <div
-                                onClick={() => handleRating(qIndex, star - 0.5)}
-                                className="absolute left-0 top-0 w-1/2 h-full z-10 cursor-pointer"
-                            />
+    // Handle next
+    const handleNext = () => {
+        if (!answers[current]) return;
 
-                            {/* Full Star Click */}
-                            <div
-                                onClick={() => handleRating(qIndex, star)}
-                                className="absolute right-0 top-0 w-1/2 h-full z-10 cursor-pointer"
-                            />
-
-                            {/* Star Display */}
-                            {full ? (
-                                <Star className="fill-yellow-400 text-yellow-400" size={22} />
-                            ) : half ? (
-                                <StarHalf className="fill-yellow-400 text-yellow-400" size={22} />
-                            ) : (
-                                <Star className="text-gray-400" size={22} />
-                            )}
-                        </div>
-                    )
-                })}
-            </div>
-        );
+        if (current < total - 1) {
+            setCurrent(current + 1);
+        }
     };
 
-    // Handle submit rating
-    const handleSubmitRating = async () => {
+    // Handle submit
+    const handleSubmit = async () => {
         // Update state
-        setFormLoader(true);
+        setLoading(true);
 
         try {
             // API call
@@ -82,51 +53,95 @@ export default function FeedbackForm({ token }: Props) {
                 },
                 body: JSON.stringify({
                     token,
-                    ratings: {
-                        questions,
-                        ratings
-                    }
+                    ratings: answers
                 }),
             });
 
             // Update state
-            setIsFeedbackSent(true);
+            setSubmitted(true);
         } finally {
             // Update state
-            setFormLoader(false);
+            setLoading(false);
         }
     };
 
+    if (submitted) {
+        return (
+            <div className="max-w-7xl mx-auto bg-[#FFF9EE] rounded-xl text-center p-4 md:p-16 py-10 space-y-8">
+                <h2 className="text-3xl md:text-4xl font-semibold">
+                    Thank you for your feedback 🙌
+                </h2>
+                <p className="text-base text-black">
+                    Your response helps us improve the Traveler DNA experience.
+                </p>
+            </div>
+        );
+    }
+
+    // Get current question
+    const faq = faqs[current];
+
     return (
-        <div className="max-w-7xl mx-auto bg-[#FFF9EE] rounded p-20 space-y-10">
-            <h1 className="text-center text-black text-3xl md:text-6xl leading-tight font-normal">
+        <div className="max-w-7xl mx-auto bg-[#FFF9EE] rounded-xl p-4 md:p-16 py-10 space-y-6 md:space-y-10">
+            {/* Title */}
+            <h1 className="text-center text-black text-xl md:text-5xl leading-tight">
                 Persona Experience Feedback
             </h1>
-            <div className="divide-y">
-                {questions.map((question, qIndex) => (
+
+            {/* Progress Dots */}
+            <div className="flex justify-center gap-3">
+                {faqs.map((_: any, index: number) => (
                     <div
-                        key={qIndex}
-                        className="flex items-center justify-between py-4 gap-6"
-                    >
-                        <p className="text-base text-black max-w-xl">
-                            {qIndex + 1}. {question}
-                        </p>
-                        {renderStars(qIndex)}
-                    </div>
+                        key={index}
+                        className={`h-3 w-3 rounded-full transition-all duration-300
+                        ${index === current
+                                ? "bg-black scale-125"
+                                : "bg-gray-300"
+                            }`}
+                    />
                 ))}
             </div>
-            <div className="flex justify-center text-center text-right">
-                {isFeedbackSent ? (
-                    <span>Your feedback has been submitted.</span>
-                ) : (
+
+            {/* Question */}
+            <div className="text-center text-lg md:text-2xl font-medium leading-snug">
+                {faq.question}
+            </div>
+
+            {/* Answers */}
+            <div className="grid gap-4">
+                {faq.answers.map((ans: string, index: number) => {
+                    const selected = answers[current]?.answer === ans;
+                    return (
+                        <button
+                            key={index}
+                            onClick={() => handleSelect(ans)}
+                            className={`bg-white text-left px-5 py-4 rounded-lg text-base border transition-all duration-200 cursor-pointer ${selected ? "border-black shadow-md" : "border-gray-300 hover:border-black hover:bg-white"}`}
+                        >
+                            {ans}
+                        </button>
+                    );
+                })}
+            </div>
+
+            {/* Buttons */}
+            <div className="flex justify-center">
+                {current < total - 1 && (
                     <button
-                        disabled={formLoader}
-                        onClick={handleSubmitRating}
-                        className="flex items-center gap-2 px-6 py-2 bg-black text-white rounded hover:bg-black/90 cursor-pointer disabled:bg-gray-400 disabled:cursor-not-allowed"
+                        onClick={handleNext}
+                        disabled={!answers[current]}
+                        className="px-8 py-2 rounded bg-black text-white disabled:opacity-40 hover:bg-black/80 cursor-pointer"
                     >
-                        {formLoader && <Loader2 className="w-4 h-4 animate-spin" />}
-                        {!formLoader && <CheckCircle className="w-4 h-4" />}
-                        Submit Feedback
+                        Next →
+                    </button>
+                )}
+
+                {current === total - 1 && (
+                    <button
+                        onClick={handleSubmit}
+                        disabled={!answers[current] || loading}
+                        className="px-8 py-2 rounded bg-black text-white disabled:opacity-40 hover:bg-black/80 cursor-pointer"
+                    >
+                        {loading ? "Submitting..." : "Submit Feedback"}
                     </button>
                 )}
             </div>
