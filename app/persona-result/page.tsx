@@ -223,8 +223,8 @@ export default function Page() {
                                                         </div>
                                                     )}
 
-                                                    <div className="absolute w-fit bottom-4 left-4 right-4 space-y-2">
-                                                        <div className="bg-black/50 rounded px-3 py-1">
+                                                    <div className="absolute bottom-4 left-4 right-4 space-y-2">
+                                                        <div className="w-fit bg-black/50 rounded px-3 py-1">
                                                             <h3 className="text-white text-lg md:text-3xl font-medium leading-snug">
                                                                 {item.name}
                                                             </h3>

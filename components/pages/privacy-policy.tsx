@@ -24,8 +24,6 @@ export default function PrivacyPolicyPage() {
                     <PageHeading main="Privacy & Data Asset Policy" />
 
                     <div className="space-y-10 mb-10">
-
-                        {/* META */}
                         <section className="space-y-2">
                             <p className="text-base font-normal text-black">
                                 Last Updated: January 15, 2026
