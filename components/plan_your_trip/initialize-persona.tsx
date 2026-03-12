@@ -215,6 +215,7 @@ export function InitializePersonaModal({ open, onOpenChange }: Props) {
                 },
                 body: JSON.stringify({
                     lead_id: leadId,
+                    user_id: updatedFormData?.user_id || "",
                     action: "personas-form",
                     data: updatedFormData
                 })

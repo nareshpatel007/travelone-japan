@@ -3,16 +3,17 @@
 import CommonHeader from "@/components/header/common-header";
 import CommonFooter from "@/components/footer/common-footer";
 import { useEffect, useState } from "react";
-import { CheckCircle, Key, Video } from "lucide-react";
+import { Key, MousePointerClick } from "lucide-react";
 import Image from "next/image";
-import TravelExpert from "@/components/tour_details/travel-experts";
 import PageHelpful from "@/components/common/helpful";
 import Link from "next/link";
 import FeedbackForm from "@/components/personas/feedback-rating";
-import { ConnectTravelone } from "@/components/common/connect-travelone";
 import FeaturedSection from "@/components/personas/featured-section";
-import SliderSection from "@/components/personas/slider";
 import EthosSection from "@/components/personas/ethos";
+import ValueTable from "@/components/personas/value-table";
+import TravelExpert from "@/components/personas/travel-experts";
+import { CountryWhyPopup } from "@/components/personas/country-why-popup";
+import { StartJourneyModal } from "@/components/plan_your_trip/journey-popup";
 
 export default function Page() {
     // Get query parms
@@ -20,16 +21,49 @@ export default function Page() {
 
     // Define state
     const [ready, setReady] = useState<boolean>(false);
-    const [openConnectTravelone, setOpenConnectTravelone] = useState<boolean>(false);
     const [resultData, rowResultData] = useState<any>(null);
     const [selectedDestination, setSelectedDestination] = useState<string>("all");
     const [isLoading, setIsLoading] = useState(true);
     const [destinationList, setDestinationList] = useState<any[]>([]);
     const [countriesList, setCountriesList] = useState<any[]>([]);
+    const [showWhyPopup, setShowWhyPopup] = useState(false);
+    const [activeCountry, setActiveCountry] = useState<any>(null);
+    const [openStartJourney, setOpenStartJourney] = useState(false);
+    const [journeyCountry, setJourneyCountry] = useState<string>("");
 
     useEffect(() => {
         requestAnimationFrame(() => { setReady(true); });
     }, []);
+
+    // Prevent right click
+    // useEffect(() => {
+    //     const preventContextMenu = (e: any) => e.preventDefault();
+    //     const preventCopy = (e: any) => e.preventDefault();
+    //     const preventPaste = (e: any) => e.preventDefault();
+    //     const preventCut = (e: any) => e.preventDefault();
+    //     const preventKeys = (e: any) => {
+    //         if (
+    //             e.ctrlKey &&
+    //             ["c", "v", "x", "u", "s", "a"].includes(e.key.toLowerCase())
+    //         ) {
+    //             e.preventDefault();
+    //         }
+    //     };
+
+    //     document.addEventListener("contextmenu", preventContextMenu);
+    //     document.addEventListener("copy", preventCopy);
+    //     document.addEventListener("paste", preventPaste);
+    //     document.addEventListener("cut", preventCut);
+    //     document.addEventListener("keydown", preventKeys);
+
+    //     return () => {
+    //         document.removeEventListener("contextmenu", preventContextMenu);
+    //         document.removeEventListener("copy", preventCopy);
+    //         document.removeEventListener("paste", preventPaste);
+    //         document.removeEventListener("cut", preventCut);
+    //         document.removeEventListener("keydown", preventKeys);
+    //     };
+    // }, []);
 
     useEffect(() => {
         if (!token) {
@@ -95,6 +129,8 @@ export default function Page() {
                         <>
                             {/* Featured */}
                             <FeaturedSection
+                                token={token}
+                                userData={resultData?.user_data}
                                 headline={resultData?.data?.headline}
                                 paragraph={resultData?.data?.paragraph}
                                 climateFilter={resultData?.data?.climate_filter}
@@ -103,8 +139,30 @@ export default function Page() {
 
                             {/* Ethos */}
                             <div className="max-w-7xl mx-auto px-5 md:px-0 py-0 md:py-6 space-y-12">
-                                <EthosSection text={resultData?.data?.ethos} />
+                                <EthosSection
+                                    token={token}
+                                    text={resultData?.data?.ethos}
+                                />
                             </div>
+
+                            {/* Value Table */}
+                            {resultData?.data?.matrix_table && <div className="py-4 md:py-8 bg-[#faf7f2] space-y-3">
+                                <div className="max-w-7xl mx-auto px-5 md:px-0 py-0 md:py-6 space-y-12">
+                                    <ValueTable
+                                        token={token}
+                                        valueTable={resultData?.data?.matrix_table}
+                                    />
+                                </div>
+                                <div className="flex justify-center">
+                                    <Link href="/manage-traveller-dna" target="_blank">
+                                        <button
+                                            className="flex items-center justify-center gap-2 px-6 py-2 bg-black text-white rounded hover:bg-yellow-400 hover:text-black cursor-pointer"
+                                        >
+                                            <MousePointerClick className="w-5 h-5" /> Manage My Traveller DNA
+                                        </button>
+                                    </Link>
+                                </div>
+                            </div>}
 
                             {/* EXPERIENCE HIGHLIGHTS */}
                             <div className="p-5 md:p-8 space-y-8">
@@ -143,7 +201,7 @@ export default function Page() {
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                         {filteredCountries.length > 0 && filteredCountries.map((item: any, index: number) => (
                                             <div key={index} className="relative w-full">
-                                                <div className="relative w-full pb-[60%] overflow-hidden group cursor-pointer rounded-lg">
+                                                <div className="relative w-full pb-[60%] overflow-hidden group cursor-pointer">
                                                     <Link
                                                         href={`/persona-landing/${item?.slug}?token=${token}`}
                                                         target="_blank"
@@ -155,26 +213,45 @@ export default function Page() {
                                                             fill
                                                             className="object-cover transition-transform duration-700 group-hover:scale-105 will-change-transform"
                                                         />
+                                                    </Link>
 
-                                                        {resultData?.data?.match_perfect &&
-                                                            resultData?.data?.match_perfect?.includes(item?.id) && (
-                                                                <div className="absolute top-3 left-3">
-                                                                    <span className="inline-flex items-center px-2 py-1 text-xs font-medium bg-yellow-400 text-black rounded-full">
-                                                                        ★ Perfect Match
-                                                                    </span>
-                                                                </div>
-                                                            )}
+                                                    {resultData?.data?.match_perfect && resultData?.data?.match_perfect?.includes(item?.id) && (
+                                                        <div className="absolute top-3 left-3">
+                                                            <span className="inline-flex items-center px-4 py-1 text-base font-medium bg-yellow-400 text-black rounded-full">
+                                                                ★ Perfect Match
+                                                            </span>
+                                                        </div>
+                                                    )}
 
-                                                        <div className="absolute bottom-4 left-4 right-4">
+                                                    <div className="absolute w-fit bottom-4 left-4 right-4 space-y-2">
+                                                        <div className="bg-black/50 rounded px-3 py-1">
                                                             <h3 className="text-white text-lg md:text-3xl font-medium leading-snug">
                                                                 {item.name}
                                                             </h3>
-
-                                                            <span className="text-sm md:text-lg text-white/90">
-                                                                {item?.archetype_heading}
-                                                            </span>
                                                         </div>
-                                                    </Link>
+
+                                                        <div className="flex flex-wrap gap-2">
+                                                            <button
+                                                                onClick={() => {
+                                                                    setOpenStartJourney(true);
+                                                                    setJourneyCountry(item?.name);
+                                                                }}
+                                                                className="flex items-center justify-center gap-2 px-6 py-2 bg-black text-white rounded hover:bg-yellow-400 hover:text-black cursor-pointer"
+                                                            >
+                                                                Plan Your {item?.name} DNA Itinerary
+                                                            </button>
+
+                                                            <button
+                                                                onClick={() => {
+                                                                    setActiveCountry(item);
+                                                                    setShowWhyPopup(true);
+                                                                }}
+                                                                className="flex items-center justify-center gap-2 px-6 py-2 bg-black text-white rounded hover:bg-yellow-400 hover:text-black cursor-pointer"
+                                                            >
+                                                                Why {item.name} for your Profile?
+                                                            </button>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         ))}
@@ -182,21 +259,11 @@ export default function Page() {
                                 </div>
                             </div>
 
-                            <div className="max-w-7xl mx-auto px-5 md:px-0 py-6 space-y-12">
-                                {/* Feedback */}
-                                <FeedbackForm faqs={resultData?.data?.faqs} token={token} />
+                            {/* Feedback */}
+                            {/* <FeedbackForm faqs={resultData?.data?.faqs} token={token} /> */}
 
-                                {/* Calendly Integration */}
-                                <div className="flex justify-center">
-                                    <button
-                                        onClick={() => setOpenConnectTravelone(true)}
-                                        className="flex items-center justify-center gap-2 px-6 py-2 bg-yellow-400 text-black rounded hover:bg-black hover:text-white cursor-pointer"
-                                    >
-                                        <Video className="w-5 h-5" /> Connect with TravelOne
-                                    </button>
-                                </div>
-
-                                {/* Static Section */}
+                            {/* Static Section */}
+                            {/* <div className="max-w-7xl mx-auto px-5 md:px-0 py-6 space-y-12">
                                 <div className="max-w-5xl mx-auto px-5 md:px-0 py-12 space-y-12">
                                     <div className="text-center space-y-8">
                                         <h2 className="text-3xl md:text-6xl md:max-w-4xl md:mx-auto leading-tight font-normal">
@@ -216,10 +283,13 @@ export default function Page() {
                                         </p>
                                     </div>
                                 </div>
-                            </div>
+                            </div> */}
 
                             <div>
-                                <TravelExpert />
+                                <TravelExpert
+                                    token={token}
+                                    faqs={resultData?.data?.faqs}
+                                />
                                 <PageHelpful
                                     text="Was this TravelDNA report helpful?"
                                     pageName={`persona-result?token=/${token}`}
@@ -242,13 +312,11 @@ export default function Page() {
                         </p>
                     </div>}
 
+                    <StartJourneyModal selectedCountry={journeyCountry} open={openStartJourney} onOpenChange={setOpenStartJourney} />
+                    <CountryWhyPopup open={showWhyPopup} onOpenChange={setShowWhyPopup} item={activeCountry} />
+
                     <CommonFooter />
                 </div>
-
-                <ConnectTravelone
-                    open={openConnectTravelone}
-                    onOpenChange={setOpenConnectTravelone}
-                />
             </>}
         </>
     );

@@ -81,9 +81,7 @@ export default function HomePage() {
                 }
             }
         };
-
         loadInitData();
-
         return () => controller.abort();
     }, []);
 

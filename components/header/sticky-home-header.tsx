@@ -1,6 +1,6 @@
 'use client'
 
-import { Heart, ListCheck, LogOut, Menu, ShoppingCartIcon, User, User2 } from 'lucide-react';
+import { Dna, Heart, ListCheck, LogOut, Menu, ShoppingCartIcon, User, User2 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState, useEffect, useRef } from 'react';
@@ -119,6 +119,14 @@ export default function StickyHomeHeader() {
                                             >
                                                 <User2 size={16} />
                                                 Profile
+                                            </Link>
+
+                                            <Link
+                                                href="/manage-traveller-dna"
+                                                className="flex items-center gap-2 px-4 py-2 hover:bg-gray-100"
+                                            >
+                                                <Dna size={16} />
+                                                My Travel DNA
                                             </Link>
 
                                             <Link

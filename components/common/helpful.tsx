@@ -99,7 +99,7 @@ export default function PageHelpful({ pageName = '', text = 'Was this page helpf
                 <div className="max-w-7xl mx-auto">
                     <div className={`flex items-center justify-center text-center ${helpful ? ' gap-1' : 'gap-3'} md:gap-4`}>
                         <span className="text-black font-medium">{text}</span>
-                        {helpful && <span className="text-green-600 font-medium">Thanks for your feedback!</span>}
+                        {helpful && <span className="text-green-600 font-medium">Thank you for your feedback!</span>}
 
                         {!helpful && <>
                             <div className="p-3 bg-white rounded-full cursor-pointer">

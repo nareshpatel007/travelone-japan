@@ -3,16 +3,21 @@
 import Image from "next/image"
 import Link from "next/link"
 import { useState } from "react";
-import { CustomizeTrip } from "./popup/customize-trip";
+import { CustomizeTrip } from "../tour_details/popup/customize-trip";
+import { FeedbackPopup } from "./feedback-popup";
+import { BehindBlueprint } from "./behind-blueprint";
 
 // Define Props
 interface Props {
-    isAdsLanding?: boolean;
+    token: string;
+    faqs: any[];
 }
 
-export default function TravelExpert({ isAdsLanding }: Props) {
+export default function TravelExpert({ token, faqs }: Props) {
     // Define state
     const [openCustomizeTrip, setOpenCustomizeTrip] = useState<boolean>(false);
+    const [openFeedbackPopup, setOpenFeedbackPopup] = useState<boolean>(false);
+    const [openBlueprintPopup, setOpenBlueprintPopup] = useState<boolean>(false);
 
     return (
         <>
@@ -50,7 +55,7 @@ export default function TravelExpert({ isAdsLanding }: Props) {
                                             onClick={() => setOpenCustomizeTrip(true)}
                                             className="px-6 md:px-8 py-3 bg-black text-white text-sm font-medium tracking-wide hover:bg-black/90 transition uppercase cursor-pointer"
                                         >
-                                            {isAdsLanding ? 'Inquire Now' : 'Customize Your Trip'}
+                                            Customize Your Trip
                                         </button>
 
                                         <Link href="/press" target="_blank">
@@ -62,6 +67,22 @@ export default function TravelExpert({ isAdsLanding }: Props) {
                                         </Link>
                                     </div>
 
+                                    <div className="hidden md:flex items-center gap-4">
+                                        <button
+                                            onClick={() => setOpenFeedbackPopup(true)}
+                                            className="px-6 md:px-8 py-3 bg-black text-white text-sm font-medium tracking-wide hover:bg-black/90 transition uppercase cursor-pointer"
+                                        >
+                                            Feedback
+                                        </button>
+
+                                        <button
+                                            onClick={() => setOpenBlueprintPopup(true)}
+                                            className="px-6 md:px-8 py-3 bg-black text-white text-sm font-medium tracking-wide hover:bg-black/90 transition uppercase cursor-pointer"
+                                        >
+                                            Behind the Blueprint
+                                        </button>
+                                    </div>
+
                                     <span className="hidden md:block text-black font-normal text-base">
                                         OR CALL <Link href="tel:1-631-292-8833" className="hover:underline">+1 631 292 8833</Link>
                                     </span>
@@ -71,8 +92,9 @@ export default function TravelExpert({ isAdsLanding }: Props) {
                                             onClick={() => setOpenCustomizeTrip(true)}
                                             className="px-6 md:px-8 py-3 bg-black text-white text-xs font-medium tracking-wide hover:bg-black/90 transition uppercase cursor-pointer"
                                         >
-                                            {isAdsLanding ? 'Inquire Now' : 'Customize Your Trip'}
+                                            Customize Your Trip
                                         </button>
+
                                         <Link href="/press" target="_blank">
                                             <button
                                                 className="px-6 md:px-8 py-3 bg-black text-white text-xs font-medium tracking-wide hover:bg-black/90 transition uppercase cursor-pointer"
@@ -80,6 +102,21 @@ export default function TravelExpert({ isAdsLanding }: Props) {
                                                 The Global Standard: See Our Press
                                             </button>
                                         </Link>
+
+                                        <button
+                                            onClick={() => setOpenFeedbackPopup(true)}
+                                            className="px-6 md:px-8 py-3 bg-black text-white text-xs font-medium tracking-wide hover:bg-black/90 transition uppercase cursor-pointer"
+                                        >
+                                            Feedback
+                                        </button>
+
+                                        <button
+                                            onClick={() => setOpenBlueprintPopup(true)}
+                                            className="px-6 md:px-8 py-3 bg-black text-white text-xs font-medium tracking-wide hover:bg-black/90 transition uppercase cursor-pointer"
+                                        >
+                                            Behind the Blueprint
+                                        </button>
+
                                         <span className="text-black font-normal text-base block mt-3">
                                             OR CALL <Link href="tel:1-631-292-8833" className="hover:underline">+1 631 292 8833</Link>
                                         </span>
@@ -92,11 +129,9 @@ export default function TravelExpert({ isAdsLanding }: Props) {
             </div>
 
             {/* MODAL */}
-            <CustomizeTrip
-                open={openCustomizeTrip}
-                onOpenChange={setOpenCustomizeTrip}
-                mainTitle="Register Your Interest"
-            />
+            <CustomizeTrip open={openCustomizeTrip} onOpenChange={setOpenCustomizeTrip} mainTitle="Register Your Interest" />
+            <FeedbackPopup open={openFeedbackPopup} onOpenChange={setOpenFeedbackPopup} token={token} faqs={faqs} />
+            <BehindBlueprint open={openBlueprintPopup} onOpenChange={setOpenBlueprintPopup} />
         </>
     )
 }

@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { LoginModal } from "../common/login-modal";
 import { useEffect, useRef, useState } from "react";
-import { ListCheck, LogOut, User, User2, UserCircle, UserCircle2Icon } from "lucide-react";
+import { Dna, ListCheck, LogOut, User, User2, UserCircle, UserCircle2Icon } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 // components/Header.tsx
@@ -100,6 +100,14 @@ export default function HomeHeader() {
                                 >
                                     <User2 size={16} />
                                     Profile
+                                </Link>
+                                
+                                <Link
+                                    href="/manage-traveller-dna"
+                                    className="text-base flex items-center gap-2 px-4 py-2 hover:bg-gray-100"
+                                >
+                                    <Dna size={16} />
+                                    My Travel DNA
                                 </Link>
 
                                 <Link

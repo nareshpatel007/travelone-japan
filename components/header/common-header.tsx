@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { LoginModal } from "../common/login-modal";
-import { Facebook, Heart, Instagram, Linkedin, ListCheck, LogOut, Menu, Search, ShoppingCartIcon, User, User2, X, Youtube } from "lucide-react";
+import { Dna, Facebook, Heart, Instagram, Linkedin, ListCheck, LogOut, Menu, Search, ShoppingCartIcon, User, User2, X, Youtube } from "lucide-react";
 import { getCartData, getLoginCookie, getWishlistCount, isLoggedIn, removeLoginCookie } from "@/lib/auth";
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
@@ -249,6 +249,14 @@ export default function CommonHeader({ landingPytrip = false }: Props) {
                                             <User2 size={16} />
                                             Profile
                                         </Link>
+                                        
+                                        <Link
+                                            href="/manage-traveller-dna"
+                                            className="text-base flex items-center gap-2 px-4 py-2 hover:bg-gray-100"
+                                        >
+                                            <Dna size={16} />
+                                            My Travel DNA
+                                        </Link>
 
                                         <Link
                                             href="/my_bookings"
@@ -386,6 +394,7 @@ export default function CommonHeader({ landingPytrip = false }: Props) {
 
                     {isLoggedIn() && <nav className="flex flex-col gap-6 p-6 text-lg font-medium">
                         <Link className="hover:underline underline-offset-5 cursor-pointer" href="/account">Profile</Link>
+                        <Link className="hover:underline underline-offset-5 cursor-pointer" href="/manage-traveller-dna">My Travel DNA</Link>
                         <Link className="hover:underline underline-offset-5 cursor-pointer" href="/my_bookings">My Bookings</Link>
                         <Link
                             onClick={logout}

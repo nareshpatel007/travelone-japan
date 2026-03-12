@@ -121,7 +121,7 @@ export default function CommonFooter({ isStickyShow = false }: Props) {
                                     <Link href="https://agent.travelone.io/login" target="_blank" className="hover:underline underline-offset-4">Travel Agent</Link>
                                 </li>
                                 <li>
-                                    <Link href="/legal/manage-my-persona" className="hover:underline underline-offset-4">Manage My Persona</Link>
+                                    <Link href="/manage-traveller-dna" className="hover:underline underline-offset-4">Manage My Traveller DNA</Link>
                                 </li>
                                 <li>
                                     <Link href="https://agent.travelone.io/login" target="_blank" className="hover:underline underline-offset-4">Partner Login</Link>
